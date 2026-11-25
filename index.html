@@ -5939,14 +5939,15 @@ var RULES=[
  [/^([\s\S]+) • linked$/,function(m){return m[1]+' • 已链接';}],
  [/^([\s\S]+) added — slot (\d+) of 13 on your bar\. Your main skill is unchanged; link its supports in Your skills, or tap Make main to plan around it\.$/,function(m){return m[1]+' 已添加 — 你栏上的第 '+m[2]+' / 13 个槽位。你的主技能不变；在“你的技能”中链接其辅助，或点按“设为主技能”围绕它规划。';}],
  [/^([\s\S]+) is on your bar, but it is not your main skill — your main skill is unchanged\. Tap Make main to plan around it\.$/,function(m){return m[1]+' 在你的技能栏上，但它不是你的主技能 — 你的主技能不变。点按“设为主技能”即可围绕它规划。';}],
- [/^([\s\S]+) is on your bar — shown on the Main skill card below, where you can link its supports\. Your main skill is still ([\s\S]+); use Make main on it in the Add a skill list below to plan around it\.$/,function(m){return m[1]+' 在你的技能栏上 — 已显示在下方的主技能卡片上，你可以在那里链接它的辅助宝石。你的主技能仍是 '+m[2]+'；在下方的“添加技能”列表中对它点按“设为主技能”即可围绕它规划。';}],
+ [/^([\s\S]+) is on your bar — shown on the Main skill card below, where you can link its supports\. Your main skill is still ([\s\S]+); flip the Main skill switch on the panel below the card to plan around it\.$/,function(m){return m[1]+' 在你的技能栏上 — 已显示在下方的主技能卡片上，你可以在那里链接它的辅助宝石。你的主技能仍是 '+m[2]+'；在卡片下方的面板上打开它的主技能开关，即可围绕它规划。';}],
  [/^([\s\S]+) is your main skill — it is on the card below; edit its supports there\.$/,function(m){return m[1]+' 是你的主技能 — 就在下方卡片上；在那里编辑它的辅助宝石。';}],
  [/^([\s\S]+) is your main skill already — open another skill from your bar and flip its Main skill switch to plan around that one instead\.$/,function(m){return m[1]+' 已经是你的主技能了 — 从技能栏打开另一个技能，并在其面板上打开它的主技能开关，即可改为围绕那个技能规划。';}],
  [/^Back to your main skill, ([\s\S]+)\.$/,function(m){return '已回到你的主技能 '+m[1]+'。';}],
  [/^Viewing — your main skill is still ([\s\S]+)\. Flip the Main skill switch on the panel below to plan around this one\.$/,function(m){return '正在查看 — 你的主技能仍是 '+m[1]+'。在下方面板上打开主技能开关，即可围绕这个技能规划。';}],
- [/^Viewing — your main skill is still ([\s\S]+)\. You can link its supports here; use Make main on it in the Add a skill list below to plan around this one\.$/,function(m){return '正在查看 — 你的主技能仍是 '+m[1]+'。你可以在这里链接它的辅助宝石；在下方的“添加技能”列表中对它点按“设为主技能”，即可围绕这个技能规划。';}],
  [/^([\s\S]+) linked in slot (\d+) of ([\s\S]+)\.$/,function(m){return m[1]+' 已链接到 '+m[3]+' 的第 '+m[2]+' 个插槽。';}],
- [/^([\s\S]+) — on your bar\. Tap to open it on the Main skill card below; it becomes your main skill only from Make main in the Add a skill list below\.$/,function(m){return m[1]+' — 在你的技能栏上。点按可在下方主技能卡片上打开它；只有在下方的“添加技能”列表中对它点按“设为主技能”，它才会成为你的主技能。';}],
+ [/^([\s\S]+) — on your bar\. Tap to open it on the Main skill card below; flip its Main skill switch on the panel below the card to make it your main skill\.$/,function(m){return m[1]+' — 在你的技能栏上。点按可在下方主技能卡片上打开它；在卡片下方的面板上打开它的主技能开关，它就会成为你的主技能。';}],
+ [/^([\s\S]+) is your main skill now — link its supports on the card in the Main skill section\.$/,function(m){return m[1]+' 现在是你的主技能了 — 在主技能区的卡片上链接它的辅助宝石。';}],
+ [/^Patch 87: your 13 bar slots are your equipped skills, and a trigger link \(Cast on Crit, Cast when Hit, Cast on Minion Death, Channel Conduit\) casts only an equipped spell\. Tap a skill to open it on the Main skill card in the Skills workspace — your main skill stays as it is until you flip the Main skill switch on the panel under the card there, or use Make main on the skill in the Add a skill list\. Its linked supports show in the Skills workspace\.$/,function(m){return '补丁 87：你的 13 个技能栏槽位就是你已装备的技能，触发链接（暴击时施放、受击时施放、仆从死亡时施放、引导传导）只能施放已装备的法术。点按一个技能可在技能工作区的主技能卡片上打开它 — 你的主技能保持不变，直到你在那里卡片下方的面板上打开它的主技能开关，或在“添加技能”列表中对该技能点按“设为主技能”。它链接的辅助宝石会显示在技能工作区中。';}],
  [/^Main skill switch for ([\s\S]+)$/,function(m){return m[1]+' 的主技能开关';}],
  [/^Viewing: ([\s\S]+) — on your bar, not your main skill$/,function(m){return '正在查看：'+m[1]+' — 在你的技能栏上，不是你的主技能';}],
  [/^([\s\S]+) is your main skill — edit its supports on the card below\.$/,function(m){return m[1]+' 是你的主技能 — 在下方卡片上编辑它的辅助宝石。';}],
@@ -15192,14 +15193,17 @@ function skillShowTip(anchor,id){
    on the bar brings THAT skill up on the main-skill card and its
    panel below (viewSkillId) — it does not make it the main skill.
    The main skill itself (state.skillId) changes only when the user
-   marks a skill as main: the Make main button on its row in the
-   Add a skill list below, or a skill dragged onto the main-skill
-   card (the user's rule, restated 2026-11-25: "Clicking skill on
-   your bar should not set as a main. Only if mark as main skill."
-   — and later the same day: the Main skill toggle that sat on
-   this panel duplicated the Make main below, so the toggle went
-   and Make main stayed). viewSkillId is null whenever the section
-   shows the main skill itself. */
+   marks a skill as main: the Main skill switch on the panel
+   under the card, the Make main button on its row in the Add a
+   skill list below, or a skill dragged onto the main-skill card
+   (the user's rule, restated 2026-11-25: "Clicking skill on your
+   bar should not set as a main. Only if mark as main skill.").
+   The switch sat on this panel, was taken off later the same day
+   as a duplicate of the Make main below, and the user asked
+   where it had gone ("why the toggle for make main is gone the
+   skill") — so it is back on the panel, on the skill itself, one
+   tap from the card that shows the skill. viewSkillId is null
+   whenever the section shows the main skill itself. */
 var viewSkillId=null;
 function focusedSkillId(){
   if(viewSkillId&&viewSkillId!==state.skillId&&G.skillMap&&G.skillMap[viewSkillId]&&barEntryFor(viewSkillId))return viewSkillId;
@@ -15223,8 +15227,8 @@ function priceBarSkill(id){
 }
 /* A click on a skill on the bar: bring that skill up on the Main
    skill card and panel, inside the Skills popup, and say plainly
-   that the main skill has not changed — Make main on its row in
-   the Add a skill list below is the thing that changes it. The message
+   that the main skill has not changed — the Main skill switch on
+   the panel under the card is the thing that changes it. The message
    is set after the popup opens and the card renders, so it is
    still the last word on screen when the view lands. */
 function viewBarSkill(id){
@@ -15239,7 +15243,7 @@ function viewBarSkill(id){
   if(popCurrent!=='skills')switchWorkspace('skills');
   renderDrawerCard(); renderGemPalette();
   if(wasMain)sockMsg(skillName(id)+' is your main skill — it is on the card below; edit its supports there.');
-  else sockMsg(skillName(id)+' is on your bar — shown on the Main skill card below, where you can link its supports. Your main skill is still '+skillName(state.skillId)+'; use Make main on it in the Add a skill list below to plan around it.');
+  else sockMsg(skillName(id)+' is on your bar — shown on the Main skill card below, where you can link its supports. Your main skill is still '+skillName(state.skillId)+'; flip the Main skill switch on the panel below the card to plan around it.');
   scrollToSkillCard();
 }
 /* The whole bar at the top of the Skills workspace: one compact
@@ -15248,8 +15252,8 @@ function viewBarSkill(id){
    visible at once, not just the planned skill. One tap or click
    on a row opens that skill on the Main skill card below (see
    viewBarSkill): the main skill itself does not change —
-   Make main in the Add a skill list below is the way a bar
-   skill becomes the planned one. Hovering with
+   the Main skill switch on the panel under the card is the way
+   a bar skill becomes the planned one. Hovering with
    a mouse floats the skill's detail card; a touch tap goes
    straight to the
    card, it never has to tap twice through the hover card. The
@@ -15276,7 +15280,7 @@ function renderBarStrip(){
     var sups=on?(state.supports||[]):(e.supports||[]);
     var rings='';
     for(var i=0;i<6;i++){var sid=sups[i]; var sup=sid?G.supportMap[sid]:null; rings+='<span class="bs-ring'+(sup?' filled':'')+'">'+(sup?gemSVG(supColor(sup),11):'<i></i>')+'</span>'}
-    return '<div class="bs-card'+(on?' active':'')+(viewing?' viewing':'')+'"><button type="button" class="bs-view" data-strip-skill="'+esc(e.skill)+'" aria-label="'+esc(sk.Name)+' — on your bar. Tap to open it on the Main skill card below; it becomes your main skill only from Make main in the Add a skill list below."><span class="bs-icon">'+gemSVG(dmgColor(sk),26)+'</span><span class="bs-main"><b>'+esc(sk.Name)+'</b><span class="bs-rings">'+rings+'</span></span></button>'+(on?'<span class="bs-maintag">Main</span>':(viewing?'<span class="bs-viewtag">Viewing</span>':''))+'</div>';
+    return '<div class="bs-card'+(on?' active':'')+(viewing?' viewing':'')+'"><button type="button" class="bs-view" data-strip-skill="'+esc(e.skill)+'" aria-label="'+esc(sk.Name)+' — on your bar. Tap to open it on the Main skill card below; flip its Main skill switch on the panel below the card to make it your main skill."><span class="bs-icon">'+gemSVG(dmgColor(sk),26)+'</span><span class="bs-main"><b>'+esc(sk.Name)+'</b><span class="bs-rings">'+rings+'</span></span></button>'+(on?'<span class="bs-maintag">Main</span>':(viewing?'<span class="bs-viewtag">Viewing</span>':''))+'</div>';
   }).join('');
   box.querySelectorAll('[data-strip-skill]').forEach(function(b){
     var id=b.getAttribute('data-strip-skill');
@@ -15289,8 +15293,8 @@ function renderBarStrip(){
          below — on touch too, with no pinned hover card to tap
          through first (the opened card and its panel below show
          the skill's details, so nothing is lost). The main skill
-         itself stays exactly as it was until Make main is used
-         on a skill in the Add a skill list below. */
+         itself stays exactly as it was until its Main skill
+         switch is flipped on the panel below the card. */
       viewBarSkill(id);
     });
   });
@@ -15302,9 +15306,10 @@ function renderDrawerCard(){
      bar brought it here — see viewBarSkill): the card shows that
      skill — its icon, its own linked supports and its own DPS —
      and says the main skill is unchanged. Making this skill
-     the main one happens from Make main in the Add a skill
-     list below — there is no toggle on the card or its panel.
-     Its supports ARE edited here, in its
+     the main one happens from the Main skill switch on the
+     panel directly under the card (renderMainSkillDetail) —
+     the card itself carries no toggle; its line points at the
+     switch below. Its supports ARE edited here, in its
      own rings, exactly like the main skill's — the edits land
      on the skill's own bar entry (see sockTarget), so a skill
      can be given its supports without being made main first. */
@@ -15330,7 +15335,7 @@ function renderDrawerCard(){
     var vc=null; if(!vBlock&&!vRole)vc=priceBarSkill(focusId);
     card.innerHTML='<div class="ms-icon" data-drop="main" role="button" tabindex="0" aria-label="Viewing: '+(vsk?esc(vsk.Name):'none')+' — on your bar, not your main skill">'+gemSVG(dmgColor(vsk),38)+'<span class="ms-lv">Lv '+vGemLv+'</span></div>'
      +'<div class="ms-main"><div class="ms-name">'+(vsk?esc(vsk.Name):'No skill')+'</div>'
-     +'<div class="ms-sub">Viewing — your main skill is still '+esc(skillName(state.skillId))+'. You can link its supports here; use Make main on it in the Add a skill list below to plan around this one.</div>'
+     +'<div class="ms-sub">Viewing — your main skill is still '+esc(skillName(state.skillId))+'. Flip the Main skill switch on the panel below to plan around this one.</div>'
      +'<div class="ms-dps">'+(vBlock?('Does not count — '+esc(vBlock)):(vRole?esc(vRole):(vc?fmtFull(vc.dps)+' DPS':'— DPS')))+'</div></div>'
      +'<div class="ms-rings">'+vRings+'</div>';
     var vIcon=card.querySelector('.ms-icon');
@@ -15361,9 +15366,8 @@ function renderDrawerCard(){
     });
     var vNm=card.querySelector('.ms-name');
     if(vNm){vNm.addEventListener('mouseenter',function(){skillShowTip(vNm,focusId)}); vNm.addEventListener('mouseleave',function(){skillHideTip()});}
-    /* No Main skill toggle on the card or on the panel under
-       it — making the shown skill the main one happens from
-       Make main in the Add a skill list below. */
+    /* The Main skill switch itself lives on the panel under
+       this card (renderMainSkillDetail), one tap below. */
     /* The viewed skill's own socket board: the same gestures as
        the main skill's rings — tap to pick up / put down, drag
        to move, drop a palette gem in, × to unlink — all landing
@@ -15492,8 +15496,8 @@ function offBarEntries(){
    linked to a skill is not listed on the bar, it shows in the
    Skills workspace. Tapping a row opens that skill on the Main
    skill card in the Skills workspace (see viewBarSkill) — it
-   does not make it the main skill; Make main in the Add a skill
-   list does that. The card hides while the plan has no
+   does not make it the main skill; the Main skill switch on
+   the panel under the card there does that. The card hides while the plan has no
    loaded bar (a hand-started build, or before game data). */
 function renderDrawerBar(){
   var box=$('drawerBar'); if(!box)return;
@@ -15512,14 +15516,14 @@ function renderDrawerBar(){
        in the Skills workspace, not on the bar. */
     var blocker=offBar?null:barSkillBlocker(state,e);
     var toggle=blocker?'<span class="bar-blocked" title="'+esc(blocker)+'">Does not count — '+esc(blocker)+'</span>':'';
-    return '<div class="bar-row-wrap"><button type="button" class="bar-row'+(on?' active':'')+(offBar?' offbar':'')+'" data-bar-skill="'+esc(e.skill)+'" title="'+esc(sk?sk.Name:niceId(e.skill))+' — on your bar; tap to open it on the Main skill card. It becomes your main skill only from Make main in the Add a skill list below.">'
+    return '<div class="bar-row-wrap"><button type="button" class="bar-row'+(on?' active':'')+(offBar?' offbar':'')+'" data-bar-skill="'+esc(e.skill)+'" title="'+esc(sk?sk.Name:niceId(e.skill))+' — on your bar. Tap to open it on the Main skill card below; flip its Main skill switch on the panel below the card to make it your main skill.">'
      +'<span class="sock'+(on?' filled':'')+'">'+gemSVG(dmgColor(sk),26)+'</span>'
      +'<span class="bar-main"><b>'+esc(sk?sk.Name:niceId(e.skill))+'</b></span>'
      +(on?'<span class="bar-on">Planned</span>':(offBar?'<span class="bar-off">Not equipped</span>':''))
      +'</button>'+toggle+'</div>';
   }
   var html='<div class="label" style="margin-top:14px">Skill bar — '+eq.length+' of 13 slots equipped</div>'
-   +'<p class="sub">Patch 87: your 13 bar slots are your equipped skills, and a trigger link (Cast on Crit, Cast when Hit, Cast on Minion Death, Channel Conduit) casts only an equipped spell. Tap a skill to open it on the Main skill card in the Skills workspace — your main skill stays as it is until you use Make main on a skill in the Add a skill list. Its linked supports show in the Skills workspace.</p>'
+   +'<p class="sub">Patch 87: your 13 bar slots are your equipped skills, and a trigger link (Cast on Crit, Cast when Hit, Cast on Minion Death, Channel Conduit) casts only an equipped spell. Tap a skill to open it on the Main skill card in the Skills workspace — your main skill stays as it is until you flip the Main skill switch on the panel under the card there, or use Make main on the skill in the Add a skill list. Its linked supports show in the Skills workspace.</p>'
    +eq.map(function(e,i){return rowFor(e,i+1,false)}).join('');
   if(eq.length<13)html+='<p class="sub" style="margin-top:6px">'+(13-eq.length)+' of the 13 slots are empty — a spell dropped into one becomes equipped, and a trigger link can then cast it.</p>';
   if(off.length){
@@ -15767,9 +15771,12 @@ function renderSkillTable(){
    showing: the main skill itself, or the bar skill a bar click
    brought up (see viewBarSkill). Always open: it is the shown
    skill's panel, not a row to expand. Its switches write the
-   same bar-entry flags the Your skills rows write. It carries
-   no Main skill toggle — making the shown skill the main one
-   happens from Make main in the Add a skill list below. */
+   same bar-entry flags the Your skills rows write. It also
+   carries the Main skill switch — the toggle that makes the
+   shown skill the main one, right on the skill's own panel.
+   (The switch was taken off as a duplicate of the Add list's
+   Make main button; the user asked where it had gone, so it is
+   back. Make main in the Add a skill list still works too.) */
 function renderMainSkillDetail(){
   var box=$('drawerMainDetail'); if(!box)return;
   if(!G.skills.length){box.innerHTML=''; return}
@@ -15804,6 +15811,7 @@ function renderMainSkillDetail(){
    +nums
    +gemCtlHTML(e,isMainFocus)
    +'<div class="skn-flags">'
+   +'<button type="button" class="buff-switch" role="switch" aria-checked="'+(isMainFocus?'true':'false')+'" aria-label="Main skill switch for '+esc(sk.Name)+'" data-main-switch="'+esc(focusId)+'"><span class="buff-track" aria-hidden="true"></span>Main skill</button>'
    +(hasExec?'<label class="skn-flag" title="Count this skill as if the enemy is below half its life — Executioner\u2019s own more damage (35% on the physical part of a hit, 14% on the rest) counts while it is ticked"><input type="checkbox" data-skn-exec="'+esc(e.skill)+'"'+(e.exec?' checked':'')+'> Executioner — enemy below half life</label>':'')
    +'<label class="skn-flag" title="How much tree planning counts this skill beside your main skill">Weight <select data-skn-weight="'+esc(e.skill)+'" aria-label="Tree-planning weight for '+esc(sk.Name)+'">'+[0,25,50,75,100].map(function(x){return '<option value="'+x+'"'+(x===w?' selected':'')+'>'+x+'%</option>'}).join('')+'</select></label>'
    +'<label class="skn-flag"><input type="checkbox" data-skn-onbar="'+esc(e.skill)+'"'+(e.onBar!==false?' checked':'')+'> On bar</label>'
@@ -15819,11 +15827,19 @@ function renderMainSkillDetail(){
   box.querySelectorAll('[data-skn-exec]').forEach(function(cb){cb.addEventListener('change',function(){var en=mut(cb.getAttribute('data-skn-exec')); en.exec=cb.checked; if(en.skill===state.skillId)state.execLow=cb.checked; after()})});
   box.querySelectorAll('[data-skn-onbar]').forEach(function(cb){cb.addEventListener('change',function(){var en=mut(cb.getAttribute('data-skn-onbar')); en.onBar=cb.checked; after()})});
   box.querySelectorAll('[data-skn-sim]').forEach(function(cb){cb.addEventListener('change',function(){var en=mut(cb.getAttribute('data-skn-sim')); en.sim=cb.checked; after()})});
-  /* No Main skill toggle on this panel — it duplicated the way
-     a skill is made main from the Add a skill list below (its
-     Make main button), and the user asked for the duplicate to
-     go. Making a skill main lives there now, and in dragging a
-     skill onto the main-skill card. */
+  /* The Main skill switch: flipping it on makes the shown skill
+     the main one — setSkill, the same call the Add list's Make
+     main button makes — and the confirmation lands after the
+     re-render, so it is the last word on screen. Flipping it
+     while the shown skill is already main changes nothing and
+     says so: there is always a main skill, so the switch is
+     never flipped off, only moved to another skill. */
+  box.querySelectorAll('[data-main-switch]').forEach(function(b){b.addEventListener('click',function(){
+    var id=b.getAttribute('data-main-switch');
+    if(id===state.skillId){sockMsg(skillName(id)+' is your main skill already — open another skill from your bar and flip its Main skill switch to plan around that one instead.'); return}
+    setSkill(id);
+    sockMsg(skillName(id)+' is your main skill now — link its supports on the card in the Main skill section.');
+  })});
   box.querySelectorAll('[data-view-main]').forEach(function(b){b.addEventListener('click',function(){viewSkillId=null; renderDrawerCard(); scrollToSkillCard(); sockMsg('Back to your main skill, '+skillName(state.skillId)+'.')})});
   box.querySelectorAll('[data-skn-weight]').forEach(function(sel){sel.addEventListener('change',function(){state.treeWeights=state.treeWeights||{}; state.treeWeights[sel.getAttribute('data-skn-weight')]=+sel.value; heatMap=null; schedulePersistInstances(); renderCode(); renderMainSkillDetail()})});
   bindGemCtl(box,mut,after);
@@ -25029,8 +25045,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.387';
-var PLANNER_BUILT_AT='2026-11-25T15:38:25-07:00';
+var PLANNER_VERSION='0.388';
+var PLANNER_BUILT_AT='2026-11-25T15:44:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
