@@ -3381,10 +3381,7 @@ td{padding:7px 8px}
       <h3 class="sk-sec-title">Main skill</h3>
       <div class="sk-cols">
         <div class="sk-col sk-col-a">
-          <div class="label">Main skill gem level <span class="range-val" id="gemVal" style="float:right">20</span></div>
-          <input type="range" id="gemRange" min="1" max="21" value="20" style="width:100%">
-          <p class="sub hidden" id="gemLockNote" style="margin-top:4px">Locked on this starter — the plan is fixed as published, gem level included. Duplicate it &amp; make it mine, and the slider is yours.</p>
-          <div class="label" id="barStripLabel" style="margin-top:16px">On your bar — every skill &amp; its supports</div>
+          <div class="label" id="barStripLabel">On your bar — every skill &amp; its supports</div>
           <div class="bar-strip" id="drawerBarStrip"></div>
           <div class="ms-flex">
           <div class="ms-card" id="drawerMainCard"></div>
@@ -9565,8 +9562,6 @@ function setsSyncActive(){
   var e=activeSetEntry(); if(e)e.data=setSubset();
 }
 function refreshAfterSetChange(){
-  var gr=$('gemRange'); if(gr)gr.value=state.gemLevel;
-  var gv=$('gemVal'); if(gv)gv.textContent=state.gemLevel;
   var pr=$('passRange'); if(pr)pr.value=Math.min(123,state.passives);
   var pv=$('passVal'); if(pv)pv.textContent=state.passives;
   var tbEl=$('treeBlend'); if(tbEl){tbEl.value=state.treeBlend||0; var tbv=$('treeBlendVal'); if(tbv)tbv.textContent=blendLabel(state.treeBlend||0)}
@@ -9791,7 +9786,7 @@ function setSkill(id){
   state.execLow=!!(be&&be.exec);
   if(be){
     state.supports=be.supports.slice();
-    if(be.gem){state.gemLevel=be.gem; var gr=$('gemRange'); if(gr)gr.value=state.gemLevel; var gv=$('gemVal'); if(gv)gv.textContent=state.gemLevel;}
+    if(be.gem){state.gemLevel=be.gem;}
   }
   renderDrawerSkills(); renderSupports(); renderPlanner();
 }
@@ -10439,7 +10434,7 @@ function loadHeroIntoPlanner(d){
   state.crit=Math.max(0,Math.min(80,Math.round(baseCrit*ps.critInc/100+ps.critFlat)));
   state.critMulti=Math.max(130,Math.min(400,150+ps.critMulti));
   state.speed=Math.max(0,Math.min(300,Math.round(isSpell?ps.cast:ps.atk)));
-  $('levelRange').value=state.level;if($('levelVal'))$('levelVal').textContent=state.level;$('gemRange').value=state.gemLevel;$('gemVal').textContent=state.gemLevel;$('passRange').value=Math.min(123,state.passives);$('passVal').textContent=state.passives;
+  $('levelRange').value=state.level;if($('levelVal'))$('levelVal').textContent=state.level;$('passRange').value=Math.min(123,state.passives);$('passVal').textContent=state.passives;
   $('incRange').value=state.inc;$('incVal').textContent=state.inc+'%';$('critRange').value=state.crit;$('critVal').textContent=state.crit+'%';$('critMultiRange').value=state.critMulti;$('critMultiVal').textContent=state.critMulti+'%';$('speedRange').value=state.speed;$('speedVal').textContent=state.speed+'%';
   if($('aspectSel'))$('aspectSel').value=state.aspect;
   if($('loadedText'))$('loadedText').textContent=d.class+' Lv '+d.level+' • Rupture Level '+d.rupture_level+' • Main: '+skillName(state.skillId)+' • Tuning filled from this hero\u2019s passive tree (gear stays in the calibration band).';
@@ -11103,14 +11098,6 @@ function renderStarterBanner(){
   var bn=$('starterBanner'); if(!bn)return;
   var on=!!state.starterRO;
   bn.classList.toggle('hidden',!on);
-  /* The gem slider wears the lock where the hand lands: on a
-     read-only starter it is disabled with its reason printed
-     under it, instead of sitting live-looking while the guard
-     below silently swallows every drag (its only feedback, the
-     banner flash, is behind the Skills sheet when the slider is
-     used — the slider read as simply broken). */
-  var grL=$('gemRange'); if(grL)grL.disabled=on;
-  var gln=$('gemLockNote'); if(gln)gln.classList.toggle('hidden',!on);
   if(on){
     var tx=$('starterBannerText');
     if(tx)tx.textContent='This plan is the '+(state.starterFrom||'starter')+' template, opened from the ladder snapshot. Everything in it — gear, skills, passive tree and Dragonling — is fixed as published. Duplicate the plan to edit anything. Your own builds are never touched.';
@@ -15551,22 +15538,18 @@ function renderBuffToggles(){
 /* Which compact skill rows are tapped open — kept across the
    table's re-renders so opening one row never collapses another. */
 var sknOpen={};
-/* A skill's own gem-level control — the slider in the Main skill
-   section drives only the main skill (state.gemLevel); every
-   other skill on the bar carries its level on its own bar entry
-   (e.gem), and until now nothing on the page could change it:
-   the level arrived with the save, build code or ladder hero
-   and stayed there. This control sits in each skill's own
-   detail — the Your skills rows and the panel under the Main
-   skill card — bound to that skill's own stored level, so a bar
-   skill's gem can be raised or lowered exactly like the main
-   skill's. The value it sets is the gem's own level; the gear
-   bonus rides on top everywhere the level is read (the same
-   split the main slider shows). Dragging writes the level and
-   the chip live; the full re-render lands on release (change),
-   so the thumb is never rebuilt mid-drag. On a read-only
-   starter the control wears the lock like the main slider does:
-   disabled, with the reason printed under it. */
+/* A skill's own gem-level control — every skill on the bar,
+   the main skill included, carries its level on its own bar
+   entry (e.gem; the main skill's level is state.gemLevel), and
+   this is the control that changes it. It sits in each skill's
+   own detail — the Your skills rows and the panel under the
+   Main skill card — bound to that skill's own stored level.
+   The value it sets is the gem's own level; the gear bonus
+   rides on top everywhere the level is read. Dragging writes
+   the level and the chip live; the full re-render lands on
+   release (change), so the thumb is never rebuilt mid-drag.
+   On a read-only starter the control wears the lock: disabled,
+   with the reason printed under it. */
 function gemCtlHTML(e,isMain){
   var base=isMain?state.gemLevel:(e.gem||state.gemLevel);
   var bonus=gearGemBonus(state);
@@ -15583,7 +15566,7 @@ function bindGemCtl(scope,mutFn,afterFn){
     r.addEventListener('input',function(){
       var v=Math.max(1,Math.min(21,Math.round(+r.value||1)));
       var en=mutFn(id); en.gem=v;
-      if(id===state.skillId){state.gemLevel=v; var gr=$('gemRange'); if(gr)gr.value=v; var gv=$('gemVal'); if(gv)gv.textContent=v;}
+      if(id===state.skillId){state.gemLevel=v;}
       var bonus=gearGemBonus(state);
       scope.querySelectorAll('[data-gemctl-val]').forEach(function(el){if(el.getAttribute('data-gemctl-val')===id)el.textContent=v});
       scope.querySelectorAll('[data-gemctl-eff]').forEach(function(el){if(el.getAttribute('data-gemctl-eff')===id)el.textContent=' + '+bonus+' from gear — Lv '+(v+bonus)+' in a fight'});
@@ -22516,7 +22499,7 @@ function applyPlannerBO1(obj){
   if($('enemySel')){$('enemySel').value=state.enemyId||''; renderEnemyInfo()}
   if($('enemyRarity'))$('enemyRarity').value=state.enemyRarity||'Guardian';
   var vbb2=$('vowbreakBtn'); if(vbb2){vbb2.textContent='Vowbreak: '+(state.vowbreak?'on':'off'); vbb2.setAttribute('aria-pressed',state.vowbreak?'true':'false'); vbb2.classList.toggle('primary',!!state.vowbreak)}
-  $('levelRange').value=state.level;if($('levelVal'))$('levelVal').textContent=state.level;$('gemRange').value=state.gemLevel;$('gemVal').textContent=state.gemLevel;$('incRange').value=state.inc;$('incVal').textContent=state.inc+'%';$('critRange').value=state.crit;$('critVal').textContent=state.crit+'%';$('critMultiRange').value=state.critMulti;$('critMultiVal').textContent=state.critMulti+'%';$('speedRange').value=state.speed;$('speedVal').textContent=state.speed+'%';$('passRange').value=state.passives;$('passVal').textContent=state.passives;if($('aspectSel'))$('aspectSel').value=state.aspect;
+  $('levelRange').value=state.level;if($('levelVal'))$('levelVal').textContent=state.level;$('incRange').value=state.inc;$('incVal').textContent=state.inc+'%';$('critRange').value=state.crit;$('critVal').textContent=state.crit+'%';$('critMultiRange').value=state.critMulti;$('critMultiVal').textContent=state.critMulti+'%';$('speedRange').value=state.speed;$('speedVal').textContent=state.speed+'%';$('passRange').value=state.passives;$('passVal').textContent=state.passives;if($('aspectSel'))$('aspectSel').value=state.aspect;
   renderClassGrid();renderSkillList('');renderWeaponList('');renderSupports();renderPlanner();
   /* The patch stamp rides in the code (renderCode writes it): a code
      made on another patch still loads, but it says so out loud — the
@@ -23859,7 +23842,6 @@ function restoreInstances(){
 }
 function syncPlannerInputs(){
   $('levelRange').value=state.level; if($('levelVal'))$('levelVal').textContent=state.level;
-  $('gemRange').value=state.gemLevel; $('gemVal').textContent=state.gemLevel;
   $('incRange').value=state.inc; $('incVal').textContent=state.inc+'%';
   $('critRange').value=state.crit; $('critVal').textContent=state.crit+'%';
   $('critMultiRange').value=state.critMulti; $('critMultiVal').textContent=state.critMulti+'%';
@@ -24053,7 +24035,6 @@ function startNewBuild(opts){
      as the game rules it — a blank start simply equips nothing. */
   state.weaponId=null;
   $('levelRange').value=state.level; if($('levelVal'))$('levelVal').textContent=state.level;
-  $('gemRange').value=state.gemLevel; $('gemVal').textContent=state.gemLevel;
   $('incRange').value=state.inc; $('incVal').textContent=state.inc+'%';
   $('critRange').value=state.crit; $('critVal').textContent=state.crit+'%';
   $('critMultiRange').value=state.critMulti; $('critMultiVal').textContent=state.critMulti+'%';
@@ -24353,7 +24334,6 @@ function bindPlanner(){
   var lvStep=function(d){var inp=$('levelRange');if(!inp)return;inp.value=Math.max(1,Math.min(100,(+inp.value||1)+d));inp.dispatchEvent(new Event('input',{bubbles:true}))};
   if($('levelDown'))$('levelDown').addEventListener('click',function(){lvStep(-1)});
   if($('levelUp'))$('levelUp').addEventListener('click',function(){lvStep(1)});
-  $('gemRange').addEventListener('input',function(e){state.gemLevel=+e.target.value;$('gemVal').textContent=state.gemLevel;var beG=barEntryFor(state.skillId); if(beG)beG.gem=state.gemLevel; renderSupports(); renderPlanner(); renderGemLevels(); renderSkillTable();});
   $('incRange').addEventListener('input',function(e){state.inc=+e.target.value;$('incVal').textContent=state.inc+'%';renderPlanner()});
   $('critRange').addEventListener('input',function(e){state.crit=+e.target.value;$('critVal').textContent=state.crit+'%';renderPlanner()});
   $('critMultiRange').addEventListener('input',function(e){state.critMulti=+e.target.value;$('critMultiVal').textContent=state.critMulti+'%';renderPlanner()});
@@ -24948,8 +24928,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.385';
-var PLANNER_BUILT_AT='2026-11-25T15:17:30-07:00';
+var PLANNER_VERSION='0.386';
+var PLANNER_BUILT_AT='2026-11-25T15:27:40-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
