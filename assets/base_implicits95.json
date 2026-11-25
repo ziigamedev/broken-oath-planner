@@ -1,0 +1,37 @@
+{
+  "_doc": "r95 ITEMS IMP95 base implicits (owner 10 Nov: 'double down on ... regular items as well, with based stats or bonuses'; 'more personality'). Read ONLY while [r95.ITEMS] bImplicit95 is on (absent = OFF = build 67; -BOImplicit95 on, -BOImplicit95Legacy off). Every armour base (Helm, Chest, Gloves, Boots) with no implicit of its own gets its family's line: key = Slot|defence letters (A armour, V evasion, S energy shield). Value = Lo at base level 1 rising straight to Hi at base level 82, rounded. Additive lines only, about a third of the matching affix's top tier, so a white of the right family is a real base and a better family is a reason to pick a base. Bench: Tools/Balance/imp95_bench.py. META signs the numbers off before ON (69).",
+  "Families": {
+    "Helm|A":   { "Stat": "Life",          "Mode": "Flat", "Tags": [],             "Lo": 5, "Hi": 35, "Oath": "Ironsworn" },
+    "Chest|A":  { "Stat": "LifeRegen",     "Mode": "Flat", "Tags": [],             "Lo": 2, "Hi": 12, "Oath": "Ironsworn" },
+    "Gloves|A": { "Stat": "Damage",        "Mode": "Inc",  "Tags": ["Melee"],      "Lo": 3, "Hi": 12, "Oath": "Ironsworn" },
+    "Boots|A":  { "Stat": "Str",           "Mode": "Flat", "Tags": [],             "Lo": 4, "Hi": 18, "Oath": "Ironsworn" },
+    "Helm|V":   { "Stat": "CritChance",    "Mode": "Inc",  "Tags": [],             "Lo": 4, "Hi": 16, "Oath": "Stalker" },
+    "Chest|V":  { "Stat": "Damage",        "Mode": "Inc",  "Tags": ["Projectile"], "Lo": 3, "Hi": 12, "Oath": "Stalker" },
+    "Gloves|V": { "Stat": "AttackSpeed",   "Mode": "Inc",  "Tags": ["Attack"],     "Lo": 1, "Hi": 5,  "Oath": "Stalker" },
+    "Boots|V":  { "Stat": "MoveSpeed",     "Mode": "Inc",  "Tags": [],             "Lo": 1, "Hi": 4,  "Oath": "Stalker" },
+    "Helm|S":   { "Stat": "ManaRegen",     "Mode": "Inc",  "Tags": [],             "Lo": 5, "Hi": 24, "Oath": "Sage" },
+    "Chest|S":  { "Stat": "Mana",          "Mode": "Flat", "Tags": [],             "Lo": 8, "Hi": 36, "Oath": "Sage" },
+    "Gloves|S": { "Stat": "CastSpeed",     "Mode": "Inc",  "Tags": [],             "Lo": 1, "Hi": 5,  "Oath": "Sage" },
+    "Boots|S":  { "Stat": "Int",           "Mode": "Flat", "Tags": [],             "Lo": 4, "Hi": 18, "Oath": "Sage" },
+    "Helm|AV":  { "Stat": "Life",          "Mode": "Flat", "Tags": [],             "Lo": 3, "Hi": 22, "Oath": "Vanguard" },
+    "Chest|AV": { "Stat": "LifeOnKill",    "Mode": "Flat", "Tags": [],             "Lo": 1, "Hi": 10, "Oath": "Vanguard" },
+    "Gloves|AV":{ "Stat": "Damage",        "Mode": "Inc",  "Tags": ["Physical"],   "Lo": 3, "Hi": 12, "Oath": "Vanguard" },
+    "Boots|AV": { "Stat": "Dex",           "Mode": "Flat", "Tags": [],             "Lo": 4, "Hi": 18, "Oath": "Vanguard" },
+    "Helm|AS":  { "Stat": "Damage",        "Mode": "Inc",  "Tags": ["Holy"],       "Lo": 3, "Hi": 12, "Oath": "Templar" },
+    "Chest|AS": { "Stat": "Resist",        "Mode": "Flat", "Tags": ["Elemental"],  "Lo": 2, "Hi": 8,  "Oath": "Templar" },
+    "Gloves|AS":{ "Stat": "Damage",        "Mode": "Inc",  "Tags": ["Spell"],      "Lo": 3, "Hi": 10, "Oath": "Templar" },
+    "Boots|AS": { "Stat": "LifeRegen",     "Mode": "Flat", "Tags": [],             "Lo": 1, "Hi": 8,  "Oath": "Templar" },
+    "Helm|VS":  { "Stat": "CurseEffect",   "Mode": "Inc",  "Tags": [],             "Lo": 2, "Hi": 8,  "Oath": "Shade" },
+    "Chest|VS": { "Stat": "MinionDamage",  "Mode": "Inc",  "Tags": [],             "Lo": 3, "Hi": 12, "Oath": "Shade" },
+    "Gloves|VS":{ "Stat": "Damage",        "Mode": "Inc",  "Tags": ["Poison"],     "Lo": 3, "Hi": 12, "Oath": "Shade" },
+    "Boots|VS": { "Stat": "ManaRegen",     "Mode": "Inc",  "Tags": [],             "Lo": 4, "Hi": 18, "Oath": "Shade" },
+    "OffHand|A":  { "Stat": "Block",     "Mode": "Flat", "Tags": [],             "Lo": 1, "Hi": 4,  "Oath": "Ironsworn", "_r95": "SHIELD95 owner 10 Nov: if you hold a shield you get Y" },
+    "OffHand|V":  { "Stat": "MoveSpeed", "Mode": "Inc",  "Tags": [],             "Lo": 1, "Hi": 3,  "Oath": "Stalker", "_r95": "SHIELD95 buckler: stay mobile" },
+    "OffHand|S":  { "Stat": "Resist",    "Mode": "Flat", "Tags": ["Elemental"],      "Lo": 2, "Hi": 8,  "Oath": "Sage", "_r95": "SHIELD95 spirit shield: a ward" }
+  },
+  "_weapons_doc": "r95 ITEMS WIMP95: read ONLY while [r95.ITEMS] bWeaponImp95 is on (absent = OFF = build 67; -BOWeaponImp95 on). Key = the base TypeName; ONE extra family line on every weapon base of that type that does not already carry the stat (owner 10 Nov: if you hold 2H, if you hold shield, if you do X you get Y). Axes cut deep = bleed; a two-hander rolls twice the one-hander. META signs the numbers before ON (69).",
+  "Weapons": {
+    "One-Handed Axe": { "Stat": "BleedChance", "Mode": "Flat", "Lo": 4, "Hi": 12 },
+    "Two-Handed Axe": { "Stat": "BleedChance", "Mode": "Flat", "Lo": 8, "Hi": 24 }
+  }
+}

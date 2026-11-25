@@ -1,0 +1,1395 @@
+{
+ "AddedDamage.Flat": {
+  "t": "附加 {v} 至 {v2} 点{tags}伤害"
+ },
+ "AddedDamage.Flat+Attack": {
+  "t": "攻击附加 {v} 至 {v2} 点{tags}伤害"
+ },
+ "AddedDamage.Flat+GemScaled": {
+  "t": "附加 {v} 至 {v2} 点{tags}伤害，随技能的宝石等级成长"
+ },
+ "AddedDamage.Flat+Martial": {
+  "t": "使用拳与爪的攻击附加 {v} 至 {v2} 点物理伤害"
+ },
+ "AddedDamage.Flat+Spell": {
+  "t": "法术附加 {v} 至 {v2} 点{tags}伤害"
+ },
+ "AfterimageDamage.Inc": {
+  "n": "残影造成的伤害降低 {abs}%",
+  "t": "残影造成的伤害提高 {v}%"
+ },
+ "AfterimageDamage.Inc+DualWielding": {
+  "n": "双持时，残影造成的伤害降低 {abs}%",
+  "t": "双持时，残影造成的伤害提高 {v}%"
+ },
+ "Afterimages.Flat": {
+  "n": "近战攻击 -{abs} 个残影",
+  "t": "近战攻击 +{v} 个残影（每个残影以其 40% 的伤害重复该次攻击；所有来源合计超过 3 个后，每个改为 +10%）"
+ },
+ "Afterimages.Flat+DualWielding": {
+  "t": "双持时，近战攻击 +{v} 个残影（每个残影以其 40% 的伤害重复该次攻击；所有来源合计超过 3 个后，每个改为 +10%）"
+ },
+ "Afterimages.Flat+Melee": {
+  "n": "近战攻击 -{abs} 个残影",
+  "t": "近战攻击 +{v} 个残影（每个残影以其 40% 的伤害重复该次攻击；所有来源合计超过 3 个后，每个改为 +10%）"
+ },
+ "Afterimages.Flat+TwoHanded": {
+  "t": "持双手武器时，近战攻击 +{v} 个残影（每个残影以其 40% 的伤害重复该次攻击；所有来源合计超过 3 个后，每个改为 +10%）"
+ },
+ "AilTickRate.Inc": {
+  "n": "你的点燃、中毒与流血跳动频率减慢 {abs}%",
+  "t": "你的点燃、中毒与流血跳动频率加快 {v}%"
+ },
+ "AilmentDuration.Inc": {
+  "n": "你施加的异常状态持续时间降低 {abs}%",
+  "t": "你施加的异常状态持续时间提高 {v}%"
+ },
+ "Area.Inc": {
+  "n": "效果范围降低 {abs}%",
+  "t": "效果范围提高 {v}%"
+ },
+ "Area.Inc+": {
+  "n": "{skills}的效果范围降低 {abs}%",
+  "t": "{skills}的效果范围提高 {v}%"
+ },
+ "Area.Inc+HoldingShield": {
+  "n": "持盾时，猛击技能的效果范围降低 {abs}%",
+  "t": "持盾时，猛击技能的效果范围提高 {v}%"
+ },
+ "Area.Inc+Shield": {
+  "n": "盾牌技能的效果范围降低 {abs}%",
+  "t": "盾牌技能的效果范围提高 {v}%"
+ },
+ "Area.Inc+TwoHanded": {
+  "n": "持双手武器时效果范围降低 {abs}%",
+  "t": "持双手武器时效果范围提高 {v}%"
+ },
+ "Area.Inc+WieldingStaff": {
+  "n": "持法杖时，法术的效果范围降低 {abs}%",
+  "t": "持法杖时，法术的效果范围提高 {v}%"
+ },
+ "Area.More": {
+  "n": "效果范围额外降低 {abs}%",
+  "t": "效果范围额外提高 {v}%"
+ },
+ "Area.More+": {
+  "n": "{skills}的效果范围额外降低 {abs}%",
+  "t": "{skills}的效果范围额外提高 {v}%"
+ },
+ "Armour.Flat": {
+  "n": "护甲 -{abs}",
+  "t": "护甲 +{v}"
+ },
+ "Armour.Inc": {
+  "n": "护甲降低 {abs}%",
+  "t": "护甲提高 {v}%"
+ },
+ "ArmourMore.Flat": {
+  "n": "你每有 1,000 点护甲，{tags}伤害额外降低 {abs}%",
+  "t": "你每有 1,000 点护甲，{tags}伤害额外提高 {v}%"
+ },
+ "AttackSpeed.Inc": {
+  "n": "{tags}攻击速度降低 {abs}%",
+  "t": "{tags}攻击速度提高 {v}%"
+ },
+ "AttackSpeed.Inc+DualWielding": {
+  "n": "双持时攻击速度降低 {abs}%",
+  "t": "双持时攻击速度提高 {v}%"
+ },
+ "AttackSpeed.Inc+Martial": {
+  "n": "使用拳与爪时攻击速度降低 {abs}%",
+  "t": "使用拳与爪时攻击速度提高 {v}%"
+ },
+ "AttackSpeed.Inc+Unarmed": {
+  "n": "空手时攻击速度降低 {abs}%",
+  "t": "空手时攻击速度提高 {v}%"
+ },
+ "AttackSpeed.More": {
+  "n": "攻击速度额外降低 {abs}%",
+  "t": "攻击速度额外提高 {v}%"
+ },
+ "AttackSpeed.More+": {
+  "n": "{skills}的攻击速度额外降低 {abs}%",
+  "t": "{skills}的攻击速度额外提高 {v}%"
+ },
+ "AttackSpeed.More+DualWielding": {
+  "n": "双持时攻击速度额外降低 {abs}%",
+  "t": "双持时攻击速度额外提高 {v}%"
+ },
+ "AttackSpeed.More+Martial": {
+  "n": "使用拳与爪时攻击速度额外降低 {abs}%",
+  "t": "使用拳与爪时攻击速度额外提高 {v}%"
+ },
+ "AttackSpeed.More+TwoHanded": {
+  "n": "持双手武器时，近战攻击速度额外降低 {abs}%",
+  "t": "持双手武器时，近战攻击速度额外提高 {v}%"
+ },
+ "Attributes.Flat": {
+  "n": "全部属性 -{abs}",
+  "t": "全部属性 +{v}"
+ },
+ "Attributes.Inc": {
+  "n": "全部属性降低 {abs}%",
+  "t": "全部属性提高 {v}%"
+ },
+ "AuraDrainLess.Flat": {
+  "n": "链接的光环对你生命的消耗提高 {abs}%",
+  "t": "链接的光环对你生命的消耗降低 {v}%"
+ },
+ "BannerEffect.Inc": {
+  "t": "战争旗帜效果提高 {v}%"
+ },
+ "BannerKeepValour.Flat": {
+  "n": "链接的战争旗帜移动时保留的勇气减少 {abs}%",
+  "t": "链接的战争旗帜在你移动它时保留其勇气的 {v}%"
+ },
+ "BannerStartValour.Flat": {
+  "n": "链接的战争旗帜落下时少 {abs} 点勇气",
+  "t": "链接的战争旗帜落下时带有 {v} 点勇气"
+ },
+ "BleedBurst.Flat": {
+  "n": "在因你的流血而死亡时，敌人爆裂的伤害额外降低 {abs}%",
+  "t": "在因你的流血而死亡时，敌人会爆裂，对 3.5 米内的敌人造成其最大生命 {v}% 的物理伤害（生命按裂隙等级 150 计算封顶，不含怪物群的额外生命）"
+ },
+ "BleedChance.Flat": {
+  "n": "物理命中造成流血的几率 -{abs}%",
+  "t": "物理命中造成流血的几率 +{v}%"
+ },
+ "BleedChance.Flat+": {
+  "n": "{skills}造成流血的几率 -{abs}%",
+  "t": "{skills}造成流血的几率 +{v}%"
+ },
+ "BleedDamage.Inc": {
+  "n": "流血伤害降低 {abs}%（你的流血）",
+  "t": "流血伤害提高 {v}%（你的流血）"
+ },
+ "BleedDamage.Inc+": {
+  "n": "{skills}的流血伤害降低 {abs}%",
+  "t": "{skills}的流血伤害提高 {v}%"
+ },
+ "BleedDamage.More": {
+  "n": "流血伤害额外降低 {abs}%（你的流血）",
+  "t": "流血伤害额外提高 {v}%（你的流血）"
+ },
+ "BleedStacks.Flat": {
+  "n": "你的流血叠加次数减少 {abs}",
+  "t": "你的流血可以叠加：每个敌人身上最多多叠 {v} 层；每层额外的流血伤害降低 65%"
+ },
+ "Block.Flat": {
+  "n": "格挡几率 -{abs}%",
+  "t": "格挡几率 +{v}%"
+ },
+ "Block.Flat+DualWielding": {
+  "n": "双持时格挡几率 -{abs}%",
+  "t": "双持时格挡几率 +{v}%"
+ },
+ "Block.Flat+HoldingShield": {
+  "n": "持盾时格挡几率 -{abs}%",
+  "t": "持盾时格挡几率 +{v}%"
+ },
+ "BlockMore.Flat": {
+  "n": "你每有 1% 格挡几率，{tags}伤害额外降低 {abs}%",
+  "t": "你每有 1% 格挡几率，{tags}伤害额外提高 {v}%（最多计算到你的格挡上限）"
+ },
+ "BlockToDamage.Flat": {
+  "n": "链接的盾牌攻击每有 1% 格挡几率，造成的伤害额外降低 {abs}%",
+  "t": "链接的盾牌攻击每有 1% 格挡几率，造成的伤害额外提高 {v}%"
+ },
+ "BloodMagic.Flag+BloodMagic": {
+  "t": "以生命代替法力支付消耗"
+ },
+ "BloodlustDuration.Inc": {
+  "n": "嗜血耗尽的速度加快 {abs}%",
+  "t": "嗜血的持续时间延长 {v}%"
+ },
+ "BloodlustMax.Flat": {
+  "t": "嗜血上限 +{v}"
+ },
+ "BloodlustOnKill.Flat": {
+  "t": "击杀会获得嗜血（每层：近战伤害提高 0.5%，近战攻击速度提高 0.2%，移动速度提高 0.1%；每层持续 5 秒）"
+ },
+ "BrandCount.Flat": {
+  "n": "火花数量上限 -{abs}",
+  "t": "火花数量上限 +{v}（与你所有来源的火花叠加；总上限为 27 个火花）"
+ },
+ "CastSpeed.Inc": {
+  "n": "施法速度降低 {abs}%",
+  "t": "施法速度提高 {v}%"
+ },
+ "CastSpeed.Inc+Channelling": {
+  "n": "持法杖时，引导技能的施法速度降低 {abs}%",
+  "t": "持法杖时，引导技能的施法速度提高 {v}%"
+ },
+ "CastSpeed.Inc+HoldingShield": {
+  "n": "持盾时施法速度降低 {abs}%",
+  "t": "持盾时施法速度提高 {v}%"
+ },
+ "CastSpeed.Inc+WieldingStaff": {
+  "n": "持法杖时施法速度降低 {abs}%",
+  "t": "持法杖时施法速度提高 {v}%"
+ },
+ "CastSpeed.More": {
+  "n": "施法速度额外降低 {abs}%",
+  "t": "施法速度额外提高 {v}%"
+ },
+ "CastSpeedMore.Flat": {
+  "n": "你每有 10% 的施法速度提高，{tags}伤害额外降低 {abs}%",
+  "t": "你每有 10% 的施法速度提高，{tags}伤害额外提高 {v}%"
+ },
+ "ChainJumpMore.Flat": {
+  "n": "每次连锁跳跃造成的伤害都比上一次额外降低 {abs}%",
+  "t": "每次连锁跳跃造成的伤害都比上一次额外提高 {v}%"
+ },
+ "Chains.Flat": {
+  "t": "额外连锁 {v} 次"
+ },
+ "Chains.Flat+": {
+  "t": "{skills}额外连锁 {v} 次"
+ },
+ "Chains.Flat+Shield": {
+  "t": "盾牌技能额外连锁 {v} 次"
+ },
+ "Chains.Flat+WieldingStaff": {
+  "t": "持法杖时，连锁法术额外连锁 {v} 次"
+ },
+ "ChannelCostLess.Flat": {
+  "n": "引导消耗提高 {abs}%",
+  "t": "引导消耗降低 {v}%"
+ },
+ "ChannelRamp.Flat": {
+  "t": "引导的第 1 秒内，伤害最多额外提高 {v}%"
+ },
+ "ChannelRepeats.Flat": {
+  "t": "被引导技能的每一波都会在片刻后再次打击"
+ },
+ "ChaosPen.Flat": {
+  "n": "内爆面对的混沌抗性额外提高 {abs}%",
+  "t": "内爆无视 {v}% 的混沌抗性"
+ },
+ "ChillEffect.Inc": {
+  "n": "冰缓效果降低 {abs}%",
+  "t": "冰缓效果提高 {v}%"
+ },
+ "ChilledLightningMore.Flat": {
+  "n": "对冰缓或冻结的敌人造成的闪电伤害额外降低 {abs}%",
+  "t": "对冰缓或冻结的敌人造成的闪电伤害额外提高 {v}%"
+ },
+ "ConduitCostPct.Flat": {
+  "t": "每次链接施放消耗该法术法力消耗的 {v}%"
+ },
+ "ConduitInterval.Flat": {
+  "t": "引导期间，每 {v} 秒施放一次你链接的法术"
+ },
+ "ConduitInterval.More": {
+  "n": "引导枢纽的施放间隔缩短 {abs}%",
+  "t": "引导枢纽的施放间隔延长 {v}%"
+ },
+ "Convert.Flat+": {
+  "t": "其他伤害的 {v}% 转化为{tags}伤害（毒素伤害按一半转化）"
+ },
+ "Cooldown.Inc": {
+  "n": "技能冷却时间缩短 {abs}%",
+  "t": "技能冷却时间延长 {v}%"
+ },
+ "Cooldown.Inc+": {
+  "n": "{skills}的冷却时间缩短 {abs}%",
+  "t": "{skills}的冷却时间延长 {v}%"
+ },
+ "Cooldown.Inc+Movement": {
+  "n": "位移技能的冷却时间缩短 {abs}%",
+  "t": "位移技能的冷却时间延长 {v}%"
+ },
+ "CooldownRecovery.Inc": {
+  "n": "冷却回复速度降低 {abs}%",
+  "t": "冷却回复速度提高 {v}%"
+ },
+ "CorpsePyre.Flat": {
+  "t": "被命中击杀的敌人会爆裂，造成其最大生命 {v}% 的火焰伤害"
+ },
+ "CritChance.Flat": {
+  "n": "基础暴击率 -{abs}%",
+  "t": "基础暴击率 +{v}%"
+ },
+ "CritChance.Flat+Spell": {
+  "n": "法术基础暴击率 -{abs}%",
+  "t": "法术基础暴击率 +{v}%"
+ },
+ "CritChance.Inc": {
+  "n": "暴击率降低 {abs}%",
+  "t": "暴击率提高 {v}%"
+ },
+ "CritChance.Inc+": {
+  "n": "{skills}的暴击率降低 {abs}%",
+  "t": "{skills}的暴击率提高 {v}%"
+ },
+ "CritChance.Inc+Martial": {
+  "n": "使用拳与爪时暴击率降低 {abs}%",
+  "t": "使用拳与爪时暴击率提高 {v}%"
+ },
+ "CritChance.Inc+Minion": {
+  "n": "你的召唤物暴击率降低 {abs}%",
+  "t": "你的召唤物暴击率提高 {v}%"
+ },
+ "CritChance.Inc+Spell": {
+  "n": "法术暴击率降低 {abs}%",
+  "t": "法术暴击率提高 {v}%"
+ },
+ "CritChance.More": {
+  "n": "暴击率额外降低 {abs}%",
+  "t": "暴击率额外提高 {v}%"
+ },
+ "CritChance.More+": {
+  "n": "{skills}的暴击率额外降低 {abs}%",
+  "t": "{skills}的暴击率额外提高 {v}%"
+ },
+ "CritMulti.Flat": {
+  "n": "暴击伤害加成 -{abs}%",
+  "t": "暴击伤害加成 +{v}%"
+ },
+ "CritMulti.Flat+": {
+  "n": "{skills}的暴击伤害加成 -{abs}%",
+  "t": "{skills}的暴击伤害加成 +{v}%"
+ },
+ "CritMulti.Flat+Minion": {
+  "n": "你的召唤物暴击伤害加成 -{abs}%",
+  "t": "你的召唤物暴击伤害加成 +{v}%"
+ },
+ "CritMulti.Flat+Spell": {
+  "n": "法术暴击伤害加成 -{abs}%",
+  "t": "法术暴击伤害加成 +{v}%"
+ },
+ "CryFury.Flat": {
+  "n": "链接的战吼少授予 {abs} 层狂怒充能",
+  "t": "链接的战吼每授予一层决心充能，就授予 {v} 层狂怒充能"
+ },
+ "CryLinger.Flat": {
+  "n": "来自链接战吼的决心持续时间缩短 {abs}%",
+  "t": "来自链接战吼的决心持续时间延长 {v}%"
+ },
+ "CullingStrike.Flat": {
+  "t": "命中会处决生命低于 {v}% 的敌人"
+ },
+ "CurseEffect.Inc": {
+  "n": "你的诅咒效果降低 {abs}%",
+  "t": "你的诅咒效果提高 {v}%"
+ },
+ "CurseLimit.Flat": {
+  "t": "你可以在每个敌人身上多施加 {v} 个灾祸"
+ },
+ "CurseMore.Flat": {
+  "n": "链接灾祸的每一行都减弱 {abs}%",
+  "t": "链接灾祸的每一行都增强 {v}%"
+ },
+ "Damage.Inc": {
+  "n": "{tags}伤害降低 {abs}%",
+  "t": "{tags}伤害提高 {v}%"
+ },
+ "Damage.Inc+BothHands": {
+  "n": "同时以双武器命中的技能伤害降低 {abs}%",
+  "t": "同时以双武器命中的技能伤害提高 {v}%"
+ },
+ "Damage.Inc+Brand": {
+  "n": "火花的伤害降低 {abs}%",
+  "t": "火花的伤害提高 {v}%"
+ },
+ "Damage.Inc+Chain": {
+  "n": "连锁技能的{tags}伤害降低 {abs}%",
+  "t": "连锁技能的{tags}伤害提高 {v}%"
+ },
+ "Damage.Inc+DualWielding": {
+  "n": "双持时伤害降低 {abs}%",
+  "t": "双持时伤害提高 {v}%"
+ },
+ "Damage.Inc+Duration": {
+  "n": "持续型技能的{tags}伤害降低 {abs}%",
+  "t": "持续型技能的{tags}伤害提高 {v}%"
+ },
+ "Damage.Inc+HoldingShield": {
+  "n": "持盾时伤害降低 {abs}%",
+  "t": "持盾时伤害提高 {v}%"
+ },
+ "Damage.Inc+Holy": {
+  "n": "神圣伤害降低 {abs}%",
+  "t": "神圣伤害提高 {v}%"
+ },
+ "Damage.Inc+Martial": {
+  "n": "使用拳与爪时伤害降低 {abs}%",
+  "t": "使用拳与爪时伤害提高 {v}%"
+ },
+ "Damage.Inc+Nova": {
+  "n": "新星技能的{tags}伤害降低 {abs}%",
+  "t": "新星技能的{tags}伤害提高 {v}%"
+ },
+ "Damage.Inc+Shield": {
+  "n": "盾牌技能的伤害降低 {abs}%",
+  "t": "盾牌技能的伤害提高 {v}%"
+ },
+ "Damage.Inc+Slam": {
+  "n": "猛击技能的{tags}伤害降低 {abs}%",
+  "t": "猛击技能的{tags}伤害提高 {v}%"
+ },
+ "Damage.Inc+TwoHanded": {
+  "n": "持双手武器时伤害降低 {abs}%",
+  "t": "持双手武器时伤害提高 {v}%"
+ },
+ "Damage.Inc+Unarmed": {
+  "n": "空手时伤害降低 {abs}%",
+  "t": "空手时伤害提高 {v}%"
+ },
+ "Damage.Inc+WieldingStaff": {
+  "n": "持法杖时伤害降低 {abs}%",
+  "t": "持法杖时伤害提高 {v}%"
+ },
+ "Damage.More": {
+  "n": "{tags}伤害额外降低 {abs}%",
+  "t": "{tags}伤害额外提高 {v}%"
+ },
+ "Damage.More+Chain": {
+  "n": "连锁技能的{tags}伤害额外降低 {abs}%",
+  "t": "连锁技能的{tags}伤害额外提高 {v}%"
+ },
+ "Damage.More+FirstTarget": {
+  "n": "对第一个命中的目标造成的伤害额外降低 {abs}%",
+  "t": "对第一个命中的目标造成的伤害额外提高 {v}%"
+ },
+ "Damage.More+HoldingShield": {
+  "n": "持盾时攻击伤害额外降低 {abs}%",
+  "t": "持盾时攻击伤害额外提高 {v}%"
+ },
+ "Damage.More+Martial": {
+  "n": "使用拳与爪时攻击伤害额外降低 {abs}%",
+  "t": "使用拳与爪时攻击伤害额外提高 {v}%"
+ },
+ "Damage.More+Movement": {
+  "n": "位移技能的伤害额外降低 {abs}%",
+  "t": "位移技能的伤害额外提高 {v}%"
+ },
+ "Damage.More+Nova": {
+  "n": "新星技能的{tags}伤害额外降低 {abs}%",
+  "t": "新星技能的{tags}伤害额外提高 {v}%"
+ },
+ "Damage.More+Shield": {
+  "n": "盾牌技能的伤害额外降低 {abs}%",
+  "t": "盾牌技能的伤害额外提高 {v}%"
+ },
+ "Damage.More+Slam": {
+  "n": "猛击技能的{tags}伤害额外降低 {abs}%",
+  "t": "猛击技能的{tags}伤害额外提高 {v}%"
+ },
+ "Damage.More+TwoHanded": {
+  "n": "你持双手武器时，召唤物造成的伤害额外降低 {abs}%",
+  "t": "你持双手武器时，召唤物造成的伤害额外提高 {v}%"
+ },
+ "DamageAsExtra.Flat": {
+  "t": "获得相当于{tag0}伤害 {v}% 的额外{tag1}伤害"
+ },
+ "DamageTaken.Inc": {
+  "n": "你受到的伤害降低 {abs}%",
+  "t": "你受到的伤害提高 {v}%"
+ },
+ "DamageTaken.Inc+": {
+  "n": "你受到的{tags}伤害降低 {abs}%",
+  "t": "你受到的{tags}伤害提高 {v}%"
+ },
+ "DamageVsFullLife.More": {
+  "n": "对满生命敌人的命中伤害额外降低 {abs}%",
+  "t": "对满生命敌人的命中伤害额外提高 {v}%"
+ },
+ "DeathBurst.Flat": {
+  "t": "以元素之死死去的敌人，会对 2.5 米内的敌人造成其生命 {v}% 的该元素伤害（生命按裂隙等级 150 计算封顶，不含怪物群的额外生命）"
+ },
+ "Defences.Inc": {
+  "n": "防御降低 {abs}%",
+  "t": "防御提高 {v}%"
+ },
+ "Dex.Flat": {
+  "n": "敏捷 -{abs}",
+  "t": "敏捷 +{v}"
+ },
+ "Dex.Inc": {
+  "n": "敏捷降低 {abs}%",
+  "t": "敏捷提高 {v}%"
+ },
+ "DexAttackMore.Flat": {
+  "t": "每有 10 点敏捷，投射物攻击伤害额外提高 {v}%（箭雨同样适用）"
+ },
+ "DexLife.Flat": {
+  "n": "你每有 10 点敏捷，最大生命 -{abs}",
+  "t": "你每有 10 点敏捷，最大生命 +{v}"
+ },
+ "DotMulti.Flat": {
+  "n": "持续伤害加成 -{abs}%（燃烧、中毒与流血）",
+  "t": "持续伤害加成 +{v}%（燃烧、中毒与流血）"
+ },
+ "EnergyShield.Flat": {
+  "n": "最大能量护盾 -{abs}",
+  "t": "最大能量护盾 +{v}"
+ },
+ "EnergyShield.Inc": {
+  "n": "最大能量护盾降低 {abs}%",
+  "t": "最大能量护盾提高 {v}%"
+ },
+ "EnergyShieldLeech.Flat": {
+  "t": "伤害的 {v}% 转化为能量护盾偷取"
+ },
+ "EnergyShieldMore.Flat": {
+  "n": "你每有 1,000 点最大能量护盾，{tags}伤害额外降低 {abs}%",
+  "t": "你每有 1,000 点最大能量护盾，{tags}伤害额外提高 {v}%"
+ },
+ "EngineHoldInRupture.Flat": {
+  "t": "身处裂隙中时，你的嗜血不会耗尽，与守护者战斗时除外。离开裂隙会消耗其一半"
+ },
+ "EngineHoldWhileSentenced.Flat": {
+  "t": "当被你宣判的敌人还活着时，你的嗜血不会耗尽"
+ },
+ "EntropyDelay.Flat": {
+  "n": "熵推迟 {abs} 秒内爆",
+  "t": "熵提前 {v} 秒内爆"
+ },
+ "EntropyFade.Flat": {
+  "n": "熵的消退提前 {abs} 秒",
+  "t": "熵的消退推迟 {v} 秒"
+ },
+ "EntropyGrievance.Flat": {
+  "n": "你因敌人的命中而失去的生命以熵形式施加到该敌人身上的比例额外降低 {abs}%",
+  "t": "你因敌人的命中而失去的生命有 {v}% 以熵的形式施加到该敌人身上"
+ },
+ "EntropyHallowSooner.Flat": {
+  "n": "你对圣化地面上的敌人施加的熵推迟 {abs} 秒内爆",
+  "t": "你对圣化地面上的敌人施加的熵提前 {v} 秒内爆"
+ },
+ "EntropyMarkedMulti.Flat": {
+  "n": "你对带有猎手印记的敌人施加的熵，其熵加成 -{abs}%",
+  "t": "你对带有猎手印记的敌人施加的熵，其熵加成 +{v}%"
+ },
+ "EntropyMore.More": {
+  "n": "熵内爆造成的伤害额外降低 {abs}%",
+  "t": "熵内爆造成的伤害额外提高 {v}%"
+ },
+ "EntropyMulti.Flat": {
+  "n": "熵加成 -{abs}%",
+  "t": "熵加成 +{v}%"
+ },
+ "EntropyShare.Flat": {
+  "n": "以熵形式施加的命中伤害额外降低 {abs}%",
+  "t": "命中伤害的 {v}% 以熵的形式施加，而非直接打击"
+ },
+ "EntropyShare.Flat+": {
+  "n": "{tags}命中伤害以熵形式施加的比例额外降低 {abs}%",
+  "t": "{tags}命中伤害的 {v}% 以熵的形式施加，而非直接打击"
+ },
+ "EntropySheatheReach.Flat": {
+  "n": "Quiet Ruin 的鞘少延伸 {abs} 米",
+  "t": "Quiet Ruin 的鞘延伸 {v} 米"
+ },
+ "EntropyVowReach.Flat": {
+  "n": "Forsworn Crusade 的破誓少延伸 {abs} 米",
+  "t": "Forsworn Crusade 的破誓延伸 {v} 米"
+ },
+ "EsRecharge.Inc": {
+  "n": "能量护盾充能速度减慢 {abs}%",
+  "t": "能量护盾充能速度加快 {v}%"
+ },
+ "EsRechargeDelay.Inc": {
+  "n": "能量护盾开始充能的时间提前 {abs}%",
+  "t": "能量护盾开始充能的时间推迟 {v}%"
+ },
+ "Evasion.Flat": {
+  "n": "闪避值 -{abs}",
+  "t": "闪避值 +{v}"
+ },
+ "Evasion.Inc": {
+  "n": "闪避值降低 {abs}%",
+  "t": "闪避值提高 {v}%"
+ },
+ "EvasionMore.Flat": {
+  "n": "你每有 1,000 点闪避，{tags}伤害额外降低 {abs}%",
+  "t": "你每有 1,000 点闪避，{tags}伤害额外提高 {v}%"
+ },
+ "Feed85Ail_FuryCharges.Flat+Bleed": {
+  "t": "你每持有一层狂怒充能，你的流血伤害额外提高 {v}%（最多 5 层）"
+ },
+ "Feed85Ail_MarkStacks.Flat+Poison": {
+  "t": "敌人身上每有一个猎手印记，你的中毒伤害额外提高 {v}%"
+ },
+ "Feed85Ail_RepeatIndex.Flat+Melee": {
+  "t": "打击每重复一次，你的近战流血伤害额外提高 {v}%"
+ },
+ "Feed85Crit_IgniteStacks.Flat+": {
+  "t": "敌人身上每有一层你燃烧的点燃，{skills}的暴击率 +{v}%"
+ },
+ "Feed85Exp_MarkStacks.Flat+": {
+  "t": "敌人身上每有一个猎手印记，你的感电效果提高 {v}%"
+ },
+ "Feed85_BlockChance.Flat+": {
+  "t": "你每有 1% 格挡几率，{skills}造成的伤害额外提高 {v}%"
+ },
+ "Feed85_ChillEffect.Flat+": {
+  "t": "敌人身上每有 1% 冰缓，{skills}造成的伤害额外提高 {v}%"
+ },
+ "Feed85_ChillEffect.Flat+Minion": {
+  "t": "敌人身上每有 1% 冰缓，你的召唤物的{tags}命中造成的伤害额外提高 {v}%"
+ },
+ "Feed85_CritChance.Flat+": {
+  "t": "你每有 1% 暴击率，{skills}造成的伤害额外提高 {v}%"
+ },
+ "Feed85_ExtraProjectiles.Flat+": {
+  "t": "{skills}每多发射一个投射物，其伤害额外提高 {v}%"
+ },
+ "Feed85_FuryCharges.Flat+": {
+  "t": "你每持有一层狂怒充能，{skills}造成的伤害额外提高 {v}%（最多 5 层）"
+ },
+ "Feed85_IgniteStacks.Flat+": {
+  "t": "敌人身上每有一层你燃烧的点燃，{skills}造成的伤害额外提高 {v}%"
+ },
+ "Feed85_MaimEffect.Flat+": {
+  "t": "敌人身上每有 1% 残废，{skills}造成的伤害额外提高 {v}%"
+ },
+ "Feed85_MarkStacks.Flat+": {
+  "t": "敌人身上每有一个猎手印记，{skills}造成的伤害额外提高 {v}%"
+ },
+ "Feed85_MinionCount.Flat+": {
+  "t": "你每指挥一个召唤物，{skills}造成的伤害额外提高 {v}%"
+ },
+ "Feed85_PoisonChance.Flat+": {
+  "t": "你每有 1% 中毒几率，{skills}造成的伤害额外提高 {v}%"
+ },
+ "Feed85_PoisonChance.Flat+Minion": {
+  "t": "你的召唤物每有 1% 中毒几率，其伤害额外提高 {v}%"
+ },
+ "Feed85_TotemCount.Flat+Minion": {
+  "t": "你每有一个图腾，你的召唤物造成的伤害额外提高 {v}%"
+ },
+ "Feed85_WoeEffectMatch.Flat+": {
+  "t": "敌人身上你对应元素的灾祸每有 1% 效果，{skills}造成的伤害额外提高 {v}%"
+ },
+ "FissureSpikes.Flat": {
+  "t": "被碎地的裂隙杀死的敌人会留下 {v} 根额外的尖刺"
+ },
+ "FocusMain98.Flat": {
+  "n": "你的主技能造成的伤害额外降低 {abs}%",
+  "t": "你的主技能造成的伤害额外提高 {v}%"
+ },
+ "FocusOther98.Flat": {
+  "n": "你的其他技能造成的伤害额外提高 {abs}%",
+  "t": "你的其他技能造成的伤害额外降低 {v}%"
+ },
+ "FocusShare.Flat": {
+  "n": "第一支之后的每支箭伤害额外降低 {abs}%",
+  "t": "第一支之后的每支箭造成前一支伤害的 {v}%"
+ },
+ "FocusVolley.Flat": {
+  "n": "链接的弓技能的箭矢沿一条直线飞行，每支箭各自命中",
+  "t": "链接的弓技能的箭矢沿一条直线飞行，每支箭各自命中"
+ },
+ "Fork.Flat": {
+  "t": "投射物分叉 {v} 次"
+ },
+ "Fork.Flat+Bow": {
+  "t": "弓投射物分叉 {v} 次"
+ },
+ "FortifyDamage.Flat": {
+  "n": "你每有一层护体，近战伤害额外降低 {abs}%",
+  "t": "你每有一层护体，近战伤害额外提高 {v}%"
+ },
+ "FortifyEffect.Inc": {
+  "n": "护体效果降低 {abs}%",
+  "t": "护体效果提高 {v}%（每层减少受到的命中伤害）"
+ },
+ "FortifyMax.Flat": {
+  "n": "护体层数上限 -{abs}",
+  "t": "护体层数上限 +{v}（你命中的近战攻击会给予层数，每层使你受到的命中伤害降低 1%）"
+ },
+ "FreezeDuration.Inc": {
+  "n": "冻结持续时间降低 {abs}%",
+  "t": "冻结持续时间提高 {v}%"
+ },
+ "FuryOnKill.Flat": {
+  "t": "击杀会获得一层狂怒充能（最多每 0.5 秒一层）"
+ },
+ "GoldFind.Inc": {
+  "n": "发现的金币降低 {abs}%",
+  "t": "发现的金币提高 {v}%"
+ },
+ "GolemLifeMore.Flat": {
+  "n": "你每有 100 点最大生命，你的墓穴魔像造成的伤害额外降低 {abs}%",
+  "t": "你每有 100 点最大生命，你的墓穴魔像造成的伤害额外提高 {v}%；你的其他召唤物获得此效果的 35%"
+ },
+ "GrantSupport.Flag+afterimage": {
+  "t": "你的{tag1}技能获得残影辅助（该宝石自身的代价：伤害降低 20%）"
+ },
+ "GrantSupport.Flag+chain": {
+  "t": "你的{tag1}技能获得连锁辅助（该宝石自身的代价：伤害降低 5%）"
+ },
+ "GrantSupport.Flag+channel_conduit": {
+  "t": "你的{tag1}技能获得引导枢纽辅助"
+ },
+ "GrantSupport.Flag+fork": {
+  "t": "你的{tag1}技能获得分叉辅助"
+ },
+ "GrantSupport.Flag+hunters_mark_support": {
+  "t": "你的{tag1}技能获得猎手印记辅助"
+ },
+ "GrantSupport.Flag+ice_support": {
+  "t": "你的{tag1}技能获得寒冰辅助"
+ },
+ "GrantSupport.Flag+maim": {
+  "t": "你的{tag1}技能获得残废辅助"
+ },
+ "GrantSupport.Flag+rain_support": {
+  "t": "你的{tag1}攻击获得雨辅助（该宝石自身的代价：伤害降低 50%）"
+ },
+ "GrantSupport.Flag+ravening_host": {
+  "t": "你的{tag1}技能获得贪婪之群辅助"
+ },
+ "GrantSupport.Flag+skyfall": {
+  "t": "你的{tag1}法术获得天降辅助"
+ },
+ "GrantSupport.Flag+spell_echo": {
+  "t": "你的{tag1}技能获得法术回响辅助（该宝石自身的代价：伤害降低 15%，施法速度降低 10%）"
+ },
+ "GrantSupport.Flag+swift_step": {
+  "t": "你的{tag1}技能获得疾步辅助"
+ },
+ "GrantSupport.Flag+tether": {
+  "t": "你的{tag1}技能获得链接辅助"
+ },
+ "GrantSupport.Flag+zap_support": {
+  "t": "你的{tag1}技能获得闪电辅助"
+ },
+ "Gravesown.Flat": {
+  "t": "一次最多唤起 {v} 具空壳"
+ },
+ "HeraldKillMore.Flat": {
+  "n": "链接先驱的击杀效果造成的伤害额外降低 {abs}%",
+  "t": "链接先驱的击杀效果造成的伤害额外提高 {v}%"
+ },
+ "HeraldKillRadius.Flat": {
+  "n": "链接先驱的击杀效果范围缩小 {abs}%",
+  "t": "链接先驱的击杀效果范围扩大 {v}%"
+ },
+ "IgniteChance.Flat": {
+  "n": "火焰命中造成点燃的几率 -{abs}%",
+  "t": "火焰命中造成点燃的几率 +{v}%"
+ },
+ "IgniteChance.Flat+": {
+  "n": "{skills}造成点燃的几率 -{abs}%",
+  "t": "{skills}造成点燃的几率 +{v}%"
+ },
+ "IgniteDamage.Inc": {
+  "n": "燃烧伤害降低 {abs}%（你的点燃）",
+  "t": "燃烧伤害提高 {v}%（你的点燃）"
+ },
+ "IgniteDamage.Inc+": {
+  "n": "{skills}的燃烧伤害降低 {abs}%",
+  "t": "{skills}的燃烧伤害提高 {v}%"
+ },
+ "IgniteDamage.More": {
+  "n": "燃烧伤害额外降低 {abs}%（你的点燃）",
+  "t": "燃烧伤害额外提高 {v}%（你的点燃）"
+ },
+ "IgniteSpreadOnKill.Flat": {
+  "n": "点燃传播降低 {abs}%",
+  "t": "燃烧的敌人死亡时，其点燃有 {v}% 的几率传播给 4.5 米内的敌人"
+ },
+ "IgniteSpreadOnKill.Flat+WieldingStaff": {
+  "t": "持法杖时，燃烧的敌人死亡时，其来自你法术的点燃有 {v}% 的几率传播给 4.5 米内的敌人"
+ },
+ "IgniteSpreadTick.Flat": {
+  "t": "燃烧的敌人每秒会将其点燃传递给附近的一个敌人 {v} 次"
+ },
+ "IgniteStacks.Flat": {
+  "n": "一个敌人身上同时 -{abs} 层点燃",
+  "t": "你的点燃可以叠加：一个敌人身上同时多燃烧 +{v} 层点燃"
+ },
+ "Int.Flat": {
+  "n": "智慧 -{abs}",
+  "t": "智慧 +{v}"
+ },
+ "Int.Inc": {
+  "n": "智慧降低 {abs}%",
+  "t": "智慧提高 {v}%"
+ },
+ "IntSpellMore.Flat": {
+  "t": "每有 10 点智慧，法术伤害额外提高 {v}%"
+ },
+ "ItemRarity.Inc": {
+  "n": "发现物品的稀有度降低 {abs}%",
+  "t": "发现物品的稀有度提高 {v}%"
+ },
+ "KindlePct.Flat": {
+  "t": "尸体爆裂在计入裂隙等级系数之前，造成尸体生命的 {v}%"
+ },
+ "KindlingOnKill.Flat": {
+  "t": "法术击杀会获得引火（每层：法术伤害提高 0.5%，施法速度提高 0.2%；每层持续 5 秒）"
+ },
+ "LeechingMore.Flat": {
+  "n": "偷取期间造成的伤害额外降低 {abs}%",
+  "t": "偷取期间造成的伤害额外提高 {v}%"
+ },
+ "Life.Flat": {
+  "n": "最大生命 -{abs}",
+  "t": "最大生命 +{v}"
+ },
+ "Life.Inc": {
+  "n": "最大生命降低 {abs}%",
+  "t": "最大生命提高 {v}%"
+ },
+ "Life.More": {
+  "n": "最大生命额外降低 {abs}%",
+  "t": "最大生命额外提高 {v}%"
+ },
+ "LifeLeech.Flat": {
+  "t": "伤害的 {v}% 转化为生命偷取"
+ },
+ "LifeLeech.Flat+": {
+  "t": "{tags}伤害的 {v}% 转化为生命偷取"
+ },
+ "LifeLeech.More": {
+  "n": "生命偷取额外降低 {abs}%",
+  "t": "生命偷取额外提高 {v}%"
+ },
+ "LifeMore.Flat": {
+  "n": "你每有 1,000 点最大生命，{tags}伤害额外降低 {abs}%",
+  "t": "你每有 1,000 点最大生命，{tags}伤害额外提高 {v}%"
+ },
+ "LifeOnBlock.Flat": {
+  "t": "格挡时回复 {v} 点生命"
+ },
+ "LifeOnKill.Flat": {
+  "n": "每击杀一个敌人，失去 {abs} 点生命",
+  "t": "每击杀一个敌人，获得 {v} 点生命"
+ },
+ "LifeOnKillPct.Flat": {
+  "n": "每击杀一个敌人，失去最大生命的 {abs}%",
+  "t": "每击杀一个敌人，获得最大生命的 {v}%"
+ },
+ "LifeRegen.Flat": {
+  "n": "每秒失去 {abs} 点生命",
+  "t": "每秒回复 {v} 点生命"
+ },
+ "LifeRegenPct.Flat": {
+  "n": "每秒失去 {abs}% 的生命",
+  "t": "每秒回复 {v}% 的生命"
+ },
+ "LowLifeMore.Flat": {
+  "t": "对生命低于一半的敌人造成的伤害额外提高 {v}%（物理伤害全额生效，其他伤害为其 40%）"
+ },
+ "MaimOnHit.Flat": {
+  "t": "命中造成残废，持续 4 秒：被残废的敌人减速 30%，且受到的物理伤害额外提高 {v}%"
+ },
+ "Mana.Flat": {
+  "n": "最大法力 -{abs}",
+  "t": "最大法力 +{v}"
+ },
+ "Mana.Inc": {
+  "n": "最大法力降低 {abs}%",
+  "t": "最大法力提高 {v}%"
+ },
+ "ManaAsEnergyShield.Flat": {
+  "t": "最大法力的 {v}% 加入能量护盾"
+ },
+ "ManaBeforeLife.Flat": {
+  "n": "受到的伤害有 {abs}% 先从法力扣除，再从生命扣除",
+  "t": "受到的伤害有 {v}% 先从法力扣除，再从生命扣除"
+ },
+ "ManaCost.Inc": {
+  "n": "技能的法力消耗降低 {abs}%",
+  "t": "技能的法力消耗提高 {v}%"
+ },
+ "ManaCost.Inc+": {
+  "n": "{skills}的法力消耗降低 {abs}%",
+  "t": "{skills}的法力消耗提高 {v}%"
+ },
+ "ManaCost.Inc+WieldingStaff": {
+  "n": "持法杖时，引导技能的法力消耗降低 {abs}%",
+  "t": "持法杖时，引导技能的法力消耗提高 {v}%"
+ },
+ "ManaLeech.Flat": {
+  "t": "伤害的 {v}% 转化为法力偷取"
+ },
+ "ManaLeech.Flat+": {
+  "t": "{tags}伤害的 {v}% 转化为法力偷取"
+ },
+ "ManaMore.Flat": {
+  "n": "你每有 100 点最大法力，{tags}伤害额外降低 {abs}%",
+  "t": "你每有 100 点最大法力，{tags}伤害额外提高 {v}%"
+ },
+ "ManaOnHit.Flat": {
+  "t": "攻击每命中一个敌人，获得 +{v} 点法力"
+ },
+ "ManaOnHit.Flat+": {
+  "t": "以{tags}每命中一个敌人，获得 +{v} 点法力"
+ },
+ "ManaOnHitPct.Flat": {
+  "n": "攻击每次命中失去最大法力的 {abs}%",
+  "t": "攻击每次命中获得最大法力的 {v}%"
+ },
+ "ManaOnKill.Flat": {
+  "n": "每击杀一个敌人，失去 {abs} 点法力",
+  "t": "击杀时获得 +{v} 点法力"
+ },
+ "ManaOnKillPct.Flat": {
+  "n": "每击杀一个敌人，失去最大法力的 {abs}%",
+  "t": "每击杀一个敌人，获得最大法力的 {v}%"
+ },
+ "ManaRegen.Inc": {
+  "n": "法力回复速度降低 {abs}%",
+  "t": "法力回复速度提高 {v}%"
+ },
+ "MarkEffect.Inc": {
+  "t": "猎手印记效果提高 {v}%"
+ },
+ "MarkMax.Flat": {
+  "t": "一个敌人身上的猎手印记上限 +{v}"
+ },
+ "MarkOnHit.Flat": {
+  "t": "你的命中会给敌人施加猎手印记（每个印记使受到的伤害额外提高 1.7%；它与你的战争旗帜和诅咒叠加）"
+ },
+ "MaxResist.Flat+": {
+  "n": "{tags}抗性上限 -{abs}%",
+  "t": "{tags}抗性上限 +{v}%"
+ },
+ "MaxResist.Flat+Elemental": {
+  "n": "全部元素抗性上限 -{abs}%",
+  "t": "全部元素抗性上限 +{v}%"
+ },
+ "MeleeSplash.Flat": {
+  "t": "攻击会将其伤害的 {v}% 溅射到每个被击中敌人 2 米内的敌人身上"
+ },
+ "MinionCap.Flat": {
+  "n": "每种召唤物的数量上限 -{abs}",
+  "t": "每种召唤物的数量上限 +{v}（与你所有来源的召唤物叠加；军队总上限为 28 个召唤物）"
+ },
+ "MinionCap.Flat+holy_elemental": {
+  "n": "神圣元素生物数量上限 -{abs}",
+  "t": "神圣元素生物数量上限 +{v}（与你所有来源的召唤物叠加；军队总上限为 28 个召唤物）"
+ },
+ "MinionCap.Flat+skeleton_warrior": {
+  "n": "骷髅战士数量上限 -{abs}",
+  "t": "骷髅战士数量上限 +{v}（召唤骷髅、掘墓收割）（与你所有来源的召唤物叠加；军队总上限为 28 个召唤物）"
+ },
+ "MinionCap.Flat+skeleton_wizard": {
+  "n": "骷髅法师数量上限 -{abs}",
+  "t": "骷髅法师数量上限 +{v}（与你所有来源的召唤物叠加；军队总上限为 28 个召唤物）"
+ },
+ "MinionCap.Flat+zombie": {
+  "n": "僵尸数量上限 -{abs}",
+  "t": "僵尸数量上限 +{v}（与你所有来源的召唤物叠加；军队总上限为 28 个召唤物）"
+ },
+ "MinionDamage.Inc": {
+  "n": "召唤物造成的伤害降低 {abs}%",
+  "t": "召唤物造成的伤害提高 {v}%"
+ },
+ "MinionDamage.Inc+skeleton_warrior": {
+  "n": "骷髅战士造成的伤害降低 {abs}%（召唤骷髅、掘墓收割）",
+  "t": "骷髅战士造成的伤害提高 {v}%（召唤骷髅、掘墓收割）"
+ },
+ "MinionDamage.Inc+skeleton_wizard": {
+  "n": "骷髅法师造成的伤害降低 {abs}%",
+  "t": "骷髅法师造成的伤害提高 {v}%"
+ },
+ "MinionDamage.Inc+zombie": {
+  "n": "僵尸造成的伤害降低 {abs}%",
+  "t": "僵尸造成的伤害提高 {v}%"
+ },
+ "MinionDamage.More": {
+  "n": "召唤物造成的伤害额外降低 {abs}%",
+  "t": "召唤物造成的伤害额外提高 {v}%"
+ },
+ "MinionDeathBurst.Flat": {
+  "t": "你的召唤物死亡时会爆炸，造成其最大生命 {v}% 的火焰伤害"
+ },
+ "MinionDeathRecover.Flat": {
+  "t": "当你的一个召唤物死亡时，你与你的召唤物回复 {v}% 的生命"
+ },
+ "MinionGuard.Flat": {
+  "n": "被辅助技能的召唤物会守护你",
+  "t": "被辅助技能的召唤物会守护你"
+ },
+ "MinionHunt.Flat": {
+  "n": "被辅助技能的召唤物会冲在你前方猎杀",
+  "t": "被辅助技能的召唤物会冲在你前方猎杀"
+ },
+ "MinionKindMore.Flat": {
+  "t": "你每指挥一种不同的召唤物，你的召唤物造成的伤害额外提高 {v}%（最多 4 种）"
+ },
+ "MinionLife.Inc": {
+  "n": "召唤物最大生命降低 {abs}%",
+  "t": "召唤物最大生命提高 {v}%"
+ },
+ "MinionLife.More": {
+  "n": "召唤物最大生命额外降低 {abs}%",
+  "t": "召唤物最大生命额外提高 {v}%"
+ },
+ "MinionLifeOnKill.Flat": {
+  "t": "你的召唤物在击杀敌人时回复其最大生命的 {v}%"
+ },
+ "MinionLifeRegen.Flat": {
+  "t": "你的召唤物每秒回复其最大生命的 {v}%"
+ },
+ "MinionOneKind.Flat": {
+  "t": "你只能指挥一种召唤物：唤起一种会遣散其他种类。其数量上限翻倍（至少 +2），每次唤起的数量翻倍，且你的召唤物造成的伤害降低 30%"
+ },
+ "MinionReservation.Inc": {
+  "n": "你的召唤物的法力预留效率降低 {abs}%",
+  "t": "你的召唤物的法力预留效率提高 {v}%"
+ },
+ "MinionSpeed.Inc": {
+  "n": "召唤物的攻击与移动速度降低 {abs}%",
+  "t": "召唤物的攻击与移动速度提高 {v}%"
+ },
+ "MinionSpeed.More": {
+  "n": "召唤物的攻击与移动速度额外降低 {abs}%",
+  "t": "召唤物的攻击与移动速度额外提高 {v}%"
+ },
+ "MinionStrikes.Flat": {
+  "t": "召唤物的攻击额外打击 {v} 次"
+ },
+ "MoveSpeed.Inc": {
+  "n": "移动速度降低 {abs}%",
+  "t": "移动速度提高 {v}%"
+ },
+ "MoveSpeedOnKill.Flat": {
+  "t": "击杀时移动速度提高 {v}%，持续 {v2} 秒"
+ },
+ "OrbCount.Flat": {
+  "n": "寒冬宝珠数量上限 -{abs}",
+  "t": "寒冬宝珠数量上限 +{v}"
+ },
+ "OrbRate.Inc": {
+  "n": "寒冬宝珠投掷冰锥的速度减慢 {abs}%",
+  "t": "寒冬宝珠投掷冰锥的速度加快 {v}%"
+ },
+ "OrbitCount.Flat": {
+  "n": "每次施放 -{abs} 个环绕投射物（刀刃旋涡、环绕之锤与环绕辅助；刀刃旋涡的环至少容纳 8 个）",
+  "t": "每次施放 +{v} 个环绕投射物（刀刃旋涡、环绕之锤与环绕辅助；刀刃旋涡的环至少容纳 8 个）"
+ },
+ "OrbitMax.Flat": {
+  "n": "环绕投射物数量上限 -{abs}（刀刃旋涡、环绕之锤与环绕辅助）",
+  "t": "环绕投射物数量上限 +{v}（刀刃旋涡、环绕之锤与环绕辅助）"
+ },
+ "OrbitMovingDamage.Flat": {
+  "t": "环绕投射物（刀刃旋涡、环绕之锤与环绕辅助）在你移动时造成的伤害额外提高 {v}%"
+ },
+ "OrbitRate.Inc": {
+  "n": "环绕的刀刃与锤子旋转速度减慢 {abs}%",
+  "t": "环绕的刀刃与锤子旋转速度加快 {v}%"
+ },
+ "PassSentence.Flat": {
+  "t": "当宣判的目标死亡时，宣判会转移到最近的稀有或传奇敌人身上"
+ },
+ "Penetration.Flat+": {
+  "t": "伤害穿透 {v}% 的{tags}抗性"
+ },
+ "Penetration.Flat+Elemental": {
+  "t": "伤害穿透 {v}% 的元素抗性"
+ },
+ "PhysTakenAsElemental.Flat": {
+  "t": "你受到的物理伤害有 {v}% 转为火焰、冰霜与闪电伤害"
+ },
+ "Pierce.Flat": {
+  "t": "投射物额外穿透 {v} 个目标"
+ },
+ "Pierce.Flat+": {
+  "t": "{skills}额外穿透 {v} 个目标"
+ },
+ "PoisonChance.Flat": {
+  "n": "命中造成中毒的几率 -{abs}%",
+  "t": "命中造成中毒的几率 +{v}%"
+ },
+ "PoisonChance.Flat+": {
+  "n": "{skills}命中造成中毒的几率 -{abs}%",
+  "t": "{skills}命中造成中毒的几率 +{v}%"
+ },
+ "PoisonChance.Flat+Minion": {
+  "n": "你的召唤物命中造成中毒的几率 -{abs}%",
+  "t": "你的召唤物命中造成中毒的几率 +{v}%"
+ },
+ "PoisonDamage.Inc": {
+  "n": "毒素持续伤害降低 {abs}%（你的中毒）",
+  "t": "毒素持续伤害提高 {v}%（你的中毒）"
+ },
+ "PoisonDamage.Inc+": {
+  "n": "{skills}的毒素伤害降低 {abs}%",
+  "t": "{skills}的毒素伤害提高 {v}%"
+ },
+ "PoisonDamage.Inc+Minion": {
+  "n": "你的召唤物造成的中毒伤害降低 {abs}%",
+  "t": "你的召唤物造成的中毒伤害提高 {v}%"
+ },
+ "PoisonRate.Inc": {
+  "n": "你的中毒跳动频率减慢 {abs}%",
+  "t": "你的中毒跳动频率加快 {v}%"
+ },
+ "PoisonSpreadOnKill.Flat": {
+  "n": "被中毒的敌人死亡时转移的中毒减少 {abs} 个",
+  "t": "当被你中毒的敌人死亡时，其身上最多 {v} 个中毒会转移到 4.5 米内身上中毒最少的敌人身上，每次死亡转移一次（若该次死亡有毒素誓约词的跳跃，则由其取代）"
+ },
+ "Projectiles.Flat": {
+  "t": "额外发射 {v} 个投射物"
+ },
+ "Projectiles.Flat+": {
+  "t": "{skills}额外发射 {v} 个投射物"
+ },
+ "PyreChain.Flat": {
+  "n": "链接的尸体爆裂少跳向 {abs} 具新尸体",
+  "t": "链接的尸体爆裂会再跳向 {v} 具新尸体"
+ },
+ "PyreChainShare.Flat": {
+  "n": "每次跳跃的伤害额外降低 {abs}%",
+  "t": "每次跳跃造成前一次跳跃伤害的 {v}%"
+ },
+ "Repeats.Flat": {
+  "t": "法术额外重复 {v} 次（与辅助宝石的重复叠加，但两者中较小的一次伤害降低 50%）"
+ },
+ "Repeats.Flat+Bow": {
+  "t": "弓攻击额外重复 {v} 次（与辅助宝石的重复叠加，但两者中较小的一次伤害降低 50%）"
+ },
+ "Repeats.Flat+Dash": {
+  "t": "冲刺额外打击 {v} 次"
+ },
+ "Repeats.Flat+Martial": {
+  "t": "使用拳与爪的近战攻击额外重复 {v} 次（与辅助宝石的重复叠加，但两者中较小的一次伤害降低 50%）"
+ },
+ "Repeats.Flat+Melee": {
+  "t": "近战攻击额外重复 {v} 次（与辅助宝石的重复叠加，但两者中较小的一次伤害降低 50%）"
+ },
+ "Repeats.Flat+Movement": {
+  "t": "位移技能额外打击 {v} 次"
+ },
+ "ReqReduce.Flat": {
+  "n": "属性需求提高 {abs}%",
+  "t": "属性需求降低 {v}%"
+ },
+ "Reservation.Inc": {
+  "n": "誓言的预留效率降低 {abs}%",
+  "t": "誓言的预留效率提高 {v}%"
+ },
+ "Reservation.More": {
+  "n": "誓言预留的法力额外降低 {abs}%",
+  "t": "誓言预留的法力额外提高 {v}%"
+ },
+ "Resist.Flat+": {
+  "n": "{tags}抗性 -{abs}%",
+  "t": "{tags}抗性 +{v}%"
+ },
+ "Resist.Flat+Elemental": {
+  "n": "全部元素抗性 -{abs}%",
+  "t": "全部元素抗性 +{v}%"
+ },
+ "RuthlessBlow.Flat": {
+  "t": "每第三次攻击都是无情重击：物理伤害额外提高 {v}%"
+ },
+ "SelfLowLifeMore.Flat": {
+  "n": "生命低于一半时造成的伤害额外降低 {abs}%",
+  "t": "生命低于一半时造成的伤害额外提高 {v}%"
+ },
+ "ShatterOnKill.Flat": {
+  "n": "粉碎造成的伤害额外降低 {abs}%",
+  "t": "你击杀的冰缓或冻结敌人会粉碎：对 3.5 米内的敌人造成其最大生命 {v}% 的冰霜伤害"
+ },
+ "ShockChance.Flat": {
+  "n": "闪电命中造成感电的几率 -{abs}%",
+  "t": "闪电命中造成感电的几率 +{v}%"
+ },
+ "ShockEffect.Inc": {
+  "n": "感电效果降低 {abs}%",
+  "t": "感电效果提高 {v}%"
+ },
+ "ShockEffect.More": {
+  "n": "感电效果额外降低 {abs}%",
+  "t": "感电效果额外提高 {v}%"
+ },
+ "ShockSpreadOnKill.Flat": {
+  "n": "感电传播降低 {abs}%",
+  "t": "感电的敌人死亡时，其感电有 {v}% 的几率传播给 4.5 米内的敌人"
+ },
+ "ShockSpreadOnKill.Flat+WieldingStaff": {
+  "t": "持法杖时，感电的敌人死亡时，其来自你法术的感电有 {v}% 的几率传播给 4.5 米内的敌人"
+ },
+ "ShockStacks.Flat": {
+  "n": "一个敌人身上同时 -{abs} 层感电",
+  "t": "你的感电可以叠加：一个敌人身上同时多 +{v} 层感电（每层强度取决于其自身命中的闪电，总计受到的伤害最多额外提高 75%）"
+ },
+ "SkillDuration.Inc": {
+  "n": "宝珠、火花、图腾与陷阱的持续时间缩短 {abs}%",
+  "t": "宝珠、火花、图腾与陷阱的持续时间延长 {v}%"
+ },
+ "SkillDuration.Inc+Brand": {
+  "n": "火花的持续时间缩短 {abs}%",
+  "t": "火花的持续时间延长 {v}%"
+ },
+ "SkillDuration.Inc+Orb": {
+  "n": "寒冬宝珠的持续时间缩短 {abs}%",
+  "t": "寒冬宝珠的持续时间延长 {v}%"
+ },
+ "SkillDuration.Inc+Totem": {
+  "n": "弩炮与图腾的持续时间缩短 {abs}%",
+  "t": "弩炮与图腾的持续时间延长 {v}%"
+ },
+ "SkillDuration.Inc+Trap": {
+  "n": "陷阱的持续时间缩短 {abs}%",
+  "t": "陷阱的持续时间延长 {v}%"
+ },
+ "SkillDuration.More+Brand": {
+  "n": "火花的持续时间额外降低 {abs}%",
+  "t": "火花的持续时间额外提高 {v}%"
+ },
+ "SkillDuration.More+Orb": {
+  "n": "寒冬宝珠的持续时间额外降低 {abs}%",
+  "t": "寒冬宝珠的持续时间额外提高 {v}%"
+ },
+ "SkillDuration.More+Totem": {
+  "n": "弩炮与图腾的持续时间额外降低 {abs}%",
+  "t": "弩炮与图腾的持续时间额外提高 {v}%"
+ },
+ "SkillLevel.Flat": {
+  "n": "全部技能宝石等级 -{abs}",
+  "t": "全部技能宝石等级 +{v}"
+ },
+ "SkillLevel.Flat+": {
+  "n": "全部{tags}技能宝石等级 -{abs}",
+  "t": "全部{tags}技能宝石等级 +{v}"
+ },
+ "SkyfallDelay.Inc": {
+  "n": "天降的打击落下时间提前 {abs}%",
+  "t": "天降的打击落下时间推迟 {v}%"
+ },
+ "SkyfallRepeat.Flat": {
+  "t": "天降的打击会在 0.4 秒后再次落下，造成其伤害的 {v}%（一秒落下：每个来源都会叠加，上限 100%）"
+ },
+ "SparkBurst.Flat": {
+  "n": "当你的火花全部就绪时再次施放，会使它们同时打击",
+  "t": "当你的火花全部就绪时再次施放，会使它们同时打击"
+ },
+ "SparkRate.Inc": {
+  "n": "火花的打击速度减慢 {abs}%",
+  "t": "火花的打击速度加快 {v}%"
+ },
+ "SparkThrow.Flat": {
+  "n": "你的火花施放一次少投出 {abs} 个火花体",
+  "t": "你的火花施放一次会多投出 {v} 个火花体（一次施放落下的各个火花体彼此分开）"
+ },
+ "SpeedMore.Flat": {
+  "n": "你每有 10% 的攻击速度提高，{tags}伤害额外降低 {abs}%",
+  "t": "你每有 10% 的攻击速度提高，{tags}伤害额外提高 {v}%"
+ },
+ "Str.Flat": {
+  "n": "力量 -{abs}",
+  "t": "力量 +{v}"
+ },
+ "Str.Inc": {
+  "n": "力量降低 {abs}%",
+  "t": "力量提高 {v}%"
+ },
+ "StrMeleeMore.Flat": {
+  "t": "每有 10 点力量，物理攻击伤害额外提高 {v}%"
+ },
+ "StunKnockback.Inc": {
+  "n": "晕眩效果降低 {abs}%",
+  "t": "晕眩效果提高 {v}%"
+ },
+ "TickRate.Inc": {
+  "n": "光环与圣化地面的跳动频率减慢 {abs}%",
+  "t": "光环与圣化地面的跳动频率加快 {v}%"
+ },
+ "TotemCount.Flat": {
+  "n": "弩炮与图腾数量上限 -{abs}",
+  "t": "弩炮与图腾数量上限 +{v}（与你所有来源的弓械与图腾叠加；总上限为 7 架弩炮与 11 个图腾，每个超过 7 的弓械改为使伤害额外提高 5%）"
+ },
+ "TotemLife.Inc": {
+  "n": "弩炮与图腾的生命降低 {abs}%",
+  "t": "弩炮与图腾的生命提高 {v}%"
+ },
+ "TotemSpeed.Inc": {
+  "n": "弩炮与图腾的射击速度减慢 {abs}%",
+  "t": "弩炮与图腾的射击速度加快 {v}%"
+ },
+ "TrapChainLink.Flat": {
+  "n": "连锁反应中每往后一个陷阱，其伤害额外降低 {abs}%",
+  "t": "连锁反应中每往后一个陷阱，其伤害额外提高 {v}%"
+ },
+ "TrapChainRadius.Inc": {
+  "n": "陷阱互相引爆的距离降低 {abs}%",
+  "t": "陷阱互相引爆的距离提高 {v}%"
+ },
+ "TrapCount.Flat": {
+  "n": "陷阱数量上限 -{abs}",
+  "t": "陷阱数量上限 +{v}"
+ },
+ "TrapRearm.Inc": {
+  "n": "陷阱重新布设的速度减慢 {abs}%",
+  "t": "陷阱重新布设的速度加快 {v}%"
+ },
+ "TrapSeed76.Flat": {
+  "t": "当连锁反应引爆你的一个陷阱时，会投出一个同类的新陷阱，该陷阱触发一次，伤害减半"
+ },
+ "TrigCooldown.Flat": {
+  "t": "链接法术最多每 {v} 秒施放一次"
+ },
+ "TrigDamage.More": {
+  "n": "链接法术造成的伤害额外降低 {abs}%",
+  "t": "链接法术造成的伤害额外提高 {v}%"
+ },
+ "TrigLifePct.Flat": {
+  "t": "每当你受到相当于最大生命 {v}% 的伤害时，施放链接法术"
+ },
+ "TrogChord100.Flat": {
+  "n": "你的一次火花技能施放会投出你的整组火花，新的一组火花在落下时会同时打击",
+  "t": "你的一次火花技能施放会投出你的整组火花，新的一组火花在落下时会同时打击"
+ },
+ "TrogNote100.Flat": {
+  "n": "当你的火花全部来自同一个火花技能时，其打击速度减慢 {abs}%",
+  "t": "当你的火花全部来自同一个火花技能时，其打击速度加快 {v}%"
+ },
+ "UnravelOnHit.Flat": {
+  "t": "你的法术命中会为其元素添加瓦解层数（每层使该元素受到的伤害额外提高 0.7%，最多 25 层）"
+ },
+ "ValourMax.Flat": {
+  "t": "你的战争旗帜的勇气上限 +{v}"
+ },
+ "VolatileDead.Flat": {
+  "t": "被辅助的召唤物在倒下之处爆炸，造成其最大生命 {v}% 的火焰伤害"
+ },
+ "VolatileDeadHit.Flat": {
+  "t": "爆炸会附加召唤物命中伤害的 {v}%"
+ },
+ "VowEffect.Flat": {
+  "t": "链接誓言的词缀行增强 {v}%"
+ },
+ "VowEffect.Inc": {
+  "n": "你的誓言效果降低 {abs}%",
+  "t": "你的誓言效果提高 {v}%"
+ },
+ "VowLock.Inc": {
+  "n": "破誓后，你的誓言保持锁定的时间缩短 {abs}%",
+  "t": "破誓后，你的誓言保持锁定的时间延长 {v}%"
+ },
+ "VowReserveLess.Flat": {
+  "n": "链接的誓言或先驱的预留提高 {abs}%",
+  "t": "链接的誓言或先驱的预留降低 {v}%"
+ },
+ "WarBanner.Flat": {
+  "t": "你的技能会将你的战争旗帜插在你站立之处（它与你的猎手印记和诅咒叠加）"
+ },
+ "WaveCount.Flat": {
+  "t": "重击地面、碎地与裂地重击：其尖刺线条额外延伸 {v} 步"
+ },
+ "WaveCount.Flat+": {
+  "t": "{skills}：其尖刺线条额外延伸 {v} 步"
+ },
+ "WaveCount.Flat+Slam": {
+  "t": "重击地面、碎地与裂地重击：其尖刺线条额外延伸 {v} 步"
+ },
+ "WoeLinger.Flat": {
+  "n": "链接的灾祸积累恐惧的速度减慢 {abs}%，持续时间缩短 {abs}%",
+  "t": "链接的灾祸积累恐惧的速度加快 {v}%，持续时间延长 {v}%"
+ },
+ "WoeOnHit.Flat": {
+  "t": "你的命中会将链接的灾祸施加到被击中的敌人身上"
+ },
+ "Woebringer.Flat": {
+  "t": "灾祸以光环形式环绕你而宣誓（预留你法力的 24%）"
+ }
+}
