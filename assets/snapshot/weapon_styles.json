@@ -1,0 +1,67 @@
+{
+ "styles": [
+  {
+   "Id": "SwordShield",
+   "SkipClasses": [
+    "Paladin"
+   ],
+   "BlockWeight": 0.95,
+   "BlockTime": 0.45
+  },
+  {
+   "Id": "DualWield",
+   "SkipClasses": [],
+   "BlockWeight": 0.85,
+   "BlockTime": 0.4
+  },
+  {
+   "Id": "Martial",
+   "SkipClasses": [],
+   "BlockWeight": 0.9,
+   "BlockTime": 0.4
+  },
+  {
+   "Id": "OneHand",
+   "SkipClasses": [],
+   "BlockWeight": 0.8,
+   "BlockTime": 0.4
+  },
+  {
+   "Id": "Wield_Bow",
+   "SkipClasses": [
+    "Ranger"
+   ]
+  },
+  {
+   "Id": "Wield_Staff",
+   "SkipClasses": [
+    "Mage"
+   ]
+  },
+  {
+   "Id": "Wield_Scythe",
+   "SkipClasses": [
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "Wield_TwoHandSword",
+   "SkipClasses": [
+    "Warrior"
+   ]
+  },
+  {
+   "Id": "Wield_Wand",
+   "SkipClasses": [
+    "Mage",
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "Default",
+   "SkipClasses": [],
+   "BlockWeight": 0.8,
+   "BlockTime": 0.4
+  }
+ ]
+}

@@ -1,0 +1,1541 @@
+{
+ "MonsterLife": {
+  "_r88_early": "r88 EARLY-GAME (owner 7 Nov: smooth sail to RL 100, everything melts; live pull 1306: hero dps 3x the model at RL 0-29, 8x at RL 70, 0.04-0.12 deaths per run): K 0.225 P 0.7 -> K 0.4577 P 0.55 = same life at ML 84 (Deep untouched), x1.13 ML3, x1.2 ML5, x1.3 ML10, x1.37 ML20-30, x1.31 ML40, x1.18 ML60, x1.03 ML80. Guardians use ModelDps life (unchanged). Revert = the pre values.",
+  "Base": 20.0,
+  "_r109_curve": "r109 CURVE (Patch 83 fresh start; BALFINAL fHeroDamage108 x0.8 is flat at every RL, so the first hours killed trash x1.25 slower than 81, which the owner called great): K 0.4577 P 0.55 -> K 0.3487 P 0.6066 = trash/elite life x0.97 ML2, x0.90 ML10, x0.885 ML20, x0.89 ML30, x0.90 ML40, x0.94 ML60, x0.99 ML80, same from ML84 (Riven/RL 84+ untouched). Gives back about half the early cut; Guardians (ModelDps life) untouched. Revert = the r88 values. D:/BO_Recover/night77/R109/CURVE/curve.md",
+  "K": 0.3487,
+  "P": 0.6066
+ },
+ "MonsterDamage": {
+  "_r88_early": "r88 EARLY-GAME: K 0.185 P 0.7 -> K 0.2959 P 0.6 = same damage at ML 84, x1.06 ML3, x1.1 ML5, x1.15 ML10, x1.18 ML20-30, x1.16 ML40, x1.1 ML60, x1.02 ML80. Revert = the pre values.",
+  "Base": 4.5,
+  "K": 0.2959,
+  "P": 0.6
+ },
+ "MonsterXp": {
+  "Base": 1.0,
+  "K": 0.475,
+  "P": 0.46
+ },
+ "MonsterResistPerLevel": 0.36,
+ "MonsterResistMax": 25,
+ "MonsterResistRLFrom": 100,
+ "MonsterResistPerRL": 0.05,
+ "MonsterResistRLMax": 10,
+ "MonsterChaosResPerRL": 0.0625,
+ "MonsterArmourPerLevel": 1.5,
+ "Rarity": {
+  "0": {
+   "Life": 1.0,
+   "Damage": 1.0,
+   "Xp": 1.0,
+   "ItemRolls": 1,
+   "ItemChance": 0.05
+  },
+  "1": {
+   "Life": 2.0,
+   "Damage": 1.2,
+   "Xp": 2.5,
+   "ItemRolls": 1,
+   "ItemChance": 0.25
+  },
+  "2": {
+   "Life": 5.0,
+   "Damage": 1.4,
+   "Xp": 6.0,
+   "ItemRolls": 2,
+   "ItemChance": 0.5
+  },
+  "3": {
+   "Life": 1.0,
+   "Damage": 1.0,
+   "Xp": 1.0,
+   "ItemRolls": 2,
+   "ItemChance": 1.0
+  }
+ },
+ "EarlyBossDamage": {
+  "Mult": 1.0,
+  "FullToLevel": 10,
+  "EndLevel": 14,
+  "_r28d": "Round 28d lane BP (owner 16 Oct: too many humans die to the first boss): 1.2 -> 1.0 (off)"
+ },
+ "EarlyMonsterDamage": {
+  "_r107FTUE": "F8 81 'the beginning rupture at RL1 ... enemies hit too much, the entry level should ease up' (owner 17 Nov: smooth the new player curve, small shifts): packs hit x0.87 to ML 7 (tutorial ML4, RL 1-3 = ML 5-7), back to x1 at ML 10 (RL 6+ unchanged). Was Mult 1.0 Full 8 End 20.",
+  "Mult": 0.87,
+  "FullToLevel": 7,
+  "EndLevel": 10
+ },
+ "DropRarityWeights": {
+  "Normal": 70,
+  "Magic": 25,
+  "Rare": 4.5,
+  "Unique": 0.5
+ },
+ "BossDrop": {
+  "bGuaranteedRare": true,
+  "UniqueChance": 0.04,
+  "_r92_loot_pre_UniqueChance": 0.1,
+  "SupportGemChance": 0.45,
+  "_r85_loot3_pre_SupportGemChance": 0.6
+ },
+ "Loot": {
+  "_r99_loot": "r99 LOOT DROPCUT99 (Tools/Design/r99_loot.py; owner 13 Nov 'Just lower the rate, thats it. So less items overall.'): the cut is code ([r99.LOOT] DropCut99 0.55 / PlainCut99 0.75 / NamedKeep99 0.5 on the LOOT95 gate); dry / notable pity x1.35 slower so the cut does not move to the pity; 73 values DryPitySeconds 268, NotablePitySeconds 463",
+  "_r92_loot": "r92 LOOT DROPCUT92 (Tools/Design/r92_loot.py, env R92_LOOT; owner 9 Nov 'Still too much gear, way too many reds, lower the chances of items dropping'): trash item chance x0.45, elite sure item x0.70, dry / notable pity x1.50 / x1.30 slower, white weight x0.50, magic weight x0.60, random reds x0.40 (rarity Unique column, Guardian / Boss / Elite / Named UniqueChance, BossDrop.UniqueChance 0.10 -> 0.04); Gate, Warden, chase, Core, land reds kept; the named unique monster's sure item off (NamedRolls 1 -> 0, it rolls like a rare monster); rides r91_loot.hook91 so r90/r91 regens keep it; R92_LOOT=0 = the 65 numbers",
+  "_r90_loot": "r90 LOOT (Tools/Design/r90_loot.py, env R90_LOOT; owner 8 Nov 'lowering drop rates, especially making reds more rare and exciting'): elite sure item x0.60 (rare share x1.25), dry + notable pity x1.50 / x1.50 slower, trash + Birchwood item chance x0.70, magic weight x0.50, random reds x0.50, out-level reds fade harder (Gate, chase, Core, land, slime, jackpot reds kept); _r90_loot_pre holds the 63 values",
+  "_r90_loot_pre": {
+   "EliteSureChance": 0.308,
+   "EliteRareChance": [
+    {
+     "ML": 1,
+     "V": 0.064
+    },
+    {
+     "ML": 15,
+     "V": 0.12
+    },
+    {
+     "ML": 25,
+     "V": 0.32
+    },
+    {
+     "ML": 40,
+     "V": 0.32
+    }
+   ],
+   "DryPitySeconds": 85,
+   "NotablePitySeconds": 190,
+   "ItemChanceScale": [
+    {
+     "ML": 1,
+     "V": 0.33
+    },
+    {
+     "ML": 4,
+     "V": 0.33
+    },
+    {
+     "ML": 5,
+     "V": 0.144
+    },
+    {
+     "ML": 14,
+     "V": 0.144
+    },
+    {
+     "ML": 20,
+     "V": 0.156
+    },
+    {
+     "ML": 30,
+     "V": 0.18
+    },
+    {
+     "ML": 59,
+     "V": 0.192
+    },
+    {
+     "ML": 66,
+     "V": 0.27
+    }
+   ],
+   "RarityWeights": [
+    {
+     "ML": 1,
+     "Normal": 84.3,
+     "Magic": 15,
+     "Rare": 0.7,
+     "Unique": 0.0
+    },
+    {
+     "ML": 4,
+     "Normal": 81.5,
+     "Magic": 17.25,
+     "Rare": 1.1,
+     "Unique": 0.0
+    },
+    {
+     "ML": 5,
+     "Normal": 80.4275,
+     "Magic": 18.4,
+     "Rare": 1,
+     "Unique": 0.003586
+    },
+    {
+     "ML": 7,
+     "Normal": 78.9275,
+     "Magic": 19.7,
+     "Rare": 1.2,
+     "Unique": 0.003586
+    },
+    {
+     "ML": 15,
+     "Normal": 72.71,
+     "Magic": 23.8,
+     "Rare": 2.8,
+     "Unique": 0.014344
+    },
+    {
+     "ML": 25,
+     "Normal": 60.121,
+     "Magic": 25.5,
+     "Rare": 8.5,
+     "Unique": 0.015778
+    },
+    {
+     "ML": 35,
+     "Normal": 58.176,
+     "Magic": 19.6875,
+     "Rare": 11.75,
+     "Unique": 0.02295
+    },
+    {
+     "ML": 45,
+     "Normal": 57.231,
+     "Magic": 20.0625,
+     "Rare": 12.0,
+     "Unique": 0.030122
+    },
+    {
+     "ML": 55,
+     "Normal": 57.308,
+     "Magic": 20.25,
+     "Rare": 12.0,
+     "Unique": 0.040162
+    },
+    {
+     "ML": 65,
+     "Normal": 64.55,
+     "Magic": 20.25,
+     "Rare": 9.375,
+     "Unique": 0.071719
+    },
+    {
+     "ML": 75,
+     "Normal": 64.6875,
+     "Magic": 20.25,
+     "Rare": 9.375,
+     "Unique": 0.089648
+    }
+   ],
+   "GuardianUniqueChance": [
+    {
+     "ML": 5,
+     "V": 0.00239
+    },
+    {
+     "ML": 15,
+     "V": 0.004781
+    },
+    {
+     "ML": 25,
+     "V": 0.004383
+    },
+    {
+     "ML": 35,
+     "V": 0.0051
+    },
+    {
+     "ML": 45,
+     "V": 0.005738
+    },
+    {
+     "ML": 55,
+     "V": 0.006375
+    },
+    {
+     "ML": 65,
+     "V": 0.008766
+    },
+    {
+     "ML": 75,
+     "V": 0.009562
+    }
+   ],
+   "BossUniqueChance": [
+    {
+     "ML": 1,
+     "V": 0.0
+    },
+    {
+     "ML": 10,
+     "V": 0.001594
+    },
+    {
+     "ML": 20,
+     "V": 0.004781
+    },
+    {
+     "ML": 40,
+     "V": 0.006375
+    }
+   ],
+   "EliteUniqueChance": 0.000797,
+   "NamedUniqueChance": 0.006375,
+   "UniqueOutlevelFade": [
+    {
+     "ML": 12,
+     "V": 1.0
+    },
+    {
+     "ML": 25,
+     "V": 0.35
+    },
+    {
+     "ML": 40,
+     "V": 0.15
+    }
+   ]
+  },
+  "_r91_loot": "r91 LOOT (Tools/Design/r91_loot.py, env R91_LOOT; owner 8 Nov 'so much shit drops'): whites fade x0.70 at ML 15 to x0.12 from ML 65, trash item chance x0.70 from ML 20 and Rupture trash x0.60, elite sure item x0.80, dry / notable pity x1.40 / x1.25 slower, gold in half the piles (piles x1.5 size, total about flat), endgame gems x0.60, forge Ember / land materials in half the piles at twice the count; _r91_loot_pre holds the 64 values",
+  "_r91_loot_pre": {
+   "RiftItemChanceScale": 0.0784,
+   "RiftGoldChance": 0.03,
+   "RiftMagicGoldChance": 0.25,
+   "RiftGoldScale": 0.162,
+   "GuardianGoldMult": 7.5,
+   "NamedGoldMult": 5.0,
+   "GemChanceScale": [
+    {
+     "ML": 1,
+     "V": 0.45
+    },
+    {
+     "ML": 19,
+     "V": 0.45
+    },
+    {
+     "ML": 25,
+     "V": 0.375
+    },
+    {
+     "ML": 59,
+     "V": 0.375
+    },
+    {
+     "ML": 66,
+     "V": 0.5625
+    }
+   ]
+  },
+  "ItemChanceScale": [
+   {
+    "ML": 1,
+    "V": 0.10395
+   },
+   {
+    "ML": 4,
+    "V": 0.10395
+   },
+   {
+    "ML": 5,
+    "V": 0.04536
+   },
+   {
+    "ML": 14,
+    "V": 0.04536
+   },
+   {
+    "ML": 20,
+    "V": 0.034398
+   },
+   {
+    "ML": 30,
+    "V": 0.03969
+   },
+   {
+    "ML": 59,
+    "V": 0.042336
+   },
+   {
+    "ML": 66,
+    "V": 0.059535
+   }
+  ],
+  "_r75_loot": "r75 LOOT (owner 31 Oct 10:40 \"reduce red items drop chance by 50%, and lower the rest of the items drop chance by a bit, still too much loot\"): REDS x0.5 on every random unique roll: RarityWeights Unique column x0.5 (every drop's unique share: trash, elite sure rolls, the Guardian hoard; with the x0.8 item count below trash reds net x0.4), GuardianUniqueChance x0.5, BossUniqueChance x0.5, EliteUniqueChance 0.005 -> 0.0025, NamedUniqueChance 0.04 -> 0.02, world_events Loot.UniqueChance 0.08 -> 0.04 (Core jackpot, Primals, Gate first kill, chase and node unique rewards stay). ITEMS x0.8 in Ruptures: RiftItemChanceScale 0.28 -> 0.224, RiftMagicItemChance 0.12 -> 0.096, EliteSureChance 0.7 -> 0.56 (a rare monster's sure first item x0.8; the first sim pass showed 2 of 3 Rupture items come from elite sure rolls) (Guardian hoard, the named unique monster's item, first-clear rare, first-clear rare, gems, currency, Dust, runes unchanged; Birchwood unchanged). Before: <S>/r75/loot/scaling_before.json; measured with -BOLootSim (<S>/r75/loot/proof/sim_before_after.md).",
+  "_r75_loot2": "r75 LOOT 13:30 (lead: the owner said 50%, measured after the idol fix was -33/-39/-46% at ML 30/80/84 over 1000 rifts a band): the same six random-unique knobs x0.85 again (RarityWeights Unique column, GuardianUniqueChance, BossUniqueChance, EliteUniqueChance, NamedUniqueChance, world_events Loot.UniqueChance); unique idol roll (BOFossil x0.5) and the node reward card untouched. Before this step: <S>/r75/loot/scaling_after_v1_pre085.json.",
+  "_r67_loot": "r67 LEAD (owner 27 Oct 17:10 \"lower drop rate of items across the board, too much stuff drops\" + 17:15 \"also lower Gold, currency, runes and gems by at least 25%\"): ItemChanceScale x0.6, RiftMagicItemChance 0.18 -> 0.12, EliteRareChance x0.8 (about 40% fewer items; the Guardian hoard, uniques and the first-clear rare unchanged); gold RiftGoldScale 0.9 -> 0.675, GuardianGoldMult 6 -> 4.5, NamedGoldMult 8 -> 6; gems GemChanceScale x0.75, SupportGemChance 0.004 -> 0.003, Gem.SkillGemChance 0.0012 -> 0.0009, Rift.SupportGemChanceScale 0.48 -> 0.36 (BossSkillGemChance, node-reward gems and the sure first support unchanged); runes -25% in Data/Items/runes.json; forge materials -25% in Tools/Design/make_forge.py (Gate Oathsteel + first-Guardian RuneStone stay sure). Before: scratchpad/scaling_pre_loot67.json.",
+  "_r57_pace": "r57 PACE (designer 23 Oct: fewer, better drops at Rupture Level 20-59): ItemChanceScale 0.31-0.45 -> 0.26-0.32 at ML 20-59 (back to 0.45 by 66), more of a drop is rare (RarityWeights 25-55: fewer whites, more rares, unique weight -28 %), GuardianUniqueChance 25-55 -20 %, GemChanceScale x0.5 on random skill/support gems at item level 25-59 (node-reward gems and the sure first support stay), NewTierFade: a drop's newest affix tier fades in over 6 levels (drops only, never at 84).",
+  "GemChanceScale": [
+   {
+    "ML": 1,
+    "V": 0.45
+   },
+   {
+    "ML": 19,
+    "V": 0.45
+   },
+   {
+    "ML": 25,
+    "V": 0.375
+   },
+   {
+    "ML": 59,
+    "V": 0.375
+   },
+   {
+    "ML": 66,
+    "V": 0.3375
+   }
+  ],
+  "NewTierFadeLevels": 6,
+  "NewTierFadeFloor": 0.35,
+  "RarityWeights": [
+   {
+    "ML": 1,
+    "Normal": 42.15,
+    "Magic": 6.3,
+    "Rare": 0.7,
+    "Unique": 0.0
+   },
+   {
+    "ML": 4,
+    "Normal": 40.75,
+    "Magic": 7.245,
+    "Rare": 1.1,
+    "Unique": 0.0
+   },
+   {
+    "ML": 5,
+    "Normal": 40.21375,
+    "Magic": 7.728,
+    "Rare": 1,
+    "Unique": 0.000717
+   },
+   {
+    "ML": 7,
+    "Normal": 39.46375,
+    "Magic": 8.274,
+    "Rare": 1.2,
+    "Unique": 0.000717
+   },
+   {
+    "ML": 15,
+    "Normal": 25.4485,
+    "Magic": 9.996,
+    "Rare": 3.22,
+    "Unique": 0.002869
+   },
+   {
+    "ML": 25,
+    "Normal": 15.03025,
+    "Magic": 10.71,
+    "Rare": 9.775,
+    "Unique": 0.003156
+   },
+   {
+    "ML": 35,
+    "Normal": 11.6352,
+    "Magic": 8.2687,
+    "Rare": 13.5125,
+    "Unique": 0.00459
+   },
+   {
+    "ML": 45,
+    "Normal": 8.58465,
+    "Magic": 8.4262,
+    "Rare": 13.8,
+    "Unique": 0.006024
+   },
+   {
+    "ML": 55,
+    "Normal": 7.1635,
+    "Magic": 8.505,
+    "Rare": 13.8,
+    "Unique": 0.008032
+   },
+   {
+    "ML": 65,
+    "Normal": 3.873,
+    "Magic": 8.505,
+    "Rare": 10.7812,
+    "Unique": 0.014344
+   },
+   {
+    "ML": 75,
+    "Normal": 3.88125,
+    "Magic": 8.505,
+    "Rare": 10.7812,
+    "Unique": 0.01793
+   }
+  ],
+  "UniqueFromML": 5,
+  "UniqueRepeatGuardBelowLevel": 30,
+  "UniqueOutlevelFade": [
+   {
+    "ML": 12,
+    "V": 1.0
+   },
+   {
+    "ML": 20,
+    "V": 0.3
+   },
+   {
+    "ML": 30,
+    "V": 0.08
+   },
+   {
+    "ML": 45,
+    "V": 0.02
+   }
+  ],
+  "UniqueOutlevelFadeFrom": 30,
+  "SlotWeights": {
+   "MainHand": 12,
+   "Helm": 10,
+   "Chest": 10,
+   "Gloves": 10,
+   "Boots": 10,
+   "Belt": 7,
+   "Amulet": 6,
+   "Ring": 10
+  },
+  "JewelleryWeight": [
+   {
+    "ML": 1,
+    "V": 0.35
+   },
+   {
+    "ML": 10,
+    "V": 0.6
+   },
+   {
+    "ML": 20,
+    "V": 1.0
+   }
+  ],
+  "ScriptedUpgradeRarity": 1,
+  "BossMinRarity": [
+   {
+    "ML": 1,
+    "V": 1
+   },
+   {
+    "ML": 14,
+    "V": 1
+   },
+   {
+    "ML": 15,
+    "V": 2
+   }
+  ],
+  "BossRareChance": [
+   {
+    "ML": 1,
+    "V": 0.08
+   },
+   {
+    "ML": 4,
+    "V": 0.12
+   },
+   {
+    "ML": 10,
+    "V": 0.3
+   },
+   {
+    "ML": 14,
+    "V": 0.5
+   }
+  ],
+  "BossUniqueChance": [
+   {
+    "ML": 1,
+    "V": 0.0
+   },
+   {
+    "ML": 10,
+    "V": 0.000319
+   },
+   {
+    "ML": 20,
+    "V": 0.000956
+   },
+   {
+    "ML": 40,
+    "V": 0.001275
+   }
+  ],
+  "GuardianUniqueChance": [
+   {
+    "ML": 5,
+    "V": 0.000478
+   },
+   {
+    "ML": 15,
+    "V": 0.000956
+   },
+   {
+    "ML": 25,
+    "V": 0.000876
+   },
+   {
+    "ML": 35,
+    "V": 0.00102
+   },
+   {
+    "ML": 45,
+    "V": 0.001148
+   },
+   {
+    "ML": 55,
+    "V": 0.001275
+   },
+   {
+    "ML": 65,
+    "V": 0.001753
+   },
+   {
+    "ML": 75,
+    "V": 0.001912
+   }
+  ],
+  "GateUniqueMult": 2,
+  "PinnacleUniqueMult": 4,
+  "PinnacleUniqueRolls": 2,
+  "PrimalFromML": 61,
+  "PrimalChance": 2e-05,
+  "PinnaclePrimalChance": 4e-05,
+  "CorePrimalChance": 0.05,
+  "LordPrimalChance": 0.08,
+  "PrimalChance71": 0.0002,
+  "RiftMagicItemChance": 0.0336,
+  "EliteRareChance": [
+   {
+    "ML": 1,
+    "V": 0.08
+   },
+   {
+    "ML": 15,
+    "V": 0.15
+   },
+   {
+    "ML": 25,
+    "V": 0.4
+   },
+   {
+    "ML": 40,
+    "V": 0.4
+   }
+  ],
+  "EliteUniqueChance": 0.000159,
+  "NamedRolls": 1,
+  "_r97_ITEMS": "NAMEDROLL97: named unique monster drops one sure RARE again (ask97_event_loot_polish: unique mobs drop more loot; was 0 since DROPCUT92); one per sub-theme per Rupture",
+  "_r92_loot_pre_NamedRolls": 1,
+  "NamedRares": 1,
+  "NamedUniqueChance": 0.001275,
+  "EarlyUniqueScale": [
+   {
+    "ML": 8,
+    "V": 0.25
+   },
+   {
+    "ML": 14,
+    "V": 0.5
+   },
+   {
+    "ML": 20,
+    "V": 1.0
+   }
+  ],
+  "NamedGoldMult": 3.333333,
+  "RiftGoldChance": 0.015,
+  "RiftGoldScale": 0.243,
+  "DropReqOverHero": 0,
+  "DropGoalOverHero": 3,
+  "DropGoalShare": 0.05,
+  "AffixTierOverHero": 5,
+  "RiftItemChanceScale": 0.04704,
+  "DryPitySeconds": 362,
+  "NotablePitySeconds": 625,
+  "GuardianGoldPiles": 1,
+  "LordGoldMult113": 2.85,
+  "GateGoldMult113": 2.15,
+  "WardenGoldMult113": 1.9,
+  "CatacombGoldMult113": 1.95,
+  "StopsGoldFromRL113": 150,
+  "GuardianGoldMult": 5.0,
+  "RewardRareChance": [
+   {
+    "ML": 1,
+    "V": 0.25
+   },
+   {
+    "ML": 9,
+    "V": 0.25
+   },
+   {
+    "ML": 15,
+    "V": 1
+   }
+  ],
+  "FirstClearRareChance": [
+   {
+    "ML": 5,
+    "V": 1
+   },
+   {
+    "ML": 6,
+    "V": 0.3
+   },
+   {
+    "ML": 9,
+    "V": 0.3
+   },
+   {
+    "ML": 15,
+    "V": 1
+   }
+  ],
+  "RewardRareFromML": 10,
+  "RiftMagicGoldChance": 0.125,
+  "EliteSureChance": 0.103488,
+  "RarityUniqueShare": 1,
+  "_r83_loot_pre": {
+   "RiftItemChanceScale": 0.224,
+   "RiftMagicItemChance": 0.096,
+   "RarityWeights": [
+    {
+     "ML": 1,
+     "Normal": 84.3,
+     "Magic": 15,
+     "Rare": 0.7,
+     "Unique": 0
+    },
+    {
+     "ML": 4,
+     "Normal": 81.5,
+     "Magic": 17.25,
+     "Rare": 1.1,
+     "Unique": 0
+    },
+    {
+     "ML": 5,
+     "Normal": 80.4275,
+     "Magic": 18.4,
+     "Rare": 1,
+     "Unique": 0.0095625
+    },
+    {
+     "ML": 7,
+     "Normal": 78.9275,
+     "Magic": 19.7,
+     "Rare": 1.2,
+     "Unique": 0.0095625
+    },
+    {
+     "ML": 15,
+     "Normal": 72.71,
+     "Magic": 23.8,
+     "Rare": 2.8,
+     "Unique": 0.03825
+    },
+    {
+     "ML": 25,
+     "Normal": 60.121,
+     "Magic": 25.5,
+     "Rare": 8.5,
+     "Unique": 0.042075
+    },
+    {
+     "ML": 35,
+     "Normal": 58.176,
+     "Magic": 26.25,
+     "Rare": 9.4,
+     "Unique": 0.0612
+    },
+    {
+     "ML": 45,
+     "Normal": 57.231,
+     "Magic": 26.75,
+     "Rare": 9.6,
+     "Unique": 0.080325
+    },
+    {
+     "ML": 55,
+     "Normal": 57.308,
+     "Magic": 27,
+     "Rare": 9.6,
+     "Unique": 0.1071
+    },
+    {
+     "ML": 65,
+     "Normal": 64.55,
+     "Magic": 27,
+     "Rare": 7.5,
+     "Unique": 0.19125
+    },
+    {
+     "ML": 75,
+     "Normal": 64.6875,
+     "Magic": 27,
+     "Rare": 7.5,
+     "Unique": 0.239062
+    }
+   ],
+   "GuardianUniqueChance": [
+    {
+     "ML": 5,
+     "V": 0.006375
+    },
+    {
+     "ML": 15,
+     "V": 0.01275
+    },
+    {
+     "ML": 25,
+     "V": 0.0116875
+    },
+    {
+     "ML": 35,
+     "V": 0.0136
+    },
+    {
+     "ML": 45,
+     "V": 0.0153
+    },
+    {
+     "ML": 55,
+     "V": 0.017
+    },
+    {
+     "ML": 65,
+     "V": 0.023375
+    },
+    {
+     "ML": 75,
+     "V": 0.0255
+    }
+   ],
+   "BossUniqueChance": [
+    {
+     "ML": 1,
+     "V": 0
+    },
+    {
+     "ML": 10,
+     "V": 0.00425
+    },
+    {
+     "ML": 20,
+     "V": 0.01275
+    },
+    {
+     "ML": 40,
+     "V": 0.017
+    }
+   ],
+   "EliteUniqueChance": 0.002125,
+   "NamedUniqueChance": 0.017
+  },
+  "_r83_loot": "r83 META-BRAIN LOOT (Tools/Design/r83_loot.py, env R83_LOOT): trash item rolls x0.70, from ML 35 Magic x0.75 / Rare x1.25, random reds x0.75; _r83_loot_pre holds the 0.54 values",
+  "_r83_gold_pre": {
+   "RiftGoldScale": 0.675,
+   "GuardianGoldMult": 4.5,
+   "BreakableGoldScale": null
+  },
+  "_r83_gold": "r83 ECON GOLD (Tools/Design/r83_gold.py, env R83_GOLD; owner 5 Nov 'lower gold drop by 80% across the game'): every gold drop and vendor sell price x0.20, jackpot moments x0.40, respec x0.5; _r83_gold_pre holds the 0.54 values",
+  "BreakableGoldScale": 0.133333,
+  "_r85_loot_pre": {
+   "RiftItemChanceScale": 0.1568,
+   "RiftMagicItemChance": 0.0672,
+   "EliteSureChance": 0.56,
+   "RarityWeights": [
+    {
+     "ML": 1,
+     "Normal": 84.3,
+     "Magic": 15,
+     "Rare": 0.7,
+     "Unique": 0.0
+    },
+    {
+     "ML": 4,
+     "Normal": 81.5,
+     "Magic": 17.25,
+     "Rare": 1.1,
+     "Unique": 0.0
+    },
+    {
+     "ML": 5,
+     "Normal": 80.4275,
+     "Magic": 18.4,
+     "Rare": 1,
+     "Unique": 0.007172
+    },
+    {
+     "ML": 7,
+     "Normal": 78.9275,
+     "Magic": 19.7,
+     "Rare": 1.2,
+     "Unique": 0.007172
+    },
+    {
+     "ML": 15,
+     "Normal": 72.71,
+     "Magic": 23.8,
+     "Rare": 2.8,
+     "Unique": 0.028687
+    },
+    {
+     "ML": 25,
+     "Normal": 60.121,
+     "Magic": 25.5,
+     "Rare": 8.5,
+     "Unique": 0.031556
+    },
+    {
+     "ML": 35,
+     "Normal": 58.176,
+     "Magic": 19.6875,
+     "Rare": 11.75,
+     "Unique": 0.0459
+    },
+    {
+     "ML": 45,
+     "Normal": 57.231,
+     "Magic": 20.0625,
+     "Rare": 12.0,
+     "Unique": 0.060244
+    },
+    {
+     "ML": 55,
+     "Normal": 57.308,
+     "Magic": 20.25,
+     "Rare": 12.0,
+     "Unique": 0.080325
+    },
+    {
+     "ML": 65,
+     "Normal": 64.55,
+     "Magic": 20.25,
+     "Rare": 9.375,
+     "Unique": 0.143437
+    },
+    {
+     "ML": 75,
+     "Normal": 64.6875,
+     "Magic": 20.25,
+     "Rare": 9.375,
+     "Unique": 0.179296
+    }
+   ],
+   "GuardianUniqueChance": [
+    {
+     "ML": 5,
+     "V": 0.004781
+    },
+    {
+     "ML": 15,
+     "V": 0.009562
+    },
+    {
+     "ML": 25,
+     "V": 0.008766
+    },
+    {
+     "ML": 35,
+     "V": 0.0102
+    },
+    {
+     "ML": 45,
+     "V": 0.011475
+    },
+    {
+     "ML": 55,
+     "V": 0.01275
+    },
+    {
+     "ML": 65,
+     "V": 0.017531
+    },
+    {
+     "ML": 75,
+     "V": 0.019125
+    }
+   ],
+   "BossUniqueChance": [
+    {
+     "ML": 1,
+     "V": 0.0
+    },
+    {
+     "ML": 10,
+     "V": 0.003188
+    },
+    {
+     "ML": 20,
+     "V": 0.009562
+    },
+    {
+     "ML": 40,
+     "V": 0.01275
+    }
+   ],
+   "EliteUniqueChance": 0.001594,
+   "NamedUniqueChance": 0.01275,
+   "RiftGoldChance": 0.06,
+   "RiftMagicGoldChance": 0.5,
+   "RiftGoldScale": 0.135,
+   "GuardianGoldMult": 9.0,
+   "NamedGoldMult": 6,
+   "BreakableGoldScale": 0.2
+  },
+  "_r85_loot": "r85 LOOT (Tools/Design/r85_loot.py, env R85_LOOT; owner 5 Nov 'lower drop rates across the board'): trash rolls x0.50, elite sure item x0.55, random reds x0.50, normal/magic gold piles x0.50 worth x1.20 (Guardian/named hoards unchanged), event ring x0.67, pots x0.80; _r85_loot_pre holds the 0.55.1 values"
+ },
+ "SupportGemChance": 0.003,
+ "XpLevelPenalty": {
+  "SafeRange": 3,
+  "SafeRangePer16Levels": 1,
+  "PerLevel": 0.08,
+  "Floor": 0.05,
+  "bOneSided": true,
+  "bNoneOnLadder": true,
+  "CatchUpPerLevel": 0.03,
+  "CatchUpMax": 0.3
+ },
+ "Hero": {
+  "LifeBase": 130,
+  "LifePerLevel": 11.5,
+  "LifePerStr": 0.5,
+  "ManaBase": 120,
+  "ManaPerLevel": 6,
+  "ManaPerLevelLate": 4,
+  "ManaLateFromLevel": 36,
+  "ManaPerInt": 0.5,
+  "ManaRegenPct": 1.5,
+  "LifeRegenPct": 0,
+  "EsRechargeDelay": 2.5,
+  "EsRechargePct": 20,
+  "StrMeleePhysPer10": 2,
+  "DexEvasionPctPer10": 4,
+  "StrArmourPctPer10": 4,
+  "DexAttackSpeedPer10": 1,
+  "IntEsPctPer10": 4,
+  "EsPerInt79": 0.5,
+  "EvasionPerDex79": 2,
+  "IntSpellDamagePer10": 2,
+  "IntMinionDamagePer10": 1,
+  "StrStunKnockPer10": 1,
+  "StrMeleeAreaPer10": 1,
+  "DexMoveRechargePer10": 1,
+  "DexProjSpeedPer10": 1,
+  "IntAilmentDurPer10": 1,
+  "IntCurseEffectPer10": 1,
+  "AttrPipAt": [
+   100,
+   200,
+   300
+  ],
+  "BulwarkBlock": [
+   2,
+   4,
+   6
+  ],
+  "SwiftnessRollCharges": [
+   1,
+   1,
+   2
+  ],
+  "SwiftnessRecharge": [
+   0,
+   10,
+   10
+  ],
+  "ClarityRefundPct": [
+   5,
+   10,
+   15
+  ],
+  "ClarityKillsPerCast": 3,
+  "ResistCap": 75,
+  "ResistHardCap": 85,
+  "ResistPenaltyPerAct": 10,
+  "ResistPenaltyMax": 50,
+  "ArmourFactor": 5,
+  "ArmourMaxReduction": 80,
+  "ArmourBigHitRef": 1000,
+  "ArmourBigHitSlope": 0.02,
+  "ArmourFactor75": 3,
+  "ArmourBigHitSlope75": 0,
+  "EvasionGlance": 0.7,
+  "EvasionBase": 400,
+  "EvasionScale": 0.35,
+  "EvasionMlvlFactor": 0.04,
+  "EvasionMax": 75,
+  "BlockMax": 75,
+  "BlockReduction": 85,
+  "CritBase": 5,
+  "SpellCritBase": 6,
+  "CritMultiBase": 150,
+  "PassivePointsPerLevel": 1,
+  "ActionRateMin": 0.75,
+  "ActionRateMax": 4.0,
+  "LeechRatePct": 20,
+  "ElementalOverloadSeconds": 8,
+  "ElementalOverloadMore": 50
+ },
+ "Gem": {
+  "MaxLevel": 20,
+  "DamageGrowth": 1.19,
+  "AttackEffectivenessPerLevel": 0.08,
+  "BonusLevelGrowth": 0,
+  "BonusLevelAttackEffectiveness": 0,
+  "BonusLevelAttackMore": 1.03,
+  "CharLevelForGemLevel": [
+   1,
+   2,
+   4,
+   7,
+   10,
+   13,
+   16,
+   19,
+   23,
+   27,
+   31,
+   35,
+   39,
+   43,
+   47,
+   51,
+   55,
+   59,
+   64,
+   70
+  ],
+  "SocketsAtLevel": [
+   1,
+   2,
+   5,
+   9,
+   15,
+   20
+  ],
+  "_SocketsDoc_r91": "r91 PROGRESSION SOCK4_91 (RESEARCH #36; owner 9 Nov progression that makes sense): 4th support socket at gem level 9 (hero ~23), was 12 (hero ~35): a link moment inside the RL 10-29 band. Rollback = 12 here + unlocks.json support_socket_4 At/Text.",
+  "_SocketsDoc_r61": "r61 WELCOME (owner 25 Oct 07:45: 'at lvl 1 you start with 1, another support gem at lvl 2 and another support gem at level 5 (I mean gem level)'): sockets 1/2/3 at GEM level 1/2/5 (was 1/1/6); 4-6 unchanged. A weapon skill's gem level follows the hero (CharLevelForGemLevel: gem 2 = hero 2, gem 5 = hero 10). A socket that holds a support stays open (old saves lose nothing). -BOSocketLadderLegacy = 1/1/6.",
+  "_ManaCostAtGemLevelDoc_r45": "Round 45 lane SKILLS (owner 20 Oct: 'gems level 1 and 2 should take a bit less mana to make early game a bit easier. Its ok that you are building your character and its hard, just not toooo hard'): a skill gem costs ManaCostAtGemLevel[i] x its mana at its OWN gem level i+1 (gem 1 -30%, gem 2 -15%), the full cost from gem level 3 (BOStats::CalcSkill; stacks on any base cut such as round 44's Frost Nova 12 -> 8). Gems keep pace with the hero (CharLevelForGemLevel), so this is the tutorial's levels 1-3 and a freshly found gem. Tools/Quality/early_mana_table.py prints the casts lost per class before/after; lint_data.py: at most 2 entries, 0.5-1.0, rising.",
+  "_ManaCostAtGemLevelDoc_r57": "r57 MANA (owner 24 Oct 08:10: 'Its ok to have gems lvl 1 cost less mana and as the gems increase in lvl a bit more mana'): the table now runs to gem level 10 - gem 1-2 half cost, rising to the full cost at gem level 11 (hero ~L35); it replaces the young-hero regen (Hero.EarlyManaRegenPct, removed). By GEM level only: a gem just found costs little and grows dearer as it levels, for every hero. Bench: Tools/Quality/early_mana_packs.py (every class's first gems >= 4 packs L1-30 without a flask) + meta_matrix. lint_data.py: at most 12 entries, 0.5-1.0, rising.",
+  "_ManaCostAtGemLevelDoc_r81": "r81 GEMMANA (owner 4 Nov 02:5x, A1104-p53-02, option C: mana per gems go with your recommendation ... just need it to make a bit more sense): rows 11-20 = 1.00 -> 1.36 (+4% per OWN gem level past 11; gear +levels never make a gem dearer), every skill the same; the pool pays half (Hero.ManaPerLevelLate). BOStats::CalcSkill clamps 0.5-2.0 and holds the last row past the table only with [r81.GEMMANA] bOn (OFF = 0.5-1.0 as 0.53). Docs/Owner/Mana_Gem_Level_0_54.md. lint_data.py: at most Gem.MaxLevel entries, 0.5-2.0, rising.",
+  "_ManaCostAtGemLevelDoc_r88": "r88 META-BALANCE-A R88_MANA (owner 7 Nov 10:4x: 'I feel like for some reason mana does not play a role in the game, which is ok late game and if you pick nodes, but now it just feels like it period ... Again small tweaks will do.'): gem levels 3-10 now reach the full cost at gem 8 (0.62/0.74/0.85/0.92/0.97/1.0) instead of gem 11; gems 1-2 stay half cost (tutorial, r57 owner ask), rows 11-20 and the regen/pool are untouched (late game and the max-mana engines unchanged). Model (S/r88/mba/mana/whatif2.py, early_mana_packs port): nonstop casting from full lasts p50 103 -> 39 s at L15 and 59 -> 44 s at L25 (late game L60 49 s), pack loop (3 s fight + 4 s walk) still >= 11 packs without a flask for every class starter. Rollback: the r81 row [0.5, 0.5, 0.55, 0.55, 0.6, 0.65, 0.72, 0.8, 0.88, 0.95, ...].",
+  "_ManaCostAtGemLevelDoc_r76": "META76 MANA76 (owner 14 Nov 17:1x; Trog 75 day 1): rows 11-20 x1.8 at gem 20 -> x1.5 (bench: Mage income/drain 0.79 -> 0.95, 73 was 1.35). Revert = D:/BO_Recover/lanes/META76/stage/p1_mana76.py --revert.",
+  "_ManaCostAtGemLevelDoc_e76": "EARLYTHREAT76 EARLYMANA76 (owner 14 Nov 18:0x nothing costs mana): rows 1-10 0.5..1.0 (full at gem 9) -> 0.7/0.75/0.8/0.85/0.9/0.95 then 1.0 from gem 7; rows 11-20 (META76) untouched. Revert = D:/BO_Recover/lanes/EARLYTHREAT/stage/p2_earlymana76.py --revert.",
+  "_ManaCostAtGemLevelDoc_r113": "r113 META ECON-113 (plan Meta NOW#15 skill economy; owner 13 Nov: no class should do any skill without worries): live 85 map_clear (48 h, build >= 84) RL150+ heroes sit at FULL mana 51-66% of map time while fighting 76-89%, starved < 2% in every class/band, because income grows with the pool and costs only with the own gem level. Rows 11-20 x1.5 -> x1.65 at gem 20 (half way to r99 x1.8; Mage Brain cover 1.35, MANA76 rolled 1.8 back when Mage was 0.79); rows 1-10 (early game) untouched. Brain nonstop cover p50 RL60+ 1.01 -> 0.92 (D:/BO_Recover/night77/R113/META/econ/card.md). Proof = econ/sql/full.sql on the first pull of the build: full drops, starved < 3% per class (if one class passes 3%, step its affinity node, not this row). Rollback rows 11-20: 1.04, 1.08, 1.12, 1.17, 1.22, 1.27, 1.32, 1.38, 1.44, 1.5.",
+  "ManaCostAtGemLevel": [
+   0.7,
+   0.75,
+   0.8,
+   0.85,
+   0.9,
+   0.95,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.04,
+   1.09,
+   1.14,
+   1.2,
+   1.26,
+   1.32,
+   1.39,
+   1.46,
+   1.55,
+   1.65
+  ],
+  "_SocketsDoc_r29": "Round 31 Q1 (owner 16 Oct 19:20: 'we spoke about gem level, not character level'): support socket i opens at GEM level SocketsAtLevel[i] (3rd at gem level 6 - round 39 TUT2, the owner: 'Lets move the 3rd support skill gem to level 6 so players get it earlier' (was 7) - 4th at 12, 5th at 15, 6th at 20; the Skills panel draws six). SocketsAtCharLevel stays as an optional character-level rule (empty = off; BOStats::SocketsFor takes the larger). Old saves keep every support they already socketed: a filled socket stays open (ABOHeroCharacter::GetSocketCount). lint_data.py checks both ascend, start [1, 1] and stay within six, and that unlocks.json support_socket_* rows match.",
+  "SocketsAtCharLevel": [],
+  "_PityDoc_r29": "Round 29 PR: with sockets open at 6 / 12 / 16 / 20 the supports to fill them have to come. Up to hero level EmptySocketPityToLevel, while the hero has no unsocketed support in the pool, support drops are EmptySocketSupportMult x as likely (normal / magic / rare kills; the rift's x0.6 still applies) and a Guardian or act boss always drops one (BOZoneDirector loot). Off: EmptySocketPityToLevel 0.",
+  "_PityDoc_r63": "r63 META (owner: gate by Rupture Level): EmptySocketPityToLevel and the early own-class gem window (20) now compare the hero's best Rupture Level, not the hero level (-BOLootHelperHeroLevelLegacy = hero level).",
+  "EmptySocketSupportMult": 2.5,
+  "EmptySocketPityToLevel": 30,
+  "_ReqDoc": "Gem attribute requirements (PoE curve): (ReqBase + ReqPerCharLevel * (CharLevel - ReqLevelOffset)) * weight%, 0 below ReqMinimum. A skill gem's CharLevel is the CharLevelForGemLevel of its level, a support's its drop level. Skill gem drops: SkillGemChance per normal kill (x3 magic, x8 rare), BossSkillGemChance from an act boss's hoard; OffColourGemShare of them are of another attribute than the class's main one. A skill gem picked up twice gives DuplicateGemXp of its next level's experience.",
+  "ReqBase": 5,
+  "ReqPerCharLevel": 2.25,
+  "ReqLevelOffset": 3,
+  "ReqMinimum": 8,
+  "SkillGemChance": 0.00054,
+  "_r85_loot3_pre_SkillGemChance": 0.0009,
+  "BossSkillGemChance": 1.0,
+  "OffColourGemShare": 0.6,
+  "_HomeClassGemDoc": "Round 29p2 LP (owner 16 Oct: gem drops lean to your class, 'Maybe just a little less drop so buying is worth it'): once the Gemwright opens the pool, HomeClassGemShare of random skill gem drops are of the hero's home class (gem_homes.json). SkillGemChance 0.0015 -> 0.0012 and Rift.SupportGemChanceScale 0.6 -> 0.48 (-20%).",
+  "HomeClassGemShare": 0.7,
+  "DuplicateGemXp": 0.25,
+  "_OffClassDoc": "Round 20 lane H (owner 14 Oct): a gem outside the hero's class core (Data/Gameplay/gem_homes.json HomeClasses, from Tools/Design/classes/_homes.py) asks OffClassReqFloor more of its attribute at every level (x its Requires weight): 24 at gem level 1, rising with the curve. Never switched off: below it the gem plays at level 1 and does not level.",
+  "_OffClassFloorDoc_r108": "r108 IDENTITY row 48 (owner pick 17 Nov, ID3 narrow homes + an off-class price that bites): 24 -> 36. Bench D:/BO_Recover/night77/R107/IDENTITY/floor_bench.py (Brain 20261117_1430, 752 active RL40+, new homes, attributes from tree + gear): off-class bar gems played below their own level 708 of 3001 (24%) -> 901 (30%), heroes 365 -> 427, mains 13 -> 15, median 4 levels lower. Home gems untouched (0 of 8485). Rollback: 24.",
+  "OffClassReqFloor": 36,
+  "_OffClassMoveDoc_r53": "r53 MOVESKILLS (owner 22 Oct 12:50: 'Sheild charge needs a shield, its part of the charm. In general the fact that all classess can use all dashes of all kinds is weird. We want to make these matter. Thats why some cost dex, some cost int, some cost STR'): a movement gem (tag Movement, delivery Blink/Dash/Charge/Leap) outside the hero's class core asks OffClassMoveReqFloor instead of OffClassReqFloor, and below its level-1 requirement it cannot be used (it stays socketed; the tooltip says why). Shield-tagged charges also need a shield. Home dashes ask nothing at levels 1-3. Census: Tools/Quality/move_skill_census.py. -BOMoveSkillReqLegacy: the r52 rule.",
+  "OffClassMoveReqFloor": 40,
+  "_XpCapDoc": "Round 21b lane E (owner P14: a level 1 gem found in high maps must not insta-level): one kill gives each skill gem at most XpGrantCap of its current level's experience span (GemXpFor(level+1) - GemXpFor(level)), so a gem far behind the hero climbs one level per 25 kills at the most; a gem that keeps pace with the hero never meets the cap. Duplicate pickups (DuplicateGemXp) are not kills and are not capped.",
+  "XpGrantCap": 0.04,
+  "_EarnedDoc_r50": "Round 50 lane GEMXP (owner 21 Oct: 'its meaningless to level gems now, If I find a gem in map 10, and I am playing with it for 5 hours, and its lvl 12 for example, then I find a new gem at rupture 65 and its lvl 1, it gets to be the same level as the other gem with almost no effort'). Before: every owned gem gained every kill's experience (bar or not), and a gem found late started two levels under the character's cap (found at hero 68 = gem 17, banked to 18: level 12 for free). Now: FoundGemStartLevel - a gem a player picks up or buys from the Wagon starts at this level (the banked head start stays: at most +2 levels); bXpOnlyInUse - only gems on the skill bar (or the spell a Channel Conduit on the bar casts) gain experience. Kept-pace gems level exactly as before. Sim (scratchpad r50/gemxp/gem_xp_sim.py, 30 kills/min): a new gem at RL 65 reaches 12 in ~2,200 kills (~74 min), RL 80 ~52 min, RL 35 ~176 min. -BOGemXpLegacy = the old rules. Old saves keep every level and its experience.",
+  "FoundGemStartLevel": 1,
+  "bXpOnlyInUse": true
+ },
+ "VendorPity": {
+  "CoreGemShare": 0.67,
+  "MainStatRerolls": 1,
+  "CoreGemEvery": 3,
+  "MainStatItemEvery": 3
+ },
+ "AffixTierItemLevels": [
+  1,
+  10,
+  20,
+  32,
+  44,
+  56,
+  70,
+  84
+ ],
+ "Rift": {
+  "MapMaxLevel": 80,
+  "LadderMaxLevel": 999,
+  "LadderMonsterLevels": [
+   81,
+   82,
+   83,
+   84
+  ],
+  "LadderLifePerLevel": 1.03,
+  "LadderDamagePerLevel": 1.01,
+  "LadderXpPctPerLevel": 2.0,
+  "LadderUnlock": [
+   {
+    "Seconds": 300,
+    "Step": 2
+   },
+   {
+    "Seconds": 1000000000,
+    "Step": 1
+   }
+  ],
+  "LadderUnlockNeedsDeathless": true,
+  "LadderRaiseFromBestMinus": 2,
+  "EntryLevelBelowML": 3,
+  "PinnacleMinHeroLevel": 82,
+  "GuardianLife": {
+   "Base": 1.5,
+   "PerLevel": 0.06,
+   "Calibration": 0.5,
+   "Max": 2.4,
+   "Gate": 1.4,
+   "Pinnacle": 2.8,
+   "Tutorial": 1.0
+  },
+  "Enrage": {
+   "FromML": 50,
+   "Rift": 210,
+   "Gate": 250,
+   "Pinnacle": 300,
+   "DamagePct": 30,
+   "SpeedPct": 20,
+   "bStacking": false
+  },
+  "Phases": [
+   {
+    "Phase": 2,
+    "AtLife": 0.75,
+    "MinML": 1
+   },
+   {
+    "Phase": 3,
+    "AtLife": 0.5,
+    "MinML": 20
+   },
+   {
+    "Phase": 4,
+    "AtLife": 0.25,
+    "MinML": 50
+   }
+  ],
+  "bGateExtraPhase": true,
+  "PhaseInvulnSeconds": 0.0,
+  "WindUp": {
+   "AtML1": 1.5,
+   "AtML80": 0.8,
+   "Floor": 0.8
+  },
+  "GuardianMods": {
+   "MildFromML": 5,
+   "AnyFromML": 40,
+   "TwoFromML": 70,
+   "GateExtraFromML": 30,
+   "GateNoneBelowML": 30,
+   "Pinnacle": 0,
+   "DeepBase": 2,
+   "DeepPerRL": 25,
+   "DeepMax": 3,
+   "bBudgetNeutral": true
+  },
+  "GuardianItemLevelBonus": 2,
+  "RecommendedLevelOffset": -2,
+  "UnderLevelGrace": 4,
+  "UnderLevelBossPerLevel": 0.0,
+  "UnderLevelBossCap": 0.0,
+  "PinnacleItemLevel": 84,
+  "GuardianRolls": 1,
+  "GateExtraRolls": 1,
+  "GuardianUniqueChance": 0.08,
+  "TrashItemChanceScale": 0.45,
+  "WhiteToGoldFromML": 20,
+  "WhiteToGoldShare": 0.5,
+  "SupportGemChanceScale": 0.216,
+  "_r85_loot3_pre_SupportGemChanceScale": 0.36,
+  "ResistPenaltyPerLevels": 11,
+  "ResistPenaltyPerStep": 10,
+  "Content": [
+   {
+    "MaxML": 10,
+    "Monsters": 143,
+    "Packs": 32
+   },
+   {
+    "MaxML": 20,
+    "Monsters": 165,
+    "Packs": 36
+   },
+   {
+    "MaxML": 999,
+    "Monsters": 187,
+    "Packs": 40
+   }
+  ],
+  "PackGrowthFromML": 10,
+  "PackGrowthPctPerML": 0.3,
+  "PackGrowthMaxPct": 15.0,
+  "BigPackFromML": 8,
+  "BigPackShare": 0.06,
+  "BigPackSharePerML": 0.002,
+  "BigPackShareMax": 0.12,
+  "BigPackMult": 1.7,
+  "BigPackMax": 13,
+  "MagicPerRift": {
+   "Base": 16,
+   "PerML": 8,
+   "Max": 28
+  },
+  "RaresPerRift": {
+   "Base": 4,
+   "PerML": 16,
+   "Max": 9
+  },
+  "Progress": {
+   "Normal": 1,
+   "Magic": 4,
+   "Rare": 12,
+   "Event": 15,
+   "ThresholdShare": 0.675,
+   "CriticalPathMin": 1.05
+  },
+  "EssenceOrbs": {
+   "Enabled": true,
+   "MagicChance": 1.0,
+   "MagicCount": 1,
+   "RareCount": 2,
+   "Points": 1.5,
+   "Magnet": 360,
+   "Size": 16,
+   "Glow": 0.5,
+   "Life": 90,
+   "NormalPackMin": 12,
+   "MagicOrbChance": 0.3,
+   "SmallPackOrbChance": 0.1,
+   "NormalOrbChance": 0.06,
+   "HaloScale": 1.75,
+   "HaloGlow": 0.15
+  }
+ },
+ "XpGrowthAfterTable": 1.1,
+ "SummonXpMult": 1.0,
+ "AffixSummonXpMult": 0.25,
+ "AffixSummonTotal": 6,
+ "ClassWeaponDropShare": 0.85,
+ "Economy": {
+  "SalvageGoldPerItemLevel": [
+   0.2,
+   0.6,
+   1.6,
+   5.0
+  ],
+  "RefundGoldPerLevel": 1.0,
+  "ConfirmSeconds": 2,
+  "GemSellGoldPerLevel": 0.6,
+  "SupportSellGoldPerLevel": 0.6,
+  "_r83_gold_pre": {
+   "SalvageGoldPerItemLevel": [
+    1,
+    3,
+    8,
+    25
+   ],
+   "GemSellGoldPerLevel": 3,
+   "SupportSellGoldPerLevel": 3,
+   "RefundGoldPerLevel": 2
+  },
+  "_r83_gold": "r83 ECON GOLD (Tools/Design/r83_gold.py, env R83_GOLD; owner 5 Nov 'lower gold drop by 80% across the game'): every gold drop and vendor sell price x0.20, jackpot moments x0.40, respec x0.5; _r83_gold_pre holds the 0.54 values"
+ },
+ "Gambler": {
+  "Odds": [
+   {
+    "Level": 1,
+    "Normal": 50,
+    "Magic": 42,
+    "Rare": 8,
+    "Unique": 0
+   },
+   {
+    "Level": 10,
+    "Normal": 45,
+    "Magic": 42,
+    "Rare": 12,
+    "Unique": 0.5,
+    "_r90_pre": 1
+   },
+   {
+    "Level": 40,
+    "Normal": 30,
+    "Magic": 46,
+    "Rare": 22.5,
+    "Unique": 0.75,
+    "_r90_pre": 1.5
+   },
+   {
+    "Level": 80,
+    "Normal": 20,
+    "Magic": 44,
+    "Rare": 34,
+    "Unique": 1,
+    "_r90_pre": 2
+   }
+  ],
+  "_r81U5": "r81 META-NIGHT U5 (lead APPROVED 3 Nov night, player feedback BR03/WildTroglodyte: end game crates were 39 % white; Docs/Owner/Meta_Coherence_0_53.md s4): whites fade out as you level, uniques unchanged (owner r61 reds cut holds), same price. Rollback = L40 Normal 41.5 Magic 41 Rare 16 Unique 1.5, L80 Normal 39 Magic 41 Rare 18 Unique 2.",
+  "PriceBase": 120,
+  "PricePerLevel": 42,
+  "ClassShare": 0.9,
+  "_ClassShare": "r53 BUILDS #68 (owner, ON-063: skewed to the player class, about 10% other classes gear): the share of a weapon, off-hand or armour crate that rolls the hero class own gear (BOGambler::ClassGear: its weapon classes, its off hand, its armour defences). Rings, amulets, belts, idols: everyone. -BOGambleClassLegacy: off.",
+  "Slots": [
+   {
+    "Id": "helm",
+    "Slot": "Helm",
+    "Price": 1.0,
+    "Icon": "ICON_DarkFantasy_Inventory_Helmets_01_Clean"
+   },
+   {
+    "Id": "chest",
+    "Slot": "Chest",
+    "Price": 1.2,
+    "Icon": "ICON_DarkFantasy_Inventory_Armor_01_Clean"
+   },
+   {
+    "Id": "gloves",
+    "Slot": "Gloves",
+    "Price": 1.0,
+    "Icon": "ICON_DarkFantasy_Inventory_Gauntlets_01_Clean"
+   },
+   {
+    "Id": "boots",
+    "Slot": "Boots",
+    "Price": 1.0,
+    "Icon": "ICON_DarkFantasy_Inventory_Boots_01_Clean"
+   },
+   {
+    "Id": "belt",
+    "Slot": "Belt",
+    "Price": 1.0,
+    "Icon": "ICON_DarkFantasy_Inventory_Belt_01_Clean"
+   },
+   {
+    "Id": "ring",
+    "Slot": "Ring",
+    "Price": 1.5,
+    "Icon": "ICON_DarkFantasy_Inventory_Rings_01_Clean"
+   },
+   {
+    "Id": "amulet",
+    "Slot": "Amulet",
+    "Price": 2.0,
+    "Icon": "ICON_DarkFantasy_Inventory_Necklaces_01_Clean"
+   },
+   {
+    "Id": "weapon",
+    "Slot": "MainHand",
+    "Price": 1.5,
+    "Icon": "ICON_DarkFantasy_Inventory_Swords_01_Clean"
+   },
+   {
+    "Id": "offhand",
+    "Slot": "OffHand",
+    "Price": 1.2,
+    "Icon": "ICON_DarkFantasy_Inventory_Shields_01_Clean"
+   }
+  ]
+ },
+ "Ailments": {
+  "bEnabled": true,
+  "IgniteChance": 6.0,
+  "IgniteFrac": 1.2,
+  "IgniteSeconds": 4.0,
+  "ShockChance": 6.0,
+  "ShockCoef": 133.0,
+  "ShockPow": 0.65,
+  "ShockMin": 7.0,
+  "ShockFloorShare": 1.0,
+  "ShockMax": 20.0,
+  "ShockMaxCap": 50.0,
+  "ShockStackCap": 75.0,
+  "ShockSeconds": 2.0,
+  "PoisonChance": 10.0,
+  "PoisonFracPerSec": 0.2,
+  "PoisonSeconds": 2.0,
+  "PoisonMaxStacks": 40,
+  "bPoisonTakesDamageTaken": true,
+  "bMinionAilments": true,
+  "FreezeSecPerPct": 0.06,
+  "FreezeMinSeconds": 0.3,
+  "FreezeMaxSeconds": 1.5,
+  "FreezeRareMult": 0.6,
+  "FreezeBossMult": 0.25,
+  "FreezeBossMaxSeconds": 0.4,
+  "FreezeBossImmuneSeconds": 8.0,
+  "TickSeconds": 0.5,
+  "bEngines69": true,
+  "BleedFracPerSec": 0.4
+ },
+ "Meta59": {
+  "bPetCatchupZone": true,
+  "bGuardianStrongestTaken": true,
+  "bFreezeMeter": true,
+  "FreezeMeterPct": 20.0,
+  "FreezeMeterGrowth": 1.0,
+  "FreezeMeterSeconds": 1.5,
+  "FreezeMeterDecaySeconds": 6.0,
+  "BrittlePct": 10.0,
+  "BrittleSeconds": 4.0,
+  "bChill": true,
+  "ChillMinPct": 10.0,
+  "ChillMaxPct": 30.0,
+  "ChillFullAtPct": 10.0,
+  "ChillSeconds": 2.0,
+  "bRainCooldownBySpeed": true,
+  "RainCooldownFloor": 0.45,
+  "bBallistaRain": true,
+  "RainBallistaWaves": 2,
+  "bChannelRepeat": true,
+  "bSkyfallRepeatPrice": false,
+  "SkyfallRepeatOthers": 0.5,
+  "bRainPods": true,
+  "RainPodTickPct": 10.0,
+  "RainPodTicks": 3,
+  "RainPodSeconds": 1.5,
+  "AfterimageCap": 3,
+  "AfterimageDamagePct": 40.0,
+  "PetCatchupHeroShare": 0.5,
+  "StrongestTakenOthers": 0
+ },
+ "Journey68": {
+  "bOn": true,
+  "SupportFromClear": 7,
+  "VowFromClear": 8,
+  "GuardianWeaponShare": 0.35,
+  "GuardianWeaponShare70": 0.6
+ }
+}

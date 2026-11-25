@@ -1,0 +1,2132 @@
+{
+ "Slots": [
+  {
+   "Slot": 0,
+   "Role": "Life",
+   "OpenAt": 0,
+   "Key": "LifeFlask"
+  },
+  {
+   "Slot": 1,
+   "Role": "Mana",
+   "OpenAt": 0,
+   "Key": "ManaFlask"
+  },
+  {
+   "Slot": 2,
+   "Role": "Utility",
+   "OpenAt": 100,
+   "Key": "UtilityPotion1"
+  },
+  {
+   "Slot": 3,
+   "Role": "Utility",
+   "OpenAt": 130,
+   "Key": "UtilityPotion2"
+  }
+ ],
+ "Charges": {
+  "Life": {
+   "Max": 3,
+   "PerUse": 1,
+   "PerKill": [
+    0.34,
+    0.34,
+    0.34,
+    0.34
+   ]
+  },
+  "Mana": {
+   "Max": 3,
+   "PerUse": 1,
+   "PerKill": [
+    0.34,
+    0.34,
+    0.34,
+    0.34
+   ]
+  },
+  "Utility": {
+   "Max": 60,
+   "PerUse": 30,
+   "PerKill": [
+    1.0,
+    3.5,
+    6.0,
+    11.0
+   ],
+   "Duration": 5.0
+  }
+ },
+ "Unlock": {
+  "Tease": 80,
+  "Open": 100,
+  "Slot4": 130,
+  "GiftType": "grave_tonic",
+  "GiftRarity": "Magic",
+  "GiftMods": [
+   "lingering"
+  ],
+  "HudSize": 84,
+  "HudSizeLegacy": 100
+ },
+ "Sprites": {
+  "Flask_01": {
+   "Glass": [
+    0.122,
+    0.91
+   ]
+  },
+  "Flask_02": {
+   "Glass": [
+    0.34,
+    0.883
+   ]
+  },
+  "Flask_03": {
+   "Glass": [
+    0.272,
+    0.768
+   ]
+  },
+  "Flask_04": {
+   "Glass": [
+    0.113,
+    0.754
+   ]
+  },
+  "Flask_05": {
+   "Glass": [
+    0.403,
+    0.888
+   ]
+  },
+  "Flask_06": {
+   "Glass": [
+    0.432,
+    0.893
+   ]
+  }
+ },
+ "Vessels": [
+  {
+   "Id": "clay",
+   "Name": "Clay",
+   "MinRL": 0,
+   "Prefixes": 0,
+   "Suffixes": 0,
+   "Oath": 0,
+   "Core": 0,
+   "Upgraded": false
+  },
+  {
+   "Id": "glass",
+   "Name": "Glass",
+   "MinRL": 100,
+   "Prefixes": 1,
+   "Suffixes": 1,
+   "Oath": 0,
+   "Core": 0,
+   "Upgraded": false
+  },
+  {
+   "Id": "ember_glass",
+   "Name": "Ember Glass",
+   "MinRL": 120,
+   "Prefixes": 2,
+   "Suffixes": 2,
+   "Oath": 0,
+   "Core": 0,
+   "Upgraded": true
+  },
+  {
+   "Id": "oathbound",
+   "Name": "Oathbound",
+   "MinRL": 150,
+   "Prefixes": 2,
+   "Suffixes": 2,
+   "Oath": 1,
+   "Core": 0,
+   "Upgraded": true
+  },
+  {
+   "Id": "core_forged",
+   "Name": "Core forged",
+   "MinRL": 150,
+   "Prefixes": 2,
+   "Suffixes": 2,
+   "Oath": 1,
+   "Core": 1,
+   "Upgraded": true,
+   "CoreOnly": true
+  }
+ ],
+ "Types": [
+  {
+   "Id": "life",
+   "Name": "Life Draught",
+   "Role": "Life",
+   "Bottle": "Flask_02",
+   "BottleUp": "Flask_01",
+   "Liquid": {
+    "R": 0.85,
+    "G": 0.12,
+    "B": 0.1,
+    "A": 1
+   },
+   "RecoverPct": 62,
+   "Seconds": 2.4,
+   "Blessing": "flask_life",
+   "Mods": [],
+   "Weight": 40,
+   "Text": "Recovers 62% of maximum Life over 2.4 seconds",
+   "HudLiquid": {
+    "R": 0.85,
+    "G": 0.12,
+    "B": 0.1,
+    "A": 1
+   },
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "mana",
+   "Name": "Mana Draught",
+   "Role": "Mana",
+   "Bottle": "Flask_04",
+   "BottleUp": "Flask_03",
+   "Liquid": {
+    "R": 0.2,
+    "G": 0.42,
+    "B": 1.0,
+    "A": 1
+   },
+   "RecoverPct": 65,
+   "Seconds": 2.4,
+   "Blessing": "flask_mana",
+   "Mods": [],
+   "Weight": 30,
+   "Text": "Recovers 65% of maximum Mana over 2.4 seconds",
+   "HudLiquid": {
+    "R": 0.2,
+    "G": 0.42,
+    "B": 1.0,
+    "A": 1
+   },
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "grave_tonic",
+   "Name": "Grave Tonic",
+   "Role": "Utility",
+   "Bottle": "Flask_05",
+   "BottleUp": "Flask_05",
+   "Liquid": {
+    "R": 0.35,
+    "G": 0.78,
+    "B": 0.3,
+    "A": 1
+   },
+   "Blessing": "brew_grave_tonic",
+   "Weight": 30,
+   "Mods": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Poison"
+     ],
+     "Value": 50
+    },
+    {
+     "Stat": "DamageTaken",
+     "Mode": "Inc",
+     "Tags": [
+      "Poison"
+     ],
+     "Value": -40
+    }
+   ],
+   "Text": "+50% to Poison Resistance, 40% reduced Poison damage taken",
+   "HudLiquid": {
+    "R": 0.35,
+    "G": 0.78,
+    "B": 0.3,
+    "A": 1
+   },
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "oathstone",
+   "Name": "Oathstone Draught",
+   "Role": "Utility",
+   "Bottle": "Flask_05",
+   "BottleUp": "Flask_05",
+   "Liquid": {
+    "R": 0.62,
+    "G": 0.6,
+    "B": 0.56,
+    "A": 1
+   },
+   "Blessing": "brew_oathstone",
+   "Weight": 30,
+   "Mods": [
+    {
+     "Stat": "Armour",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1500
+    },
+    {
+     "Stat": "Armour",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 30
+    }
+   ],
+   "Text": "+1500 to Armour, 30% increased Armour",
+   "HudLiquid": {
+    "R": 0.62,
+    "G": 0.6,
+    "B": 0.56,
+    "A": 1
+   },
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "hearthglass",
+   "Name": "Hearthglass",
+   "Role": "Utility",
+   "Bottle": "Flask_06",
+   "BottleUp": "Flask_06",
+   "Liquid": {
+    "R": 1.0,
+    "G": 0.64,
+    "B": 0.22,
+    "A": 1
+   },
+   "Blessing": "brew_hearthglass",
+   "Weight": 30,
+   "Mods": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 25
+    },
+    {
+     "Stat": "MaxResist",
+     "Mode": "Flat",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 4
+    }
+   ],
+   "Text": "+25% to all Elemental Resistances, +4% to all maximum Elemental Resistances",
+   "HudLiquid": {
+    "R": 0.95,
+    "G": 0.62,
+    "B": 0.22,
+    "A": 1
+   },
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "veilwater",
+   "Name": "Veilwater",
+   "Role": "Utility",
+   "Bottle": "Flask_06",
+   "BottleUp": "Flask_06",
+   "Liquid": {
+    "R": 0.3,
+    "G": 0.82,
+    "B": 0.88,
+    "A": 1
+   },
+   "Blessing": "brew_veilwater",
+   "Weight": 10,
+   "Ward": 15,
+   "Mods": [
+    {
+     "Stat": "Evasion",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1150
+    },
+    {
+     "Stat": "Evasion",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 30
+    }
+   ],
+   "Text": "On drink: recovers 15% of maximum Life and Energy Shield. +1150 to Evasion Rating, 30% increased Evasion Rating",
+   "HudLiquid": {
+    "R": 0.95,
+    "G": 0.62,
+    "B": 0.22,
+    "A": 1
+   },
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "windglass",
+   "Name": "Windglass",
+   "Role": "Utility",
+   "Bottle": "Flask_05",
+   "BottleUp": "Flask_05",
+   "Liquid": {
+    "R": 0.86,
+    "G": 0.88,
+    "B": 0.8,
+    "A": 1
+   },
+   "Blessing": "brew_windglass",
+   "Weight": 25,
+   "Mods": [
+    {
+     "Stat": "MoveSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 15
+    }
+   ],
+   "Text": "15% increased Movement Speed",
+   "HudLiquid": {
+    "R": 0.86,
+    "G": 0.88,
+    "B": 0.8,
+    "A": 1
+   },
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "vowbreaker",
+   "Name": "Vowbreaker's Draught",
+   "Role": "Utility",
+   "Bottle": "Flask_06",
+   "BottleUp": "Flask_06",
+   "Liquid": {
+    "R": 0.86,
+    "G": 0.3,
+    "B": 0.12,
+    "A": 1
+   },
+   "Blessing": "brew_vowbreaker",
+   "Weight": 8,
+   "OnDrinkCharge": "fury",
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 15
+    }
+   ],
+   "Text": "15% more Damage, 1 Fury on drink",
+   "HudLiquid": {
+    "R": 0.95,
+    "G": 0.62,
+    "B": 0.22,
+    "A": 1
+   },
+   "R79": "R79_POTIONS"
+  }
+ ],
+ "Mods": [
+  {
+   "Id": "searing",
+   "Name": "Searing",
+   "Kind": "Prefix",
+   "Roles": [
+    "Life",
+    "Mana"
+   ],
+   "Effect": "Instant",
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 40,
+     "MinRL": 100,
+     "Value2": 25
+    },
+    {
+     "Tier": 2,
+     "Value": 55,
+     "MinRL": 120,
+     "Value2": 20
+    },
+    {
+     "Tier": 3,
+     "Value": 70,
+     "MinRL": 150,
+     "Value2": 15
+    }
+   ],
+   "Text": "{v}% of recovery is instant, {v2}% less total recovery",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "alchemists",
+   "Name": "Alchemist's",
+   "Kind": "Prefix",
+   "Roles": [
+    "Life",
+    "Mana"
+   ],
+   "Effect": "Alchemist",
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 20,
+     "MinRL": 100,
+     "Value2": 33
+    },
+    {
+     "Tier": 2,
+     "Value": 30,
+     "MinRL": 120,
+     "Value2": 33
+    },
+    {
+     "Tier": 3,
+     "Value": 40,
+     "MinRL": 150,
+     "Value2": 33
+    }
+   ],
+   "Text": "{v}% more recovery, {v2}% shorter",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "doled",
+   "Name": "Doled",
+   "Kind": "Prefix",
+   "Roles": [
+    "Life",
+    "Mana"
+   ],
+   "Effect": "Doled",
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 30,
+     "MinRL": 100,
+     "Value2": 20
+    },
+    {
+     "Tier": 2,
+     "Value": 45,
+     "MinRL": 120,
+     "Value2": 15
+    },
+    {
+     "Tier": 3,
+     "Value": 60,
+     "MinRL": 150,
+     "Value2": 10
+    }
+   ],
+   "Text": "{v}% more charges gained, {v2}% less recovery",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "panicked",
+   "Name": "Panicked",
+   "Kind": "Prefix",
+   "Roles": [
+    "Life"
+   ],
+   "Effect": "Panicked",
+   "Weight": 80,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 100,
+     "MinRL": 100,
+     "Value2": 30
+    },
+    {
+     "Tier": 2,
+     "Value": 100,
+     "MinRL": 120,
+     "Value2": 22
+    },
+    {
+     "Tier": 3,
+     "Value": 100,
+     "MinRL": 150,
+     "Value2": 15
+    }
+   ],
+   "Text": "Instant when drunk below 50% Life, {v2}% less total recovery",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "prudent",
+   "Name": "Prudent",
+   "Kind": "Prefix",
+   "Roles": [
+    "Life"
+   ],
+   "Effect": "Prudent",
+   "Weight": 80,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 40,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 60,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 80,
+     "MinRL": 150
+    }
+   ],
+   "Text": "{v}% more recovery when drunk below 35% Life",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "steeping",
+   "Name": "Steeping",
+   "Kind": "Prefix",
+   "Roles": [
+    "Life",
+    "Mana"
+   ],
+   "Effect": "Steeping",
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 30,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 45,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 60,
+     "MinRL": 150
+    }
+   ],
+   "Text": "{v}% more recovery, recovers over twice as long",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "wardglass",
+   "Name": "Wardglass",
+   "Kind": "Prefix",
+   "Roles": [
+    "Life"
+   ],
+   "Effect": "Wardglass",
+   "Weight": 60,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 30,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 45,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 60,
+     "MinRL": 150
+    }
+   ],
+   "Text": "Also recovers Energy Shield equal to {v}% of the Life recovered",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "patient_draught",
+   "Name": "Patient",
+   "Kind": "Prefix",
+   "Roles": [
+    "Life",
+    "Mana"
+   ],
+   "Effect": "PatientLM",
+   "Weight": 80,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 18,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 14,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 10,
+     "MinRL": 150
+    }
+   ],
+   "Text": "Gains a charge every {v} seconds",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "brimming",
+   "Name": "Brimming",
+   "Kind": "Prefix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Brimming",
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 25,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 40,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 60,
+     "MinRL": 150
+    }
+   ],
+   "Text": "{v}% more charges from kills",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "patient",
+   "Name": "Patient",
+   "Kind": "Prefix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Patient",
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 1,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 2,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 3,
+     "MinRL": 150
+    }
+   ],
+   "Text": "Gains {v} charges every 3 seconds",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "flagellant",
+   "Name": "Flagellant",
+   "Kind": "Prefix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Flagellant",
+   "Weight": 80,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 3,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 5,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 8,
+     "MinRL": 150
+    }
+   ],
+   "Text": "Gains {v} charges when you are hit",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "lingering",
+   "Name": "Lingering",
+   "Kind": "Prefix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Lingering",
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 25,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 40,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 60,
+     "MinRL": 150
+    }
+   ],
+   "Text": "{v}% increased effect duration",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "potent",
+   "Name": "Potent",
+   "Kind": "Prefix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Potent",
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 20,
+     "MinRL": 100,
+     "Value2": 15
+    },
+    {
+     "Tier": 2,
+     "Value": 30,
+     "MinRL": 120,
+     "Value2": 15
+    },
+    {
+     "Tier": 3,
+     "Value": 40,
+     "MinRL": 150,
+     "Value2": 15
+    }
+   ],
+   "Text": "{v}% increased effect, {v2}% shorter",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "hunters",
+   "Name": "Hunter's",
+   "Kind": "Prefix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "GuardianHit",
+   "Weight": 60,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 1,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 2,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 3,
+     "MinRL": 150
+    }
+   ],
+   "Text": "Gains {v} charges when you hit a Guardian or a unique enemy",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_staunching",
+   "Name": "of Staunching",
+   "Kind": "Suffix",
+   "Roles": [
+    "Life",
+    "Mana"
+   ],
+   "Effect": "OnDrink",
+   "Seconds": 4,
+   "Stat": {
+    "Stat": "DamageTaken",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Sign": -1,
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 6,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 9,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 12,
+     "MinRL": 150
+    }
+   ],
+   "Text": "On drink: {v}% reduced damage taken for 4 seconds",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_the_bulwark_d",
+   "Name": "of the Bulwark",
+   "Kind": "Suffix",
+   "Roles": [
+    "Life",
+    "Mana"
+   ],
+   "Effect": "OnDrink",
+   "Seconds": 4,
+   "Stat": {
+    "Stat": "Armour",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 600,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 1200,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 2000,
+     "MinRL": 150
+    }
+   ],
+   "Text": "On drink: +{v} to Armour for 4 seconds",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_the_hearth_d",
+   "Name": "of the Hearth",
+   "Kind": "Suffix",
+   "Roles": [
+    "Life",
+    "Mana"
+   ],
+   "Effect": "OnDrink",
+   "Seconds": 4,
+   "Stat": {
+    "Stat": "Resist",
+    "Mode": "Flat",
+    "Tags": [
+     "Elemental"
+    ],
+    "Value": 0
+   },
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 6,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 10,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 15,
+     "MinRL": 150
+    }
+   ],
+   "Text": "On drink: +{v}% to all Elemental Resistances for 4 seconds",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_haste_d",
+   "Name": "of Haste",
+   "Kind": "Suffix",
+   "Roles": [
+    "Life",
+    "Mana"
+   ],
+   "Effect": "OnDrink",
+   "Seconds": 4,
+   "Stat": {
+    "Stat": "MoveSpeed",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Weight": 80,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 8,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 12,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 16,
+     "MinRL": 150
+    }
+   ],
+   "Text": "On drink: {v}% increased Movement Speed for 4 seconds",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_cleansing",
+   "Name": "of Cleansing",
+   "Kind": "Suffix",
+   "Roles": [
+    "Life",
+    "Mana"
+   ],
+   "Effect": "Cleanse",
+   "Weight": 0,
+   "Later": true,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 1,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 1,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 2,
+     "MinRL": 150
+    }
+   ],
+   "Text": "On drink: lose {v} Curse on you",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_the_bulwark",
+   "Name": "of the Bulwark",
+   "Kind": "Suffix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Stat",
+   "Stat": {
+    "Stat": "Armour",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 600,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 1200,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 2000,
+     "MinRL": 150
+    }
+   ],
+   "Text": "+{v} to Armour",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_staunching_u",
+   "Name": "of Staunching",
+   "Kind": "Suffix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Stat",
+   "Stat": {
+    "Stat": "DamageTaken",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Sign": -1,
+   "Weight": 80,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 6,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 9,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 12,
+     "MinRL": 150
+    }
+   ],
+   "Text": "{v}% reduced damage taken",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_the_hearth",
+   "Name": "of the Hearth",
+   "Kind": "Suffix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Stat",
+   "Stat": {
+    "Stat": "Resist",
+    "Mode": "Flat",
+    "Tags": [
+     "Elemental"
+    ],
+    "Value": 0
+   },
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 6,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 10,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 15,
+     "MinRL": 150
+    }
+   ],
+   "Text": "+{v}% to all Elemental Resistances",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_quickening",
+   "Name": "of Quickening",
+   "Kind": "Suffix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Stat",
+   "Stat": {
+    "Stat": "MoveSpeed",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 6,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 9,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 12,
+     "MinRL": 150
+    }
+   ],
+   "Text": "{v}% increased Movement Speed",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_thirst",
+   "Name": "of Thirst",
+   "Kind": "Suffix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Stat",
+   "Stat": {
+    "Stat": "LifeLeech",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Weight": 80,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 0.6,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 1.0,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 1.5,
+     "MinRL": 150
+    }
+   ],
+   "Text": "{v}% of Damage Leeched as Life",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_clarity",
+   "Name": "of Clarity",
+   "Kind": "Suffix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Stat",
+   "Stat": {
+    "Stat": "ManaCost",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Sign": -1,
+   "Weight": 80,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 20,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 35,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 50,
+     "MinRL": 150
+    }
+   ],
+   "Text": "{v}% reduced Mana Cost of Skills",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_the_shield_wall",
+   "Name": "of the Shield Wall",
+   "Kind": "Suffix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Stat",
+   "Stat": {
+    "Stat": "Block",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Weight": 80,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 4,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 6,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 8,
+     "MinRL": 150
+    }
+   ],
+   "Text": "+{v}% Chance to Block",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_the_veil",
+   "Name": "of the Veil",
+   "Kind": "Suffix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Stat",
+   "Stat": {
+    "Stat": "Evasion",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Weight": 80,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 500,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 1000,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 1700,
+     "MinRL": 150
+    }
+   ],
+   "Text": "+{v} to Evasion Rating",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "oath_bloodlust",
+   "Name": "Bloodlust Draught",
+   "Kind": "Oath",
+   "Roles": [
+    "Life",
+    "Mana",
+    "Utility"
+   ],
+   "Effect": "Bloodlust",
+   "Material": "deepstone",
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 6,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 10,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 15,
+     "MinRL": 150
+    }
+   ],
+   "Text": "Drinking grants {v} Bloodlust",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "oath_fury",
+   "Name": "Fury Brew",
+   "Kind": "Oath",
+   "Roles": [
+    "Life",
+    "Mana",
+    "Utility"
+   ],
+   "Effect": "Charge",
+   "Charge": "fury",
+   "Material": "sunstone",
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 1,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 1,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 2,
+     "MinRL": 150
+    }
+   ],
+   "Text": "Drinking grants {v} Fury",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "oath_insight",
+   "Name": "Insight Brew",
+   "Kind": "Oath",
+   "Roles": [
+    "Life",
+    "Mana",
+    "Utility"
+   ],
+   "Effect": "Charge",
+   "Charge": "insight",
+   "Material": "frost_iron",
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 1,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 1,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 2,
+     "MinRL": 150
+    }
+   ],
+   "Text": "Drinking grants {v} Insight",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "oath_resolve",
+   "Name": "Resolve Brew",
+   "Kind": "Oath",
+   "Roles": [
+    "Life",
+    "Mana",
+    "Utility"
+   ],
+   "Effect": "Charge",
+   "Charge": "resolve",
+   "Material": "heartwood",
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 1,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 1,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 2,
+     "MinRL": 150
+    }
+   ],
+   "Text": "Drinking grants {v} Resolve",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "oath_woebrew",
+   "Name": "Woebrew",
+   "Kind": "Oath",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Stat",
+   "Stat": {
+    "Stat": "CurseEffect",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Material": "bog_amber",
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 15,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 25,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 35,
+     "MinRL": 150
+    }
+   ],
+   "Text": "{v}% increased effect of your Curses while active",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "oath_bloodsup",
+   "Name": "Blood Supper",
+   "Kind": "Oath",
+   "Roles": [
+    "Life"
+   ],
+   "Effect": "SpendBloodlust",
+   "Material": "deepstone",
+   "Weight": 80,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 0.6,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 0.9,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 1.2,
+     "MinRL": 150
+    }
+   ],
+   "Text": "Drinking consumes your Bloodlust: {v}% of maximum Life recovered per stack",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "oath_furyspend",
+   "Name": "Fury Unbottled",
+   "Kind": "Oath",
+   "Roles": [
+    "Life",
+    "Mana",
+    "Utility"
+   ],
+   "Effect": "SpendFury",
+   "Seconds": 6,
+   "Material": "sunstone",
+   "Weight": 80,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 3,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 4,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 5,
+     "MinRL": 150
+    }
+   ],
+   "Text": "Drinking spends your Fury: {v}% more damage per charge spent for 6 seconds",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "core_refill",
+   "Name": "Core-fed",
+   "Kind": "Core",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "GuardianKillRefill",
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 1,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 1,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 1,
+     "MinRL": 150
+    }
+   ],
+   "Text": "While active, a Guardian kill refills all your potions",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "core_steel",
+   "Name": "Core-tempered",
+   "Kind": "Core",
+   "Roles": [
+    "Life",
+    "Mana",
+    "Utility"
+   ],
+   "Effect": "Stat",
+   "Stat": {
+    "Stat": "MaxResist",
+    "Mode": "Flat",
+    "Tags": [
+     "Elemental"
+    ],
+    "Value": 0
+   },
+   "Weight": 100,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 1,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 2,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 3,
+     "MinRL": 150
+    }
+   ],
+   "Text": "+{v}% to all maximum Elemental Resistances while active",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "last_breath",
+   "Name": "Last Breath",
+   "Kind": "Oath",
+   "Roles": [
+    "Life"
+   ],
+   "Effect": "LastBreath",
+   "Weight": 0,
+   "Recipe": true,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 2,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 2,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 3,
+     "MinRL": 150
+    }
+   ],
+   "Text": "Drunk below 35% Life: recovers instantly and grants {v} Resolve",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_the_iron_answer",
+   "Name": "of the Iron Answer",
+   "Kind": "Suffix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Stat",
+   "Stat": {
+    "Stat": "ArmourMore",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Weight": 60,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 0.8,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 1.2,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 1.6,
+     "MinRL": 150
+    }
+   ],
+   "Text": "{v}% more Damage for every 1,000 Armour you have while active",
+   "Price72": 0.17,
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_the_shields_answer",
+   "Name": "of the Shield's Answer",
+   "Kind": "Suffix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Stat",
+   "Stat": {
+    "Stat": "BlockMore",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Weight": 60,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 0.15,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 0.22,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 0.3,
+     "MinRL": 150
+    }
+   ],
+   "Text": "{v}% more Damage for every 1% Chance to Block you have while active",
+   "Price72": 0.33,
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_the_oaken_answer",
+   "Name": "of the Oaken Answer",
+   "Kind": "Suffix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Stat",
+   "Stat": {
+    "Stat": "LifeMore",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Weight": 60,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 1.5,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 2.2,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 3.0,
+     "MinRL": 150
+    }
+   ],
+   "Text": "{v}% more Damage for every 1,000 maximum Life you have while active (every point counts in full)",
+   "Price72": 0.1,
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_the_warded_answer",
+   "Name": "of the Warded Answer",
+   "Kind": "Suffix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Stat",
+   "Stat": {
+    "Stat": "EnergyShieldMore",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Weight": 60,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 1.2,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 1.8,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 2.4,
+     "MinRL": 150
+    }
+   ],
+   "Text": "{v}% more Damage for every 1,000 maximum Energy Shield you have while active (every point counts in full)",
+   "Price72": 0.105,
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_the_windward_answer",
+   "Name": "of the Windward Answer",
+   "Kind": "Suffix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Stat",
+   "Stat": {
+    "Stat": "EvasionMore",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Weight": 60,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 0.6,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 0.9,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 1.2,
+     "MinRL": 150
+    }
+   ],
+   "Text": "{v}% more Damage for every 1,000 Evasion you have while active (every point counts in full)",
+   "Price72": 0.0625,
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_vigour",
+   "Name": "of Vigour",
+   "Kind": "Suffix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Stat",
+   "Stat": {
+    "Stat": "Life",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Weight": 80,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 8,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 12,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 16,
+     "MinRL": 150
+    }
+   ],
+   "Text": "{v}% increased maximum Life",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "of_the_aegis",
+   "Name": "of the Aegis",
+   "Kind": "Suffix",
+   "Roles": [
+    "Utility"
+   ],
+   "Effect": "Stat",
+   "Stat": {
+    "Stat": "EnergyShield",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Weight": 80,
+   "Tiers": [
+    {
+     "Tier": 1,
+     "Value": 10,
+     "MinRL": 100
+    },
+    {
+     "Tier": 2,
+     "Value": 15,
+     "MinRL": 120
+    },
+    {
+     "Tier": 3,
+     "Value": 20,
+     "MinRL": 150
+    }
+   ],
+   "Text": "{v}% increased maximum Energy Shield",
+   "R79": "R79_POTIONS"
+  }
+ ],
+ "Uniques": [
+  {
+   "Id": "the_last_vow",
+   "Name": "The Last Vow",
+   "Type": "life",
+   "Source": "Guardian",
+   "Lines": [
+    {
+     "Effect": "Instant",
+     "Value": 100,
+     "Value2": 0
+    },
+    {
+     "Effect": "DrinkBelowLife",
+     "Value": 50
+    }
+   ],
+   "Text": "Recovers instantly. Cannot be drunk above 50% Life",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "glassjaws_spite",
+   "Name": "Glassjaw's Spite",
+   "Type": "oathstone",
+   "Source": "Guardian",
+   "Lines": [
+    {
+     "Effect": "Stat",
+     "Stat": {
+      "Stat": "DamageTaken",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": -25
+     }
+    },
+    {
+     "Effect": "Stat",
+     "Stat": {
+      "Stat": "Damage",
+      "Mode": "More",
+      "Tags": [],
+      "Value": -25
+     }
+    }
+   ],
+   "Text": "25% reduced damage taken, 25% less damage dealt",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "ashen_communion",
+   "Name": "Ashen Communion",
+   "Type": "mana",
+   "Source": "Core",
+   "Lines": [
+    {
+     "Effect": "BloodlustPerCharge",
+     "Value": 5
+    }
+   ],
+   "Text": "Drinking grants Bloodlust equal to the charges left x 5",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "the_unbroken_cask",
+   "Name": "The Unbroken Cask",
+   "Type": "hearthglass",
+   "Source": "Core",
+   "Lines": [
+    {
+     "Effect": "Flagellant",
+     "Value": 10
+    },
+    {
+     "Effect": "NoKillCharges",
+     "Value": 1
+    }
+   ],
+   "Text": "Gains 10 charges when you are hit, no charges from kills",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "forbidden_draught",
+   "Name": "The Forbidden Draught",
+   "Type": "life",
+   "Source": "Catacombs",
+   "Later": true,
+   "Lines": [
+    {
+     "Effect": "Instant",
+     "Value": 100,
+     "Value2": -60
+    },
+    {
+     "Effect": "ChaosBurn",
+     "Value": 30,
+     "Seconds": 4
+    }
+   ],
+   "Text": "Recovers 60% more, instantly. Then burns 30% of what it gave as Chaos damage over 4 seconds",
+   "R79": "R79_POTIONS"
+  },
+  {
+   "Id": "cinder_cup",
+   "Name": "Cinder Cup",
+   "Type": "vowbreaker",
+   "Source": "Guardian",
+   "Later": true,
+   "Lines": [
+    {
+     "Effect": "WoeKillCharges",
+     "Value": 5
+    }
+   ],
+   "Text": "A kill on a Woe marked enemy gains 5 charges",
+   "R79": "R79_POTIONS"
+  }
+ ],
+ "Pour": [
+  {
+   "Id": "pour_full",
+   "Name": "when its charges are full"
+  },
+  {
+   "Id": "pour_ended",
+   "Name": "when its effect ends"
+  },
+  {
+   "Id": "pour_life",
+   "Name": "when you drink your Life potion"
+  },
+  {
+   "Id": "pour_guardian",
+   "Name": "when you hit a Guardian"
+  },
+  {
+   "Id": "pour_heavy",
+   "Name": "when a hit takes over 25% of your Life"
+  },
+  {
+   "Id": "pour_paired",
+   "Name": "when your other utility potion is drunk"
+  }
+ ],
+ "Costs": {
+  "Equip": {},
+  "Steep": {
+   "ember": 3
+  },
+  "Distil": {
+   "rune": 2
+  },
+  "ResteepMagic": {
+   "ember": 1
+  },
+  "ResteepRare": {
+   "rune": 1
+  },
+  "Tincture": {
+   "ember": 2
+  },
+  "Seal": {
+   "oathsteel": 1
+  },
+  "Oath": {
+   "oathsteel": 1
+  },
+  "Core": {
+   "core_ember": 1
+  },
+  "Pour": {
+   "ember": 1
+  },
+  "Imbue": {
+   "gloomsilver": 2
+  },
+  "QualityPer2": {
+   "ember": 1
+  },
+  "QualityMax": 20
+ },
+ "Imbue113": {
+  "GoldPerRL": 2000
+ },
+ "Drops": {
+  "MinRL": 100,
+  "Chance": {
+   "Magic": 0.01,
+   "Rare": 0.05,
+   "Guardian": 0.6,
+   "Boss": 1.0
+  },
+  "RarityWeights": {
+   "Normal": 50,
+   "Magic": 40,
+   "Rare": 10
+  },
+  "GuardianRarityWeights": {
+   "Magic": 50,
+   "Rare": 50
+  },
+  "UniqueChance": {
+   "Guardian": 0.06,
+   "Core": 0.12,
+   "Catacombs": 0.1
+  },
+  "CoreForgedChance": 0.25
+ },
+ "Early80": {
+  "Tease": 60,
+  "Open": 70,
+  "Slot4": 90,
+  "DropMinRL": 70,
+  "RLMap": {
+   "100": 70,
+   "120": 90
+  },
+  "KeepOpen": 20,
+  "KeepSlot4": 60,
+  "FlatScaleRef": 100,
+  "FlatScaleMin": 0.2,
+  "FlatScaleMax": 3.0
+ }
+}

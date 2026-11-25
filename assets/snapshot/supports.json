@@ -1,0 +1,6385 @@
+{
+ "supports": [
+  {
+   "Id": "chain",
+   "Name": "Chain",
+   "Description": "Chains 2 additional times, each time to another enemy (never the same one twice): strong in packs, adds nothing against a lone boss. Each jump hits 8% harder than the last. 5% less damage.",
+   "RequiresAnyTag": [
+    "Chain",
+    "Projectile"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Chains",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 2
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -5
+    },
+    {
+     "Stat": "ChainJumpMore",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 8,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 1,
+   "DropWeight": 90,
+   "Attribute": "Dex",
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Status_Entangled_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "Tethers"
+    ],
+    "FxScale": 1.0,
+    "Brightness": 1.15,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Each jump links its targets with a flash of the skill's element."
+   },
+   "Sfx": {
+    "Jump": "chain_jump"
+   }
+  },
+  {
+   "Id": "multiple_projectiles",
+   "Name": "Multiple Projectiles",
+   "Description": "Fires 2 additional projectiles in a fan. 15% less damage. Each enemy is hit by one projectile per cast; the extras hit the pack behind.",
+   "RequiresAnyTag": [
+    "Projectile"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Projectiles",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 2
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -15
+    }
+   ],
+   "ManaMultiplier": 1.2,
+   "Level": 1,
+   "DropWeight": 90,
+   "Attribute": "Dex",
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Inventory_Bows_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "Fan"
+    ],
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "A fan of bolts with a wider muzzle flare."
+   },
+   "Sfx": {
+    "Cast": "sup_multi_whoosh"
+   }
+  },
+  {
+   "Id": "increased_area",
+   "Name": "Increased Area",
+   "Description": "50% increased area of effect (radius about 22% larger).",
+   "RequiresAnyTag": [
+    "Area",
+    "Nova",
+    "Slam"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Area",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 50
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 1,
+   "DropWeight": 100,
+   "Attribute": "Int",
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Stat_Magic_03_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "AreaRing"
+    ],
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Bigger effects; a ring marks the edge of the blast."
+   },
+   "Sfx": {
+    "Impact": "sup_area_boom"
+   }
+  },
+  {
+   "Id": "concentrated",
+   "Name": "Concentrated Effect",
+   "Description": "30% less area of effect. 12% more damage and 25% increased damage.",
+   "RequiresAnyTag": [
+    "Area",
+    "Nova",
+    "Slam"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Area",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -30
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 12
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 25,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.2,
+   "Level": 8,
+   "DropWeight": 80,
+   "Attribute": "Int",
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Stat_Magic_04_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "CoreGlow"
+    ],
+    "FxScale": 1.0,
+    "Brightness": 1.4,
+    "Saturation": 1.15,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Tighter and hotter: a white-hot core at the centre."
+   },
+   "Sfx": {
+    "Impact": "sup_concentrated"
+   }
+  },
+  {
+   "Id": "added_lightning",
+   "Name": "Added Lightning",
+   "Description": "Adds 1 to 6 lightning damage, scaled up by the skill's gem level like its own damage, and +10% chance to Shock.",
+   "RequiresAnyTag": [
+    "Spell",
+    "Attack"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "AddedDamage",
+     "Mode": "Flat",
+     "Tags": [
+      "Lightning",
+      "GemScaled"
+     ],
+     "Value": 1,
+     "Value2": 6
+    },
+    {
+     "Stat": "ShockChance",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 10,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 1,
+   "DropWeight": 90,
+   "Attribute": "Dex",
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Element_Air_01_Clean",
+   "Visual": {
+    "Element": "Lightning",
+    "Motifs": [
+     "Crackle"
+    ],
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Your weapon crackles; struck foes are shocked."
+   },
+   "Sfx": {}
+  },
+  {
+   "Id": "added_poison",
+   "Name": "Added Poison",
+   "Description": "Adds 1 to 6 poison damage, scaled by gem level. Penetrates 10% poison resistance. -40% to Damage over Time Multiplier. Any hit with poison damage can poison; minions at half strength.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion"
+   ],
+   "Mods": [
+    {
+     "Stat": "AddedDamage",
+     "Mode": "Flat",
+     "Tags": [
+      "Poison",
+      "GemScaled"
+     ],
+     "Value": 1,
+     "Value2": 6
+    },
+    {
+     "Stat": "Penetration",
+     "Mode": "Flat",
+     "Tags": [
+      "Poison"
+     ],
+     "Value": 10
+    },
+    {
+     "Stat": "DotMulti",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": -40
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 1,
+   "DropWeight": 90,
+   "Attribute": "Int",
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Status_Poisoned_01_Clean",
+   "Visual": {
+    "Element": "Poison",
+    "Motifs": [],
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Your weapon and bolts drip venom; struck foes are poisoned green."
+   },
+   "Sfx": {}
+  },
+  {
+   "Id": "added_fire",
+   "Name": "Added Fire",
+   "Description": "Spells gain 2 to 5 fire damage, scaled by gem level. Every skill gains 30% of its physical damage (after conversion) as extra fire damage.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Melee",
+    "Slam",
+    "Minion",
+    "Spell"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Physical",
+      "Fire"
+     ],
+     "Value": 30
+    },
+    {
+     "Stat": "AddedDamage",
+     "Mode": "Flat",
+     "Tags": [
+      "Fire",
+      "Spell",
+      "GemScaled"
+     ],
+     "Value": 2,
+     "Value2": 5
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 1,
+   "DropWeight": 90,
+   "Attribute": "Str",
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Element_Fire_01_Clean",
+   "Visual": {
+    "Element": "Fire",
+    "Motifs": [],
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Sets your weapon ablaze; fiery slashes; struck foes burn."
+   },
+   "Sfx": {}
+  },
+  {
+   "Id": "elemental_focus",
+   "Name": "Elemental Focus",
+   "Description": "12% more and 25% increased Fire, Cold and Lightning damage, but the skill's Ignites deal 40% less damage. Physical and Poison gain nothing. Conversion comes first: Physical converted to an element gains it.",
+   "RequiresAnyTag": [
+    "Spell",
+    "Attack"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 12
+    },
+    {
+     "Stat": "IgniteDamage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -40
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 25,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 10,
+   "DropWeight": 70,
+   "Attribute": "Int",
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Status_AttackUp_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "Saturate"
+    ],
+    "FxScale": 1.0,
+    "Brightness": 1.2,
+    "Saturation": 1.4,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Deeper, brighter elemental colours."
+   },
+   "Sfx": {
+    "SpellImpact": "sup_power"
+   }
+  },
+  {
+   "Id": "toxic_focus",
+   "Name": "Toxic Focus",
+   "Description": "12% more poison damage and 25% increased poison damage: poison hits and the poisons they apply. Damage converted to Poison (Venom) counts as poison too.",
+   "RequiresAnyTag": [
+    "Spell"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Poison"
+     ],
+     "Value": 12
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Poison"
+     ],
+     "Value": 25,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 10,
+   "DropWeight": 70,
+   "Attribute": "Int",
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Status_Poisoned_02_Clean",
+   "Visual": {
+    "Element": "Poison",
+    "Motifs": [
+     "Saturate"
+    ],
+    "FxScale": 1.0,
+    "Brightness": 1.2,
+    "Saturation": 1.4,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Deeper, greener venom."
+   },
+   "Sfx": {
+    "SpellImpact": "sup_power"
+   }
+  },
+  {
+   "Id": "faster_casting",
+   "Name": "Faster Casting",
+   "Description": "25% more cast speed. On a summon of casters (Skeletal Mage): they cast 25% faster.",
+   "RequiresAnyTag": [
+    "Spell"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "CastSpeed",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 25
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 4,
+   "DropWeight": 80,
+   "Attribute": "Int",
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Status_SpeedUp_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "SpeedStreaks"
+    ],
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [
+     "cast_haste"
+    ],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Haste wisps flare with every cast."
+   },
+   "Sfx": {}
+  },
+  {
+   "Id": "faster_attacks",
+   "Name": "Faster Attacks",
+   "Description": "25% more attack speed. On a summon: its minions attack 25% faster.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Minion"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 25
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 4,
+   "DropWeight": 80,
+   "Attribute": "Dex",
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Stat_Speed_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "SpeedStreaks"
+    ],
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "A pale-gold speed trail follows every swing."
+   },
+   "Sfx": {}
+  },
+  {
+   "Id": "penetration",
+   "Name": "Elemental Penetration",
+   "Description": "Hits ignore 20% of enemy elemental resistance.",
+   "RequiresAnyTag": [
+    "Spell",
+    "Attack"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Penetration",
+     "Mode": "Flat",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 20
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 18,
+   "DropWeight": 60,
+   "Attribute": "Int",
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Status_DefenseDown_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "PenRing"
+    ],
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Resistances shatter: a ring of shards under each struck foe."
+   },
+   "Sfx": {
+    "SpellImpact": "sup_power"
+   }
+  },
+  {
+   "Id": "life_leech",
+   "Name": "Life Leech",
+   "Description": "1.5% of the damage the skill deals is leeched as life, and its hits deal 15% more damage while you are leeching (below full life); its Bleed, Poison and Ignite do not.",
+   "RequiresAnyTag": [
+    "Spell",
+    "Attack"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "LifeLeech",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1.5
+    },
+    {
+     "Stat": "LeechingMore",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 15,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 4,
+   "DropWeight": 90,
+   "Attribute": "Str",
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Status_Vampiric_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "LeechMotes"
+    ],
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Crimson motes flow from your victims into you."
+   },
+   "Sfx": {}
+  },
+  {
+   "Id": "brutality",
+   "Name": "Brutality",
+   "Description": "12% more physical damage and 125% increased Physical Attack damage (minions: 10% increased physical damage). Deals no elemental damage: converted shares are lost. Heralds of Embers, Rime and Storms add nothing; Herald of Rot still does.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Melee",
+    "Slam",
+    "Minion"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Physical"
+     ],
+     "Value": 12
+    },
+    {
+     "Stat": "Keystone",
+     "Mode": "Flag",
+     "Tags": [
+      "NoElemental"
+     ],
+     "Value": 1
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Physical",
+      "Attack"
+     ],
+     "Value": 125,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Physical",
+      "Minion"
+     ],
+     "Value": 10,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 12,
+   "DropWeight": 70,
+   "Attribute": "Str",
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Status_DamageUp_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "Heavy"
+    ],
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.45,
+    "HitStopMult": 1.3,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Brutal impacts: heavy blood, dust and a harder shake."
+   },
+   "Sfx": {
+    "Hit": "sup_brutal"
+   }
+  },
+  {
+   "Id": "pierce",
+   "Name": "Pierce",
+   "Description": "Projectiles pierce 2 additional targets. 10% less damage.",
+   "RequiresAnyTag": [
+    "Projectile"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Pierce",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 2
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -10
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 8,
+   "DropWeight": 70,
+   "Attribute": "Dex",
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Inventory_Spears_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "PierceSpark"
+    ],
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Bolts punch through foes in a burst of sparks."
+   },
+   "Sfx": {
+    "Pierce": "sup_pierce"
+   }
+  },
+  {
+   "Id": "spell_echo",
+   "Name": "Spell Echo",
+   "Description": "The spell repeats once. 15% less damage. 10% less cast speed. An echoed curse is 20% stronger. Never repeats a dash, a Vow, a toggle or a triggered spell. Repeats from a support gem and from your gear or passive tree stack, but the repeats from the smaller of the two deal 50% less damage.",
+   "RequiresAnyTag": [
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Aura",
+    "Channelling"
+   ],
+   "Mods": [
+    {
+     "Stat": "Repeats",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -15
+    },
+    {
+     "Stat": "CastSpeed",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -10
+    }
+   ],
+   "ManaMultiplier": 1.25,
+   "Level": 24,
+   "DropWeight": 50,
+   "Attribute": "Int",
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Stat_Magic_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "Echo"
+    ],
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "An amethyst echo rings out as the spell repeats."
+   },
+   "Sfx": {
+    "Echo": "sup_echo"
+   }
+  },
+  {
+   "Id": "melee_physical",
+   "Name": "Melee Physical Damage",
+   "Description": "12% more melee physical damage and 75% increased Physical Attack damage (minions: 10% increased physical damage). 10% less attack speed. Works on melee minions. It scales only the physical left after conversion.",
+   "RequiresAnyTag": [
+    "Melee",
+    "Minion"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Physical"
+     ],
+     "Value": 12
+    },
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -10
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Physical",
+      "Attack"
+     ],
+     "Value": 75,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Physical",
+      "Minion"
+     ],
+     "Value": 10,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 1,
+   "DropWeight": 90,
+   "Attribute": "Str",
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Status_Attack_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "Heavy"
+    ],
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.25,
+    "HitStopMult": 1.15,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Weightier blows and bloodier hits."
+   },
+   "Sfx": {
+    "Hit": "sup_brutal"
+   }
+  },
+  {
+   "Id": "controlled_destruction",
+   "Name": "Controlled Destruction",
+   "Description": "15% more spell damage and 30% increased spell damage. -40% to Critical Strike Multiplier: best on spells that rarely crit.",
+   "RequiresAnyTag": [
+    "Spell"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Spell"
+     ],
+     "Value": 15
+    },
+    {
+     "Stat": "CritMulti",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": -40,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Spell"
+     ],
+     "Value": 30,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 6,
+   "DropWeight": 80,
+   "Attribute": "Int",
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   },
+   "Icon": "ICON_DarkFantasy_Stat_Mind_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "CoreGlow"
+    ],
+    "FxScale": 1.0,
+    "Brightness": 1.25,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "A focused, glowing core in every bolt and blast."
+   },
+   "Sfx": {
+    "SpellImpact": "sup_power"
+   }
+  },
+  {
+   "Id": "bloodbound",
+   "Name": "Bloodbound",
+   "Description": "The skill costs life instead of mana (10% more cost) and deals 7% more damage, another 10% more on hits below half life. Keeps a channel running on an empty mana pool.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Vow"
+   ],
+   "Mods": [
+    {
+     "Stat": "BloodMagic",
+     "Mode": "Flag",
+     "Tags": [
+      "BloodMagic"
+     ],
+     "Value": 0,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 7,
+     "Value2": 0
+    },
+    {
+     "Stat": "SelfLowLifeMore",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 10,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 8,
+   "DropWeight": 55,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Stat_Health_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the cost comes out of the life orb."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "siphon",
+   "Name": "Siphon",
+   "Description": "2% of the linked skill's damage is leeched as life; attacks also leech 1% as mana. A totem's hits leech at 30% of that.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Vow",
+    "Minion"
+   ],
+   "Mods": [
+    {
+     "Stat": "LifeLeech",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 2,
+     "Value2": 0
+    },
+    {
+     "Stat": "ManaLeech",
+     "Mode": "Flat",
+     "Tags": [
+      "Attack"
+     ],
+     "Value": 1,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 6,
+   "DropWeight": 60,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Status_Health_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "LeechMotes"
+    ],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Leech motes stream from struck foes into you."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "tithe",
+   "Name": "Tithe",
+   "Description": "Each hit of the linked skill returns 2 mana plus 0.4% of your maximum mana (attacks); each kill returns 6 plus 2% (spells, attacks, a linked summon's minions). On a Guardian or Unique enemy, each 4% of its life lost returns the kill mana.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Vow"
+   ],
+   "Mods": [
+    {
+     "Stat": "ManaOnHit",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 2,
+     "Value2": 0
+    },
+    {
+     "Stat": "ManaOnKill",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 6,
+     "Value2": 0
+    },
+    {
+     "Stat": "ManaOnHitPct",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 0.4,
+     "Value2": 0
+    },
+    {
+     "Stat": "ManaOnKillPct",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 2,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.05,
+   "Level": 6,
+   "DropWeight": 60,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Inventory_Currency_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the mana orb fills as you fight."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "woebringer",
+   "Name": "Woebringer",
+   "Description": "The linked Woe becomes an aura: it reserves 24% of your mana and lays the Woe on every enemy within 4.5 m (area size adds). Each linked Woe is its own aura, up to the Woes an enemy can carry (2 + extra Woes). Press again to end.",
+   "RequiresAnyTag": [
+    "Woe"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Woebringer",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 10,
+   "DropWeight": 40,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Status_Cursed_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "A calm dark ring around you instead of the cast at the cursor."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "pass_sentence",
+   "Name": "Pass Sentence",
+   "Description": "When the Sentenced enemy dies, the Sentence passes to the nearest rare or unique enemy (else the nearest enemy) within 10 metres.",
+   "RequiresAnyTag": [
+    "Sentence"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "PassSentence",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 8,
+   "DropWeight": 45,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Status_Targeted_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "The sigil leaps to the next victim."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "gather_fury",
+   "Name": "Gather Fury",
+   "Description": "Kills with the linked skill grant a Fury charge (once per 0.5 s): 8% increased damage and 4% increased attack and cast speed each, 5 at most. Minion kills: half grant it. On a Guardian or Unique enemy, each 4% of its life lost counts as a kill.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion"
+   ],
+   "Mods": [
+    {
+     "Stat": "FuryOnKill",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.05,
+   "Level": 8,
+   "DropWeight": 50,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Status_AttackUp_02_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the Fury tile counts up."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "bloodlust_support",
+   "Name": "Bloodlust",
+   "Description": "Melee skills only. Each kill grants 1 Bloodlust stack: 0.5% increased melee damage, 0.2% increased melee attack speed and 0.1% increased movement speed each, up to 50, 5 s each. Minion kills: half grant it.",
+   "RequiresAnyTag": [
+    "Melee"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow"
+   ],
+   "Mods": [
+    {
+     "Stat": "BloodlustOnKill",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.05,
+   "Level": 6,
+   "DropWeight": 55,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Status_DamageUp_02_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the Bloodlust tile counts up."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "war_banner_support",
+   "Name": "War Banner",
+   "Description": "Retired: the War Banner is now a skill gem of its own. Any War Banner support you had became the War Banner skill gem.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell",
+    "Minion",
+    "Holy"
+   ],
+   "ExcludeTags": [
+    "Vow"
+   ],
+   "Mods": [
+    {
+     "Stat": "WarBanner",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.05,
+   "Level": 8,
+   "DropWeight": 0,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Inventory_ShoulderPads_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "A war banner stands where you planted it, with a calm gold ring."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "hunters_mark_support",
+   "Name": "Hunter's Mark",
+   "Description": "Bow, Projectile and minion skills. Each hit puts 1 Hunter's Mark on the enemy: 1.7% more damage taken per Mark, up to 10. Marks fall off 3 s after your last hit. Adds with curses and every other takes-more-damage effect. Minions: half strength.",
+   "RequiresAnyTag": [
+    "Bow",
+    "Projectile"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow"
+   ],
+   "Mods": [
+    {
+     "Stat": "MarkOnHit",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.05,
+   "Level": 6,
+   "DropWeight": 55,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Stat_Accuracy_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "The enemy frame counts the Marks."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "unravel_support",
+   "Name": "Unravel",
+   "Description": "Spell skills only. Each hit adds 1 Unravel stack for the hit's element: the enemy takes 0.7% more damage of that element per stack, up to 25 (17.5%). Stacks last 4 seconds after your last hit.",
+   "RequiresAnyTag": [
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow",
+    "Herald",
+    "Woe",
+    "Sentence",
+    "Cry",
+    "Aura"
+   ],
+   "Mods": [
+    {
+     "Stat": "UnravelOnHit",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.05,
+   "Level": 6,
+   "DropWeight": 55,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Status_DefenseBroken_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "An element sigil over the enemy grows with the stacks."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "woe_bearer",
+   "Name": "Woe Bearer",
+   "Description": "The linked Woe is borne by your blows: every enemy your hits and your totems' hits strike takes it too, while it has room (it never replaces one). Not minion hits or triggered spells. Two Woe Bearers work at once, +1 per extra Woe.",
+   "RequiresAnyTag": [
+    "Woe"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "WoeOnHit",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 10,
+   "DropWeight": 40,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Status_Cursed_02_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the struck enemy shows the Woe's sigil and ring."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "totem_support",
+   "Name": "Spell Totem",
+   "Description": "Casting places a totem (1 at a time, 8 seconds) that casts the spell at the nearest enemy every 0.8 seconds, whatever your cast speed. 35% less damage. Works on Projectile, Chain, Nova and Skyfall spells. Bow skills use Arrow Totem. A Totem's Judgement strikes for 60% of your own cast.",
+   "RequiresAnyTag": [
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Channelling",
+    "Movement",
+    "Minion",
+    "Totem",
+    "Attack",
+    "Aura"
+   ],
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -35,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.25,
+   "Level": 8,
+   "DropWeight": 40,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Inventory_Scepters_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "Totem",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 0.5,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "A carved totem rises at the aim and casts the spell (Combat/BOTotem.cpp SpellTotemLook)."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "arrow_totem",
+   "Name": "Arrow Totem",
+   "Description": "Firing places a totem (1 at a time, 8 seconds) that fires the bow skill at the nearest enemy every 0.8 seconds instead of you. 60% less damage. Only for bow skills that shoot arrows. Multiple Totems adds totems.",
+   "RequiresAnyTag": [
+    "Bow"
+   ],
+   "ExcludeTags": [
+    "Channelling",
+    "Movement",
+    "Minion",
+    "Totem",
+    "Spell",
+    "Aura",
+    "Rain"
+   ],
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -60,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.25,
+   "Level": 8,
+   "DropWeight": 40,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Status_Fortified_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "Totem",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 0.5,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "r92 SUGGEST: the Spell Totem transform for bow shots (Combat/BOTotem.cpp SpellTotemLook)."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "multiple_totems",
+   "Name": "Multiple Totems",
+   "Description": "You may have 1 more totem or ballista of this skill, and it recovers 20% faster. 20% less damage. At most 7 bow engines and 11 spell totems in all. Totems and Ballistas of one skill share their damage: each past the first adds 50% of one's damage.",
+   "RequiresAnyTag": [
+    "Totem"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "TotemCount",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -20,
+     "Value2": 0
+    },
+    {
+     "Stat": "Cooldown",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": -20,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.2,
+   "Level": 8,
+   "DropWeight": 50,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Status_FortifiedDefense_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "More totems: the HUD counter shows placed / max on the gem's slot."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "bone_guard",
+   "Name": "Bone Guard",
+   "Description": "Minions have 20% more life, 50% more armour and regenerate 2.5% life per second. While one is within 9 m, you have 30% more armour plus 10 per level, and regenerate 1% life per second.",
+   "RequiresAnyTag": [
+    "Minion"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "MinionGuard",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    },
+    {
+     "Stat": "MinionLife",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 20,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 4,
+   "DropWeight": 60,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Status_Armor_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "A tight guard ring at your side; they step between you and the pack."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "ravening_host",
+   "Name": "Ravening Host",
+   "Description": "Minions from the supported skill range ahead of you and hunt, engaging enemies 50% farther away. They deal 9% more damage and 25% increased damage and move, attack and cast 15% faster.",
+   "RequiresAnyTag": [
+    "Minion"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "MinionHunt",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 9,
+     "Value2": 0
+    },
+    {
+     "Stat": "MinionSpeed",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 15,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 25,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 4,
+   "DropWeight": 60,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Map_Monster_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "The dead fan out ahead of you and run the pack down."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "zap_support",
+   "Name": "Lightning",
+   "Description": "Converts 60% of Physical, Fire and Cold damage to Lightning (Poison 30%). Hits shock with 30% increased effect of Shock, and 1 more Shock can stack on an enemy. A spinning attack calls lightning down onto the enemies it cuts. Physical bonuses (Added Fire, Melee Physical, Brutality) only see the 40% left physical.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Convert",
+     "Mode": "Flat",
+     "Tags": [
+      "Lightning"
+     ],
+     "Value": 60,
+     "Value2": 0
+    },
+    {
+     "Stat": "ShockStacks",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    },
+    {
+     "Stat": "ShockEffect",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 30,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 1,
+   "DropWeight": 70,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Stat_Speed_02_Clean",
+   "Visual": {
+    "Element": "Lightning",
+    "Motifs": [
+     "Crackle"
+    ],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Everything crackles blue-white: lightning slashes, bolts and whirls; kills electrocute."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "flame_support",
+   "Name": "Flame",
+   "Description": "60% of Physical, Cold and Lightning damage is converted to Fire (Poison at half: 30%). Hits ignite. Physical bonuses (Added Fire, Melee Physical, Brutality) only see the 40% left physical.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Convert",
+     "Mode": "Flat",
+     "Tags": [
+      "Fire"
+     ],
+     "Value": 60,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 1,
+   "DropWeight": 70,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Inventory_Magic_01_Clean",
+   "Visual": {
+    "Element": "Fire",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Fire slashes and burning hits; Zap and Chain Lightning strike red; kills burn to ash."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "ice_support",
+   "Name": "Ice",
+   "Description": "60% of Physical, Fire and Lightning damage is converted to Cold (Poison at half: 30%). Hits chill; chilled kills shatter. Physical bonuses (Added Fire, Melee Physical, Brutality) only see the 40% left physical.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Convert",
+     "Mode": "Flat",
+     "Tags": [
+      "Cold"
+     ],
+     "Value": 60,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 1,
+   "DropWeight": 70,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Element_Ice_01_Clean",
+   "Visual": {
+    "Element": "Cold",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Frost slashes and icy hits; Zap and Chain Lightning become white-blue Frost Lightning."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "venom_support",
+   "Name": "Venom",
+   "Description": "30% of Physical, Fire, Cold and Lightning damage is converted to Poison. +25% chance to Poison. Poison hits ignore 15% of Poison resistance. Physical bonuses (Added Fire, Melee Physical, Brutality) only see the 70% left physical.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Convert",
+     "Mode": "Flat",
+     "Tags": [
+      "Poison"
+     ],
+     "Value": 30,
+     "Value2": 0
+    },
+    {
+     "Stat": "PoisonChance",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 25,
+     "Value2": 0
+    },
+    {
+     "Stat": "Penetration",
+     "Mode": "Flat",
+     "Tags": [
+      "Poison"
+     ],
+     "Value": 15,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 4,
+   "DropWeight": 60,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Inventory_Potions_01_Clean",
+   "Visual": {
+    "Element": "Poison",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Green venom slashes and bolts; strikes turn green; kills melt."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "skyfall",
+   "Name": "Skyfall",
+   "Description": "The skill falls on its target from above instead of travelling. Works on Projectile, Chain, Spark and Nova spells, projectile attacks and the Ballista volley. Each enemy is struck once per use. Extra projectiles merge into one bigger strike. 20% less damage.",
+   "RequiresAnyTag": [
+    "Projectile",
+    "Chain",
+    "Nova",
+    "Brand"
+   ],
+   "ExcludeTags": [
+    "Channelling",
+    "Minion",
+    "Totem"
+   ],
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -20,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.2,
+   "Level": 6,
+   "DropWeight": 50,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Element_Earth_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "Skyfall",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Ember Bolt falls as a meteor; Chain Lightning and Zap call a bolt from the sky onto every target."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "tether",
+   "Name": "Tether",
+   "Description": "Each enemy hit is linked to up to 2 others within 5 m for 3 s (6 links at most); linked enemies take 15% of the hit's damage per second. With Orbit, Rain or Skyfall, the earlier socket shapes the skill. No links with Trap or a Totem gem.",
+   "RequiresAnyTag": [
+    "Projectile",
+    "Chain",
+    "Melee"
+   ],
+   "ExcludeTags": [
+    "Channelling",
+    "Minion",
+    "Totem"
+   ],
+   "Mods": [],
+   "ManaMultiplier": 1.15,
+   "Level": 8,
+   "DropWeight": 50,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Inventory_Belt_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "Tether",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Struck foes are chained together by beams of the skill's element that burn both ends."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "swift_step",
+   "Name": "Swift Step",
+   "Description": "The movement skill has a 40% shorter cooldown and deals 8% more damage and 15% increased damage.",
+   "RequiresAnyTag": [
+    "Movement"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Cooldown",
+     "Mode": "Inc",
+     "Tags": [
+      "Movement"
+     ],
+     "Value": -40,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 8,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 15,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 4,
+   "DropWeight": 60,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Inventory_Boots_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.1,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Quicker, bolder dashes: the dash effect a size larger."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "channel_conduit",
+   "Name": "Channel Conduit",
+   "Description": "While you channel, the spell dropped on this gem casts itself at the nearest enemy every 0.5 s for half its mana cost. 30% more channelling cost. The spell must be on your skill bar, is never a totem or trap, and triggers nothing.",
+   "RequiresAnyTag": [
+    "Channelling"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "ConduitInterval",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 0.5,
+     "Value2": 0
+    },
+    {
+     "Stat": "ConduitCostPct",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 50,
+     "Value2": 0
+    },
+    {
+     "Stat": "ChannelCostLess",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": -30,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 8,
+   "DropWeight": 90,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Stat_Spirit_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Spin to win and throw lightning: the linked spell flies from the channel, in the channel's supports' colours."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "honed_edge",
+   "Name": "Honed Edge",
+   "Description": "+1% to base Critical Strike Chance and 80% increased Critical Strike Chance. Best on a build that already raises its critical strikes. On a minion skill it works at half strength.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion"
+   ],
+   "Mods": [
+    {
+     "Stat": "CritChance",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    },
+    {
+     "Stat": "CritChance",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 80,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.125,
+   "Level": 8,
+   "DropWeight": 55,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Inventory_Daggers_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the skill's critical strikes simply land more often."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "deathblow",
+   "Name": "Deathblow",
+   "Description": "+50% to Critical Strike Multiplier: critical strikes hit much harder. Best with Honed Edge or other critical strike chance. On a minion skill it works at half strength.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion"
+   ],
+   "Mods": [
+    {
+     "Stat": "CritMulti",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 50,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.125,
+   "Level": 10,
+   "DropWeight": 55,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Status_Critical_02_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the skill's critical strikes hit harder."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "orbit",
+   "Name": "Orbit",
+   "Description": "Projectiles circle you for 1.5 seconds, then each flies at the nearest enemy. Spells gain +1 projectile; attacks deal 50% less damage. Up to 24 circle at once. A projectile sent at an enemy already struck this cast deals 90% less damage (attacks 97% less).",
+   "RequiresAnyTag": [
+    "Projectile"
+   ],
+   "ExcludeTags": [
+    "Channelling",
+    "Minion",
+    "Totem",
+    "Movement"
+   ],
+   "Mods": [
+    {
+     "Stat": "Projectiles",
+     "Mode": "Flat",
+     "Tags": [
+      "Spell"
+     ],
+     "Value": 1,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Attack"
+     ],
+     "Value": -50,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 6,
+   "DropWeight": 50,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Stat_Magic_02_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "Orbit",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "The spell's own spheres circle the hero, then fan out at the pack."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "channel_mastery",
+   "Name": "Unbroken Channel",
+   "Description": "Up to 25% more damage, ramping in over the first second of channelling. 20% less channelling cost.",
+   "RequiresAnyTag": [
+    "Channelling"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "ChannelRamp",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 25,
+     "Value2": 0
+    },
+    {
+     "Stat": "ChannelCostLess",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 20,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 4,
+   "DropWeight": 60,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Status_Time_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.1,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "The channel burns brighter once it has ramped."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "minion_damage",
+   "Name": "Minion Damage",
+   "Description": "Minions from the supported skill deal 12% more damage and 25% increased damage.",
+   "RequiresAnyTag": [
+    "Minion"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 12,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 25,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 1,
+   "DropWeight": 80,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Status_DamageUp_03_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [
+     "minion_fury_hit"
+    ],
+    "ImpactLayers": [],
+    "Note": "A dark burst on every blow the minions land."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "minion_life",
+   "Name": "Minion Life",
+   "Description": "Minions from the supported skill have 25% more life and 175% increased life.",
+   "RequiresAnyTag": [
+    "Minion"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "MinionLife",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 25,
+     "Value2": 0
+    },
+    {
+     "Stat": "MinionLife",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 175,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 4,
+   "DropWeight": 70,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Status_FortifiedHealth_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "The raised dead stand 8% taller."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "minion_speed",
+   "Name": "Minion Speed",
+   "Description": "Minions from the supported skill move, attack and cast 25% faster.",
+   "RequiresAnyTag": [
+    "Minion"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "MinionSpeed",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 25,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 6,
+   "DropWeight": 70,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Stat_Speed_03_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Quicker swings and a quicker shamble."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "fork",
+   "Name": "Fork",
+   "Description": "Projectiles fork in two on hitting an enemy, each dealing 70% of the hit. A piercing projectile forks once its pierce runs out. Shuriken Fan, melee waves and Ballista bolts fork at their first enemy.",
+   "RequiresAnyTag": [
+    "Projectile"
+   ],
+   "ExcludeTags": [
+    "Channelling"
+   ],
+   "Mods": [
+    {
+     "Stat": "Fork",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 8,
+   "DropWeight": 60,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Inventory_Arrows_02_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "A split flash where the projectile forks; two copies fly on with its look."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "rain_support",
+   "Name": "Rain",
+   "Description": "The projectiles go up and rain down on the target area, striking every enemy inside three times (four times with 4 or more projectiles). 50% less damage. A Ballista's bolts rain down twice.",
+   "RequiresAnyTag": [
+    "Projectile"
+   ],
+   "ExcludeTags": [
+    "Channelling",
+    "Minion",
+    "Movement",
+    "Rain"
+   ],
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -50,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.25,
+   "Level": 10,
+   "DropWeight": 50,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Status_Targeted_02_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "Rain",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Arrows rain on the target; with an element the family's rain (meteor shower, ice rain, storm)."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "trap_support",
+   "Name": "Trap",
+   "Description": "The skill is thrown as a trap (up to 3, 16 seconds) that goes off when an enemy comes within 4 metres, then re-arms after about a second. 12% more damage and 25% increased damage; its first strike deals 15% more. Traps set off other Traps nearby. Your Traps out at once share their damage: each Trap past the first adds 5% of a Trap's damage.",
+   "RequiresAnyTag": [
+    "Projectile",
+    "Nova",
+    "Chain"
+   ],
+   "ExcludeTags": [
+    "Channelling",
+    "Totem",
+    "Minion",
+    "Movement"
+   ],
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 12,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 25,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 10,
+   "DropWeight": 50,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Map_Target_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "Trap",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "A thrown trap burrows into the ground, hidden; it flares and strikes when an enemy comes near, then re-arms."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "afterimage",
+   "Name": "Afterimage",
+   "Description": "Supported melee attacks are repeated once by a ghost of the swing. 20% less damage. Multi-blow skills repeat every blow. Repeats from a support gem and from your gear or passive tree stack, but the repeats from the smaller of the two deal 50% less damage.",
+   "RequiresAnyTag": [
+    "Melee"
+   ],
+   "ExcludeTags": [
+    "Channelling",
+    "Movement"
+   ],
+   "Mods": [
+    {
+     "Stat": "Repeats",
+     "Mode": "Flat",
+     "Tags": [
+      "Melee"
+     ],
+     "Value": 1,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -20,
+     "Value2": 0
+    },
+    {
+     "Stat": "RepeatOwnDamage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -20,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.2,
+   "Level": 8,
+   "DropWeight": 60,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Status_Invisble_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "Echo"
+    ],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "An amethyst afterimage repeats every swing a moment later."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "affliction_support",
+   "Name": "Affliction",
+   "Description": "+35% chance to Ignite and +35% chance to Poison. 50% increased Burning and Poison damage. 10% less damage with hits.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Aura"
+   ],
+   "Mods": [
+    {
+     "Stat": "IgniteChance",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 35,
+     "Value2": 0
+    },
+    {
+     "Stat": "PoisonChance",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 35,
+     "Value2": 0
+    },
+    {
+     "Stat": "IgniteDamage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 50,
+     "Value2": 0
+    },
+    {
+     "Stat": "PoisonDamage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 50,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -10,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 12,
+   "DropWeight": 50,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Status_Down_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Burns and poisons linger on what it strikes."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "stormfrost_support",
+   "Name": "Stormfrost",
+   "Description": "+25% chance to Shock and 50% increased effect of Shock. Cold hits build up Freeze 60% faster, and its Lightning damage is 15% more against Chilled or Frozen enemies.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Aura"
+   ],
+   "Mods": [
+    {
+     "Stat": "ShockChance",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 25,
+     "Value2": 0
+    },
+    {
+     "Stat": "ShockEffect",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 50,
+     "Value2": 0
+    },
+    {
+     "Stat": "FreezeDuration",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 60,
+     "Value2": 0
+    },
+    {
+     "Stat": "ChilledLightningMore",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 15,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 12,
+   "DropWeight": 50,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Inventory_Magic_02_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Shock and frost bite deeper."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "repeat_support",
+   "Name": "Repeat",
+   "Description": "Bow skills fire 1 more time, a moment later (a Ballista fires each bolt twice). Channelled skills strike 1 more time inside each pulse. 45% less damage. Repeats from a support gem and from your gear or passive tree stack, but the repeats from the smaller of the two deal 50% less damage.",
+   "RequiresAnyTag": [
+    "Bow",
+    "Channelling"
+   ],
+   "ExcludeTags": [
+    "Minion"
+   ],
+   "Mods": [
+    {
+     "Stat": "Repeats",
+     "Mode": "Flat",
+     "Tags": [
+      "Bow"
+     ],
+     "Value": 1,
+     "Value2": 0
+    },
+    {
+     "Stat": "ChannelRepeats",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -45,
+     "Value2": 0
+    },
+    {
+     "Stat": "RepeatOwnDamage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -40,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.2,
+   "Level": 24,
+   "DropWeight": 50,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Inventory_Notes_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "Echo"
+    ],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "An echo of the shot or the spin follows the first."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "cast_on_crit",
+   "Name": "Cast on Crit",
+   "Description": "Your critical hits trigger this skill. A linked spell casts on your skill's crits; an unlinked spell casts itself (one cast per 0.3 seconds); an unlinked attack strikes again on another attack's crit (one strike per 0.75 seconds, 58% less damage in all). All your Cast on Crit share one 0.15 second clock. Triggered skills deal 25% less damage, must be on your skill bar and never spend your last 20% of mana. Movement, channelled, summon, totem and aura skills are never triggered.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Totem",
+    "Minion",
+    "Vow"
+   ],
+   "Mods": [
+    {
+     "Stat": "TrigCooldown",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 0.15,
+     "Value2": 0
+    },
+    {
+     "Stat": "ConduitCostPct",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 100,
+     "Value2": 0
+    },
+    {
+     "Stat": "TrigDamage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -25,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 16,
+   "DropWeight": 40,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Map_Lightning_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "A crit flashes the linked spell's colour at the hand; the spell flies at the enemy struck."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "cast_when_hit",
+   "Name": "Cast when Hit",
+   "Description": "Each time you take damage equal to 10% of your maximum life, the linked spell casts at the attacker (once per 0.5 seconds, 50% of its mana cost, never your last 20% of mana). It deals 10% less damage. One link per skill. Movement, channelled, summon, totem and aura skills are never triggered.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Totem",
+    "Minion"
+   ],
+   "Mods": [
+    {
+     "Stat": "TrigLifePct",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 10,
+     "Value2": 0
+    },
+    {
+     "Stat": "TrigCooldown",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 0.5,
+     "Value2": 0
+    },
+    {
+     "Stat": "ConduitCostPct",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 50,
+     "Value2": 0
+    },
+    {
+     "Stat": "TrigDamage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -10,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 12,
+   "DropWeight": 40,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Inventory_Shields_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Struck hard, the hero answers with the linked spell."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "cast_on_minion_death",
+   "Name": "Cast on Minion Death",
+   "Description": "When a minion from this skill dies, the linked spell casts itself at the enemy nearest to where it fell, at most once per second, for 50% of its mana cost, never your last 20% of mana. The spell deals 10% less damage. Drop a spell on it to link it. One link per skill.",
+   "RequiresAnyTag": [
+    "Minion"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "TrigCooldown",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1.0,
+     "Value2": 0
+    },
+    {
+     "Stat": "ConduitCostPct",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 50,
+     "Value2": 0
+    },
+    {
+     "Stat": "TrigDamage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -10,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 12,
+   "DropWeight": 40,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Map_Skull_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "A fallen minion's last act: the linked spell at the nearest enemy."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "rend",
+   "Name": "Rend",
+   "Description": "Physical hits have a 50% chance to cause Bleeding: 40% of the hit's physical damage per second for 4 s (50% more while the enemy moves). 12% more and 100% increased Bleeding damage. Slams and crits cash 50% of the next 4 s at once.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion"
+   ],
+   "Mods": [
+    {
+     "Stat": "BleedChance",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 50,
+     "Value2": 0
+    },
+    {
+     "Stat": "BleedDamage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 12,
+     "Value2": 0
+    },
+    {
+     "Stat": "BleedDamage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 100,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 1,
+   "DropWeight": 60,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Status_Wounded_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Struck foes bleed."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "deep_wounds",
+   "Name": "Deep Wounds",
+   "Description": "+40% to Damage over Time Multiplier for this skill: its Ignites, Poisons and Bleeding deal more. Hits are unchanged. Slams and crits cash 50% of the next 4 s of bleed at once. Minion skills at half strength.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion"
+   ],
+   "Mods": [
+    {
+     "Stat": "DotMulti",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 40,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 8,
+   "DropWeight": 40,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Status_Wounded_02_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Its wounds keep working."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "living_storm",
+   "Name": "Gathering Storm",
+   "Description": "Shocks from this skill stack: 2 more Shocks on an enemy (3 in all), up to 75% more damage taken. Each Shock scales with the Lightning in its hit. +25% chance to Shock with Lightning hits. Minion skills at half strength.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion"
+   ],
+   "Mods": [
+    {
+     "Stat": "ShockStacks",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 2,
+     "Value2": 0
+    },
+    {
+     "Stat": "ShockChance",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 25,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 8,
+   "DropWeight": 40,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Element_Air_02_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Shocks pile up on the enemy."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "contagion_flame",
+   "Name": "Contagious Flame",
+   "Description": "When an enemy this skill ignited dies, its Ignite spreads to enemies within 4.5 m. While burning, it also passes its Ignite each second to the nearest enemy within 3 m. +15% chance to Ignite with Fire hits. Minion skills at half strength.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion"
+   ],
+   "Mods": [
+    {
+     "Stat": "IgniteSpreadOnKill",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 100,
+     "Value2": 0
+    },
+    {
+     "Stat": "IgniteChance",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 15,
+     "Value2": 0
+    },
+    {
+     "Stat": "IgniteSpreadTick",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 8,
+   "DropWeight": 40,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Map_Dragon_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Fire jumps from the dead to the living."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "shatter",
+   "Name": "Shatter",
+   "Description": "Chilled or Frozen enemies this skill kills shatter: 12% of their maximum Life (counted at Rupture Level 150 at most, without pack bonus life) as Cold damage to enemies within 3.5 m, chilling them; an enemy the burst kills shatters in turn. 20% increased effect of Chill. Minions: half strength.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion"
+   ],
+   "Mods": [
+    {
+     "Stat": "ShatterOnKill",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 12,
+     "Value2": 0
+    },
+    {
+     "Stat": "ChillEffect",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 20,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 8,
+   "DropWeight": 40,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Status_BrokenBones_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "The frozen dead burst into ice."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "melee_splash",
+   "Name": "Melee Splash",
+   "Description": "Every blow splashes: enemies within 2 metres of each enemy struck take 55% of the blow's damage (once per blow). 10% less damage. Works on minions: their blows splash too.",
+   "RequiresAnyTag": [
+    "Melee",
+    "Minion"
+   ],
+   "ExcludeTags": [
+    "Channelling"
+   ],
+   "Mods": [
+    {
+     "Stat": "MeleeSplash",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 55,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -10,
+     "Value2": 0
+    },
+    {
+     "Stat": "Phys70",
+     "Mode": "Flag",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 4,
+   "DropWeight": 70,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Inventory_Maces_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "A red dust ring bursts round each enemy struck."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "multistrike",
+   "Name": "Multistrike",
+   "Description": "The melee attack strikes 3 times: it repeats 2 more times, and every strike deals 44% of the damage (56% less). Multi-blow skills repeat every blow. On a minion skill, each of its blows strikes 2 more times. Repeats from a support gem and from your gear or passive tree stack, but the repeats from the smaller of the two deal 50% less damage.",
+   "RequiresAnyTag": [
+    "Melee",
+    "Minion"
+   ],
+   "ExcludeTags": [
+    "Channelling"
+   ],
+   "Mods": [
+    {
+     "Stat": "Repeats",
+     "Mode": "Flat",
+     "Tags": [
+      "Melee"
+     ],
+     "Value": 2,
+     "Value2": 0
+    },
+    {
+     "Stat": "MinionStrikes",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 2,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -56,
+     "Value2": 0
+    },
+    {
+     "Stat": "Phys70",
+     "Mode": "Flag",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    },
+    {
+     "Stat": "RepeatOwnDamage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -56,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.25,
+   "Level": 12,
+   "DropWeight": 55,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Inventory_Swords_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Two quick ghost strikes follow every blow."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "maim",
+   "Name": "Maim",
+   "Description": "Hits Maim the enemy for 4 s: it moves 30% slower and takes 10% more Physical damage from hits by you, your minions and your allies (not Bleed). 8% more Physical damage. Only Physical counts: converted damage gains nothing.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Minion"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "MaimOnHit",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 10,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Physical"
+     ],
+     "Value": 8,
+     "Value2": 0
+    },
+    {
+     "Stat": "Phys70",
+     "Mode": "Flag",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 1,
+   "DropWeight": 80,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Status_Encumbered_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Maimed enemies limp, marked with blood."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "ruthless",
+   "Name": "Ruthless",
+   "Description": "Every third blow is a Ruthless blow: 60% more Physical damage on that hit (the Bleed or Poison it starts is not raised) and a heavy, bloody impact. Works on minions: every third blow of each minion.",
+   "RequiresAnyTag": [
+    "Melee",
+    "Minion"
+   ],
+   "ExcludeTags": [
+    "Channelling"
+   ],
+   "Mods": [
+    {
+     "Stat": "RuthlessBlow",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 60,
+     "Value2": 0
+    },
+    {
+     "Stat": "Phys70",
+     "Mode": "Flag",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 8,
+   "DropWeight": 60,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Inventory_Axes_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.2,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "The third blow lands heavy: blood and a harder shake."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "executioner",
+   "Name": "Executioner",
+   "Description": "35% more damage to enemies below half life on the physical part of a hit (14% on fire, cold, lightning, poison); hits kill enemies left below 10% life (Guardians too). Hits only, not Bleed, Poison or Ignite. Works with bows and minions.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Minion"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "LowLifeMore",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 35,
+     "Value2": 0
+    },
+    {
+     "Stat": "CullingStrike",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 10,
+     "Value2": 0
+    },
+    {
+     "Stat": "Phys70",
+     "Mode": "Flag",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 18,
+   "DropWeight": 50,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Status_Dead_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "A culled enemy is cut down in a red burst."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "vicious_projectiles",
+   "Name": "Vicious Projectiles",
+   "Description": "12% more Physical damage with projectiles and 100% increased Physical damage with projectile attacks, 10% less attack speed. Only the Physical part counts, so a conversion support takes it away. Minions that shoot at half strength.",
+   "RequiresAnyTag": [
+    "Projectile"
+   ],
+   "ExcludeTags": [
+    "Minion"
+   ],
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Physical",
+      "Projectile"
+     ],
+     "Value": 12,
+     "Value2": 0
+    },
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -10,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Physical",
+      "Projectile",
+      "Attack"
+     ],
+     "Value": 100,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 8,
+   "DropWeight": 60,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Inventory_Arrows_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [
+     "Heavy"
+    ],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.1,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Heavier physical impacts on projectile hits."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "added_cold",
+   "Name": "Added Cold",
+   "Description": "Adds 3 to 4 cold damage to spells and attacks, scaled up by the skill's gem level like its own damage. Steadier than Added Lightning (1 to 6) for the same average: it chills where Added Lightning shocks.",
+   "RequiresAnyTag": [
+    "Spell",
+    "Attack"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "AddedDamage",
+     "Mode": "Flat",
+     "Tags": [
+      "Cold",
+      "GemScaled"
+     ],
+     "Value": 3,
+     "Value2": 4
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 1,
+   "DropWeight": 80,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Status_Wet_01_Clean",
+   "Visual": {
+    "Element": "Cold",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Frost rims the spell's hits."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "chain_detonation",
+   "Name": "Chain Detonation",
+   "Description": "Supports Traps. A Trap that goes off sets off your other Traps nearby in a chain, at 100% increased distance. Each Trap further down the chain deals 8% more damage. +1 maximum Traps.",
+   "RequiresAnyTag": [
+    "Projectile",
+    "Nova",
+    "Chain"
+   ],
+   "ExcludeTags": [
+    "Channelling",
+    "Totem",
+    "Minion",
+    "Movement"
+   ],
+   "Mods": [
+    {
+     "Stat": "TrapChainRadius",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 100,
+     "Value2": 0
+    },
+    {
+     "Stat": "TrapChainLink",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 8,
+     "Value2": 0
+    },
+    {
+     "Stat": "TrapCount",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 14,
+   "DropWeight": 40,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Status_FortifiedAttack_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "r76 TRAPS: a chain reaction of explosions. Hidden from drops while [r76.TRAPS] is off."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "volatile_dead",
+   "Name": "Volatile Dead",
+   "Description": "Minions explode where they fall: killed, expired, or replaced past your limit. Each blast deals Fire damage in 3 m equal to 80% of its hit damage. Recast at your limit to detonate your oldest minions.",
+   "RequiresAnyTag": [
+    "Minion"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "VolatileDead",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 20,
+     "Value2": 0
+    },
+    {
+     "Stat": "VolatileDeadHit",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 50,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 8,
+   "DropWeight": 50,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Status_AttackBroken_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "r85 TRUST: the dead go up in fire. Hidden from drops while [r85.TRUST] bVolatileDead is off."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "funeral_pyre",
+   "Name": "Funeral Pyre",
+   "Description": "Enemies killed by the skill's hits burst into flame, dealing Fire damage in 2.5 m equal to 15% of their maximum Life (counted at Rupture Level 150 at most). The burst is not a hit, so it never chains.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion"
+   ],
+   "Mods": [
+    {
+     "Stat": "CorpsePyre",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 15,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 8,
+   "DropWeight": 50,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Inventory_Minerals_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "r85 TRUST: the slain burst into fire. Weight 0 while [r85.TRUST] bFuneralPyre is off."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "inspiration",
+   "Name": "Inspiration",
+   "Description": "The linked skill costs 25% less. No damage of its own: it keeps a spammed spell or attack firing.",
+   "RequiresAnyTag": [
+    "Spell",
+    "Attack"
+   ],
+   "ExcludeTags": [
+    "Vow"
+   ],
+   "Mods": [],
+   "ManaMultiplier": 0.75,
+   "Level": 4,
+   "DropWeight": 60,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Stat_Wisdom_01_Clean",
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   },
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the skill simply costs less."
+   },
+   "Sfx": {}
+  },
+  {
+   "Id": "economical_vow",
+   "Name": "Economical Vow",
+   "Description": "The linked Vow or Herald reserves a further 10% less of your pool. Every Vow and Herald already reserves 20% less on its own (patch 82), so this gem is for the hero who wants room for one more Vow.",
+   "RequiresAnyTag": [
+    "Vow"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "VowReserveLess",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 10,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 8,
+   "DropWeight": 45,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Inventory_Currency_02_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the orb shows less held back."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "wide_burst",
+   "Name": "Wide Burst",
+   "Description": "The linked Herald's kill effect reaches 60% further: Embers and Rot burst over 4 metres, Rime shatters over 4.8 metres, Storms arcs to enemies within 8 metres. The extra damage share on your hits is unchanged.",
+   "RequiresAnyTag": [
+    "Herald"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "HeraldKillRadius",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 60,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 12,
+   "DropWeight": 40,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Map_Magic_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the same kill effect over a wider ring."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "ruinous_herald",
+   "Name": "Ruinous Herald",
+   "Description": "The linked Herald's kill effect deals 60% more damage (Embers 12% of the slain enemy's maximum life becomes 19.2%). Kills that chain into kills: a clear speed pick. The extra damage share on your hits is unchanged.",
+   "RequiresAnyTag": [
+    "Herald"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "HeraldKillMore",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 60,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 12,
+   "DropWeight": 40,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Inventory_Magic_03_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the kill effect hits harder."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "lingering_woe",
+   "Name": "Lingering Woe",
+   "Description": "The linked Woe builds Dread 50% faster and lasts 50% longer on every enemy it touches (cast, channelled, borne by Woe Bearer or sworn with Woebringer).",
+   "RequiresAnyTag": [
+    "Woe"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "WoeLinger",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 50,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 10,
+   "DropWeight": 40,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Status_Hunger_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the Woe's sigil stays longer and its ring fills faster."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "dawnbringer",
+   "Name": "Dawnbringer",
+   "Description": "Every third hit of the linked Holy attack calls a pillar of dawn, dealing 120% of the hit as Fire damage (once per second per enemy). For Holy Slash, Hallowed Slam, Holy Charge and Shield Throw.",
+   "RequiresAnyTag": [
+    "Holy"
+   ],
+   "ExcludeTags": [
+    "Spell"
+   ],
+   "Mods": [
+    {
+     "Stat": "Trigger",
+     "Mode": "Trigger",
+     "Tags": [
+      "Hit",
+      "DawnPillar",
+      "Holy",
+      "Nth=3",
+      "Pct=120",
+      "Delay=0.2",
+      "PerTarget=1",
+      "Element=Fire"
+     ],
+     "Value": 100,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 14,
+   "DropWeight": 40,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Status_XP_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Dawn Pillar: the Dawnmarch light column on the struck enemy."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "grave_conscription",
+   "Name": "Grave Conscription",
+   "Description": "Enemies killed by the linked attack have a 25% chance to rise as your Zombie while you have fewer than 4 (once per 0.5 s). Your minion damage and life apply to them.",
+   "RequiresAnyTag": [
+    "Attack"
+   ],
+   "ExcludeTags": [
+    "Minion"
+   ],
+   "Mods": [
+    {
+     "Stat": "Trigger",
+     "Mode": "Trigger",
+     "Tags": [
+      "Kill",
+      "Raise",
+      "Minion=summon_zombie",
+      "Max=4",
+      "Delay=0.4"
+     ],
+     "Value": 25,
+     "Value2": 0.5
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 18,
+   "DropWeight": 35,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Inventory_Gauntlet_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Zombies rise from the corpse with the Gravecleaver raise."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "venom_bloom",
+   "Name": "Venom Bloom",
+   "Description": "Every fourth hit of the linked Poison attack bursts in venom: enemies within 2.5 m take 45% of the hit as Poison damage, each enemy at most once every 0.5 seconds. For Gravereap, Soul Rend and Marrow Lance.",
+   "RequiresAnyTag": [
+    "Poison"
+   ],
+   "ExcludeTags": [
+    "Spell"
+   ],
+   "Mods": [
+    {
+     "Stat": "Trigger",
+     "Mode": "Trigger",
+     "Tags": [
+      "Hit",
+      "Nova",
+      "Poison",
+      "Nth=4",
+      "Pct=45",
+      "Radius=250",
+      "PerTarget=0.5",
+      "Element=Poison"
+     ],
+     "Value": 100,
+     "Value2": 0.2
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 16,
+   "DropWeight": 40,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Inventory_Plants_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Poison nova: the Plaguewright cloud at a support's dose."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "sanctified_support",
+   "Name": "Sanctifying Light",
+   "Description": "Holy attacks: 60% of Fire, Cold and Lightning damage converts to Physical (Poison 30%), so added elemental damage feeds your Physical bonuses. 8% more Physical damage and 15% increased Physical damage. Pairs with Brutality.",
+   "RequiresAnyTag": [
+    "Holy"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Spell"
+   ],
+   "Mods": [
+    {
+     "Stat": "Convert",
+     "Mode": "Flat",
+     "Tags": [
+      "Physical"
+     ],
+     "Value": 60,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Physical",
+      "Attack"
+     ],
+     "Value": 8,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Physical",
+      "Attack"
+     ],
+     "Value": 15,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 12,
+   "DropWeight": 45,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Status_Health_02_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the skill's own holy light."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "whirling_host",
+   "Name": "Whirling Host",
+   "Description": "The linked Orbit skill adds one more blade or hammer per cast and its ring holds one more (Blade Vortex 9, Orbiting Hammers 4), each dealing 15% less damage.",
+   "RequiresAnyTag": [
+    "Orbit"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "OrbitCount",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    },
+    {
+     "Stat": "OrbitMax",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -15,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 14,
+   "DropWeight": 40,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Inventory_Gauntlets_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: one more blade or hammer in the ring."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "conjured_pair",
+   "Name": "Conjured Pair",
+   "Description": "The linked Orb skill keeps one more orb at a time (Winter Orb: two orbs by your shoulders, both formed by one cast), each dealing 35% less damage. Twice the icicles over twice the ground: more coverage, a little more damage in all.",
+   "RequiresAnyTag": [
+    "Orb"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "OrbCount",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -35,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 14,
+   "DropWeight": 40,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Inventory_Rings_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: a second orb."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "rampart_strike",
+   "Name": "Rampart Strike",
+   "Description": "The linked Shield attack deals 0.8% more damage per 1% chance to block you have (50% block: 40% more). For Shield Charge, Holy Charge and Shield Throw.",
+   "RequiresAnyTag": [
+    "Shield"
+   ],
+   "ExcludeTags": [
+    "Spell"
+   ],
+   "Mods": [
+    {
+     "Stat": "BlockToDamage",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 0.8,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 12,
+   "DropWeight": 40,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Inventory_Armor_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the shield's own hit."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "deepened_woe",
+   "Name": "Deepened Woe",
+   "Description": "Every line of the linked Woe is 21% stronger: the damage it makes enemies take, the resistance it lowers, the damage they deal less and its slow. The Woe's own build, for when one Woe carries the whole party.",
+   "RequiresAnyTag": [
+    "Woe"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "CurseMore",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 21,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 16,
+   "DropWeight": 40,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Status_Thirst_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the Woe's own sigil."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "tempered_aura",
+   "Name": "Tempered Aura",
+   "Description": "The linked damaging aura gnaws 40% less of your life (Unholy Void 0.9% to 0.54% a second, Pyre of Faith 6% to 3.6%). Stand in the fire longer: the support for life stacking aura builds.",
+   "RequiresAnyTag": [
+    "Aura"
+   ],
+   "ExcludeTags": [
+    "Vow",
+    "Herald"
+   ],
+   "Mods": [
+    {
+     "Stat": "AuraDrainLess",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 40,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 12,
+   "DropWeight": 40,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Status_DefenseUp_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the aura's own ring."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "spreading_pyre",
+   "Name": "Spreading Pyre",
+   "Description": "The linked corpse skill's fire leaps to 3 more fresh corpses, each within the burst's radius of the last, bursting at 70% of the one before (Pyre Burst at gem 20: 10%, 7%, 4.9%, 3.4% of the slain's life (counted at Rupture Level 150 at most, without pack bonus life)). Corpses its fire makes carry it on.",
+   "RequiresAnyTag": [
+    "Corpse"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "PyreChain",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 3,
+     "Value2": 0
+    },
+    {
+     "Stat": "PyreChainShare",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 70,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 14,
+   "DropWeight": 40,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Map_Tavern_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: each leap plays the corpse fire burst."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "defiant_roar",
+   "Name": "Defiant Roar",
+   "Description": "The linked war cry also grants a Fury charge for each Resolve charge, and Resolve lasts 50% longer (10 s to 15 s). Fury: 8% increased damage and 4% increased attack and cast speed each, 5 charges at most.",
+   "RequiresAnyTag": [
+    "Cry"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "CryFury",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    },
+    {
+     "Stat": "CryLinger",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 50,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 14,
+   "DropWeight": 40,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Status_DefenseUp_02_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the roar's ring, with the Fury charges lighting on the bar."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "rallying_standard",
+   "Name": "Rallying Standard",
+   "Description": "The linked War Banner lands with 5 Valour, keeps all of its Valour when moved (not half), and holds 10 more (30). Each Valour is 0.5% more damage taken by enemies near it.",
+   "RequiresAnyTag": [
+    "Banner"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "BannerStartValour",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 5,
+     "Value2": 0
+    },
+    {
+     "Stat": "BannerKeepValour",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 100,
+     "Value2": 0
+    },
+    {
+     "Stat": "ValourMax",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 10,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 14,
+   "DropWeight": 40,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Inventory_Helmets_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the banner's own ring and Valour tile."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "focused_volley",
+   "Name": "Focused Volley",
+   "Description": "The linked bow skill fires 1 more arrow, and all its arrows fly on one line at your target. Each arrow after the first deals 35% of the one before it. 15% less damage. A Guardian killer: you give up the spread.",
+   "RequiresAnyTag": [
+    "Bow"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "Projectiles",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    },
+    {
+     "Stat": "FocusVolley",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    },
+    {
+     "Stat": "FocusShare",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 35,
+     "Value2": 0
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -15,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 14,
+   "DropWeight": 40,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Inventory_Guns_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the arrows fly in a tight line."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "killer_instinct",
+   "Name": "Killer Instinct",
+   "Description": "Linked minions gain +2% base critical strike chance, 100% increased critical strike chance and +20% to critical strike multiplier.",
+   "RequiresAnyTag": [
+    "Minion"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "CritChance",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 2,
+     "Value2": 0
+    },
+    {
+     "Stat": "CritChance",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 100,
+     "Value2": 0
+    },
+    {
+     "Stat": "CritMulti",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 20,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 16,
+   "DropWeight": 40,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Status_Critical_03_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: minion crits show the usual crit hit."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "ironclad_fury",
+   "Name": "Ironclad Fury",
+   "Description": "The linked skill deals 0.25% more damage per 1,000 Armour you have (40,000 Armour: 10% more). Any attack or spell, totems and traps too.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow",
+    "Herald",
+    "Woe"
+   ],
+   "Mods": [
+    {
+     "Stat": "ArmourMore",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 0.25,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 12,
+   "DropWeight": 40,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Inventory_LegArmor_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the skill's own hit."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "kindling_support",
+   "Name": "Kindling",
+   "Description": "Spells only. Each kill with the linked spell grants 1 stack of Kindling: 0.5% increased spell damage and 0.2% increased cast speed per stack, up to 50 stacks. Each stack lasts 5 seconds.",
+   "RequiresAnyTag": [
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow"
+   ],
+   "Mods": [
+    {
+     "Stat": "KindlingOnKill",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.05,
+   "Level": 6,
+   "DropWeight": 55,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Inventory_Crafting_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the Kindling tile counts up."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "fervent_vow",
+   "Name": "Fervent Vow",
+   "Description": "Every line of the linked Vow gets another 15% of its base value while sworn, its Vowbreak too (Vow of Iron at gem level 20: 50.6% to 57.2% more Armour). Heralds grow with Herald Effect.",
+   "RequiresAnyTag": [
+    "Vow"
+   ],
+   "ExcludeTags": [
+    "Herald"
+   ],
+   "Mods": [
+    {
+     "Stat": "VowEffect",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 15,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 14,
+   "DropWeight": 0,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Status_DefenseUp_03_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "No new look: the Vow's ring burns a little brighter in its colour."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.95,
+    "G": 0.62,
+    "B": 0.22,
+    "A": 1
+   }
+  },
+  {
+   "Id": "arc_conduit",
+   "Name": "Arc Conduit",
+   "Description": "When this skill hits a Shocked enemy, lightning arcs to the 2 nearest other Shocked enemies within 8 m for 40% of the hit (twice per second per enemy, no re-arcing). +20% chance to Shock with Lightning hits.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow",
+    "Herald",
+    "Woe",
+    "Sentence",
+    "Cry",
+    "Aura"
+   ],
+   "Mods": [
+    {
+     "Stat": "ShockArc103",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 40,
+     "Value2": 0
+    },
+    {
+     "Stat": "ShockArcCount103",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 2,
+     "Value2": 0
+    },
+    {
+     "Stat": "ShockChance",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 20,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 8,
+   "DropWeight": 0,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Status_Shocked_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Hits on the shocked arc to the shocked."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "frostbreak",
+   "Name": "Frostbreak",
+   "Description": "Hits deal 50% more damage to a Brittle Guardian or boss (5.5 s after its freeze bar fills). Hits on a Chilled or Frozen enemy shed shards: 25% of the hit as Cold damage to up to 6 enemies within 3 m (twice a second per enemy).",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow",
+    "Herald",
+    "Woe",
+    "Sentence",
+    "Cry",
+    "Aura"
+   ],
+   "Mods": [
+    {
+     "Stat": "FreezeBreak103",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 50,
+     "Value2": 0
+    },
+    {
+     "Stat": "FreezeShard103",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 25,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 12,
+   "DropWeight": 0,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Status_Cold_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Breaks the ice it finds."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "wildfire",
+   "Name": "Wildfire",
+   "Description": "When this skill hits a Burning enemy, flames leap to the 2 nearest enemies within 5 m that are not burning: each takes 30% of the hit as Fire damage and is always Ignited (twice a second per enemy). +15% chance to Ignite with Fire hits.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow",
+    "Herald",
+    "Woe",
+    "Sentence",
+    "Cry",
+    "Aura"
+   ],
+   "Mods": [
+    {
+     "Stat": "IgniteLeap103",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 30,
+     "Value2": 0
+    },
+    {
+     "Stat": "IgniteLeapCount103",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 2,
+     "Value2": 0
+    },
+    {
+     "Stat": "IgniteChance",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 15,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 8,
+   "DropWeight": 0,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Status_Burninating_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Fire walks from the burning to the rest."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "haemorrhage",
+   "Name": "Haemorrhage",
+   "Description": "Hits of this skill deal 40% more damage to an enemy Bleeding from another of your skills (its own bleed does not count). Open with a bleed, then tear it with this.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow",
+    "Herald",
+    "Woe",
+    "Sentence",
+    "Cry",
+    "Aura"
+   ],
+   "Mods": [
+    {
+     "Stat": "BleedTear103",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 40,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 12,
+   "DropWeight": 0,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Status_Bleeding_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Tears open the wounds your other skills cut."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "lone_herald",
+   "Name": "Lone Herald",
+   "Description": "The linked Herald's extra damage and kill effect are 15% stronger for each other Herald you have not sworn. Alone it is 60% stronger. With every Herald sworn it adds nothing. The reservation the other Heralds would take is yours to spend.",
+   "RequiresAnyTag": [
+    "Herald"
+   ],
+   "ExcludeTags": [],
+   "Mods": [
+    {
+     "Stat": "HeraldFocus103",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 15,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 16,
+   "DropWeight": 0,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Map_Star_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "One Herald, sworn alone."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "woeweaver",
+   "Name": "Woeweaver",
+   "Description": "Hits of this skill deal 25% more damage to an enemy bearing exactly one Woe, 10% more with two, none more with three or more.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow",
+    "Herald",
+    "Woe",
+    "Sentence",
+    "Cry",
+    "Aura"
+   ],
+   "Mods": [
+    {
+     "Stat": "WoeWeave103",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 25,
+     "Value2": 0
+    },
+    {
+     "Stat": "WoeWeaveLess103",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 15,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 12,
+   "DropWeight": 0,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Status_Cursed_03_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "One Woe, woven deep."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "quarry_command",
+   "Name": "Quarry Command",
+   "Description": "Linked minions hunt your quarry: the last enemy you hit yourself in 6 s, within 15 m. They deal 30% more damage to it and 30% less to every other enemy while you have a quarry.",
+   "RequiresAnyTag": [
+    "Minion"
+   ],
+   "ExcludeTags": [
+    "Vow"
+   ],
+   "Mods": [
+    {
+     "Stat": "MinionQuarry103",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 30,
+     "Value2": 0
+    },
+    {
+     "Stat": "MinionQuarryLess103",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 30,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 10,
+   "DropWeight": 0,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Map_Flag_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Your minions take the enemy you strike."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "skyward_oath",
+   "Name": "Skyward Oath",
+   "Description": "Critical strikes of the linked Melee attack call down 2 Sky Swords on the enemy, each dealing 24% of that critical hit (once a second), within 2.5 m. They are not hits of the attack and trigger nothing.",
+   "RequiresAnyTag": [
+    "Melee"
+   ],
+   "ExcludeTags": [
+    "Channelling",
+    "Minion",
+    "Spell"
+   ],
+   "Mods": [
+    {
+     "Stat": "Trigger",
+     "Mode": "Trigger",
+     "Tags": [
+      "Crit",
+      "SkySwords",
+      "Melee",
+      "Count=2",
+      "Pct=24",
+      "Radius=250",
+      "Delay=0.35"
+     ],
+     "Value": 100,
+     "Value2": 1.0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 16,
+   "DropWeight": 40,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Status_FortifiedHealth_02_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Sky Swords: The First Vow's falling blades at a support's dose."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  },
+  {
+   "Id": "stormhound_pact",
+   "Name": "Stormhound Pact",
+   "Description": "Critical strikes of the linked Lightning spell loose a Storm Wolf for 4 seconds (at most 2 wolves). Each wolf leaps at an enemy within 8 metres every 0.8 seconds for 16% of that critical hit as Lightning damage.",
+   "RequiresAnyTag": [
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow",
+    "Herald",
+    "Woe",
+    "Sentence",
+    "Cry",
+    "Aura",
+    "Totem"
+   ],
+   "Mods": [
+    {
+     "Stat": "Trigger",
+     "Mode": "Trigger",
+     "Tags": [
+      "Crit",
+      "StormWolf",
+      "Lightning",
+      "Pct=16",
+      "Life=4",
+      "Max=2",
+      "Radius=800",
+      "Interval=0.8"
+     ],
+     "Value": 100,
+     "Value2": 1.0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 20,
+   "DropWeight": 40,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Map_Horse_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Storm Wolf: the Stormstring wolf at a support's dose."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "pale_apprentices",
+   "Name": "Pale Apprentices",
+   "Description": "Enemies the linked spell kills have a 20% chance to rise as one of your Skeletal Mages (up to 3 this way, once per 0.5 s). Your minion damage and life apply; so do the minion supports of Summon Skeletal Mage.",
+   "RequiresAnyTag": [
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow",
+    "Herald",
+    "Woe",
+    "Sentence",
+    "Cry",
+    "Aura"
+   ],
+   "Mods": [
+    {
+     "Stat": "Trigger",
+     "Mode": "Trigger",
+     "Tags": [
+      "Kill",
+      "Raise",
+      "Minion=summon_skeletal_mage",
+      "Max=3",
+      "Delay=0.4"
+     ],
+     "Value": 20,
+     "Value2": 0.5
+    }
+   ],
+   "ManaMultiplier": 1.0,
+   "Level": 18,
+   "DropWeight": 35,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Inventory_Staves_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Skeletal Mages rise from the corpse with the Gravecleaver raise."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "rimewake",
+   "Name": "Rimewake",
+   "Description": "The linked Movement skill ends in a frost burst: enemies within 3 m of the target take 25% of the hit as Cold damage (once per 0.5 s), and your Chill has 20% increased effect with it. Arrive, and the pack is cold for Shatter.",
+   "RequiresAnyTag": [
+    "Movement"
+   ],
+   "ExcludeTags": [
+    "Channelling",
+    "Minion"
+   ],
+   "Mods": [
+    {
+     "Stat": "Trigger",
+     "Mode": "Trigger",
+     "Tags": [
+      "SkillUse",
+      "Nova",
+      "Movement",
+      "Pct=25",
+      "Radius=300",
+      "Element=Cold"
+     ],
+     "Value": 100,
+     "Value2": 0.5
+    },
+    {
+     "Stat": "ChillEffect",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 20,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 12,
+   "DropWeight": 40,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Status_Stealthy_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Cold nova: the Tidebreaker frost ring at a support's dose."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "gravesown",
+   "Name": "Gravesown",
+   "Description": "While you channel the skill, a Husk claws up within 3 m every 0.6 to 0.8 s (at most 3). Otherwise 10% chance per enemy hit to leave one. A Husk is a fresh corpse for 6 s, with no experience or loot.",
+   "RequiresAnyTag": [
+    "Channelling",
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Totem"
+   ],
+   "Mods": [
+    {
+     "Stat": "Gravesown",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 3,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 8,
+   "DropWeight": 40,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Status_Up_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "r112 CORPSE MB11: Husks (ring rows, Combat/BOCorpse86.cpp). Weight 0 while [r112.CORPSE] bCorpse86 is off."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "kindled_remains",
+   "Name": "Kindled Remains",
+   "Description": "Each pulse or hit (at most 4 times a second) sets off a fresh corpse within 2.5 m. It bursts in 2 m as the skill's damage type for a share of the corpse's life (13% below Rupture Level 50, 5% at 50-99, 54% at 100-149, 99% at 150-199, 360% from 200). Cannot crit.",
+   "RequiresAnyTag": [
+    "Area",
+    "Melee",
+    "Channelling"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Totem"
+   ],
+   "Mods": [
+    {
+     "Stat": "KindlePct",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 18,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.15,
+   "Level": 12,
+   "DropWeight": 40,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasyMenus_Skull_04_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "r112 CORPSE MB11: corpse bursts round the channel (Combat/BOCorpse86.cpp). Weight 0 while [r112.CORPSE] bCorpse86 is off."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "chaos",
+   "Name": "Chaos",
+   "Description": "40% of this skill's hit damage is laid on the enemy as Entropy. It implodes 3 s later as Chaos damage, 25% more, ignoring Armour and elemental Resistance. A dying enemy bursts 30% of its Entropy onto enemies within 3 m. No Ailments or Leech.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow",
+    "Herald",
+    "Woe",
+    "Sentence",
+    "Cry",
+    "Aura"
+   ],
+   "Mods": [
+    {
+     "Stat": "EntropyShare",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 40,
+     "Value2": 0
+    },
+    {
+     "Stat": "EntropyMore",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 25,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.2,
+   "Level": 18,
+   "DropWeight": 0,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Stat_Charisma_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "A debt that comes due."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "entropic_focus",
+   "Name": "Entropic Focus",
+   "Description": "Entropy this skill lays implodes for 22% more damage.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow",
+    "Herald",
+    "Woe",
+    "Sentence",
+    "Cry",
+    "Aura"
+   ],
+   "Mods": [
+    {
+     "Stat": "EntropyMore",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 22,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.25,
+   "Level": 27,
+   "DropWeight": 0,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Stat_Luck_01_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "The longer it is owed, the more it takes."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "hastened_ruin",
+   "Name": "Hastened Ruin",
+   "Description": "Entropy this skill starts on an enemy implodes after 1.5 seconds instead of 3. Entropy this skill lays implodes for 10% less damage. Quiet Ruin has no timer to shorten.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow",
+    "Herald",
+    "Woe",
+    "Sentence",
+    "Cry",
+    "Aura"
+   ],
+   "Mods": [
+    {
+     "Stat": "EntropyDelay",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1.5,
+     "Value2": 0
+    },
+    {
+     "Stat": "EntropyMore",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -10,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.1,
+   "Level": 24,
+   "DropWeight": 0,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Stat_Wisdom_02_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Called in early."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "gathering_dark",
+   "Name": "Gathering Dark",
+   "Description": "Entropy this skill starts on an enemy implodes after 6 seconds instead of 3. Entropy this skill lays implodes for 20% more damage. Sheathe, Iaido Thrust and Grave Debt still implode it early.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow",
+    "Herald",
+    "Woe",
+    "Sentence",
+    "Cry",
+    "Aura"
+   ],
+   "Mods": [
+    {
+     "Stat": "EntropyDelay",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": -3,
+     "Value2": 0
+    },
+    {
+     "Stat": "EntropyMore",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 20,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.2,
+   "Level": 27,
+   "DropWeight": 0,
+   "Attribute": "Int",
+   "Icon": "ICON_DarkFantasy_Stat_Charisma_02_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Let it gather."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.27,
+    "G": 0.107,
+    "B": 0.708,
+    "A": 1
+   }
+  },
+  {
+   "Id": "cascading_ruin",
+   "Name": "Cascading Ruin",
+   "Description": "When an enemy dies owing this skill's Entropy, 60% of it is laid on each enemy within 3 metres instead of bursting. If one of them dies owing it, it bursts for 30% and stops. Does nothing against a lone enemy.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow",
+    "Herald",
+    "Woe",
+    "Sentence",
+    "Cry",
+    "Aura"
+   ],
+   "Mods": [
+    {
+     "Stat": "EntropyCascade",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 60,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.2,
+   "Level": 27,
+   "DropWeight": 0,
+   "Attribute": "Dex",
+   "Icon": "ICON_DarkFantasy_Status_FortifiedHealth_03_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "One debt becomes many."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.028,
+    "G": 0.392,
+    "B": 0.138,
+    "A": 1
+   }
+  },
+  {
+   "Id": "pact_of_ruin",
+   "Name": "Pact of Ruin",
+   "Description": "This skill costs life instead of mana (30% more cost). A further 15% of its hit damage is laid on the enemy as Entropy instead of striking. Entropy this skill lays implodes for 12% more damage.",
+   "RequiresAnyTag": [
+    "Attack",
+    "Spell"
+   ],
+   "ExcludeTags": [
+    "Minion",
+    "Vow",
+    "Herald",
+    "Woe",
+    "Sentence",
+    "Cry",
+    "Aura"
+   ],
+   "Mods": [
+    {
+     "Stat": "BloodMagic",
+     "Mode": "Flag",
+     "Tags": [
+      "BloodMagic"
+     ],
+     "Value": 0,
+     "Value2": 0
+    },
+    {
+     "Stat": "EntropyShare",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 15,
+     "Value2": 0
+    },
+    {
+     "Stat": "EntropyMore",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 12,
+     "Value2": 0
+    }
+   ],
+   "ManaMultiplier": 1.3,
+   "Level": 27,
+   "DropWeight": 0,
+   "Attribute": "Str",
+   "Icon": "ICON_DarkFantasy_Status_FortifiedHealth_04_Clean",
+   "Visual": {
+    "Element": "",
+    "Motifs": [],
+    "Transform": "",
+    "FxScale": 1.0,
+    "Brightness": 1.0,
+    "Saturation": 1.0,
+    "ShakeMult": 1.0,
+    "HitStopMult": 1.0,
+    "CastLayers": [],
+    "HitLayers": [],
+    "ImpactLayers": [],
+    "Note": "Paid in blood, owed in ruin."
+   },
+   "Sfx": {},
+   "Color": {
+    "R": 0.552,
+    "G": 0.029,
+    "B": 0.053,
+    "A": 1
+   }
+  }
+ ]
+}

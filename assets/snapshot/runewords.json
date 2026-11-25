@@ -1,0 +1,7264 @@
+{
+ "runewords": [
+  {
+   "Id": "maelstrom",
+   "Name": "Maelstrom",
+   "Class": "Warrior",
+   "Build": "frost_storm_cyclone",
+   "Runes": [
+    "reid",
+    "kaun",
+    "hagal"
+   ],
+   "Bases": [
+    "TwoHand",
+    "OneHandSword",
+    "OneHandAxe",
+    "OneHandMace"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Area",
+      "Mode": "Inc",
+      "Tags": [
+       "Channelling"
+      ],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "DamageAsExtra",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical",
+       "Fire"
+      ],
+      "Value": 12
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "ChannelCostLess",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 20
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 90,
+      "bLocal": true
+     }
+    }
+   ],
+   "Flavour": "The storm turns, and everything near it burns.",
+   "Sockets": 3,
+   "Level": 45,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 127,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical",
+       "Melee113"
+      ],
+      "Value": 95,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 17,
+      "Value2": 30,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire",
+       "Melee113"
+      ],
+      "Value": 12,
+      "Value2": 23,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Gem",
+       "Melee"
+      ],
+      "Value": 1.0
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    56,
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    5,
+    5,
+    5
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 153,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical",
+       "Melee113"
+      ],
+      "Value": 114,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 22,
+      "Value2": 43,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire",
+       "Melee113"
+      ],
+      "Value": 16,
+      "Value2": 33,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Gem",
+       "Melee"
+      ],
+      "Value": 1.0
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 181,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical",
+       "Melee113"
+      ],
+      "Value": 135,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 28,
+      "Value2": 56,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire",
+       "Melee113"
+      ],
+      "Value": 21,
+      "Value2": 42,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Gem",
+       "Melee"
+      ],
+      "Value": 1.0
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 212,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical",
+       "Melee113"
+      ],
+      "Value": 159,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 35,
+      "Value2": 71,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire",
+       "Melee113"
+      ],
+      "Value": 27,
+      "Value2": 53,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Gem",
+       "Melee"
+      ],
+      "Value": 1.0
+     }
+    }
+   ]
+  },
+  {
+   "Id": "earthbreaker",
+   "Name": "Earthbreaker",
+   "Class": "Warrior",
+   "Build": "earthquake_jarl",
+   "Runes": [
+    "ur",
+    "tyr",
+    "kaun",
+    "dagaz"
+   ],
+   "Bases": [
+    "TwoHand"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Area",
+      "Mode": "Inc",
+      "Tags": [
+       "Slam"
+      ],
+      "Value": 20
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Slam"
+      ],
+      "Value": 40
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Trigger",
+      "Mode": "Trigger",
+      "Tags": [
+       "SkillUse",
+       "Eruption",
+       "Slam",
+       "Nth=4",
+       "Pct=50",
+       "Count=3",
+       "Radius=350",
+       "Element=Fire"
+      ],
+      "Value": 100
+     },
+     "Text": "Every fourth Slam breaks the ground: 3 spikes erupt within 3.5 metres for 50% of its hit as Fire damage"
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 120,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Afterimages",
+      "Mode": "Flat",
+      "Tags": [
+       "Melee"
+      ],
+      "Value": 1
+     }
+    }
+   ],
+   "Flavour": "Strike the earth four times, and the fifth time it answers.",
+   "Sockets": 4,
+   "Level": 75,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 48,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 7,
+      "Value2": 14,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    84
+   ],
+   "PowerBandCount": [
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 57,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 10,
+      "Value2": 18,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "rams_vow",
+   "Name": "Ram's Vow",
+   "Class": "Warrior",
+   "Build": "thunder_ram",
+   "Runes": [
+    "reid",
+    "thurs",
+    "tyr"
+   ],
+   "Bases": [
+    "Shield"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Shield"
+      ],
+      "Value": 35
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Cooldown",
+      "Mode": "Inc",
+      "Tags": [
+       "Movement"
+      ],
+      "Value": -15
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "DamageAsExtra",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical",
+       "Lightning"
+      ],
+      "Value": 10
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Block",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 4
+     }
+    }
+   ],
+   "Flavour": "Lower the shield. Do not stop.",
+   "Sockets": 3,
+   "Level": 45,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 52
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 74,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    56,
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 67
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 86,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 96,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 106,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "stormcaller",
+   "Name": "Stormcaller",
+   "Class": "Mage",
+   "Build": "frost_lightning",
+   "Runes": [
+    "thurs",
+    "sol",
+    "isa",
+    "as"
+   ],
+   "Bases": [
+    "Staff"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Chains",
+      "Mode": "Flat",
+      "Tags": [
+       "Spell",
+       "Chain"
+      ],
+      "Value": 2
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Penetration",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 8
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Mana",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 40
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 1
+     }
+    }
+   ],
+   "Flavour": "The bolt finds one, then the two beside him.",
+   "Sockets": 4,
+   "Level": 45,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 130
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 1.0
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    46,
+    56,
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2,
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 168
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 1.0
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 204
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 1.0
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 239
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 1.0
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 274
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 1.0
+     }
+    }
+   ]
+  },
+  {
+   "Id": "skyfire",
+   "Name": "Skyfire",
+   "Class": "Mage",
+   "Build": "meteor_totem",
+   "Runes": [
+    "kaun",
+    "as",
+    "ar"
+   ],
+   "Bases": [
+    "Staff",
+    "Wand"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "TotemCount",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkyfallRepeat",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "CastSpeed",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 8
+     }
+    }
+   ],
+   "Flavour": "The sky pays back each fire you lit.",
+   "Sockets": 3,
+   "Level": 45,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 103
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 1.5
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    56,
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 124
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 1.5
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 146
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 1.5
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 167
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 1.5
+     }
+    }
+   ]
+  },
+  {
+   "Id": "cinderwind",
+   "Name": "Cinderwind",
+   "Class": "Mage",
+   "Build": "fire_tornado",
+   "Runes": [
+    "kaun",
+    "ehwaz",
+    "logr"
+   ],
+   "Bases": [
+    "Staff",
+    "Wand"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Projectiles",
+      "Mode": "Flat",
+      "Tags": [
+       "Spell",
+       "Projectile",
+       "Fire"
+      ],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "ConduitInterval",
+      "Mode": "More",
+      "Tags": [],
+      "Value": -15
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Area",
+      "Mode": "Inc",
+      "Tags": [
+       "Channelling"
+      ],
+      "Value": 20
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 35
+     }
+    }
+   ],
+   "Flavour": "Ash rides the wind further than flame.",
+   "Sockets": 3,
+   "Level": 75,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 158
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 1.5
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    84
+   ],
+   "PowerBandCount": [
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 181
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 1.5
+     }
+    }
+   ]
+  },
+  {
+   "Id": "siegeworks",
+   "Name": "Siegeworks",
+   "Class": "Ranger",
+   "Build": "storm_ballistas",
+   "Runes": [
+    "yr",
+    "tyr",
+    "thurs",
+    "reid"
+   ],
+   "Bases": [
+    "Bow"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Projectiles",
+      "Mode": "Flat",
+      "Tags": [
+       "Totem",
+       "Bow"
+      ],
+      "Value": 1
+     },
+     "Text": "Ballistas fire an additional bolt"
+    },
+    {
+     "Mod": {
+      "Stat": "TotemSpeed",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 15
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "TotemLife",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Bow"
+      ],
+      "Value": 1
+     }
+    }
+   ],
+   "Flavour": "Build the wall of bolts, then stand behind it.",
+   "Sockets": 4,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 150,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 21,
+      "Value2": 42,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 178,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 28,
+      "Value2": 55,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 209,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 35,
+      "Value2": 70,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "hailstorm",
+   "Name": "Hailstorm",
+   "Class": "Ranger",
+   "Build": "glacial_hail",
+   "Runes": [
+    "hagal",
+    "isa",
+    "yr"
+   ],
+   "Bases": [
+    "Bow"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Area",
+      "Mode": "Inc",
+      "Tags": [
+       "Rain"
+      ],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "DamageAsExtra",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical",
+       "Cold"
+      ],
+      "Value": 15
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Cold"
+      ],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 50,
+      "bLocal": true
+     }
+    }
+   ],
+   "Flavour": "Every arrow comes down as ice.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 136,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Cold"
+      ],
+      "Value": 19,
+      "Value2": 38,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 160,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Cold"
+      ],
+      "Value": 25,
+      "Value2": 50,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 189,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Cold"
+      ],
+      "Value": 32,
+      "Value2": 63,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "spiderweb",
+   "Name": "Spiderweb",
+   "Class": "Ranger",
+   "Build": "lightning_web",
+   "Runes": [
+    "thurs",
+    "reid",
+    "sol"
+   ],
+   "Bases": [
+    "Bow"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Chains",
+      "Mode": "Flat",
+      "Tags": [
+       "Bow",
+       "Chain"
+      ],
+      "Value": 2
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AttackSpeed",
+      "Mode": "Inc",
+      "Tags": [
+       "Attack"
+      ],
+      "Value": 8
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 50,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Bow"
+      ],
+      "Value": 1
+     }
+    }
+   ],
+   "Flavour": "Pull one thread, and the whole web sings.",
+   "Sockets": 3,
+   "Level": 45,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 116,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 15,
+      "Value2": 28,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    56,
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 139,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 20,
+      "Value2": 39,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 165,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 26,
+      "Value2": 51,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 194,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 32,
+      "Value2": 65,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "petalfall",
+   "Name": "Petalfall",
+   "Class": "Samurai",
+   "Build": "thousand_cuts",
+   "Runes": [
+    "reid",
+    "sol",
+    "wunjo"
+   ],
+   "Bases": [
+    "OneHandSword",
+    "Dagger",
+    "Claw",
+    "Fist"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Trigger",
+      "Mode": "Trigger",
+      "Tags": [
+       "Hit",
+       "SkySwords",
+       "thousand_cuts",
+       "Count=2",
+       "Pct=40",
+       "Radius=250"
+      ],
+      "Value": 20,
+      "Value2": 0.6
+     },
+     "Text": "Thousand Cuts hits have a 20% chance to bring down 2 falling blades within 2.5 metres for 40% of the hit (at most once every 0.6 seconds)"
+    },
+    {
+     "Mod": {
+      "Stat": "AttackSpeed",
+      "Mode": "Inc",
+      "Tags": [
+       "Attack"
+      ],
+      "Value": 10
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "CritChance",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 80,
+      "bLocal": true
+     }
+    }
+   ],
+   "Flavour": "The blossoms fall where the blade has been.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 108,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 16,
+      "Value2": 29,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 128,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 20,
+      "Value2": 38,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 150,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 26,
+      "Value2": 47,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "whirling_steel",
+   "Name": "Whirling Steel",
+   "Class": "Samurai",
+   "Build": "venom_blade_storm",
+   "Runes": [
+    "naud",
+    "bjarkan",
+    "reid"
+   ],
+   "Bases": [
+    "Dagger",
+    "Claw",
+    "OneHandSword"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "OrbitMax",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 2
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Poison"
+      ],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Area",
+      "Mode": "Inc",
+      "Tags": [
+       "Orbit"
+      ],
+      "Value": 15
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 60,
+      "bLocal": true
+     }
+    }
+   ],
+   "Flavour": "Steel that never lands, never stops.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 127,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 19,
+      "Value2": 34,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 151,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 23,
+      "Value2": 45,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 177,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 31,
+      "Value2": 55,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "iaido",
+   "Name": "Iaido",
+   "Class": "Samurai",
+   "Build": "iaido_executioner",
+   "Runes": [
+    "tyr",
+    "ehwaz"
+   ],
+   "Bases": [
+    "OneHandSword"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Cooldown",
+      "Mode": "Inc",
+      "Tags": [
+       "Movement"
+      ],
+      "Value": -20
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Movement"
+      ],
+      "Value": 40
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "CritChance",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 70,
+      "bLocal": true
+     }
+    }
+   ],
+   "Flavour": "The sword is drawn once.",
+   "Sockets": 2,
+   "Level": 75,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 135,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 21,
+      "Value2": 40,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    84
+   ],
+   "PowerBandCount": [
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 159,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 28,
+      "Value2": 49,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "hammerfall",
+   "Name": "Hammerfall",
+   "Class": "Paladin",
+   "Build": "thunder_hammers",
+   "Runes": [
+    "thurs",
+    "tyr",
+    "madr"
+   ],
+   "Bases": [
+    "OneHandMace"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "OrbitCount",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 2
+     },
+     "Text": "+2 orbiting projectiles per cast (Blade Vortex, Orbiting Hammers and the Orbit support)"
+    },
+    {
+     "Mod": {
+      "Stat": "Area",
+      "Mode": "Inc",
+      "Tags": [
+       "Orbit"
+      ],
+      "Value": 20
+     },
+     "Text": "Orbit skills circle 20% wider (Orbiting Hammers and Blade Vortex)"
+    },
+    {
+     "Mod": {
+      "Stat": "DamageAsExtra",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical",
+       "Lightning"
+      ],
+      "Value": 15
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 80,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "OrbitCount",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 1
+     },
+     "Text": "+1 more orbiting projectile per cast (Blade Vortex, Orbiting Hammers and the Orbit support)"
+    }
+   ],
+   "Flavour": "The hammers circle wider for the faithful.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 130,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 18,
+      "Value2": 37,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 153,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 24,
+      "Value2": 48,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 180,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 30,
+      "Value2": 60,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "verdict",
+   "Name": "Verdict",
+   "Class": "Paladin",
+   "Build": "divine_judgement",
+   "Runes": [
+    "sol",
+    "as",
+    "ar"
+   ],
+   "Bases": [
+    "Shield",
+    "Tome"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "TotemCount",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Holy"
+      ],
+      "Value": 30
+     },
+     "Text": "30% increased Holy Damage"
+    },
+    {
+     "Mod": {
+      "Stat": "CastSpeed",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 8
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 40
+     }
+    }
+   ],
+   "Flavour": "Judgement waits for no one.",
+   "Sockets": 3,
+   "Level": 45,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 52
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 74,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    56,
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 67
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 86,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 96,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 106,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "choir",
+   "Name": "Choir",
+   "Class": "Paladin",
+   "Build": "templars_host",
+   "Runes": [
+    "sol",
+    "wunjo",
+    "othala",
+    "ar"
+   ],
+   "Bases": [
+    "Chest"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "MinionCap",
+      "Mode": "Flat",
+      "Tags": [
+       "holy_elemental"
+      ],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "MinionLife",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "MinionDeathBurst",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 8
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 60
+     }
+    }
+   ],
+   "Flavour": "Every voice that falls is answered by two.",
+   "Sockets": 4,
+   "Level": 75,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 110
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 96,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    84
+   ],
+   "PowerBandCount": [
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 130
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 106,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "ashen_legion",
+   "Name": "Ashen Legion",
+   "Class": "Necromancer",
+   "Build": "burning_legion",
+   "Runes": [
+    "kaun",
+    "wunjo",
+    "madr"
+   ],
+   "Bases": [
+    "Wand",
+    "Scythe"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "MinionCap",
+      "Mode": "Flat",
+      "Tags": [
+       "skeleton_warrior"
+      ],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "MinionDeathBurst",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 8
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Convert",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire",
+       "Minion"
+      ],
+      "Value": 30
+     },
+     "Text": "Your Minions' damage is 30% converted to Fire"
+    },
+    {
+     "Mod": {
+      "Stat": "MinionDamage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 25
+     }
+    }
+   ],
+   "Flavour": "They march to the pyre, and the pyre marches with them.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "MinionDamage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Minion"
+      ],
+      "Value": 1.5
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "MinionDamage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 35
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Minion"
+      ],
+      "Value": 1.5
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "MinionDamage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 40
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Minion"
+      ],
+      "Value": 1.5
+     }
+    }
+   ]
+  },
+  {
+   "Id": "harvest",
+   "Name": "Harvest",
+   "Class": "Necromancer",
+   "Build": "the_reaper",
+   "Runes": [
+    "ur",
+    "naud",
+    "bjarkan",
+    "thurs"
+   ],
+   "Bases": [
+    "Scythe"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Area",
+      "Mode": "Inc",
+      "Tags": [
+       "Melee"
+      ],
+      "Value": 20
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "LifeOnKill",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 15
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 100,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Poison"
+      ],
+      "Value": 20
+     }
+    }
+   ],
+   "Flavour": "The field is wide. The scythe is patient.",
+   "Sockets": 4,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 100,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 15,
+      "Value2": 27,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 118,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 18,
+      "Value2": 35,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 139,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 24,
+      "Value2": 43,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "plague_wind",
+   "Name": "Plague Wind",
+   "Class": "Necromancer",
+   "Build": "hollow_king",
+   "Runes": [
+    "bjarkan",
+    "logr",
+    "isa"
+   ],
+   "Bases": [
+    "Chest"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Poison"
+      ],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Penetration",
+      "Mode": "Flat",
+      "Tags": [
+       "Poison"
+      ],
+      "Value": 10
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Area",
+      "Mode": "Inc",
+      "Tags": [
+       "Aura"
+      ],
+      "Value": 15
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 50
+     }
+    }
+   ],
+   "Flavour": "What the wind carries, the grave keeps.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 90
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 86,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 110
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 96,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 130
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 106,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "wayfarer",
+   "Name": "Wayfarer",
+   "Class": "",
+   "Build": "",
+   "Runes": [
+    "reid",
+    "as"
+   ],
+   "Bases": [
+    "Helm"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "MoveSpeed",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 6
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Cooldown",
+      "Mode": "Inc",
+      "Tags": [
+       "Movement"
+      ],
+      "Value": -10
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 30
+     }
+    }
+   ],
+   "Flavour": "The road is shorter if you don't stop.",
+   "Sockets": 2,
+   "Level": 38,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 40
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 62,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    44,
+    56,
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2,
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 52
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 74,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 67
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 86,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 96,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 106,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "kindling",
+   "Name": "Kindling",
+   "Class": "",
+   "Build": "",
+   "Runes": [
+    "kaun",
+    "fe"
+   ],
+   "Bases": [
+    "Weapon"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 20
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "LifeOnKill",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 8
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "ItemRarity",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 10
+     }
+    }
+   ],
+   "Flavour": "A spark is a fortune if you feed it.",
+   "Sockets": 2,
+   "Level": 38,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 28
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    44,
+    56,
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 37
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 47
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 57
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 68
+     }
+    }
+   ]
+  },
+  {
+   "Id": "bulwark",
+   "Name": "Bulwark",
+   "Class": "",
+   "Build": "",
+   "Runes": [
+    "tyr",
+    "ur",
+    "thurs"
+   ],
+   "Bases": [
+    "Chest"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 60,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 50
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Resist",
+      "Mode": "Flat",
+      "Tags": [
+       "Elemental"
+      ],
+      "Value": 10
+     }
+    }
+   ],
+   "Flavour": "Stand. That is the whole of the oath.",
+   "Sockets": 3,
+   "Level": 45,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 70
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 74,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    56,
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 90
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 86,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 110
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 96,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 130
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 106,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "warding",
+   "Name": "Warding",
+   "Class": "",
+   "Build": "",
+   "Runes": [
+    "kaun",
+    "hagal",
+    "thurs"
+   ],
+   "Bases": [
+    "Shield",
+    "Tome"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Resist",
+      "Mode": "Flat",
+      "Tags": [
+       "Elemental"
+      ],
+      "Value": 10
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "MaxResist",
+      "Mode": "Flat",
+      "Tags": [
+       "Elemental"
+      ],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 30
+     }
+    }
+   ],
+   "Flavour": "Fire, frost and storm, each one turned aside.",
+   "Sockets": 3,
+   "Level": 45,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 52
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 74,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    56,
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 67
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 86,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 96,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 106,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "wellspring",
+   "Name": "Wellspring",
+   "Class": "",
+   "Build": "",
+   "Runes": [
+    "ar",
+    "bjarkan",
+    "logr"
+   ],
+   "Bases": [
+    "Helm"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 40
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Mana",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 40
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "ManaRegen",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "LifeRegen",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 12
+     }
+    }
+   ],
+   "Flavour": "Drink, and the well fills again.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 67
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 86,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 96,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 106,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "hoard",
+   "Name": "Dragon's Hoard",
+   "Class": "",
+   "Build": "",
+   "Runes": [
+    "fe",
+    "ar",
+    "fe"
+   ],
+   "Bases": [
+    "Helm"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "ItemRarity",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 20
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "GoldFind",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 20
+     }
+    }
+   ],
+   "Flavour": "Dwarven gold. Kept, not counted.",
+   "Sockets": 3,
+   "Level": 45,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 52
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 74,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    56,
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 67
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 86,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 96,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 106,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "sunder",
+   "Name": "Sunder",
+   "Class": "",
+   "Build": "",
+   "Runes": [
+    "kaun",
+    "hagal",
+    "sol"
+   ],
+   "Bases": [
+    "Weapon"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Penetration",
+      "Mode": "Flat",
+      "Tags": [
+       "Elemental"
+      ],
+      "Value": 8
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Elemental"
+      ],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "CritChance",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 15
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Penetration",
+      "Mode": "Flat",
+      "Tags": [
+       "Elemental"
+      ],
+      "Value": 6
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "CritMulti",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 20
+     }
+    }
+   ],
+   "Flavour": "No ward holds against the three.",
+   "Sockets": 3,
+   "Level": 45,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Elemental"
+      ],
+      "Value": 17
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    56,
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    1,
+    1,
+    1
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Elemental"
+      ],
+      "Value": 22
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Elemental"
+      ],
+      "Value": 26
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Elemental"
+      ],
+      "Value": 31
+     }
+    }
+   ]
+  },
+  {
+   "Id": "oathkeeper",
+   "Name": "Oathkeeper",
+   "Class": "",
+   "Build": "",
+   "Runes": [
+    "othala",
+    "dagaz",
+    "madr",
+    "tyr"
+   ],
+   "Bases": [
+    "TwoHand"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Gem"
+      ],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 50
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 60,
+      "bLocal": true
+     }
+    }
+   ],
+   "Flavour": "Some oaths are older than the ones who swore them.",
+   "Sockets": 4,
+   "Level": 75,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 129,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 20,
+      "Value2": 38,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    84
+   ],
+   "PowerBandCount": [
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 152,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 26,
+      "Value2": 47,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "thunderwake",
+   "Name": "Thunderwake",
+   "Class": "",
+   "Build": "",
+   "Combo": [
+    "Warrior",
+    "Paladin"
+   ],
+   "Runes": [
+    "thurs",
+    "tyr",
+    "gebo"
+   ],
+   "Bases": [
+    "OneHandMace",
+    "TwoHand"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Slam"
+      ],
+      "Value": 35
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Area",
+      "Mode": "Inc",
+      "Tags": [
+       "Orbit"
+      ],
+      "Value": 15
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "DamageAsExtra",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical",
+       "Lightning"
+      ],
+      "Value": 10
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 70,
+      "bLocal": true
+     }
+    }
+   ],
+   "Flavour": "Where the hammer lands, thunder follows.",
+   "Sockets": 3,
+   "Level": 70,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 149,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 23,
+      "Value2": 46,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    84
+   ],
+   "PowerBandCount": [
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 175,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 29,
+      "Value2": 59,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "gravebloom",
+   "Name": "Gravebloom",
+   "Class": "",
+   "Build": "",
+   "Combo": [
+    "Necromancer",
+    "Mage"
+   ],
+   "Runes": [
+    "wunjo",
+    "kaun",
+    "ingwaz"
+   ],
+   "Bases": [
+    "Wand",
+    "Staff"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "MinionDamage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 35
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "CastSpeed",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 10
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "MinionLife",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 15
+     }
+    }
+   ],
+   "Flavour": "What is buried in ash comes up burning.",
+   "Sockets": 3,
+   "Level": 70,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "MinionDamage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 251
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Minion"
+      ],
+      "Value": 1.0
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    84
+   ],
+   "PowerBandCount": [
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "MinionDamage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 288
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Minion"
+      ],
+      "Value": 1.0
+     }
+    }
+   ]
+  },
+  {
+   "Id": "windrider",
+   "Name": "Windrider",
+   "Class": "",
+   "Build": "",
+   "Combo": [
+    "Ranger",
+    "Samurai"
+   ],
+   "Runes": [
+    "reid",
+    "ehwaz",
+    "perthro"
+   ],
+   "Bases": [
+    "Bow",
+    "OneHandSword",
+    "Dagger",
+    "Claw"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "AttackSpeed",
+      "Mode": "Inc",
+      "Tags": [
+       "Attack"
+      ],
+      "Value": 14
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "CritChance",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 35
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "MoveSpeed",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 5
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "CritMulti",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 15
+     }
+    }
+   ],
+   "Flavour": "Not where the blade expected you.",
+   "Sockets": 3,
+   "Level": 75,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 138,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 21,
+      "Value2": 41,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    84
+   ],
+   "PowerBandCount": [
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 162,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 28,
+      "Value2": 50,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "glacier_oath",
+   "Name": "Glacier's Oath",
+   "Class": "",
+   "Build": "",
+   "Combo": [
+    "Warrior",
+    "Mage"
+   ],
+   "Runes": [
+    "hagal",
+    "isa",
+    "algiz"
+   ],
+   "Bases": [
+    "Chest"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 8
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Resist",
+      "Mode": "Flat",
+      "Tags": [
+       "Cold"
+      ],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Cold"
+      ],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 40,
+      "bLocal": true
+     }
+    }
+   ],
+   "Flavour": "The ice keeps every promise made to it.",
+   "Sockets": 3,
+   "Level": 70,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 110
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 96,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    84
+   ],
+   "PowerBandCount": [
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 130
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 106,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "ironchoir",
+   "Name": "Ironchoir",
+   "Class": "",
+   "Build": "",
+   "Combo": [
+    "Paladin",
+    "Necromancer"
+   ],
+   "Runes": [
+    "sol",
+    "wunjo",
+    "ingwaz"
+   ],
+   "Bases": [
+    "Shield",
+    "Tome"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "MinionLife",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "MinionDamage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Block",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 4
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Resist",
+      "Mode": "Flat",
+      "Tags": [
+       "Elemental"
+      ],
+      "Value": 12
+     }
+    }
+   ],
+   "Flavour": "The dead sing the hymns the living forgot.",
+   "Sockets": 3,
+   "Level": 70,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 96,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    84
+   ],
+   "PowerBandCount": [
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 106,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "bladesong",
+   "Name": "Bladesong",
+   "Class": "",
+   "Build": "",
+   "Combo": [
+    "Samurai",
+    "Warrior"
+   ],
+   "Runes": [
+    "tyr",
+    "reid",
+    "dagaz",
+    "perthro"
+   ],
+   "Bases": [
+    "TwoHand"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "AttackSpeed",
+      "Mode": "Inc",
+      "Tags": [
+       "Attack"
+      ],
+      "Value": 12
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Area",
+      "Mode": "Inc",
+      "Tags": [
+       "Melee"
+      ],
+      "Value": 15
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "CritChance",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 80,
+      "bLocal": true
+     }
+    }
+   ],
+   "Flavour": "Steel that learns to sing holds the tune.",
+   "Sockets": 4,
+   "Level": 75,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 11,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical",
+       "Melee113"
+      ],
+      "Value": 105,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 2,
+      "Value2": 3,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical",
+       "Melee113"
+      ],
+      "Value": 17,
+      "Value2": 31,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Gem",
+       "Melee"
+      ],
+      "Value": 1.0
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    84
+   ],
+   "PowerBandCount": [
+    5
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 14,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical",
+       "Melee113"
+      ],
+      "Value": 123,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 2,
+      "Value2": 5,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical",
+       "Melee113"
+      ],
+      "Value": 22,
+      "Value2": 38,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Gem",
+       "Melee"
+      ],
+      "Value": 1.0
+     }
+    }
+   ]
+  },
+  {
+   "Id": "starfall",
+   "Name": "Starfall",
+   "Class": "",
+   "Build": "",
+   "Combo": [
+    "Mage",
+    "Ranger"
+   ],
+   "Runes": [
+    "thurs",
+    "yr",
+    "gebo"
+   ],
+   "Bases": [
+    "Bow",
+    "Staff"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Projectile"
+      ],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "CritChance",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 20
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "ManaRegen",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 25
+     }
+    }
+   ],
+   "Flavour": "Every arrow a falling star.",
+   "Sockets": 3,
+   "Level": 70,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 168,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 26,
+      "Value2": 52,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    84
+   ],
+   "PowerBandCount": [
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 197,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 33,
+      "Value2": 66,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "first_light",
+   "Name": "First Light",
+   "Class": "",
+   "Build": "",
+   "Runes": [
+    "dagaz",
+    "algiz",
+    "as"
+   ],
+   "Bases": [
+    "Helm"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 7
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "MaxResist",
+      "Mode": "Flat",
+      "Tags": [
+       "Elemental"
+      ],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "ManaRegen",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Resist",
+      "Mode": "Flat",
+      "Tags": [
+       "Elemental"
+      ],
+      "Value": 10
+     }
+    }
+   ],
+   "Flavour": "The first light after the long night belongs to whoever kept watch.",
+   "Sockets": 3,
+   "Level": 75,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 96,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    84
+   ],
+   "PowerBandCount": [
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 106,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "skybinder",
+   "Name": "Skybinder",
+   "Class": "",
+   "Build": "",
+   "Combo": [
+    "Mage",
+    "Ranger"
+   ],
+   "Runes": [
+    "thurs",
+    "ehwaz",
+    "gebo"
+   ],
+   "Bases": [
+    "Wand"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning",
+       "Spell"
+      ],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Chains",
+      "Mode": "Flat",
+      "Tags": [
+       "Spell",
+       "Chain"
+      ],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 35
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Penetration",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 2
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "CastSpeed",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 10
+     }
+    }
+   ],
+   "Flavour": "The cloud does not ask where the lightning goes.",
+   "Sockets": 3,
+   "Level": 75,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 243
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning",
+       "Spell"
+      ],
+      "Value": 1.0
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    84
+   ],
+   "PowerBandCount": [
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 278
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning",
+       "Spell"
+      ],
+      "Value": 1.0
+     }
+    }
+   ]
+  },
+  {
+   "Id": "nightshade",
+   "Name": "Nightshade",
+   "Class": "",
+   "Build": "",
+   "Combo": [
+    "Mage",
+    "Necromancer"
+   ],
+   "Runes": [
+    "naud",
+    "bjarkan",
+    "as"
+   ],
+   "Bases": [
+    "Wand",
+    "Staff"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Poison"
+      ],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "PoisonDamage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "CastSpeed",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 8
+     }
+    }
+   ],
+   "Flavour": "Pretty in the hedgerow. Patient in the blood.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 261
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Poison"
+      ],
+      "Value": 1.5
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 306
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Poison"
+      ],
+      "Value": 1.5
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 351
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Poison"
+      ],
+      "Value": 1.5
+     }
+    }
+   ]
+  },
+  {
+   "Id": "heartseeker",
+   "Name": "Heartseeker",
+   "Class": "Ranger",
+   "Build": "power_shot",
+   "Runes": [
+    "yr",
+    "sol",
+    "tyr"
+   ],
+   "Bases": [
+    "Bow"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "CritChance",
+      "Mode": "Inc",
+      "Tags": [
+       "Attack"
+      ],
+      "Value": 60
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "CritMulti",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 50,
+      "bLocal": true
+     }
+    }
+   ],
+   "Flavour": "One arrow, drawn slow, loosed once.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 98,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 15,
+      "Value2": 26,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 116,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 18,
+      "Value2": 34,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 137,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 24,
+      "Value2": 43,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "swallowcut",
+   "Name": "Swallowcut",
+   "Class": "Samurai",
+   "Build": "flurry",
+   "Runes": [
+    "reid",
+    "tyr",
+    "wunjo"
+   ],
+   "Bases": [
+    "OneHandSword",
+    "Dagger",
+    "Claw"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "AttackSpeed",
+      "Mode": "Inc",
+      "Tags": [
+       "Attack"
+      ],
+      "Value": 12
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "CritChance",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Melee"
+      ],
+      "Value": 35
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 70,
+      "bLocal": true
+     }
+    }
+   ],
+   "Flavour": "The blade turns in the air like a swallow, and cuts on the way back.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 97,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 15,
+      "Value2": 26,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 115,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 18,
+      "Value2": 34,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 135,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 23,
+      "Value2": 42,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "rimebinder",
+   "Name": "Rimebinder",
+   "Class": "",
+   "Build": "",
+   "Combo": [
+    "Mage",
+    "Ranger"
+   ],
+   "Runes": [
+    "isa",
+    "ehwaz",
+    "gebo"
+   ],
+   "Bases": [
+    "Wand",
+    "Staff"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Cold",
+       "Spell"
+      ],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Chains",
+      "Mode": "Flat",
+      "Tags": [
+       "Spell",
+       "Chain"
+      ],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Cold"
+      ],
+      "Value": 35
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Penetration",
+      "Mode": "Flat",
+      "Tags": [
+       "Cold"
+      ],
+      "Value": 2
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "CastSpeed",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 10
+     }
+    }
+   ],
+   "Flavour": "Frost waits where you will stand.",
+   "Sockets": 3,
+   "Level": 75,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 243
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Cold",
+       "Spell"
+      ],
+      "Value": 1.0
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    84
+   ],
+   "PowerBandCount": [
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 278
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Cold",
+       "Spell"
+      ],
+      "Value": 1.0
+     }
+    }
+   ]
+  },
+  {
+   "Id": "ossuary",
+   "Name": "Ossuary",
+   "Class": "Necromancer",
+   "Build": "",
+   "Runes": [
+    "hagal",
+    "wunjo",
+    "madr"
+   ],
+   "Bases": [
+    "Wand",
+    "Scythe"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "MinionCap",
+      "Mode": "Flat",
+      "Tags": [
+       "skeleton_wizard"
+      ],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "MinionLife",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Convert",
+      "Mode": "Flat",
+      "Tags": [
+       "Cold",
+       "Minion"
+      ],
+      "Value": 30
+     },
+     "Text": "Your Minions' damage is 30% converted to Cold"
+    },
+    {
+     "Mod": {
+      "Stat": "MinionDamage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 15
+     }
+    }
+   ],
+   "Flavour": "The learned dead still know their lessons, and teach them coldly.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "MinionDamage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Minion"
+      ],
+      "Value": 1.5
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "MinionDamage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 35
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Minion"
+      ],
+      "Value": 1.5
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "MinionDamage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 40
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Minion"
+      ],
+      "Value": 1.5
+     }
+    }
+   ]
+  },
+  {
+   "Id": "bloodletter",
+   "Name": "Bloodletter",
+   "Class": "",
+   "Build": "",
+   "Combo": [
+    "Warrior",
+    "Samurai"
+   ],
+   "Runes": [
+    "naud",
+    "tyr",
+    "madr"
+   ],
+   "Bases": [
+    "OneHandSword",
+    "OneHandAxe",
+    "TwoHand",
+    "Dagger",
+    "Claw"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "BleedChance",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "BleedDamage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 40
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "BleedStacks",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 3
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 60,
+      "bLocal": true
+     }
+    }
+   ],
+   "Flavour": "A shallow cut, and then another.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 120,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 18,
+      "Value2": 32,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 142,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 22,
+      "Value2": 42,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 167,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 29,
+      "Value2": 52,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "dawnsworn",
+   "Name": "Dawnsworn",
+   "Class": "Paladin",
+   "Build": "shield_zealot",
+   "Runes": [
+    "sol",
+    "tyr",
+    "madr"
+   ],
+   "Bases": [
+    "OneHandMace",
+    "OneHandSword"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Holy"
+      ],
+      "Value": 35
+     },
+     "Text": "35% increased Holy Damage"
+    },
+    {
+     "Mod": {
+      "Stat": "AttackSpeed",
+      "Mode": "Inc",
+      "Tags": [
+       "Attack"
+      ],
+      "Value": 10
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Block",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 5
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 60,
+      "bLocal": true
+     }
+    }
+   ],
+   "Flavour": "Raised at first light, and it has not been lowered since.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 120,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 18,
+      "Value2": 32,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 142,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 22,
+      "Value2": 42,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 167,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 29,
+      "Value2": 52,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "emberwake",
+   "Name": "Emberwake",
+   "Class": "",
+   "Build": "",
+   "Combo": [
+    "Mage",
+    "Necromancer"
+   ],
+   "Runes": [
+    "kaun",
+    "naud",
+    "yr"
+   ],
+   "Bases": [
+    "Wand",
+    "Staff"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "IgniteChance",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "IgniteDamage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 40
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "IgniteStacks",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 35
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Penetration",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire"
+      ],
+      "Value": 4
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "CastSpeed",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 10
+     }
+    }
+   ],
+   "Flavour": "What it touches burns long after it has gone.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 135
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire",
+       "Spell"
+      ],
+      "Value": 1.0
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 158
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire",
+       "Spell"
+      ],
+      "Value": 1.0
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 181
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Fire",
+       "Spell"
+      ],
+      "Value": 1.0
+     }
+    }
+   ]
+  },
+  {
+   "Id": "stormlash",
+   "Name": "Stormlash",
+   "Class": "",
+   "Build": "",
+   "Combo": [
+    "Mage",
+    "Ranger",
+    "Samurai"
+   ],
+   "Runes": [
+    "thurs",
+    "naud",
+    "yr"
+   ],
+   "Bases": [
+    "Wand",
+    "Staff",
+    "Bow",
+    "OneHandSword"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "ShockChance",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 25
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "ShockEffect",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "ShockStacks",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 30
+     }
+    }
+   ],
+   "Flavour": "The first strike finds you. The second was waiting.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 120,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 17,
+      "Value2": 34,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 142,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 22,
+      "Value2": 44,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 167,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Lightning"
+      ],
+      "Value": 28,
+      "Value2": 56,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "clarion",
+   "Name": "Clarion",
+   "Class": "",
+   "Build": "",
+   "Runes": [
+    "tyr",
+    "wunjo",
+    "sol"
+   ],
+   "Bases": [
+    "Chest"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "HeraldEffect",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 25
+     },
+     "Text": "25% increased effect of the extra Damage your Heralds grant"
+    },
+    {
+     "Mod": {
+      "Stat": "Reservation",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 15
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 40
+     }
+    }
+   ],
+   "Flavour": "Every hall it enters already knows its name.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 90
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 86,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 110
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 96,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 130
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 106,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "kindlewatch",
+   "Name": "Kindlewatch",
+   "Class": "Mage",
+   "Build": "",
+   "Runes": [
+    "kaun",
+    "thurs",
+    "madr"
+   ],
+   "Bases": [
+    "Helm"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "SkillLevel",
+      "Mode": "Flat",
+      "Tags": [
+       "Brand"
+      ],
+      "Value": 1
+     },
+     "Text": "+1 to the level of Spark gems"
+    },
+    {
+     "Mod": {
+      "Stat": "SkillDuration",
+      "Mode": "Inc",
+      "Tags": [
+       "Brand"
+      ],
+      "Value": 50
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Brand"
+      ],
+      "Value": 20
+     }
+    }
+   ],
+   "Flavour": "Light a fire, then let it stand watch.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 67
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 86,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 96,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 106,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "stillwater",
+   "Name": "Stillwater",
+   "Class": "",
+   "Build": "",
+   "Combo": [
+    "Mage",
+    "Ranger",
+    "Warrior"
+   ],
+   "Runes": [
+    "isa",
+    "hagal",
+    "logr"
+   ],
+   "Bases": [
+    "Helm",
+    "Shield",
+    "Tome"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "FreezeDuration",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 40
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "ChillEffect",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Cold"
+      ],
+      "Value": 20
+     }
+    }
+   ],
+   "Flavour": "Winter comes. The lake holds.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 67
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 86,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 96,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 106,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "viperstring",
+   "Name": "Viperstring",
+   "Class": "",
+   "Build": "",
+   "Combo": [
+    "Ranger",
+    "Samurai"
+   ],
+   "Runes": [
+    "as",
+    "reid",
+    "bjarkan"
+   ],
+   "Bases": [
+    "Bow",
+    "Dagger",
+    "Claw"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "PoisonChance",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "PoisonDamage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 40
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Poison"
+      ],
+      "Value": 30
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AttackSpeed",
+      "Mode": "Inc",
+      "Tags": [
+       "Attack"
+      ],
+      "Value": 8
+     }
+    }
+   ],
+   "Flavour": "One arrow, and time.",
+   "Sockets": 3,
+   "Level": 60,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 120,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 18,
+      "Value2": 32,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    70,
+    84
+   ],
+   "PowerBandCount": [
+    2,
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 142,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 22,
+      "Value2": 42,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 167,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 29,
+      "Value2": 52,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "oathwall",
+   "Name": "Oathwall",
+   "Class": "",
+   "Build": "",
+   "Runes": [
+    "ur",
+    "algiz",
+    "tyr"
+   ],
+   "Bases": [
+    "Chest"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "ArmourMore",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 0.27
+     },
+     "Text": "0.27% more Damage for every 1,000 Armour you have. No diminishing returns."
+    },
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 80
+     }
+    }
+   ],
+   "Flavour": "The heavier the wall, the harder it lands.",
+   "Sockets": 3,
+   "Level": 70,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 110
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 96,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    84
+   ],
+   "PowerBandCount": [
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 130
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 106,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "veilward",
+   "Name": "Veilward",
+   "Class": "",
+   "Build": "",
+   "Runes": [
+    "algiz",
+    "isa",
+    "ingwaz"
+   ],
+   "Bases": [
+    "Helm",
+    "Shield",
+    "Tome"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "EnergyShieldMore",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 0.33
+     },
+     "Text": "0.33% more Damage for every 1,000 maximum Energy Shield you have. No diminishing returns."
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 40,
+      "bLocal": true
+     }
+    }
+   ],
+   "Flavour": "What cannot touch me cannot stop me.",
+   "Sockets": 3,
+   "Level": 70,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 96,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0,
+   "PowerBandILvl": [
+    84
+   ],
+   "PowerBandCount": [
+    2
+   ],
+   "PowerBandMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 82
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 106,
+      "bLocal": true
+     }
+    }
+   ]
+  },
+  {
+   "Id": "red_ouroboros",
+   "Name": "Ouroboros",
+   "Class": "Mage",
+   "Build": "frost_lightning",
+   "Runes": [
+    "ior",
+    "jera",
+    "ior"
+   ],
+   "Bases": [
+    "Wand",
+    "Staff"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Chains",
+      "Mode": "Flat",
+      "Tags": [
+       "Spell",
+       "Chain"
+      ],
+      "Value": 2
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "ChainLoop",
+      "Mode": "Flat",
+      "Tags": [
+       "Chain"
+      ],
+      "Value": 1
+     },
+     "Text": "When a chain ends, it starts again from the last target with its full chain count, once per cast"
+    }
+   ],
+   "Flavour": "The serpent bites its tail, and the storm begins again.",
+   "Red": 1,
+   "Secret": 0,
+   "Crowned": 0,
+   "Sockets": 3,
+   "Level": 84,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Spell"
+      ],
+      "Value": 176
+     }
+    }
+   ],
+   "Power2H": 2.0
+  },
+  {
+   "Sealed98": "CcTDIEEZ2ECYnxNpBKjK06G9GKWX8MMYbD6YzFaHisYw9Z3DhsQ7X5K4plewLnfJXBIC8czPldvoqLVpP67qhrpERmw20_AKIp8w8Nk84EJ_P0bZNmDn149CxGeyQacErzPmJ8uWrmWheOG4oYMnnDNYrj-R5SXZb-qKsn4LbeKBme_5wD_bk0KuOMxLfoKmiSpXwGMiH1rlg6qIvpRFieosVC6RZytyKDESvixPWEvnojat1kLx2hwgmvIa4tFIusl4J0YsRafztiteQsl8d3qcsCv58g_dUt13ErY6Q-bpuGl3yfi6ZGVdzsNPkvQEq0F3HExd287Owtp6g_BFYZhWAUOburPuUg"
+  },
+  {
+   "Id": "red_barrowking",
+   "Name": "Barrowking's Mandate",
+   "Class": "Necromancer",
+   "Build": "",
+   "Runes": [
+    "eihwaz",
+    "ear",
+    "eihwaz"
+   ],
+   "Bases": [
+    "Wand",
+    "Scythe",
+    "Chest"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "MinionCap",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "SpectralRise",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 10,
+      "Value2": 100
+     },
+     "Text": "A minion that dies rises once as a spectral copy for 10 seconds with 100% more Damage"
+    }
+   ],
+   "Flavour": "The barrow keeps no one. It lends them back.",
+   "Red": 1,
+   "Secret": 0,
+   "Crowned": 0,
+   "Sockets": 3,
+   "Level": 84,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "MinionDamage",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 70
+     }
+    }
+   ],
+   "Power2H": 2.0
+  },
+  {
+   "Id": "red_engine_deep",
+   "Name": "Engine of the Deep",
+   "Class": "",
+   "Build": "",
+   "Runes": [
+    "stan",
+    "jera",
+    "stan"
+   ],
+   "Bases": [
+    "Shield",
+    "Helm"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "TotemCount",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 2
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "TotemCopy",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 6,
+      "Value2": 12
+     },
+     "Text": "Each totem builds a copy of itself every 6 seconds; copies last 12 seconds"
+    }
+   ],
+   "Flavour": "Stone raises stone, and the deep is never finished.",
+   "Red": 1,
+   "Secret": 0,
+   "Crowned": 0,
+   "Sockets": 3,
+   "Level": 84,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Life",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 123
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Defences",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": 159,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0
+  },
+  {
+   "Sealed98": "eMfDIEEZ0IGYv9JoANIe-AZlSKIxjbDMg0TuZBoL5YDHCscx82CK8pm6gZcwKXDWJAp7aNJ2AIm6oAVxb65qh4GjkQQLM0Exc23zvxShBL1w_izyfegYyQU2qMU82baEg_uEmMNsVUJlny21SfhKGZWB7GW01GnxA0Om0noTpSwnr4P55qPbW5fziySQ5PfWX9HXM3s-lcdSjOK0hN1uRPFr-AneaRT9DDiZyLF7tUG5AR3Z4fhgqIh75NIwyQzFLyISxcSxEJK_h4AcRPPArBql6f0yCGF3nNQhicAKX2fiu_unrgyChkwIj32IAtd_lcxzlzIea1DJoJ44gI2gSpr4t6XfT-bJ5ZHJytRFiLuQH5siHDg5-UIXJUCikVAUcOtDMgmCtPwgCyFeRL3FzRv9QQGxBtrP0r-xYgdPUBAArqsrfZMRBn4hjiN7aXeE"
+  },
+  {
+   "Sealed98": "AcfDIEEZ2IIUvssYHNIgKFbtCJp-ASInj5r945xAJeEkLvNr50ShzZBFVXfKe43aZu0QThL8_WxXZAvHMIb3BVdhmjDPs9l7xpRgRaqz7eaxXVeK44NvsoXMORluaHr96RUHKLiTwvghHdyD6aE5fzzXoHbLnrhf9n8YWJ9QTwhBYLGQyFVvb4t0iRlmPtrLBgGdILQiYpErLJo3oUtXDrJ7T74DYFe3lRpukF78-wygmf4PJfDsHAqSn5ebqKHzdvl3LEJfGA9qvx5bPapIYBR5z2qqErP4RFMlFHo7uwk-KtlmbhUgezp9WY0POnIx7KYicRd5azNKk_K2tP5pWrw9DXsHNu_qpCyCSguIgqThwoueJcsDLlxzDM61EEqZB3UtR50--PccaIrptFhpK8X0vL5hqdBwC9vEhDPs87O1-dGOYX04RH44Hxai0M5wUg-eEZ-o4YO5j62twtIEo2hZrzN5jvac6TNIjLHphVAZKgJHcJOWXRVB"
+  },
+  {
+   "Sealed98": "V8bDIEEZ8IIav8toHNBiHfja-AHzPEZIO8kWBXVXpWE-ucknmpRzYfsRg0isGLcd4p7aO4EyymGqOsYs37kBovOYLQckg4T-2NuWc-saGQ_ciSShoEx10KrJV6p8EbOl_XcK-DZIjFTrTibFYO4612XWvNoRghA0BLtIEl89juZD93UDIKVsfgYS7ge_ygGd8CPHUywABStf5bHjfV1-1qfl-TTX37W0pJyQks91mfkg8hF2vPP9Mlr5MwMJt4pyJhiAmCbwMKNrFqWalB0_Dkj3If0BIbZKRLRhbOyTSt_HUWESmoH9eUQjAzVG4WILs67RYPm4L0UqJiC26QRFgxTzQ7GgZ4V9QhbgoDHCkW6pal68KYzqqusnEucukdLosef94wd94EhDHei00mi-EgJsJF2glOiFprT1nFNYOddpQyHxqu6Q4k1UfRrxgTd6t-E0yFz4HxD4BnkVWDqP6XLrbXGuqfCS3zzotc1gwHMAKDce4QKUdZetiK82vH1h8mlojxMKx9sGenG3sGcmZTC2Ne3fR-XXKCStxLgIhgzXoYaZav7ZNqDGNOmV-TfTY0LwXb8xM1hCg8K72d9tbtAHiJI6P5K2KkNl4kn-doBH7xIl_uis7FUk"
+  },
+  {
+   "Id": "red_skyspear",
+   "Name": "Skyspear",
+   "Class": "Ranger",
+   "Build": "",
+   "Runes": [
+    "gar",
+    "aesc",
+    "gar"
+   ],
+   "Bases": [
+    "Bow"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Projectiles",
+      "Mode": "Flat",
+      "Tags": [
+       "Projectile"
+      ],
+      "Value": 3
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Pierce",
+      "Mode": "Flat",
+      "Tags": [
+       "Projectile"
+      ],
+      "Value": 2
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Fork",
+      "Mode": "Flat",
+      "Tags": [
+       "Projectile"
+      ],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Projectile"
+      ],
+      "Value": 30
+     }
+    }
+   ],
+   "Flavour": "One spear leaves the hand. The sky returns a hundred.",
+   "Red": 1,
+   "Secret": 0,
+   "Crowned": 0,
+   "Sockets": 3,
+   "Level": 84,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 250,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 44,
+      "Value2": 78,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0
+  },
+  {
+   "Id": "red_pyre_kings",
+   "Name": "Pyre of Kings",
+   "Class": "Warrior",
+   "Build": "earthquake_jarl",
+   "Runes": [
+    "cweorth",
+    "ac",
+    "cweorth"
+   ],
+   "Bases": [
+    "TwoHand"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Trigger",
+      "Mode": "Trigger",
+      "Tags": [
+       "SkillUse",
+       "Eruption",
+       "Slam",
+       "Nth=5",
+       "Pct=300",
+       "Count=1",
+       "Radius=450",
+       "Element=Fire"
+      ],
+      "Value": 100
+     },
+     "Text": "Every fifth Slam erupts again for 300% of its hit as Fire damage (4.5 metre radius)"
+    }
+   ],
+   "Flavour": "Kings were burned on oak. The oak remembers how.",
+   "Red": 1,
+   "Secret": 0,
+   "Crowned": 0,
+   "Sockets": 3,
+   "Level": 84,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 250,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 44,
+      "Value2": 78,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0
+  },
+  {
+   "Sealed98": "jcfDIEEZ2IGUnxNpANAeeAcp0DJjuSosOkOSYnBy3TO0M_kcirqCuu0XEN-VtMrfgKxf6Whsuf_N3dM1XZ4Nxa7ulqK9qaIvirMz_joIpUeY28z_Ci0xIUHRMu5utI4HvOsRUcSVGP-DaAiz1vBallWqYpkMgd21Rd51BRj89aWFfXxQOUF3EJDrNP0790B3xIqg-5qBdY0tvMlJ0OMzeCqGxd-_BF6-FBbsAWCyoJ9zUipRUUaXm7hBaIsgdljkuTW_U15qWLHpeKgJT6zne_knB1V0zMBrsvQ3AP7-_TGdId45qKVoQD4Y2WW8mHnjTNoVWgVabvzVuMYCBD3AYdg9NFlzWtcWww7pQ5VT2GfJoThy_lBiN6L6VeZsD4Kolo6B2dYN3TM"
+  },
+  {
+   "Sealed98": "vcbDIEEZ0IGkvwsZHNMe28mCeQ2jKKsndZSMjbjaWMeAcIhetr3cMDJFH18J3bBy5sdTdSN_DaVvE0ResDknt1N0sKMUaNSS3oPFvTIeXOnb20V6CQWe054-vJgk_IhZDOuwiRdNNEErCwJd0yEfJxSQrINXHUXcP6FtIEA39t2c9GFI7CruoblTu9wqn16b8An41LfTfZZzaQAB4hT_nXbqVCldbMgy_j3108KyIp72KLGXOFXPdOk3P1NKth0R5LaCjNYOhI5UbUzxt_K2FopAvwEF68jVq5ofGAbSS2hTz1OvStH_5uhV9OLMfoajuGE8gmb_mtv2rhGqsX2T0ZMNQJ7X4P-d21zN46iPE8JwMHOrNUEp23FcsHIezGo8gzuXl4nMdTnqUj3fajd2brdNxbv83XoBv3y35DNpKJ77fj2h512V8KbYu4fW0IvIHudw1hcFr8V3RV1Ml2TIG8NyeGxS-ZpAZASbDGQbW4z8ZF-SG8qNsUMqK47txC6nY-2n8-z7N922VMfX0kk4WzSxl8FqyuGxrcNbg4X3zCsEbUP8_89wiwFj"
+  },
+  {
+   "Sealed98": "WcfDIEEZ0IEevhIZANOg-DkF-N0yyyOnh0RupKjIWID_oib0h6_Anf_akPae4hswVby6h8b3FPyfuMRaA84_jmbhkFkG0yb3Ko4k934JxdX4_YSkHtVscyJN_8zSzs6e_chHigDYLnCf3BjtAs65F6KAG0pqdzJyljZ7Nhd3tvmD9GkYj5k3YesgGz0Fju6wWFR2jSVwEupstZ6vRlc7-NvZJmoDtjVpVFnp1trnpLlpEaagkcFIzv0uUVMi9kby0ys3w-CarLOpge3dufO7HDyCupdZwUAsyt31p4AwgK6Ae4bOIX3VMP6B1yAGn_Rg8HXgZOisCMWNx_2f6GTYZ9Hw5L7oUeTnZK_6QdtNRUKFvKQmMkQNKXE1T9qu8r_RaTa0g_0CD8D34PzgDg8_kVdzRtMeZ7HKFsDQ6TetNqumbdwM7QgXiqmbkA6oKuHd5ZMiGc9HjYyqIcEMzrmSPsAO"
+  },
+  {
+   "Sealed98": "qcfDIEEZ0IEEvhNpHNOgOepC5J7V8cZnx_rog5x_dy5-WxUbrlcuzuu8RtGwQ3-CQKrx1_petMng1ePaiQZC-bEZsBqubrwpU2LPGRyhyBWq4cFthiv7EGQhnW0G4P6J5iDX9FPTQa4JGZ_DuXKoeeys1iEYLkhxXUjlaiyq37uV8_e68Gs9dScGiTFps2gelwqnEbTsFD8TizTfCEYvpRosuuebpGZAogfcmZLVdefWI9xvl761x-T7MEyBVxBFHgoPohINQCciVBaV8XRcUz9jrFv93L1jsGo9MOtqyfulXCMkUvhftGLJCjdkQMFSSbBAdzQIRNDwStZZNTZPYytgnWUNg5oOWV43AAyI7rSAwt4QxZEXTk2uLZlKvjJekSx9M1arGjL-SV-YFPcditGTkCpHQw"
+  },
+  {
+   "Id": "red_orbit_ash",
+   "Name": "Orbit of Ash",
+   "Class": "Paladin",
+   "Build": "",
+   "Runes": [
+    "aesc",
+    "ac",
+    "aesc"
+   ],
+   "Bases": [
+    "OneHandMace"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "OrbitMax",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 5
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Orbit"
+      ],
+      "Value": 120
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Trigger",
+      "Mode": "Trigger",
+      "Tags": [
+       "Hit",
+       "Nova",
+       "Orbit",
+       "VsBoss",
+       "Pct=250",
+       "Radius=300",
+       "Element=Lightning"
+      ],
+      "Value": 100,
+      "Value2": 0.3
+     },
+     "Text": "Orbiting hits on a Guardian release a Lightning nova for 250% of the hit (every 0.3 seconds, 3 metre radius)"
+    }
+   ],
+   "Flavour": "The ash tree turns, and the storm turns with it.",
+   "Red": 1,
+   "Secret": 0,
+   "Crowned": 0,
+   "Sockets": 3,
+   "Level": 84,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 250,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 44,
+      "Value2": 78,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0
+  },
+  {
+   "Sealed98": "tcfDIEEZIIAUnhMZANKgKVbbHbwGqoZc4kWV-B7IhDNBAcPRi8mhrYFq_VcwJZTfXxhcbYbaqvSfyEJDCFWszcPoqZV-3TOjkun_8eHa6SIzYQZ3eW2yZdnEfBah4wlIKgM37IdVEn6OJHXUwy_ivQCxuv_iOlQ0dWCqcU9GXboi0cpqeINFnM1t_ccNVG0nsBXJtq_n2TRZw2toE3xMJJrjGeZ7NKFcGHHCWZECRUV8kP_pU0E9IkC5wt9uAVrr_AxurdI9b_b7YfDQUZapaB7tGIt6o4PVFdWmoYz3b4BSs7q1hxKiz1t2MUJegYYDyFQDTIMy289D9s134lYKiqDiXVL_Y0Kk0xcXziRvwPQFa0afTlxlwiy1ytpFJn693ccFmXrmGnw0LOASR6KdEwNqSvVUQaUbVpz2pryiz_wTPwC8bx24"
+  },
+  {
+   "Sealed98": "O8fDIEEZ2IKknxNpANMeuLlCLdjRbalBhdXy6E5691av55Kk9-jOMzVYwluzNUlk-wVsz_qsHW2cd4Y-umLSwIxpt_FLgtVKH3xWLEHDDQWllUxu6ls5KodiLveU1cLDfkbctsfx3ggEW76LVKRZV2g8PV0dEzq-QZ5lJhAfpoXc_1rvggzTfTjrRabwTxfHJwRzZpCWp-VCWS8W1TP-pynLEE-cJXpRtAz7CnQdPKGoCGftMZCXQ2YJI3A6OYu2j_uLR4qpeNQoHOtUHt6zhUOLbQ0PwDepMm4ty9vrsPSyEErDtlsieydWq2G6KJ25vTjF53IqxwoJCIl9aewjj5T1xYEdHhjK6_8Wr4SuGX2XDEfhX8jGRBp4SONus7Vwy-vMmKpSzPxQJrDb6MysfRvXEOMJy_SQXnffLnBfK3YRl9S2j30vYhydppuw6xfOQmrHyzP3GXsrHHqvwS38plgueR5Oio7tOJmkH-HM5h_SbgztZJVAUfj5DUaBCbF_pA"
+  },
+  {
+   "Id": "red_thousand_hands",
+   "Name": "Thousand Hands",
+   "Class": "Ranger",
+   "Build": "",
+   "Runes": [
+    "gar",
+    "stan",
+    "gar"
+   ],
+   "Bases": [
+    "Bow"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Projectiles",
+      "Mode": "Flat",
+      "Tags": [
+       "Totem",
+       "Projectile"
+      ],
+      "Value": 2
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Fork",
+      "Mode": "Flat",
+      "Tags": [
+       "Totem",
+       "Projectile"
+      ],
+      "Value": 1
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "TotemCount",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 1
+     }
+    }
+   ],
+   "Flavour": "A thousand hands draw. None of them are yours.",
+   "Red": 1,
+   "Secret": 0,
+   "Crowned": 0,
+   "Sockets": 3,
+   "Level": 84,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 250,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 44,
+      "Value2": 78,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0
+  },
+  {
+   "Id": "red_stormwake",
+   "Name": "Stormwake",
+   "Class": "",
+   "Build": "",
+   "Runes": [
+    "aesc",
+    "ior",
+    "aesc"
+   ],
+   "Bases": [
+    "Claw",
+    "Dagger"
+   ],
+   "Mods": [
+    {
+     "Mod": {
+      "Stat": "Chains",
+      "Mode": "Flat",
+      "Tags": [
+       "Chain"
+      ],
+      "Value": 2
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "Trigger",
+      "Mode": "Trigger",
+      "Tags": [
+       "Hit",
+       "Nova",
+       "Pct=60",
+       "Radius=250",
+       "PerTarget=0.2",
+       "Element=Lightning"
+      ],
+      "Value": 100
+     },
+     "Text": "Every hit, and every chain hop, bursts in a Lightning nova for 60% of that hit (2.5 metre radius; each enemy at most once every 0.2 seconds)"
+    }
+   ],
+   "Flavour": "The storm strikes, then follows.",
+   "Red": 1,
+   "Secret": 0,
+   "Crowned": 0,
+   "Sockets": 3,
+   "Level": 84,
+   "PowerMods": [
+    {
+     "Mod": {
+      "Stat": "Damage",
+      "Mode": "Inc",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 250,
+      "bLocal": true
+     }
+    },
+    {
+     "Mod": {
+      "Stat": "AddedDamage",
+      "Mode": "Flat",
+      "Tags": [
+       "Physical"
+      ],
+      "Value": 44,
+      "Value2": 78,
+      "bLocal": true
+     }
+    }
+   ],
+   "Power2H": 2.0
+  },
+  {
+   "Sealed98": "esfDIEEZ2IKUnxNpANAe3gepUa_Mj8x4kpZsctX1RGbYtQiluNbPW70DgHadS3a67cpf6cjmu40vHwH9hrdGqLubG5j2yWknTYE7Uirlx7BXcTvp0qIjMBmlrq2eL0E4ggOin5rTdLYDPyG6uuCOvahaAr6WBn0uH2SXD81CHhPApnmwyBzCg7iOTs6dmNDraYQGC1rj8q-oRWj1rDqddDrc4G9_tsBKrxLqkHwyZ3lyrgdrVGK6eF2IKqBGIVFz0o1Ha2GAc2Q69dEYmyWojprBD2iyjIO_mO-SkdhxQSe4fYFkHH-of8Vlu6oiaFthS67kykTVyn4ixTGjpbrGQf-_5yi3lLswHilTJLKeWMC5A9uU0RqfxBtRvyXaVv-SFYQumLWtlEkA1kP9e94sa3xdQbKiBJAO9s3eOL4PrQdY9R2qODOikIfrka_kUVzVer3ubgju1UPPjWe50W5A"
+  },
+  {
+   "Sealed98": "F8fDIEEZKEGqvwtpAOiKU7hyFRnm-CddsryahW4sJOR03bgzNRE6S8ivNgK9mR2G4w0TJzRn5_T-3J3-8CK5rHKQrSYy_uSeFhglOJsad6z4dv-E2SKrm9-EiwnxnVHiOJtx6R8rIdArbShSX74iZDviIQEt3HtTFnf0nvSDlydjJ1f7W_zeq1KGduEJr9IwJlNq0oUgDMSchaFFUkPs4HKOLfy7GMGEw9IrTDzQZAZmbR2KkpzmP_AUgIUVc5V_j7qi6THo8tbURh76PDNgfuNbKTmoe0c1cEKNe_eHiQzTtABj32y8CWZPFu18UEbvr7X6HrPCpEZ3NdC3V3Ayejqs_jYV_4DMx1tUS3AYffzpxrjE2xVwebOIBbL0e0NKwnIfeqJvwO0sNsn4K5879IOJGht210g09DaXdmPMry0lXOd0ivKEytmAyfAAiuJuGzTdtqHQtcfjnlUJR2zXD9KJ7NzMA4AdTIPtUGT11__XB5OsklvXxcO1bTAPH3YNfVe0ZSo-d7p_bWC-ORZhyxGGjEtTgjLKXJ9MWuWuORw"
+  },
+  {
+   "Sealed98": "GcfDIEEZIIGkvxJpANMeuCkF_KMXL-HHd8i6gI-8OsPkV9XtEVSRsgyj_taw1wBKV3p31Ghqse2t9C0fI-bWaxBtoMr0vu64kOBAzownZEH5_538VZhTgHg7ICSMrMb-oqW4gPNepT6g9gA8bUOrw0etQnvRl8G3Q60xN3SHEbUsueqjU0e3SbH73nHPBw3gPCfWBchHnDbh_6-zH_nZvxZTjlfrxhkrJAv4jdJzp4bEHLREksCNlenKZ-7WeAjj0Uuuv2a0Jnae3__8kwbMmCnlGicllYv24Ivjo8RcNfO2qGhHsFbpYjGJPHiQLjARf913ozRVQJH_j_EyRCUHkrXij8v_KRDTQaCz5M1b8W8yJEP5QY8L6FiP73ha0vuqG08z7xEPJlW9SRCfUJzhLnhifezZev0xikHIKhREB3TwfArzLGgqb-_38bpxDZQ0tKFUMKxqvGkft1UGoLuivbDU8474u-C_jU5wRb7sgdDf13ofLuoSvPBoDV-Y"
+  },
+  {
+   "Sealed98": "ZcfDIEEZ0IGIvxIZANMeWtsF-KsxSaSYleZYq2kM5YD_g3qvBoXT-OPlS9f6OZvtlPcH1XmK_-2tZX2mSZQKaJZpVhu3sd6Mi-fwERgowH1xos7PoKd8B81SFnoNt2Mvan7J64xb0Lr7AGqnabqJ_NvO2g5GeIhKPPb8Vv0W-RmCKrm2vvkDOFpVttu6AdYnLcItjfGUl_90PuiRl0vpy5UmqOzLzCU86CMeSq8J9Fgy7cfGO3dX9zt1KLjGb1p7jtktOeMaFORYp1tuLcv49qwjj9YVkOTg5zAbGRiE5dHCKlZWJn0BaHnTxF0ZhrKVf68tk8d3NwL_ktBIPfdTEam4X-131Hjuh6UksiAiqPu7rXv4a3hKXYMGne01MQRPqxfhF8R8WV0p6LXlJPJqjk5_ZTgpdnxzfeqzaP_x6h8WNawt_D6FDLEZCX5JMsm_In1IYG7Bb4Cr67ZcapMMOSua5EdhPYxHHO5rOQ"
+  },
+  {
+   "Sealed98": "4sfDIEEZ2IAUntNoANKgvHmx6OfOy-m85es9xV8z0-bmHZedmVRRX9dTKJE4_cVnnuuiMdQi1YPqZSKuuYTmcH6rg8SF-K8ytPoR2rR_jzZ1Nk35fDT6KD0T4XASboVZRqLMgTtH0zVomnQRMhTpcaPdXQRAa2-sYzmg59uSyy5uw2sAnwcqbflgfoQL9qRi7KEOo3cM5e6WM_wKZX3T2C0I7DJfxO1LFT35fZ2ngYZd5Ueng-oNHryLANIByhwjSxzcMG9Rr-_MVEgCxaFAczhixnvmVVs4AwQCK9PWLSCtUXpu7w3LICX4EeaDsm0lE7l0rBvgewaTL95YR-vjLsQF_LcjYMHOeeIiV0up4La4U0y2bRfJqTo9bXA3EQQvtRH2T-RsHbcvT_2Oq0fyLoAjWrZLra87zMK0yLpeJHhyM5HbpxYTCuxy3AQ"
+  },
+  {
+   "Sealed98": "aMfDIEEZKIGYn9NoANIe0lnd-tM-0sFq_Ou9OCtdNoIOtIWsmBQKX9dTKJG4ZNShNxbL-22Mv4fuZY6nVZQSSJa99Qy6JvIH3N-c2w_wXDUUugQkgbnodkSE_C9xTbZsWubmlVHbQOxgC6FwSqj8CnnxoWEoZqgoww7rsUuadASiltprONftPamdPVfbx6zqId2V1lZCvE8MLvFRPQNtOlZE6ie50upoywysyAvpxFeylCufByBn5xU6v21c1hyi-orjQuIRu_ThXNM8tfXNi7Aqg2_E3cMZYK1FzmfwB0atUBIbnH25EXJuDQJXJrEUEzfc71UWUd5tAYpTh4T-Z8kWSxXYqducP7Jrs7NyXUoAN_k_12DtPhqxvz7BmGPHAz2n18DVFAAw7oQmQsCiyaANEyYUZc_EzKIkwTslXJls0X-D6LTRNE0xy5ezWTxFLJad_UERLt-5qJevD1VuFmVX-5TZS_eGd8OrhYc1Mu66sQ"
+  },
+  {
+   "Sealed98": "jMfDIEEZKIGYn9NoANIe0tkWgMPRHW9-HMQ9tfhdNoIOpCsNC2hTXIspFb68ZVxfn8HwiQWI_9a9xxUBJ1toLM19QEo7lPywOlZuGZhM39Wt8etlHdrkfN9o3YDAvBVuZcqs00cA5yMbmlH5qfF_mqkvRECKeY5jdDsgwyECRM0Ype745ealNi-b9VogBjhtccFeW1uEus6U6QbtZjYJM_xD1yT5yt9yEd4MUtNf6vf3VvYhZK1nJLebdkHYvUb6qnjbMM7hsmW1vA2uNWGn-qB2dLyeb46Oe68ocjkTzyOXbIv5mRtMM7EO4EcTKeW3uvy_t3sRX5u8ecRuFDlEfjdo0G2q8qcndWg4yUu_rXZA-IeoDhp4TAwEnkP76UrqST8YdY2fQTuipQYbNLbSEZ-Jw2zbBcvGuvAyaZW-PlxTqdfeY9i_0jV4gACht3zkBfRm_RWkrA"
+  },
+  {
+   "Sealed98": "MMfDIEEZIIEentNoANOguHmx69PewfFqHexoQRaM7Ofqopb7unv-dPg0kZPU55ff8KiwgoaNXykUiK3GJZptyfBj7ipfmT6VequdE-DmB-E2C4pnZWPziFy8XuT090eUcW1zDJaMBjyHcSpjAzSI_CO9uCPj6ORQrOFqUKDpOBa3BGElM7G0ytoDTlUaGPR3s_tYcAO466jhRurUZbSDTvhs49KkkNsyzy3GCrynU1dCj1-CNT-K0sOH3RoLsYGywl0jYSxZAjI1ntuJiQr62QS8zoJePwOy6uAl_Qoa6qzgaFvmEXMDTtjTN-_bN8YXik1AZKNcX9YBQniHiN5jaErKxpHwG7NkL_qubw4askkdGN-BIoWamiwF-qqUfMkjv8DluYJLCl-XsQOo69sGENNodtk-VVyJ7WdbV_sdUZYkgSsqZpC0nn1FRbGH1ALXunjXWItPDNIbLX-77tDrHXH3cKmWAG92rXVAdpoQ2Oo3wVKgEHlfEGin41OeNhcA8zQBNxJU1qBJmR97kBQ"
+  }
+ ]
+}

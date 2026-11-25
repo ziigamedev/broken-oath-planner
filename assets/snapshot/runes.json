@@ -1,0 +1,3098 @@
+{
+ "Rules": {
+  "SocketFromML": 30,
+  "SocketChance": 0.45,
+  "JewelSocketFromML": 16,
+  "JewelSocketChance": 0.2,
+  "JewelSocketChanceWeapon": 0.4,
+  "SocketWeights": [
+   20,
+   34,
+   34,
+   12
+  ],
+  "MaxSockets": {
+   "TwoHand": 4,
+   "OneHand": 3,
+   "Chest": 4,
+   "Helm": 3,
+   "Shield": 3,
+   "Tome": 3
+  },
+  "DropChance": [
+   0.001575,
+   0.0054,
+   0.027,
+   0.3
+  ],
+  "BossCount": [
+   1,
+   2
+  ],
+  "TierFromML": [
+   38,
+   45,
+   60,
+   70,
+   70,
+   84
+  ],
+  "TierWeight": [
+   100,
+   36,
+   17.8,
+   4.45,
+   0,
+   0
+  ],
+  "FuseCount": 3,
+  "FuseGold": [
+   600,
+   1800,
+   4500,
+   0,
+   0,
+   0
+  ],
+  "UnbindGold": [
+   150,
+   400,
+   900,
+   2000,
+   4000,
+   25000
+  ],
+  "CarveGoldPerLevel": 40,
+  "SellGold": [
+   12,
+   36,
+   100,
+   300,
+   600,
+   1600
+  ],
+  "JewelFromML": [
+   16,
+   25,
+   45,
+   65
+  ],
+  "JewelWeight": [
+   100,
+   40,
+   21.36,
+   3.56
+  ],
+  "JewelDropChance": [
+   0.0018,
+   0.00675,
+   0.0315,
+   0.25
+  ],
+  "JewelSellGold": [
+   5,
+   16,
+   50,
+   140
+  ],
+  "TierLeanFromRL": 80,
+  "TierLeanToRL": 250,
+  "TierLeanMult": [
+   1,
+   1,
+   1.5,
+   3,
+   3.0,
+   1
+  ],
+  "DwarvenLeanFromRL": 110,
+  "DwarvenLeanToRL": 300,
+  "DwarvenLeanMult": 2.0,
+  "RedChance": 0.012,
+  "RedJackpot": 1,
+  "DeepHallRedChance": 0.05,
+  "RedLeanFromRL": 90,
+  "RedLeanToRL": 250,
+  "RedLeanMult": 4.5,
+  "RedHomeMult": 3.0,
+  "RedTurnCount": 3,
+  "RedTurnJewelTier": 4,
+  "IconSet": "_r64"
+ },
+ "runes": [
+  {
+   "Id": "fe",
+   "Name": "Fe",
+   "Tier": 1,
+   "Index": 1,
+   "Lore": "wealth",
+   "Level": 38,
+   "Weight": 100,
+   "Color": {
+    "R": 0.112,
+    "G": 0.202,
+    "B": 0.552,
+    "A": 1.0
+   },
+   "Glyph": "0.35,0.0,0.35,1.0|0.35,0.38,0.75,0.1|0.35,0.62,0.75,0.34",
+   "Weapon": [
+    {
+     "Stat": "ItemRarity",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 10
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "GoldFind",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 10
+    }
+   ],
+   "Next": "ur"
+  },
+  {
+   "Id": "ur",
+   "Name": "Ur",
+   "Tier": 1,
+   "Index": 2,
+   "Lore": "the aurochs: strength",
+   "Level": 38,
+   "Weight": 100,
+   "Color": {
+    "R": 0.112,
+    "G": 0.202,
+    "B": 0.552,
+    "A": 1.0
+   },
+   "Glyph": "0.3,1.0,0.3,0.05,0.72,0.36,0.72,1.0",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Physical"
+     ],
+     "Value": 26
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Life",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 52
+    }
+   ],
+   "Next": "thurs"
+  },
+  {
+   "Id": "thurs",
+   "Name": "Thurs",
+   "Tier": 1,
+   "Index": 3,
+   "Lore": "the giant: thunder",
+   "Level": 38,
+   "Weight": 100,
+   "Color": {
+    "R": 0.112,
+    "G": 0.202,
+    "B": 0.552,
+    "A": 1.0
+   },
+   "Glyph": "0.35,0.0,0.35,1.0|0.35,0.28,0.72,0.5,0.35,0.72",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Lightning"
+     ],
+     "Value": 26
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Lightning"
+     ],
+     "Value": 25
+    }
+   ],
+   "Next": "as"
+  },
+  {
+   "Id": "as",
+   "Name": "As",
+   "Tier": 1,
+   "Index": 4,
+   "Lore": "the god: wisdom",
+   "Level": 38,
+   "Weight": 100,
+   "Color": {
+    "R": 0.112,
+    "G": 0.202,
+    "B": 0.552,
+    "A": 1.0
+   },
+   "Glyph": "0.35,0.0,0.35,1.0|0.35,0.1,0.72,0.36|0.35,0.36,0.72,0.62",
+   "Weapon": [
+    {
+     "Stat": "CastSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 18
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Mana",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 44
+    }
+   ],
+   "Next": "reid"
+  },
+  {
+   "Id": "reid",
+   "Name": "Reid",
+   "Tier": 1,
+   "Index": 5,
+   "Lore": "the ride",
+   "Level": 38,
+   "Weight": 100,
+   "Color": {
+    "R": 0.112,
+    "G": 0.202,
+    "B": 0.552,
+    "A": 1.0
+   },
+   "Glyph": "0.32,1.0,0.32,0.0,0.72,0.26,0.32,0.5,0.75,1.0",
+   "Weapon": [
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "Inc",
+     "Tags": [
+      "Attack"
+     ],
+     "Value": 9
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "MoveSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 4
+    }
+   ],
+   "Next": "kaun"
+  },
+  {
+   "Id": "kaun",
+   "Name": "Kaun",
+   "Tier": 1,
+   "Index": 6,
+   "Lore": "the torch: fire",
+   "Level": 38,
+   "Weight": 100,
+   "Color": {
+    "R": 0.112,
+    "G": 0.202,
+    "B": 0.552,
+    "A": 1.0
+   },
+   "Glyph": "0.72,0.12,0.28,0.5,0.72,0.88",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Fire"
+     ],
+     "Value": 26
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Fire"
+     ],
+     "Value": 25
+    }
+   ],
+   "Next": "hagal"
+  },
+  {
+   "Id": "hagal",
+   "Name": "Hagal",
+   "Tier": 2,
+   "Index": 7,
+   "Lore": "hail: cold",
+   "Level": 45,
+   "Weight": 36,
+   "Color": {
+    "R": 0.065,
+    "G": 0.539,
+    "B": 0.392,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.0,0.5,1.0|0.2,0.22,0.8,0.78|0.8,0.22,0.2,0.78",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Cold"
+     ],
+     "Value": 35
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Cold"
+     ],
+     "Value": 28
+    }
+   ],
+   "Next": "naud"
+  },
+  {
+   "Id": "naud",
+   "Name": "Naud",
+   "Tier": 2,
+   "Index": 8,
+   "Lore": "need",
+   "Level": 45,
+   "Weight": 36,
+   "Color": {
+    "R": 0.065,
+    "G": 0.539,
+    "B": 0.392,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.0,0.5,1.0|0.28,0.62,0.72,0.36",
+   "Weapon": [
+    {
+     "Stat": "LifeOnKill",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 24
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "LifeRegen",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 14
+    }
+   ],
+   "Next": "isa"
+  },
+  {
+   "Id": "isa",
+   "Name": "Isa",
+   "Tier": 2,
+   "Index": 9,
+   "Lore": "ice: stillness",
+   "Level": 45,
+   "Weight": 36,
+   "Color": {
+    "R": 0.065,
+    "G": 0.539,
+    "B": 0.392,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.0,0.5,1.0",
+   "Weapon": [
+    {
+     "Stat": "CritMulti",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 22
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "EnergyShield",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 42,
+     "bLocal": true
+    }
+   ],
+   "Next": "ar"
+  },
+  {
+   "Id": "ar",
+   "Name": "Ar",
+   "Tier": 2,
+   "Index": 10,
+   "Lore": "the harvest year",
+   "Level": 45,
+   "Weight": 36,
+   "Color": {
+    "R": 0.065,
+    "G": 0.539,
+    "B": 0.392,
+    "A": 1.0
+   },
+   "Glyph": "0.48,0.12,0.22,0.38,0.48,0.62|0.52,0.38,0.78,0.62,0.52,0.88",
+   "Weapon": [
+    {
+     "Stat": "ManaOnKill",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 7
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "ManaRegen",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 54
+    }
+   ],
+   "Next": "sol"
+  },
+  {
+   "Id": "sol",
+   "Name": "Sol",
+   "Tier": 2,
+   "Index": 11,
+   "Lore": "the sun",
+   "Level": 45,
+   "Weight": 36,
+   "Color": {
+    "R": 0.065,
+    "G": 0.539,
+    "B": 0.392,
+    "A": 1.0
+   },
+   "Glyph": "0.66,0.04,0.3,0.4,0.7,0.6,0.34,0.96",
+   "Weapon": [
+    {
+     "Stat": "CritChance",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 22
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 13
+    }
+   ],
+   "Next": "tyr"
+  },
+  {
+   "Id": "tyr",
+   "Name": "Tyr",
+   "Tier": 2,
+   "Index": 12,
+   "Lore": "the god of war",
+   "Level": 45,
+   "Weight": 36,
+   "Color": {
+    "R": 0.065,
+    "G": 0.539,
+    "B": 0.392,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.0,0.5,1.0|0.2,0.34,0.5,0.0,0.8,0.34",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 28
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Defences",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 74,
+     "bLocal": true
+    }
+   ],
+   "Next": "bjarkan"
+  },
+  {
+   "Id": "bjarkan",
+   "Name": "Bjarkan",
+   "Tier": 3,
+   "Index": 13,
+   "Lore": "the birch: renewal",
+   "Level": 60,
+   "Weight": 17.8,
+   "Color": {
+    "R": 0.905,
+    "G": 0.604,
+    "B": 0.08,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.0,0.3,1.0|0.3,0.0,0.72,0.25,0.3,0.5,0.72,0.75,0.3,1.0",
+   "Weapon": [
+    {
+     "Stat": "LifeLeech",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 0.4
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Life",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 5
+    }
+   ],
+   "Next": "madr"
+  },
+  {
+   "Id": "madr",
+   "Name": "Madr",
+   "Tier": 3,
+   "Index": 14,
+   "Lore": "the people",
+   "Level": 60,
+   "Weight": 17.8,
+   "Color": {
+    "R": 0.905,
+    "G": 0.604,
+    "B": 0.08,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.0,0.5,1.0|0.5,0.42,0.2,0.1|0.5,0.42,0.8,0.1",
+   "Weapon": [
+    {
+     "Stat": "Attributes",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 22
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Attributes",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 22
+    }
+   ],
+   "Next": "logr"
+  },
+  {
+   "Id": "logr",
+   "Name": "Logr",
+   "Tier": 3,
+   "Index": 15,
+   "Lore": "the lake",
+   "Level": 60,
+   "Weight": 17.8,
+   "Color": {
+    "R": 0.905,
+    "G": 0.604,
+    "B": 0.08,
+    "A": 1.0
+   },
+   "Glyph": "0.4,0.0,0.4,1.0|0.4,0.0,0.76,0.3",
+   "Weapon": [
+    {
+     "Stat": "ManaCost",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": -10
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Poison"
+     ],
+     "Value": 33
+    }
+   ],
+   "Next": "yr"
+  },
+  {
+   "Id": "yr",
+   "Name": "Yr",
+   "Tier": 3,
+   "Index": 16,
+   "Lore": "the yew bow",
+   "Level": 60,
+   "Weight": 17.8,
+   "Color": {
+    "R": 0.905,
+    "G": 0.604,
+    "B": 0.08,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.0,0.5,1.0|0.5,0.58,0.2,0.9|0.5,0.58,0.8,0.9",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Projectile"
+     ],
+     "Value": 44
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Block",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 3
+    }
+   ],
+   "Next": "wunjo"
+  },
+  {
+   "Id": "wunjo",
+   "Name": "Wunjo",
+   "Tier": 3,
+   "Index": 17,
+   "Lore": "joy",
+   "Level": 60,
+   "Weight": 17.8,
+   "Color": {
+    "R": 0.905,
+    "G": 0.604,
+    "B": 0.08,
+    "A": 1.0
+   },
+   "Glyph": "0.35,0.0,0.35,1.0|0.35,0.0,0.72,0.22,0.35,0.45",
+   "Weapon": [
+    {
+     "Stat": "Area",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 12
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "MinionDamage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 48
+    }
+   ],
+   "Next": "ehwaz"
+  },
+  {
+   "Id": "ehwaz",
+   "Name": "Ehwaz",
+   "Tier": 4,
+   "Index": 18,
+   "Lore": "the horse",
+   "Level": 70,
+   "Weight": 4.45,
+   "Color": {
+    "R": 0.776,
+    "G": 0.098,
+    "B": 0.023,
+    "A": 1.0
+   },
+   "Glyph": "0.22,1.0,0.22,0.0,0.5,0.3,0.78,0.0,0.78,1.0",
+   "Weapon": [
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "Inc",
+     "Tags": [
+      "Attack"
+     ],
+     "Value": 15
+    },
+    {
+     "Stat": "CastSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 10
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "MoveSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 8
+    }
+   ],
+   "Next": "othala"
+  },
+  {
+   "Id": "othala",
+   "Name": "Othala",
+   "Tier": 4,
+   "Index": 19,
+   "Lore": "the inheritance",
+   "Level": 70,
+   "Weight": 4.45,
+   "Color": {
+    "R": 0.776,
+    "G": 0.098,
+    "B": 0.023,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.04,0.8,0.4,0.22,1.0|0.5,0.04,0.2,0.4,0.78,1.0",
+   "Weapon": [
+    {
+     "Stat": "SkillLevel",
+     "Mode": "Flat",
+     "Tags": [
+      "Gem"
+     ],
+     "Value": 1
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "MaxResist",
+     "Mode": "Flat",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 2
+    }
+   ],
+   "Next": "dagaz",
+   "HalfExact": 1
+  },
+  {
+   "Id": "dagaz",
+   "Name": "Dagaz",
+   "Tier": 4,
+   "Index": 20,
+   "Lore": "the dawn",
+   "Level": 70,
+   "Weight": 4.45,
+   "Color": {
+    "R": 0.776,
+    "G": 0.098,
+    "B": 0.023,
+    "A": 1.0
+   },
+   "Glyph": "0.15,0.0,0.15,1.0,0.85,0.0,0.85,1.0,0.15,0.0",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 43
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Life",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 8
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "gebo",
+   "Name": "Gebo",
+   "Tier": 5,
+   "Index": 21,
+   "Lore": "the gift",
+   "Level": 70,
+   "Weight": 3.0,
+   "Color": {
+    "R": 1.0,
+    "G": 0.905,
+    "B": 0.73,
+    "A": 1.0
+   },
+   "Glyph": "0.15,0.0,0.85,1.0|0.85,0.0,0.15,1.0",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 43
+    },
+    {
+     "Stat": "ItemRarity",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 10
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 18
+    },
+    {
+     "Stat": "Life",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 30
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "perthro",
+   "Name": "Perthro",
+   "Tier": 5,
+   "Index": 22,
+   "Lore": "the lot-cup: fate",
+   "Level": 70,
+   "Weight": 3.0,
+   "Color": {
+    "R": 1.0,
+    "G": 0.905,
+    "B": 0.73,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.0,0.3,1.0|0.3,0.0,0.7,0.2,0.7,0.0|0.3,1.0,0.7,0.8,0.7,1.0",
+   "Weapon": [
+    {
+     "Stat": "CritChance",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 32
+    },
+    {
+     "Stat": "CritMulti",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 12
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "ItemRarity",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 15
+    },
+    {
+     "Stat": "Life",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 4
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "algiz",
+   "Name": "Algiz",
+   "Tier": 5,
+   "Index": 23,
+   "Lore": "the elk: warding",
+   "Level": 70,
+   "Weight": 3.0,
+   "Color": {
+    "R": 1.0,
+    "G": 0.905,
+    "B": 0.73,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.0,0.5,1.0|0.5,0.45,0.15,0.0|0.5,0.45,0.85,0.0",
+   "Weapon": [
+    {
+     "Stat": "Area",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 15
+    },
+    {
+     "Stat": "LifeLeech",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 0.3
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Life",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 8
+    },
+    {
+     "Stat": "Block",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 3
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "ingwaz",
+   "Name": "Ingwaz",
+   "Tier": 5,
+   "Index": 24,
+   "Lore": "the seed: what grows",
+   "Level": 70,
+   "Weight": 3.0,
+   "Color": {
+    "R": 1.0,
+    "G": 0.905,
+    "B": 0.73,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.0,0.85,0.5,0.5,1.0,0.15,0.5,0.5,0.0",
+   "Weapon": [
+    {
+     "Stat": "MinionDamage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 58
+    },
+    {
+     "Stat": "CastSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 8
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Attributes",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 26
+    },
+    {
+     "Stat": "MinionLife",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 15
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "jera",
+   "Name": "Jera",
+   "Tier": 6,
+   "Index": 25,
+   "Lore": "the year's turn",
+   "Level": 84,
+   "Weight": 0,
+   "Color": {
+    "R": 0.62,
+    "G": 0.008,
+    "B": 0.012,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.1,0.4,0.3,0.7|0.7,0.3,0.9,0.6,0.7,0.9",
+   "Weapon": [
+    {
+     "Stat": "Cooldown",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": -12
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "SkillDuration",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 20
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "eihwaz",
+   "Name": "Eihwaz",
+   "Tier": 6,
+   "Index": 26,
+   "Lore": "the yew between worlds",
+   "Level": 84,
+   "Weight": 0,
+   "Color": {
+    "R": 0.62,
+    "G": 0.008,
+    "B": 0.012,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.0,0.5,1.0|0.5,0.0,0.75,0.22|0.5,1.0,0.25,0.78",
+   "Weapon": [
+    {
+     "Stat": "MinionDamage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 70
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "MinionLife",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 38
+    }
+   ],
+   "Next": "",
+   "Home": "core_gravewatch"
+  },
+  {
+   "Id": "ior",
+   "Name": "Ior",
+   "Tier": 6,
+   "Index": 27,
+   "Lore": "the serpent of two worlds",
+   "Level": 84,
+   "Weight": 0,
+   "Color": {
+    "R": 0.62,
+    "G": 0.008,
+    "B": 0.012,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.0,0.5,1.0|0.2,0.2,0.5,0.45,0.8,0.2|0.2,0.8,0.5,0.55,0.8,0.8",
+   "Weapon": [
+    {
+     "Stat": "Chains",
+     "Mode": "Flat",
+     "Tags": [
+      "Chain"
+     ],
+     "Value": 1
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Poison"
+     ],
+     "Value": 43
+    }
+   ],
+   "Next": "",
+   "Home": "core_gravewatch"
+  },
+  {
+   "Id": "ear",
+   "Name": "Ear",
+   "Tier": 6,
+   "Index": 28,
+   "Lore": "the grave",
+   "Level": 84,
+   "Weight": 0,
+   "Color": {
+    "R": 0.62,
+    "G": 0.008,
+    "B": 0.012,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.0,0.5,1.0|0.5,0.15,0.2,0.45|0.5,0.15,0.8,0.45|0.5,0.45,0.2,0.75|0.5,0.45,0.8,0.75",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 42
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Life",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 12
+    }
+   ],
+   "Next": "",
+   "Home": "core_gravewatch"
+  },
+  {
+   "Id": "cweorth",
+   "Name": "Cweorth",
+   "Tier": 6,
+   "Index": 29,
+   "Lore": "the pyre",
+   "Level": 84,
+   "Weight": 0,
+   "Color": {
+    "R": 0.62,
+    "G": 0.008,
+    "B": 0.012,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.25,0.5,1.0|0.5,0.25,0.2,0.0|0.5,0.25,0.8,0.0|0.2,1.0,0.5,0.7,0.8,1.0",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Fire"
+     ],
+     "Value": 65
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Fire"
+     ],
+     "Value": 43
+    }
+   ],
+   "Next": "",
+   "Home": "sundered_sky"
+  },
+  {
+   "Id": "calc",
+   "Name": "Calc",
+   "Tier": 6,
+   "Index": 30,
+   "Lore": "the chalice",
+   "Level": 84,
+   "Weight": 0,
+   "Color": {
+    "R": 0.62,
+    "G": 0.008,
+    "B": 0.012,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.0,0.5,1.0|0.5,0.55,0.2,1.0|0.5,0.55,0.8,1.0",
+   "Weapon": [
+    {
+     "Stat": "LifeLeech",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "LifeRegen",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 40
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "stan",
+   "Name": "Stan",
+   "Tier": 6,
+   "Index": 31,
+   "Lore": "the stone",
+   "Level": 84,
+   "Weight": 0,
+   "Color": {
+    "R": 0.62,
+    "G": 0.008,
+    "B": 0.012,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.0,0.85,0.5,0.5,1.0,0.15,0.5,0.5,0.0|0.15,0.5,0.85,0.5",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Totem"
+     ],
+     "Value": 60
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Trap"
+     ],
+     "Value": 60
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Defences",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 106,
+     "bLocal": true
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "gar",
+   "Name": "Gar",
+   "Tier": 6,
+   "Index": 32,
+   "Lore": "the spear",
+   "Level": 84,
+   "Weight": 0,
+   "Color": {
+    "R": 0.62,
+    "G": 0.008,
+    "B": 0.012,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.0,0.5,1.0|0.2,0.3,0.8,0.7|0.8,0.3,0.2,0.7",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Projectile"
+     ],
+     "Value": 65
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Block",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 5
+    }
+   ],
+   "Next": "",
+   "Home": "sundered_sky"
+  },
+  {
+   "Id": "ac",
+   "Name": "Ac",
+   "Tier": 6,
+   "Index": 33,
+   "Lore": "the oak",
+   "Level": 84,
+   "Weight": 0,
+   "Color": {
+    "R": 0.62,
+    "G": 0.008,
+    "B": 0.012,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.0,0.5,1.0|0.5,0.0,0.2,0.3|0.5,0.0,0.8,0.3",
+   "Weapon": [
+    {
+     "Stat": "Area",
+     "Mode": "Inc",
+     "Tags": [
+      "Slam"
+     ],
+     "Value": 27
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Str",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 46
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "aesc",
+   "Name": "Aesc",
+   "Tier": 6,
+   "Index": 34,
+   "Lore": "the ash, the storm tree",
+   "Level": 84,
+   "Weight": 0,
+   "Color": {
+    "R": 0.62,
+    "G": 0.008,
+    "B": 0.012,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.0,0.5,1.0|0.5,0.0,0.2,0.3|0.5,0.3,0.2,0.6",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Lightning"
+     ],
+     "Value": 65
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "EnergyShield",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 80,
+     "bLocal": true
+    }
+   ],
+   "Next": "",
+   "Home": "sundered_sky"
+  },
+  {
+   "Id": "nyd",
+   "Name": "Nyd",
+   "Tier": 6,
+   "Index": 35,
+   "Lore": "need: the debt come due",
+   "Level": 84,
+   "Weight": 0,
+   "Color": {
+    "R": 0.62,
+    "G": 0.008,
+    "B": 0.012,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.0,0.5,1.0|0.3,0.35,0.7,0.6",
+   "Weapon": [
+    {
+     "Stat": "EntropyMulti",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 22
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Poison"
+     ],
+     "Value": 43
+    }
+   ],
+   "Next": ""
+  }
+ ],
+ "jewels": [
+  {
+   "Id": "jw_ember_1",
+   "Name": "Rough Ember Jewel",
+   "Tier": 1,
+   "Index": 1,
+   "Lore": "ember",
+   "Level": 16,
+   "Weight": 100,
+   "Color": {
+    "R": 1.0,
+    "G": 0.42,
+    "B": 0.16,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.08,0.88,0.5,0.5,0.92,0.12,0.5,0.5,0.08",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Fire"
+     ],
+     "Value": 3
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Fire"
+     ],
+     "Value": 3
+    }
+   ],
+   "Next": "jw_ember_2"
+  },
+  {
+   "Id": "jw_ember_2",
+   "Name": "Cut Ember Jewel",
+   "Tier": 2,
+   "Index": 2,
+   "Lore": "ember",
+   "Level": 25,
+   "Weight": 104.0,
+   "Color": {
+    "R": 1.0,
+    "G": 0.42,
+    "B": 0.16,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Fire"
+     ],
+     "Value": 6
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Fire"
+     ],
+     "Value": 6
+    }
+   ],
+   "Next": "jw_ember_3"
+  },
+  {
+   "Id": "jw_ember_3",
+   "Name": "Faceted Ember Jewel",
+   "Tier": 3,
+   "Index": 3,
+   "Lore": "ember",
+   "Level": 45,
+   "Weight": 21.36,
+   "Color": {
+    "R": 1.0,
+    "G": 0.42,
+    "B": 0.16,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1|0.3,0.1,0.5,0.5,0.7,0.1|0.08,0.5,0.92,0.5",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Fire"
+     ],
+     "Value": 10
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Fire"
+     ],
+     "Value": 10
+    }
+   ],
+   "Next": "jw_ember_4"
+  },
+  {
+   "Id": "jw_ember_4",
+   "Name": "Radiant Ember Jewel",
+   "Tier": 4,
+   "Index": 4,
+   "Lore": "ember",
+   "Level": 65,
+   "Weight": 3.56,
+   "Color": {
+    "R": 1.0,
+    "G": 0.42,
+    "B": 0.16,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.04,0.86,0.28,0.86,0.72,0.5,0.96,0.14,0.72,0.14,0.28,0.5,0.04|0.5,0.04,0.5,0.96|0.14,0.28,0.86,0.72|0.86,0.28,0.14,0.72",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Fire"
+     ],
+     "Value": 13
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Fire"
+     ],
+     "Value": 13
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "jw_frost_1",
+   "Name": "Rough Frost Jewel",
+   "Tier": 1,
+   "Index": 5,
+   "Lore": "frost",
+   "Level": 16,
+   "Weight": 100,
+   "Color": {
+    "R": 0.45,
+    "G": 0.78,
+    "B": 1.0,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.08,0.88,0.5,0.5,0.92,0.12,0.5,0.5,0.08",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Cold"
+     ],
+     "Value": 3
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Cold"
+     ],
+     "Value": 3
+    }
+   ],
+   "Next": "jw_frost_2"
+  },
+  {
+   "Id": "jw_frost_2",
+   "Name": "Cut Frost Jewel",
+   "Tier": 2,
+   "Index": 6,
+   "Lore": "frost",
+   "Level": 25,
+   "Weight": 104.0,
+   "Color": {
+    "R": 0.45,
+    "G": 0.78,
+    "B": 1.0,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Cold"
+     ],
+     "Value": 6
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Cold"
+     ],
+     "Value": 6
+    }
+   ],
+   "Next": "jw_frost_3"
+  },
+  {
+   "Id": "jw_frost_3",
+   "Name": "Faceted Frost Jewel",
+   "Tier": 3,
+   "Index": 7,
+   "Lore": "frost",
+   "Level": 45,
+   "Weight": 21.36,
+   "Color": {
+    "R": 0.45,
+    "G": 0.78,
+    "B": 1.0,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1|0.3,0.1,0.5,0.5,0.7,0.1|0.08,0.5,0.92,0.5",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Cold"
+     ],
+     "Value": 10
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Cold"
+     ],
+     "Value": 10
+    }
+   ],
+   "Next": "jw_frost_4"
+  },
+  {
+   "Id": "jw_frost_4",
+   "Name": "Radiant Frost Jewel",
+   "Tier": 4,
+   "Index": 8,
+   "Lore": "frost",
+   "Level": 65,
+   "Weight": 3.56,
+   "Color": {
+    "R": 0.45,
+    "G": 0.78,
+    "B": 1.0,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.04,0.86,0.28,0.86,0.72,0.5,0.96,0.14,0.72,0.14,0.28,0.5,0.04|0.5,0.04,0.5,0.96|0.14,0.28,0.86,0.72|0.86,0.28,0.14,0.72",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Cold"
+     ],
+     "Value": 13
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Cold"
+     ],
+     "Value": 13
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "jw_storm_1",
+   "Name": "Rough Storm Jewel",
+   "Tier": 1,
+   "Index": 9,
+   "Lore": "storm",
+   "Level": 16,
+   "Weight": 100,
+   "Color": {
+    "R": 0.95,
+    "G": 0.9,
+    "B": 0.42,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.08,0.88,0.5,0.5,0.92,0.12,0.5,0.5,0.08",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Lightning"
+     ],
+     "Value": 3
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Lightning"
+     ],
+     "Value": 3
+    }
+   ],
+   "Next": "jw_storm_2"
+  },
+  {
+   "Id": "jw_storm_2",
+   "Name": "Cut Storm Jewel",
+   "Tier": 2,
+   "Index": 10,
+   "Lore": "storm",
+   "Level": 25,
+   "Weight": 104.0,
+   "Color": {
+    "R": 0.95,
+    "G": 0.9,
+    "B": 0.42,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Lightning"
+     ],
+     "Value": 6
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Lightning"
+     ],
+     "Value": 6
+    }
+   ],
+   "Next": "jw_storm_3"
+  },
+  {
+   "Id": "jw_storm_3",
+   "Name": "Faceted Storm Jewel",
+   "Tier": 3,
+   "Index": 11,
+   "Lore": "storm",
+   "Level": 45,
+   "Weight": 21.36,
+   "Color": {
+    "R": 0.95,
+    "G": 0.9,
+    "B": 0.42,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1|0.3,0.1,0.5,0.5,0.7,0.1|0.08,0.5,0.92,0.5",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Lightning"
+     ],
+     "Value": 10
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Lightning"
+     ],
+     "Value": 10
+    }
+   ],
+   "Next": "jw_storm_4"
+  },
+  {
+   "Id": "jw_storm_4",
+   "Name": "Radiant Storm Jewel",
+   "Tier": 4,
+   "Index": 12,
+   "Lore": "storm",
+   "Level": 65,
+   "Weight": 3.56,
+   "Color": {
+    "R": 0.95,
+    "G": 0.9,
+    "B": 0.42,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.04,0.86,0.28,0.86,0.72,0.5,0.96,0.14,0.72,0.14,0.28,0.5,0.04|0.5,0.04,0.5,0.96|0.14,0.28,0.86,0.72|0.86,0.28,0.14,0.72",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Lightning"
+     ],
+     "Value": 13
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Lightning"
+     ],
+     "Value": 13
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "jw_might_1",
+   "Name": "Rough Might Jewel",
+   "Tier": 1,
+   "Index": 13,
+   "Lore": "might",
+   "Level": 16,
+   "Weight": 100,
+   "Color": {
+    "R": 0.82,
+    "G": 0.6,
+    "B": 0.38,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.08,0.88,0.5,0.5,0.92,0.12,0.5,0.5,0.08",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Physical"
+     ],
+     "Value": 3
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Physical"
+     ],
+     "Value": 3
+    }
+   ],
+   "Next": "jw_might_2"
+  },
+  {
+   "Id": "jw_might_2",
+   "Name": "Cut Might Jewel",
+   "Tier": 2,
+   "Index": 14,
+   "Lore": "might",
+   "Level": 25,
+   "Weight": 104.0,
+   "Color": {
+    "R": 0.82,
+    "G": 0.6,
+    "B": 0.38,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Physical"
+     ],
+     "Value": 6
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Physical"
+     ],
+     "Value": 6
+    }
+   ],
+   "Next": "jw_might_3"
+  },
+  {
+   "Id": "jw_might_3",
+   "Name": "Faceted Might Jewel",
+   "Tier": 3,
+   "Index": 15,
+   "Lore": "might",
+   "Level": 45,
+   "Weight": 21.36,
+   "Color": {
+    "R": 0.82,
+    "G": 0.6,
+    "B": 0.38,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1|0.3,0.1,0.5,0.5,0.7,0.1|0.08,0.5,0.92,0.5",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Physical"
+     ],
+     "Value": 10
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Physical"
+     ],
+     "Value": 10
+    }
+   ],
+   "Next": "jw_might_4"
+  },
+  {
+   "Id": "jw_might_4",
+   "Name": "Radiant Might Jewel",
+   "Tier": 4,
+   "Index": 16,
+   "Lore": "might",
+   "Level": 65,
+   "Weight": 3.56,
+   "Color": {
+    "R": 0.82,
+    "G": 0.6,
+    "B": 0.38,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.04,0.86,0.28,0.86,0.72,0.5,0.96,0.14,0.72,0.14,0.28,0.5,0.04|0.5,0.04,0.5,0.96|0.14,0.28,0.86,0.72|0.86,0.28,0.14,0.72",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Physical"
+     ],
+     "Value": 13
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Physical"
+     ],
+     "Value": 13
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "jw_legion_1",
+   "Name": "Rough Legion Jewel",
+   "Tier": 1,
+   "Index": 17,
+   "Lore": "legion",
+   "Level": 16,
+   "Weight": 100,
+   "Color": {
+    "R": 0.48,
+    "G": 0.92,
+    "B": 0.6,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.08,0.88,0.5,0.5,0.92,0.12,0.5,0.5,0.08",
+   "Weapon": [
+    {
+     "Stat": "MinionDamage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 3
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "MinionDamage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 3
+    }
+   ],
+   "Next": "jw_legion_2"
+  },
+  {
+   "Id": "jw_legion_2",
+   "Name": "Cut Legion Jewel",
+   "Tier": 2,
+   "Index": 18,
+   "Lore": "legion",
+   "Level": 25,
+   "Weight": 104.0,
+   "Color": {
+    "R": 0.48,
+    "G": 0.92,
+    "B": 0.6,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1",
+   "Weapon": [
+    {
+     "Stat": "MinionDamage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 6
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "MinionDamage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 6
+    }
+   ],
+   "Next": "jw_legion_3"
+  },
+  {
+   "Id": "jw_legion_3",
+   "Name": "Faceted Legion Jewel",
+   "Tier": 3,
+   "Index": 19,
+   "Lore": "legion",
+   "Level": 45,
+   "Weight": 21.36,
+   "Color": {
+    "R": 0.48,
+    "G": 0.92,
+    "B": 0.6,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1|0.3,0.1,0.5,0.5,0.7,0.1|0.08,0.5,0.92,0.5",
+   "Weapon": [
+    {
+     "Stat": "MinionDamage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 10
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "MinionDamage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 10
+    }
+   ],
+   "Next": "jw_legion_4"
+  },
+  {
+   "Id": "jw_legion_4",
+   "Name": "Radiant Legion Jewel",
+   "Tier": 4,
+   "Index": 20,
+   "Lore": "legion",
+   "Level": 65,
+   "Weight": 3.56,
+   "Color": {
+    "R": 0.48,
+    "G": 0.92,
+    "B": 0.6,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.04,0.86,0.28,0.86,0.72,0.5,0.96,0.14,0.72,0.14,0.28,0.5,0.04|0.5,0.04,0.5,0.96|0.14,0.28,0.86,0.72|0.86,0.28,0.14,0.72",
+   "Weapon": [
+    {
+     "Stat": "MinionDamage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 13
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "MinionDamage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 13
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "jw_vigor_1",
+   "Name": "Rough Vigor Jewel",
+   "Tier": 1,
+   "Index": 21,
+   "Lore": "vigor",
+   "Level": 16,
+   "Weight": 100,
+   "Color": {
+    "R": 0.92,
+    "G": 0.2,
+    "B": 0.26,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.08,0.88,0.5,0.5,0.92,0.12,0.5,0.5,0.08",
+   "Weapon": [
+    {
+     "Stat": "Life",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 5
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Life",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 5
+    }
+   ],
+   "Next": "jw_vigor_2"
+  },
+  {
+   "Id": "jw_vigor_2",
+   "Name": "Cut Vigor Jewel",
+   "Tier": 2,
+   "Index": 22,
+   "Lore": "vigor",
+   "Level": 25,
+   "Weight": 104.0,
+   "Color": {
+    "R": 0.92,
+    "G": 0.2,
+    "B": 0.26,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1",
+   "Weapon": [
+    {
+     "Stat": "Life",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 10
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Life",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 10
+    }
+   ],
+   "Next": "jw_vigor_3"
+  },
+  {
+   "Id": "jw_vigor_3",
+   "Name": "Faceted Vigor Jewel",
+   "Tier": 3,
+   "Index": 23,
+   "Lore": "vigor",
+   "Level": 45,
+   "Weight": 21.36,
+   "Color": {
+    "R": 0.92,
+    "G": 0.2,
+    "B": 0.26,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1|0.3,0.1,0.5,0.5,0.7,0.1|0.08,0.5,0.92,0.5",
+   "Weapon": [
+    {
+     "Stat": "Life",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 16
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Life",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 16
+    }
+   ],
+   "Next": "jw_vigor_4"
+  },
+  {
+   "Id": "jw_vigor_4",
+   "Name": "Radiant Vigor Jewel",
+   "Tier": 4,
+   "Index": 24,
+   "Lore": "vigor",
+   "Level": 65,
+   "Weight": 3.56,
+   "Color": {
+    "R": 0.92,
+    "G": 0.2,
+    "B": 0.26,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.04,0.86,0.28,0.86,0.72,0.5,0.96,0.14,0.72,0.14,0.28,0.5,0.04|0.5,0.04,0.5,0.96|0.14,0.28,0.86,0.72|0.86,0.28,0.14,0.72",
+   "Weapon": [
+    {
+     "Stat": "Life",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 21
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Life",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 21
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "jw_ward_1",
+   "Name": "Rough Ward Jewel",
+   "Tier": 1,
+   "Index": 25,
+   "Lore": "ward",
+   "Level": 16,
+   "Weight": 100,
+   "Color": {
+    "R": 0.86,
+    "G": 0.88,
+    "B": 0.92,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.08,0.88,0.5,0.5,0.92,0.12,0.5,0.5,0.08",
+   "Weapon": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 2
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 2
+    }
+   ],
+   "Next": "jw_ward_2"
+  },
+  {
+   "Id": "jw_ward_2",
+   "Name": "Cut Ward Jewel",
+   "Tier": 2,
+   "Index": 26,
+   "Lore": "ward",
+   "Level": 25,
+   "Weight": 104.0,
+   "Color": {
+    "R": 0.86,
+    "G": 0.88,
+    "B": 0.92,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1",
+   "Weapon": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 3
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 3
+    }
+   ],
+   "Next": "jw_ward_3"
+  },
+  {
+   "Id": "jw_ward_3",
+   "Name": "Faceted Ward Jewel",
+   "Tier": 3,
+   "Index": 27,
+   "Lore": "ward",
+   "Level": 45,
+   "Weight": 21.36,
+   "Color": {
+    "R": 0.86,
+    "G": 0.88,
+    "B": 0.92,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1|0.3,0.1,0.5,0.5,0.7,0.1|0.08,0.5,0.92,0.5",
+   "Weapon": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 4
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 4
+    }
+   ],
+   "Next": "jw_ward_4"
+  },
+  {
+   "Id": "jw_ward_4",
+   "Name": "Radiant Ward Jewel",
+   "Tier": 4,
+   "Index": 28,
+   "Lore": "ward",
+   "Level": 65,
+   "Weight": 3.56,
+   "Color": {
+    "R": 0.86,
+    "G": 0.88,
+    "B": 0.92,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.04,0.86,0.28,0.86,0.72,0.5,0.96,0.14,0.72,0.14,0.28,0.5,0.04|0.5,0.04,0.5,0.96|0.14,0.28,0.86,0.72|0.86,0.28,0.14,0.72",
+   "Weapon": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 5
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 5
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "jw_swift_1",
+   "Name": "Rough Swift Jewel",
+   "Tier": 1,
+   "Index": 29,
+   "Lore": "swift",
+   "Level": 16,
+   "Weight": 100,
+   "Color": {
+    "R": 0.4,
+    "G": 0.9,
+    "B": 0.8,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.08,0.88,0.5,0.5,0.92,0.12,0.5,0.5,0.08",
+   "Weapon": [
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "Inc",
+     "Tags": [
+      "Attack"
+     ],
+     "Value": 2
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "Inc",
+     "Tags": [
+      "Attack"
+     ],
+     "Value": 2
+    }
+   ],
+   "Next": "jw_swift_2"
+  },
+  {
+   "Id": "jw_swift_2",
+   "Name": "Cut Swift Jewel",
+   "Tier": 2,
+   "Index": 30,
+   "Lore": "swift",
+   "Level": 25,
+   "Weight": 104.0,
+   "Color": {
+    "R": 0.4,
+    "G": 0.9,
+    "B": 0.8,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1",
+   "Weapon": [
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "Inc",
+     "Tags": [
+      "Attack"
+     ],
+     "Value": 3
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "Inc",
+     "Tags": [
+      "Attack"
+     ],
+     "Value": 3
+    }
+   ],
+   "Next": "jw_swift_3"
+  },
+  {
+   "Id": "jw_swift_3",
+   "Name": "Faceted Swift Jewel",
+   "Tier": 3,
+   "Index": 31,
+   "Lore": "swift",
+   "Level": 45,
+   "Weight": 21.36,
+   "Color": {
+    "R": 0.4,
+    "G": 0.9,
+    "B": 0.8,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1|0.3,0.1,0.5,0.5,0.7,0.1|0.08,0.5,0.92,0.5",
+   "Weapon": [
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "Inc",
+     "Tags": [
+      "Attack"
+     ],
+     "Value": 4
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "Inc",
+     "Tags": [
+      "Attack"
+     ],
+     "Value": 4
+    }
+   ],
+   "Next": "jw_swift_4"
+  },
+  {
+   "Id": "jw_swift_4",
+   "Name": "Radiant Swift Jewel",
+   "Tier": 4,
+   "Index": 32,
+   "Lore": "swift",
+   "Level": 65,
+   "Weight": 3.56,
+   "Color": {
+    "R": 0.4,
+    "G": 0.9,
+    "B": 0.8,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.04,0.86,0.28,0.86,0.72,0.5,0.96,0.14,0.72,0.14,0.28,0.5,0.04|0.5,0.04,0.5,0.96|0.14,0.28,0.86,0.72|0.86,0.28,0.14,0.72",
+   "Weapon": [
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "Inc",
+     "Tags": [
+      "Attack"
+     ],
+     "Value": 5
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "Inc",
+     "Tags": [
+      "Attack"
+     ],
+     "Value": 5
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "jw_mind_1",
+   "Name": "Rough Mind Jewel",
+   "Tier": 1,
+   "Index": 33,
+   "Lore": "mind",
+   "Level": 16,
+   "Weight": 100,
+   "Color": {
+    "R": 0.58,
+    "G": 0.5,
+    "B": 1.0,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.08,0.88,0.5,0.5,0.92,0.12,0.5,0.5,0.08",
+   "Weapon": [
+    {
+     "Stat": "CastSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 2
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "CastSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 2
+    }
+   ],
+   "Next": "jw_mind_2"
+  },
+  {
+   "Id": "jw_mind_2",
+   "Name": "Cut Mind Jewel",
+   "Tier": 2,
+   "Index": 34,
+   "Lore": "mind",
+   "Level": 25,
+   "Weight": 104.0,
+   "Color": {
+    "R": 0.58,
+    "G": 0.5,
+    "B": 1.0,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1",
+   "Weapon": [
+    {
+     "Stat": "CastSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 3
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "CastSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 3
+    }
+   ],
+   "Next": "jw_mind_3"
+  },
+  {
+   "Id": "jw_mind_3",
+   "Name": "Faceted Mind Jewel",
+   "Tier": 3,
+   "Index": 35,
+   "Lore": "mind",
+   "Level": 45,
+   "Weight": 21.36,
+   "Color": {
+    "R": 0.58,
+    "G": 0.5,
+    "B": 1.0,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1|0.3,0.1,0.5,0.5,0.7,0.1|0.08,0.5,0.92,0.5",
+   "Weapon": [
+    {
+     "Stat": "CastSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 4
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "CastSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 4
+    }
+   ],
+   "Next": "jw_mind_4"
+  },
+  {
+   "Id": "jw_mind_4",
+   "Name": "Radiant Mind Jewel",
+   "Tier": 4,
+   "Index": 36,
+   "Lore": "mind",
+   "Level": 65,
+   "Weight": 3.56,
+   "Color": {
+    "R": 0.58,
+    "G": 0.5,
+    "B": 1.0,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.04,0.86,0.28,0.86,0.72,0.5,0.96,0.14,0.72,0.14,0.28,0.5,0.04|0.5,0.04,0.5,0.96|0.14,0.28,0.86,0.72|0.86,0.28,0.14,0.72",
+   "Weapon": [
+    {
+     "Stat": "CastSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 5
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "CastSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 5
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "jw_keen_1",
+   "Name": "Rough Keen Jewel",
+   "Tier": 1,
+   "Index": 37,
+   "Lore": "keen",
+   "Level": 16,
+   "Weight": 100,
+   "Color": {
+    "R": 1.0,
+    "G": 0.76,
+    "B": 0.3,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.08,0.88,0.5,0.5,0.92,0.12,0.5,0.5,0.08",
+   "Weapon": [
+    {
+     "Stat": "CritChance",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 3
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "CritChance",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 3
+    }
+   ],
+   "Next": "jw_keen_2"
+  },
+  {
+   "Id": "jw_keen_2",
+   "Name": "Cut Keen Jewel",
+   "Tier": 2,
+   "Index": 38,
+   "Lore": "keen",
+   "Level": 25,
+   "Weight": 104.0,
+   "Color": {
+    "R": 1.0,
+    "G": 0.76,
+    "B": 0.3,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1",
+   "Weapon": [
+    {
+     "Stat": "CritChance",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 4
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "CritChance",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 4
+    }
+   ],
+   "Next": "jw_keen_3"
+  },
+  {
+   "Id": "jw_keen_3",
+   "Name": "Faceted Keen Jewel",
+   "Tier": 3,
+   "Index": 39,
+   "Lore": "keen",
+   "Level": 45,
+   "Weight": 21.36,
+   "Color": {
+    "R": 1.0,
+    "G": 0.76,
+    "B": 0.3,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1|0.3,0.1,0.5,0.5,0.7,0.1|0.08,0.5,0.92,0.5",
+   "Weapon": [
+    {
+     "Stat": "CritChance",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 6
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "CritChance",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 6
+    }
+   ],
+   "Next": "jw_keen_4"
+  },
+  {
+   "Id": "jw_keen_4",
+   "Name": "Radiant Keen Jewel",
+   "Tier": 4,
+   "Index": 40,
+   "Lore": "keen",
+   "Level": 65,
+   "Weight": 3.56,
+   "Color": {
+    "R": 1.0,
+    "G": 0.76,
+    "B": 0.3,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.04,0.86,0.28,0.86,0.72,0.5,0.96,0.14,0.72,0.14,0.28,0.5,0.04|0.5,0.04,0.5,0.96|0.14,0.28,0.86,0.72|0.86,0.28,0.14,0.72",
+   "Weapon": [
+    {
+     "Stat": "CritChance",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 8
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "CritChance",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 8
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "jw_well_1",
+   "Name": "Rough Wellspring Jewel",
+   "Tier": 1,
+   "Index": 41,
+   "Lore": "well",
+   "Level": 16,
+   "Weight": 100,
+   "Color": {
+    "R": 0.25,
+    "G": 0.45,
+    "B": 0.95,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.08,0.88,0.5,0.5,0.92,0.12,0.5,0.5,0.08",
+   "Weapon": [
+    {
+     "Stat": "ManaRegen",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 5
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "ManaRegen",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 5
+    }
+   ],
+   "Next": "jw_well_2"
+  },
+  {
+   "Id": "jw_well_2",
+   "Name": "Cut Wellspring Jewel",
+   "Tier": 2,
+   "Index": 42,
+   "Lore": "well",
+   "Level": 25,
+   "Weight": 104.0,
+   "Color": {
+    "R": 0.25,
+    "G": 0.45,
+    "B": 0.95,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1",
+   "Weapon": [
+    {
+     "Stat": "ManaRegen",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 9
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "ManaRegen",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 9
+    }
+   ],
+   "Next": "jw_well_3"
+  },
+  {
+   "Id": "jw_well_3",
+   "Name": "Faceted Wellspring Jewel",
+   "Tier": 3,
+   "Index": 43,
+   "Lore": "well",
+   "Level": 45,
+   "Weight": 21.36,
+   "Color": {
+    "R": 0.25,
+    "G": 0.45,
+    "B": 0.95,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1|0.3,0.1,0.5,0.5,0.7,0.1|0.08,0.5,0.92,0.5",
+   "Weapon": [
+    {
+     "Stat": "ManaRegen",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 14
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "ManaRegen",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 14
+    }
+   ],
+   "Next": "jw_well_4"
+  },
+  {
+   "Id": "jw_well_4",
+   "Name": "Radiant Wellspring Jewel",
+   "Tier": 4,
+   "Index": 44,
+   "Lore": "well",
+   "Level": 65,
+   "Weight": 3.56,
+   "Color": {
+    "R": 0.25,
+    "G": 0.45,
+    "B": 0.95,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.04,0.86,0.28,0.86,0.72,0.5,0.96,0.14,0.72,0.14,0.28,0.5,0.04|0.5,0.04,0.5,0.96|0.14,0.28,0.86,0.72|0.86,0.28,0.14,0.72",
+   "Weapon": [
+    {
+     "Stat": "ManaRegen",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 18
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "ManaRegen",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 18
+    }
+   ],
+   "Next": ""
+  },
+  {
+   "Id": "jw_prism_1",
+   "Name": "Rough Prism Jewel",
+   "Tier": 1,
+   "Index": 45,
+   "Lore": "prism",
+   "Level": 999,
+   "Weight": 0,
+   "Color": {
+    "R": 0.94,
+    "G": 0.86,
+    "B": 1.0,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.08,0.88,0.5,0.5,0.92,0.12,0.5,0.5,0.08",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 3
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 3
+    }
+   ],
+   "Next": "jw_prism_2"
+  },
+  {
+   "Id": "jw_prism_2",
+   "Name": "Cut Prism Jewel",
+   "Tier": 2,
+   "Index": 46,
+   "Lore": "prism",
+   "Level": 999,
+   "Weight": 0,
+   "Color": {
+    "R": 0.94,
+    "G": 0.86,
+    "B": 1.0,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 5
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 5
+    }
+   ],
+   "Next": "jw_prism_3"
+  },
+  {
+   "Id": "jw_prism_3",
+   "Name": "Faceted Prism Jewel",
+   "Tier": 3,
+   "Index": 47,
+   "Lore": "prism",
+   "Level": 999,
+   "Weight": 0,
+   "Color": {
+    "R": 0.94,
+    "G": 0.86,
+    "B": 1.0,
+    "A": 1.0
+   },
+   "Glyph": "0.3,0.1,0.7,0.1,0.92,0.5,0.7,0.9,0.3,0.9,0.08,0.5,0.3,0.1|0.3,0.1,0.5,0.5,0.7,0.1|0.08,0.5,0.92,0.5",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 8
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 8
+    }
+   ],
+   "Next": "jw_prism_4"
+  },
+  {
+   "Id": "jw_prism_4",
+   "Name": "Radiant Prism Jewel",
+   "Tier": 4,
+   "Index": 48,
+   "Lore": "prism",
+   "Level": 999,
+   "Weight": 0,
+   "Color": {
+    "R": 0.94,
+    "G": 0.86,
+    "B": 1.0,
+    "A": 1.0
+   },
+   "Glyph": "0.5,0.04,0.86,0.28,0.86,0.72,0.5,0.96,0.14,0.72,0.14,0.28,0.5,0.04|0.5,0.04,0.5,0.96|0.14,0.28,0.86,0.72|0.86,0.28,0.14,0.72",
+   "Weapon": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 11
+    }
+   ],
+   "Armour": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 11
+    }
+   ],
+   "Next": ""
+  }
+ ]
+}

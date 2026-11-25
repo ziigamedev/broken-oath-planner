@@ -1,0 +1,40 @@
+{
+ "FromAL": 8,
+ "Normal": 0.0036,
+ "Magic": 0.012,
+ "Rare": 0.036,
+ "Guardian": 0.6,
+ "WhetstoneShare": 0.4,
+ "Step": {
+  "Normal": 5,
+  "Magic": 2,
+  "Rare": 1,
+  "Unique": 1
+ },
+ "Cap": 20,
+ "UseSfxWhetstone": "ui_whetstone81",
+ "UseSfxRivet": "ui_rivet81",
+ "UseFx": "gold_glint",
+ "UseFxScale": 0.7,
+ "Cog": {
+  "Normal": 0.004,
+  "Magic": 0.013,
+  "Rare": 0.04,
+  "Guardian": 2
+ },
+ "UseSfxCog": "ui_cog82",
+ "_sim": {
+  "kill_mix_per_map": {
+   "white": 149,
+   "magic": 28,
+   "rare": 9,
+   "guardian": 1
+  },
+  "stones_per_map": 1.796,
+  "maps_white_to_20": 2.23,
+  "maps_rare_weapon_to_20": 27.8,
+  "maps_rare_armour_to_20": 18.6,
+  "cogs_per_gnome_map": 9.2,
+  "gnome_maps_20_to_30": 1.1
+ }
+}

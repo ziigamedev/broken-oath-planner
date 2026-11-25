@@ -1,0 +1,2099 @@
+{
+ "texts": [
+  {
+   "Key": "Life.Flat",
+   "Text": "+{v} to maximum Life",
+   "Negative": "-{abs} to maximum Life"
+  },
+  {
+   "Key": "Life.Inc",
+   "Text": "{v}% increased maximum Life",
+   "Negative": "{abs}% reduced maximum Life"
+  },
+  {
+   "Key": "Life.More",
+   "Text": "{v}% more maximum Life",
+   "Negative": "{abs}% less maximum Life"
+  },
+  {
+   "Key": "Mana.Flat",
+   "Text": "+{v} to maximum Mana",
+   "Negative": "-{abs} to maximum Mana"
+  },
+  {
+   "Key": "Mana.Inc",
+   "Text": "{v}% increased maximum Mana",
+   "Negative": "{abs}% reduced maximum Mana"
+  },
+  {
+   "Key": "EnergyShield.Flat",
+   "Text": "+{v} to maximum Energy Shield",
+   "Negative": "-{abs} to maximum Energy Shield"
+  },
+  {
+   "Key": "EnergyShield.Inc",
+   "Text": "{v}% increased maximum Energy Shield",
+   "Negative": "{abs}% reduced maximum Energy Shield"
+  },
+  {
+   "Key": "Armour.Flat",
+   "Text": "+{v} to Armour",
+   "Negative": "-{abs} to Armour"
+  },
+  {
+   "Key": "Armour.Inc",
+   "Text": "{v}% increased Armour",
+   "Negative": "{abs}% reduced Armour"
+  },
+  {
+   "Key": "Evasion.Flat",
+   "Text": "+{v} to Evasion Rating",
+   "Negative": "-{abs} to Evasion Rating"
+  },
+  {
+   "Key": "Evasion.Inc",
+   "Text": "{v}% increased Evasion Rating",
+   "Negative": "{abs}% reduced Evasion Rating"
+  },
+  {
+   "Key": "Defences.Inc",
+   "Text": "{v}% increased Defences",
+   "Negative": "{abs}% reduced Defences"
+  },
+  {
+   "Key": "Block.Flat",
+   "Text": "+{v}% Chance to Block",
+   "Negative": "-{abs}% Chance to Block"
+  },
+  {
+   "Key": "Resist.Flat+",
+   "Text": "+{v}% to {tags} Resistance",
+   "Negative": "-{abs}% to {tags} Resistance"
+  },
+  {
+   "Key": "Resist.Flat+Elemental",
+   "Text": "+{v}% to all Elemental Resistances",
+   "Negative": "-{abs}% to all Elemental Resistances"
+  },
+  {
+   "Key": "MaxResist.Flat+",
+   "Text": "+{v}% to maximum {tags} Resistance",
+   "Negative": "-{abs}% to maximum {tags} Resistance"
+  },
+  {
+   "Key": "MaxResist.Flat+Elemental",
+   "Text": "+{v}% to all maximum Elemental Resistances",
+   "Negative": "-{abs}% to all maximum Elemental Resistances"
+  },
+  {
+   "Key": "Str.Flat",
+   "Text": "+{v} to Strength",
+   "Negative": "-{abs} to Strength"
+  },
+  {
+   "Key": "Dex.Flat",
+   "Text": "+{v} to Dexterity",
+   "Negative": "-{abs} to Dexterity"
+  },
+  {
+   "Key": "Int.Flat",
+   "Text": "+{v} to Intelligence",
+   "Negative": "-{abs} to Intelligence"
+  },
+  {
+   "Key": "Attributes.Flat",
+   "Text": "+{v} to all Attributes",
+   "Negative": "-{abs} to all Attributes"
+  },
+  {
+   "Key": "Str.Inc",
+   "Text": "{v}% increased Strength",
+   "Negative": "{abs}% reduced Strength"
+  },
+  {
+   "Key": "Dex.Inc",
+   "Text": "{v}% increased Dexterity",
+   "Negative": "{abs}% reduced Dexterity"
+  },
+  {
+   "Key": "Int.Inc",
+   "Text": "{v}% increased Intelligence",
+   "Negative": "{abs}% reduced Intelligence"
+  },
+  {
+   "Key": "Attributes.Inc",
+   "Text": "{v}% increased all Attributes",
+   "Negative": "{abs}% reduced all Attributes"
+  },
+  {
+   "Key": "Damage.Inc",
+   "Text": "{v}% increased {tags} Damage",
+   "Negative": "{abs}% reduced {tags} Damage"
+  },
+  {
+   "Key": "Damage.Inc+Slam",
+   "Text": "{v}% increased {tags} Damage with Slam Skills",
+   "Negative": "{abs}% reduced {tags} Damage with Slam Skills"
+  },
+  {
+   "Key": "Damage.Inc+Nova",
+   "Text": "{v}% increased {tags} Damage with Nova Skills",
+   "Negative": "{abs}% reduced {tags} Damage with Nova Skills"
+  },
+  {
+   "Key": "Damage.Inc+Chain",
+   "Text": "{v}% increased {tags} Damage with Chain Skills",
+   "Negative": "{abs}% reduced {tags} Damage with Chain Skills"
+  },
+  {
+   "Key": "Damage.More",
+   "Text": "{v}% more {tags} Damage",
+   "Negative": "{abs}% less {tags} Damage"
+  },
+  {
+   "Key": "Damage.More+Slam",
+   "Text": "{v}% more {tags} Damage with Slam Skills",
+   "Negative": "{abs}% less {tags} Damage with Slam Skills"
+  },
+  {
+   "Key": "Damage.More+Nova",
+   "Text": "{v}% more {tags} Damage with Nova Skills",
+   "Negative": "{abs}% less {tags} Damage with Nova Skills"
+  },
+  {
+   "Key": "Damage.More+Chain",
+   "Text": "{v}% more {tags} Damage with Chain Skills",
+   "Negative": "{abs}% less {tags} Damage with Chain Skills"
+  },
+  {
+   "Key": "Damage.More+FirstTarget",
+   "Text": "{v}% more Damage to the first target hit",
+   "Negative": "{abs}% less Damage to the first target hit"
+  },
+  {
+   "Key": "AddedDamage.Flat",
+   "Text": "Adds {v} to {v2} {tags} Damage",
+   "Negative": ""
+  },
+  {
+   "Key": "AddedDamage.Flat+Spell",
+   "Text": "Adds {v} to {v2} {tags} Damage to Spells",
+   "Negative": ""
+  },
+  {
+   "Key": "AddedDamage.Flat+Attack",
+   "Text": "Adds {v} to {v2} {tags} Damage to Attacks",
+   "Negative": ""
+  },
+  {
+   "Key": "AddedDamage.Flat+GemScaled",
+   "Text": "Adds {v} to {v2} {tags} Damage, scaled by the skill's gem level",
+   "Negative": ""
+  },
+  {
+   "Key": "DamageAsExtra.Flat",
+   "Text": "Gain {v}% of {tag0} Damage as Extra {tag1} Damage",
+   "Negative": ""
+  },
+  {
+   "Key": "AttackSpeed.Inc",
+   "Text": "{v}% increased {tags} Attack Speed",
+   "Negative": "{abs}% reduced {tags} Attack Speed"
+  },
+  {
+   "Key": "AttackSpeed.More",
+   "Text": "{v}% more Attack Speed",
+   "Negative": "{abs}% less Attack Speed"
+  },
+  {
+   "Key": "CastSpeed.Inc",
+   "Text": "{v}% increased Cast Speed",
+   "Negative": "{abs}% reduced Cast Speed"
+  },
+  {
+   "Key": "CastSpeed.More",
+   "Text": "{v}% more Cast Speed",
+   "Negative": "{abs}% less Cast Speed"
+  },
+  {
+   "Key": "CritChance.Inc",
+   "Text": "{v}% increased Critical Strike Chance",
+   "Negative": "{abs}% reduced Critical Strike Chance"
+  },
+  {
+   "Key": "CritChance.Inc+Spell",
+   "Text": "{v}% increased Critical Strike Chance for Spells",
+   "Negative": "{abs}% reduced Critical Strike Chance for Spells"
+  },
+  {
+   "Key": "CritChance.Flat",
+   "Text": "+{v}% to base Critical Strike Chance",
+   "Negative": "-{abs}% to base Critical Strike Chance"
+  },
+  {
+   "Key": "CritChance.Flat+Spell",
+   "Text": "+{v}% to base Critical Strike Chance for Spells",
+   "Negative": "-{abs}% to base Critical Strike Chance for Spells"
+  },
+  {
+   "Key": "CritChance.More",
+   "Text": "{v}% more Critical Strike Chance",
+   "Negative": "{abs}% less Critical Strike Chance"
+  },
+  {
+   "Key": "CritMulti.Flat",
+   "Text": "+{v}% to Critical Strike Multiplier",
+   "Negative": "-{abs}% to Critical Strike Multiplier"
+  },
+  {
+   "Key": "CritMulti.Flat+Spell",
+   "Text": "+{v}% to Critical Strike Multiplier for Spells",
+   "Negative": "-{abs}% to Critical Strike Multiplier for Spells"
+  },
+  {
+   "Key": "CritChance.Inc+Minion",
+   "Text": "Your Minions have {v}% increased Critical Strike Chance",
+   "Negative": "Your Minions have {abs}% reduced Critical Strike Chance"
+  },
+  {
+   "Key": "CritMulti.Flat+Minion",
+   "Text": "Your Minions have +{v}% to Critical Strike Multiplier",
+   "Negative": "Your Minions have -{abs}% to Critical Strike Multiplier"
+  },
+  {
+   "Key": "MoveSpeed.Inc",
+   "Text": "{v}% increased Movement Speed",
+   "Negative": "{abs}% reduced Movement Speed"
+  },
+  {
+   "Key": "LifeRegen.Flat",
+   "Text": "Regenerate {v} Life per second",
+   "Negative": "Lose {abs} Life per second"
+  },
+  {
+   "Key": "ManaAsEnergyShield.Flat",
+   "Text": "{v}% of maximum Mana is added to Energy Shield",
+   "Negative": ""
+  },
+  {
+   "Key": "ManaRegen.Inc",
+   "Text": "{v}% increased Mana Regeneration Rate",
+   "Negative": "{abs}% reduced Mana Regeneration Rate"
+  },
+  {
+   "Key": "LifeOnKill.Flat",
+   "Text": "Gain {v} Life per Enemy Killed",
+   "Negative": "Lose {abs} Life per Enemy Killed"
+  },
+  {
+   "Key": "ManaOnKill.Flat",
+   "Text": "Gain {v} Mana per Enemy Killed",
+   "Negative": "Lose {abs} Mana per Enemy Killed"
+  },
+  {
+   "Key": "LifeLeech.Flat",
+   "Text": "{v}% of Damage Leeched as Life",
+   "Negative": ""
+  },
+  {
+   "Key": "Area.Inc",
+   "Text": "{v}% increased Area of Effect",
+   "Negative": "{abs}% reduced Area of Effect"
+  },
+  {
+   "Key": "Area.Inc+",
+   "Text": "{skills} have {v}% increased Area of Effect",
+   "Negative": "{skills} have {abs}% reduced Area of Effect"
+  },
+  {
+   "Key": "Area.More",
+   "Text": "{v}% more Area of Effect",
+   "Negative": "{abs}% less Area of Effect"
+  },
+  {
+   "Key": "Chains.Flat",
+   "Text": "Chains {v} additional {n}|plural(one=time,other=times)",
+   "Negative": ""
+  },
+  {
+   "Key": "Chains.Flat+",
+   "Text": "{skills} chain {v} additional {n}|plural(one=time,other=times)",
+   "Negative": ""
+  },
+  {
+   "Key": "Projectiles.Flat",
+   "Text": "Fires {v} additional {n}|plural(one=Projectile,other=Projectiles)",
+   "Negative": ""
+  },
+  {
+   "Key": "Projectiles.Flat+",
+   "Text": "{skills} fire {v} additional {n}|plural(one=Projectile,other=Projectiles)",
+   "Negative": ""
+  },
+  {
+   "Key": "Pierce.Flat",
+   "Text": "Projectiles Pierce {v} additional {n}|plural(one=Target,other=Targets)",
+   "Negative": ""
+  },
+  {
+   "Key": "Penetration.Flat+",
+   "Text": "Damage Penetrates {v}% {tags} Resistance",
+   "Negative": ""
+  },
+  {
+   "Key": "Penetration.Flat+Elemental",
+   "Text": "Damage Penetrates {v}% Elemental Resistances",
+   "Negative": ""
+  },
+  {
+   "Key": "SkillLevel.Flat",
+   "Text": "+{v} to Level of all Skill Gems",
+   "Negative": "-{abs} to Level of all Skill Gems"
+  },
+  {
+   "Key": "SkillLevel.Flat+",
+   "Text": "+{v} to Level of all {tags} Skill Gems",
+   "Negative": "-{abs} to Level of all {tags} Skill Gems"
+  },
+  {
+   "Key": "ManaCost.Inc",
+   "Text": "{v}% increased Mana Cost of Skills",
+   "Negative": "{abs}% reduced Mana Cost of Skills"
+  },
+  {
+   "Key": "WaveCount.Flat",
+   "Text": "Ground Slam, Earthshatter and Rending Slam: their spike lines run {v} {n}|plural(one=step,other=steps) further",
+   "Negative": ""
+  },
+  {
+   "Key": "WaveCount.Flat+",
+   "Text": "{skills}: their spike lines run {v} {n}|plural(one=step,other=steps) further",
+   "Negative": ""
+  },
+  {
+   "Key": "Repeats.Flat",
+   "Text": "Spells Repeat {v} additional {n}|plural(one=time,other=times) (stacks with the repeats of a support gem, but the smaller of the two deals 50% less damage)",
+   "Negative": ""
+  },
+  {
+   "Key": "Repeats.Flat+Melee",
+   "Text": "Melee Attacks Repeat {v} additional {n}|plural(one=time,other=times) (stacks with the repeats of a support gem, but the smaller of the two deals 50% less damage)",
+   "Negative": ""
+  },
+  {
+   "Key": "Repeats.Flat+Movement",
+   "Text": "Movement Skills strike {v} additional {n}|plural(one=time,other=times)",
+   "Negative": ""
+  },
+  {
+   "Key": "Repeats.Flat+Dash",
+   "Text": "Dashes strike {v} additional {n}|plural(one=time,other=times)",
+   "Negative": ""
+  },
+  {
+   "Key": "Afterimages.Flat",
+   "Text": "+{v} {n}|plural(one=Afterimage,other=Afterimages) on Melee Attacks (each repeats the blow for 40% of its damage; past 3 from all sources, each adds 10% instead)",
+   "Negative": "-{abs} {n}|plural(one=Afterimage,other=Afterimages) on Melee Attacks"
+  },
+  {
+   "Key": "Afterimages.Flat+Melee",
+   "Text": "+{v} {n}|plural(one=Afterimage,other=Afterimages) on Melee Attacks (each repeats the blow for 40% of its damage; past 3 from all sources, each adds 10% instead)",
+   "Negative": "-{abs} {n}|plural(one=Afterimage,other=Afterimages) on Melee Attacks"
+  },
+  {
+   "Key": "Damage.More+Movement",
+   "Text": "{v}% more Damage with Movement Skills",
+   "Negative": "{abs}% less Damage with Movement Skills"
+  },
+  {
+   "Key": "Cooldown.Inc+Movement",
+   "Text": "{v}% increased Cooldown of Movement Skills",
+   "Negative": "{abs}% reduced Cooldown of Movement Skills"
+  },
+  {
+   "Key": "OrbitMax.Flat",
+   "Text": "+{v} to maximum number of orbiting projectiles (Blade Vortex, Orbiting Hammers and the Orbit support)",
+   "Negative": "-{abs} to maximum number of orbiting projectiles (Blade Vortex, Orbiting Hammers and the Orbit support)"
+  },
+  {
+   "Key": "OrbitCount.Flat",
+   "Text": "+{v} orbiting {n}|plural(one=projectile,other=projectiles) per cast (Blade Vortex, Orbiting Hammers and the Orbit support; a Blade Vortex ring holds at least 8)",
+   "Negative": "-{abs} orbiting {n}|plural(one=projectile,other=projectiles) per cast (Blade Vortex, Orbiting Hammers and the Orbit support; a Blade Vortex ring holds at least 8)"
+  },
+  {
+   "Key": "OrbitRate.Inc",
+   "Text": "Orbiting blades and hammers turn {v}% faster",
+   "Negative": "Orbiting blades and hammers turn {abs}% slower"
+  },
+  {
+   "Key": "OrbitMovingDamage.Flat",
+   "Text": "Orbiting projectiles (Blade Vortex, Orbiting Hammers and the Orbit support) deal {v}% more Damage while you move",
+   "Negative": ""
+  },
+  {
+   "Key": "Convert.Flat+",
+   "Text": "{v}% of other damage converted to {tags} damage (Poison damage converts at half)",
+   "Negative": ""
+  },
+  {
+   "Key": "ItemRarity.Inc",
+   "Text": "{v}% increased Rarity of Items found",
+   "Negative": "{abs}% reduced Rarity of Items found"
+  },
+  {
+   "Key": "GoldFind.Inc",
+   "Text": "{v}% increased Gold found",
+   "Negative": "{abs}% reduced Gold found"
+  },
+  {
+   "Key": "Damage.Inc+Holy",
+   "Text": "{v}% increased Holy Damage",
+   "Negative": "{abs}% reduced Holy Damage"
+  },
+  {
+   "Key": "MinionDamage.Inc",
+   "Text": "Minions deal {v}% increased Damage",
+   "Negative": "Minions deal {abs}% reduced Damage"
+  },
+  {
+   "Key": "MinionLife.Inc",
+   "Text": "Minions have {v}% increased maximum Life",
+   "Negative": "Minions have {abs}% reduced maximum Life"
+  },
+  {
+   "Key": "MinionSpeed.Inc",
+   "Text": "Minions have {v}% increased Attack and Movement Speed",
+   "Negative": "Minions have {abs}% reduced Attack and Movement Speed"
+  },
+  {
+   "Key": "MinionLife.More",
+   "Text": "Minions have {v}% more maximum Life",
+   "Negative": "Minions have {abs}% less maximum Life"
+  },
+  {
+   "Key": "MinionDamage.More",
+   "Text": "Minions deal {v}% more Damage",
+   "Negative": "Minions deal {abs}% less Damage"
+  },
+  {
+   "Key": "MinionSpeed.More",
+   "Text": "Minions have {v}% more Attack and Movement Speed",
+   "Negative": "Minions have {abs}% less Attack and Movement Speed"
+  },
+  {
+   "Key": "MinionCap.Flat",
+   "Text": "+{v} to the maximum number of each kind of Minion (adds to your Minions from all sources; army max 36 minions in all, past it your Minions grow stronger)",
+   "Negative": "-{abs} to the maximum number of each kind of Minion"
+  },
+  {
+   "Key": "MinionCap.Flat+skeleton_warrior",
+   "Text": "+{v} to maximum Skeleton Warriors (Summon Skeletons, Gravereap) (adds to your Minions from all sources; army max 36 minions in all, past it your Minions grow stronger)",
+   "Negative": "-{abs} to the maximum number of Skeleton Warriors (Summon Skeletons, Gravereap)"
+  },
+  {
+   "Key": "MinionCap.Flat+skeleton_wizard",
+   "Text": "+{v} to the maximum number of Skeletal Mages (adds to your Minions from all sources; army max 36 minions in all, past it your Minions grow stronger)",
+   "Negative": "-{abs} to the maximum number of Skeletal Mages"
+  },
+  {
+   "Key": "MinionCap.Flat+zombie",
+   "Text": "+{v} to the maximum number of Zombies (adds to your Minions from all sources; army max 36 minions in all, past it your Minions grow stronger)",
+   "Negative": "-{abs} to the maximum number of Zombies"
+  },
+  {
+   "Key": "MinionDamage.Inc+skeleton_warrior",
+   "Text": "Skeleton Warriors deal {v}% increased Damage (Summon Skeletons, Gravereap)",
+   "Negative": "Skeleton Warriors deal {abs}% reduced Damage (Summon Skeletons, Gravereap)"
+  },
+  {
+   "Key": "MinionDamage.Inc+skeleton_wizard",
+   "Text": "Skeletal Mages deal {v}% increased Damage",
+   "Negative": "Skeletal Mages deal {abs}% reduced Damage"
+  },
+  {
+   "Key": "MinionDamage.Inc+zombie",
+   "Text": "Zombies deal {v}% increased Damage",
+   "Negative": "Zombies deal {abs}% reduced Damage"
+  },
+  {
+   "Key": "MinionCap.Flat+holy_elemental",
+   "Text": "+{v} to the maximum number of Holy Elementals (adds to your Minions from all sources; army max 36 minions in all, past it your Minions grow stronger)",
+   "Negative": "-{abs} to the maximum number of Holy Elementals"
+  },
+  {
+   "Key": "Reservation.Inc",
+   "Text": "{v}% increased Reservation Efficiency of Vows",
+   "Negative": "{abs}% reduced Reservation Efficiency of Vows"
+  },
+  {
+   "Key": "Reservation.More",
+   "Text": "Vows reserve {v}% more Mana",
+   "Negative": "Vows reserve {abs}% less Mana"
+  },
+  {
+   "Key": "CurseEffect.Inc",
+   "Text": "{v}% increased effect of your Curses",
+   "Negative": "{abs}% reduced effect of your Curses"
+  },
+  {
+   "Key": "AilmentDuration.Inc",
+   "Text": "{v}% increased Duration of Ailments you inflict",
+   "Negative": "{abs}% reduced Duration of Ailments you inflict"
+  },
+  {
+   "Key": "IgniteChance.Flat",
+   "Text": "+{v}% chance to Ignite with Fire hits",
+   "Negative": "-{abs}% chance to Ignite with Fire hits"
+  },
+  {
+   "Key": "ShockChance.Flat",
+   "Text": "+{v}% chance to Shock with Lightning hits",
+   "Negative": "-{abs}% chance to Shock with Lightning hits"
+  },
+  {
+   "Key": "PoisonChance.Flat",
+   "Text": "+{v}% chance to Poison on Hit",
+   "Negative": "-{abs}% chance to Poison on Hit"
+  },
+  {
+   "Key": "IgniteDamage.Inc",
+   "Text": "{v}% increased Burning damage (your Ignites)",
+   "Negative": "{abs}% reduced Burning damage (your Ignites)"
+  },
+  {
+   "Key": "ShockEffect.Inc",
+   "Text": "{v}% increased effect of Shock",
+   "Negative": "{abs}% reduced effect of Shock"
+  },
+  {
+   "Key": "PoisonDamage.Inc",
+   "Text": "{v}% increased Poison damage over time (your Poisons)",
+   "Negative": "{abs}% reduced Poison damage over time (your Poisons)"
+  },
+  {
+   "Key": "FreezeDuration.Inc",
+   "Text": "{v}% increased Freeze duration and Crack damage",
+   "Negative": "{abs}% reduced Freeze duration and Crack damage"
+  },
+  {
+   "Key": "StunKnockback.Inc",
+   "Text": "{v}% increased Stun",
+   "Negative": "{abs}% reduced Stun"
+  },
+  {
+   "Key": "Cooldown.Inc+",
+   "Text": "{v}% increased Cooldown of {skills}",
+   "Negative": "{abs}% reduced Cooldown of {skills}"
+  },
+  {
+   "Key": "Cooldown.Inc",
+   "Text": "{v}% increased Skill Cooldowns",
+   "Negative": "{abs}% reduced Skill Cooldowns"
+  },
+  {
+   "Key": "CooldownRecovery.Inc",
+   "Text": "{v}% increased Cooldown Recovery Rate",
+   "Negative": "{abs}% reduced Cooldown Recovery Rate"
+  },
+  {
+   "Key": "Damage.Inc+Duration",
+   "Text": "{v}% increased {tags} Damage with Duration Skills",
+   "Negative": "{abs}% reduced {tags} Damage with Duration Skills"
+  },
+  {
+   "Key": "TotemCount.Flat",
+   "Text": "+{v} to the maximum number of Ballistas and Totems (adds to your bow engines and Totems from all sources; at most 7 Ballistas and 11 Totems in all, and each bow engine count past 7 gives 5% more damage instead)",
+   "Negative": "-{abs} to the maximum number of Ballistas and Totems"
+  },
+  {
+   "Key": "MinionGuard.Flat",
+   "Text": "Minions from the supported skill guard you",
+   "Negative": "Minions from the supported skill guard you"
+  },
+  {
+   "Key": "MinionHunt.Flat",
+   "Text": "Minions from the supported skill hunt ahead of you",
+   "Negative": "Minions from the supported skill hunt ahead of you"
+  },
+  {
+   "Key": "TotemSpeed.Inc",
+   "Text": "Ballistas and Totems fire {v}% faster",
+   "Negative": "Ballistas and Totems fire {abs}% slower"
+  },
+  {
+   "Key": "TrapCount.Flat",
+   "Text": "+{v} to the maximum number of Traps",
+   "Negative": "-{abs} to the maximum number of Traps"
+  },
+  {
+   "Key": "TrapRearm.Inc",
+   "Text": "Traps re-arm {v}% faster",
+   "Negative": "Traps re-arm {abs}% slower"
+  },
+  {
+   "Key": "TrapChainRadius.Inc",
+   "Text": "Traps set each other off at {v}% increased distance",
+   "Negative": "Traps set each other off at {abs}% reduced distance"
+  },
+  {
+   "Key": "TrapSeed76.Flat",
+   "Text": "When a chain reaction sets off one of your Traps, it throws a fresh Trap of its kind that goes off once, at half damage",
+   "Negative": ""
+  },
+  {
+   "Key": "TrapChainLink.Flat",
+   "Text": "Each Trap further down a chain reaction deals {v}% more damage",
+   "Negative": "Each Trap further down a chain reaction deals {abs}% less damage"
+  },
+  {
+   "Key": "TotemLife.Inc",
+   "Text": "Ballistas and Totems have {v}% increased Life",
+   "Negative": "Ballistas and Totems have {abs}% reduced Life"
+  },
+  {
+   "Key": "Fork.Flat",
+   "Text": "Projectiles Fork {v} {n}|plural(one=time,other=times)",
+   "Negative": ""
+  },
+  {
+   "Key": "OrbCount.Flat",
+   "Text": "+{v} to the maximum number of Winter Orbs",
+   "Negative": "-{abs} to the maximum number of Winter Orbs"
+  },
+  {
+   "Key": "TickRate.Inc",
+   "Text": "Auras and consecrated ground tick {v}% faster",
+   "Negative": "Auras and consecrated ground tick {abs}% slower"
+  },
+  {
+   "Key": "AilTickRate.Inc",
+   "Text": "Your Ignites, Poisons and Bleeds tick {v}% faster",
+   "Negative": "Your Ignites, Poisons and Bleeds tick {abs}% slower"
+  },
+  {
+   "Key": "PoisonRate.Inc",
+   "Text": "Your Poisons tick {v}% faster",
+   "Negative": "Your Poisons tick {abs}% slower"
+  },
+  {
+   "Key": "FocusMain98.Flat",
+   "Text": "Your main skill deals {v}% more damage",
+   "Negative": "Your main skill deals {abs}% less damage"
+  },
+  {
+   "Key": "FocusOther98.Flat",
+   "Text": "Your other skills deal {v}% less damage",
+   "Negative": "Your other skills deal {abs}% more damage"
+  },
+  {
+   "Key": "OrbRate.Inc",
+   "Text": "Winter Orbs throw icicles {v}% faster",
+   "Negative": "Winter Orbs throw icicles {abs}% slower"
+  },
+  {
+   "Key": "BrandCount.Flat",
+   "Text": "+{v} to the maximum number of Sparks (adds to your Sparks from all sources; at most 27 Sparks)",
+   "Negative": "-{abs} to the maximum number of Sparks"
+  },
+  {
+   "Key": "SparkRate.Inc",
+   "Text": "Sparks strike {v}% faster",
+   "Negative": "Sparks strike {abs}% slower"
+  },
+  {
+   "Key": "SparkBurst.Flat",
+   "Text": "Recasting while all your Sparks are up makes them all strike at once",
+   "Negative": "Recasting while all your Sparks are up makes them all strike at once"
+  },
+  {
+   "Key": "SkillDuration.Inc",
+   "Text": "Orbs, Sparks, Totems and Traps last {v}% longer",
+   "Negative": "Orbs, Sparks, Totems and Traps last {abs}% shorter"
+  },
+  {
+   "Key": "SkillDuration.Inc+Orb",
+   "Text": "Winter Orbs last {v}% longer",
+   "Negative": "Winter Orbs last {abs}% shorter"
+  },
+  {
+   "Key": "SkillDuration.Inc+Brand",
+   "Text": "Sparks last {v}% longer",
+   "Negative": "Sparks last {abs}% shorter"
+  },
+  {
+   "Key": "SkillDuration.Inc+Totem",
+   "Text": "Ballistas and Totems last {v}% longer",
+   "Negative": "Ballistas and Totems last {abs}% shorter"
+  },
+  {
+   "Key": "SkillDuration.Inc+Trap",
+   "Text": "Traps last {v}% longer",
+   "Negative": "Traps last {abs}% shorter"
+  },
+  {
+   "Key": "SkillDuration.More+Orb",
+   "Text": "Winter Orbs have {v}% more Duration",
+   "Negative": "Winter Orbs have {abs}% less Duration"
+  },
+  {
+   "Key": "SkillDuration.More+Brand",
+   "Text": "Sparks have {v}% more Duration",
+   "Negative": "Sparks have {abs}% less Duration"
+  },
+  {
+   "Key": "Damage.Inc+Brand",
+   "Text": "{v}% increased Damage with Sparks",
+   "Negative": "{abs}% reduced Damage with Sparks"
+  },
+  {
+   "Key": "SkillDuration.More+Totem",
+   "Text": "Ballistas and Totems have {v}% more Duration",
+   "Negative": "Ballistas and Totems have {abs}% less Duration"
+  },
+  {
+   "Key": "ChannelRamp.Flat",
+   "Text": "Up to {v}% more Damage over the first second of Channelling",
+   "Negative": ""
+  },
+  {
+   "Key": "ChannelCostLess.Flat",
+   "Text": "{v}% less Channelling Cost",
+   "Negative": "{abs}% more Channelling Cost"
+  },
+  {
+   "Key": "ConduitInterval.Flat",
+   "Text": "Casts your linked Spell every {v} seconds while Channelling",
+   "Negative": ""
+  },
+  {
+   "Key": "ConduitCostPct.Flat",
+   "Text": "Each linked cast costs {v}% of the Spell's Mana Cost",
+   "Negative": ""
+  },
+  {
+   "Key": "TrigCooldown.Flat",
+   "Text": "Casts the linked Spell at most once every {v} seconds",
+   "Negative": ""
+  },
+  {
+   "Key": "TrigLifePct.Flat",
+   "Text": "Casts the linked Spell each time you have taken damage equal to {v}% of your maximum Life",
+   "Negative": ""
+  },
+  {
+   "Key": "TrigDamage.More",
+   "Text": "The linked Spell deals {v}% more Damage",
+   "Negative": "The linked Spell deals {abs}% less Damage"
+  },
+  {
+   "Key": "FissureSpikes.Flat",
+   "Text": "Enemies killed by Earthshatter's Fissures leave {v} additional {n}|plural(one=Spike,other=Spikes)",
+   "Negative": ""
+  },
+  {
+   "Key": "LifeRegenPct.Flat",
+   "Text": "Regenerate {v}% of Life per second",
+   "Negative": "Lose {abs}% of Life per second"
+  },
+  {
+   "Key": "ManaLeech.Flat",
+   "Text": "{v}% of Damage Leeched as Mana",
+   "Negative": ""
+  },
+  {
+   "Key": "EnergyShieldLeech.Flat",
+   "Text": "{v}% of Damage Leeched as Energy Shield",
+   "Negative": ""
+  },
+  {
+   "Key": "ManaLeech.Flat+",
+   "Text": "{v}% of {tags} Damage Leeched as Mana",
+   "Negative": ""
+  },
+  {
+   "Key": "LifeLeech.Flat+",
+   "Text": "{v}% of {tags} Damage Leeched as Life",
+   "Negative": ""
+  },
+  {
+   "Key": "EsRecharge.Inc",
+   "Text": "{v}% faster Energy Shield Recharge",
+   "Negative": "{abs}% slower Energy Shield Recharge"
+  },
+  {
+   "Key": "EsRechargeDelay.Inc",
+   "Text": "Energy Shield Recharge starts {v}% later",
+   "Negative": "Energy Shield Recharge starts {abs}% sooner"
+  },
+  {
+   "Key": "ManaBeforeLife.Flat",
+   "Text": "{v}% of Damage taken is taken from Mana before Life",
+   "Negative": "{abs}% of Damage taken is taken from Mana before Life"
+  },
+  {
+   "Key": "ManaCost.Inc+",
+   "Text": "{v}% increased Mana Cost of {skills}",
+   "Negative": "{abs}% reduced Mana Cost of {skills}"
+  },
+  {
+   "Key": "Area.More+",
+   "Text": "{skills} have {v}% more Area of Effect",
+   "Negative": "{skills} have {abs}% less Area of Effect"
+  },
+  {
+   "Key": "GrantSupport.Flag+skyfall",
+   "Text": "Your {tag1} Spells are Supported by Skyfall",
+   "Negative": ""
+  },
+  {
+   "Key": "GrantSupport.Flag+tether",
+   "Text": "Your {tag1} Skills are Supported by Tether",
+   "Negative": ""
+  },
+  {
+   "Key": "GrantSupport.Flag+spell_echo",
+   "Text": "Your {tag1} Skills are Supported by Spell Echo (the gem's own price: 15% less Damage, 10% less Cast Speed)",
+   "Negative": ""
+  },
+  {
+   "Key": "GrantSupport.Flag+channel_conduit",
+   "Text": "Your {tag1} Skills are Supported by Channel Conduit",
+   "Negative": ""
+  },
+  {
+   "Key": "GrantSupport.Flag+zap_support",
+   "Text": "Your {tag1} Skills are Supported by Lightning",
+   "Negative": ""
+  },
+  {
+   "Key": "GrantSupport.Flag+ravening_host",
+   "Text": "Your {tag1} Skills are Supported by Ravening Host",
+   "Negative": ""
+  },
+  {
+   "Key": "GrantSupport.Flag+fork",
+   "Text": "Your {tag1} Skills are Supported by Fork",
+   "Negative": ""
+  },
+  {
+   "Key": "GrantSupport.Flag+ice_support",
+   "Text": "Your {tag1} Skills are Supported by Ice",
+   "Negative": ""
+  },
+  {
+   "Key": "GrantSupport.Flag+swift_step",
+   "Text": "Your {tag1} Skills are Supported by Swift Step",
+   "Negative": ""
+  },
+  {
+   "Key": "GrantSupport.Flag+hunters_mark_support",
+   "Text": "Your {tag1} Skills are Supported by Hunter's Mark",
+   "Negative": ""
+  },
+  {
+   "Key": "GrantSupport.Flag+maim",
+   "Text": "Your {tag1} Skills are Supported by Maim",
+   "Negative": ""
+  },
+  {
+   "Key": "SkyfallDelay.Inc",
+   "Text": "Skyfall strikes land {v}% later",
+   "Negative": "Skyfall strikes land {abs}% sooner"
+  },
+  {
+   "Key": "SkyfallRepeat.Flat",
+   "Text": "Skyfall strikes fall again 0.4 seconds later for {v}% of their Damage (one second fall: every source adds to it, up to 100%)",
+   "Negative": ""
+  },
+  {
+   "Key": "EngineHoldInRupture.Flat",
+   "Text": "Your Bloodlust does not run out while you are inside a Rupture, except while you fight a Guardian. Leaving a Rupture costs half of it",
+   "Negative": ""
+  },
+  {
+   "Key": "EngineHoldWhileSentenced.Flat",
+   "Text": "Your Bloodlust does not run out while an enemy you Sentenced is alive",
+   "Negative": ""
+  },
+  {
+   "Key": "StrMeleeMore.Flat",
+   "Text": "{v}% more Physical Attack Damage for every 10 Strength",
+   "Negative": ""
+  },
+  {
+   "Key": "IntSpellMore.Flat",
+   "Text": "{v}% more Spell Damage for every 10 Intelligence",
+   "Negative": ""
+  },
+  {
+   "Key": "DexAttackMore.Flat",
+   "Text": "{v}% more Projectile Attack Damage for every 10 Dexterity (Rain of Arrows too)",
+   "Negative": ""
+  },
+  {
+   "Key": "RepeatOwnDamage.More",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "ChannelRepeats.Flat",
+   "Text": "Each pulse of the channelled skill strikes again a moment later",
+   "Negative": ""
+  },
+  {
+   "Key": "ConduitInterval.More",
+   "Text": "Channel Conduit casts with a {v}% longer interval",
+   "Negative": "Channel Conduit casts with a {abs}% shorter interval"
+  },
+  {
+   "Key": "MinionDeathBurst.Flat",
+   "Text": "Your Minions explode on death for {v}% of their maximum Life as Fire Damage",
+   "Negative": ""
+  },
+  {
+   "Key": "MinionOneKind.Flat",
+   "Text": "You can command only one kind of Minion: raising a kind dismisses the others. Its maximum number is doubled (at least +2) and each raise brings twice as many, and your Minions deal 30% less Damage",
+   "Negative": ""
+  },
+  {
+   "Key": "MinionKindMore.Flat",
+   "Text": "Your Minions deal {v}% more Damage for each different kind of Minion you command (up to 4 kinds)",
+   "Negative": ""
+  },
+  {
+   "Key": "MinionReservation.Inc",
+   "Text": "Your Minions have {v}% increased mana Reservation Efficiency",
+   "Negative": "Your Minions have {abs}% reduced mana Reservation Efficiency"
+  },
+  {
+   "Key": "MinionDeathRecover.Flat",
+   "Text": "When one of your Minions dies, you and your Minions recover {v}% of Life",
+   "Negative": ""
+  },
+  {
+   "Key": "DeathBurst.Flat",
+   "Text": "Enemies that die an Elemental death deal {v}% of their Life (counted at Rupture Level 150 at most, without pack bonus life) as that Element to Enemies within 2.5 metres",
+   "Negative": ""
+  },
+  {
+   "Key": "DamageTaken.Inc+",
+   "Text": "You take {v}% increased {tags} Damage",
+   "Negative": "You take {abs}% reduced {tags} Damage"
+  },
+  {
+   "Key": "DamageTaken.Inc",
+   "Text": "You take {v}% increased Damage",
+   "Negative": "You take {abs}% reduced Damage"
+  },
+  {
+   "Key": "PhysTakenAsElemental.Flat",
+   "Text": "{v}% of Physical Damage taken as Fire, Cold and Lightning",
+   "Negative": ""
+  },
+  {
+   "Key": "Keystone.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "DamageVsFullLife.More",
+   "Text": "{v}% more Damage with Hits against Enemies on Full Life",
+   "Negative": "{abs}% less Damage with Hits against Enemies on Full Life"
+  },
+  {
+   "Key": "Trigger.Trigger",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "BleedChance.Flat",
+   "Text": "+{v}% chance to cause Bleeding with Physical hits",
+   "Negative": "-{abs}% chance to cause Bleeding with Physical hits"
+  },
+  {
+   "Key": "BleedDamage.Inc",
+   "Text": "{v}% increased Bleeding damage (your Bleeds)",
+   "Negative": "{abs}% reduced Bleeding damage (your Bleeds)"
+  },
+  {
+   "Key": "BleedDamage.More",
+   "Text": "{v}% more Bleeding damage (your Bleeds)",
+   "Negative": "{abs}% less Bleeding damage (your Bleeds)"
+  },
+  {
+   "Key": "IgniteDamage.More",
+   "Text": "{v}% more Burning damage (your Ignites)",
+   "Negative": "{abs}% less Burning damage (your Ignites)"
+  },
+  {
+   "Key": "ShockEffect.More",
+   "Text": "{v}% more effect of Shock",
+   "Negative": "{abs}% less effect of Shock"
+  },
+  {
+   "Key": "DotMulti.Flat",
+   "Text": "+{v}% to Damage over Time Multiplier (Burning, Poison and Bleeding)",
+   "Negative": "-{abs}% to Damage over Time Multiplier (Burning, Poison and Bleeding)"
+  },
+  {
+   "Key": "ShockStacks.Flat",
+   "Text": "Your Shocks stack: +{v} Shock on an enemy at once (each as strong as the Lightning in its own hit, at most 75% more damage taken in all)",
+   "Negative": "-{abs} Shock on an enemy at once"
+  },
+  {
+   "Key": "IgniteStacks.Flat",
+   "Text": "Your Ignites stack: +{v} Ignite burning on an enemy at once",
+   "Negative": "-{abs} Ignite on an enemy at once"
+  },
+  {
+   "Key": "ShockSpreadOnKill.Flat",
+   "Text": "{v}% chance for a Shocked enemy's Shock to spread to enemies within 4.5 metres when it dies",
+   "Negative": "{abs}% less Shock spread"
+  },
+  {
+   "Key": "IgniteSpreadOnKill.Flat",
+   "Text": "{v}% chance for a Burning enemy's Ignite to spread to enemies within 4.5 metres when it dies",
+   "Negative": "{abs}% less Ignite spread"
+  },
+  {
+   "Key": "ChillEffect.Inc",
+   "Text": "{v}% increased effect of Chill",
+   "Negative": "{abs}% reduced effect of Chill"
+  },
+  {
+   "Key": "LifeLeech.More",
+   "Text": "{v}% more Life Leech",
+   "Negative": "{abs}% less Life Leech"
+  },
+  {
+   "Key": "ShatterOnKill.Flat",
+   "Text": "Chilled or Frozen enemies you kill shatter: {v}% of their maximum Life as Cold damage to enemies within 3.5 metres",
+   "Negative": "Shatters deal {abs}% less"
+  },
+  {
+   "Key": "MeleeSplash.Flat",
+   "Text": "Blows splash {v}% of their damage onto enemies within 2 metres of each enemy struck",
+   "Negative": ""
+  },
+  {
+   "Key": "MinionStrikes.Flat",
+   "Text": "Minions' blows strike {v} additional {n}|plural(one=time,other=times)",
+   "Negative": ""
+  },
+  {
+   "Key": "MaimOnHit.Flat",
+   "Text": "Hits Maim for 4 seconds: Maimed enemies are 30% slower and take {v}% more Physical damage",
+   "Negative": ""
+  },
+  {
+   "Key": "RuthlessBlow.Flat",
+   "Text": "Every third blow is Ruthless: {v}% more Physical damage",
+   "Negative": ""
+  },
+  {
+   "Key": "CullingStrike.Flat",
+   "Text": "Hits kill enemies left below {v}% of their life",
+   "Negative": ""
+  },
+  {
+   "Key": "LowLifeMore.Flat",
+   "Text": "{v}% more damage to enemies below half their life (full on physical, 40% of it on other damage)",
+   "Negative": ""
+  },
+  {
+   "Key": "Phys70.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "AttackSpeed.Inc+DualWielding",
+   "Text": "{v}% increased Attack Speed while Dual Wielding",
+   "Negative": "{abs}% reduced Attack Speed while Dual Wielding"
+  },
+  {
+   "Key": "AttackSpeed.Inc+Unarmed",
+   "Text": "{v}% increased Attack Speed while Unarmed",
+   "Negative": "{abs}% reduced Attack Speed while Unarmed"
+  },
+  {
+   "Key": "AttackSpeed.Inc+Martial",
+   "Text": "{v}% increased Attack Speed with Fists and Claws",
+   "Negative": "{abs}% reduced Attack Speed with Fists and Claws"
+  },
+  {
+   "Key": "Block.Flat+DualWielding",
+   "Text": "+{v}% Chance to Block while Dual Wielding",
+   "Negative": "-{abs}% Chance to Block while Dual Wielding"
+  },
+  {
+   "Key": "Block.Flat+HoldingShield",
+   "Text": "+{v}% Chance to Block while holding a Shield",
+   "Negative": "-{abs}% Chance to Block while holding a Shield"
+  },
+  {
+   "Key": "Damage.Inc+HoldingShield",
+   "Text": "{v}% increased Damage while holding a Shield",
+   "Negative": "{abs}% reduced Damage while holding a Shield"
+  },
+  {
+   "Key": "Damage.Inc+DualWielding",
+   "Text": "{v}% increased Damage while Dual Wielding",
+   "Negative": "{abs}% reduced Damage while Dual Wielding"
+  },
+  {
+   "Key": "Damage.Inc+Unarmed",
+   "Text": "{v}% increased Damage while Unarmed",
+   "Negative": "{abs}% reduced Damage while Unarmed"
+  },
+  {
+   "Key": "Damage.Inc+Martial",
+   "Text": "{v}% increased Damage with Fists and Claws",
+   "Negative": "{abs}% reduced Damage with Fists and Claws"
+  },
+  {
+   "Key": "Damage.Inc+BothHands",
+   "Text": "{v}% increased Damage with Skills that hit with Both Weapons at once",
+   "Negative": "{abs}% reduced Damage with Skills that hit with Both Weapons at once"
+  },
+  {
+   "Key": "Damage.Inc+Shield",
+   "Text": "{v}% increased Damage with Shield Skills",
+   "Negative": "{abs}% reduced Damage with Shield Skills"
+  },
+  {
+   "Key": "CritChance.Inc+Martial",
+   "Text": "{v}% increased Critical Strike Chance with Fists and Claws",
+   "Negative": "{abs}% reduced Critical Strike Chance with Fists and Claws"
+  },
+  {
+   "Key": "AddedDamage.Flat+Martial",
+   "Text": "Adds {v} to {v2} Physical damage to Attacks with Fists and Claws",
+   "Negative": ""
+  },
+  {
+   "Key": "LifeOnBlock.Flat",
+   "Text": "Recover {v} Life when you Block",
+   "Negative": ""
+  },
+  {
+   "Key": "AttackSpeed.More+DualWielding",
+   "Text": "{v}% more Attack Speed while Dual Wielding",
+   "Negative": "{abs}% less Attack Speed while Dual Wielding"
+  },
+  {
+   "Key": "AttackSpeed.More+Martial",
+   "Text": "{v}% more Attack Speed with Fists and Claws",
+   "Negative": "{abs}% less Attack Speed with Fists and Claws"
+  },
+  {
+   "Key": "Damage.More+Shield",
+   "Text": "{v}% more Damage with Shield Skills",
+   "Negative": "{abs}% less Damage with Shield Skills"
+  },
+  {
+   "Key": "CritChance.Inc+",
+   "Text": "{v}% increased Critical Strike Chance with {skills}",
+   "Negative": "{abs}% reduced Critical Strike Chance with {skills}"
+  },
+  {
+   "Key": "CritChance.More+",
+   "Text": "{v}% more Critical Strike Chance with {skills}",
+   "Negative": "{abs}% less Critical Strike Chance with {skills}"
+  },
+  {
+   "Key": "CritMulti.Flat+",
+   "Text": "+{v}% to Critical Strike Multiplier with {skills}",
+   "Negative": "-{abs}% to Critical Strike Multiplier with {skills}"
+  },
+  {
+   "Key": "AttackSpeed.More+",
+   "Text": "{v}% more Attack Speed with {skills}",
+   "Negative": "{abs}% less Attack Speed with {skills}"
+  },
+  {
+   "Key": "Pierce.Flat+",
+   "Text": "{skills} Pierce {v} additional {n}|plural(one=Target,other=Targets)",
+   "Negative": ""
+  },
+  {
+   "Key": "Repeats.Flat+Bow",
+   "Text": "Bow Attacks Repeat {v} additional {n}|plural(one=time,other=times) (stacks with the repeats of a support gem, but the smaller of the two deals 50% less damage)",
+   "Negative": ""
+  },
+  {
+   "Key": "WaveCount.Flat+Slam",
+   "Text": "Ground Slam, Earthshatter and Rending Slam: their spike lines run {v} {n}|plural(one=step,other=steps) further",
+   "Negative": ""
+  },
+  {
+   "Key": "BloodMagic.Flag+BloodMagic",
+   "Text": "Costs Life instead of Mana",
+   "Negative": ""
+  },
+  {
+   "Key": "ManaOnHit.Flat",
+   "Text": "+{v} Mana gained for each Enemy hit by Attacks",
+   "Negative": ""
+  },
+  {
+   "Key": "ManaOnHit.Flat+",
+   "Text": "+{v} Mana gained for each Enemy hit by {tags}s",
+   "Negative": ""
+  },
+  {
+   "Key": "ManaOnKill.Flat",
+   "Text": "+{v} Mana gained on Kill",
+   "Negative": ""
+  },
+  {
+   "Key": "Woebringer.Flat",
+   "Text": "The Woe is sworn as an aura round you (reserves 24% of your Mana)",
+   "Negative": ""
+  },
+  {
+   "Key": "PassSentence.Flat",
+   "Text": "The Sentence passes to the nearest rare or unique enemy when its target dies",
+   "Negative": ""
+  },
+  {
+   "Key": "FuryOnKill.Flat",
+   "Text": "Kills grant a Fury charge (at most one every 0.5 seconds)",
+   "Negative": ""
+  },
+  {
+   "Key": "BloodlustMax.Flat",
+   "Text": "+{v} to maximum Bloodlust",
+   "Negative": ""
+  },
+  {
+   "Key": "BloodlustDuration.Inc",
+   "Text": "Bloodlust lasts {v}% longer",
+   "Negative": "Bloodlust runs out {abs}% sooner"
+  },
+  {
+   "Key": "WarBanner.Flat",
+   "Text": "Your skills plant your War Banner where you stand (it adds with your Hunter's Marks and curses)",
+   "Negative": ""
+  },
+  {
+   "Key": "ValourMax.Flat",
+   "Text": "+{v} to maximum Valour on your War Banner",
+   "Negative": ""
+  },
+  {
+   "Key": "BannerEffect.Inc",
+   "Text": "{v}% increased War Banner effect",
+   "Negative": ""
+  },
+  {
+   "Key": "MarkOnHit.Flat",
+   "Text": "Your hits put a Hunter's Mark on the enemy (1.7% more damage taken per Mark; it adds with your War Banner and curses)",
+   "Negative": ""
+  },
+  {
+   "Key": "UnravelOnHit.Flat",
+   "Text": "Your spell hits add Unravel stacks for their element (0.7% more damage of that element taken per stack, up to 25)",
+   "Negative": ""
+  },
+  {
+   "Key": "MarkMax.Flat",
+   "Text": "+{v} to maximum Hunter's Marks on an enemy",
+   "Negative": ""
+  },
+  {
+   "Key": "MarkEffect.Inc",
+   "Text": "{v}% increased Hunter's Mark effect",
+   "Negative": ""
+  },
+  {
+   "Key": "CurseLimit.Flat",
+   "Text": "You can lay +{v} more {n}|plural(one=Woe,other=Woes) on each enemy",
+   "Negative": ""
+  },
+  {
+   "Key": "WoeOnHit.Flat",
+   "Text": "Your hits lay the linked Woe on the enemies they strike",
+   "Negative": ""
+  },
+  {
+   "Key": "BloodlustOnKill.Flat",
+   "Text": "Kills grant Bloodlust (per stack: 0.5% increased melee damage, 0.2% increased melee attack speed, 0.1% increased movement speed; each lasts 5 seconds)",
+   "Negative": ""
+  },
+  {
+   "Key": "KindlingOnKill.Flat",
+   "Text": "Spell kills grant Kindling (per stack: 0.5% increased spell damage, 0.2% increased cast speed; each lasts 5 seconds)",
+   "Negative": ""
+  },
+  {
+   "Key": "Area.Inc+TwoHanded",
+   "Text": "{v}% increased Area of Effect while wielding a Two Handed weapon",
+   "Negative": "{abs}% reduced Area of Effect while wielding a Two Handed weapon"
+  },
+  {
+   "Key": "Damage.Inc+TwoHanded",
+   "Text": "{v}% increased Damage while wielding a Two Handed weapon",
+   "Negative": "{abs}% reduced Damage while wielding a Two Handed weapon"
+  },
+  {
+   "Key": "CastSpeed.Inc+WieldingStaff",
+   "Text": "{v}% increased Cast Speed while wielding a Staff",
+   "Negative": "{abs}% reduced Cast Speed while wielding a Staff"
+  },
+  {
+   "Key": "Damage.Inc+WieldingStaff",
+   "Text": "{v}% increased Damage while wielding a Staff",
+   "Negative": "{abs}% reduced Damage while wielding a Staff"
+  },
+  {
+   "Key": "ArmourMore.Flat",
+   "Text": "{v}% more {tags} Damage for every 1,000 Armour you have",
+   "Negative": "{abs}% less {tags} Damage for every 1,000 Armour you have"
+  },
+  {
+   "Key": "BlockMore.Flat",
+   "Text": "{v}% more {tags} Damage for every 1% Chance to Block you have (counts up to your Block cap)",
+   "Negative": "{abs}% less {tags} Damage for every 1% Chance to Block you have"
+  },
+  {
+   "Key": "ManaMore.Flat",
+   "Text": "{v}% more {tags} Damage for every 100 maximum Mana you have",
+   "Negative": "{abs}% less {tags} Damage for every 100 maximum Mana you have"
+  },
+  {
+   "Key": "SpeedMore.Flat",
+   "Text": "{v}% more {tags} Damage for every 10% increased Attack Speed you have",
+   "Negative": "{abs}% less {tags} Damage for every 10% increased Attack Speed you have"
+  },
+  {
+   "Key": "CastSpeedMore.Flat",
+   "Text": "{v}% more {tags} Damage for every 10% increased Cast Speed you have",
+   "Negative": "{abs}% less {tags} Damage for every 10% increased Cast Speed you have"
+  },
+  {
+   "Key": "DexLife.Flat",
+   "Text": "+{v} to maximum Life for every 10 Dexterity you have",
+   "Negative": "-{abs} to maximum Life for every 10 Dexterity you have"
+  },
+  {
+   "Key": "GolemLifeMore.Flat",
+   "Text": "Your Grave Golem deals {v}% more Damage for every 100 maximum Life you have; your other minions gain 35% of this",
+   "Negative": "Your Grave Golem deals {abs}% less Damage for every 100 maximum Life you have"
+  },
+  {
+   "Key": "GrantSupport.Flag+chain",
+   "Text": "Your {tag1} Skills are Supported by Chain (the gem's own price: 5% less Damage)",
+   "Negative": ""
+  },
+  {
+   "Key": "GrantSupport.Flag+rain_support",
+   "Text": "Your {tag1} Attacks are Supported by Rain (the gem's own price: 50% less Damage)",
+   "Negative": ""
+  },
+  {
+   "Key": "GrantSupport.Flag+afterimage",
+   "Text": "Your {tag1} Skills are Supported by Afterimage (the gem's own price: 20% less Damage)",
+   "Negative": ""
+  },
+  {
+   "Key": "VolatileDead.Flat",
+   "Text": "Supported Minions explode where they fall for {v}% of their maximum Life as Fire Damage",
+   "Negative": ""
+  },
+  {
+   "Key": "VolatileDeadHit.Flat",
+   "Text": "The blast adds {v}% of the Minion's hit damage",
+   "Negative": ""
+  },
+  {
+   "Key": "CorpsePyre.Flat",
+   "Text": "Enemies killed by Hits burst for {v}% of their maximum Life as Fire Damage",
+   "Negative": ""
+  },
+  {
+   "Key": "ChainJumpMore.Flat",
+   "Text": "Each Chain jump deals {v}% more Damage than the last",
+   "Negative": "Each Chain jump deals {abs}% less Damage than the last"
+  },
+  {
+   "Key": "LeechingMore.Flat",
+   "Text": "{v}% more Damage while Leeching",
+   "Negative": "{abs}% less Damage while Leeching"
+  },
+  {
+   "Key": "SelfLowLifeMore.Flat",
+   "Text": "{v}% more Damage while below half Life",
+   "Negative": "{abs}% less Damage while below half Life"
+  },
+  {
+   "Key": "ChilledLightningMore.Flat",
+   "Text": "{v}% more Lightning Damage against Chilled or Frozen Enemies",
+   "Negative": "{abs}% less Lightning damage against Chilled or Frozen Enemies"
+  },
+  {
+   "Key": "ManaOnHitPct.Flat",
+   "Text": "Gain {v}% of maximum Mana per Hit with Attacks",
+   "Negative": "Lose {abs}% of maximum Mana per Hit with Attacks"
+  },
+  {
+   "Key": "ManaOnKillPct.Flat",
+   "Text": "Gain {v}% of maximum Mana per Enemy Killed",
+   "Negative": "Lose {abs}% of maximum Mana per Enemy Killed"
+  },
+  {
+   "Key": "IgniteSpreadTick.Flat",
+   "Text": "Burning Enemies pass their Ignite to a nearby Enemy {v} {n}|plural(one=time,other=times) a second",
+   "Negative": ""
+  },
+  {
+   "Key": "BlockToDamage.Flat",
+   "Text": "The linked Shield attack deals {v}% more Damage for each 1% chance to Block",
+   "Negative": "The linked Shield attack deals {abs}% less Damage for each 1% chance to Block"
+  },
+  {
+   "Key": "CurseMore.Flat",
+   "Text": "Every line of the linked Woe is {v}% stronger",
+   "Negative": "Every line of the linked Woe is {abs}% weaker"
+  },
+  {
+   "Key": "AuraDrainLess.Flat",
+   "Text": "The linked aura drains {v}% less of your life",
+   "Negative": "The linked aura drains {abs}% more of your life"
+  },
+  {
+   "Key": "PyreChain.Flat",
+   "Text": "The linked corpse burst leaps on to {v} more fresh corpses",
+   "Negative": "The linked corpse burst leaps on to {abs} fewer fresh corpses"
+  },
+  {
+   "Key": "PyreChainShare.Flat",
+   "Text": "Each leap deals {v}% of the damage of the leap before it",
+   "Negative": "Each leap deals {abs}% less"
+  },
+  {
+   "Key": "CryFury.Flat",
+   "Text": "The linked war cry grants {v} Fury charge for each Resolve charge it grants",
+   "Negative": "The linked war cry grants {abs} fewer Fury charges"
+  },
+  {
+   "Key": "CryLinger.Flat",
+   "Text": "Resolve from the linked war cry lasts {v}% longer",
+   "Negative": "Resolve from the linked war cry lasts {abs}% shorter"
+  },
+  {
+   "Key": "BannerStartValour.Flat",
+   "Text": "The linked War Banner lands with {v} Valour",
+   "Negative": "The linked War Banner lands with {abs} less Valour"
+  },
+  {
+   "Key": "BannerKeepValour.Flat",
+   "Text": "The linked War Banner keeps {v}% of its Valour when you move it",
+   "Negative": "The linked War Banner keeps {abs}% less Valour when moved"
+  },
+  {
+   "Key": "FocusVolley.Flat",
+   "Text": "The linked bow skill's arrows fly on one line, each with its own hit",
+   "Negative": "The linked bow skill's arrows fly on one line, each with its own hit"
+  },
+  {
+   "Key": "FocusShare.Flat",
+   "Text": "Each arrow after the first deals {v}% of the damage of the one before it",
+   "Negative": "Each arrow after the first deals {abs}% less"
+  },
+  {
+   "Key": "VowReserveLess.Flat",
+   "Text": "The linked Vow or Herald reserves {v}% less",
+   "Negative": "The linked Vow or Herald reserves {abs}% more"
+  },
+  {
+   "Key": "HeraldKillRadius.Flat",
+   "Text": "The linked Herald's kill effect reaches {v}% further",
+   "Negative": "The linked Herald's kill effect reaches {abs}% less far"
+  },
+  {
+   "Key": "HeraldKillMore.Flat",
+   "Text": "The linked Herald's kill effect deals {v}% more Damage",
+   "Negative": "The linked Herald's kill effect deals {abs}% less Damage"
+  },
+  {
+   "Key": "WoeLinger.Flat",
+   "Text": "The linked Woe builds Dread {v}% faster and lasts {v}% longer",
+   "Negative": "The linked Woe builds Dread {abs}% slower and lasts {abs}% shorter"
+  },
+  {
+   "Key": "BleedStacks.Flat",
+   "Text": "Your Bleeds stack: up to {v} more on each enemy; each extra Bleed deals 65% less",
+   "Negative": "Your Bleeds stack {abs} fewer times"
+  },
+  {
+   "Key": "BleedBurst.Flat",
+   "Text": "Enemies that die while Bleeding from you burst for {v}% of their maximum Life (counted at Rupture Level 150 at most, without pack bonus life) as Physical damage to enemies within 3.5 metres",
+   "Negative": "Enemies that die while Bleeding from you burst for {abs}% less"
+  },
+  {
+   "Key": "SparkThrow.Flat",
+   "Text": "Your Spark casts throw {v} more body at once (a cast lands its bodies apart)",
+   "Negative": "Your Spark casts throw {abs} fewer bodies at once"
+  },
+  {
+   "Key": "FortifyMax.Flat",
+   "Text": "+{v} to maximum Fortified stacks (melee hits you land give stacks, each 1% less damage taken from hits)",
+   "Negative": "{abs} fewer maximum Fortified stacks"
+  },
+  {
+   "Key": "FortifyEffect.Inc",
+   "Text": "{v}% increased effect of Fortified (less damage taken from hits per stack)",
+   "Negative": "{abs}% reduced effect of Fortified"
+  },
+  {
+   "Key": "FortifyDamage.Flat",
+   "Text": "{v}% more Melee Damage for every Fortified stack you have",
+   "Negative": "{abs}% less Melee Damage for every Fortified stack you have"
+  },
+  {
+   "Key": "LifeMore.Flat",
+   "Text": "{v}% more {tags} Damage for every 1,000 maximum Life you have",
+   "Negative": "{abs}% less {tags} Damage for every 1,000 maximum Life you have"
+  },
+  {
+   "Key": "EnergyShieldMore.Flat",
+   "Text": "{v}% more {tags} Damage for every 1,000 maximum Energy Shield you have",
+   "Negative": "{abs}% less {tags} Damage for every 1,000 maximum Energy Shield you have"
+  },
+  {
+   "Key": "EvasionMore.Flat",
+   "Text": "{v}% more {tags} Damage for every 1,000 Evasion you have",
+   "Negative": "{abs}% less {tags} Damage for every 1,000 Evasion you have"
+  },
+  {
+   "Key": "PoisonSpreadOnKill.Flat",
+   "Text": "When an enemy you poisoned dies, up to {v} of your poisons on it move to the enemy within 4.5 metres holding the fewest, once per death (a poison Oathword's jump on that death takes its place)",
+   "Negative": "{abs} fewer poisons move on when a poisoned enemy dies"
+  },
+  {
+   "Key": "ReqReduce.Flat",
+   "Text": "Attribute Requirements Reduced by {v}%",
+   "Negative": "Attribute Requirements Increased by {abs}%"
+  },
+  {
+   "Key": "MinionLifeRegen.Flat",
+   "Text": "Your Minions regenerate {v}% of their maximum Life per second",
+   "Negative": ""
+  },
+  {
+   "Key": "MinionLifeOnKill.Flat",
+   "Text": "Your Minions recover {v}% of their maximum Life when they kill an enemy",
+   "Negative": ""
+  },
+  {
+   "Key": "LifeOnKillPct.Flat",
+   "Text": "Gain {v}% of maximum Life per Enemy Killed",
+   "Negative": "Lose {abs}% of maximum Life per Enemy Killed"
+  },
+  {
+   "Key": "VowEffect.Flat",
+   "Text": "Linked Vow's lines are {v}% stronger",
+   "Negative": ""
+  },
+  {
+   "Key": "VowEffect.Inc",
+   "Text": "{v}% increased effect of your Vows",
+   "Negative": "{abs}% reduced effect of your Vows"
+  },
+  {
+   "Key": "MoveSpeedOnKill.Flat",
+   "Text": "{v}% increased Movement Speed for {v2} seconds on Kill",
+   "Negative": ""
+  },
+  {
+   "Key": "TrogChord100.Flat",
+   "Text": "One cast of your Spark skills throws your whole set of Sparks, and a fresh set strikes together as it lands",
+   "Negative": "One cast of your Spark skills throws your whole set of Sparks, and a fresh set strikes together as it lands"
+  },
+  {
+   "Key": "TrogNote100.Flat",
+   "Text": "While all your Sparks are of one Spark skill, they strike {v}% faster",
+   "Negative": "While all your Sparks are of one Spark skill, they strike {abs}% slower"
+  },
+  {
+   "Key": "BleedChance.Flat+",
+   "Text": "+{v}% chance to cause Bleeding with {skills}",
+   "Negative": "-{abs}% chance to cause Bleeding with {skills}"
+  },
+  {
+   "Key": "BleedDamage.Inc+",
+   "Text": "{v}% increased Bleeding damage with {skills}",
+   "Negative": "{abs}% reduced Bleeding damage with {skills}"
+  },
+  {
+   "Key": "PoisonChance.Flat+",
+   "Text": "+{v}% chance to Poison on Hit with {skills}",
+   "Negative": "-{abs}% chance to Poison on Hit with {skills}"
+  },
+  {
+   "Key": "PoisonDamage.Inc+",
+   "Text": "{v}% increased Poison damage with {skills}",
+   "Negative": "{abs}% reduced Poison damage with {skills}"
+  },
+  {
+   "Key": "PoisonChance.Flat+Minion",
+   "Text": "Your Minions have +{v}% chance to Poison on Hit",
+   "Negative": "Your Minions have -{abs}% chance to Poison on Hit"
+  },
+  {
+   "Key": "PoisonDamage.Inc+Minion",
+   "Text": "Your Minions' Poisons deal {v}% increased damage",
+   "Negative": "Your Minions' Poisons deal {abs}% reduced damage"
+  },
+  {
+   "Key": "IgniteChance.Flat+",
+   "Text": "+{v}% chance to Ignite with {skills}",
+   "Negative": "-{abs}% chance to Ignite with {skills}"
+  },
+  {
+   "Key": "IgniteDamage.Inc+",
+   "Text": "{v}% increased Burning damage with {skills}",
+   "Negative": "{abs}% reduced Burning damage with {skills}"
+  },
+  {
+   "Key": "Damage.More+TwoHanded",
+   "Text": "Minions deal {v}% more Damage while you wield a Two Handed weapon",
+   "Negative": "Minions deal {abs}% less Damage while you wield a Two Handed weapon"
+  },
+  {
+   "Key": "Chains.Flat+WieldingStaff",
+   "Text": "Chaining Spells chain {v} additional {n}|plural(one=time,other=times) while wielding a Staff",
+   "Negative": ""
+  },
+  {
+   "Key": "Area.Inc+WieldingStaff",
+   "Text": "Spells have {v}% increased Area of Effect while wielding a Staff",
+   "Negative": "Spells have {abs}% reduced Area of Effect while wielding a Staff"
+  },
+  {
+   "Key": "Afterimages.Flat+TwoHanded",
+   "Text": "+{v} {n}|plural(one=Afterimage,other=Afterimages) on Melee Attacks while wielding a Two Handed weapon (each repeats the blow for 40% of its damage; past 3 from all sources, each adds 10% instead)",
+   "Negative": ""
+  },
+  {
+   "Key": "AttackSpeed.More+TwoHanded",
+   "Text": "{v}% more Melee Attack Speed while wielding a Two Handed weapon",
+   "Negative": "{abs}% less Melee Attack Speed while wielding a Two Handed weapon"
+  },
+  {
+   "Key": "Damage.More+HoldingShield",
+   "Text": "{v}% more Attack Damage while holding a Shield",
+   "Negative": "{abs}% less Attack Damage while holding a Shield"
+  },
+  {
+   "Key": "Area.Inc+HoldingShield",
+   "Text": "Slam Skills have {v}% increased Area of Effect while holding a Shield",
+   "Negative": "Slam Skills have {abs}% reduced Area of Effect while holding a Shield"
+  },
+  {
+   "Key": "Repeats.Flat+Martial",
+   "Text": "Melee Attacks with Fists and Claws Repeat {v} additional {n}|plural(one=time,other=times) (stacks with the repeats of a support gem, but the smaller of the two deals 50% less damage)",
+   "Negative": ""
+  },
+  {
+   "Key": "Damage.More+Martial",
+   "Text": "{v}% more Attack Damage with Fists and Claws",
+   "Negative": "{abs}% less Attack Damage with Fists and Claws"
+  },
+  {
+   "Key": "Afterimages.Flat+DualWielding",
+   "Text": "+{v} {n}|plural(one=Afterimage,other=Afterimages) on Melee Attacks while Dual Wielding (each repeats the blow for 40% of its damage; past 3 from all sources, each adds 10% instead)",
+   "Negative": ""
+  },
+  {
+   "Key": "AfterimageDamage.Inc+DualWielding",
+   "Text": "Afterimages deal {v}% increased Damage while Dual Wielding",
+   "Negative": "Afterimages deal {abs}% reduced Damage while Dual Wielding"
+  },
+  {
+   "Key": "Fork.Flat+Bow",
+   "Text": "Bow Projectiles Fork {v} {n}|plural(one=time,other=times)",
+   "Negative": ""
+  },
+  {
+   "Key": "CastSpeed.Inc+Channelling",
+   "Text": "Channelling Skills have {v}% increased Cast Speed while wielding a Staff",
+   "Negative": "Channelling Skills have {abs}% reduced Cast Speed while wielding a Staff"
+  },
+  {
+   "Key": "ManaCost.Inc+WieldingStaff",
+   "Text": "Channelling Skills have {v}% increased Mana Cost while wielding a Staff",
+   "Negative": "Channelling Skills have {abs}% reduced Mana Cost while wielding a Staff"
+  },
+  {
+   "Key": "IgniteSpreadOnKill.Flat+WieldingStaff",
+   "Text": "While wielding a Staff, {v}% chance for a Burning enemy's Ignite from your Spells to spread to enemies within 4.5 metres when it dies",
+   "Negative": ""
+  },
+  {
+   "Key": "ShockSpreadOnKill.Flat+WieldingStaff",
+   "Text": "While wielding a Staff, {v}% chance for a Shocked enemy's Shock from your Spells to spread to enemies within 4.5 metres when it dies",
+   "Negative": ""
+  },
+  {
+   "Key": "Chains.Flat+Shield",
+   "Text": "Shield Skills chain {v} additional {n}|plural(one=time,other=times)",
+   "Negative": ""
+  },
+  {
+   "Key": "Area.Inc+Shield",
+   "Text": "Shield Skills have {v}% increased Area of Effect",
+   "Negative": "Shield Skills have {abs}% reduced Area of Effect"
+  },
+  {
+   "Key": "CastSpeed.Inc+HoldingShield",
+   "Text": "{v}% increased Cast Speed while holding a Shield",
+   "Negative": "{abs}% reduced Cast Speed while holding a Shield"
+  },
+  {
+   "Key": "AfterimageDamage.Inc",
+   "Text": "Afterimages deal {v}% increased Damage",
+   "Negative": "Afterimages deal {abs}% reduced Damage"
+  },
+  {
+   "Key": "Feed85_FuryCharges.Flat+",
+   "Text": "{skills} deal {v}% more damage for each Fury charge you hold (5 at most)",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85_MaimEffect.Flat+",
+   "Text": "{skills} deal {v}% more damage for every 1% Maim on the enemy",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85_BlockChance.Flat+",
+   "Text": "{skills} deal {v}% more damage for every 1% chance to Block",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85_IgniteStacks.Flat+",
+   "Text": "{skills} deal {v}% more damage for each of your Ignites burning on the enemy",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85_MarkStacks.Flat+",
+   "Text": "{skills} deal {v}% more damage for each Hunter's Mark on the enemy",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85_ChillEffect.Flat+",
+   "Text": "{skills} deal {v}% more damage for every 1% Chill on the enemy",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85_ChillEffect.Flat+Minion",
+   "Text": "Your Minions' {tags} hits deal {v}% more damage for every 1% Chill on the enemy",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85_MinionCount.Flat+",
+   "Text": "{skills} deal {v}% more damage for each Minion you command",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85_PoisonChance.Flat+",
+   "Text": "{skills} deal {v}% more damage for every 1% chance to Poison",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85_ExtraProjectiles.Flat+",
+   "Text": "{skills} deal {v}% more damage for each extra Projectile they fire",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85_CritChance.Flat+",
+   "Text": "{skills} deal {v}% more damage for every 1% Critical Strike chance",
+   "Negative": ""
+  },
+  {
+   "Key": "Gravesown.Flat",
+   "Text": "Raises up to {v} {n}|plural(one=Husk,other=Husks) at once",
+   "Negative": ""
+  },
+  {
+   "Key": "KindlePct.Flat",
+   "Text": "Corpse bursts deal {v}% of the corpse's Life before the Rupture Level factor",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85Crit_IgniteStacks.Flat+",
+   "Text": "{skills} have +{v}% Critical Strike chance for each of your Ignites burning on the enemy",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85_PoisonChance.Flat+Minion",
+   "Text": "Your Minions deal {v}% more damage for every 1% chance to Poison they have",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85Exp_MarkStacks.Flat+",
+   "Text": "Your Shocks have {v}% increased effect for each Hunter's Mark on the enemy",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85Ail_FuryCharges.Flat+Bleed",
+   "Text": "Your Bleeds deal {v}% more damage for each Fury charge you hold (5 at most)",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85Ail_MarkStacks.Flat+Poison",
+   "Text": "Your Poisons deal {v}% more damage for each Hunter's Mark on the enemy",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85_WoeEffectMatch.Flat+",
+   "Text": "{skills} deal {v}% more damage for every 1% effect of your Woe of their element on the enemy",
+   "Negative": ""
+  },
+  {
+   "Key": "Damage.More+StandingStill",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "Damage.More+LowLife",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "AttackSpeed.More+LowLife",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "ManaCost.Inc+LowLife",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "MinionReservation.Inc+WieldingScythe",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "PoisonChance.Flat+WieldingBow",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "CorpseKeepMinion.Flat",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "CorpseMinions.Flat",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "CritAilSure.Flat+WieldingWand",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "WoeEffectPerMinion.Flat",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "MinionSpeed.More+WhileChannelling",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "HallowStill.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "EsRechargeKeep.Flag+WhileChannelling",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "EsRechargeKeep.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "CorpseFury.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "MarkJump.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "CritMulti.Flat+FreeHand",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "ManaCost.Inc+HoldingTome",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "CastSpeed.More+HoldingTome",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85_OrbitCount.Flat+Skill_judgement",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "PatientEdge.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "PyreSaint.Flat",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85Ail_RepeatIndex.Flat+Melee",
+   "Text": "Your Melee Bleeds deal {v}% more damage for each time the strike has repeated",
+   "Negative": ""
+  },
+  {
+   "Key": "EdgeOnMove.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "ElementCadence.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "MomentumOnChannel.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "MarkOnCrit.Flat",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "EntropyShare.Flat",
+   "Text": "{v}% of hit damage is laid as Entropy instead of striking",
+   "Negative": "{abs}% less hit damage is laid as Entropy"
+  },
+  {
+   "Key": "EntropyShare.Flat+",
+   "Text": "{v}% of {tags} hit damage is laid as Entropy instead of striking",
+   "Negative": "{abs}% less {tags} hit damage is laid as Entropy"
+  },
+  {
+   "Key": "EntropyMore.More",
+   "Text": "Entropy implodes for {v}% more damage",
+   "Negative": "Entropy implodes for {abs}% less damage"
+  },
+  {
+   "Key": "EntropyMulti.Flat",
+   "Text": "+{v}% Entropy Multiplier",
+   "Negative": "-{abs}% Entropy Multiplier"
+  },
+  {
+   "Key": "EntropyDelay.Flat",
+   "Text": "Entropy implodes {v} seconds sooner",
+   "Negative": "Entropy implodes {abs} seconds later"
+  },
+  {
+   "Key": "ChaosPen.Flat",
+   "Text": "Implosions ignore {v}% Chaos Resistance",
+   "Negative": "Implosions meet {abs}% more Chaos Resistance"
+  },
+  {
+   "Key": "EntropySheathe.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "EntropyCorpse.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "Feed85_TotemCount.Flat+Minion",
+   "Text": "Your Minions deal {v}% more damage for each Totem you have",
+   "Negative": ""
+  },
+  {
+   "Key": "EntropySheatheReach.Flat",
+   "Text": "Quiet Ruin's Sheathe reaches {v} metres further",
+   "Negative": "Quiet Ruin's Sheathe reaches {abs} metres less far"
+  },
+  {
+   "Key": "EntropyFade.Flat",
+   "Text": "Entropy fades {v} seconds later",
+   "Negative": "Entropy fades {abs} seconds sooner"
+  },
+  {
+   "Key": "EntropyVow.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "VowLock.Inc",
+   "Text": "After a Vowbreak your Vow stays locked {v}% longer",
+   "Negative": "After a Vowbreak your Vow stays locked {abs}% shorter"
+  },
+  {
+   "Key": "NeverCrit.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "EntropyCrit.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "EntropyHunger.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "EntropySlam.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "EntropyMarks.Flag",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "EntropyMarkedMulti.Flat",
+   "Text": "+{v}% Entropy Multiplier for Entropy you lay on enemies with Hunter's Marks",
+   "Negative": "-{abs}% Entropy Multiplier for Entropy you lay on enemies with Hunter's Marks"
+  },
+  {
+   "Key": "EntropyHallowSooner.Flat",
+   "Text": "Entropy you lay on enemies on hallowed ground implodes {v} s sooner",
+   "Negative": "Entropy you lay on enemies on hallowed ground implodes {abs} s later"
+  },
+  {
+   "Key": "EntropyGrievance.Flat",
+   "Text": "{v}% of the Life you lose to an enemy's hit is laid on that enemy as Entropy",
+   "Negative": "{abs}% less of the Life you lose to an enemy's hit is laid on that enemy as Entropy"
+  },
+  {
+   "Key": "EntropyVowReach.Flat",
+   "Text": "Forsworn Crusade's Vowbreak reaches {v} metres further",
+   "Negative": "Forsworn Crusade's Vowbreak reaches {abs} metres less far"
+  }
+ ]
+}

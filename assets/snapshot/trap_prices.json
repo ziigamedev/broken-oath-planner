@@ -1,0 +1,19 @@
+{
+ "prices": {
+  "wheeling_axe": 0.35,
+  "shield_throw": 0.7,
+  "arrow_rain": 0.7,
+  "ground_slam": 0.75,
+  "glacial_shards": 0.8,
+  "shuriken_fan": 0.8,
+  "earthshatter": 0.8,
+  "rending_slam": 0.8,
+  "crescent_slash": 0.95,
+  "judgement": 0.6,
+  "lightning_arrow": 0.74,
+  "split_shot": 0.71,
+  "fuse_arrow": 0.8,
+  "caustic_arrow": 0.8
+ },
+ "rule": "a trap or totem strike of a listed Attack deals price x a hand throw at every gem level; Attacks not listed = 1"
+}
