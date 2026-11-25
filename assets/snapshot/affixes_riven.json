@@ -1,0 +1,1799 @@
+{
+ "affixes": [
+  {
+   "Id": "riven95_life_large",
+   "Type": "Prefix",
+   "Group": "Life",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Life",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 146,
+     "Max": 167,
+     "Name": "Deathless",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_armour_local",
+   "Type": "Prefix",
+   "Group": "DefenceFlat",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Armour",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0,
+    "bLocal": true
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 321,
+     "Max": 367,
+     "Name": "Adamant",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_armour_local_small",
+   "Type": "Prefix",
+   "Group": "DefenceFlat",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Armour",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0,
+    "bLocal": true
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 144,
+     "Max": 164,
+     "Name": "Adamant",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_evasion_local",
+   "Type": "Prefix",
+   "Group": "DefenceFlatEvasion",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Evasion",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0,
+    "bLocal": true
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 321,
+     "Max": 367,
+     "Name": "Untouchable",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_evasion_local_small",
+   "Type": "Prefix",
+   "Group": "DefenceFlatEvasion",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Evasion",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0,
+    "bLocal": true
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 144,
+     "Max": 164,
+     "Name": "Untouchable",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_es_local",
+   "Type": "Prefix",
+   "Group": "DefenceFlatEnergyShield",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "EnergyShield",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0,
+    "bLocal": true
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 86,
+     "Max": 98,
+     "Name": "Martyr's",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_es_local_small",
+   "Type": "Prefix",
+   "Group": "DefenceFlatEnergyShield",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "EnergyShield",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0,
+    "bLocal": true
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 39,
+     "Max": 44,
+     "Name": "Martyr's",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_defence_inc",
+   "Type": "Prefix",
+   "Group": "DefenceInc",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Defences",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0,
+    "bLocal": true
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 116,
+     "Max": 132,
+     "Name": "Everlasting",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_phys_inc_local",
+   "Type": "Prefix",
+   "Group": "PhysInc",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Damage",
+    "Mode": "Inc",
+    "Tags": [
+     "Physical"
+    ],
+    "Value": 0,
+    "bLocal": true
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 188,
+     "Max": 215,
+     "Name": "Headsman's",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_phys_added_local",
+   "Type": "Prefix",
+   "Group": "PhysAdded",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "AddedDamage",
+    "Mode": "Flat",
+    "Tags": [
+     "Physical"
+    ],
+    "Value": 0,
+    "bLocal": true
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 47,
+     "Max": 54,
+     "Name": "Ruinous",
+     "Weight": 1000,
+     "Min2": 86,
+     "Max2": 98
+    }
+   ]
+  },
+  {
+   "Id": "riven95_fire_added_local",
+   "Type": "Prefix",
+   "Group": "FireAdded",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "AddedDamage",
+    "Mode": "Flat",
+    "Tags": [
+     "Fire"
+    ],
+    "Value": 0,
+    "bLocal": true
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 46,
+     "Max": 53,
+     "Name": "Sunfire",
+     "Weight": 1000,
+     "Min2": 92,
+     "Max2": 106
+    }
+   ]
+  },
+  {
+   "Id": "riven95_fire_spell_added",
+   "Type": "Prefix",
+   "Group": "FireSpellAdded",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "AddedDamage",
+    "Mode": "Flat",
+    "Tags": [
+     "Fire",
+     "Spell"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 39,
+     "Max": 44,
+     "Name": "Sunfire",
+     "Weight": 1000,
+     "Min2": 78,
+     "Max2": 89
+    }
+   ]
+  },
+  {
+   "Id": "riven95_fire_dmg_inc",
+   "Type": "Prefix",
+   "Group": "FireInc",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Damage",
+    "Mode": "Inc",
+    "Tags": [
+     "Fire"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 72,
+     "Max": 83,
+     "Name": "Phoenix's",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_fire_spell_added_2h",
+   "Type": "Prefix",
+   "Group": "FireSpellAdded",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "AddedDamage",
+    "Mode": "Flat",
+    "Tags": [
+     "Fire",
+     "Spell"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 89,
+     "Max": 102,
+     "Name": "Sunfire",
+     "Weight": 1000,
+     "Min2": 178,
+     "Max2": 204
+    }
+   ]
+  },
+  {
+   "Id": "riven95_fire_dmg_inc_2h",
+   "Type": "Prefix",
+   "Group": "FireInc",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Damage",
+    "Mode": "Inc",
+    "Tags": [
+     "Fire"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 167,
+     "Max": 191,
+     "Name": "Phoenix's",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_cold_added_local",
+   "Type": "Prefix",
+   "Group": "ColdAdded",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "AddedDamage",
+    "Mode": "Flat",
+    "Tags": [
+     "Cold"
+    ],
+    "Value": 0,
+    "bLocal": true
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 46,
+     "Max": 53,
+     "Name": "Everwinter",
+     "Weight": 1000,
+     "Min2": 92,
+     "Max2": 106
+    }
+   ]
+  },
+  {
+   "Id": "riven95_cold_spell_added",
+   "Type": "Prefix",
+   "Group": "ColdSpellAdded",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "AddedDamage",
+    "Mode": "Flat",
+    "Tags": [
+     "Cold",
+     "Spell"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 39,
+     "Max": 44,
+     "Name": "Everwinter",
+     "Weight": 1000,
+     "Min2": 78,
+     "Max2": 89
+    }
+   ]
+  },
+  {
+   "Id": "riven95_cold_dmg_inc",
+   "Type": "Prefix",
+   "Group": "ColdInc",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Damage",
+    "Mode": "Inc",
+    "Tags": [
+     "Cold"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 72,
+     "Max": 83,
+     "Name": "Winterborn",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_cold_spell_added_2h",
+   "Type": "Prefix",
+   "Group": "ColdSpellAdded",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "AddedDamage",
+    "Mode": "Flat",
+    "Tags": [
+     "Cold",
+     "Spell"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 89,
+     "Max": 102,
+     "Name": "Everwinter",
+     "Weight": 1000,
+     "Min2": 178,
+     "Max2": 204
+    }
+   ]
+  },
+  {
+   "Id": "riven95_cold_dmg_inc_2h",
+   "Type": "Prefix",
+   "Group": "ColdInc",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Damage",
+    "Mode": "Inc",
+    "Tags": [
+     "Cold"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 167,
+     "Max": 191,
+     "Name": "Winterborn",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_lightning_added_local",
+   "Type": "Prefix",
+   "Group": "LightningAdded",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "AddedDamage",
+    "Mode": "Flat",
+    "Tags": [
+     "Lightning"
+    ],
+    "Value": 0,
+    "bLocal": true
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 46,
+     "Max": 53,
+     "Name": "Tempestborn",
+     "Weight": 1000,
+     "Min2": 92,
+     "Max2": 106
+    }
+   ]
+  },
+  {
+   "Id": "riven95_lightning_spell_added",
+   "Type": "Prefix",
+   "Group": "LightningSpellAdded",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "AddedDamage",
+    "Mode": "Flat",
+    "Tags": [
+     "Lightning",
+     "Spell"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 39,
+     "Max": 44,
+     "Name": "Tempestborn",
+     "Weight": 1000,
+     "Min2": 78,
+     "Max2": 89
+    }
+   ]
+  },
+  {
+   "Id": "riven95_lightning_dmg_inc",
+   "Type": "Prefix",
+   "Group": "LightningInc",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Damage",
+    "Mode": "Inc",
+    "Tags": [
+     "Lightning"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 72,
+     "Max": 83,
+     "Name": "Thunderlord's",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_lightning_spell_added_2h",
+   "Type": "Prefix",
+   "Group": "LightningSpellAdded",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "AddedDamage",
+    "Mode": "Flat",
+    "Tags": [
+     "Lightning",
+     "Spell"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 89,
+     "Max": 102,
+     "Name": "Tempestborn",
+     "Weight": 1000,
+     "Min2": 178,
+     "Max2": 204
+    }
+   ]
+  },
+  {
+   "Id": "riven95_lightning_dmg_inc_2h",
+   "Type": "Prefix",
+   "Group": "LightningInc",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Damage",
+    "Mode": "Inc",
+    "Tags": [
+     "Lightning"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 167,
+     "Max": 191,
+     "Name": "Thunderlord's",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_poison_spell_added",
+   "Type": "Prefix",
+   "Group": "PoisonSpellAdded",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "AddedDamage",
+    "Mode": "Flat",
+    "Tags": [
+     "Poison",
+     "Spell"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 39,
+     "Max": 44,
+     "Name": "Mire-Mother's",
+     "Weight": 1000,
+     "Min2": 78,
+     "Max2": 89
+    }
+   ]
+  },
+  {
+   "Id": "riven95_poison_dmg_inc",
+   "Type": "Prefix",
+   "Group": "PoisonInc",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Damage",
+    "Mode": "Inc",
+    "Tags": [
+     "Poison"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 72,
+     "Max": 83,
+     "Name": "Rot-king's",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_poison_spell_added_2h",
+   "Type": "Prefix",
+   "Group": "PoisonSpellAdded",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "AddedDamage",
+    "Mode": "Flat",
+    "Tags": [
+     "Poison",
+     "Spell"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 89,
+     "Max": 102,
+     "Name": "Mire-Mother's",
+     "Weight": 1000,
+     "Min2": 178,
+     "Max2": 204
+    }
+   ]
+  },
+  {
+   "Id": "riven95_poison_dmg_inc_2h",
+   "Type": "Prefix",
+   "Group": "PoisonInc",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Damage",
+    "Mode": "Inc",
+    "Tags": [
+     "Poison"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 167,
+     "Max": 191,
+     "Name": "Rot-king's",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_spell_inc",
+   "Type": "Prefix",
+   "Group": "SpellInc",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Damage",
+    "Mode": "Inc",
+    "Tags": [
+     "Spell"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 130,
+     "Max": 149,
+     "Name": "Spellwright's",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_spell_inc_2h",
+   "Type": "Prefix",
+   "Group": "SpellInc",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Damage",
+    "Mode": "Inc",
+    "Tags": [
+     "Spell"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 299,
+     "Max": 342,
+     "Name": "Spellwright's",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_fire_res",
+   "Type": "Suffix",
+   "Group": "FireRes",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Resist",
+    "Mode": "Flat",
+    "Tags": [
+     "Fire"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 47,
+     "Max": 54,
+     "Name": "of the Pyre-King",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_cold_res",
+   "Type": "Suffix",
+   "Group": "ColdRes",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Resist",
+    "Mode": "Flat",
+    "Tags": [
+     "Cold"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 47,
+     "Max": 54,
+     "Name": "of the Long Winter",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_lightning_res",
+   "Type": "Suffix",
+   "Group": "LightningRes",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Resist",
+    "Mode": "Flat",
+    "Tags": [
+     "Lightning"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 47,
+     "Max": 54,
+     "Name": "of the Sky-Father",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_poison_res",
+   "Type": "Suffix",
+   "Group": "PoisonRes",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Resist",
+    "Mode": "Flat",
+    "Tags": [
+     "Poison"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 47,
+     "Max": 54,
+     "Name": "of the Unrotting",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_phys_as_elem",
+   "Type": "Suffix",
+   "Group": "PhysAsElem",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "PhysTakenAsElemental",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 11,
+     "Max": 12,
+     "Name": "of the Hearthstone",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_str_flat",
+   "Type": "Suffix",
+   "Group": "Str",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Str",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 52,
+     "Max": 60,
+     "Name": "of the Colossus",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_dex_flat",
+   "Type": "Suffix",
+   "Group": "Dex",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Dex",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 52,
+     "Max": 60,
+     "Name": "of the Wraith",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_int_flat",
+   "Type": "Suffix",
+   "Group": "Int",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Int",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 52,
+     "Max": 60,
+     "Name": "of the Magus",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_attack_speed_local",
+   "Type": "Suffix",
+   "Group": "AttackSpeed",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "AttackSpeed",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0,
+    "bLocal": true
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 29,
+     "Max": 34,
+     "Name": "of the Thousand Cuts",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_cast_speed",
+   "Type": "Suffix",
+   "Group": "CastSpeed",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "CastSpeed",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 34,
+     "Max": 38,
+     "Name": "of the First Word",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_cast_speed_2h",
+   "Type": "Suffix",
+   "Group": "CastSpeed",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "CastSpeed",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 78,
+     "Max": 89,
+     "Name": "of the First Word",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_crit_local",
+   "Type": "Suffix",
+   "Group": "Crit",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "CritChance",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0,
+    "bLocal": true
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 40,
+     "Max": 46,
+     "Name": "of the Mercy Stroke",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_crit_global",
+   "Type": "Suffix",
+   "Group": "Crit",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "CritChance",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 40,
+     "Max": 46,
+     "Name": "of the Last Rites",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_crit_multi",
+   "Type": "Suffix",
+   "Group": "CritMulti",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "CritMulti",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 40,
+     "Max": 46,
+     "Name": "of the Broken Oath",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_life_regen",
+   "Type": "Suffix",
+   "Group": "LifeRegen",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "LifeRegen",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 39,
+     "Max": 44,
+     "Name": "of the Evergreen",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_area",
+   "Type": "Suffix",
+   "Group": "Area",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Area",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 21,
+     "Max": 24,
+     "Name": "of the Horizon",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_minion_dmg",
+   "Type": "Prefix",
+   "Group": "MinionDamage",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "MinionDamage",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 76,
+     "Max": 86,
+     "Name": "Lich-lord's",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_minion_dmg_2h",
+   "Type": "Prefix",
+   "Group": "MinionDamage",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "MinionDamage",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 136,
+     "Max": 156,
+     "Name": "Lich-lord's",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_minion_dmg_jewel",
+   "Type": "Prefix",
+   "Group": "MinionDamage",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "MinionDamage",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 39,
+     "Max": 44,
+     "Name": "Ossuary-king's",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_minion_crit",
+   "Type": "Suffix",
+   "Group": "MinionCrit",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "CritChance",
+    "Mode": "Inc",
+    "Tags": [
+     "Minion"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 40,
+     "Max": 46,
+     "Name": "of the Last Vigil",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_max_fire_res91",
+   "Type": "Suffix",
+   "Group": "MaxFireRes91",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "MaxResist",
+    "Mode": "Flat",
+    "Tags": [
+     "Fire"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 3,
+     "Max": 3,
+     "Name": "of the Unburnt",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_max_cold_res91",
+   "Type": "Suffix",
+   "Group": "MaxColdRes91",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "MaxResist",
+    "Mode": "Flat",
+    "Tags": [
+     "Cold"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 3,
+     "Max": 3,
+     "Name": "of the Unfrozen",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_max_lightning_res91",
+   "Type": "Suffix",
+   "Group": "MaxLightningRes91",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "MaxResist",
+    "Mode": "Flat",
+    "Tags": [
+     "Lightning"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 3,
+     "Max": 3,
+     "Name": "of the Grounded",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_max_poison_res91",
+   "Type": "Suffix",
+   "Group": "MaxPoisonRes91",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "MaxResist",
+    "Mode": "Flat",
+    "Tags": [
+     "Poison"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 3,
+     "Max": 3,
+     "Name": "of the Untainted",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_ring_move_speed",
+   "Type": "Suffix",
+   "Group": "RingMove",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "MoveSpeed",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 6,
+     "Max": 6,
+     "Name": "of the Endless Road",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_poison_pen85_2h",
+   "Type": "Suffix",
+   "Group": "PoisonPen85",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Penetration",
+    "Mode": "Flat",
+    "Tags": [
+     "Poison"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 13,
+     "Max": 14,
+     "Name": "of the Rotted Oath",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_poison_pen85_1h",
+   "Type": "Suffix",
+   "Group": "PoisonPen85",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Penetration",
+    "Mode": "Flat",
+    "Tags": [
+     "Poison"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 7,
+     "Max": 7,
+     "Name": "of the Rotted Oath",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_entropy_multi_wpn",
+   "Type": "Prefix",
+   "Group": "EntropyMulti",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "EntropyMulti",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 26,
+     "Max": 30,
+     "Name": "Starless",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_entropy_multi_jwl",
+   "Type": "Suffix",
+   "Group": "EntropyMulti",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "EntropyMulti",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 15,
+     "Max": 17,
+     "Name": "of the Long Debt",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_skill_level",
+   "Type": "Prefix",
+   "Group": "SkillLevel",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "SkillLevel",
+    "Mode": "Flat",
+    "Tags": [
+     "Gem"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 3,
+     "Max": 3,
+     "Name": "Paragon's",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_skill_level_bow",
+   "Type": "Prefix",
+   "Group": "SkillLevel",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "SkillLevel",
+    "Mode": "Flat",
+    "Tags": [
+     "Gem"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 3,
+     "Max": 3,
+     "Name": "Paragon's",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_skill_level_2h",
+   "Type": "Prefix",
+   "Group": "SkillLevel",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "SkillLevel",
+    "Mode": "Flat",
+    "Tags": [
+     "Gem"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 4,
+     "Max": 4,
+     "Name": "Oathcrowned",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_cooldown_recovery",
+   "Type": "Suffix",
+   "Group": "CooldownRecovery",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "CooldownRecovery",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 16,
+     "Max": 18,
+     "Name": "of the Ready Oath",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_dot_multi",
+   "Type": "Prefix",
+   "Group": "DotMulti",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "DotMulti",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 20,
+     "Max": 23,
+     "Name": "Ruinous",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_curse_effect",
+   "Type": "Suffix",
+   "Group": "CurseEffect",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "CurseEffect",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 21,
+     "Max": 24,
+     "Name": "of the Doomsayer",
+     "Weight": 1000
+    }
+   ]
+  },
+  {
+   "Id": "riven95_vow_effect98",
+   "Type": "Suffix",
+   "Group": "VowEffect98",
+   "BaseTags": [
+    "Riven95"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "VowEffect",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 21,
+     "Max": 24,
+     "Name": "of the Fervent Oath",
+     "Weight": 1000
+    }
+   ]
+  }
+ ]
+}

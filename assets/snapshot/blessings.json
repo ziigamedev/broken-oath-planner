@@ -1,0 +1,1939 @@
+{
+ "blessings": [
+  {
+   "Id": "vow_of_clarity",
+   "Name": "Vow of Clarity",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 10,
+   "Skill": "vow_of_clarity",
+   "Icon": "ICON_DarkFantasyMenus_Eye_02_Clean",
+   "Color": {
+    "R": 0.42,
+    "G": 0.62,
+    "B": 1.0,
+    "A": 1
+   },
+   "ReserveFlat": 20,
+   "ReserveFlatPerLevel": 3,
+   "ReservePct": 0,
+   "Mods": [
+    {
+     "Stat": "ManaRegen",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 4.0,
+     "Value2": 0,
+     "PerLevel": 0.6
+    }
+   ],
+   "Text": "Regenerate {0} mana per second",
+   "Vowbreak": {
+    "Seconds": 4.0,
+    "Mult": 2.5,
+    "Lockout": 10.0,
+    "BurstMods": [
+     {
+      "Stat": "ManaCost",
+      "Mode": "Inc",
+      "Tags": [],
+      "Value": -100,
+      "Value2": 0
+     }
+    ],
+    "BurstText": "Your skills cost no mana"
+   }
+  },
+  {
+   "Id": "vow_of_vigor",
+   "Name": "Vow of Vigor",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 11,
+   "Skill": "vow_of_vigor",
+   "Icon": "ICON_DarkFantasy_Status_FortifiedHealth_02_Clean",
+   "Color": {
+    "R": 0.95,
+    "G": 0.38,
+    "B": 0.3,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 20,
+   "Mods": [
+    {
+     "Stat": "LifeRegenPct",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1.0,
+     "Value2": 0,
+     "PerLevel": 0.08
+    },
+    {
+     "Stat": "ManaOnHit",
+     "Mode": "Flat",
+     "Tags": [
+      "Attack"
+     ],
+     "Value": 1.0,
+     "Value2": 0,
+     "PerLevel": 0.15
+    }
+   ],
+   "Text": "Regenerate {0}% of life per second; attacks gain {1} mana on hit",
+   "Vowbreak": {
+    "Seconds": 4.0,
+    "Mult": 2.5,
+    "Lockout": 10.0,
+    "HealPct": 25,
+    "BurstMods": [],
+    "BurstText": "Healed a quarter of your life"
+   }
+  },
+  {
+   "Id": "woebringer_aura",
+   "Name": "Woebringer",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 12,
+   "Skill": "",
+   "Icon": "ICON_DarkFantasy_Status_Cursed_03_Clean",
+   "Color": {
+    "R": 0.45,
+    "G": 0.85,
+    "B": 0.4,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 30,
+   "Mods": [],
+   "Text": "Your Woe falls on every enemy within 4.5 metres, more with area size on the Woe"
+  },
+  {
+   "Id": "woebringer_aura_2",
+   "Name": "Woebringer",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 13,
+   "Skill": "",
+   "Icon": "ICON_DarkFantasy_Status_Cursed_01_Clean",
+   "Color": {
+    "R": 0.45,
+    "G": 0.85,
+    "B": 0.4,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 30,
+   "Mods": [],
+   "Text": "Your second Woe falls on every enemy within 4.5 metres, more with area size on the Woe"
+  },
+  {
+   "Id": "woebringer_aura_3",
+   "Name": "Woebringer",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 14,
+   "Skill": "",
+   "Icon": "ICON_DarkFantasy_Status_Wounded_02_Clean",
+   "Color": {
+    "R": 0.45,
+    "G": 0.85,
+    "B": 0.4,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 30,
+   "Mods": [],
+   "Text": "Your third Woe falls on every enemy within 4.5 metres, more with area size on the Woe"
+  },
+  {
+   "Id": "woebringer_aura_4",
+   "Name": "Woebringer",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 15,
+   "Skill": "",
+   "Icon": "ICON_DarkFantasy_Status_Cursed_03_Clean",
+   "Color": {
+    "R": 0.45,
+    "G": 0.85,
+    "B": 0.4,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 30,
+   "Mods": [],
+   "Text": "Your fourth Woe falls on every enemy within 4.5 metres, more with area size on the Woe"
+  },
+  {
+   "Id": "woebringer_aura_5",
+   "Name": "Woebringer",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 16,
+   "Skill": "",
+   "Icon": "ICON_DarkFantasy_Status_Cursed_03_Clean",
+   "Color": {
+    "R": 0.45,
+    "G": 0.85,
+    "B": 0.4,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 30,
+   "Mods": [],
+   "Text": "Your fifth Woe falls on every enemy within 4.5 metres, more with area size on the Woe"
+  },
+  {
+   "Id": "woebringer_aura_6",
+   "Name": "Woebringer",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 17,
+   "Skill": "",
+   "Icon": "ICON_DarkFantasy_Status_Cursed_03_Clean",
+   "Color": {
+    "R": 0.45,
+    "G": 0.85,
+    "B": 0.4,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 30,
+   "Mods": [],
+   "Text": "Your sixth Woe falls on every enemy within 4.5 metres, more with area size on the Woe"
+  },
+  {
+   "Id": "woebringer_aura_7",
+   "Name": "Woebringer",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 18,
+   "Skill": "",
+   "Icon": "ICON_DarkFantasy_Status_Cursed_03_Clean",
+   "Color": {
+    "R": 0.45,
+    "G": 0.85,
+    "B": 0.4,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 30,
+   "Mods": [],
+   "Text": "Your seventh Woe falls on every enemy within 4.5 metres, more with area size on the Woe"
+  },
+  {
+   "Id": "woebringer_aura_8",
+   "Name": "Woebringer",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 19,
+   "Skill": "",
+   "Icon": "ICON_DarkFantasy_Status_Cursed_03_Clean",
+   "Color": {
+    "R": 0.45,
+    "G": 0.85,
+    "B": 0.4,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 30,
+   "Mods": [],
+   "Text": "Your eighth Woe falls on every enemy within 4.5 metres, more with area size on the Woe"
+  },
+  {
+   "Id": "fury",
+   "Name": "Fury",
+   "Kind": "Charge",
+   "Border": "Green",
+   "Order": 20,
+   "Max": 5,
+   "Duration": 10.0,
+   "Icon": "ICON_DarkFantasy_Status_SpeedUp_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.55,
+    "B": 0.25,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 8,
+     "Value2": 0,
+     "PerStack": true
+    },
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 4,
+     "Value2": 0,
+     "PerStack": true
+    },
+    {
+     "Stat": "CastSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 4,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% increased damage, {1}% increased attack and cast speed"
+  },
+  {
+   "Id": "insight",
+   "Name": "Insight",
+   "Kind": "Charge",
+   "Border": "Green",
+   "Order": 21,
+   "Max": 3,
+   "Duration": 10.0,
+   "Icon": "ICON_DarkFantasy_Status_Critical_02_Clean",
+   "Color": {
+    "R": 0.62,
+    "G": 0.5,
+    "B": 1.0,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "CritChance",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 40,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% increased critical strike chance"
+  },
+  {
+   "Id": "resolve",
+   "Name": "Resolve",
+   "Kind": "Charge",
+   "Border": "Green",
+   "Order": 22,
+   "Max": 3,
+   "Duration": 10.0,
+   "Icon": "ICON_DarkFantasy_Status_DefenseUp_02_Clean",
+   "Color": {
+    "R": 0.85,
+    "G": 0.78,
+    "B": 0.55,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "DamageTaken",
+     "Mode": "Inc",
+     "Tags": [
+      "Physical"
+     ],
+     "Value": -6,
+     "Value2": 0,
+     "PerStack": true
+    },
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 6,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% reduced physical damage taken, +{0}% to elemental resistances"
+  },
+  {
+   "Id": "broken_vow",
+   "Name": "Broken Vow",
+   "Kind": "Timed",
+   "Border": "Gold",
+   "Order": 30,
+   "Duration": 4.0,
+   "Icon": "ICON_DarkFantasy_Status_AttackBroken_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.85,
+    "B": 0.5,
+    "A": 1
+   },
+   "Mods": [],
+   "Text": "The broken Vow burns 2.5 times as bright"
+  },
+  {
+   "Id": "woe_channel",
+   "Name": "Channelling a Woe",
+   "Kind": "Timed",
+   "Border": "Green",
+   "Order": 31,
+   "Duration": 1.0,
+   "Icon": "ICON_DarkFantasyMenus_Sigil_06_Clean",
+   "Color": {
+    "R": 0.45,
+    "G": 0.85,
+    "B": 0.4,
+    "A": 1
+   },
+   "Mods": [],
+   "Text": "Enemies under the area gather Dread (the count): +3% Woe effect each"
+  },
+  {
+   "Id": "flask_life",
+   "Name": "Life Flask",
+   "Kind": "Timed",
+   "Border": "Green",
+   "Order": 32,
+   "Duration": 1.0,
+   "Icon": "ICON_DarkFantasy_Status_Health_01_Clean",
+   "Color": {
+    "R": 0.9,
+    "G": 0.25,
+    "B": 0.2,
+    "A": 1
+   },
+   "Mods": [],
+   "Text": "Recovering life"
+  },
+  {
+   "Id": "flask_mana",
+   "Name": "Mana Flask",
+   "Kind": "Timed",
+   "Border": "Green",
+   "Order": 33,
+   "Duration": 1.0,
+   "Icon": "ICON_DarkFantasy_Map_Potions_01_Clean",
+   "Color": {
+    "R": 0.35,
+    "G": 0.55,
+    "B": 1.0,
+    "A": 1
+   },
+   "Mods": [],
+   "Text": "Recovering mana"
+  },
+  {
+   "Id": "elemental_overload",
+   "Name": "Sworn Surge",
+   "Kind": "Timed",
+   "Border": "Green",
+   "Order": 34,
+   "Duration": 1.0,
+   "Icon": "ICON_DarkFantasy_Status_DamageUp_02_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.7,
+    "B": 0.3,
+    "A": 1
+   },
+   "Mods": [],
+   "Text": "More elemental damage after a critical strike (the keystone)"
+  },
+  {
+   "Id": "rift_toll",
+   "Name": "Rupture's Toll",
+   "Kind": "HeroCurse",
+   "Border": "Red",
+   "Order": 41,
+   "Duration": 0.0,
+   "Icon": "ICON_DarkFantasy_Status_Down_01_Clean",
+   "Color": {
+    "R": 0.8,
+    "G": 0.3,
+    "B": 0.25,
+    "A": 1
+   },
+   "Mods": [],
+   "Text": "Ruptures take {0}% off every resistance at your Monster Level. Your Character sheet already counts it, even in town"
+  },
+  {
+   "Id": "forsworn",
+   "Name": "Forsworn",
+   "Kind": "HeroCurse",
+   "Border": "Red",
+   "Order": 40,
+   "Duration": 6.0,
+   "Icon": "ICON_DarkFantasy_Status_DefenseBroken_01_Clean",
+   "Color": {
+    "R": 0.85,
+    "G": 0.2,
+    "B": 0.15,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "DamageTaken",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 15,
+     "Value2": 0
+    }
+   ],
+   "Text": "You take 15% increased damage: the price of a broken Vow"
+  },
+  {
+   "Id": "bloodlust",
+   "Name": "Bloodlust",
+   "Kind": "Stack",
+   "Border": "Green",
+   "Order": 23,
+   "Max": 50,
+   "Duration": 5.0,
+   "Icon": "ICON_DarkFantasy_Status_Thirst_01_Clean",
+   "Color": {
+    "R": 0.95,
+    "G": 0.22,
+    "B": 0.16,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Melee"
+     ],
+     "Value": 0.5,
+     "Value2": 0,
+     "PerStack": true
+    },
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "Inc",
+     "Tags": [
+      "Melee"
+     ],
+     "Value": 0.2,
+     "Value2": 0,
+     "PerStack": true
+    },
+    {
+     "Stat": "MoveSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 0.1,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% increased melee damage, {1}% melee attack speed, {2}% movement speed"
+  },
+  {
+   "Id": "war_banner",
+   "Name": "War Banner",
+   "Kind": "Stack",
+   "Border": "Green",
+   "Order": 24,
+   "Max": 20,
+   "Duration": 0.0,
+   "Icon": "ICON_DarkFantasy_Status_FortifiedAttack_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.72,
+    "B": 0.3,
+    "A": 1
+   },
+   "Mods": [],
+   "Text": "Enemies near your banner take {0}% more damage"
+  },
+  {
+   "Id": "fury_unleashed",
+   "Name": "Fury Unleashed",
+   "Kind": "Charge",
+   "Border": "Green",
+   "Order": 25,
+   "Max": 3,
+   "Duration": 4.0,
+   "Icon": "ICON_DarkFantasy_Status_AttackUp_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.62,
+    "B": 0.2,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 15,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% more damage"
+  },
+  {
+   "Id": "edge",
+   "Name": "Edge",
+   "Kind": "Charge",
+   "Border": "Green",
+   "Order": 26,
+   "Max": 10,
+   "Duration": 6.0,
+   "Icon": "ICON_DarkFantasy_Stat_Speed_03_Clean",
+   "Color": {
+    "R": 0.55,
+    "G": 0.85,
+    "B": 0.75,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 2,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% more attack speed"
+  },
+  {
+   "Id": "momentum",
+   "Name": "Momentum",
+   "Kind": "Charge",
+   "Border": "Green",
+   "Order": 27,
+   "Max": 10,
+   "Duration": 4.0,
+   "Icon": "ICON_DarkFantasy_Status_SpeedUp_01_Clean",
+   "Color": {
+    "R": 0.95,
+    "G": 0.6,
+    "B": 0.3,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 2,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% more damage"
+  },
+  {
+   "Id": "cadence",
+   "Name": "Elemental Cadence",
+   "Kind": "Charge",
+   "Border": "Green",
+   "Order": 28,
+   "Max": 2,
+   "Duration": 4.0,
+   "Icon": "ICON_DarkFantasy_Stat_Magic_04_Clean",
+   "Color": {
+    "R": 0.6,
+    "G": 0.7,
+    "B": 1.0,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Spell"
+     ],
+     "Value": 4,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% more spell damage"
+  },
+  {
+   "Id": "herald_of_embers",
+   "Name": "Herald of Embers",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 13,
+   "Skill": "herald_of_embers",
+   "Icon": "ICON_DarkFantasy_Element_Fire_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.5,
+    "B": 0.18,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 25,
+   "Mods": [
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Physical",
+      "Fire"
+     ],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 0.5
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Fire",
+      "Fire"
+     ],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 0.5
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Cold",
+      "Fire"
+     ],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 0.5
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Lightning",
+      "Fire"
+     ],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 0.5
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Poison",
+      "Fire"
+     ],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 0.5
+    }
+   ],
+   "Text": "Gain {0}% of your hit damage as extra fire damage. Your kills (and your minions' and totems' kills) burst into flame: 12% of the slain enemy's maximum life (counted at Rupture Level 150 at most, without pack bonus life) as fire damage within 2.5 metres.",
+   "Herald": {
+    "OnKill": "Burst",
+    "Element": "Fire",
+    "PctMaxLife": 12,
+    "Radius": 250
+   },
+   "Vowbreak": {
+    "Seconds": 4.0,
+    "Mult": 2.5,
+    "Lockout": 10.0,
+    "BurstMods": [],
+    "BurstText": "The Herald's extra damage burns 2.5 times as bright"
+   }
+  },
+  {
+   "Id": "herald_of_rime",
+   "Name": "Herald of Rime",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 13,
+   "Skill": "herald_of_rime",
+   "Icon": "ICON_DarkFantasy_Element_Ice_01_Clean",
+   "Color": {
+    "R": 0.55,
+    "G": 0.85,
+    "B": 1.0,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 25,
+   "Mods": [
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Physical",
+      "Cold"
+     ],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 0.5
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Fire",
+      "Cold"
+     ],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 0.5
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Cold",
+      "Cold"
+     ],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 0.5
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Lightning",
+      "Cold"
+     ],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 0.5
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Poison",
+      "Cold"
+     ],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 0.5
+    }
+   ],
+   "Text": "Gain {0}% of your hit damage as extra cold damage. Your kills (and your minions' and totems' kills) shatter: 10% of the slain enemy's maximum life (counted at Rupture Level 150 at most, without pack bonus life) as cold damage within 3 metres (it chills).",
+   "Herald": {
+    "OnKill": "Shatter",
+    "Element": "Cold",
+    "PctMaxLife": 10,
+    "Radius": 300
+   },
+   "Vowbreak": {
+    "Seconds": 4.0,
+    "Mult": 2.5,
+    "Lockout": 10.0,
+    "BurstMods": [],
+    "BurstText": "The Herald's extra damage burns 2.5 times as bright"
+   }
+  },
+  {
+   "Id": "herald_of_storms",
+   "Name": "Herald of Storms",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 13,
+   "Skill": "herald_of_storms",
+   "Icon": "ICON_DarkFantasy_Map_Lightning_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.92,
+    "B": 0.45,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 25,
+   "Mods": [
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Physical",
+      "Lightning"
+     ],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 0.5
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Fire",
+      "Lightning"
+     ],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 0.5
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Cold",
+      "Lightning"
+     ],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 0.5
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Lightning",
+      "Lightning"
+     ],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 0.5
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Poison",
+      "Lightning"
+     ],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 0.5
+    }
+   ],
+   "Text": "Gain {0}% of your hit damage as extra lightning damage. Your kills (and your minions' and totems' kills) arc to the 3 nearest enemies within 5 metres: 8% of the slain enemy's maximum life (counted at Rupture Level 150 at most, without pack bonus life) as lightning damage.",
+   "Herald": {
+    "OnKill": "Arc",
+    "Element": "Lightning",
+    "PctMaxLife": 8,
+    "Radius": 500,
+    "Count": 3
+   },
+   "Vowbreak": {
+    "Seconds": 4.0,
+    "Mult": 2.5,
+    "Lockout": 10.0,
+    "BurstMods": [],
+    "BurstText": "The Herald's extra damage burns 2.5 times as bright"
+   }
+  },
+  {
+   "Id": "herald_of_rot",
+   "Name": "Herald of Rot",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 13,
+   "Skill": "herald_of_rot",
+   "Icon": "ICON_DarkFantasy_Status_Poisoned_02_Clean",
+   "Color": {
+    "R": 0.5,
+    "G": 0.85,
+    "B": 0.35,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 25,
+   "Mods": [
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Physical",
+      "Poison"
+     ],
+     "Value": 9,
+     "Value2": 0,
+     "PerLevel": 0.45
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Fire",
+      "Poison"
+     ],
+     "Value": 9,
+     "Value2": 0,
+     "PerLevel": 0.45
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Cold",
+      "Poison"
+     ],
+     "Value": 9,
+     "Value2": 0,
+     "PerLevel": 0.45
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Lightning",
+      "Poison"
+     ],
+     "Value": 9,
+     "Value2": 0,
+     "PerLevel": 0.45
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Poison",
+      "Poison"
+     ],
+     "Value": 9,
+     "Value2": 0,
+     "PerLevel": 0.45
+    }
+   ],
+   "Text": "Gain {0}% of your hit damage as extra poison damage. Your kills (and your minions' and totems' kills) burst into rot: 10% of the slain enemy's maximum life (counted at Rupture Level 150 at most, without pack bonus life) as poison damage within 2.5 metres.",
+   "Herald": {
+    "OnKill": "Rot",
+    "Element": "Poison",
+    "PctMaxLife": 10,
+    "Radius": 250
+   },
+   "Vowbreak": {
+    "Seconds": 4.0,
+    "Mult": 2.5,
+    "Lockout": 10.0,
+    "BurstMods": [],
+    "BurstText": "The Herald's extra damage burns 2.5 times as bright"
+   }
+  },
+  {
+   "Id": "herald_of_steel",
+   "Name": "Herald of Steel",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 13,
+   "Skill": "herald_of_steel",
+   "Icon": "ICON_DarkFantasy_Status_Attack_02_Clean",
+   "Color": {
+    "R": 0.78,
+    "G": 0.8,
+    "B": 0.86,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 25,
+   "Mods": [
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Physical",
+      "Physical"
+     ],
+     "Value": 9,
+     "Value2": 0,
+     "PerLevel": 0.45
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Fire",
+      "Physical"
+     ],
+     "Value": 9,
+     "Value2": 0,
+     "PerLevel": 0.45
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Cold",
+      "Physical"
+     ],
+     "Value": 9,
+     "Value2": 0,
+     "PerLevel": 0.45
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Lightning",
+      "Physical"
+     ],
+     "Value": 9,
+     "Value2": 0,
+     "PerLevel": 0.45
+    },
+    {
+     "Stat": "DamageAsExtra",
+     "Mode": "Flat",
+     "Tags": [
+      "Poison",
+      "Physical"
+     ],
+     "Value": 9,
+     "Value2": 0,
+     "PerLevel": 0.45
+    }
+   ],
+   "Text": "Gain {0}% of your hit damage as extra physical damage. Your kills (and your minions' and totems' kills) burst into shards of steel: 9% of the slain enemy's maximum life (counted at Rupture Level 150 at most, without pack bonus life) as physical damage within 2.5 metres.",
+   "Herald": {
+    "OnKill": "Burst",
+    "Element": "Physical",
+    "PctMaxLife": 9,
+    "Radius": 250
+   },
+   "Vowbreak": {
+    "Seconds": 4.0,
+    "Mult": 2.5,
+    "Lockout": 10.0,
+    "BurstMods": [],
+    "BurstText": "The Herald's extra damage burns 2.5 times as bright"
+   }
+  },
+  {
+   "Id": "vow_of_the_bulwark",
+   "Name": "Vow of the Bulwark",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 13,
+   "Skill": "vow_of_the_bulwark",
+   "Icon": "ICON_DarkFantasy_Status_DefenseUp_03_Clean",
+   "Color": {
+    "R": 0.62,
+    "G": 0.78,
+    "B": 0.95,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 25,
+   "Mods": [
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 1.0
+    },
+    {
+     "Stat": "Resist",
+     "Mode": "Flat",
+     "Tags": [
+      "Poison"
+     ],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 1.0
+    }
+   ],
+   "Text": "+{0}% to fire, cold, lightning and poison resistances",
+   "Vowbreak": {
+    "Seconds": 4.0,
+    "Mult": 2.5,
+    "Lockout": 10.0,
+    "BurstMods": [],
+    "BurstText": "Your resistances burn 2.5 times as strong"
+   }
+  },
+  {
+   "Id": "vow_of_iron",
+   "Name": "Vow of Iron",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 14,
+   "Skill": "vow_of_iron",
+   "Icon": "ICON_DarkFantasy_Status_Armor_01_Clean",
+   "Color": {
+    "R": 0.78,
+    "G": 0.62,
+    "B": 0.42,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 25,
+   "Mods": [
+    {
+     "Stat": "Armour",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 25,
+     "Value2": 0,
+     "PerLevel": 1.0
+    }
+   ],
+   "Text": "{0}% more Armour",
+   "Vowbreak": {
+    "Seconds": 4.0,
+    "Mult": 2.5,
+    "Lockout": 10.0,
+    "BurstMods": [],
+    "BurstText": "Your Armour bonus burns 2.5 times as strong"
+   }
+  },
+  {
+   "Id": "vow_of_the_wind",
+   "Name": "Vow of the Wind",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 15,
+   "Skill": "vow_of_the_wind",
+   "Icon": "ICON_DarkFantasy_Element_Air_01_Clean",
+   "Color": {
+    "R": 0.55,
+    "G": 0.85,
+    "B": 0.6,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 25,
+   "Mods": [
+    {
+     "Stat": "Evasion",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 25,
+     "Value2": 0,
+     "PerLevel": 1.0
+    }
+   ],
+   "Text": "{0}% more Evasion",
+   "Vowbreak": {
+    "Seconds": 4.0,
+    "Mult": 2.5,
+    "Lockout": 10.0,
+    "BurstMods": [],
+    "BurstText": "Your Evasion bonus burns 2.5 times as strong"
+   }
+  },
+  {
+   "Id": "vow_of_warding",
+   "Name": "Vow of Warding",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 16,
+   "Skill": "vow_of_warding",
+   "Icon": "ICON_DarkFantasy_Status_FortifiedDefense_01_Clean",
+   "Color": {
+    "R": 0.7,
+    "G": 0.75,
+    "B": 0.95,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 25,
+   "Mods": [
+    {
+     "Stat": "EnergyShield",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 25,
+     "Value2": 0,
+     "PerLevel": 1.0
+    },
+    {
+     "Stat": "EsRecharge",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 20,
+     "Value2": 0,
+     "PerLevel": 1.0
+    }
+   ],
+   "Text": "{0}% more Energy Shield; Energy Shield recharges {1}% faster",
+   "Vowbreak": {
+    "Seconds": 4.0,
+    "Mult": 2.5,
+    "Lockout": 10.0,
+    "BurstMods": [],
+    "BurstText": "Your Energy Shield bonuses burn 2.5 times as strong"
+   }
+  },
+  {
+   "Id": "brew_grave_tonic",
+   "Name": "Grave Tonic",
+   "Kind": "Timed",
+   "Border": "Green",
+   "Order": 40,
+   "Duration": 5.0,
+   "Icon": "ICON_DarkFantasy_Status_FortifiedHealth_03_Clean",
+   "Color": {
+    "R": 0.35,
+    "G": 0.78,
+    "B": 0.3,
+    "A": 1
+   },
+   "Mods": [],
+   "Text": "+50% to Poison Resistance, 40% reduced Poison damage taken"
+  },
+  {
+   "Id": "brew_oathstone",
+   "Name": "Oathstone Draught",
+   "Kind": "Timed",
+   "Border": "Green",
+   "Order": 41,
+   "Duration": 5.0,
+   "Icon": "ICON_DarkFantasy_Status_DefenseUp_01_Clean",
+   "Color": {
+    "R": 0.62,
+    "G": 0.6,
+    "B": 0.56,
+    "A": 1
+   },
+   "Mods": [],
+   "Text": "+1500 to Armour, 30% increased Armour"
+  },
+  {
+   "Id": "brew_hearthglass",
+   "Name": "Hearthglass",
+   "Kind": "Timed",
+   "Border": "Green",
+   "Order": 42,
+   "Duration": 5.0,
+   "Icon": "ICON_DarkFantasy_Status_Fortified_01_Clean",
+   "Color": {
+    "R": 0.95,
+    "G": 0.62,
+    "B": 0.22,
+    "A": 1
+   },
+   "Mods": [],
+   "Text": "+25% to all Elemental Resistances, +4% to all maximum Elemental Resistances"
+  },
+  {
+   "Id": "brew_veilwater",
+   "Name": "Veilwater",
+   "Kind": "Timed",
+   "Border": "Green",
+   "Order": 43,
+   "Duration": 5.0,
+   "Icon": "ICON_DarkFantasy_Status_Defense_01_Clean",
+   "Color": {
+    "R": 0.95,
+    "G": 0.62,
+    "B": 0.22,
+    "A": 1
+   },
+   "Mods": [],
+   "Text": "On drink: recovers 15% of maximum Life and Energy Shield. +1150 to Evasion Rating, 30% increased Evasion Rating"
+  },
+  {
+   "Id": "brew_windglass",
+   "Name": "Windglass",
+   "Kind": "Timed",
+   "Border": "Green",
+   "Order": 44,
+   "Duration": 5.0,
+   "Icon": "ICON_DarkFantasy_Status_Up_01_Clean",
+   "Color": {
+    "R": 0.86,
+    "G": 0.88,
+    "B": 0.8,
+    "A": 1
+   },
+   "Mods": [],
+   "Text": "15% increased Movement Speed"
+  },
+  {
+   "Id": "brew_vowbreaker",
+   "Name": "Vowbreaker's Draught",
+   "Kind": "Timed",
+   "Border": "Green",
+   "Order": 45,
+   "Duration": 5.0,
+   "Icon": "ICON_DarkFantasy_Status_DamageUp_03_Clean",
+   "Color": {
+    "R": 0.95,
+    "G": 0.62,
+    "B": 0.22,
+    "A": 1
+   },
+   "Mods": [],
+   "Text": "15% more Damage, 1 Fury on drink"
+  },
+  {
+   "Id": "brew_ondrink",
+   "Name": "Potion",
+   "Kind": "Timed",
+   "Border": "Green",
+   "Order": 46,
+   "Duration": 4.0,
+   "Icon": "ICON_DarkFantasy_Status_Health_02_Clean",
+   "Color": {
+    "R": 0.95,
+    "G": 0.62,
+    "B": 0.22,
+    "A": 1
+   },
+   "Mods": [],
+   "Text": "Your potion's on drink effect"
+  },
+  {
+   "Id": "vow_of_zeal",
+   "Name": "Vow of Zeal",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 17,
+   "Skill": "vow_of_zeal",
+   "Icon": "ICON_DarkFantasy_Stat_Speed_03_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.66,
+    "B": 0.28,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 25,
+   "Mods": [
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 6,
+     "Value2": 0,
+     "PerLevel": 0.3
+    },
+    {
+     "Stat": "CastSpeed",
+     "Mode": "More",
+     "Tags": [],
+     "Value": 6,
+     "Value2": 0,
+     "PerLevel": 0.3
+    }
+   ],
+   "Text": "{0}% more Attack and Cast Speed",
+   "Vowbreak": {
+    "Seconds": 4.0,
+    "Mult": 2.5,
+    "Lockout": 10.0,
+    "BurstMods": [],
+    "BurstText": "Your speed bonus burns 2.5 times as strong"
+   }
+  },
+  {
+   "Id": "vow_of_precision",
+   "Name": "Vow of Precision",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 18,
+   "Skill": "vow_of_precision",
+   "Icon": "ICON_DarkFantasy_Stat_Accuracy_01_Clean",
+   "Color": {
+    "R": 0.95,
+    "G": 0.85,
+    "B": 0.5,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 25,
+   "Mods": [
+    {
+     "Stat": "CritChance",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 40,
+     "Value2": 0,
+     "PerLevel": 2.0
+    },
+    {
+     "Stat": "CritMulti",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 10,
+     "Value2": 0,
+     "PerLevel": 0.5
+    }
+   ],
+   "Text": "{0}% increased Critical Strike Chance; +{1}% to Critical Strike Multiplier",
+   "Vowbreak": {
+    "Seconds": 4.0,
+    "Mult": 2.5,
+    "Lockout": 10.0,
+    "BurstMods": [],
+    "BurstText": "Your critical bonuses burn 2.5 times as strong"
+   }
+  },
+  {
+   "Id": "vow_of_judgement",
+   "Name": "Vow of Judgement",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 19,
+   "Skill": "vow_of_judgement",
+   "Icon": "ICON_DarkFantasy_Status_DamageUp_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.9,
+    "B": 0.62,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 25,
+   "Mods": [
+    {
+     "Stat": "Penetration",
+     "Mode": "Flat",
+     "Tags": [
+      "Elemental"
+     ],
+     "Value": 5,
+     "Value2": 0,
+     "PerLevel": 0.25
+    }
+   ],
+   "Text": "Your damage Penetrates {0}% Elemental Resistances",
+   "Vowbreak": {
+    "Seconds": 4.0,
+    "Mult": 2.5,
+    "Lockout": 10.0,
+    "BurstMods": [],
+    "BurstText": "Your penetration burns 2.5 times as strong"
+   }
+  },
+  {
+   "Id": "kindling",
+   "Name": "Kindling",
+   "Kind": "Stack",
+   "Border": "Green",
+   "Order": 23,
+   "Max": 50,
+   "Duration": 5.0,
+   "Icon": "ICON_DarkFantasy_Stat_Magic_02_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.55,
+    "B": 0.15,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Spell"
+     ],
+     "Value": 0.5,
+     "Value2": 0,
+     "PerStack": true
+    },
+    {
+     "Stat": "CastSpeed",
+     "Mode": "Inc",
+     "Tags": [
+      "Spell"
+     ],
+     "Value": 0.2,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% increased spell damage, {1}% cast speed"
+  },
+  {
+   "Id": "ns103_cinder_near",
+   "Name": "Cinder Mites",
+   "Kind": "Stack",
+   "Border": "Green",
+   "Order": 25,
+   "Max": 99,
+   "Duration": 0.0,
+   "Icon": "ICON_DarkFantasy_Element_Earth_02_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.55,
+    "B": 0.18,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Fire"
+     ],
+     "Value": 3,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% more fire damage"
+  },
+  {
+   "Id": "ns103_rime_near",
+   "Name": "Rime Sprites",
+   "Kind": "Stack",
+   "Border": "Green",
+   "Order": 25,
+   "Max": 99,
+   "Duration": 0.0,
+   "Icon": "ICON_DarkFantasy_Status_Charmed_01_Clean",
+   "Color": {
+    "R": 0.62,
+    "G": 0.85,
+    "B": 1.0,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Cold"
+     ],
+     "Value": 3,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% more cold damage"
+  },
+  {
+   "Id": "ns103_brass_near",
+   "Name": "Brass Sentinels",
+   "Kind": "Stack",
+   "Border": "Green",
+   "Order": 25,
+   "Max": 99,
+   "Duration": 0.0,
+   "Icon": "ICON_DarkFantasy_Status_DamageUp_04_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.86,
+    "B": 0.45,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Lightning"
+     ],
+     "Value": 3,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% more lightning damage"
+  },
+  {
+   "Id": "ns103_oath_fallen",
+   "Name": "Oath of the Fallen",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 19,
+   "Skill": "ns103_oath_fallen",
+   "Icon": "ICON_DarkFantasy_Stat_Spirit_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.9,
+    "B": 0.7,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 25,
+   "Mods": [],
+   "Text": "Every 5th kill within 12 metres raises a spirit at your side: 3% increased attack and cast speed and 1% reduced damage taken each",
+   "Vowbreak": {
+    "Seconds": 4.0,
+    "Mult": 2.5,
+    "Lockout": 10.0,
+    "BurstMods": [
+     {
+      "Stat": "AttackSpeed",
+      "Mode": "More",
+      "Tags": [],
+      "Value": 12,
+      "Value2": 0
+     },
+     {
+      "Stat": "CastSpeed",
+      "Mode": "More",
+      "Tags": [],
+      "Value": 12,
+      "Value2": 0
+     }
+    ],
+    "BurstText": "The spirits leave you: 12% more attack and cast speed"
+   }
+  },
+  {
+   "Id": "ns103_fallen_spirits",
+   "Name": "Fallen Spirits",
+   "Kind": "Stack",
+   "Border": "Green",
+   "Order": 26,
+   "Max": 99,
+   "Duration": 6.0,
+   "Icon": "ICON_DarkFantasy_Status_Invisble_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.9,
+    "B": 0.7,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 3,
+     "Value2": 0,
+     "PerStack": true
+    },
+    {
+     "Stat": "CastSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 3,
+     "Value2": 0,
+     "PerStack": true
+    },
+    {
+     "Stat": "DamageTaken",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": -1,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% increased attack and cast speed, {2}% reduced damage taken"
+  },
+  {
+   "Id": "ns103_elemental_echo",
+   "Name": "Elemental Echo",
+   "Kind": "Vow",
+   "Border": "Gold",
+   "Order": 19,
+   "Skill": "ns103_elemental_echo",
+   "Icon": "ICON_DarkFantasy_Stat_Magic_01_Clean",
+   "Color": {
+    "R": 0.95,
+    "G": 0.78,
+    "B": 0.5,
+    "A": 1
+   },
+   "ReserveFlat": 0,
+   "ReserveFlatPerLevel": 0,
+   "ReservePct": 25,
+   "Mods": [],
+   "Text": "A kill leaves an echo of its element: 12% more damage of that element while it lasts",
+   "Vowbreak": {
+    "Seconds": 4.0,
+    "Mult": 2.5,
+    "Lockout": 10.0,
+    "BurstMods": [
+     {
+      "Stat": "Damage",
+      "Mode": "More",
+      "Tags": [],
+      "Value": 20,
+      "Value2": 0
+     }
+    ],
+    "BurstText": "Every echo rings out at once: 20% more damage"
+   }
+  },
+  {
+   "Id": "ns103_echo_physical",
+   "Name": "Physical Echo",
+   "Kind": "Stack",
+   "Border": "Green",
+   "Order": 27,
+   "Max": 1,
+   "Duration": 0.0,
+   "Icon": "ICON_DarkFantasy_Element_Earth_01_Clean",
+   "Color": {
+    "R": 0.86,
+    "G": 0.8,
+    "B": 0.7,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Physical"
+     ],
+     "Value": 12,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% more physical damage"
+  },
+  {
+   "Id": "ns103_echo_fire",
+   "Name": "Fire Echo",
+   "Kind": "Stack",
+   "Border": "Green",
+   "Order": 27,
+   "Max": 1,
+   "Duration": 0.0,
+   "Icon": "ICON_DarkFantasy_Status_Burninating_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.5,
+    "B": 0.18,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Fire"
+     ],
+     "Value": 12,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% more fire damage"
+  },
+  {
+   "Id": "ns103_echo_cold",
+   "Name": "Cold Echo",
+   "Kind": "Stack",
+   "Border": "Green",
+   "Order": 27,
+   "Max": 1,
+   "Duration": 0.0,
+   "Icon": "ICON_DarkFantasy_Status_Cold_01_Clean",
+   "Color": {
+    "R": 0.62,
+    "G": 0.85,
+    "B": 1.0,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Cold"
+     ],
+     "Value": 12,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% more cold damage"
+  },
+  {
+   "Id": "ns103_echo_lightning",
+   "Name": "Lightning Echo",
+   "Kind": "Stack",
+   "Border": "Green",
+   "Order": 27,
+   "Max": 1,
+   "Duration": 0.0,
+   "Icon": "ICON_DarkFantasy_Status_Shocked_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.86,
+    "B": 0.45,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Lightning"
+     ],
+     "Value": 12,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% more lightning damage"
+  },
+  {
+   "Id": "ns103_echo_poison",
+   "Name": "Poison Echo",
+   "Kind": "Stack",
+   "Border": "Green",
+   "Order": 27,
+   "Max": 1,
+   "Duration": 0.0,
+   "Icon": "ICON_DarkFantasy_Status_Poisoned_01_Clean",
+   "Color": {
+    "R": 0.55,
+    "G": 0.85,
+    "B": 0.3,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [
+      "Poison"
+     ],
+     "Value": 12,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% more poison damage"
+  },
+  {
+   "Id": "ns103_ancestral_near",
+   "Name": "Ancestral Warrior",
+   "Kind": "Stack",
+   "Border": "Green",
+   "Order": 28,
+   "Max": 1,
+   "Duration": 0.0,
+   "Icon": "ICON_DarkFantasy_Stat_Strength_01_Clean",
+   "Color": {
+    "R": 0.95,
+    "G": 0.75,
+    "B": 0.45,
+    "A": 1
+   },
+   "Mods": [
+    {
+     "Stat": "AttackSpeed",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 10,
+     "Value2": 0,
+     "PerStack": true
+    }
+   ],
+   "Text": "{0}% increased attack speed near your statue"
+  }
+ ]
+}
