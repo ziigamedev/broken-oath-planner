@@ -10932,7 +10932,7 @@ function renderStarters(){
   }
   if(sub)sub.textContent='A starting point, not a copy: each starter follows a main skill its class\u2019s published ladder builds lead with, opened from the strongest complete published build for that pairing. Everything in it opens read-only — gear, skills, passive tree and Dragonling — duplicate it to edit anything. Counted from the bundled ladder snapshot; nothing here is uploaded or saved on a server.';
   var dpsNote=$('starterDpsNote');
-  if(dpsNote){dpsNote.classList.add('hidden'); dpsNote.textContent='';}
+  if(dpsNote){dpsNote.textContent='Two numbers, counted two ways: Measured is the template hero\u2019s real Guardian DPS off the ladder; the planner estimate is this planner\u2019s own calculation for the same build, and it is the number the planner\u2019s headline shows once the starter is open. They rarely agree exactly.'; dpsNote.classList.remove('hidden');}
   grid.innerHTML=starterList.map(function(s,i){return starterCardHTML(s,i)}).join('');
   grid.querySelectorAll('[data-starter]').forEach(function(b){b.addEventListener('click',function(){openStarter(+b.getAttribute('data-starter'))})});
   fillStarterEstimates();
@@ -10943,6 +10943,7 @@ function starterCardHTML(s,i){
   return '<div class="starter-item"><h3><b>'+esc(s.cls)+'</b> — '+esc(skillName(s.skill))+'</h3>'
     +'<p class="starter-meta">Leads <b>'+s.count+'</b> of the class\u2019s '+s.total+' published builds • Template Lv <b>'+h.level+'</b> • Rupture Level <b>'+h.rupture_level+'</b>'+(h.ascendancy?' • '+esc(h.ascendancy)+' Dragonling':'')+'</p>'
     +(h.guardian_dps_median?'<p class="starter-meta">Measured Guardian DPS <b>'+fmt(h.guardian_dps_median)+'</b>'+(h.best_seconds?' • median kill '+h.best_seconds.toFixed(1)+'s':'')+'</p>':'')
+    +(s.noComplete?'':'<p class="starter-meta">Planner estimate <span data-cal>'+starterCalText(s)+'</span></p>')
     +(sup?'<p class="starter-sup">Linked: '+esc(sup)+'</p>':'')
     +(s.noComplete?'<p class="starter-meta">No complete published build for this pairing right now — the published files are empty or missing pieces, so there is no starter to open.</p>'
       :(s.loadError?'<p class="starter-meta"><b>That starter didn\u2019t load.</b> Its build file didn\u2019t answer or couldn\u2019t be read, so the starter didn\u2019t open.</p>':'')
@@ -25045,8 +25046,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.388';
-var PLANNER_BUILT_AT='2026-11-25T15:44:00-08:00';
+var PLANNER_VERSION='0.389';
+var PLANNER_BUILT_AT='2026-11-25T15:57:01-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
