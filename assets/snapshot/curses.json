@@ -1,0 +1,600 @@
+{
+ "curses": [
+  {
+   "Id": "woe_of_withering",
+   "Name": "Woe of Withering",
+   "Kind": "Woe",
+   "Skill": "woe_of_withering",
+   "Duration": 6.0,
+   "Icon": "ICON_DarkFantasy_Status_Cursed_02_Clean",
+   "Color": {
+    "R": 0.38,
+    "G": 0.72,
+    "B": 0.32,
+    "A": 1
+   },
+   "TakenPct": 0,
+   "ElementTakenPct": {
+    "Poison": 30
+   },
+   "Slow": 0.15,
+   "BossEffect": 0.5,
+   "Dread": {
+    "PerTick": 1,
+    "Tick": 0.5,
+    "Cap": 20,
+    "BossCap": 10,
+    "EffectPct": 3,
+    "DecayPerSec": 2
+   },
+   "Tough": {
+    "DreadPerSec": 1,
+    "Cap": 10,
+    "Holds": true
+   },
+   "OnDeath": {
+    "Action": "Spread",
+    "Count": 2,
+    "Radius": 500
+   },
+   "Text": "Takes {1}% more Poison damage; moves {2}% slower"
+  },
+  {
+   "Id": "death_sentence",
+   "Name": "Death Sentence",
+   "Kind": "Sentence",
+   "Skill": "death_sentence",
+   "Duration": 12.0,
+   "Icon": "ICON_DarkFantasy_Status_Targeted_02_Clean",
+   "Color": {
+    "R": 0.9,
+    "G": 0.22,
+    "B": 0.18,
+    "A": 1
+   },
+   "TakenPct": 22,
+   "BossEffect": 1.0,
+   "OnDeath": {
+    "Action": "Charge",
+    "Charge": "insight",
+    "Count": 1
+   },
+   "Dread": {
+    "PerTick": 0,
+    "Tick": 0.5,
+    "Cap": 0,
+    "BossCap": 0,
+    "EffectPct": 3,
+    "DecayPerSec": 2
+   },
+   "Tough": {
+    "DreadPerSec": 1,
+    "Cap": 10,
+    "Holds": true
+   },
+   "Text": "Takes {0}% more damage; when it dies you gain Insight"
+  },
+  {
+   "Id": "woe_of_cinders",
+   "Name": "Woe of Cinders",
+   "Kind": "Woe",
+   "Skill": "woe_of_cinders",
+   "Duration": 6.0,
+   "Icon": "ICON_DarkFantasy_Status_DefenseDown_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.42,
+    "B": 0.12,
+    "A": 1
+   },
+   "TakenPct": 0,
+   "BossEffect": 0.5,
+   "Dread": {
+    "PerTick": 1,
+    "Tick": 0.5,
+    "Cap": 20,
+    "BossCap": 10,
+    "EffectPct": 3,
+    "DecayPerSec": 2
+   },
+   "Tough": {
+    "DreadPerSec": 1,
+    "Cap": 10,
+    "Holds": true
+   },
+   "Text": "Takes {1}% more Fire damage; -{3}% Fire resistance",
+   "ResistDown": {
+    "Fire": 20
+   },
+   "ElementTakenPct": {
+    "Fire": 8
+   }
+  },
+  {
+   "Id": "woe_of_rime",
+   "Name": "Woe of Rime",
+   "Kind": "Woe",
+   "Skill": "woe_of_rime",
+   "Duration": 6.0,
+   "Icon": "ICON_DarkFantasy_Status_Wet_01_Clean",
+   "Color": {
+    "R": 0.5,
+    "G": 0.82,
+    "B": 1.0,
+    "A": 1
+   },
+   "TakenPct": 0,
+   "BossEffect": 0.5,
+   "Dread": {
+    "PerTick": 1,
+    "Tick": 0.5,
+    "Cap": 20,
+    "BossCap": 10,
+    "EffectPct": 3,
+    "DecayPerSec": 2
+   },
+   "Tough": {
+    "DreadPerSec": 1,
+    "Cap": 10,
+    "Holds": true
+   },
+   "Text": "Takes {1}% more Cold damage; -{3}% Cold resistance; moves {2}% slower",
+   "ResistDown": {
+    "Cold": 20
+   },
+   "Slow": 0.1,
+   "ElementTakenPct": {
+    "Cold": 8
+   }
+  },
+  {
+   "Id": "woe_of_entropy",
+   "Name": "Woe of Entropy",
+   "Kind": "Woe",
+   "Skill": "woe_of_entropy",
+   "Duration": 6.0,
+   "Icon": "ICON_DarkFantasy_Status_DefenseDown_01_Clean",
+   "Color": {
+    "R": 0.56,
+    "G": 0.3,
+    "B": 0.86,
+    "A": 1
+   },
+   "TakenPct": 0,
+   "BossEffect": 0.5,
+   "Dread": {
+    "PerTick": 1,
+    "Tick": 0.5,
+    "Cap": 20,
+    "BossCap": 10,
+    "EffectPct": 3,
+    "DecayPerSec": 2
+   },
+   "Tough": {
+    "DreadPerSec": 1,
+    "Cap": 10,
+    "Holds": true
+   },
+   "Text": "Takes {6}% more Chaos damage; Entropy laid on it implodes 0.5 seconds sooner",
+   "ChaosTakenPct": 20,
+   "EntropySoonerSec": 0.5
+  },
+  {
+   "Id": "woe_of_the_tempest",
+   "Name": "Woe of the Tempest",
+   "Kind": "Woe",
+   "Skill": "woe_of_the_tempest",
+   "Duration": 6.0,
+   "Icon": "ICON_DarkFantasy_Status_Blinded_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.9,
+    "B": 0.4,
+    "A": 1
+   },
+   "TakenPct": 0,
+   "BossEffect": 0.5,
+   "Dread": {
+    "PerTick": 1,
+    "Tick": 0.5,
+    "Cap": 20,
+    "BossCap": 10,
+    "EffectPct": 3,
+    "DecayPerSec": 2
+   },
+   "Tough": {
+    "DreadPerSec": 1,
+    "Cap": 10,
+    "Holds": true
+   },
+   "Text": "Takes {1}% more Lightning damage; -{3}% Lightning resistance",
+   "ResistDown": {
+    "Lightning": 20
+   },
+   "ElementTakenPct": {
+    "Lightning": 8
+   }
+  },
+  {
+   "Id": "woe_of_sundering",
+   "Name": "Woe of Sundering",
+   "Kind": "Woe",
+   "Skill": "woe_of_sundering",
+   "Duration": 6.0,
+   "Icon": "ICON_DarkFantasy_Status_BrokenBones_01_Clean",
+   "Color": {
+    "R": 0.78,
+    "G": 0.56,
+    "B": 0.4,
+    "A": 1
+   },
+   "TakenPct": 0,
+   "BossEffect": 0.5,
+   "Dread": {
+    "PerTick": 1,
+    "Tick": 0.5,
+    "Cap": 20,
+    "BossCap": 10,
+    "EffectPct": 3,
+    "DecayPerSec": 2
+   },
+   "Tough": {
+    "DreadPerSec": 1,
+    "Cap": 10,
+    "Holds": true
+   },
+   "Text": "Takes {1}% more Physical damage",
+   "ElementTakenPct": {
+    "Physical": 24
+   }
+  },
+  {
+   "Id": "woe_of_faltering",
+   "Name": "Woe of Faltering",
+   "Kind": "Woe",
+   "Skill": "woe_of_faltering",
+   "Duration": 6.0,
+   "Icon": "ICON_DarkFantasy_Status_AttackDown_01_Clean",
+   "Color": {
+    "R": 0.62,
+    "G": 0.66,
+    "B": 0.74,
+    "A": 1
+   },
+   "TakenPct": 0,
+   "BossEffect": 0.5,
+   "Dread": {
+    "PerTick": 1,
+    "Tick": 0.5,
+    "Cap": 20,
+    "BossCap": 10,
+    "EffectPct": 3,
+    "DecayPerSec": 2
+   },
+   "Tough": {
+    "DreadPerSec": 1,
+    "Cap": 10,
+    "Holds": true
+   },
+   "Text": "Deals {4}% less damage; moves {2}% slower",
+   "DealtLessPct": 20,
+   "Slow": 0.2
+  },
+  {
+   "Id": "ailment_burning",
+   "Name": "Burning",
+   "Kind": "Ailment",
+   "Status": "Burning",
+   "Icon": "ICON_DarkFantasy_Status_Burninating_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.45,
+    "B": 0.15,
+    "A": 1
+   },
+   "Text": "Burning"
+  },
+  {
+   "Id": "ailment_chilled",
+   "Name": "Chilled",
+   "Kind": "Ailment",
+   "Status": "Chilled",
+   "Icon": "ICON_DarkFantasy_Status_Cold_01_Clean",
+   "Color": {
+    "R": 0.55,
+    "G": 0.8,
+    "B": 1.0,
+    "A": 1
+   },
+   "Text": "Chilled: slowed"
+  },
+  {
+   "Id": "ailment_shocked",
+   "Name": "Shocked",
+   "Kind": "Ailment",
+   "Status": "Shocked",
+   "Icon": "ICON_DarkFantasy_Status_Shocked_01_Clean",
+   "Color": {
+    "R": 0.6,
+    "G": 0.75,
+    "B": 1.0,
+    "A": 1
+   },
+   "Text": "Shocked"
+  },
+  {
+   "Id": "ailment_poisoned",
+   "Name": "Poisoned",
+   "Kind": "Ailment",
+   "Status": "Poisoned",
+   "Icon": "ICON_DarkFantasy_Status_Poisoned_02_Clean",
+   "Color": {
+    "R": 0.45,
+    "G": 0.9,
+    "B": 0.35,
+    "A": 1
+   },
+   "Text": "Poisoned"
+  },
+  {
+   "Id": "ailment_bleeding",
+   "Name": "Bleeding",
+   "Kind": "Ailment",
+   "Status": "Bleeding",
+   "Icon": "ICON_DarkFantasy_Status_Bleeding_01_Clean",
+   "Color": {
+    "R": 0.85,
+    "G": 0.18,
+    "B": 0.14,
+    "A": 1
+   },
+   "Text": "Bleeding"
+  },
+  {
+   "Id": "hunters_mark",
+   "Name": "Hunter's Mark",
+   "Kind": "Mark",
+   "Duration": 3.0,
+   "Icon": "ICON_DarkFantasy_Status_Targeted_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.66,
+    "B": 0.22,
+    "A": 1
+   },
+   "TakenPct": 1.7,
+   "Dread": {
+    "PerTick": 1,
+    "Tick": 0.25,
+    "Cap": 10,
+    "BossCap": 10,
+    "EffectPct": 0,
+    "DecayPerSec": 0
+   },
+   "Text": "Takes {0}% more damage from the Marks"
+  },
+  {
+   "Id": "unravel_fire",
+   "Name": "Fire Unravel",
+   "Kind": "Unravel",
+   "Duration": 4.0,
+   "Icon": "ICON_DarkFantasy_Element_Fire_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.45,
+    "B": 0.15,
+    "A": 1
+   },
+   "TakenPct": 0,
+   "ElementTakenPct": {
+    "Fire": 0.7
+   },
+   "Dread": {
+    "PerTick": 1,
+    "Tick": 0.2,
+    "Cap": 25,
+    "BossCap": 25,
+    "EffectPct": 0,
+    "DecayPerSec": 2
+   },
+   "Text": "Takes {0}% more fire damage from Unravel"
+  },
+  {
+   "Id": "unravel_cold",
+   "Name": "Cold Unravel",
+   "Kind": "Unravel",
+   "Duration": 4.0,
+   "Icon": "ICON_DarkFantasy_Element_Ice_01_Clean",
+   "Color": {
+    "R": 0.55,
+    "G": 0.8,
+    "B": 1.0,
+    "A": 1
+   },
+   "TakenPct": 0,
+   "ElementTakenPct": {
+    "Cold": 0.7
+   },
+   "Dread": {
+    "PerTick": 1,
+    "Tick": 0.2,
+    "Cap": 25,
+    "BossCap": 25,
+    "EffectPct": 0,
+    "DecayPerSec": 2
+   },
+   "Text": "Takes {0}% more cold damage from Unravel"
+  },
+  {
+   "Id": "unravel_lightning",
+   "Name": "Lightning Unravel",
+   "Kind": "Unravel",
+   "Duration": 4.0,
+   "Icon": "ICON_DarkFantasy_Map_Lightning_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.9,
+    "B": 0.35,
+    "A": 1
+   },
+   "TakenPct": 0,
+   "ElementTakenPct": {
+    "Lightning": 0.7
+   },
+   "Dread": {
+    "PerTick": 1,
+    "Tick": 0.2,
+    "Cap": 25,
+    "BossCap": 25,
+    "EffectPct": 0,
+    "DecayPerSec": 2
+   },
+   "Text": "Takes {0}% more lightning damage from Unravel"
+  },
+  {
+   "Id": "war_banner_near",
+   "Name": "War Banner",
+   "Kind": "Banner",
+   "Duration": 0.6,
+   "Icon": "ICON_DarkFantasy_Status_FortifiedAttack_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.72,
+    "B": 0.3,
+    "A": 1
+   },
+   "TakenPct": 6,
+   "Dread": {
+    "PerTick": 0,
+    "Tick": 0.25,
+    "Cap": 20,
+    "BossCap": 20,
+    "EffectPct": 0.5,
+    "DecayPerSec": 0
+   },
+   "Text": "Takes {0}% more damage near the War Banner"
+  },
+  {
+   "Id": "sentence_of_chains",
+   "Name": "Sentence of Chains",
+   "Kind": "Sentence",
+   "Skill": "sentence_of_chains",
+   "Duration": 12.0,
+   "Icon": "ICON_DarkFantasy_Status_AttackBroken_01_Clean",
+   "Color": {
+    "R": 0.5,
+    "G": 0.68,
+    "B": 0.9,
+    "A": 1
+   },
+   "TakenPct": 0,
+   "BossEffect": 1.0,
+   "OnDeath": {
+    "Action": "Charge",
+    "Charge": "resolve",
+    "Count": 1
+   },
+   "Dread": {
+    "PerTick": 0,
+    "Tick": 0.5,
+    "Cap": 0,
+    "BossCap": 0,
+    "EffectPct": 3,
+    "DecayPerSec": 2
+   },
+   "Tough": {
+    "DreadPerSec": 1,
+    "Cap": 10,
+    "Holds": true
+   },
+   "Text": "Takes {1}% more Physical damage; deals {4}% less damage; moves {2}% slower; when it dies you gain Resolve",
+   "DealtLessPct": 25,
+   "Slow": 0.15,
+   "ElementTakenPct": {
+    "Physical": 16
+   }
+  },
+  {
+   "Id": "sentence_of_rot",
+   "Name": "Sentence of Rot",
+   "Kind": "Sentence",
+   "Skill": "sentence_of_rot",
+   "Duration": 12.0,
+   "Icon": "ICON_DarkFantasy_Status_Wounded_02_Clean",
+   "Color": {
+    "R": 0.62,
+    "G": 0.74,
+    "B": 0.22,
+    "A": 1
+   },
+   "TakenPct": 0,
+   "BossEffect": 1.0,
+   "OnDeath": {
+    "Action": "Charge",
+    "Charge": "insight",
+    "Count": 1
+   },
+   "Dread": {
+    "PerTick": 0,
+    "Tick": 0.5,
+    "Cap": 0,
+    "BossCap": 0,
+    "EffectPct": 3,
+    "DecayPerSec": 2
+   },
+   "Tough": {
+    "DreadPerSec": 1,
+    "Cap": 10,
+    "Holds": true
+   },
+   "Text": "Takes {5}% more damage from Bleed, Poison and Ignite; when it dies you gain Insight",
+   "DotTakenPct": 45
+  },
+  {
+   "Id": "sentence_of_exposure",
+   "Name": "Sentence of Exposure",
+   "Kind": "Sentence",
+   "Skill": "sentence_of_exposure",
+   "Duration": 12.0,
+   "Icon": "ICON_DarkFantasy_Status_DefenseBroken_01_Clean",
+   "Color": {
+    "R": 1.0,
+    "G": 0.6,
+    "B": 0.24,
+    "A": 1
+   },
+   "TakenPct": 0,
+   "BossEffect": 1.0,
+   "OnDeath": {
+    "Action": "Charge",
+    "Charge": "insight",
+    "Count": 1
+   },
+   "Dread": {
+    "PerTick": 0,
+    "Tick": 0.5,
+    "Cap": 0,
+    "BossCap": 0,
+    "EffectPct": 3,
+    "DecayPerSec": 2
+   },
+   "Tough": {
+    "DreadPerSec": 1,
+    "Cap": 10,
+    "Holds": true
+   },
+   "Text": "Takes {1}% more Fire, Cold and Lightning damage; -{3}% Fire, Cold, Lightning and Poison resistance; when it dies you gain Insight",
+   "ResistDown": {
+    "Fire": 20,
+    "Cold": 20,
+    "Lightning": 20,
+    "Poison": 20
+   },
+   "ElementTakenPct": {
+    "Fire": 11,
+    "Cold": 11,
+    "Lightning": 11
+   }
+  }
+ ]
+}

@@ -1,0 +1,39 @@
+{
+ "Layers": [
+  {
+   "Id": "resistance",
+   "Counted": true,
+   "Where": "Items + passive tree; max resistance from runes/tree; Rupture penalty at your level",
+   "Note": "capped per element by MaxResist"
+  },
+  {
+   "Id": "armour",
+   "Counted": true,
+   "Where": "scaling.json Hero.ArmourFactor / ArmourBigHit*",
+   "Note": "against the typical hit, not the pool"
+  },
+  {
+   "Id": "evasion_block",
+   "Counted": true,
+   "Where": "scaling.json Hero.Evasion*, block chance x block reduction (max 75%)"
+  },
+  {
+   "Id": "damage_taken_lines",
+   "Counted": true,
+   "Where": "stat DamageTaken Inc (tree, gear, Resolve charges, active flasks, Thin Line, Ascension rules)",
+   "Note": "per element, multiplies what gets through"
+  },
+  {
+   "Id": "fortify",
+   "Counted": true,
+   "Where": "ini [r74.FORTIFY] MaxStacks + sheet FortifyMax, PerStack x FortifyEffect",
+   "Note": "counted at FULL stacks"
+  },
+  {
+   "Id": "woe_of_faltering",
+   "Counted": false,
+   "Where": "curses.json woe_of_faltering DealtLessPct x curse effect",
+   "Note": "only while the foe carries the Woe; listed on the hover, not in the number"
+  }
+ ]
+}

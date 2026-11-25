@@ -1,0 +1,336 @@
+{
+ "_EarlyDamageDoc": "Round 45 lane EARLY (owner 20 Oct 14:20: 'OK to retune damage for warrior ranger paladin yes'): the young hero's damage edge. Live first Guardian (18-20 Oct): Warriors main Strike on a white two-hander at 0.27-0.32 of the Docs/45 model. EarlyDamagePct % more damage up to hero level EarlyDamageFullToLevel, the same share lost every level to none at EarlyDamageEndLevel (BOStats::BuildSheet). Bench: Tools/Balance/early_boss_bench.py; lint_data.py: 0-200, gone by level 20. r52 BALANCE: Mage +80% to level 6 (early_boss_bench first Guardian x0.45 -> x0.82, the weakest sheet of all classes; no live Mage reached one yet); Necromancer +45% in classes/necromancer.py.",
+ "classes": [
+  {
+   "Id": "Warrior",
+   "Anims": {
+    "Hit": []
+   },
+   "Unarmed": {},
+   "SkillAnimSets": {
+    "punch": "unarmed_punch",
+    "slash": "warrior_slash"
+   },
+   "DeliveryAnimSets": {
+    "Melee": "warrior_strike",
+    "Slam": "warrior_slam",
+    "Leap": "warrior_leap",
+    "Projectile": "warrior_bolt",
+    "Nova": "warrior_nova",
+    "Chain": "warrior_chain"
+   },
+   "StartWeapon": "rusted_greatsword",
+   "UpgradeWeapon": "vowbreaker",
+   "WeaponClasses": [
+    "Greatsword",
+    "OneHandSword",
+    "OneHandAxe",
+    "OneHandMace"
+   ],
+   "Gem1": "ground_slam",
+   "Gem2": "leap_slam",
+   "Gem3": "cyclone",
+   "Icon": "ICON_SM_Wep_Greatsword_Curved_01_Dungeon_Clean",
+   "Hold": {
+    "Time": 0,
+    "bArm": true,
+    "bArmWhileMoving": false
+   },
+   "Signature": "warrior_slam",
+   "SignatureSfx": "slam",
+   "Str": 20,
+   "Dex": 12,
+   "Int": 8,
+   "StrPerLevel": 3,
+   "DexPerLevel": 1,
+   "IntPerLevel": 0.5,
+   "MoveSpeed": 520,
+   "EarlyDamagePct": 0,
+   "EarlyDamageFullToLevel": 6,
+   "EarlyDamageEndLevel": 10
+  },
+  {
+   "Id": "Mage",
+   "Anims": {
+    "Hit": []
+   },
+   "Unarmed": {},
+   "SkillAnimSets": {
+    "punch": "unarmed_punch",
+    "slash": "warrior_slash"
+   },
+   "DeliveryAnimSets": {
+    "Melee": "mage_melee",
+    "Slam": "mage_slam",
+    "Leap": "mage_leap",
+    "Projectile": "mage_bolt",
+    "Nova": "mage_nova",
+    "Chain": "mage_arc"
+   },
+   "StartWeapon": "driftwood_staff",
+   "UpgradeWeapon": "emberwood_staff",
+   "WeaponClasses": [
+    "Staff",
+    "Wand"
+   ],
+   "Gem1": "frost_nova",
+   "Gem2": "ember_bolt",
+   "Gem3": "storm_brand",
+   "Icon": "ICON_SM_Wep_Goblin_Staff_01_Dungeon_Clean",
+   "Hold": {
+    "Time": 0,
+    "bArm": true,
+    "bArmWhileMoving": true
+   },
+   "Signature": "mage_nova",
+   "SignatureSfx": "frost_nova",
+   "Str": 10,
+   "Dex": 12,
+   "Int": 22,
+   "StrPerLevel": 1,
+   "DexPerLevel": 1,
+   "IntPerLevel": 3,
+   "MoveSpeed": 520,
+   "EarlyDamagePct": 0,
+   "EarlyDamageFullToLevel": 6,
+   "EarlyDamageEndLevel": 10
+  },
+  {
+   "Id": "Necromancer",
+   "Anims": {
+    "Hit": []
+   },
+   "Unarmed": {},
+   "SkillAnimSets": {
+    "punch": "unarmed_punch",
+    "slash": "warrior_slash",
+    "reap": "necro_reap",
+    "summon_skeletal_mage": "necro_summon_mage",
+    "summon_bone_golem": "necro_summon_mage",
+    "grave_call": "necro_rally",
+    "grave_reap": "necro_reap",
+    "soul_rend": "necro_melee",
+    "pyre_burst": "necro_summon_mage",
+    "marrow_lance": "necro_melee",
+    "summon_flame_golem": "necro_summon_mage",
+    "summon_ice_golem": "necro_summon_mage",
+    "summon_storm_golem": "necro_summon_mage",
+    "summon_venom_golem": "necro_summon_mage"
+   },
+   "DeliveryAnimSets": {
+    "Melee": "necro_melee",
+    "Slam": "mage_slam",
+    "Leap": "mage_leap",
+    "Projectile": "mage_bolt",
+    "Nova": "mage_nova",
+    "Chain": "mage_arc",
+    "Summon": "raise_ground",
+    "Beam": "necro_channel"
+   },
+   "StartWeapon": "gravedigger_scythe",
+   "UpgradeWeapon": "widowmaker_scythe",
+   "WeaponClasses": [
+    "Scythe",
+    "Wand",
+    "Dagger"
+   ],
+   "Gem1": "summon_skeletons",
+   "Gem2": "drain_life",
+   "Gem3": "summon_skeletal_mage",
+   "Icon": "ICON_SM_Wep_Scythe_01_DarkFantasy_Clean",
+   "Hold": {
+    "Time": 0,
+    "bArm": true,
+    "bArmWhileMoving": true
+   },
+   "Signature": "raise_ground",
+   "SignatureSfx": "minion_summon",
+   "Str": 8,
+   "Dex": 12,
+   "Int": 20,
+   "StrPerLevel": 0.5,
+   "DexPerLevel": 1.5,
+   "IntPerLevel": 2.5,
+   "MoveSpeed": 515,
+   "EarlyDamagePct": 0,
+   "EarlyDamageFullToLevel": 6,
+   "EarlyDamageEndLevel": 10
+  },
+  {
+   "Id": "Paladin",
+   "Anims": {
+    "Hit": []
+   },
+   "Unarmed": {},
+   "SkillAnimSets": {
+    "punch": "unarmed_punch",
+    "hammer_blow": "paladin_hammer_blow",
+    "holy_slash": "paladin_holy_slash",
+    "judgement": "paladin_judgement",
+    "consecrated_ground": "paladin_consecrate",
+    "holy_charge": "paladin_charge",
+    "orbiting_hammers": "paladin_buff",
+    "hammerstorm": "paladin_buff",
+    "cyclone": "samurai_spin"
+   },
+   "DeliveryAnimSets": {
+    "Melee": "paladin_melee",
+    "Slam": "paladin_slam",
+    "Leap": "warrior_leap",
+    "Projectile": "paladin_cast",
+    "Nova": "paladin_buff",
+    "Chain": "paladin_cast",
+    "Charge": "paladin_charge",
+    "Orbit": "paladin_buff",
+    "Skyfall": "paladin_judgement",
+    "Ground": "paladin_consecrate",
+    "Summon": "paladin_buff",
+    "Totem": "paladin_buff",
+    "Blink": "paladin_cast",
+    "Rain": "paladin_buff"
+   },
+   "StartWeapon": "squires_mace",
+   "UpgradeWeapon": "oathkeeper_mace",
+   "WeaponClasses": [
+    "OneHandMace",
+    "OneHandSword"
+   ],
+   "StartOffHand": "shield_1",
+   "Gem1": "judgement",
+   "Gem2": "orbiting_hammers",
+   "Gem3": "holy_charge",
+   "Icon": "ICON_DarkFantasy_Inventory_Hammers_01_Clean",
+   "Hold": {
+    "Time": 0,
+    "bArm": false,
+    "bArmWhileMoving": false
+   },
+   "Signature": "paladin_holy_slash",
+   "SignatureSfx": "paladin_hammer",
+   "Str": 20,
+   "Dex": 6,
+   "Int": 14,
+   "StrPerLevel": 2.5,
+   "DexPerLevel": 0.5,
+   "IntPerLevel": 1.5,
+   "MoveSpeed": 505,
+   "EarlyDamagePct": 0,
+   "EarlyDamageFullToLevel": 7,
+   "EarlyDamageEndLevel": 11
+  },
+  {
+   "Id": "Ranger",
+   "Anims": {
+    "Hit": []
+   },
+   "Unarmed": {},
+   "SkillAnimSets": {
+    "punch": "unarmed_punch",
+    "quick_shot": "ranger_quick",
+    "power_shot": "ranger_power",
+    "split_shot": "ranger_split",
+    "arrow_rain": "ranger_rain",
+    "wind_vault": "ranger_vault",
+    "lightning_arrow": "ranger_lightning",
+    "summon_ballista": "ranger_place",
+    "caustic_arrow": "ranger_lightning",
+    "fuse_arrow": "ranger_power",
+    "hoarfrost_volley": "ranger_split"
+   },
+   "DeliveryAnimSets": {
+    "Projectile": "ranger_cast",
+    "Chain": "ranger_cast",
+    "Nova": "ranger_nova",
+    "Rain": "ranger_rain",
+    "Dash": "ranger_vault",
+    "Totem": "ranger_nova",
+    "Summon": "ranger_nova"
+   },
+   "StartWeapon": "hunters_bow",
+   "UpgradeWeapon": "sylvan_longbow",
+   "WeaponClasses": [
+    "Bow",
+    "Dagger",
+    "OneHandSword"
+   ],
+   "Gem1": "split_shot",
+   "Gem2": "wind_vault",
+   "Gem3": "lightning_arrow",
+   "Icon": "ICON_DarkFantasy_Inventory_Bows_01_Clean",
+   "Hold": {
+    "Time": 0,
+    "bArm": false,
+    "bArmWhileMoving": false
+   },
+   "Signature": "ranger_power",
+   "SignatureSfx": "bow_release_heavy",
+   "Str": 10,
+   "Dex": 22,
+   "Int": 8,
+   "StrPerLevel": 1,
+   "DexPerLevel": 3,
+   "IntPerLevel": 0.5,
+   "MoveSpeed": 545,
+   "EarlyDamagePct": 0,
+   "EarlyDamageFullToLevel": 7,
+   "EarlyDamageEndLevel": 11
+  },
+  {
+   "Id": "Samurai",
+   "Anims": {
+    "Hit": []
+   },
+   "Unarmed": {},
+   "SkillAnimSets": {
+    "punch": "unarmed_punch",
+    "twin_cuts": "samurai_twin_cuts",
+    "flurry": "samurai_flurry",
+    "iaido_thrust": "samurai_iaido",
+    "crescent_slash": "samurai_crescent",
+    "thousand_cuts": "samurai_mirage",
+    "sheathe": "samurai_nova"
+   },
+   "DeliveryAnimSets": {
+    "Melee": "samurai_melee",
+    "Slam": "samurai_slam",
+    "Leap": "warrior_leap",
+    "Projectile": "samurai_throw",
+    "Nova": "samurai_nova",
+    "Chain": "samurai_chain",
+    "Spin": "samurai_spin",
+    "Charge": "samurai_charge",
+    "Orbit": "samurai_nova"
+   },
+   "StartWeapon": "ronin_blades",
+   "UpgradeWeapon": "twin_fangs",
+   "WeaponClasses": [
+    "OneHandSword",
+    "Dagger",
+    "Claw",
+    "Fist"
+   ],
+   "StartOffHand": "sword1h_1",
+   "Gem1": "shuriken_fan",
+   "Gem2": "iaido_thrust",
+   "Gem3": "blade_vortex",
+   "Icon": "ICON_DarkFantasy_Inventory_Swords_01_Clean",
+   "Hold": {
+    "Time": 0,
+    "bArm": false,
+    "bArmWhileMoving": false
+   },
+   "Signature": "samurai_flurry",
+   "SignatureSfx": "samurai_blade",
+   "Str": 14,
+   "Dex": 20,
+   "Int": 6,
+   "StrPerLevel": 1.5,
+   "DexPerLevel": 2.5,
+   "IntPerLevel": 0.5,
+   "MoveSpeed": 550,
+   "EarlyDamagePct": 0,
+   "EarlyDamageFullToLevel": 6,
+   "EarlyDamageEndLevel": 10
+  }
+ ]
+}
