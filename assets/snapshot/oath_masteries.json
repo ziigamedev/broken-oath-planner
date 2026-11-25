@@ -1,0 +1,6695 @@
+{
+ "Version": 1,
+ "TreeVersion": 18,
+ "Masteries": [
+  {
+   "Id": "om_class_warrior",
+   "Name": "Mastery of the Warlord",
+   "X": -2752,
+   "Y": 1503,
+   "Notables": [
+    "eng_warrior_n0",
+    "r60_engine_warrior_n2",
+    "r60_more_warrior_n1",
+    "r87_cd_warrior"
+   ],
+   "Class": "Warrior",
+   "Oaths": [
+    {
+     "Id": "oath_war_red_tide",
+     "Name": "Oath of the Red Tide",
+     "Text": "+5 to maximum Bloodlust",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "BloodlustMax",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 5
+      }
+     ]
+    },
+    {
+     "Id": "oath_war_banner",
+     "Name": "Oath of the Raised Banner",
+     "Text": "Your Banners are 10% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "BannerEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_war_unbowed",
+     "Name": "Oath of the Unbowed",
+     "Text": "12% increased maximum Life",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 12
+      }
+     ]
+    },
+    {
+     "Id": "oath_warrior_red_ledger",
+     "Name": "Oath of the Red Ledger",
+     "Text": "With Blood Ledger, your Slams implode Entropy for 10% more Chaos damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "EntropySlamMore",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 10
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_class_mage",
+   "Name": "Mastery of the Archmage",
+   "X": 808,
+   "Y": -3255,
+   "Notables": [
+    "eng_mage_n0",
+    "r87_cd_mage"
+   ],
+   "Class": "Mage",
+   "Oaths": [
+    {
+     "Id": "oath_mage_spell_eye",
+     "Name": "Oath of the Spell Eye",
+     "Text": "20% increased critical strike chance with Spells",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritChance",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell"
+       ],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_mage_mantle",
+     "Name": "Oath of the Arcane Mantle",
+     "Text": "16% increased maximum Energy Shield and 6% increased cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "EnergyShield",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 16
+      },
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 6
+      }
+     ]
+    },
+    {
+     "Id": "oath_mage_far_reach",
+     "Name": "Oath of the Far Reach",
+     "Text": "10% increased area of Spells",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Area",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell"
+       ],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_mage_hollow_star",
+     "Name": "Oath of the Hollow Star",
+     "Text": "15% of your Spell hit damage is laid on the enemy as Entropy instead of striking",
+     "Vow": "10% less critical strike chance with Spells",
+     "Mods": [
+      {
+       "Stat": "EntropyShare",
+       "Mode": "Flat",
+       "Tags": [
+        "Spell"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "CritChance",
+       "Mode": "More",
+       "Tags": [
+        "Spell"
+       ],
+       "Value": -10
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_class_ranger",
+   "Name": "Mastery of the Pathfinder",
+   "X": 2550,
+   "Y": 2523,
+   "Notables": [
+    "eng_ranger_n0",
+    "r60_engine_ranger_n2",
+    "r60_more_ranger_n1",
+    "r87_cd_ranger"
+   ],
+   "Class": "Ranger",
+   "Oaths": [
+    {
+     "Id": "oath_ranger_marked",
+     "Name": "Oath of the Marked Prey",
+     "Text": "Your Marks are 10% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "MarkEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_ranger_light_step",
+     "Name": "Oath of the Light Step",
+     "Text": "5% increased movement speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "MoveSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 5
+      }
+     ]
+    },
+    {
+     "Id": "oath_ranger_eagle",
+     "Name": "Oath of the Eagle",
+     "Text": "+19% to critical strike multiplier with Projectile skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritMulti",
+       "Mode": "Flat",
+       "Tags": [
+        "Projectile"
+       ],
+       "Value": 19
+      }
+     ]
+    },
+    {
+     "Id": "oath_ranger_spent_mark",
+     "Name": "Oath of the Spent Mark",
+     "Text": "Ruin Fletching needs 3 fewer Hunter's Marks to implode your Entropy",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "EntropyMarksFewer",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_class_samurai",
+   "Name": "Mastery of the Ronin",
+   "X": -657,
+   "Y": 3590,
+   "Notables": [
+    "eng_samurai_n0",
+    "r60_engine_samurai_n2",
+    "r60_more_samurai_n1",
+    "r87_cd_samurai"
+   ],
+   "Class": "Samurai",
+   "Oaths": [
+    {
+     "Id": "oath_sam_iaido",
+     "Name": "Oath of the First Draw",
+     "Text": "15% increased damage with Dash skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Dash"
+       ],
+       "Value": 15
+      }
+     ]
+    },
+    {
+     "Id": "oath_sam_still_mind",
+     "Name": "Oath of the Still Mind",
+     "Text": "+3 to maximum Fortify",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "FortifyMax",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_sam_blade_dance",
+     "Name": "Oath of the Blade Dance",
+     "Text": "9% increased attack speed with Melee skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee"
+       ],
+       "Value": 9
+      }
+     ]
+    },
+    {
+     "Id": "oath_sam_sheathed_moon",
+     "Name": "Oath of the Sheathed Moon",
+     "Text": "With Quiet Ruin, your Entropy fades 4 seconds later",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "EntropyFade",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_class_paladin",
+   "Name": "Mastery of the Crusader",
+   "X": -2780,
+   "Y": -2364,
+   "Notables": [
+    "eng_paladin_n0",
+    "r60_engine_paladin_n2",
+    "r60_more_paladin_n1",
+    "r87_cd_paladin"
+   ],
+   "Class": "Paladin",
+   "Oaths": [
+    {
+     "Id": "oath_pal_valour",
+     "Name": "Oath of Valour",
+     "Text": "+3 to maximum Valour",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ValourMax",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_pal_aegis",
+     "Name": "Oath of the Aegis",
+     "Text": "While you hold a Shield: +5% chance to block",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Block",
+       "Mode": "Flat",
+       "Tags": [
+        "HoldingShield"
+       ],
+       "Value": 5
+      }
+     ]
+    },
+    {
+     "Id": "oath_pal_sunlit",
+     "Name": "Oath of the Sunlit Vow",
+     "Text": "Your Vows and Heralds have 10% increased Reservation Efficiency",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Reservation",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_pal_forsworn",
+     "Name": "Oath of the Forsworn",
+     "Text": "With Forsworn Crusade, your Vowbreak implodes Entropy 3 metres further",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "EntropyVowReach",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_class_necromancer",
+   "Name": "Mastery of the Gravelord",
+   "X": 3222,
+   "Y": -927,
+   "Notables": [
+    "eng_necromancer_n0",
+    "r87_cd_necromancer"
+   ],
+   "Class": "Necromancer",
+   "Oaths": [
+    {
+     "Id": "oath_necro_host",
+     "Name": "Oath of the Host",
+     "Text": "Your minions deal 8% increased damage and have 10% increased Life",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "MinionDamage",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 8
+      },
+      {
+       "Stat": "MinionLife",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_necro_whisper",
+     "Name": "Oath of the Grave Whisper",
+     "Text": "Your Curses are 10% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CurseEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_necro_cold_hand",
+     "Name": "Oath of the Cold Hand",
+     "Text": "+10% to damage over time multiplier",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "DotMulti",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_necro_owed_dead",
+     "Name": "Oath of the Owed Dead",
+     "Text": "With Grave Debt, a fallen minion or burst corpse implodes Entropy 2 metres further",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "EntropyCorpseReach",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_mage_flame",
+   "Name": "Mastery of Flame",
+   "X": -83,
+   "Y": -6351,
+   "Notables": [
+    "wildfire_n0",
+    "wildfire_n1",
+    "wildfire_n2"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_kindling_oath",
+     "Name": "Oath of Kindling",
+     "Text": "+12% chance to Ignite",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "IgniteChance",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 12
+      }
+     ]
+    },
+    {
+     "Id": "oath_slow_burn",
+     "Name": "Oath of the Long Smoulder",
+     "Text": "24% increased Ignite damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "IgniteDamage",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 24
+      }
+     ]
+    },
+    {
+     "Id": "oath_white_flame",
+     "Name": "Oath of the White Flame",
+     "Text": "Your Fire damage penetrates 3% Fire resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_pyre_heart",
+     "Name": "Oath of the Pyre Heart",
+     "Text": "12% increased Fire damage",
+     "Vow": "15% reduced Cold damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_mage_frost",
+   "Name": "Mastery of Frost",
+   "X": -689,
+   "Y": -2304,
+   "Notables": [
+    "cold_n0",
+    "cold_n1",
+    "permafrost_n0",
+    "permafrost_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_long_winter",
+     "Name": "Oath of the Long Winter",
+     "Text": "Your Chills are 20% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ChillEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_still_ice",
+     "Name": "Oath of Still Ice",
+     "Text": "Your Freezes last 25% longer",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "FreezeDuration",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_deep_cold",
+     "Name": "Oath of the Deep Cold",
+     "Text": "Your Cold damage penetrates 3% Cold resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_frozen_heart",
+     "Name": "Oath of the Frozen Heart",
+     "Text": "12% increased Cold damage",
+     "Vow": "15% reduced Fire damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_mage_frost_2",
+   "Name": "Mastery of Frost",
+   "X": 752,
+   "Y": -5805,
+   "Notables": [
+    "rimebound_n0",
+    "rimebound_n1",
+    "rimebound_n2"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_long_winter",
+     "Name": "Oath of the Long Winter",
+     "Text": "Your Chills are 20% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ChillEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_still_ice",
+     "Name": "Oath of Still Ice",
+     "Text": "Your Freezes last 25% longer",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "FreezeDuration",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_deep_cold",
+     "Name": "Oath of the Deep Cold",
+     "Text": "Your Cold damage penetrates 3% Cold resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_frozen_heart",
+     "Name": "Oath of the Frozen Heart",
+     "Text": "12% increased Cold damage",
+     "Vow": "15% reduced Fire damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_mage_frost_3",
+   "Name": "Mastery of Frost",
+   "X": 1151,
+   "Y": -2011,
+   "Notables": [
+    "r59_freeze_m_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_long_winter",
+     "Name": "Oath of the Long Winter",
+     "Text": "Your Chills are 20% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ChillEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_still_ice",
+     "Name": "Oath of Still Ice",
+     "Text": "Your Freezes last 25% longer",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "FreezeDuration",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_deep_cold",
+     "Name": "Oath of the Deep Cold",
+     "Text": "Your Cold damage penetrates 3% Cold resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_frozen_heart",
+     "Name": "Oath of the Frozen Heart",
+     "Text": "12% increased Cold damage",
+     "Vow": "15% reduced Fire damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_mage_iron",
+   "Name": "Mastery of Iron",
+   "X": 699,
+   "Y": -3965,
+   "Notables": [
+    "might_mage_str"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_iron_skin",
+     "Name": "Oath of Iron Skin",
+     "Text": "20% increased Armour",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_great_weapon",
+     "Name": "Oath of the Great Weapon",
+     "Text": "While you wield a two handed weapon: 15% increased Attack damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Attack",
+        "TwoHanded"
+       ],
+       "Value": 15
+      }
+     ]
+    },
+    {
+     "Id": "oath_stone_root",
+     "Name": "Oath of the Stone Root",
+     "Text": "16% increased maximum Life and 8% increased Armour",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 8
+      },
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 16
+      }
+     ]
+    },
+    {
+     "Id": "oath_anvil",
+     "Name": "Oath of the Anvil",
+     "Text": "35% increased Armour",
+     "Vow": "4% reduced movement speed",
+     "Mods": [
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 35
+      },
+      {
+       "Stat": "MoveSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_mage_sky",
+   "Name": "Mastery of Starfall",
+   "X": 87,
+   "Y": -3156,
+   "Notables": [
+    "starfall_n0",
+    "starfall_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_falling_star",
+     "Name": "Oath of the Falling Star",
+     "Text": "16% increased Skyfall damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Skyfall"
+       ],
+       "Value": 16
+      }
+     ]
+    },
+    {
+     "Id": "oath_wide_sky",
+     "Name": "Oath of the Wide Sky",
+     "Text": "10% increased area of Skyfall skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Area",
+       "Mode": "Inc",
+       "Tags": [
+        "Skyfall"
+       ],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_night_sky",
+     "Name": "Oath of the Night Sky",
+     "Text": "30% increased critical strike chance with Skyfall skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritChance",
+       "Mode": "Inc",
+       "Tags": [
+        "Skyfall"
+       ],
+       "Value": 30
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_mage_spell",
+   "Name": "Mastery of Spellcraft",
+   "X": -454,
+   "Y": -5010,
+   "Notables": [
+    "mana_n0",
+    "r79_intstack_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_swift_tongue",
+     "Name": "Oath of the Swift Tongue",
+     "Text": "8% increased cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_clear_well",
+     "Name": "Oath of the Clear Well",
+     "Text": "25% increased mana regeneration",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ManaRegen",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_staff_oath",
+     "Name": "Oath of the Staff",
+     "Text": "While you wield a Staff: 15% increased Spell damage and 3% increased cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell",
+        "WieldingStaff"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "WieldingStaff"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_hollow_vessel",
+     "Name": "Oath of the Hollow Vessel",
+     "Text": "15% increased Spell damage",
+     "Vow": "8% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_mage_spell_2",
+   "Name": "Mastery of Spellcraft",
+   "X": 0,
+   "Y": -2251,
+   "Notables": [
+    "spell_n0",
+    "spell_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_swift_tongue",
+     "Name": "Oath of the Swift Tongue",
+     "Text": "8% increased cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_clear_well",
+     "Name": "Oath of the Clear Well",
+     "Text": "25% increased mana regeneration",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ManaRegen",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_staff_oath",
+     "Name": "Oath of the Staff",
+     "Text": "While you wield a Staff: 15% increased Spell damage and 3% increased cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell",
+        "WieldingStaff"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "WieldingStaff"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_hollow_vessel",
+     "Name": "Oath of the Hollow Vessel",
+     "Text": "15% increased Spell damage",
+     "Vow": "8% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_mage_spell_3",
+   "Name": "Mastery of Spellcraft",
+   "X": 594,
+   "Y": -1134,
+   "Notables": [
+    "lingering_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_swift_tongue",
+     "Name": "Oath of the Swift Tongue",
+     "Text": "8% increased cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_clear_well",
+     "Name": "Oath of the Clear Well",
+     "Text": "25% increased mana regeneration",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ManaRegen",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_staff_oath",
+     "Name": "Oath of the Staff",
+     "Text": "While you wield a Staff: 15% increased Spell damage and 3% increased cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell",
+        "WieldingStaff"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "WieldingStaff"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_hollow_vessel",
+     "Name": "Oath of the Hollow Vessel",
+     "Text": "15% increased Spell damage",
+     "Vow": "8% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_mage_spell_4",
+   "Name": "Mastery of Spellcraft",
+   "X": 1221,
+   "Y": -4200,
+   "Notables": [
+    "sigil_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_swift_tongue",
+     "Name": "Oath of the Swift Tongue",
+     "Text": "8% increased cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_clear_well",
+     "Name": "Oath of the Clear Well",
+     "Text": "25% increased mana regeneration",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ManaRegen",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_staff_oath",
+     "Name": "Oath of the Staff",
+     "Text": "While you wield a Staff: 15% increased Spell damage and 3% increased cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell",
+        "WieldingStaff"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "WieldingStaff"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_hollow_vessel",
+     "Name": "Oath of the Hollow Vessel",
+     "Text": "15% increased Spell damage",
+     "Vow": "8% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_mage_storm",
+   "Name": "Mastery of Storm",
+   "X": 791,
+   "Y": -2454,
+   "Notables": [
+    "lightning_n0",
+    "lightning_n1",
+    "overcharge_n0",
+    "overcharge_n1",
+    "r70_duration_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_high_voltage",
+     "Name": "Oath of the Arcing Pulse",
+     "Text": "Your Shocks are 20% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ShockEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_forked_sky",
+     "Name": "Oath of the Forked Sky",
+     "Text": "Your Lightning damage penetrates 3% Lightning resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_thunder_eye",
+     "Name": "Oath of the Thunder Eye",
+     "Text": "30% increased critical strike chance with Lightning skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritChance",
+       "Mode": "Inc",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 30
+      }
+     ]
+    },
+    {
+     "Id": "oath_storm_heart",
+     "Name": "Oath of the Storm Heart",
+     "Text": "12% increased Lightning damage",
+     "Vow": "15% reduced Cold damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_mage_storm_2",
+   "Name": "Mastery of Storm",
+   "X": 1157,
+   "Y": -6411,
+   "Notables": [
+    "r74_galeeye_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_high_voltage",
+     "Name": "Oath of the Arcing Pulse",
+     "Text": "Your Shocks are 20% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ShockEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_forked_sky",
+     "Name": "Oath of the Forked Sky",
+     "Text": "Your Lightning damage penetrates 3% Lightning resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_thunder_eye",
+     "Name": "Oath of the Thunder Eye",
+     "Text": "30% increased critical strike chance with Lightning skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritChance",
+       "Mode": "Inc",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 30
+      }
+     ]
+    },
+    {
+     "Id": "oath_storm_heart",
+     "Name": "Oath of the Storm Heart",
+     "Text": "12% increased Lightning damage",
+     "Vow": "15% reduced Cold damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_mage_ward",
+   "Name": "Mastery of Ward",
+   "X": -1069,
+   "Y": -4466,
+   "Notables": [
+    "energy_shield_n0",
+    "temper_mage"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_quick_ward",
+     "Name": "Oath of the Quick Ward",
+     "Text": "20% faster Energy Shield recharge",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "EsRecharge",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_deep_ward",
+     "Name": "Oath of the Deep Ward",
+     "Text": "20% increased maximum Energy Shield",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "EnergyShield",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_glass_ward",
+     "Name": "Oath of the Glass Ward",
+     "Text": "36% increased maximum Energy Shield",
+     "Vow": "8% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "EnergyShield",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 36
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_mage_wind",
+   "Name": "Mastery of Wind",
+   "X": -768,
+   "Y": -3210,
+   "Notables": [
+    "might_mage_dex"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_quick_feet",
+     "Name": "Oath of Quick Feet",
+     "Text": "4% increased movement speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "MoveSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 4
+      }
+     ]
+    },
+    {
+     "Id": "oath_twin_fangs",
+     "Name": "Oath of Twin Fangs",
+     "Text": "While dual wielding: 4% increased attack speed and 8% increased Attack damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "DualWielding"
+       ],
+       "Value": 4
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Attack",
+        "DualWielding"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_blur_oath",
+     "Name": "Oath of Smeared Steel",
+     "Text": "20% increased Evasion",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Evasion",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_ghost",
+     "Name": "Oath of the Ghost",
+     "Text": "35% increased Evasion",
+     "Vow": "20% reduced Armour",
+     "Mods": [
+      {
+       "Stat": "Evasion",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 35
+      },
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -20
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_necromancer_blight",
+   "Name": "Mastery of Blight",
+   "X": 1609,
+   "Y": -240,
+   "Notables": [
+    "blightword_n0",
+    "grave_sermon_n0",
+    "malediction_n0",
+    "malediction_n1",
+    "r59_poison_n_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_seeping",
+     "Name": "Oath of Seeping Rot",
+     "Text": "+10% chance to Poison",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "PoisonChance",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_slow_death",
+     "Name": "Oath of the Slow Death",
+     "Text": "22% increased Poison damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "PoisonDamage",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 22
+      }
+     ]
+    },
+    {
+     "Id": "oath_dread_word",
+     "Name": "Oath of the Dread Word",
+     "Text": "Your Curses are 5% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CurseEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 5
+      }
+     ]
+    },
+    {
+     "Id": "oath_rot_heart",
+     "Name": "Oath of the Rotten Heart",
+     "Text": "+6% to damage over time multiplier",
+     "Vow": "8% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "DotMulti",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 6
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_necromancer_blight_2",
+   "Name": "Mastery of Blight",
+   "X": 5398,
+   "Y": -2255,
+   "Notables": [
+    "slowruin_n0",
+    "slowruin_n1",
+    "slowruin_n2"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_seeping",
+     "Name": "Oath of Seeping Rot",
+     "Text": "+10% chance to Poison",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "PoisonChance",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_slow_death",
+     "Name": "Oath of the Slow Death",
+     "Text": "22% increased Poison damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "PoisonDamage",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 22
+      }
+     ]
+    },
+    {
+     "Id": "oath_dread_word",
+     "Name": "Oath of the Dread Word",
+     "Text": "Your Curses are 5% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CurseEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 5
+      }
+     ]
+    },
+    {
+     "Id": "oath_rot_heart",
+     "Name": "Oath of the Rotten Heart",
+     "Text": "+6% to damage over time multiplier",
+     "Vow": "8% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "DotMulti",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 6
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_necromancer_blight_3",
+   "Name": "Mastery of Blight",
+   "X": 4261,
+   "Y": -1159,
+   "Notables": [
+    "poison_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_seeping",
+     "Name": "Oath of Seeping Rot",
+     "Text": "+10% chance to Poison",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "PoisonChance",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_slow_death",
+     "Name": "Oath of the Slow Death",
+     "Text": "22% increased Poison damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "PoisonDamage",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 22
+      }
+     ]
+    },
+    {
+     "Id": "oath_dread_word",
+     "Name": "Oath of the Dread Word",
+     "Text": "Your Curses are 5% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CurseEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 5
+      }
+     ]
+    },
+    {
+     "Id": "oath_rot_heart",
+     "Name": "Oath of the Rotten Heart",
+     "Text": "+6% to damage over time multiplier",
+     "Vow": "8% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "DotMulti",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 6
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_necromancer_iron",
+   "Name": "Mastery of Iron",
+   "X": 2675,
+   "Y": -2522,
+   "Notables": [
+    "might_necromancer_str"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_iron_skin",
+     "Name": "Oath of Iron Skin",
+     "Text": "20% increased Armour",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_great_weapon",
+     "Name": "Oath of the Great Weapon",
+     "Text": "While you wield a two handed weapon: 15% increased Attack damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Attack",
+        "TwoHanded"
+       ],
+       "Value": 15
+      }
+     ]
+    },
+    {
+     "Id": "oath_stone_root",
+     "Name": "Oath of the Stone Root",
+     "Text": "16% increased maximum Life and 8% increased Armour",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 8
+      },
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 16
+      }
+     ]
+    },
+    {
+     "Id": "oath_anvil",
+     "Name": "Oath of the Anvil",
+     "Text": "35% increased Armour",
+     "Vow": "4% reduced movement speed",
+     "Mods": [
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 35
+      },
+      {
+       "Stat": "MoveSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_necromancer_legion",
+   "Name": "Mastery of the Legion",
+   "X": 1976,
+   "Y": -1279,
+   "Notables": [
+    "bone_n0",
+    "bone_n1",
+    "deathknell_n0",
+    "deathknell_n1",
+    "grave_n0",
+    "grave_n1",
+    "harmony_n0",
+    "legion_n0",
+    "ossuary_n0",
+    "ossuary_n1",
+    "r74_gravemend_n0",
+    "reaper_n0",
+    "reaper_n1",
+    "souls_n0",
+    "souls_n1",
+    "temper_necromancer"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_pack",
+     "Name": "Oath of the Pack",
+     "Text": "Your minions deal 20% increased damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "MinionDamage",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_bone_wall",
+     "Name": "Oath of the Bone Wall",
+     "Text": "Your minions have 15% increased maximum Life",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "MinionLife",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 15
+      }
+     ]
+    },
+    {
+     "Id": "oath_quick_dead",
+     "Name": "Oath of the Quick Dead",
+     "Text": "Your minions move and attack 10% faster",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "MinionSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_light_yoke",
+     "Name": "Oath of the Light Yoke",
+     "Text": "Your minions have 15% increased mana Reservation Efficiency",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "MinionReservation",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_necromancer_spell",
+   "Name": "Mastery of Spellcraft",
+   "X": 3149,
+   "Y": -2994,
+   "Notables": [
+    "conduit_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_swift_tongue",
+     "Name": "Oath of the Swift Tongue",
+     "Text": "8% increased cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_clear_well",
+     "Name": "Oath of the Clear Well",
+     "Text": "25% increased mana regeneration",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ManaRegen",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_staff_oath",
+     "Name": "Oath of the Staff",
+     "Text": "While you wield a Staff: 15% increased Spell damage and 3% increased cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell",
+        "WieldingStaff"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "WieldingStaff"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_hollow_vessel",
+     "Name": "Oath of the Hollow Vessel",
+     "Text": "15% increased Spell damage",
+     "Vow": "8% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_necromancer_vigour",
+   "Name": "Mastery of Vigour",
+   "X": 4326,
+   "Y": -2504,
+   "Notables": [
+    "leech_n0",
+    "leech_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_deep_breath",
+     "Name": "Oath of the Deep Breath",
+     "Text": "10% increased maximum Life",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_green_blood",
+     "Name": "Oath of Green Blood",
+     "Text": "Regenerate 0.4% of your Life per second",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "LifeRegenPct",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 0.4
+      }
+     ]
+    },
+    {
+     "Id": "oath_red_thirst",
+     "Name": "Oath of the Red Thirst",
+     "Text": "0.5% of your hit damage leeched as Life",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "LifeLeech",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 0.5
+      }
+     ]
+    },
+    {
+     "Id": "oath_weathered",
+     "Name": "Oath of the Weathered",
+     "Text": "+6% to all elemental resistances",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Resist",
+       "Mode": "Flat",
+       "Tags": [
+        "Elemental"
+       ],
+       "Value": 6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_paladin_bulwark",
+   "Name": "Mastery of Bulwark",
+   "X": -2341,
+   "Y": -555,
+   "Notables": [
+    "bulwark_n0",
+    "bulwark_n1",
+    "vigil_n0",
+    "vigil_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_bulwark",
+     "Name": "Oath of the Bulwark",
+     "Text": "While you hold a Shield: +4% chance to block",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Block",
+       "Mode": "Flat",
+       "Tags": [
+        "HoldingShield"
+       ],
+       "Value": 4
+      }
+     ]
+    },
+    {
+     "Id": "oath_shield_bash",
+     "Name": "Oath of the Shield Arm",
+     "Text": "While you hold a Shield: 20% increased Attack damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Attack",
+        "HoldingShield"
+       ],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_hold_the_line",
+     "Name": "Oath of Holding the Line",
+     "Text": "+15 Life when you block",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "LifeOnBlock",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_paladin_bulwark_2",
+   "Name": "Mastery of Bulwark",
+   "X": -2929,
+   "Y": -3035,
+   "Notables": [
+    "aegis_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_bulwark",
+     "Name": "Oath of the Bulwark",
+     "Text": "While you hold a Shield: +4% chance to block",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Block",
+       "Mode": "Flat",
+       "Tags": [
+        "HoldingShield"
+       ],
+       "Value": 4
+      }
+     ]
+    },
+    {
+     "Id": "oath_shield_bash",
+     "Name": "Oath of the Shield Arm",
+     "Text": "While you hold a Shield: 20% increased Attack damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Attack",
+        "HoldingShield"
+       ],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_hold_the_line",
+     "Name": "Oath of Holding the Line",
+     "Text": "+15 Life when you block",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "LifeOnBlock",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_paladin_dawn",
+   "Name": "Mastery of Dawn",
+   "X": -1496,
+   "Y": -972,
+   "Notables": [
+    "dawn_n0",
+    "dawn_n1",
+    "dawnsworn_n0",
+    "faith_n0",
+    "faith_n1",
+    "guardian_n0",
+    "guardian_n1",
+    "holy_n0",
+    "r74_holyrite_n0",
+    "vowkeeper_n0",
+    "zeal_n0",
+    "zeal_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_first_light",
+     "Name": "Oath of the First Light",
+     "Text": "20% increased Holy damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Holy"
+       ],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_kept_vow",
+     "Name": "Oath of the Kept Vow",
+     "Text": "Your Vows and Heralds have 8% increased Reservation Efficiency",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Reservation",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_zeal_oath",
+     "Name": "Oath of Zeal",
+     "Text": "3% increased attack and cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 3
+      },
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_paladin_flame",
+   "Name": "Mastery of Flame",
+   "X": -4650,
+   "Y": -3547,
+   "Notables": [
+    "kindled_n0",
+    "kindled_n1",
+    "kindled_n2"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_kindling_oath",
+     "Name": "Oath of Kindling",
+     "Text": "+12% chance to Ignite",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "IgniteChance",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 12
+      }
+     ]
+    },
+    {
+     "Id": "oath_slow_burn",
+     "Name": "Oath of the Long Smoulder",
+     "Text": "24% increased Ignite damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "IgniteDamage",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 24
+      }
+     ]
+    },
+    {
+     "Id": "oath_white_flame",
+     "Name": "Oath of the White Flame",
+     "Text": "Your Fire damage penetrates 3% Fire resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_pyre_heart",
+     "Name": "Oath of the Pyre Heart",
+     "Text": "12% increased Fire damage",
+     "Vow": "15% reduced Cold damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_paladin_flame_2",
+   "Name": "Mastery of Flame",
+   "X": -2313,
+   "Y": -1173,
+   "Notables": [
+    "r59_ignite_p_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_kindling_oath",
+     "Name": "Oath of Kindling",
+     "Text": "+12% chance to Ignite",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "IgniteChance",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 12
+      }
+     ]
+    },
+    {
+     "Id": "oath_slow_burn",
+     "Name": "Oath of the Long Smoulder",
+     "Text": "24% increased Ignite damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "IgniteDamage",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 24
+      }
+     ]
+    },
+    {
+     "Id": "oath_white_flame",
+     "Name": "Oath of the White Flame",
+     "Text": "Your Fire damage penetrates 3% Fire resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_pyre_heart",
+     "Name": "Oath of the Pyre Heart",
+     "Text": "12% increased Fire damage",
+     "Vow": "15% reduced Cold damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_paladin_frost",
+   "Name": "Mastery of Frost",
+   "X": -4093,
+   "Y": -4237,
+   "Notables": [
+    "rimeward_n0",
+    "rimeward_n1",
+    "rimeward_n2"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_long_winter",
+     "Name": "Oath of the Long Winter",
+     "Text": "Your Chills are 20% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ChillEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_still_ice",
+     "Name": "Oath of Still Ice",
+     "Text": "Your Freezes last 25% longer",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "FreezeDuration",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_deep_cold",
+     "Name": "Oath of the Deep Cold",
+     "Text": "Your Cold damage penetrates 3% Cold resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_frozen_heart",
+     "Name": "Oath of the Frozen Heart",
+     "Text": "12% increased Cold damage",
+     "Vow": "15% reduced Fire damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_paladin_iron",
+   "Name": "Mastery of Iron",
+   "X": -4362,
+   "Y": -2739,
+   "Notables": [
+    "life_big_n0",
+    "temper_paladin"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_iron_skin",
+     "Name": "Oath of Iron Skin",
+     "Text": "20% increased Armour",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_great_weapon",
+     "Name": "Oath of the Great Weapon",
+     "Text": "While you wield a two handed weapon: 15% increased Attack damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Attack",
+        "TwoHanded"
+       ],
+       "Value": 15
+      }
+     ]
+    },
+    {
+     "Id": "oath_stone_root",
+     "Name": "Oath of the Stone Root",
+     "Text": "16% increased maximum Life and 8% increased Armour",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 8
+      },
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 16
+      }
+     ]
+    },
+    {
+     "Id": "oath_anvil",
+     "Name": "Oath of the Anvil",
+     "Text": "35% increased Armour",
+     "Vow": "4% reduced movement speed",
+     "Mods": [
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 35
+      },
+      {
+       "Stat": "MoveSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_paladin_storm",
+   "Name": "Mastery of Storm",
+   "X": -5582,
+   "Y": -3174,
+   "Notables": [
+    "stormbound_n0",
+    "stormbound_n1",
+    "stormbound_n2"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_high_voltage",
+     "Name": "Oath of the Arcing Pulse",
+     "Text": "Your Shocks are 20% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ShockEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_forked_sky",
+     "Name": "Oath of the Forked Sky",
+     "Text": "Your Lightning damage penetrates 3% Lightning resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_thunder_eye",
+     "Name": "Oath of the Thunder Eye",
+     "Text": "30% increased critical strike chance with Lightning skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritChance",
+       "Mode": "Inc",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 30
+      }
+     ]
+    },
+    {
+     "Id": "oath_storm_heart",
+     "Name": "Oath of the Storm Heart",
+     "Text": "12% increased Lightning damage",
+     "Vow": "15% reduced Cold damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_paladin_storm_2",
+   "Name": "Mastery of Storm",
+   "X": -1149,
+   "Y": -2063,
+   "Notables": [
+    "r59_shock_p_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_high_voltage",
+     "Name": "Oath of the Arcing Pulse",
+     "Text": "Your Shocks are 20% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ShockEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_forked_sky",
+     "Name": "Oath of the Forked Sky",
+     "Text": "Your Lightning damage penetrates 3% Lightning resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_thunder_eye",
+     "Name": "Oath of the Thunder Eye",
+     "Text": "30% increased critical strike chance with Lightning skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritChance",
+       "Mode": "Inc",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 30
+      }
+     ]
+    },
+    {
+     "Id": "oath_storm_heart",
+     "Name": "Oath of the Storm Heart",
+     "Text": "12% increased Lightning damage",
+     "Vow": "15% reduced Cold damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_paladin_vigour",
+   "Name": "Mastery of Vigour",
+   "X": -4026,
+   "Y": -1121,
+   "Notables": [
+    "resist_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_deep_breath",
+     "Name": "Oath of the Deep Breath",
+     "Text": "10% increased maximum Life",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_green_blood",
+     "Name": "Oath of Green Blood",
+     "Text": "Regenerate 0.4% of your Life per second",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "LifeRegenPct",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 0.4
+      }
+     ]
+    },
+    {
+     "Id": "oath_red_thirst",
+     "Name": "Oath of the Red Thirst",
+     "Text": "0.5% of your hit damage leeched as Life",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "LifeLeech",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 0.5
+      }
+     ]
+    },
+    {
+     "Id": "oath_weathered",
+     "Name": "Oath of the Weathered",
+     "Text": "+6% to all elemental resistances",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Resist",
+       "Mode": "Flat",
+       "Tags": [
+        "Elemental"
+       ],
+       "Value": 6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_paladin_wind",
+   "Name": "Mastery of Wind",
+   "X": -3376,
+   "Y": -931,
+   "Notables": [
+    "might_paladin_dex"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_quick_feet",
+     "Name": "Oath of Quick Feet",
+     "Text": "4% increased movement speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "MoveSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 4
+      }
+     ]
+    },
+    {
+     "Id": "oath_twin_fangs",
+     "Name": "Oath of Twin Fangs",
+     "Text": "While dual wielding: 4% increased attack speed and 8% increased Attack damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "DualWielding"
+       ],
+       "Value": 4
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Attack",
+        "DualWielding"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_blur_oath",
+     "Name": "Oath of Smeared Steel",
+     "Text": "20% increased Evasion",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Evasion",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_ghost",
+     "Name": "Oath of the Ghost",
+     "Text": "35% increased Evasion",
+     "Vow": "20% reduced Armour",
+     "Mods": [
+      {
+       "Stat": "Evasion",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 35
+      },
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -20
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_ranger_blight",
+   "Name": "Mastery of Blight",
+   "X": 2521,
+   "Y": 1104,
+   "Notables": [
+    "r59_poison_r_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_seeping",
+     "Name": "Oath of Seeping Rot",
+     "Text": "+10% chance to Poison",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "PoisonChance",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_slow_death",
+     "Name": "Oath of the Slow Death",
+     "Text": "22% increased Poison damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "PoisonDamage",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 22
+      }
+     ]
+    },
+    {
+     "Id": "oath_dread_word",
+     "Name": "Oath of the Dread Word",
+     "Text": "Your Curses are 5% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CurseEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 5
+      }
+     ]
+    },
+    {
+     "Id": "oath_rot_heart",
+     "Name": "Oath of the Rotten Heart",
+     "Text": "+6% to damage over time multiplier",
+     "Vow": "8% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "DotMulti",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 6
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_ranger_flame",
+   "Name": "Mastery of Flame",
+   "X": 3761,
+   "Y": 910,
+   "Notables": [
+    "r70_ignite_r_n0",
+    "r74_pitchbatt_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_kindling_oath",
+     "Name": "Oath of Kindling",
+     "Text": "+12% chance to Ignite",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "IgniteChance",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 12
+      }
+     ]
+    },
+    {
+     "Id": "oath_slow_burn",
+     "Name": "Oath of the Long Smoulder",
+     "Text": "24% increased Ignite damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "IgniteDamage",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 24
+      }
+     ]
+    },
+    {
+     "Id": "oath_white_flame",
+     "Name": "Oath of the White Flame",
+     "Text": "Your Fire damage penetrates 3% Fire resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_pyre_heart",
+     "Name": "Oath of the Pyre Heart",
+     "Text": "12% increased Fire damage",
+     "Vow": "15% reduced Cold damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_ranger_frost",
+   "Name": "Mastery of Frost",
+   "X": 5582,
+   "Y": 3174,
+   "Notables": [
+    "shatterglass_n0",
+    "shatterglass_n1",
+    "shatterglass_n2"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_long_winter",
+     "Name": "Oath of the Long Winter",
+     "Text": "Your Chills are 20% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ChillEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_still_ice",
+     "Name": "Oath of Still Ice",
+     "Text": "Your Freezes last 25% longer",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "FreezeDuration",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_deep_cold",
+     "Name": "Oath of the Deep Cold",
+     "Text": "Your Cold damage penetrates 3% Cold resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_frozen_heart",
+     "Name": "Oath of the Frozen Heart",
+     "Text": "12% increased Cold damage",
+     "Vow": "15% reduced Fire damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_ranger_frost_2",
+   "Name": "Mastery of Frost",
+   "X": 1285,
+   "Y": 2064,
+   "Notables": [
+    "r59_freeze_r_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_long_winter",
+     "Name": "Oath of the Long Winter",
+     "Text": "Your Chills are 20% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ChillEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_still_ice",
+     "Name": "Oath of Still Ice",
+     "Text": "Your Freezes last 25% longer",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "FreezeDuration",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_deep_cold",
+     "Name": "Oath of the Deep Cold",
+     "Text": "Your Cold damage penetrates 3% Cold resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_frozen_heart",
+     "Name": "Oath of the Frozen Heart",
+     "Text": "12% increased Cold damage",
+     "Vow": "15% reduced Fire damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_ranger_hunt",
+   "Name": "Mastery of the Hunt",
+   "X": 1735,
+   "Y": 1388,
+   "Notables": [
+    "bow_n0",
+    "bow_n1",
+    "bow_n2",
+    "projectile_n0",
+    "projectile_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_longbow",
+     "Name": "Oath of the Longbow",
+     "Text": "20% increased damage with Bow skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Bow"
+       ],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_through_and_through",
+     "Name": "Oath of Through and Through",
+     "Text": "Your Projectiles pierce 1 more enemy",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Pierce",
+       "Mode": "Flat",
+       "Tags": [
+        "Projectile"
+       ],
+       "Value": 1
+      }
+     ]
+    },
+    {
+     "Id": "oath_quick_draw",
+     "Name": "Oath of the Quick Draw",
+     "Text": "8% increased attack speed with Bow skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "Bow"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_still_aim",
+     "Name": "Oath of the Still Aim",
+     "Text": "15% increased Projectile damage",
+     "Vow": "5% reduced movement speed",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Projectile"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "MoveSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_ranger_hunt_2",
+   "Name": "Mastery of the Hunt",
+   "X": 4134,
+   "Y": 2450,
+   "Notables": [
+    "chain_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_longbow",
+     "Name": "Oath of the Longbow",
+     "Text": "20% increased damage with Bow skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Bow"
+       ],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_through_and_through",
+     "Name": "Oath of Through and Through",
+     "Text": "Your Projectiles pierce 1 more enemy",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Pierce",
+       "Mode": "Flat",
+       "Tags": [
+        "Projectile"
+       ],
+       "Value": 1
+      }
+     ]
+    },
+    {
+     "Id": "oath_quick_draw",
+     "Name": "Oath of the Quick Draw",
+     "Text": "8% increased attack speed with Bow skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "Bow"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_still_aim",
+     "Name": "Oath of the Still Aim",
+     "Text": "15% increased Projectile damage",
+     "Vow": "5% reduced movement speed",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Projectile"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "MoveSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_ranger_hunt_3",
+   "Name": "Mastery of the Hunt",
+   "X": 3149,
+   "Y": 2994,
+   "Notables": [
+    "rain_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_longbow",
+     "Name": "Oath of the Longbow",
+     "Text": "20% increased damage with Bow skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Bow"
+       ],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_through_and_through",
+     "Name": "Oath of Through and Through",
+     "Text": "Your Projectiles pierce 1 more enemy",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Pierce",
+       "Mode": "Flat",
+       "Tags": [
+        "Projectile"
+       ],
+       "Value": 1
+      }
+     ]
+    },
+    {
+     "Id": "oath_quick_draw",
+     "Name": "Oath of the Quick Draw",
+     "Text": "8% increased attack speed with Bow skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "Bow"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_still_aim",
+     "Name": "Oath of the Still Aim",
+     "Text": "15% increased Projectile damage",
+     "Vow": "5% reduced movement speed",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Projectile"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "MoveSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_ranger_iron",
+   "Name": "Mastery of Iron",
+   "X": 3265,
+   "Y": 2484,
+   "Notables": [
+    "might_ranger_str"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_iron_skin",
+     "Name": "Oath of Iron Skin",
+     "Text": "20% increased Armour",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_great_weapon",
+     "Name": "Oath of the Great Weapon",
+     "Text": "While you wield a two handed weapon: 15% increased Attack damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Attack",
+        "TwoHanded"
+       ],
+       "Value": 15
+      }
+     ]
+    },
+    {
+     "Id": "oath_stone_root",
+     "Name": "Oath of the Stone Root",
+     "Text": "16% increased maximum Life and 8% increased Armour",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 8
+      },
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 16
+      }
+     ]
+    },
+    {
+     "Id": "oath_anvil",
+     "Name": "Oath of the Anvil",
+     "Text": "35% increased Armour",
+     "Vow": "4% reduced movement speed",
+     "Mods": [
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 35
+      },
+      {
+       "Stat": "MoveSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_ranger_snare",
+   "Name": "Mastery of the Snare",
+   "X": 2768,
+   "Y": 1221,
+   "Notables": [
+    "artillery_n0",
+    "artillery_n1",
+    "siege_n0",
+    "siege_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_wide_snare",
+     "Name": "Oath of the Wide Snare",
+     "Text": "10% increased area of Trap skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Area",
+       "Mode": "Inc",
+       "Tags": [
+        "Trap"
+       ],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_sturdy_post",
+     "Name": "Oath of the Sturdy Post",
+     "Text": "Your Totems have 25% increased Life",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "TotemLife",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_patient_hunter",
+     "Name": "Oath of the Patient Hunter",
+     "Text": "8% increased Trap and Totem damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Trap"
+       ],
+       "Value": 8
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Totem"
+       ],
+       "Value": 8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_ranger_snare_2",
+   "Name": "Mastery of the Snare",
+   "X": 4651,
+   "Y": 3554,
+   "Notables": [
+    "snarewright_n0",
+    "snarewright_n1",
+    "snarewright_n2"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_wide_snare",
+     "Name": "Oath of the Wide Snare",
+     "Text": "10% increased area of Trap skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Area",
+       "Mode": "Inc",
+       "Tags": [
+        "Trap"
+       ],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_sturdy_post",
+     "Name": "Oath of the Sturdy Post",
+     "Text": "Your Totems have 25% increased Life",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "TotemLife",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_patient_hunter",
+     "Name": "Oath of the Patient Hunter",
+     "Text": "8% increased Trap and Totem damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Trap"
+       ],
+       "Value": 8
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Totem"
+       ],
+       "Value": 8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_ranger_spell",
+   "Name": "Mastery of Spellcraft",
+   "X": 3354,
+   "Y": 864,
+   "Notables": [
+    "might_ranger_int"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_swift_tongue",
+     "Name": "Oath of the Swift Tongue",
+     "Text": "8% increased cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_clear_well",
+     "Name": "Oath of the Clear Well",
+     "Text": "25% increased mana regeneration",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ManaRegen",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_staff_oath",
+     "Name": "Oath of the Staff",
+     "Text": "While you wield a Staff: 15% increased Spell damage and 3% increased cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell",
+        "WieldingStaff"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "WieldingStaff"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_hollow_vessel",
+     "Name": "Oath of the Hollow Vessel",
+     "Text": "15% increased Spell damage",
+     "Vow": "8% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_ranger_storm",
+   "Name": "Mastery of Storm",
+   "X": 4093,
+   "Y": 4237,
+   "Notables": [
+    "stormarrow_n0",
+    "stormarrow_n1",
+    "stormarrow_n2"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_high_voltage",
+     "Name": "Oath of the Arcing Pulse",
+     "Text": "Your Shocks are 20% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ShockEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_forked_sky",
+     "Name": "Oath of the Forked Sky",
+     "Text": "Your Lightning damage penetrates 3% Lightning resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_thunder_eye",
+     "Name": "Oath of the Thunder Eye",
+     "Text": "30% increased critical strike chance with Lightning skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritChance",
+       "Mode": "Inc",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 30
+      }
+     ]
+    },
+    {
+     "Id": "oath_storm_heart",
+     "Name": "Oath of the Storm Heart",
+     "Text": "12% increased Lightning damage",
+     "Vow": "15% reduced Cold damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_ranger_storm_2",
+   "Name": "Mastery of Storm",
+   "X": 2536,
+   "Y": 129,
+   "Notables": [
+    "r59_shock_r_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_high_voltage",
+     "Name": "Oath of the Arcing Pulse",
+     "Text": "Your Shocks are 20% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ShockEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_forked_sky",
+     "Name": "Oath of the Forked Sky",
+     "Text": "Your Lightning damage penetrates 3% Lightning resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_thunder_eye",
+     "Name": "Oath of the Thunder Eye",
+     "Text": "30% increased critical strike chance with Lightning skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritChance",
+       "Mode": "Inc",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 30
+      }
+     ]
+    },
+    {
+     "Id": "oath_storm_heart",
+     "Name": "Oath of the Storm Heart",
+     "Text": "12% increased Lightning damage",
+     "Vow": "15% reduced Cold damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_ranger_wind",
+   "Name": "Mastery of Wind",
+   "X": 1976,
+   "Y": 321,
+   "Notables": [
+    "evasion_n0",
+    "evasion_n1",
+    "temper_ranger"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_quick_feet",
+     "Name": "Oath of Quick Feet",
+     "Text": "4% increased movement speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "MoveSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 4
+      }
+     ]
+    },
+    {
+     "Id": "oath_twin_fangs",
+     "Name": "Oath of Twin Fangs",
+     "Text": "While dual wielding: 4% increased attack speed and 8% increased Attack damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "DualWielding"
+       ],
+       "Value": 4
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Attack",
+        "DualWielding"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_blur_oath",
+     "Name": "Oath of Smeared Steel",
+     "Text": "20% increased Evasion",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Evasion",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_ghost",
+     "Name": "Oath of the Ghost",
+     "Text": "35% increased Evasion",
+     "Vow": "20% reduced Armour",
+     "Mods": [
+      {
+       "Stat": "Evasion",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 35
+      },
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -20
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_ranger_wind_2",
+   "Name": "Mastery of Wind",
+   "X": 4261,
+   "Y": 1159,
+   "Notables": [
+    "speed_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_quick_feet",
+     "Name": "Oath of Quick Feet",
+     "Text": "4% increased movement speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "MoveSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 4
+      }
+     ]
+    },
+    {
+     "Id": "oath_twin_fangs",
+     "Name": "Oath of Twin Fangs",
+     "Text": "While dual wielding: 4% increased attack speed and 8% increased Attack damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "DualWielding"
+       ],
+       "Value": 4
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Attack",
+        "DualWielding"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_blur_oath",
+     "Name": "Oath of Smeared Steel",
+     "Text": "20% increased Evasion",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Evasion",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_ghost",
+     "Name": "Oath of the Ghost",
+     "Text": "35% increased Evasion",
+     "Vow": "20% reduced Armour",
+     "Mods": [
+      {
+       "Stat": "Evasion",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 35
+      },
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -20
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_samurai_edge",
+   "Name": "Mastery of the Edge",
+   "X": -528,
+   "Y": 5485,
+   "Notables": [
+    "crimson_edge_n0",
+    "crimson_edge_n1",
+    "crimson_edge_n2",
+    "crit_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_keen_eye",
+     "Name": "Oath of the Keen Eye",
+     "Text": "30% increased critical strike chance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritChance",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 30
+      }
+     ]
+    },
+    {
+     "Id": "oath_cruel_edge",
+     "Name": "Oath of the Cruel Edge",
+     "Text": "+16% to critical strike multiplier",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritMulti",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 16
+      }
+     ]
+    },
+    {
+     "Id": "oath_swordhand",
+     "Name": "Oath of the Swordhand",
+     "Text": "8% increased attack speed with Melee skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_glass_edge",
+     "Name": "Oath of the Glass Edge",
+     "Text": "+24% to critical strike multiplier",
+     "Vow": "12% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "CritMulti",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 24
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -12
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_samurai_edge_2",
+   "Name": "Mastery of the Edge",
+   "X": -694,
+   "Y": 2000,
+   "Notables": [
+    "edge_n0",
+    "edge_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_keen_eye",
+     "Name": "Oath of the Keen Eye",
+     "Text": "30% increased critical strike chance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritChance",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 30
+      }
+     ]
+    },
+    {
+     "Id": "oath_cruel_edge",
+     "Name": "Oath of the Cruel Edge",
+     "Text": "+16% to critical strike multiplier",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritMulti",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 16
+      }
+     ]
+    },
+    {
+     "Id": "oath_swordhand",
+     "Name": "Oath of the Swordhand",
+     "Text": "8% increased attack speed with Melee skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_glass_edge",
+     "Name": "Oath of the Glass Edge",
+     "Text": "+24% to critical strike multiplier",
+     "Vow": "12% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "CritMulti",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 24
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -12
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_samurai_edge_3",
+   "Name": "Mastery of the Edge",
+   "X": -1005,
+   "Y": 4122,
+   "Notables": [
+    "attack_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_keen_eye",
+     "Name": "Oath of the Keen Eye",
+     "Text": "30% increased critical strike chance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritChance",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 30
+      }
+     ]
+    },
+    {
+     "Id": "oath_cruel_edge",
+     "Name": "Oath of the Cruel Edge",
+     "Text": "+16% to critical strike multiplier",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritMulti",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 16
+      }
+     ]
+    },
+    {
+     "Id": "oath_swordhand",
+     "Name": "Oath of the Swordhand",
+     "Text": "8% increased attack speed with Melee skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_glass_edge",
+     "Name": "Oath of the Glass Edge",
+     "Text": "+24% to critical strike multiplier",
+     "Vow": "12% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "CritMulti",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 24
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -12
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_samurai_flame",
+   "Name": "Mastery of Flame",
+   "X": 749,
+   "Y": 5584,
+   "Notables": [
+    "emberblade_n0",
+    "emberblade_n1",
+    "emberblade_n2"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_kindling_oath",
+     "Name": "Oath of Kindling",
+     "Text": "+12% chance to Ignite",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "IgniteChance",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 12
+      }
+     ]
+    },
+    {
+     "Id": "oath_slow_burn",
+     "Name": "Oath of the Long Smoulder",
+     "Text": "24% increased Ignite damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "IgniteDamage",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 24
+      }
+     ]
+    },
+    {
+     "Id": "oath_white_flame",
+     "Name": "Oath of the White Flame",
+     "Text": "Your Fire damage penetrates 3% Fire resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_pyre_heart",
+     "Name": "Oath of the Pyre Heart",
+     "Text": "12% increased Fire damage",
+     "Vow": "15% reduced Cold damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_samurai_snare",
+   "Name": "Mastery of the Snare",
+   "X": 1036,
+   "Y": 1137,
+   "Notables": [
+    "r74_hiddenedge_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_wide_snare",
+     "Name": "Oath of the Wide Snare",
+     "Text": "10% increased area of Trap skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Area",
+       "Mode": "Inc",
+       "Tags": [
+        "Trap"
+       ],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_sturdy_post",
+     "Name": "Oath of the Sturdy Post",
+     "Text": "Your Totems have 25% increased Life",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "TotemLife",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_patient_hunter",
+     "Name": "Oath of the Patient Hunter",
+     "Text": "8% increased Trap and Totem damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Trap"
+       ],
+       "Value": 8
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Totem"
+       ],
+       "Value": 8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_samurai_spell",
+   "Name": "Mastery of Spellcraft",
+   "X": 1061,
+   "Y": 3493,
+   "Notables": [
+    "might_samurai_int"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_swift_tongue",
+     "Name": "Oath of the Swift Tongue",
+     "Text": "8% increased cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_clear_well",
+     "Name": "Oath of the Clear Well",
+     "Text": "25% increased mana regeneration",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ManaRegen",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_staff_oath",
+     "Name": "Oath of the Staff",
+     "Text": "While you wield a Staff: 15% increased Spell damage and 3% increased cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell",
+        "WieldingStaff"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "WieldingStaff"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_hollow_vessel",
+     "Name": "Oath of the Hollow Vessel",
+     "Text": "15% increased Spell damage",
+     "Vow": "8% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_samurai_stillness",
+   "Name": "Mastery of Stillness",
+   "X": 130,
+   "Y": 2775,
+   "Notables": [
+    "ki_n0",
+    "ki_n1",
+    "mirrorblade_n0",
+    "mirrorblade_n1",
+    "orbit_n0",
+    "stillness_n0",
+    "stillness_n1",
+    "temper_samurai"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_drawn_breath",
+     "Name": "Oath of the Drawn Breath",
+     "Text": "20% increased damage with Dash skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Dash"
+       ],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_open_hand",
+     "Name": "Oath of the Open Hand",
+     "Text": "While unarmed or with a martial weapon: 20% increased Attack damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Attack",
+        "Martial"
+       ],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_calm_water",
+     "Name": "Oath of Calm Water",
+     "Text": "+2 to maximum Fortify",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "FortifyMax",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_samurai_wind",
+   "Name": "Mastery of Wind",
+   "X": 277,
+   "Y": 2537,
+   "Notables": [
+    "swift_n0",
+    "swift_n1",
+    "windstep_n0",
+    "windstep_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_quick_feet",
+     "Name": "Oath of Quick Feet",
+     "Text": "4% increased movement speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "MoveSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 4
+      }
+     ]
+    },
+    {
+     "Id": "oath_twin_fangs",
+     "Name": "Oath of Twin Fangs",
+     "Text": "While dual wielding: 4% increased attack speed and 8% increased Attack damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "DualWielding"
+       ],
+       "Value": 4
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Attack",
+        "DualWielding"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_blur_oath",
+     "Name": "Oath of Smeared Steel",
+     "Text": "20% increased Evasion",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Evasion",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_ghost",
+     "Name": "Oath of the Ghost",
+     "Text": "35% increased Evasion",
+     "Vow": "20% reduced Armour",
+     "Mods": [
+      {
+       "Stat": "Evasion",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 35
+      },
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -20
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_warrior_edge",
+   "Name": "Mastery of the Edge",
+   "X": -907,
+   "Y": 1993,
+   "Notables": [
+    "r59_phys2_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_keen_eye",
+     "Name": "Oath of the Keen Eye",
+     "Text": "30% increased critical strike chance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritChance",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 30
+      }
+     ]
+    },
+    {
+     "Id": "oath_cruel_edge",
+     "Name": "Oath of the Cruel Edge",
+     "Text": "+16% to critical strike multiplier",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritMulti",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 16
+      }
+     ]
+    },
+    {
+     "Id": "oath_swordhand",
+     "Name": "Oath of the Swordhand",
+     "Text": "8% increased attack speed with Melee skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_glass_edge",
+     "Name": "Oath of the Glass Edge",
+     "Text": "+24% to critical strike multiplier",
+     "Vow": "12% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "CritMulti",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 24
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -12
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_warrior_flame",
+   "Name": "Mastery of Flame",
+   "X": -2531,
+   "Y": 392,
+   "Notables": [
+    "r59_ignite_w_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_kindling_oath",
+     "Name": "Oath of Kindling",
+     "Text": "+12% chance to Ignite",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "IgniteChance",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 12
+      }
+     ]
+    },
+    {
+     "Id": "oath_slow_burn",
+     "Name": "Oath of the Long Smoulder",
+     "Text": "24% increased Ignite damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "IgniteDamage",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 24
+      }
+     ]
+    },
+    {
+     "Id": "oath_white_flame",
+     "Name": "Oath of the White Flame",
+     "Text": "Your Fire damage penetrates 3% Fire resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_pyre_heart",
+     "Name": "Oath of the Pyre Heart",
+     "Text": "12% increased Fire damage",
+     "Vow": "15% reduced Cold damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_warrior_fury",
+   "Name": "Mastery of Fury",
+   "X": -2504,
+   "Y": 1600,
+   "Notables": [
+    "bloodletter_n0",
+    "bloodletter_n1",
+    "bloodletter_n2",
+    "channel_n0",
+    "channel_n1",
+    "cleave_n0",
+    "cleave_n1",
+    "fury_n0",
+    "melee_n0",
+    "melee_n1",
+    "r59_mountain_n1",
+    "r59_phys1_n1",
+    "r59_phys3_n1",
+    "r59_phys4_n1",
+    "r59_phys5_n1",
+    "r59_phys6_n1",
+    "slam_n0",
+    "slam_n1",
+    "slam_n2",
+    "warcaller_n0",
+    "warpath_n0",
+    "warpath_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_brute",
+     "Name": "Oath of the Brute",
+     "Text": "20% increased Melee damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee"
+       ],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_earthbreaker",
+     "Name": "Oath of the Earthbreaker",
+     "Text": "While you wield a two handed weapon: 8% increased area of effect and 8% increased Melee damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Area",
+       "Mode": "Inc",
+       "Tags": [
+        "TwoHanded"
+       ],
+       "Value": 8
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee",
+        "TwoHanded"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_wide_swing",
+     "Name": "Oath of the Wide Swing",
+     "Text": "10% increased area of Slam skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Area",
+       "Mode": "Inc",
+       "Tags": [
+        "Slam"
+       ],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_berserk",
+     "Name": "Oath of the Berserker",
+     "Text": "8% increased attack speed with Melee skills",
+     "Vow": "4% increased damage taken",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee"
+       ],
+       "Value": 8
+      },
+      {
+       "Stat": "DamageTaken",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_warrior_iron",
+   "Name": "Mastery of Iron",
+   "X": -4336,
+   "Y": 2503,
+   "Notables": [
+    "armour_n0",
+    "armour_n1",
+    "temper_warrior"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_iron_skin",
+     "Name": "Oath of Iron Skin",
+     "Text": "20% increased Armour",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_great_weapon",
+     "Name": "Oath of the Great Weapon",
+     "Text": "While you wield a two handed weapon: 15% increased Attack damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Attack",
+        "TwoHanded"
+       ],
+       "Value": 15
+      }
+     ]
+    },
+    {
+     "Id": "oath_stone_root",
+     "Name": "Oath of the Stone Root",
+     "Text": "16% increased maximum Life and 8% increased Armour",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 8
+      },
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 16
+      }
+     ]
+    },
+    {
+     "Id": "oath_anvil",
+     "Name": "Oath of the Anvil",
+     "Text": "35% increased Armour",
+     "Vow": "4% reduced movement speed",
+     "Mods": [
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 35
+      },
+      {
+       "Stat": "MoveSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_warrior_spell",
+   "Name": "Mastery of Spellcraft",
+   "X": -2216,
+   "Y": 2374,
+   "Notables": [
+    "might_warrior_int"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_swift_tongue",
+     "Name": "Oath of the Swift Tongue",
+     "Text": "8% increased cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_clear_well",
+     "Name": "Oath of the Clear Well",
+     "Text": "25% increased mana regeneration",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ManaRegen",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_staff_oath",
+     "Name": "Oath of the Staff",
+     "Text": "While you wield a Staff: 15% increased Spell damage and 3% increased cast speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell",
+        "WieldingStaff"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "CastSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "WieldingStaff"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_hollow_vessel",
+     "Name": "Oath of the Hollow Vessel",
+     "Text": "15% increased Spell damage",
+     "Vow": "8% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Spell"
+       ],
+       "Value": 15
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_warrior_vigour",
+   "Name": "Mastery of Vigour",
+   "X": -1957,
+   "Y": 349,
+   "Notables": [
+    "life_n0",
+    "life_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_deep_breath",
+     "Name": "Oath of the Deep Breath",
+     "Text": "10% increased maximum Life",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_green_blood",
+     "Name": "Oath of Green Blood",
+     "Text": "Regenerate 0.4% of your Life per second",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "LifeRegenPct",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 0.4
+      }
+     ]
+    },
+    {
+     "Id": "oath_red_thirst",
+     "Name": "Oath of the Red Thirst",
+     "Text": "0.5% of your hit damage leeched as Life",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "LifeLeech",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 0.5
+      }
+     ]
+    },
+    {
+     "Id": "oath_weathered",
+     "Name": "Oath of the Weathered",
+     "Text": "+6% to all elemental resistances",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Resist",
+       "Mode": "Flat",
+       "Tags": [
+        "Elemental"
+       ],
+       "Value": 6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_warrior_vigour_2",
+   "Name": "Mastery of Vigour",
+   "X": -4034,
+   "Y": 1133,
+   "Notables": [
+    "regrowth_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_deep_breath",
+     "Name": "Oath of the Deep Breath",
+     "Text": "10% increased maximum Life",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_green_blood",
+     "Name": "Oath of Green Blood",
+     "Text": "Regenerate 0.4% of your Life per second",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "LifeRegenPct",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 0.4
+      }
+     ]
+    },
+    {
+     "Id": "oath_red_thirst",
+     "Name": "Oath of the Red Thirst",
+     "Text": "0.5% of your hit damage leeched as Life",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "LifeLeech",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 0.5
+      }
+     ]
+    },
+    {
+     "Id": "oath_weathered",
+     "Name": "Oath of the Weathered",
+     "Text": "+6% to all elemental resistances",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Resist",
+       "Mode": "Flat",
+       "Tags": [
+        "Elemental"
+       ],
+       "Value": 6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_warrior_wind",
+   "Name": "Mastery of Wind",
+   "X": -3526,
+   "Y": 891,
+   "Notables": [
+    "might_warrior_dex"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_quick_feet",
+     "Name": "Oath of Quick Feet",
+     "Text": "4% increased movement speed",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "MoveSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 4
+      }
+     ]
+    },
+    {
+     "Id": "oath_twin_fangs",
+     "Name": "Oath of Twin Fangs",
+     "Text": "While dual wielding: 4% increased attack speed and 8% increased Attack damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "DualWielding"
+       ],
+       "Value": 4
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Attack",
+        "DualWielding"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_blur_oath",
+     "Name": "Oath of Smeared Steel",
+     "Text": "20% increased Evasion",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Evasion",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_ghost",
+     "Name": "Oath of the Ghost",
+     "Text": "35% increased Evasion",
+     "Vow": "20% reduced Armour",
+     "Mods": [
+      {
+       "Stat": "Evasion",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 35
+      },
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -20
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_hub_frost",
+   "Name": "Mastery of Frost",
+   "X": 6,
+   "Y": -425,
+   "Notables": [
+    "longwinter_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_long_winter",
+     "Name": "Oath of the Long Winter",
+     "Text": "Your Chills are 20% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ChillEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_still_ice",
+     "Name": "Oath of Still Ice",
+     "Text": "Your Freezes last 25% longer",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "FreezeDuration",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_deep_cold",
+     "Name": "Oath of the Deep Cold",
+     "Text": "Your Cold damage penetrates 3% Cold resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_frozen_heart",
+     "Name": "Oath of the Frozen Heart",
+     "Text": "12% increased Cold damage",
+     "Vow": "15% reduced Fire damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_hub_fury",
+   "Name": "Mastery of Fury",
+   "X": -191,
+   "Y": 311,
+   "Notables": [
+    "hallshaker_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_brute",
+     "Name": "Oath of the Brute",
+     "Text": "20% increased Melee damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee"
+       ],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_earthbreaker",
+     "Name": "Oath of the Earthbreaker",
+     "Text": "While you wield a two handed weapon: 8% increased area of effect and 8% increased Melee damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Area",
+       "Mode": "Inc",
+       "Tags": [
+        "TwoHanded"
+       ],
+       "Value": 8
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee",
+        "TwoHanded"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_wide_swing",
+     "Name": "Oath of the Wide Swing",
+     "Text": "10% increased area of Slam skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Area",
+       "Mode": "Inc",
+       "Tags": [
+        "Slam"
+       ],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_berserk",
+     "Name": "Oath of the Berserker",
+     "Text": "8% increased attack speed with Melee skills",
+     "Vow": "4% increased damage taken",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee"
+       ],
+       "Value": 8
+      },
+      {
+       "Stat": "DamageTaken",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_hub_snare",
+   "Name": "Mastery of the Snare",
+   "X": -57,
+   "Y": 98,
+   "Notables": [
+    "ancvigil_n0",
+    "stonecircle_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_wide_snare",
+     "Name": "Oath of the Wide Snare",
+     "Text": "10% increased area of Trap skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Area",
+       "Mode": "Inc",
+       "Tags": [
+        "Trap"
+       ],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_sturdy_post",
+     "Name": "Oath of the Sturdy Post",
+     "Text": "Your Totems have 25% increased Life",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "TotemLife",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_patient_hunter",
+     "Name": "Oath of the Patient Hunter",
+     "Text": "8% increased Trap and Totem damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Trap"
+       ],
+       "Value": 8
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Totem"
+       ],
+       "Value": 8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_hub_stillness",
+   "Name": "Mastery of Stillness",
+   "X": 234,
+   "Y": 425,
+   "Notables": [
+    "stillwater_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_drawn_breath",
+     "Name": "Oath of the Drawn Breath",
+     "Text": "20% increased damage with Dash skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Dash"
+       ],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_open_hand",
+     "Name": "Oath of the Open Hand",
+     "Text": "While unarmed or with a martial weapon: 20% increased Attack damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Attack",
+        "Martial"
+       ],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_calm_water",
+     "Name": "Oath of Calm Water",
+     "Text": "+2 to maximum Fortify",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "FortifyMax",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_hub_storm",
+   "Name": "Mastery of Storm",
+   "X": 431,
+   "Y": -311,
+   "Notables": [
+    "thunderhead_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_high_voltage",
+     "Name": "Oath of the Arcing Pulse",
+     "Text": "Your Shocks are 20% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ShockEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_forked_sky",
+     "Name": "Oath of the Forked Sky",
+     "Text": "Your Lightning damage penetrates 3% Lightning resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_thunder_eye",
+     "Name": "Oath of the Thunder Eye",
+     "Text": "30% increased critical strike chance with Lightning skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritChance",
+       "Mode": "Inc",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 30
+      }
+     ]
+    },
+    {
+     "Id": "oath_storm_heart",
+     "Name": "Oath of the Storm Heart",
+     "Text": "12% increased Lightning damage",
+     "Vow": "15% reduced Cold damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_seam_0_blight",
+   "Name": "Mastery of Blight",
+   "X": 3309,
+   "Y": -279,
+   "Notables": [
+    "affliction_n0",
+    "r60_cross0_n1",
+    "r60_cross0_n3"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_seeping",
+     "Name": "Oath of Seeping Rot",
+     "Text": "+10% chance to Poison",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "PoisonChance",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_slow_death",
+     "Name": "Oath of the Slow Death",
+     "Text": "22% increased Poison damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "PoisonDamage",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 22
+      }
+     ]
+    },
+    {
+     "Id": "oath_dread_word",
+     "Name": "Oath of the Dread Word",
+     "Text": "Your Curses are 5% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CurseEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 5
+      }
+     ]
+    },
+    {
+     "Id": "oath_rot_heart",
+     "Name": "Oath of the Rotten Heart",
+     "Text": "+6% to damage over time multiplier",
+     "Vow": "8% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "DotMulti",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 6
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_seam_120_storm",
+   "Name": "Mastery of Storm",
+   "X": -2294,
+   "Y": -2820,
+   "Notables": [
+    "r60_cross120_n1",
+    "r60_cross120_n3"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_high_voltage",
+     "Name": "Oath of the Arcing Pulse",
+     "Text": "Your Shocks are 20% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ShockEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_forked_sky",
+     "Name": "Oath of the Forked Sky",
+     "Text": "Your Lightning damage penetrates 3% Lightning resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_thunder_eye",
+     "Name": "Oath of the Thunder Eye",
+     "Text": "30% increased critical strike chance with Lightning skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritChance",
+       "Mode": "Inc",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 30
+      }
+     ]
+    },
+    {
+     "Id": "oath_storm_heart",
+     "Name": "Oath of the Storm Heart",
+     "Text": "12% increased Lightning damage",
+     "Vow": "15% reduced Cold damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Lightning"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_seam_180_flame",
+   "Name": "Mastery of Flame",
+   "X": -3258,
+   "Y": 356,
+   "Notables": [
+    "fire_n0",
+    "fire_n1",
+    "r60_cross180_n1",
+    "r60_cross180_n3"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_kindling_oath",
+     "Name": "Oath of Kindling",
+     "Text": "+12% chance to Ignite",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "IgniteChance",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 12
+      }
+     ]
+    },
+    {
+     "Id": "oath_slow_burn",
+     "Name": "Oath of the Long Smoulder",
+     "Text": "24% increased Ignite damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "IgniteDamage",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 24
+      }
+     ]
+    },
+    {
+     "Id": "oath_white_flame",
+     "Name": "Oath of the White Flame",
+     "Text": "Your Fire damage penetrates 3% Fire resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_pyre_heart",
+     "Name": "Oath of the Pyre Heart",
+     "Text": "12% increased Fire damage",
+     "Vow": "15% reduced Cold damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_seam_180_iron",
+   "Name": "Mastery of Iron",
+   "X": -5932,
+   "Y": -940,
+   "Notables": [
+    "anvil_oath_n0",
+    "anvil_oath_n1"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_iron_skin",
+     "Name": "Oath of Iron Skin",
+     "Text": "20% increased Armour",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_great_weapon",
+     "Name": "Oath of the Great Weapon",
+     "Text": "While you wield a two handed weapon: 15% increased Attack damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Attack",
+        "TwoHanded"
+       ],
+       "Value": 15
+      }
+     ]
+    },
+    {
+     "Id": "oath_stone_root",
+     "Name": "Oath of the Stone Root",
+     "Text": "16% increased maximum Life and 8% increased Armour",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 8
+      },
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 16
+      }
+     ]
+    },
+    {
+     "Id": "oath_anvil",
+     "Name": "Oath of the Anvil",
+     "Text": "35% increased Armour",
+     "Vow": "4% reduced movement speed",
+     "Mods": [
+      {
+       "Stat": "Armour",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 35
+      },
+      {
+       "Stat": "MoveSpeed",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_seam_240_fury",
+   "Name": "Mastery of Fury",
+   "X": -1553,
+   "Y": 3167,
+   "Notables": [
+    "r59_hold_n1",
+    "r60_cross240_n1",
+    "r60_cross240_n3"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_brute",
+     "Name": "Oath of the Brute",
+     "Text": "20% increased Melee damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee"
+       ],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_earthbreaker",
+     "Name": "Oath of the Earthbreaker",
+     "Text": "While you wield a two handed weapon: 8% increased area of effect and 8% increased Melee damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Area",
+       "Mode": "Inc",
+       "Tags": [
+        "TwoHanded"
+       ],
+       "Value": 8
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee",
+        "TwoHanded"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_wide_swing",
+     "Name": "Oath of the Wide Swing",
+     "Text": "10% increased area of Slam skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Area",
+       "Mode": "Inc",
+       "Tags": [
+        "Slam"
+       ],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_berserk",
+     "Name": "Oath of the Berserker",
+     "Text": "8% increased attack speed with Melee skills",
+     "Vow": "4% increased damage taken",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee"
+       ],
+       "Value": 8
+      },
+      {
+       "Stat": "DamageTaken",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_seam_300_edge",
+   "Name": "Mastery of the Edge",
+   "X": 2294,
+   "Y": 2820,
+   "Notables": [
+    "r60_cross300_n1",
+    "r60_cross300_n3"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_keen_eye",
+     "Name": "Oath of the Keen Eye",
+     "Text": "30% increased critical strike chance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritChance",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 30
+      }
+     ]
+    },
+    {
+     "Id": "oath_cruel_edge",
+     "Name": "Oath of the Cruel Edge",
+     "Text": "+16% to critical strike multiplier",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "CritMulti",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 16
+      }
+     ]
+    },
+    {
+     "Id": "oath_swordhand",
+     "Name": "Oath of the Swordhand",
+     "Text": "8% increased attack speed with Melee skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_glass_edge",
+     "Name": "Oath of the Glass Edge",
+     "Text": "+24% to critical strike multiplier",
+     "Vow": "12% reduced maximum Life",
+     "Mods": [
+      {
+       "Stat": "CritMulti",
+       "Mode": "Flat",
+       "Tags": [],
+       "Value": 24
+      },
+      {
+       "Stat": "Life",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": -12
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_seam_300_fury",
+   "Name": "Mastery of Fury",
+   "X": 1431,
+   "Y": 3079,
+   "Notables": [
+    "eng_seam300_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_brute",
+     "Name": "Oath of the Brute",
+     "Text": "20% increased Melee damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee"
+       ],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_earthbreaker",
+     "Name": "Oath of the Earthbreaker",
+     "Text": "While you wield a two handed weapon: 8% increased area of effect and 8% increased Melee damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Area",
+       "Mode": "Inc",
+       "Tags": [
+        "TwoHanded"
+       ],
+       "Value": 8
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee",
+        "TwoHanded"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_wide_swing",
+     "Name": "Oath of the Wide Swing",
+     "Text": "10% increased area of Slam skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Area",
+       "Mode": "Inc",
+       "Tags": [
+        "Slam"
+       ],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_berserk",
+     "Name": "Oath of the Berserker",
+     "Text": "8% increased attack speed with Melee skills",
+     "Vow": "4% increased damage taken",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee"
+       ],
+       "Value": 8
+      },
+      {
+       "Stat": "DamageTaken",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_seam_300_snare",
+   "Name": "Mastery of the Snare",
+   "X": 1570,
+   "Y": 2511,
+   "Notables": [
+    "trap_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_wide_snare",
+     "Name": "Oath of the Wide Snare",
+     "Text": "10% increased area of Trap skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Area",
+       "Mode": "Inc",
+       "Tags": [
+        "Trap"
+       ],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_sturdy_post",
+     "Name": "Oath of the Sturdy Post",
+     "Text": "Your Totems have 25% increased Life",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "TotemLife",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_patient_hunter",
+     "Name": "Oath of the Patient Hunter",
+     "Text": "8% increased Trap and Totem damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Trap"
+       ],
+       "Value": 8
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Totem"
+       ],
+       "Value": 8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_seam_60_frost",
+   "Name": "Mastery of Frost",
+   "X": 1435,
+   "Y": -3382,
+   "Notables": [
+    "r60_cross60_n1",
+    "r60_cross60_n3"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_long_winter",
+     "Name": "Oath of the Long Winter",
+     "Text": "Your Chills are 20% stronger",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "ChillEffect",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_still_ice",
+     "Name": "Oath of Still Ice",
+     "Text": "Your Freezes last 25% longer",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "FreezeDuration",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 25
+      }
+     ]
+    },
+    {
+     "Id": "oath_deep_cold",
+     "Name": "Oath of the Deep Cold",
+     "Text": "Your Cold damage penetrates 3% Cold resistance",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Penetration",
+       "Mode": "Flat",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": 3
+      }
+     ]
+    },
+    {
+     "Id": "oath_frozen_heart",
+     "Name": "Oath of the Frozen Heart",
+     "Text": "12% increased Cold damage",
+     "Vow": "15% reduced Fire damage",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Cold"
+       ],
+       "Value": 12
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Fire"
+       ],
+       "Value": -15
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "Id": "om_seam_60_fury",
+   "Name": "Mastery of Fury",
+   "X": 2131,
+   "Y": -2675,
+   "Notables": [
+    "eng_seam60_n0"
+   ],
+   "Class": "",
+   "Oaths": [
+    {
+     "Id": "oath_brute",
+     "Name": "Oath of the Brute",
+     "Text": "20% increased Melee damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee"
+       ],
+       "Value": 20
+      }
+     ]
+    },
+    {
+     "Id": "oath_earthbreaker",
+     "Name": "Oath of the Earthbreaker",
+     "Text": "While you wield a two handed weapon: 8% increased area of effect and 8% increased Melee damage",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Area",
+       "Mode": "Inc",
+       "Tags": [
+        "TwoHanded"
+       ],
+       "Value": 8
+      },
+      {
+       "Stat": "Damage",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee",
+        "TwoHanded"
+       ],
+       "Value": 8
+      }
+     ]
+    },
+    {
+     "Id": "oath_wide_swing",
+     "Name": "Oath of the Wide Swing",
+     "Text": "10% increased area of Slam skills",
+     "Vow": "",
+     "Mods": [
+      {
+       "Stat": "Area",
+       "Mode": "Inc",
+       "Tags": [
+        "Slam"
+       ],
+       "Value": 10
+      }
+     ]
+    },
+    {
+     "Id": "oath_berserk",
+     "Name": "Oath of the Berserker",
+     "Text": "8% increased attack speed with Melee skills",
+     "Vow": "4% increased damage taken",
+     "Mods": [
+      {
+       "Stat": "AttackSpeed",
+       "Mode": "Inc",
+       "Tags": [
+        "Melee"
+       ],
+       "Value": 8
+      },
+      {
+       "Stat": "DamageTaken",
+       "Mode": "Inc",
+       "Tags": [],
+       "Value": 4
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,117 @@
+{
+ "gems": [
+  {
+   "Id": "rending_slam",
+   "Key": "bRendingSlam"
+  },
+  {
+   "Id": "wheeling_axe",
+   "Key": "bWheelingAxe"
+  },
+  {
+   "Id": "hallowed_slam",
+   "Key": "bHallowedSlam"
+  },
+  {
+   "Id": "shield_throw",
+   "Key": "bShieldThrow"
+  },
+  {
+   "Id": "viper_fang",
+   "Key": "bViperFang",
+   "PoisonChance": 100
+  },
+  {
+   "Id": "moonfall",
+   "Key": "bMoonfall"
+  },
+  {
+   "Id": "thunderfall",
+   "Key": "bThunderfall",
+   "CountsAs": [
+    "Spell"
+   ]
+  },
+  {
+   "Id": "glacial_shards",
+   "Key": "bGlacialShards",
+   "CountsAs": [
+    "Spell"
+   ]
+  },
+  {
+   "Id": "grave_reap",
+   "Key": "bGraveReap"
+  },
+  {
+   "Id": "soul_rend",
+   "Key": "bSoulRend"
+  },
+  {
+   "Id": "caustic_arrow",
+   "Key": "bCausticArrow",
+   "PoisonChance": 50
+  },
+  {
+   "Id": "fuse_arrow",
+   "Key": "bFuseArrow"
+  },
+  {
+   "Id": "hoarfrost_volley",
+   "Key": "bHoarfrostVolley"
+  },
+  {
+   "Id": "marrow_lance",
+   "Key": "bMarrowLance"
+  },
+  {
+   "Id": "wayward_orb",
+   "Key": "bWaywardOrb",
+   "Orb93": {
+    "PulseRadius": 220,
+    "BaseAttach": 300,
+    "HopEvery": 3,
+    "HopRange": 700,
+    "OrbScale": 0.8,
+    "OrbHeight": 110,
+    "OrbFx": {
+     "": "wo93_orb",
+     "ember_spark": "wo93_orb_fire",
+     "rime_spark": "wo93_orb_ice",
+     "storm_brand": "wo93_orb_storm",
+     "venom_spark": "venom_spark_fly85"
+    }
+   }
+  },
+  {
+   "Id": "thousand_sparks",
+   "Key": "bThousandSparks"
+  },
+  {
+   "Id": "sentence_of_chains",
+   "Key": "bChains98"
+  },
+  {
+   "Id": "sentence_of_rot",
+   "Key": "bSentences100",
+   "Section": "r100.META"
+  },
+  {
+   "Id": "sentence_of_exposure",
+   "Key": "bSentences100",
+   "Section": "r100.META"
+  },
+  {
+   "Id": "vow_of_zeal",
+   "Key": "bZeal98"
+  },
+  {
+   "Id": "vow_of_precision",
+   "Key": "bPrecision98"
+  },
+  {
+   "Id": "vow_of_judgement",
+   "Key": "bJudgement98"
+  }
+ ]
+}

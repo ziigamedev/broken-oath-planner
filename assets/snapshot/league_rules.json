@@ -1,0 +1,319 @@
+{
+ "Version": 1,
+ "MaxBans": 40,
+ "DifficultyLifePerStep": 0.15,
+ "DifficultyDamagePerStep": 0.1,
+ "StarterDamageFloor": 0.75,
+ "Protected": {
+  "Gems": "starter+tutorial",
+  "Supports": "tutorial",
+  "Bosses": "gate",
+  "Ids": []
+ },
+ "Tabs": [
+  {
+   "Id": "economy",
+   "Name": "Economy"
+  },
+  {
+   "Id": "monsters",
+   "Name": "Monsters"
+  },
+  {
+   "Id": "gems",
+   "Name": "Skill gems"
+  },
+  {
+   "Id": "supports",
+   "Name": "Supports"
+  },
+  {
+   "Id": "items",
+   "Name": "Items"
+  },
+  {
+   "Id": "minions",
+   "Name": "Minions"
+  },
+  {
+   "Id": "mechanics",
+   "Name": "Mechanics"
+  }
+ ],
+ "Knobs": [
+  {
+   "Id": "gold_mult",
+   "Tab": "economy",
+   "Kind": "scale",
+   "Target": "loot.gold",
+   "Min": 1.0,
+   "Max": 2.0,
+   "Step": 0.25,
+   "Default": 1.0,
+   "Server": "gold_mult",
+   "Name": "Gold found",
+   "Help": "Every gold pile is worth this much more."
+  },
+  {
+   "Id": "loot_mult",
+   "Tab": "economy",
+   "Kind": "scale",
+   "Target": "loot.quantity",
+   "Min": 1.0,
+   "Max": 2.0,
+   "Step": 0.25,
+   "Default": 1.0,
+   "Server": "loot_mult",
+   "Name": "Items found",
+   "Help": "More item rolls from every kill."
+  },
+  {
+   "Id": "density",
+   "Tab": "monsters",
+   "Kind": "scale",
+   "Target": "rift.pack_count",
+   "Min": 1.0,
+   "Max": 1.5,
+   "Step": 0.25,
+   "Default": 1.0,
+   "Server": "density",
+   "Name": "Monster density",
+   "Help": "More monsters in every pack."
+  },
+  {
+   "Id": "difficulty_step",
+   "Tab": "monsters",
+   "Kind": "count",
+   "Target": "monsters.strength",
+   "Min": 0,
+   "Max": 2,
+   "Step": 1,
+   "Default": 0,
+   "Server": "difficulty_step",
+   "Name": "Monster strength",
+   "Help": "Each step: monsters have 15% more life and deal 10% more damage."
+  },
+  {
+   "Id": "monster_life",
+   "Tab": "monsters",
+   "Kind": "scale",
+   "Target": "monsters.life",
+   "Min": 0.75,
+   "Max": 2.0,
+   "Step": 0.25,
+   "Default": 1.0,
+   "Name": "Monster life",
+   "Help": "Monster and Guardian life."
+  },
+  {
+   "Id": "monster_damage",
+   "Tab": "monsters",
+   "Kind": "scale",
+   "Target": "monsters.damage",
+   "Min": 0.75,
+   "Max": 2.0,
+   "Step": 0.25,
+   "Default": 1.0,
+   "Name": "Monster damage",
+   "Help": "Monster and Guardian damage."
+  },
+  {
+   "Id": "champions",
+   "Tab": "monsters",
+   "Kind": "scale",
+   "Target": "rift.champions_pct",
+   "Min": 0,
+   "Max": 50,
+   "Step": 10,
+   "Default": 0,
+   "Name": "Magic packs",
+   "Help": "Extra chance (%) that a pack is led by magic monsters."
+  },
+  {
+   "Id": "ban_gems",
+   "Tab": "gems",
+   "Kind": "ban",
+   "Target": "skills",
+   "Default": [],
+   "Name": "Banned skill gems",
+   "Help": "These gems never drop. Starter and tutorial gems cannot be banned."
+  },
+  {
+   "Id": "all_gem_damage",
+   "Tab": "gems",
+   "Kind": "scale",
+   "Target": "skills.damage",
+   "Min": 0.75,
+   "Max": 1.25,
+   "Step": 0.05,
+   "Default": 1.0,
+   "Name": "All skill damage",
+   "Help": "Every skill's base damage."
+  },
+  {
+   "Id": "all_gem_cost",
+   "Tab": "gems",
+   "Kind": "scale",
+   "Target": "skills.cost",
+   "Min": 0.5,
+   "Max": 1.5,
+   "Step": 0.1,
+   "Default": 1.0,
+   "Name": "All skill mana cost",
+   "Help": "Every skill's mana cost."
+  },
+  {
+   "Id": "gem_damage",
+   "Tab": "gems",
+   "Kind": "scale_each",
+   "Target": "skills.damage",
+   "Min": 0.5,
+   "Max": 1.5,
+   "Step": 0.05,
+   "Default": {},
+   "Name": "Skill damage",
+   "Help": "One skill's base damage (starter skills keep at least 75%)."
+  },
+  {
+   "Id": "gem_cost",
+   "Tab": "gems",
+   "Kind": "scale_each",
+   "Target": "skills.cost",
+   "Min": 0.5,
+   "Max": 2.0,
+   "Step": 0.1,
+   "Default": {},
+   "Name": "Skill mana cost",
+   "Help": "One skill's mana cost."
+  },
+  {
+   "Id": "ban_supports",
+   "Tab": "supports",
+   "Kind": "ban",
+   "Target": "supports",
+   "Default": [],
+   "Name": "Banned supports",
+   "Help": "These supports never drop. Tutorial supports cannot be banned."
+  },
+  {
+   "Id": "support_damage",
+   "Tab": "supports",
+   "Kind": "scale_each",
+   "Target": "supports.more_damage",
+   "Min": 0.5,
+   "Max": 1.5,
+   "Step": 0.1,
+   "Default": {},
+   "Name": "Support damage",
+   "Help": "A support's 'more damage' line."
+  },
+  {
+   "Id": "support_cost",
+   "Tab": "supports",
+   "Kind": "scale_each",
+   "Target": "supports.mana_multiplier",
+   "Min": 0.75,
+   "Max": 1.5,
+   "Step": 0.05,
+   "Default": {},
+   "Name": "Support mana cost",
+   "Help": "A support's mana multiplier (a support that costs extra never becomes free)."
+  },
+  {
+   "Id": "ban_uniques",
+   "Tab": "items",
+   "Kind": "ban",
+   "Target": "uniques",
+   "Default": [],
+   "Name": "Banned reds",
+   "Help": "These red items never drop."
+  },
+  {
+   "Id": "unique_weight",
+   "Tab": "items",
+   "Kind": "scale_each",
+   "Target": "uniques.weight",
+   "Min": 0.25,
+   "Max": 3.0,
+   "Step": 0.25,
+   "Default": {},
+   "Name": "Red drop weight",
+   "Help": "How often a red drops."
+  },
+  {
+   "Id": "ban_mods",
+   "Tab": "items",
+   "Kind": "ban",
+   "Target": "affixes",
+   "Default": [],
+   "Name": "Banned mods",
+   "Help": "These mods never roll on items."
+  },
+  {
+   "Id": "mod_weight",
+   "Tab": "items",
+   "Kind": "scale_each",
+   "Target": "affixes.weight",
+   "Min": 0.0,
+   "Max": 3.0,
+   "Step": 0.25,
+   "Default": {},
+   "Name": "Mod weight",
+   "Help": "How often a mod rolls."
+  },
+  {
+   "Id": "minion_cap",
+   "Tab": "minions",
+   "Kind": "count",
+   "Target": "skills.minion_cap",
+   "Min": -2,
+   "Max": 2,
+   "Step": 1,
+   "Default": 0,
+   "Name": "Minions alive",
+   "Help": "Minions alive at once for every summon (never fewer than 1)."
+  },
+  {
+   "Id": "minion_life",
+   "Tab": "minions",
+   "Kind": "scale",
+   "Target": "skills.minion_life",
+   "Min": 0.5,
+   "Max": 2.0,
+   "Step": 0.25,
+   "Default": 1.0,
+   "Name": "Minion life",
+   "Help": "Every minion's life."
+  },
+  {
+   "Id": "minion_damage",
+   "Tab": "minions",
+   "Kind": "scale",
+   "Target": "skills.minion_damage",
+   "Min": 0.5,
+   "Max": 1.5,
+   "Step": 0.1,
+   "Default": 1.0,
+   "Name": "Minion damage",
+   "Help": "Every minion's damage."
+  },
+  {
+   "Id": "world_events",
+   "Tab": "mechanics",
+   "Kind": "toggle",
+   "Target": "mechanic.world_events",
+   "Default": true,
+   "Name": "World events",
+   "Help": "World events can appear in Ruptures."
+  },
+  {
+   "Id": "cube",
+   "Tab": "mechanics",
+   "Kind": "toggle",
+   "Target": "mechanic.cube",
+   "Default": true,
+   "Name": "The Oathstone Cube",
+   "Help": "The Cube can be used."
+  }
+ ]
+}

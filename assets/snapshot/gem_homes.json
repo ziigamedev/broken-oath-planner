@@ -1,0 +1,976 @@
+{
+ "homes": [
+  {
+   "Id": "strike",
+   "HomeClasses": [
+    "Warrior",
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Warrior",
+    "Paladin"
+   ]
+  },
+  {
+   "Id": "zap",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Mage",
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "ground_slam",
+   "HomeClasses": [
+    "Warrior",
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Warrior",
+    "Paladin"
+   ]
+  },
+  {
+   "Id": "leap_slam",
+   "HomeClasses": [
+    "Warrior",
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Warrior",
+    "Paladin"
+   ]
+  },
+  {
+   "Id": "ember_bolt",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Mage",
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "frost_nova",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Mage",
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "arc",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Mage",
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "vow_of_clarity",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer",
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Mage",
+    "Necromancer",
+    "Paladin"
+   ]
+  },
+  {
+   "Id": "vow_of_vigor",
+   "HomeClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin"
+   ]
+  },
+  {
+   "Id": "woe_of_withering",
+   "HomeClasses": [
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "toll_of_dread",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Mage",
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "death_sentence",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer",
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": [
+    "Mage",
+    "Necromancer",
+    "Ranger",
+    "Samurai"
+   ]
+  },
+  {
+   "Id": "jarls_roar",
+   "HomeClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin"
+   ]
+  },
+  {
+   "Id": "war_banner_skill",
+   "HomeClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin",
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "woe_of_cinders",
+   "HomeClasses": [
+    "Mage"
+   ],
+   "StarterClasses": [
+    "Mage"
+   ]
+  },
+  {
+   "Id": "woe_of_rime",
+   "HomeClasses": [
+    "Mage"
+   ],
+   "StarterClasses": [
+    "Mage"
+   ]
+  },
+  {
+   "Id": "woe_of_entropy",
+   "HomeClasses": [
+    "Necromancer"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "woe_of_the_tempest",
+   "HomeClasses": [
+    "Mage"
+   ],
+   "StarterClasses": [
+    "Mage"
+   ]
+  },
+  {
+   "Id": "woe_of_sundering",
+   "HomeClasses": [
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "woe_of_faltering",
+   "HomeClasses": [
+    "Mage"
+   ],
+   "StarterClasses": [
+    "Mage"
+   ]
+  },
+  {
+   "Id": "herald_of_embers",
+   "HomeClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin",
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "herald_of_rime",
+   "HomeClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin",
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "herald_of_storms",
+   "HomeClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin",
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "herald_of_rot",
+   "HomeClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin",
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "herald_of_steel",
+   "HomeClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin",
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "vow_of_the_bulwark",
+   "HomeClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin",
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "vow_of_iron",
+   "HomeClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin",
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "vow_of_the_wind",
+   "HomeClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin",
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "vow_of_warding",
+   "HomeClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin",
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "sentence_of_chains",
+   "HomeClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin",
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "sentence_of_rot",
+   "HomeClasses": [
+    "Necromancer"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "sentence_of_exposure",
+   "HomeClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin",
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "vow_of_zeal",
+   "HomeClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin",
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "vow_of_precision",
+   "HomeClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin",
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "vow_of_judgement",
+   "HomeClasses": [
+    "Warrior",
+    "Mage",
+    "Necromancer",
+    "Paladin",
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "storm_whirl",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Mage"
+   ]
+  },
+  {
+   "Id": "flame_dash",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Mage"
+   ]
+  },
+  {
+   "Id": "winter_orb",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Mage"
+   ]
+  },
+  {
+   "Id": "storm_brand",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Mage"
+   ]
+  },
+  {
+   "Id": "ember_spark",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Mage"
+   ]
+  },
+  {
+   "Id": "rime_spark",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Mage"
+   ]
+  },
+  {
+   "Id": "venom_spark",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Mage"
+   ]
+  },
+  {
+   "Id": "thunderfall",
+   "HomeClasses": [
+    "Mage"
+   ],
+   "StarterClasses": [
+    "Mage"
+   ]
+  },
+  {
+   "Id": "glacial_shards",
+   "HomeClasses": [
+    "Mage"
+   ],
+   "StarterClasses": [
+    "Mage"
+   ]
+  },
+  {
+   "Id": "wayward_orb",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Mage"
+   ]
+  },
+  {
+   "Id": "thousand_sparks",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Mage"
+   ]
+  },
+  {
+   "Id": "death_coil",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "summon_skeletons",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "summon_skeletal_mage",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "drain_life",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "vampire_dash",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "summon_bone_golem",
+   "HomeClasses": [
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "summon_flame_golem",
+   "HomeClasses": [
+    "Necromancer"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "summon_ice_golem",
+   "HomeClasses": [
+    "Necromancer"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "summon_storm_golem",
+   "HomeClasses": [
+    "Necromancer"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "summon_venom_golem",
+   "HomeClasses": [
+    "Necromancer"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "summon_zombie",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "grave_call",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "unholy_void",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "grave_reap",
+   "HomeClasses": [
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "soul_rend",
+   "HomeClasses": [
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "marrow_lance",
+   "HomeClasses": [
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "pyre_burst",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer"
+   ],
+   "StarterClasses": [
+    "Necromancer"
+   ]
+  },
+  {
+   "Id": "gravefeast",
+   "HomeClasses": [
+    "Necromancer"
+   ],
+   "StarterClasses": []
+  },
+  {
+   "Id": "holy_slash",
+   "HomeClasses": [
+    "Warrior",
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Paladin"
+   ]
+  },
+  {
+   "Id": "judgement",
+   "HomeClasses": [
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Paladin"
+   ]
+  },
+  {
+   "Id": "orbiting_hammers",
+   "HomeClasses": [
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Paladin"
+   ]
+  },
+  {
+   "Id": "hammerstorm",
+   "HomeClasses": [
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Paladin"
+   ]
+  },
+  {
+   "Id": "consecrated_ground",
+   "HomeClasses": [
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Paladin"
+   ]
+  },
+  {
+   "Id": "holy_charge",
+   "HomeClasses": [
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Paladin"
+   ]
+  },
+  {
+   "Id": "summon_holy_elemental",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer",
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Paladin"
+   ]
+  },
+  {
+   "Id": "pyre_of_faith",
+   "HomeClasses": [
+    "Mage",
+    "Necromancer",
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Paladin"
+   ]
+  },
+  {
+   "Id": "hallowed_slam",
+   "HomeClasses": [
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Paladin"
+   ]
+  },
+  {
+   "Id": "shield_throw",
+   "HomeClasses": [
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Paladin"
+   ]
+  },
+  {
+   "Id": "power_shot",
+   "HomeClasses": [
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": [
+    "Ranger"
+   ]
+  },
+  {
+   "Id": "split_shot",
+   "HomeClasses": [
+    "Ranger"
+   ],
+   "StarterClasses": [
+    "Ranger"
+   ]
+  },
+  {
+   "Id": "arrow_rain",
+   "HomeClasses": [
+    "Ranger"
+   ],
+   "StarterClasses": [
+    "Ranger"
+   ]
+  },
+  {
+   "Id": "wind_vault",
+   "HomeClasses": [
+    "Ranger"
+   ],
+   "StarterClasses": [
+    "Ranger"
+   ]
+  },
+  {
+   "Id": "lightning_arrow",
+   "HomeClasses": [
+    "Ranger"
+   ],
+   "StarterClasses": [
+    "Ranger"
+   ]
+  },
+  {
+   "Id": "summon_ballista",
+   "HomeClasses": [
+    "Ranger"
+   ],
+   "StarterClasses": [
+    "Ranger"
+   ]
+  },
+  {
+   "Id": "caustic_arrow",
+   "HomeClasses": [
+    "Ranger"
+   ],
+   "StarterClasses": [
+    "Ranger"
+   ]
+  },
+  {
+   "Id": "fuse_arrow",
+   "HomeClasses": [
+    "Ranger"
+   ],
+   "StarterClasses": [
+    "Ranger"
+   ]
+  },
+  {
+   "Id": "hoarfrost_volley",
+   "HomeClasses": [
+    "Ranger"
+   ],
+   "StarterClasses": [
+    "Ranger"
+   ]
+  },
+  {
+   "Id": "flurry",
+   "HomeClasses": [
+    "Samurai"
+   ],
+   "StarterClasses": [
+    "Samurai"
+   ]
+  },
+  {
+   "Id": "iaido_thrust",
+   "HomeClasses": [
+    "Samurai"
+   ],
+   "StarterClasses": [
+    "Samurai"
+   ]
+  },
+  {
+   "Id": "crescent_slash",
+   "HomeClasses": [
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": [
+    "Samurai"
+   ]
+  },
+  {
+   "Id": "shuriken_fan",
+   "HomeClasses": [
+    "Ranger",
+    "Samurai"
+   ],
+   "StarterClasses": [
+    "Samurai"
+   ]
+  },
+  {
+   "Id": "blade_vortex",
+   "HomeClasses": [
+    "Samurai"
+   ],
+   "StarterClasses": [
+    "Samurai"
+   ]
+  },
+  {
+   "Id": "thousand_cuts",
+   "HomeClasses": [
+    "Samurai"
+   ],
+   "StarterClasses": [
+    "Samurai"
+   ]
+  },
+  {
+   "Id": "sheathe",
+   "HomeClasses": [
+    "Samurai"
+   ],
+   "StarterClasses": [
+    "Samurai"
+   ]
+  },
+  {
+   "Id": "viper_fang",
+   "HomeClasses": [
+    "Samurai"
+   ],
+   "StarterClasses": [
+    "Samurai"
+   ]
+  },
+  {
+   "Id": "moonfall",
+   "HomeClasses": [
+    "Samurai"
+   ],
+   "StarterClasses": [
+    "Samurai"
+   ]
+  },
+  {
+   "Id": "cyclone",
+   "HomeClasses": [
+    "Warrior",
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Warrior"
+   ]
+  },
+  {
+   "Id": "shield_charge",
+   "HomeClasses": [
+    "Warrior",
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Warrior"
+   ]
+  },
+  {
+   "Id": "earthshatter",
+   "HomeClasses": [
+    "Warrior",
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Warrior"
+   ]
+  },
+  {
+   "Id": "rending_slam",
+   "HomeClasses": [
+    "Warrior",
+    "Paladin"
+   ],
+   "StarterClasses": [
+    "Warrior"
+   ]
+  },
+  {
+   "Id": "wheeling_axe",
+   "HomeClasses": [
+    "Warrior"
+   ],
+   "StarterClasses": [
+    "Warrior"
+   ]
+  }
+ ]
+}

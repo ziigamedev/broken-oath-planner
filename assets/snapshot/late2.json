@@ -1,0 +1,140 @@
+{
+ "skills": {
+  "arc": {
+   "From": 18,
+   "At": 24,
+   "Mult": 1.45
+  },
+  "caustic_arrow": {
+   "From": 18,
+   "At": 20,
+   "Mult": 0.93
+  },
+  "cyclone": {
+   "From": 18,
+   "At": 22,
+   "Mult": 1.3
+  },
+  "death_coil": {
+   "From": 18,
+   "At": 20,
+   "Mult": 1.65
+  },
+  "drain_life": {
+   "From": 18,
+   "At": 20,
+   "Mult": 1.0
+  },
+  "ember_bolt": {
+   "From": 18,
+   "At": 24,
+   "Mult": 1.8
+  },
+  "ember_spark": {
+   "From": 18,
+   "At": 24,
+   "Mult": 1.45
+  },
+  "flurry": {
+   "From": 18,
+   "At": 24,
+   "Mult": 1.3
+  },
+  "frost_nova": {
+   "From": 18,
+   "At": 24,
+   "Mult": 1.45
+  },
+  "fuse_arrow": {
+   "From": 18,
+   "At": 22,
+   "Mult": 1.85
+  },
+  "glacial_shards": {
+   "From": 18,
+   "At": 22,
+   "Mult": 1.12
+  },
+  "hoarfrost_volley": {
+   "From": 18,
+   "At": 22,
+   "Mult": 1.12
+  },
+  "judgement": {
+   "From": 16,
+   "At": 21,
+   "Mult": 0.536
+  },
+  "lightning_arrow": {
+   "From": 18,
+   "At": 22,
+   "Mult": 1.25
+  },
+  "pyre_of_faith": {
+   "From": 18,
+   "At": 20,
+   "Mult": 1.25
+  },
+  "rime_spark": {
+   "From": 18,
+   "At": 24,
+   "Mult": 2.0
+  },
+  "split_shot": {
+   "From": 6,
+   "At": 8,
+   "Mult": 1.062
+  },
+  "storm_brand": {
+   "From": 18,
+   "At": 21,
+   "Mult": 1.19
+  },
+  "summon_bone_golem": {
+   "From": 18,
+   "At": 20,
+   "Mult": 0.82
+  },
+  "summon_skeletal_mage": {
+   "From": 18,
+   "At": 20,
+   "Mult": 1.35
+  },
+  "summon_skeletons": {
+   "From": 18,
+   "At": 20,
+   "Mult": 1.69
+  },
+  "summon_zombie": {
+   "From": 18,
+   "At": 20,
+   "Mult": 1.56
+  },
+  "thousand_cuts": {
+   "From": 18,
+   "At": 24,
+   "Mult": 1.3
+  },
+  "thousand_sparks": {
+   "From": 18,
+   "At": 24,
+   "Mult": 1.45
+  },
+  "venom_spark": {
+   "From": 18,
+   "At": 20,
+   "Mult": 1.5
+  },
+  "winter_orb": {
+   "From": 18,
+   "At": 24,
+   "Mult": 1.95
+  },
+  "zap": {
+   "From": 18,
+   "At": 24,
+   "Mult": 1.45
+  }
+ },
+ "rule": "x1 up to gem From, straight line to xMult at gem At, flat after; multiplies on top of EffectivenessAt (formulas.md section 8)"
+}

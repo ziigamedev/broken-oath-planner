@@ -1,0 +1,240 @@
+{
+ "guardians": {
+  "g_alpha_werewolf": {
+   "Cold": 20.0,
+   "Fire": -20.0
+  },
+  "g_antlered_hunger": {
+   "Cold": 20.0,
+   "Fire": -20.0
+  },
+  "g_anubis": {
+   "Fire": -20.0,
+   "Poison": 20.0
+  },
+  "g_ashen_wyrm": {
+   "Cold": -20.0,
+   "Fire": 20.0
+  },
+  "g_bone_sovereign": {
+   "Cold": -20.0,
+   "Fire": 20.0
+  },
+  "g_brass_colossus": {
+   "Fire": 20.0,
+   "Lightning": -20.0
+  },
+  "g_centaur_chieftain": {
+   "Lightning": 20.0,
+   "Poison": -20.0
+  },
+  "g_crystal_crasher": {
+   "Lightning": 20.0,
+   "Poison": -20.0
+  },
+  "g_crystal_matriarch": {
+   "Cold": 20.0,
+   "Lightning": -20.0
+  },
+  "g_cyclops_tyrant": {
+   "Lightning": 20.0,
+   "Poison": -20.0
+  },
+  "g_deep_warden": {
+   "Lightning": -20.0,
+   "Poison": 20.0
+  },
+  "g_demon_warlord": {
+   "Cold": -20.0,
+   "Fire": 20.0
+  },
+  "g_elysia": {
+   "Fire": 20.0,
+   "Poison": -20.0
+  },
+  "g_heartwood_ancient": {
+   "Fire": -20.0,
+   "Poison": 20.0
+  },
+  "g_hellguard": {
+   "Fire": 20.0,
+   "Lightning": -20.0
+  },
+  "g_hollow_knight": {
+   "Lightning": -20.0,
+   "Poison": 20.0
+  },
+  "g_hydra": {
+   "Fire": -20.0,
+   "Poison": 20.0
+  },
+  "g_jarl_hrafn": {
+   "Cold": 20.0,
+   "Lightning": -20.0
+  },
+  "g_mire_colossus": {
+   "Fire": -20.0,
+   "Poison": 20.0
+  },
+  "g_mountain_king": {
+   "Cold": 20.0,
+   "Fire": -20.0
+  },
+  "g_ogre_warlord": {
+   "Cold": -20.0,
+   "Fire": 20.0
+  },
+  "g_ossuary_king": {
+   "Fire": -20.0,
+   "Poison": 20.0
+  },
+  "g_rock_titan": {
+   "Cold": -20.0,
+   "Lightning": 20.0
+  },
+  "g_steel_guardian": {
+   "Fire": 20.0,
+   "Lightning": -20.0
+  },
+  "g_vampire_lord": {
+   "Fire": -20.0,
+   "Poison": 20.0
+  },
+  "g_void_archon": {
+   "Lightning": 20.0,
+   "Poison": -20.0
+  }
+ },
+ "identity": {
+  "g_alpha_werewolf": [
+   "Cold",
+   "Fire"
+  ],
+  "g_antlered_hunger": [
+   "Cold",
+   "Fire"
+  ],
+  "g_anubis": [
+   "Poison",
+   "Fire"
+  ],
+  "g_ashen_wyrm": [
+   "Fire",
+   "Cold"
+  ],
+  "g_bone_sovereign": [
+   "Fire",
+   "Cold"
+  ],
+  "g_brass_colossus": [
+   "Fire",
+   "Lightning"
+  ],
+  "g_centaur_chieftain": [
+   "Lightning",
+   "Poison"
+  ],
+  "g_crystal_crasher": [
+   "Lightning",
+   "Poison"
+  ],
+  "g_crystal_matriarch": [
+   "Cold",
+   "Lightning"
+  ],
+  "g_cyclops_tyrant": [
+   "Lightning",
+   "Poison"
+  ],
+  "g_deep_warden": [
+   "Poison",
+   "Lightning"
+  ],
+  "g_demon_warlord": [
+   "Fire",
+   "Cold"
+  ],
+  "g_elysia": [
+   "Fire",
+   "Poison"
+  ],
+  "g_heartwood_ancient": [
+   "Poison",
+   "Fire"
+  ],
+  "g_hellguard": [
+   "Fire",
+   "Lightning"
+  ],
+  "g_hollow_knight": [
+   "Poison",
+   "Lightning"
+  ],
+  "g_hydra": [
+   "Poison",
+   "Fire"
+  ],
+  "g_jarl_hrafn": [
+   "Cold",
+   "Lightning"
+  ],
+  "g_mire_colossus": [
+   "Poison",
+   "Fire"
+  ],
+  "g_mountain_king": [
+   "Cold",
+   "Fire"
+  ],
+  "g_ogre_warlord": [
+   "Fire",
+   "Cold"
+  ],
+  "g_ossuary_king": [
+   "Poison",
+   "Fire"
+  ],
+  "g_rock_titan": [
+   "Lightning",
+   "Cold"
+  ],
+  "g_steel_guardian": [
+   "Fire",
+   "Lightning"
+  ],
+  "g_vampire_lord": [
+   "Poison",
+   "Fire"
+  ],
+  "g_void_archon": [
+   "Lightning",
+   "Poison"
+  ]
+ },
+ "shift": {
+  "Cold": {
+   "exact": 9.7,
+   "kill_time_x": 1.065,
+   "strong": 20.0,
+   "weak": -20.0
+  },
+  "Fire": {
+   "exact": 14.4,
+   "kill_time_x": 1.039,
+   "strong": 20.0,
+   "weak": -20.0
+  },
+  "Lightning": {
+   "exact": 17.1,
+   "kill_time_x": 1.013,
+   "strong": 20.0,
+   "weak": -20.0
+  },
+  "Poison": {
+   "exact": 9.1,
+   "kill_time_x": 1.055,
+   "strong": 20.0,
+   "weak": -20.0
+  }
+ }
+}

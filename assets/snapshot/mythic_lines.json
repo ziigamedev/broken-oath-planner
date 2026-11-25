@@ -1,0 +1,337 @@
+{
+ "lines": [
+  {
+   "Id": "mythic_kingsblood",
+   "Type": "Mythic",
+   "Group": "Mythic85",
+   "BaseTags": [
+    "Mythic85"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "SkillLevel",
+    "Mode": "Flat",
+    "Tags": [
+     "Gem"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 1,
+     "Min": 1,
+     "Max": 1,
+     "Name": "Kingsblood",
+     "Weight": 0
+    }
+   ]
+  },
+  {
+   "Id": "mythic_starless",
+   "Type": "Mythic",
+   "Group": "Mythic85",
+   "BaseTags": [
+    "Mythic85"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "MaxResist",
+    "Mode": "Flat",
+    "Tags": [
+     "Elemental"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 1,
+     "Min": 2,
+     "Max": 2,
+     "Name": "Starless",
+     "Weight": 0
+    }
+   ]
+  },
+  {
+   "Id": "mythic_unbroken",
+   "Type": "Mythic",
+   "Group": "Mythic85",
+   "BaseTags": [
+    "Mythic85"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Life",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 1,
+     "Min": 10,
+     "Max": 10,
+     "Name": "Unbroken",
+     "Weight": 0
+    }
+   ]
+  },
+  {
+   "Id": "mythic_emberheart",
+   "Type": "Mythic",
+   "Group": "Mythic85",
+   "BaseTags": [
+    "Mythic85"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Damage",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 1,
+     "Min": 30,
+     "Max": 30,
+     "Name": "Emberheart",
+     "Weight": 0
+    }
+   ]
+  },
+  {
+   "Id": "mythic_swiftvow",
+   "Type": "Mythic",
+   "Group": "Mythic85",
+   "BaseTags": [
+    "Mythic85"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "MoveSpeed",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 1,
+     "Min": 10,
+     "Max": 10,
+     "Name": "Swiftvow",
+     "Weight": 0
+    }
+   ]
+  },
+  {
+   "Id": "mythic_deepcut",
+   "Type": "Mythic",
+   "Group": "Mythic85",
+   "BaseTags": [
+    "Mythic85"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "CritMulti",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 1,
+     "Min": 30,
+     "Max": 30,
+     "Name": "Deepcut",
+     "Weight": 0
+    }
+   ]
+  },
+  {
+   "Id": "mythic_breaker_world",
+   "Type": "Mythic",
+   "Group": "Mythic85",
+   "BaseTags": [
+    "Mythic85"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Damage",
+    "Mode": "More",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 1,
+     "Min": 200,
+     "Max": 200,
+     "Name": "Worldbreaker",
+     "Weight": 0
+    }
+   ]
+  },
+  {
+   "Id": "mythic_breaker_world_minion",
+   "Type": "Mythic",
+   "Group": "Mythic85",
+   "BaseTags": [
+    "Mythic85"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "MinionDamage",
+    "Mode": "More",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 1,
+     "Min": 200,
+     "Max": 200,
+     "Name": "Worldbreaker",
+     "Weight": 0
+    }
+   ]
+  },
+  {
+   "Id": "mythic_breaker_worldhalf",
+   "Type": "Mythic",
+   "Group": "Mythic85",
+   "BaseTags": [
+    "Mythic85"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "Damage",
+    "Mode": "More",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 1,
+     "Min": 100,
+     "Max": 100,
+     "Name": "Worldbreaker",
+     "Weight": 0
+    }
+   ]
+  },
+  {
+   "Id": "mythic_breaker_worldhalf_minion",
+   "Type": "Mythic",
+   "Group": "Mythic85",
+   "BaseTags": [
+    "Mythic85"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "MinionDamage",
+    "Mode": "More",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 1,
+     "Min": 100,
+     "Max": 100,
+     "Name": "Worldbreaker",
+     "Weight": 0
+    }
+   ]
+  },
+  {
+   "Id": "mythic_breaker_crown",
+   "Type": "Mythic",
+   "Group": "Mythic85",
+   "BaseTags": [
+    "Mythic85"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "SkillLevel",
+    "Mode": "Flat",
+    "Tags": [
+     "Gem"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 1,
+     "Min": 3,
+     "Max": 3,
+     "Name": "Kingmaker",
+     "Weight": 0
+    }
+   ]
+  },
+  {
+   "Id": "mythic_breaker_sky",
+   "Type": "Mythic",
+   "Group": "Mythic85",
+   "BaseTags": [
+    "Mythic85"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "MaxResist",
+    "Mode": "Flat",
+    "Tags": [
+     "Elemental"
+    ],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 1,
+     "Min": 5,
+     "Max": 5,
+     "Name": "Starwall",
+     "Weight": 0
+    }
+   ]
+  },
+  {
+   "Id": "mythic_voidheart",
+   "Type": "Mythic",
+   "Group": "Mythic85",
+   "BaseTags": [
+    "Mythic85"
+   ],
+   "ExcludeTags": [],
+   "Weight": 0,
+   "Mod": {
+    "Stat": "EntropyMulti",
+    "Mode": "Flat",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 1,
+     "Min": 20,
+     "Max": 20,
+     "Name": "Voidheart",
+     "Weight": 0
+    }
+   ]
+  }
+ ]
+}
