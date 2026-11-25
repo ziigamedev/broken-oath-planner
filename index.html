@@ -993,6 +993,19 @@ body.adv-open{overflow:hidden}
 .gp-tab.active{background:linear-gradient(180deg,var(--gold2),var(--gold));border-color:#7c5c1e;color:#12100e;box-shadow:0 3px 10px color-mix(in srgb, var(--gold) 28%, transparent)}
 .gp-tab-count{font-family:"IBM Plex Sans",sans-serif;font-size:12px;font-weight:700;background:var(--chip);border:1px solid var(--line2);color:var(--muted);border-radius:999px;padding:1px 8px;font-variant-numeric:tabular-nums}
 .gp-tab.active .gp-tab-count{background:rgba(18,16,14,.16);border-color:rgba(18,16,14,.25);color:#12100e}
+/* Gear picker — the two working views, Item and Affixes, as a tab
+   strip above the scrolling area, in the same shape as the weapon
+   panel's Weapon base / Affixes tabs. The catalogue tabs (Basic /
+   Unique / Oathword), the filter, the type chips, the sort and the
+   list live in the Item view; the draft pick's editor (base, item
+   level, rarity, sockets, affixes) lives in the Affixes view. The
+   foot bar with the gold Add item button sits under both views. */
+.gp-view-tabs{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;flex:0 0 auto}
+.gp-view-tab{flex:1 1 150px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:10px 14px;border-radius:var(--radius-sm);font-weight:700;cursor:pointer;font-family:Cinzel,serif;letter-spacing:.03em;font-size:14.5px;min-height:44px;transition:background .16s ease,border-color .16s ease,color .16s ease,box-shadow .16s ease}
+.gp-view-tab:hover:not([disabled]){border-color:var(--gold);color:var(--text)}
+.gp-view-tab.active{background:linear-gradient(180deg,var(--gold2),var(--gold));border-color:#7c5c1e;color:#12100e;box-shadow:0 3px 10px color-mix(in srgb, var(--gold) 28%, transparent)}
+.gp-view-tab[disabled]{opacity:.45;cursor:default}
+.gp-view-tab.active .gp-tab-count{background:rgba(18,16,14,.16);border-color:rgba(18,16,14,.25);color:#12100e}
 .gp-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:8px;margin-top:12px;max-height:none;overflow:visible}
 .gp-list .opt{border:1px solid var(--line2);border-radius:var(--radius-sm);background:var(--panel2);height:100%;justify-content:flex-start}
 .gp-list .opt:hover{border-color:var(--line)}
@@ -4646,19 +4659,20 @@ var DICT={
 "Basic":"基础",
 "Base":"基底",
 "Tap a slot to add an item — pick one, set it up, then press Add. Nothing goes into your build until you do.":"点击一个槽位添加物品 — 挑选一件、设置好，再按“添加”。在此之前，你的构建不会有任何改动。",
-"Pick an item, set it up below — base, rarity, sockets, affixes — then press ":"挑选一件物品，在下方设置它 — 基底、稀有度、插槽、词缀 — 然后按",
+"Pick an item on the Item tab, set it up on the Affixes tab — base, rarity, sockets, affixes — then press ":"在“物品”标签页挑选一件物品，在“词缀”标签页设置它 — 基底、稀有度、插槽、词缀 — 然后按",
 "Add item":"添加物品",
 " at the bottom. Nothing goes into your build until you press it, and closing this panel throws the pick away. To keep a finished build for next time, use ":"（位于底部）。在按下它之前，你的构建不会有任何改动，关闭此面板会丢弃这次挑选。若要把完成的构建留到下次，请使用",
 " at the foot of the planner.":"（位于规划器底部）。",
 "Your pick":"你的挑选",
 "Set it up here — it goes into your build only when you press Add item below.":"在这里设置它 — 只有按下方的“添加物品”后，它才会进入你的构建。",
-"No item picked yet — pick one above.":"尚未挑选物品 — 在上方挑选一件。",
+"No item picked yet — pick one on the Item tab.":"尚未挑选物品 — 在“物品”标签页挑选一件。",
 "Picked":"已挑选",
-"The filter narrows the list by name or by the mods on an item, the chips narrow it to one type of item, and the Sort menu orders the list — by level, by name, by type, or by damage on items that carry damage numbers. Your pick is set up right below the list: base, rarity, sockets and affixes. Press Add item at the bottom when it is ready.":"筛选框按名称或物品词缀缩小列表，标签页签把列表缩小到一种物品类型，排序菜单则按等级、名称、类型，或按带伤害数值的物品的伤害来排序列表。你的挑选就在列表下方设置：基底、稀有度、插槽与词缀。准备好后，按底部的“添加物品”。",
-"Every runeword that fits this slot, with its runes in order and its mods on the card — all from the game’s own runeword data. Picking one lists the bases it fits; picking a base makes the whole item your pick below — Normal with the runes already socketed — ready to Add.":"所有能装入此槽位的符文之语，符文按顺序排列，词缀都写在卡片上 — 全部来自游戏自己的符文之语数据。选中一个会列出它能装的基底；选中基底后，整件物品会成为你下方的挑选：一件普通基底，符文已经镶好 — 准备添加。",
-"These are the bases in this slot the runeword fits. Picking one makes it your pick below — a Normal base with the runes already socketed — where you set its item level and see its lines, then press Add item.":"这些是此槽位中该符文之语能装的基底。选中一件会让它成为你下方的挑选 — 一件普通基底，符文已经镶好 — 在那里你可以设置它的物品等级并查看它的词条，然后按“添加物品”。",
-"Pick the base — your pick is created whole below: a ":"挑选基底 — 你的挑选会在下方整件生成：一件",
-" base with these runes already socketed, so it is the Oathword the moment you Add it. Its lines are the runeword’s, counted at the item level set in the editor below.":"基底，符文已经镶好，所以你按下添加的那一刻它就是誓言之语。它的词条就是符文之语的词条，按下方编辑器中设定的物品等级计算。",
+"The filter narrows the list by name or by the mods on an item, the chips narrow it to one type of item, and the Sort menu orders the list — by level, by name, by type, or by damage on items that carry damage numbers. Your pick is set up on the Affixes tab: base, rarity, sockets and affixes. Press Add item at the bottom when it is ready.":"筛选框按名称或物品词缀缩小列表，标签页签把列表缩小到一种物品类型，排序菜单则按等级、名称、类型，或按带伤害数值的物品的伤害来排序列表。你的挑选在“词缀”标签页中设置：基底、稀有度、插槽与词缀。准备好后，按底部的“添加物品”。",
+"Every runeword that fits this slot, with its runes in order and its mods on the card — all from the game’s own runeword data. Picking one lists the bases it fits; picking a base makes the whole item your pick on the Affixes tab — Normal with the runes already socketed — ready to Add.":"所有能装入此槽位的符文之语，符文按顺序排列，词缀都写在卡片上 — 全部来自游戏自己的符文之语数据。选中一个会列出它能装的基底；选中基底后，整件物品会成为你在“词缀”标签页的挑选：一件普通基底，符文已经镶好 — 准备添加。",
+"These are the bases in this slot the runeword fits — the only ones listed — and the filter narrows them by name or mod. Picking one makes it your pick on the Affixes tab — a Normal base with the runes already socketed — where you set its item level and see its lines, then press Add item.":"这些是此槽位中该符文之语能装的基底 — 这里只列出这些 — 上方的筛选框可按名称或词缀缩小范围。选中一件会让它成为你在“词缀”标签页的挑选 — 一件普通基底，符文已经镶好 — 在那里你可以设置它的物品等级并查看它的词条，然后按“添加物品”。",
+"Pick the base — only the bases in this slot that ":"挑选基底 — 这里只列出此槽位中",
+" can form on are listed; the rest are hidden because they can’t take this runeword. The filter above narrows the list by name or mod. Your pick is created whole on the Affixes tab: a ":"真正能装上的基底；其余的都被隐藏，因为它们装不了这个符文之语。上方的筛选框可按名称或词缀缩小列表。你的挑选会在“词缀”标签页整件生成：一件",
+" base with these runes already socketed, so it is the Oathword the moment you Add it. Its lines are the runeword’s, counted at the item level set there.":"基底，符文已经镶好，所以你按下添加的那一刻它就是誓言之语。它的词条就是符文之语的词条，按那里设定的物品等级计算。",
 "Socket runes in order — each one lands on your pick at once, with its own line shown under its socket. On a ":"按顺序镶嵌符文 — 每颗符文立即落到你的挑选中，它自己的词条显示在插槽下方。在一件",
 " item, the moment a sequence matches a runeword for this base your pick becomes that Oathword, its lines right here. A Magic or Rare item with the very same runes stays itself.":"物品上，一旦符文序列与此基底的某个符文之语吻合，你的挑选立刻变成那件誓言之语，它的词条就出现在这里。镶着完全相同符文的魔法或稀有物品则不会变化。",
 "A rune came out, so the Oathword came undone — your pick is a plain Normal base again, its remaining runes still socketed.":"一颗符文被取出，誓言之语随之消散 — 你的挑选恢复为普通的普通基底，其余符文仍镶嵌着。",
@@ -5956,7 +5970,7 @@ var RULES=[
  [/^([\s\S]+) stands on this item, and an Oathword can only exist on a Normal item — so the rarity is locked while it stands\. Nothing here can silently drop a socket or a rune: to change the rarity, take a rune out first \(the Oathword comes undone, out in the open\)\.$/,function(m){return m[1]+' 正立于这件物品上，而誓言之语只能存在于普通物品上 — 所以它存在期间稀有度被锁定。这里任何操作都不会悄悄丢掉插槽或符文：要更改稀有度，先取出一颗符文（誓言之语会随之公开消散）。';}],
  [/^([\s\S]+) stands on this item — its rarity is locked at Normal while the Oathword stands\. Take a rune out first if you want to change it\.$/,function(m){return m[1]+' 正立于这件物品上 — 誓言之语存在期间，其稀有度锁定为普通。若要更改，先取出一颗符文。';}],
  [/^Pick the item for ([\s\S]+) — nothing is added yet\.$/,function(m){return '为'+slotZh(m[1])+'挑选物品 — 尚未添加任何东西。';}],
- [/^Nothing picked for ([\s\S]+) yet — pick an item above and it lands here, ready to set up\. It goes into your build only when you press Add item\.$/,function(m){return slotZh(m[1])+'尚未挑选物品 — 在上方点选一件，它会出现在这里供你设置。只有按下“添加物品”后，它才会进入你的构建。';}],
+ [/^Nothing picked for ([\s\S]+) yet — pick an item on the Item tab and it lands here, ready to set up\. It goes into your build only when you press Add item\.$/,function(m){return slotZh(m[1])+'尚未挑选物品 — 在“物品”标签页点选一件，它会出现在这里供你设置。只有按下“添加物品”后，它才会进入你的构建。';}],
  [/^— ready to add to ([\s\S]+)$/,function(m){return '— 准备添加到'+slotZh(m[1]);}],
  [/^— adding it to ([\s\S]+) would do this to your build:$/,function(m){return '— 将它添加到'+slotZh(m[1])+'会对你的构建造成以下变化：';}],
  [/^([\s\S]+) picked for ([\s\S]+) — set it up below, then press Add item to put it in your build\.$/,function(m){return m[1]+' 已为'+slotZh(m[2])+'挑选 — 在下方设置好，然后按“添加物品”将其放入你的构建。';}],
@@ -13674,7 +13688,7 @@ function applyGear(g){
    that order. Every edit touches the draft only; the Add button
    in the sheet's foot bar is the one step that puts the item
    into the build, and closing the picker throws the draft away. */
-var gearPick={slot:null,q:'',type:'All',sel:null,rows:[],note:'',showUniques:false,view:'pick',runes:[],mode:'items',rwPick:null,sockSel:'',sorts:{items:'level-desc',rw:'level-asc',rwBases:'level-desc'}};
+var gearPick={slot:null,q:'',type:'All',sel:null,rows:[],note:'',showUniques:false,view:'item',runes:[],mode:'items',rwPick:null,sockSel:'',sorts:{items:'level-desc',rw:'level-asc',rwBases:'level-desc'}};
 /* The crafting bench is hidden for now — a future feature. Its
    code (the bench panel, the per-line re-rolls, the roll counter
    and the best-roll keeper) stays in place below; flipping this
@@ -13788,9 +13802,9 @@ function gearPickFiltered(noType){
   return {uns:uns,bases:bases,gw:gw};
 }
 /* The picker's three tabs — Basic, Unique and Oathword — over one
-   list on one screen. Picking an item in any of them makes it the
-   draft pick; its editor sits under the list on the same screen,
-   and only the Add button puts the pick into the build. The
+   list in the Item view. Picking an item in any of them makes it
+   the draft pick; its editor sits in the Affixes view, and only
+   the Add button puts the pick into the build. The
    Oathword tab appears only where
    the game has Oathwords for the slot — weapons, body armour and
    helms (and the off-hand pieces the runeword data names) — never
@@ -13818,6 +13832,44 @@ function gpSetMode(mode){
   if(mode!=='rwBases')gearPick.rwPick=null;
   gearPick.showUniques=(mode==='uniques');
   gpRenderPickerList();
+  var sc=$('gpScroll'); if(sc)sc.scrollTop=0;
+}
+/* The picker's two working views — Item and Affixes — as tabs, the
+   way the planner's weapon panel splits Weapon base and Affixes.
+   The Item view holds the catalogue tabs (Basic / Unique /
+   Oathword), the item filter, the type chips, the sort and the
+   list — in Oathword mode too: picking a runeword lists only the
+   bases it fits, and the filter stays live on that list. The
+   Affixes view holds the draft pick's editor: base, item level,
+   rarity, sockets and the affix rows. The Affixes tab stays
+   disabled until a pick exists, and picking a new item opens the
+   Affixes view on it. Nothing reaches the build in either view —
+   the gold Add item button in the foot bar, visible under both
+   views, is still the one commit. */
+function gpRenderViewTabs(){
+  var tabs=$('gpViewTabs'); if(!tabs)return;
+  var view=gearPick.view||'item';
+  tabs.querySelectorAll('[data-gp-view]').forEach(function(b){
+    var on=b.getAttribute('data-gp-view')===view;
+    b.classList.toggle('active',on);
+    b.setAttribute('aria-selected',on?'true':'false');
+  });
+  var aff=tabs.querySelector('[data-gp-view="affixes"]');
+  if(aff){
+    aff.disabled=!gearPick.sel;
+    var cnt=aff.querySelector('.gp-tab-count');
+    if(cnt)cnt.textContent=String(gearPick.sel?(gearPick.rows?gearPick.rows.length:0):0);
+  }
+}
+function gpSetView(view){
+  if(view==='affixes'&&!gearPick.sel)view='item';
+  gearPick.view=view;
+  var vi=$('gpViewItem'), va=$('gpViewAffixes');
+  if(vi)vi.classList.toggle('hidden',view!=='item');
+  if(va)va.classList.toggle('hidden',view!=='affixes');
+  var sheet=document.querySelector('.sheet-picker');
+  if(sheet)sheet.classList.toggle('is-affixes',view==='affixes');
+  gpRenderViewTabs();
   var sc=$('gpScroll'); if(sc)sc.scrollTop=0;
 }
 /* The Oathword tab is the planner shortcut — "Build an Oathword
@@ -13862,11 +13914,16 @@ function gpRwBasesHTML(){
   var rec=rwById(gearPick.rwPick);
   if(!rec)return gpRwListHTML();
   var toks=gearPick.q.toLowerCase().split(/\s+/).filter(Boolean);
-  var bases=gpSortBases(gpRwSlotBases(rec).filter(function(b){return !toks.length||toks.every(function(t){return b.Name.toLowerCase().indexOf(t)>=0})}));
+  /* Only bases the chosen runeword actually fits are ever listed,
+     and the item filter stays live on this list — matched against
+     the same name / mod / type text as the ordinary base list, so
+     the fitting bases can be narrowed by what they do, not just
+     by name. */
+  var bases=gpSortBases(gpRwSlotBases(rec).filter(function(b){return !toks.length||toks.every(function(t){return gpFilterHaystack(b,null).indexOf(t)>=0||gpTypeLabel(b).toLowerCase().indexOf(t)>=0})}));
   var head='<div class="gp-rw-head"><button class="btn small" data-gp-rw-back type="button">&larr; All Oathwords</button>'
    +' <b class="rw" style="font-size:15px">'+esc(rec.Name)+'</b> <span class="tag">Lv '+rec.Level+'</span>'
    +'<div class="rw-runes">'+rwRuneChipsHTML(rec)+'</div>'
-   +'<p class="sub" style="margin:0">Pick the base — your pick is created whole below: a <b>Normal</b> base with these runes already socketed, so it is the Oathword the moment you Add it. Its lines are the runeword&rsquo;s, counted at the item level set in the editor below.</p></div>';
+   +'<p class="sub" style="margin:0">Pick the base — only the bases in this slot that '+esc(rec.Name)+' can form on are listed; the rest are hidden because they can&rsquo;t take this runeword. The filter above narrows the list by name or mod. Your pick is created whole on the Affixes tab: a <b>Normal</b> base with these runes already socketed, so it is the Oathword the moment you Add it. Its lines are the runeword&rsquo;s, counted at the item level set there.</p></div>';
   if(!bases.length)return head+'<p class="sub gp-empty">No base for '+esc(rec.Name)+' matches that filter.</p>';
   function rwBaseBtn(b){var picked=gearPick.sel&&!gearPick.sel.uniqueId&&gearPick.sel.baseId===b.Id; return '<button class="opt'+(picked?' gp-selected':'')+'" data-gp-base="'+esc(b.Id)+'" data-gp-unique="" type="button" aria-label="'+esc(b.Name)+' — make it as '+esc(rec.Name)+'"><span class="item-flex">'+itemIconHTML(b,'Normal',36)+'<span style="flex:1;min-width:0"><b>'+esc(b.Name)+'</b><br><small class="sub">Lv '+b.Level+' • becomes '+esc(rec.Name)+'</small></span>'+(picked?'<span class="gp-picked">Picked</span>':'')+'</span></button>'}
   var basesHTML=(gearPick.slot==='MainHand'||gearPick.slot==='OffHand')?gpGroupedHTML(bases,rwBaseBtn):bases.map(rwBaseBtn).join('');
@@ -14074,17 +14131,30 @@ function gpRenderPickerList(){
       e.preventDefault();
     });}
   gpRenderSteps();
-  /* One screen: the tab's list on top, the draft pick's editor
-     underneath it — no steps, nothing hidden behind a second
-     screen. Picking an item makes it the draft and the editor
-     below shows it; every edit there touches the draft only. */
+  /* The Item view: the catalogue tab's list, with the filter, the
+     type chips and the Sort menu above it. The filter stays on
+     screen in every mode — on the Oathword list, and on a chosen
+     runeword's bases, where it narrows only the bases that
+     runeword fits. Picking an item makes it the draft and opens
+     the Affixes view on it; every edit there touches the draft
+     only. */
   var intro=$('gpIntro');
   if(intro){
     var sd=gearDef(gearPick.slot);
-    if(gearPick.mode==='rw')intro.innerHTML='<b>Pick the Oathword for '+(sd?esc(sd.label):'this slot')+'.</b> Every runeword that fits this slot, with its runes in order and its mods on the card — all from the game&rsquo;s own runeword data. Picking one lists the bases it fits; picking a base makes the whole item your pick below — Normal with the runes already socketed — ready to Add.';
-    else if(gearPick.mode==='rwBases'){var rwI=rwById(gearPick.rwPick); intro.innerHTML='<b>Pick the base for '+(rwI?esc(rwI.Name):'the Oathword')+'.</b> These are the bases in this slot the runeword fits. Picking one makes it your pick below — a Normal base with the runes already socketed — where you set its item level and see its lines, then press Add item.';}
-    else intro.innerHTML='<b>Pick the item for '+(sd?esc(sd.label):'this slot')+' — nothing is added yet.</b> The filter narrows the list by name or by the mods on an item, the chips narrow it to one type of item, and the Sort menu orders the list — by level, by name, by type, or by damage on items that carry damage numbers. Your pick is set up right below the list: base, rarity, sockets and affixes. Press Add item at the bottom when it is ready.';
+    if(gearPick.mode==='rw')intro.innerHTML='<b>Pick the Oathword for '+(sd?esc(sd.label):'this slot')+'.</b> Every runeword that fits this slot, with its runes in order and its mods on the card — all from the game&rsquo;s own runeword data. Picking one lists the bases it fits; picking a base makes the whole item your pick on the Affixes tab — Normal with the runes already socketed — ready to Add.';
+    else if(gearPick.mode==='rwBases'){var rwI=rwById(gearPick.rwPick); intro.innerHTML='<b>Pick the base for '+(rwI?esc(rwI.Name):'the Oathword')+'.</b> These are the bases in this slot the runeword fits — the only ones listed — and the filter narrows them by name or mod. Picking one makes it your pick on the Affixes tab — a Normal base with the runes already socketed — where you set its item level and see its lines, then press Add item.';}
+    else intro.innerHTML='<b>Pick the item for '+(sd?esc(sd.label):'this slot')+' — nothing is added yet.</b> The filter narrows the list by name or by the mods on an item, the chips narrow it to one type of item, and the Sort menu orders the list — by level, by name, by type, or by damage on items that carry damage numbers. Your pick is set up on the Affixes tab: base, rarity, sockets and affixes. Press Add item at the bottom when it is ready.';
   }
+  /* The filter box names what it filters in the mode on screen,
+     so it never reads as lost in Oathword mode: on a chosen
+     runeword it filters that runeword's fitting bases. */
+  var gsEl=$('gpSearch');
+  if(gsEl){
+    if(gearPick.mode==='rwBases'){var rwPh=rwById(gearPick.rwPick); gsEl.placeholder='Filter the bases '+(rwPh?rwPh.Name:'this Oathword')+' fits by name or mod…';}
+    else if(gearPick.mode==='rw'){gsEl.placeholder='Filter Oathwords by name, rune or mod…';}
+    else{var sdPh=gearDef(gearPick.slot); gsEl.placeholder='Filter '+(sdPh?sdPh.label:'')+' items by name or mod — e.g. maximum Life, Fire resist…';}
+  }
+  gpRenderViewTabs();
   var list=$('gpList'); if(list)list.innerHTML=gearPick.mode==='rw'?gpRwListHTML():(gearPick.mode==='rwBases'?gpRwBasesHTML():gearPickListHTML());
   var tr=$('gpTypeRow'); if(tr)tr.innerHTML=(gearPick.mode==='items'||gearPick.mode==='uniques')?gpTypeChipsHTML():'';
   var sr=$('gpSortRow'); if(sr)sr.innerHTML=gpSortRowHTML();
@@ -14417,8 +14487,10 @@ function gpWireVows(box){
 }
 function gpRenderAffixes(){
   var box=$('gpAffixBox'); if(!box)return;
-  /* Keep the step strip in step with the view. */
+  /* Keep the catalogue tabs and the view tabs in step with the
+     draft — the Affixes tab's count follows the seeded rows. */
   gpRenderSteps();
+  gpRenderViewTabs();
   var sel=gearPick.sel;
   var sd=gearDef(gearPick.slot);
   var base=sel?G.baseMap[sel.baseId]:null;
@@ -14604,10 +14676,11 @@ function gpDraftName(){
    screen before it happens. */
 function gpDraftChanged(){
   var sd=gearDef(gearPick.slot); var sel=gearPick.sel;
+  gpRenderViewTabs();
   var btn=$('gpAddBtn'), sum=$('gpAddSummary'), dbox=$('gpDraftDelta');
   if(!sel){
     if(btn)btn.disabled=true;
-    if(sum)sum.textContent='No item picked yet — pick one above.';
+    if(sum)sum.textContent='No item picked yet — pick one on the Item tab.';
     if(dbox){dbox.innerHTML=''; dbox.classList.add('hidden')}
     return;
   }
@@ -14701,8 +14774,8 @@ function gpCommitAdd(){
   closeModal();
   gearMsg(addMsg);
 }
-/* The draft pick's editor — one panel under the pick list, its
-   sections in a single order down the screen: base, rarity,
+/* The draft pick's editor — the whole Affixes view, its sections
+   in a single order down the screen: base, rarity,
    sockets/runes, affixes. (The Vows editor rides at the foot of
    the affixes section, on Unique picks only.) Everything in it
    edits the draft only: each control re-renders what it must and
@@ -14716,7 +14789,7 @@ function gpRenderEditor(){
   var editor=$('gpEditor');
   if(!sel){
     if(editor)editor.classList.add('hidden');
-    if(emptyBox){emptyBox.classList.remove('hidden'); emptyBox.innerHTML='<p class="sub" style="margin:0">Nothing picked for '+(sd?esc(sd.label):'this slot')+' yet — pick an item above and it lands here, ready to set up. It goes into your build only when you press Add item.</p>'}
+    if(emptyBox){emptyBox.classList.remove('hidden'); emptyBox.innerHTML='<p class="sub" style="margin:0">Nothing picked for '+(sd?esc(sd.label):'this slot')+' yet — pick an item on the Item tab and it lands here, ready to set up. It goes into your build only when you press Add item.</p>'}
     return;
   }
   if(editor)editor.classList.remove('hidden');
@@ -14799,6 +14872,9 @@ function gpResyncFromState(){
   gpRenderPickerList();
   gpRenderEditor();
   gpDraftChanged();
+  /* Keep the view the player is on, unless the slot is now empty
+     and the Affixes view has nothing to show. */
+  gpSetView(gearPick.view||'item');
 }
 function openGearPicker(slotKey){
   var sd=gearDef(slotKey); if(!sd)return;
@@ -14811,11 +14887,20 @@ function openGearPicker(slotKey){
     return;
   }
   var cur=state.gear[slotKey];
-  gearPick={slot:slotKey,q:'',type:'All',sel:cur&&cur.base?{baseId:cur.base,uniqueId:cur.unique||null}:null,rows:cur?gpRowsFromStored(cur.affixes):[],vows:(cur&&cur.unique)?(cur.affixes||[]).filter(isRivenAffix).map(function(a){return {affixId:a.id,value:+a.value||0}}):[],runes:cur?(cur.runes||[]).slice():[],mode:cur&&cur.unique?'uniques':'items',rwPick:null,sockSel:'',sorts:{items:'level-desc',rw:'level-asc',rwBases:'level-desc'},note:'',showUniques:!!(cur&&cur.unique),rarity:cur&&cur.rarity&&cur.rarity!=='Unique'?cur.rarity:'Normal',filled:false,topUp:false,rolls:0,best:null};
+  gearPick={slot:slotKey,q:'',type:'All',view:'item',sel:cur&&cur.base?{baseId:cur.base,uniqueId:cur.unique||null}:null,rows:cur?gpRowsFromStored(cur.affixes):[],vows:(cur&&cur.unique)?(cur.affixes||[]).filter(isRivenAffix).map(function(a){return {affixId:a.id,value:+a.value||0}}):[],runes:cur?(cur.runes||[]).slice():[],mode:cur&&cur.unique?'uniques':'items',rwPick:null,sockSel:'',sorts:{items:'level-desc',rw:'level-asc',rwBases:'level-desc'},note:'',showUniques:!!(cur&&cur.unique),rarity:cur&&cur.rarity&&cur.rarity!=='Unique'?cur.rarity:'Normal',filled:false,topUp:false,rolls:0,best:null};
   $('modalRoot').innerHTML='<div class="modal" id="modalBg"><div class="sheet sheet-picker" style="max-width:min(1500px,97vw)"><div class="flex between"><h2>'+(cur?'Change':'Add')+' — '+esc(sd.label)+'</h2><button class="btn" id="closeModal" type="button">Close</button></div>'
-   +'<p class="sub gp-keep">Pick an item, set it up below — base, rarity, sockets, affixes — then press <b>Add item</b> at the bottom. Nothing goes into your build until you press it, and closing this panel throws the pick away. To keep a finished build for next time, use <b>Save plan</b> at the foot of the planner.</p>'
-   +'<div class="gp-tabs" id="gpTabs" role="group" aria-label="Item lists for this slot">'+gpTabsHTML()+'</div>'
+   +'<p class="sub gp-keep">Pick an item on the Item tab, set it up on the Affixes tab — base, rarity, sockets, affixes — then press <b>Add item</b> at the bottom. Nothing goes into your build until you press it, and closing this panel throws the pick away. To keep a finished build for next time, use <b>Save plan</b> at the foot of the planner.</p>'
+   /* The two working views as tabs — Item (the catalogue, the
+      filter and the list) and Affixes (the draft pick's editor).
+      The Affixes tab is disabled until a pick exists; its count
+      badge follows the draft's affix rows. */
+   +'<div class="gp-view-tabs" id="gpViewTabs" role="tablist" aria-label="Item picker and affixes views">'
+   +'<button class="gp-view-tab active" data-gp-view="item" role="tab" aria-selected="true" type="button">Item</button>'
+   +'<button class="gp-view-tab" data-gp-view="affixes" role="tab" aria-selected="false" type="button" disabled>Affixes<span class="gp-tab-count">0</span></button>'
+   +'</div>'
    +'<div class="gp-scroll" id="gpScroll">'
+   +'<div id="gpViewItem">'
+   +'<div class="gp-tabs" id="gpTabs" role="group" aria-label="Item lists for this slot">'+gpTabsHTML()+'</div>'
    +'<p class="sub gp-intro" id="gpIntro" style="margin-top:10px"></p>'
    /* The tab's list — Basic, Unique or Oathword. */
    +'<div class="flex mt"><input type="search" id="gpSearch" placeholder="Filter '+esc(sd.label)+' items by name or mod — e.g. maximum Life, Fire resist…" style="flex:1;min-width:160px" aria-label="Filter '+esc(sd.label)+' items by name or mod"></div>'
@@ -14825,8 +14910,13 @@ function openGearPicker(slotKey){
    +'<div class="gp-list" id="gpList"></div>'
    +'<div class="gp-delta hidden" id="gpDelta"></div>'
    +'<p class="sub" style="margin-top:10px">Already wearing the item in game? Loading your hero on the Home page brings its real gear in with its exact rolls — still the surest way to get an item in whole. There is deliberately no &ldquo;read a screenshot&rdquo; button here: reading numbers off a screenshot is not reliable enough — one misread digit would quietly put a wrong item in your build — so the exact ways in stay the save, a pasted gear code, and picking here.</p>'
-   /* The draft pick's editor — base, rarity, sockets/runes,
-      affixes, in that order down the screen. */
+   +'</div>'
+   /* The Affixes view: the draft pick's editor — base, rarity,
+      sockets/runes, affixes, in that order down the screen — with
+      the pick message at its head and the priced draft delta at
+      its foot. */
+   +'<div id="gpViewAffixes" class="hidden">'
+   +'<p class="sub" id="gpPickMsg" style="min-height:20px;margin-top:8px"></p>'
    +'<div class="gp-editor-empty" id="gpEditorEmpty"></div>'
    +'<div class="gp-editor hidden" id="gpEditor">'
    +'<div class="gp-editor-head"><b>Your pick</b><span class="sub">Set it up here — it goes into your build only when you press Add item below.</span></div>'
@@ -14835,8 +14925,8 @@ function openGearPicker(slotKey){
    +'<div id="gpSockBox"></div>'
    +'<div id="gpAffixBox" class="mt"></div>'
    +'</div>'
-   +'<p class="sub" id="gpPickMsg" style="min-height:20px;margin-top:8px"></p>'
    +'<div class="gp-delta gp-draft-delta hidden" id="gpDraftDelta"></div>'
+   +'</div>'
    +'</div>'
    /* The foot bar: the pick's name, Cancel (throws the draft
       away) and the Add button — the one control that puts the
@@ -14852,6 +14942,12 @@ function openGearPicker(slotKey){
   $('gpAddBtn').addEventListener('click',gpCommitAdd);
   $('gpCancelBtn').addEventListener('click',closeModal);
   $('gpSearch').addEventListener('input',function(e){gearPick.q=e.target.value; gpRenderPickerList();});
+  /* The view tabs: Item and Affixes. The Affixes tab is disabled
+     until a pick exists (gpRenderViewTabs keeps that in step). */
+  $('gpViewTabs').addEventListener('click',function(e){
+    var vt=e.target.closest('[data-gp-view]'); if(!vt||vt.disabled)return;
+    gpSetView(vt.getAttribute('data-gp-view'));
+  });
   /* The tabs: Basic, Unique, and Oathword where the slot has any. */
   $('gpTabs').addEventListener('click',function(e){
     var t=e.target.closest('[data-gp-tab]'); if(!t)return;
@@ -14925,7 +15021,11 @@ function openGearPicker(slotKey){
     gpRenderEditor();
     gpDraftChanged();
     gpMsg(gpDraftName()+' picked for '+sd.label+' — set it up below, then press Add item to put it in your build.');
-    var ed=$('gpEditor'); if(ed&&ed.scrollIntoView)ed.scrollIntoView({block:'nearest'});
+    /* A new pick opens on the Affixes view, ready to set up — the
+       same draft, still uncommitted until Add is pressed.
+       Re-tapping the pick already drafted stays on the Item view,
+       so browsing the list is never interrupted. */
+    if(!same)gpSetView('affixes');
   });
   var abox=$('gpAffixBox');
   abox.addEventListener('change',function(e){
@@ -14943,6 +15043,7 @@ function openGearPicker(slotKey){
   gpRenderPickerList();
   gpRenderEditor();
   gpDraftChanged();
+  gpSetView('item');
 }
 function copyGear(){
   var items=gearItemsList();
@@ -24928,8 +25029,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.386';
-var PLANNER_BUILT_AT='2026-11-25T15:27:40-07:00';
+var PLANNER_VERSION='0.387';
+var PLANNER_BUILT_AT='2026-11-25T15:38:25-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
