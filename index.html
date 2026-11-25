@@ -170,6 +170,8 @@ select:focus-visible,input:focus-visible,textarea:focus-visible{outline:none;bor
 .class-btn b{display:block;font-size:15px;font-family:Cinzel,serif}
 .class-btn span{font-size:12.5px;color:var(--muted)}
 input[type="range"]{width:100%;accent-color:var(--gold);min-height:28px;cursor:pointer}
+input[type="range"]:disabled{opacity:.45;cursor:not-allowed}
+.pop-lock-note{margin:0 0 10px;padding:9px 12px;border:1px solid var(--gold);border-radius:8px;background:rgba(0,0,0,.35);font-size:13px;line-height:1.45}
 .range-row{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .range-val{font-weight:700;background:var(--chip);border:1px solid var(--line);padding:4px 10px;border-radius:999px;min-width:52px;text-align:center;font-variant-numeric:tabular-nums}
 .search{width:100%}
@@ -3361,6 +3363,7 @@ td{padding:7px 8px}
         <div class="sk-col sk-col-a">
           <div class="label">Main skill gem level <span class="range-val" id="gemVal" style="float:right">20</span></div>
           <input type="range" id="gemRange" min="1" max="21" value="20" style="width:100%">
+          <p class="sub hidden" id="gemLockNote" style="margin-top:4px">Locked on this starter — the plan is fixed as published, gem level included. Duplicate it &amp; make it mine, and the slider is yours.</p>
           <div class="label" id="barStripLabel" style="margin-top:16px">On your bar — every skill &amp; its supports</div>
           <div class="bar-strip" id="drawerBarStrip"></div>
           <div class="ms-flex">
@@ -11080,6 +11083,14 @@ function renderStarterBanner(){
   var bn=$('starterBanner'); if(!bn)return;
   var on=!!state.starterRO;
   bn.classList.toggle('hidden',!on);
+  /* The gem slider wears the lock where the hand lands: on a
+     read-only starter it is disabled with its reason printed
+     under it, instead of sitting live-looking while the guard
+     below silently swallows every drag (its only feedback, the
+     banner flash, is behind the Skills sheet when the slider is
+     used — the slider read as simply broken). */
+  var grL=$('gemRange'); if(grL)grL.disabled=on;
+  var gln=$('gemLockNote'); if(gln)gln.classList.toggle('hidden',!on);
   if(on){
     var tx=$('starterBannerText');
     if(tx)tx.textContent='This plan is the '+(state.starterFrom||'starter')+' template, opened from the ladder snapshot. Everything in it — gear, skills, passive tree and Dragonling — is fixed as published. Duplicate the plan to edit anything. Your own builds are never touched.';
@@ -11101,6 +11112,27 @@ function renderStarterBanner(){
    drag starts, and keyboard activation (Enter/Space handlers on
    sockets, tree rows and Dragonling paths, typing and arrow
    keys in form fields) — while Tab and Escape always pass. */
+/* The guard's banner flash is invisible from inside a popup
+   sheet — the sheet covers the planner, banner and all — so a
+   blocked gesture in a popup also raises this note at the top
+   of the sheet itself, where the hand actually is. Without it
+   a locked control in a popup (the gem slider above all) just
+   sits there doing nothing, with no sign why. */
+var popLockTimer=null;
+function showPopLockNote(){
+  var sheet=document.querySelector('#plannerPopRoot .pop-sheet'); if(!sheet)return;
+  var note=document.getElementById('popLockNote');
+  if(!note){
+    note=document.createElement('div');
+    note.id='popLockNote'; note.className='pop-lock-note';
+    var sc=sheet.querySelector('#popScroll');
+    if(sc)sheet.insertBefore(note,sc); else sheet.appendChild(note);
+  }
+  note.textContent='This starter is fixed as published — nothing in it can be changed. Close this, tap “Duplicate it & make it mine”, and the same plan opens as yours to edit in full.';
+  note.classList.remove('hidden');
+  if(popLockTimer)clearTimeout(popLockTimer);
+  popLockTimer=setTimeout(function(){var n=document.getElementById('popLockNote'); if(n)n.classList.add('hidden')},6000);
+}
 function starterEditBlocked(e){
   if(!state.starterRO)return false;
   var t=e.target;
@@ -11141,6 +11173,7 @@ function starterEditBlocked(e){
   if(bn){bn.classList.add('flash'); setTimeout(function(){bn.classList.remove('flash')},650);
     var tx=$('starterBannerText');
     if(tx)tx.textContent='That part of the starter is fixed as published — nothing on a starter can be changed. Tap \u201cDuplicate it & make it mine\u201d and the same plan opens as yours to edit in full.';}
+  if(t.closest('#plannerPopRoot'))showPopLockNote();
   return true;
 }
 function bindStarterGuard(){
@@ -24851,8 +24884,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.380';
-var PLANNER_BUILT_AT='2026-11-25T14:26:11-07:00';
+var PLANNER_VERSION='0.381';
+var PLANNER_BUILT_AT='2026-11-25T14:43:44-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
