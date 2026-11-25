@@ -5904,11 +5904,13 @@ var RULES=[
  [/^([\s\S]+) • linked$/,function(m){return m[1]+' • 已链接';}],
  [/^([\s\S]+) added — slot (\d+) of 13 on your bar\. Your main skill is unchanged; link its supports in Your skills, or tap Make main to plan around it\.$/,function(m){return m[1]+' 已添加 — 你栏上的第 '+m[2]+' / 13 个槽位。你的主技能不变；在“你的技能”中链接其辅助，或点按“设为主技能”围绕它规划。';}],
  [/^([\s\S]+) is on your bar, but it is not your main skill — your main skill is unchanged\. Tap Make main to plan around it\.$/,function(m){return m[1]+' 在你的技能栏上，但它不是你的主技能 — 你的主技能不变。点按“设为主技能”即可围绕它规划。';}],
- [/^([\s\S]+) is on your bar — shown on the Main skill card below\. Your main skill is still ([\s\S]+); flip the Main skill switch on its panel to plan around it\.$/,function(m){return m[1]+' 在你的技能栏上 — 已显示在下方的主技能卡片上。你的主技能仍是 '+m[2]+'；在其面板上打开主技能开关即可围绕它规划。';}],
+ [/^([\s\S]+) is on your bar — shown on the Main skill card below, where you can link its supports\. Your main skill is still ([\s\S]+); flip the Main skill switch on the card to plan around it\.$/,function(m){return m[1]+' 在你的技能栏上 — 已显示在下方的主技能卡片上，你可以在那里链接它的辅助宝石。你的主技能仍是 '+m[2]+'；在卡片上打开主技能开关即可围绕它规划。';}],
  [/^([\s\S]+) is your main skill — it is on the card below; edit its supports there\.$/,function(m){return m[1]+' 是你的主技能 — 就在下方卡片上；在那里编辑它的辅助宝石。';}],
  [/^([\s\S]+) is your main skill already — open another skill from your bar and flip its Main skill switch to plan around that one instead\.$/,function(m){return m[1]+' 已经是你的主技能了 — 从技能栏打开另一个技能，并在其面板上打开它的主技能开关，即可改为围绕那个技能规划。';}],
  [/^Back to your main skill, ([\s\S]+)\.$/,function(m){return '已回到你的主技能 '+m[1]+'。';}],
  [/^Viewing — your main skill is still ([\s\S]+)\. Flip the Main skill switch on the panel below to plan around this one\.$/,function(m){return '正在查看 — 你的主技能仍是 '+m[1]+'。在下方面板上打开主技能开关，即可围绕这个技能规划。';}],
+ [/^Viewing — your main skill is still ([\s\S]+)\. You can link its supports here; flip the Main skill switch on this card to plan around this one\.$/,function(m){return '正在查看 — 你的主技能仍是 '+m[1]+'。你可以在这里链接它的辅助宝石；在卡片上打开主技能开关，即可围绕这个技能规划。';}],
+ [/^([\s\S]+) linked in slot (\d+) of ([\s\S]+)\.$/,function(m){return m[1]+' 已链接到 '+m[3]+' 的第 '+m[2]+' 个插槽。';}],
  [/^([\s\S]+) — on your bar\. Tap to open it on the Main skill card below; it becomes your main skill only from the Main skill switch there\.$/,function(m){return m[1]+' — 在你的技能栏上。点按可在下方主技能卡片上打开它；只有通过那里的主技能开关，它才会成为你的主技能。';}],
  [/^Main skill switch for ([\s\S]+)$/,function(m){return m[1]+' 的主技能开关';}],
  [/^Viewing: ([\s\S]+) — on your bar, not your main skill$/,function(m){return '正在查看：'+m[1]+' — 在你的技能栏上，不是你的主技能';}],
@@ -11712,11 +11714,13 @@ function gemShowTip(anchor){
   if(gemTipFor===id&&gemTipEl&&gemTipEl.classList.contains('on'))return;
   if(!gemTipEl){gemTipEl=document.createElement('div'); gemTipEl.id='gemTip'; gemTipEl.className='fb-tip gem-tip'; gemTipEl.setAttribute('role','tooltip'); document.body.appendChild(gemTipEl)}
   var hist=patchHistLine('supports',s.Id);
+  var tipFocus=focusedSkillId();
+  var tipSups=tipFocus===state.skillId?state.supports:((barEntryFor(tipFocus)||{}).supports||[]);
   gemTipEl.innerHTML='<button type="button" class="tip-x" data-tip-close aria-label="Close support details">×</button>'
    +'<div class="gem-tip-name">'+esc(s.Name)+'</div>'
    +'<div class="gem-tip-desc">'+esc(s.Description||'The game data carries no description for this gem.')+'</div>'
    +'<div class="gem-tip-meta">Mana ×'+(s.ManaMultiplier||1)
-   +(state.supports.indexOf(s.Id)>=0?' • Linked to '+esc(skillName(state.skillId)):'')
+   +(tipSups.indexOf(s.Id)>=0?' • Linked to '+esc(skillName(tipFocus)):'')
    +(hist?'<br>Patch history — '+esc(hist):'')
    +'</div>'
    +supportDeltaTipHTML(s.Id);
@@ -11729,7 +11733,14 @@ function gemShowTip(anchor){
 function renderGemPalette(){
   var pal=$('gemPalette'); if(!pal)return;
   gemHideTip();
-  var skill=G.skillMap[state.skillId]; var compat=compatibleSupports(skill);
+  /* The palette serves the skill on the card: the main skill, or
+     the bar skill a bar click brought up — its list is the gems
+     that fit THAT skill and its linked marks are that skill's
+     own link, so a viewed skill can be given its supports from
+     here without being made main first. */
+  var focusId=focusedSkillId();
+  var skill=G.skillMap[focusId]; var compat=compatibleSupports(skill);
+  var fsups=focusId===state.skillId?state.supports:padSupports((barEntryFor(focusId)||{}).supports);
   /* Only gems that can support the selected skill are listed at all —
      one that cannot support it is hidden, never dimmed, disabled or
      struck through (the user's call). A gem already linked to the
@@ -11738,7 +11749,7 @@ function renderGemPalette(){
      it is wearing; renderSupports prunes a truly unfit link once the
      data lands. */
   var arr=compat.filter(function(s){return s.Id!=='hidden'}).slice();
-  (state.supports||[]).forEach(function(sid){
+  (fsups||[]).forEach(function(sid){
     if(!sid||arr.some(function(s){return s.Id===sid}))return;
     var linkedSup=G.supportMap[sid]; if(linkedSup&&linkedSup.Id!=='hidden')arr.push(linkedSup);
   });
@@ -11751,7 +11762,7 @@ function renderGemPalette(){
      history — Patch 88 • Build 88 • …"), which is where a reader
      who wants it finds it, spelled out. */
   function chipHTML(s){
-    var linked=state.supports.indexOf(s.Id)>=0;
+    var linked=fsups.indexOf(s.Id)>=0;
     return '<button type="button" class="gem-chip fits'+(linked?' linked':'')+(pickedGem===s.Id?' picked':'')+'" data-gem="'+esc(s.Id)+'" draggable="true" aria-label="'+esc(s.Name+' — hover or tap to see what it does')+'">'+gemIconSVG()+esc(s.Name)+(linked?'<span class="gem-linked-sfx"> • linked</span>':'')+'</button>';
   }
   /* Grouped by the gem's own attribute — Strength (red), Dexterity
@@ -11769,6 +11780,10 @@ function renderGemPalette(){
     var id=chip.getAttribute('data-gem');
     function showDelta(){
       var box=$('gemDelta'); if(!box)return;
+      /* The delta box prices a gem against the main skill's own
+         link; while the card is showing another bar skill it
+         would quote the wrong skill's numbers, so it stays shut. */
+      if(focusId!==state.skillId){box.classList.add('hidden'); box.innerHTML=''; return}
       if(!gemFitsSkill(id,G.skillMap[state.skillId])){box.classList.add('hidden'); box.innerHTML=''; return}
       var html=''; try{html=supportDeltaHTML(id)}catch(e){html=''}
       if(html){box.innerHTML=html; box.classList.remove('hidden')}
@@ -11789,34 +11804,66 @@ function renderGemPalette(){
     });
     chip.addEventListener('click',function(){
       gemHideTip();
-      if(!gemFitsSkill(id,G.skillMap[state.skillId])){sockMsg(supportName(id)+' does not fit '+skillName(state.skillId)+' — its required tags don\u2019t match. Drop it on a skill in the list that it does fit.'); return}
+      if(!gemFitsSkill(id,skill)){sockMsg(supportName(id)+' does not fit '+skillName(focusId)+' — its required tags don\u2019t match. Drop it on a skill in the list that it does fit.'); return}
       if(pickedGem===id){pickedGem=null; sockMsg('Put '+supportName(id)+' down.');}
       else {pickedGem=id; sockMsg(supportName(id)+' picked up — tap a support slot to link it, or drop it on a skill.');}
       renderGemPalette();
     });
   });
 }
+/* The socket board's edit target: the skill the Main skill
+   section is showing. When the card shows the main skill itself
+   the target is state.supports at the plan's gem level; when a
+   bar click brought another skill up (viewSkillId), the target
+   is THAT skill's own bar entry — its own linked supports and
+   its own gem level — so a skill can be given its supports
+   without first being made the main skill (the user's ask,
+   2026-11-25: "even if the skill I selected from the bar is not
+   marked as main skill, I should still be able to add support
+   gems"). placeGem / handleSocketTap / firstEmptySlot all work
+   on this target, so the card, the palette and the drag paths
+   agree about whose sockets a gesture lands in. */
+function sockTarget(){
+  var fid=focusedSkillId();
+  if(fid===state.skillId)return {id:fid,main:true,sups:state.supports,gemLv:effGemLevel(state),entry:barEntryFor(fid)};
+  var e=barEntryFor(fid);
+  var sups=padSupports(e?e.supports:[]);
+  if(e)e.supports=sups;
+  return {id:fid,main:false,sups:sups,gemLv:((e&&e.gem)||state.gemLevel)+gearGemBonus(state),entry:e};
+}
+/* After a support edit lands on a bar skill that is not the main
+   one: the entry already holds the new link (sockTarget wrote it
+   there); persist the plan and re-price everything that reads
+   the bar — the headline totals, the palette's linked marks,
+   the bar strip's rings, the card and its panel, the skills
+   table. */
+function commitSockTarget(){
+  schedulePersistInstances(); renderCode(); renderPlanner(); renderGemPalette(); renderDrawerCard(); renderSkillTable();
+}
 function placeGem(slotIdx,supId){
-  var skill=G.skillMap[state.skillId];
-  if(!gemFitsSkill(supId,skill)){sockMsg(supportName(supId)+' does not fit '+skillName(state.skillId)+'.'); return}
-  if(slotIdx==null||slotIdx<0){var on=socketsOpenAt(effGemLevel(state)); sockMsg(on>=6?'All six sockets are open — and full. Remove a support to seat another.':('Every open socket is full — socket '+(on+1)+' opens at gem level '+socketOpensAt(on)+'.')); return}
+  var t=sockTarget();
+  var skill=G.skillMap[t.id];
+  if(!gemFitsSkill(supId,skill)){sockMsg(supportName(supId)+' does not fit '+skillName(t.id)+'.'); return}
+  if(slotIdx==null||slotIdx<0){var on=socketsOpenAt(t.gemLv); sockMsg(on>=6?'All six sockets are open — and full. Remove a support to seat another.':('Every open socket is full — socket '+(on+1)+' opens at gem level '+socketOpensAt(on)+'.')); return}
   /* The game's socket ladder: an empty socket the gem has not
      reached yet refuses a new gem. A gem already sitting in one
      may still be picked up and moved — that is a swap, not a new
      seating — and renderSupports keeps whatever a load placed. */
-  if(slotIdx>=socketsOpenAt(effGemLevel(state))&&!state.supports[slotIdx]){
-    sockMsg('Socket '+(slotIdx+1)+' opens at gem level '+socketOpensAt(slotIdx)+' — '+skillName(state.skillId)+' is gem level '+effGemLevel(state)+'. Raise the gem level and it opens.');
+  if(slotIdx>=socketsOpenAt(t.gemLv)&&!t.sups[slotIdx]){
+    sockMsg('Socket '+(slotIdx+1)+' opens at gem level '+socketOpensAt(slotIdx)+' — '+skillName(t.id)+' is gem level '+t.gemLv+'. Raise the gem level and it opens.');
     return;
   }
-  var existing=state.supports.indexOf(supId);
-  if(existing>=0&&existing!==slotIdx){state.supports[existing]=state.supports[slotIdx]||'';}
-  state.supports[slotIdx]=supId; pickedGem=null;
-  renderSupports(); renderPlanner(); showSupportDetail(supId);
-  sockMsg(supportName(supId)+' linked in slot '+(slotIdx+1)+'.');
+  var existing=t.sups.indexOf(supId);
+  if(existing>=0&&existing!==slotIdx){t.sups[existing]=t.sups[slotIdx]||'';}
+  t.sups[slotIdx]=supId; pickedGem=null;
+  if(t.main){renderSupports(); renderPlanner();}
+  else commitSockTarget();
+  showSupportDetail(supId);
+  sockMsg(supportName(supId)+' linked in slot '+(slotIdx+1)+(t.main?'.':' of '+skillName(t.id)+'.'));
 }
 function attachSlotDrop(row,i){
   row.setAttribute('data-drop','sock'); row.setAttribute('data-idx',i);
-  row.addEventListener('dragover',function(e){var gid=dragGemId||pickedGem; if(!gid)return; e.preventDefault(); row.classList.toggle('drop-ok',gemFitsSkill(gid,G.skillMap[state.skillId])); row.classList.toggle('drop-bad',!gemFitsSkill(gid,G.skillMap[state.skillId]));});
+  row.addEventListener('dragover',function(e){var gid=dragGemId||pickedGem; if(!gid)return; e.preventDefault(); row.classList.toggle('drop-ok',gemFitsSkill(gid,G.skillMap[focusedSkillId()])); row.classList.toggle('drop-bad',!gemFitsSkill(gid,G.skillMap[focusedSkillId()]));});
   row.addEventListener('dragleave',function(){row.classList.remove('drop-ok','drop-bad')});
   row.addEventListener('drop',function(e){e.preventDefault(); row.classList.remove('drop-ok','drop-bad'); var gid=dragGemId||pickedGem||(e.dataTransfer?e.dataTransfer.getData('text/plain'):''); if(gid)placeGem(i,gid);});
   row.addEventListener('click',function(){if(pickedGem)placeGem(i,pickedGem)});
@@ -11826,7 +11873,7 @@ function attachSkillDrop(btn){
   btn.addEventListener('dragover',function(e){var gid=dragGemId||pickedGem; if(!gid)return; var sk=G.skillMap[sid]; if(gemFitsSkill(gid,sk)){e.preventDefault(); btn.classList.add('drop-ok');}});
   btn.addEventListener('dragleave',function(){btn.classList.remove('drop-ok')});
   btn.addEventListener('drop',function(e){e.preventDefault(); btn.classList.remove('drop-ok'); var gid=dragGemId||pickedGem||(e.dataTransfer?e.dataTransfer.getData('text/plain'):''); if(!gid)return;
-    var sk=G.skillMap[sid]; state.skillId=sid;
+    var sk=G.skillMap[sid]; state.skillId=sid; viewSkillId=null;
     var beD=barEntryFor(sid); if(beD)state.supports=beD.supports.slice();
     if(gemFitsSkill(gid,sk)){var slot=firstEmptySlot(); if(slot>=0){state.supports[slot]=gid; sockMsg(supportName(gid)+' linked to '+skillName(sid)+' in socket '+(slot+1)+'.');} else sockMsg('Every open socket on '+skillName(sid)+' is full — the rest open as its gem levels.');}
     else {sockMsg(supportName(gid)+' does not fit '+skillName(sid)+' — showing the skill anyway so you can see its tags.');}
@@ -12036,7 +12083,7 @@ function runSimulator(){
    tap-to-pick-up / tap-to-drop (touch). */
 var pickedFrom=null;
 function sockMsg(t){var m=$('sockMsg'); if(m)m.textContent=t; var d=$('dragMsg'); if(d)d.textContent=t;}
-function firstEmptySlot(){var open=socketsOpenAt(effGemLevel(state)); for(var i=0;i<open;i++)if(!state.supports[i])return i; return -1}
+function firstEmptySlot(){var t=sockTarget(); var open=socketsOpenAt(t.gemLv); for(var i=0;i<open;i++)if(!t.sups[i])return i; return -1}
 function renderSockets(){
   // The drawer's main-skill card is the socket board now: its icon is
   // the main socket and its rings are the support sockets. (The big
@@ -12045,13 +12092,14 @@ function renderSockets(){
   renderDrawerCard();
 }
 function handleSocketTap(i){
+  var t=sockTarget();
   if(pickedGem){
-    if(pickedFrom===i){pickedGem=null; pickedFrom=null; renderGemPalette(); renderSockets(); sockMsg('Put '+supportName(state.supports[i])+' back down.'); return}
+    if(pickedFrom===i){pickedGem=null; pickedFrom=null; renderGemPalette(); renderSockets(); sockMsg('Put '+supportName(t.sups[i])+' back down.'); return}
     placeGem(i,pickedGem); pickedFrom=null; return;
   }
-  var sid=state.supports[i];
+  var sid=t.sups[i];
   if(sid){pickedGem=sid; pickedFrom=i; renderGemPalette(); renderSockets(); sockMsg(supportName(sid)+' picked up — tap another socket to move it there, or tap it again to put it back.');}
-  else if(i>=socketsOpenAt(effGemLevel(state)))sockMsg('Socket '+(i+1)+' is shut — it opens at gem level '+socketOpensAt(i)+', and this skill\u2019s gem is level '+effGemLevel(state)+'. Sockets open at gem levels '+socketsAtLevels().join(', ')+'.');
+  else if(i>=socketsOpenAt(t.gemLv))sockMsg('Socket '+(i+1)+' is shut — it opens at gem level '+socketOpensAt(i)+', and this skill\u2019s gem is level '+t.gemLv+'. Sockets open at gem levels '+socketsAtLevels().join(', ')+'.');
   else sockMsg('That socket is empty — drag a support gem onto it, or tap a gem in the palette first.');
 }
 /* Pointer drag: press, move past a threshold and a gem ghost follows the
@@ -12066,7 +12114,7 @@ function canDropOn(dz){
   if(!dz||!dragCtx)return false;
   var zone=dz.getAttribute('data-drop');
   if(dragCtx.kind==='skill')return zone==='main'||zone==='skillrow';
-  if(zone==='main'||zone==='sock')return gemFitsSkill(dragCtx.id,G.skillMap[state.skillId]);
+  if(zone==='main'||zone==='sock')return gemFitsSkill(dragCtx.id,G.skillMap[focusedSkillId()]);
   if(zone==='skillrow')return gemFitsSkill(dragCtx.id,G.skillMap[dz.getAttribute('data-skill')]);
   return false;
 }
@@ -12124,7 +12172,7 @@ function performDrop(dz,ctx){
   else if(zone==='sock'){placeGem(+dz.getAttribute('data-idx'),ctx.id); pickedFrom=null;}
   else if(zone==='skillrow'){
     var sid=dz.getAttribute('data-skill'); var sk=G.skillMap[sid]; if(!sk)return;
-    state.skillId=sid;
+    state.skillId=sid; viewSkillId=null;
     var beP=barEntryFor(sid); if(beP)state.supports=beP.supports.slice();
     if(gemFitsSkill(ctx.id,sk)){placeGem(firstEmptySlot(),ctx.id); sockMsg(supportName(ctx.id)+' linked to '+skillName(sid)+'.');}
     else sockMsg(supportName(ctx.id)+' does not fit '+skillName(sid)+' — showing the skill anyway so you can see its tags.');
@@ -15015,10 +15063,14 @@ function viewBarSkill(id){
   skillHideTip(); pinTipClear(false);
   var wasMain=id===state.skillId;
   viewSkillId=wasMain?null:id;
+  /* A half-finished pickup belongs to the card that was showing;
+     put the gem down before the view moves, so a later socket
+     tap cannot seat it in the wrong skill's link. */
+  pickedGem=null; pickedFrom=null;
   if(popCurrent!=='skills')switchWorkspace('skills');
-  renderDrawerCard();
+  renderDrawerCard(); renderGemPalette();
   if(wasMain)sockMsg(skillName(id)+' is your main skill — it is on the card below; edit its supports there.');
-  else sockMsg(skillName(id)+' is on your bar — shown on the Main skill card below. Your main skill is still '+skillName(state.skillId)+'; flip the Main skill switch on the card to plan around it.');
+  else sockMsg(skillName(id)+' is on your bar — shown on the Main skill card below, where you can link its supports. Your main skill is still '+skillName(state.skillId)+'; flip the Main skill switch on the card to plan around it.');
   scrollToSkillCard();
 }
 /* The whole bar at the top of the Skills workspace: one compact
@@ -15078,20 +15130,27 @@ function renderDrawerCard(){
   renderBarStrip();
   /* Showing a bar skill that is not the main one (a click on the
      bar brought it here — see viewBarSkill): the card shows that
-     skill — its icon, its own linked supports as plain wells and
-     its own DPS — and says the main skill is unchanged. The card
-     itself carries the Main skill switch, off, right where the
-     skill is shown: flipping it is the one action that makes
-     this skill the main one. Its supports are not edited here;
-     editing belongs to the main skill's own card, one Main
-     skill switch flip away. */
+     skill — its icon, its own linked supports and its own DPS —
+     and says the main skill is unchanged. The card itself
+     carries the Main skill switch, off, right where the skill
+     is shown: flipping it is the one action that makes this
+     skill the main one. Its supports ARE edited here, in its
+     own rings, exactly like the main skill's — the edits land
+     on the skill's own bar entry (see sockTarget), so a skill
+     can be given its supports without being made main first. */
   var focusId=focusedSkillId();
   if(focusId!==state.skillId){
     var vsk=G.skillMap[focusId];
     var ve=barEntryFor(focusId)||{skill:focusId,supports:[],gem:null,onBar:true};
-    var vSups=ve.supports||[];
+    var vGemLv=(ve.gem||state.gemLevel)+gearGemBonus(state);
+    var vSups=padSupports(ve.supports); ve.supports=vSups;
+    var vOpenN=socketsOpenAt(vGemLv);
     var vRings='';
-    for(var vi=0;vi<6;vi++){var vsid=vSups[vi]; var vsup=vsid?G.supportMap[vsid]:null; vRings+='<div class="ms-ring'+(vsup?' filled':'')+'" title="'+(vsup?esc(vsup.Name):'Empty support socket')+'">'+(vsup?gemSVG(supColor(vsup),20):'<span class="sock-hole"></span>')+'</div>'}
+    for(var vi=0;vi<6;vi++){
+      var vsid=vSups[vi]; var vsup=vsid?G.supportMap[vsid]:null;
+      var vLocked=!vsup&&vi>=vOpenN, vKept=!!vsup&&vi>=vOpenN;
+      vRings+='<div class="ms-ring'+(vsup?' filled':'')+(vLocked?' locked':'')+(vKept?' kept':'')+(pickedFrom===vi&&pickedGem?' picked':'')+'" data-drop="sock" data-idx="'+vi+'" role="button" tabindex="0" aria-label="Support socket '+(vi+1)+': '+(vsup?esc(vsup.Name):(vLocked?('locked — opens at gem level '+socketOpensAt(vi)):'empty'))+'" title="'+(vsup?esc(vsup.Name)+(vKept?' — this socket is past the gem\u2019s ladder, but a filled socket stays open, so the link still counts':'')+' — drag to move, tap to pick up':(vLocked?('Socket '+(vi+1)+' opens at gem level '+socketOpensAt(vi)+' — sockets open as the gem levels: '+socketsAtLevels().join(' / ')):'Empty support socket — drop a support gem here'))+'">'+(vsup?gemSVG(supColor(vsup),20)+'<button class="sock-x" data-ringx="'+vi+'" type="button" aria-label="Remove '+esc(vsup.Name)+'">×</button>':(vLocked?'<span class="sock-lock">Lv '+socketOpensAt(vi)+'</span>':'<span class="sock-hole"></span>'))+'</div>';
+    }
     var vBlock=barSkillBlocker(state,ve);
     var vTags=vsk?(vsk.Tags||[]):[], vRole=null;
     if(vTags.indexOf('Curse')>=0||(vsk&&vsk.Delivery==='Woe')||(vsk&&vsk.Delivery==='Sentence'))vRole='Debuffs the enemy — counted in the vs-enemy numbers';
@@ -15099,10 +15158,9 @@ function renderDrawerCard(){
     else if(vTags.indexOf('Minion')>=0&&!(vsk&&vsk.Minion))vRole='Minion skill — not counted';
     else if(vsk&&vsk.SpellMin==null&&!(vTags.indexOf('Attack')>=0))vRole='No steady damage to count';
     var vc=null; if(!vBlock&&!vRole)vc=priceBarSkill(focusId);
-    var vGemLv=(ve.gem||state.gemLevel)+gearGemBonus(state);
-    card.innerHTML='<div class="ms-icon" role="button" tabindex="0" aria-label="Viewing: '+(vsk?esc(vsk.Name):'none')+' — on your bar, not your main skill">'+gemSVG(dmgColor(vsk),38)+'<span class="ms-lv">Lv '+vGemLv+'</span></div>'
+    card.innerHTML='<div class="ms-icon" data-drop="main" role="button" tabindex="0" aria-label="Viewing: '+(vsk?esc(vsk.Name):'none')+' — on your bar, not your main skill">'+gemSVG(dmgColor(vsk),38)+'<span class="ms-lv">Lv '+vGemLv+'</span></div>'
      +'<div class="ms-main"><div class="ms-name">'+(vsk?esc(vsk.Name):'No skill')+'</div>'
-     +'<div class="ms-sub">Viewing — your main skill is still '+esc(skillName(state.skillId))+'. Flip the Main skill switch on this card to plan around this one.</div>'
+     +'<div class="ms-sub">Viewing — your main skill is still '+esc(skillName(state.skillId))+'. You can link its supports here; flip the Main skill switch on this card to plan around this one.</div>'
      +'<div class="ms-dps">'+(vBlock?('Does not count — '+esc(vBlock)):(vRole?esc(vRole):(vc?fmtFull(vc.dps)+' DPS':'— DPS')))+'</div></div>'
      +'<button type="button" class="buff-switch" role="switch" aria-checked="false" data-card-main-toggle="'+esc(focusId)+'" aria-label="Main skill switch for '+(vsk?esc(vsk.Name):'this skill')+'" title="Make this your main skill — the skill you plan around"><span class="buff-track" aria-hidden="true"></span>Main skill Off</button>'
      +'<div class="ms-rings">'+vRings+'</div>';
@@ -15112,9 +15170,25 @@ function renderDrawerCard(){
     vIcon.addEventListener('focus',function(){skillShowTip(vIcon,focusId)});
     vIcon.addEventListener('blur',function(){skillHideTip()});
     vIcon.addEventListener('pointerdown',function(e){
-      if(e.pointerType!=='touch')return;
+      if(e.pointerType!=='touch'||pickedGem)return;
       if(pinTip.key==='skill:'+focusId){pinTipClear(false); return}
       skillShowTip(vIcon,focusId); pinTipArm('skill:'+focusId,vIcon,skillHideTip); if(skillTipEl)skillTipEl.classList.add('pinned');
+    });
+    /* The viewed skill's icon is a working main socket too: a
+       picked-up support gem seats in its first open socket on
+       tap, and a dragged gem (or skill gem) drops here exactly
+       as on the main skill's card — placeGem reads the socket
+       target from focusedSkillId, so the gem lands in THIS
+       skill's link, not the main skill's. */
+    vIcon.addEventListener('click',function(){if(pickedGem){var gid=pickedGem; placeGem(firstEmptySlot(),gid); pickedFrom=null; sockMsg(supportName(gid)+' linked to '+skillName(focusId)+'.');}});
+    vIcon.addEventListener('dragover',function(e){
+      if(dragSkillId){e.preventDefault(); vIcon.classList.add('drop-ok');}
+      else if(dragGemId){e.preventDefault(); vIcon.classList.toggle('drop-ok',gemFitsSkill(dragGemId,vsk)); vIcon.classList.toggle('drop-bad',!gemFitsSkill(dragGemId,vsk));}
+    });
+    vIcon.addEventListener('dragleave',function(){vIcon.classList.remove('drop-ok','drop-bad')});
+    vIcon.addEventListener('drop',function(e){e.preventDefault(); vIcon.classList.remove('drop-ok','drop-bad');
+      if(dragSkillId){setSkill(dragSkillId); sockMsg(skillName(dragSkillId)+' socketed as your main skill.'); dragSkillId=null;}
+      else if(dragGemId){placeGem(firstEmptySlot(),dragGemId); pickedFrom=null;}
     });
     var vNm=card.querySelector('.ms-name');
     if(vNm){vNm.addEventListener('mouseenter',function(){skillShowTip(vNm,focusId)}); vNm.addEventListener('mouseleave',function(){skillHideTip()});}
@@ -15127,6 +15201,28 @@ function renderDrawerCard(){
       setSkill(focusId);
       sockMsg(skillName(focusId)+' is your main skill now — link its supports on this card.');
       renderDrawerCard(); renderSkillTable();
+    });
+    /* The viewed skill's own socket board: the same gestures as
+       the main skill's rings — tap to pick up / put down, drag
+       to move, drop a palette gem in, × to unlink — all landing
+       on this skill's bar entry through the shared socket
+       target (placeGem / handleSocketTap read focusedSkillId). */
+    card.querySelectorAll('.ms-ring').forEach(function(el){
+      var i=+el.getAttribute('data-idx');
+      el.addEventListener('pointerdown',function(e){if(e.target.closest('[data-ringx]'))return; pdDown(e,'gem',vSups[i]||'',i);});
+      el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault(); handleSocketTap(i);}});
+      el.addEventListener('dragover',function(e){
+        if(dragGemId){e.preventDefault(); el.classList.toggle('drop-ok',gemFitsSkill(dragGemId,vsk)); el.classList.toggle('drop-bad',!gemFitsSkill(dragGemId,vsk));}
+        else if(dragSkillId){e.preventDefault(); el.classList.add('drop-bad');}
+      });
+      el.addEventListener('dragleave',function(){el.classList.remove('drop-ok','drop-bad')});
+      el.addEventListener('drop',function(e){e.preventDefault(); el.classList.remove('drop-ok','drop-bad');
+        if(dragGemId){placeGem(i,dragGemId); pickedFrom=null;}
+        else if(dragSkillId){sockMsg('Skill gems go in the main socket — the round sockets are for supports.'); dragSkillId=null;}
+      });
+    });
+    card.querySelectorAll('[data-ringx]').forEach(function(x){
+      x.addEventListener('click',function(e){e.stopPropagation(); var i=+x.getAttribute('data-ringx'); var nm=supportName(ve.supports[i]); ve.supports[i]=''; if(pickedFrom===i){pickedGem=null;pickedFrom=null} commitSockTarget(); sockMsg(nm+' removed.');});
     });
     renderMainSkillDetail();
     return;
@@ -24509,6 +24605,10 @@ function qwBaseFig(){
    socket, else the best swap), as bare delta lines under a caption. */
 function supportDeltaTipHTML(supId){
   try{
+    /* Priced against the main skill's link — while the card is
+       showing another bar skill, the main skill's delta would
+       quote the wrong skill, so the tip carries none. */
+    if(focusedSkillId()!==state.skillId)return '';
     if(state.supports.indexOf(supId)>=0)return '';
     if(!gemFitsSkill(supId,G.skillMap[state.skillId]))return '';
     var cur=qwBaseFig(); if(!cur)return '';
