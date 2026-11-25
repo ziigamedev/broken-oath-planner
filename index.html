@@ -1201,6 +1201,10 @@ body.adv-open{overflow:hidden}
 .skn-flag input{width:16px;height:16px;accent-color:var(--gold)}
 .skn-flag.off{color:var(--faint);cursor:default}
 .skn-flag select{font-size:13px}
+.skn-gemctl{margin-top:10px}
+.skn-gemctl .range-val{margin-left:6px}
+.skn-gemctl input[type=range]{width:100%;max-width:360px;display:block;margin-top:5px}
+.skn-gemctl input[type=range]:disabled{opacity:.45}
 /* Gem-level table */
 .gem-table{border-collapse:collapse;width:100%;font-size:13px}
 .gem-table th,.gem-table td{padding:4px 8px;text-align:right;border-bottom:1px solid var(--line2);white-space:nowrap}
@@ -2377,6 +2381,24 @@ td{padding:7px 8px}
   .firstrun-card .fr3-doors,.firstrun-card .fr-quiet{gap:4px}
   .firstrun-card .entry-links{margin-top:6px}
 }
+/* First-paint reach (cont. 2): the entry-links row wraps to
+   three lines on a phone — saves link, save-folder path,
+   game-log path — and the middle line now sits half under the
+   fixed bottom nav at first paint, the same failure the trims
+   above fixed for other Home controls. Two moves, phones only:
+   the row's type and gaps slim a step so the two copy links
+   share the second line instead of stacking onto a third, and
+   the card's own text spacing tightens (sub line-height, the
+   empty code message's reserved height, the two-column stack's
+   top margin) — about 55px in all, so the whole row clears the
+   nav. No copy, control, id or touch target changes; wider
+   screens keep the roomier card. */
+@media(max-width:680px){
+  .firstrun-card .entry-links{font-size:12.5px;gap:5px 6px;margin-top:4px}
+  .firstrun-card .sub{line-height:1.32}
+  .firstrun-card #homeCodeMsg{min-height:0!important;margin-top:0!important}
+  .firstrun-card .fr-two-col{margin-top:2px}
+}
 /* Home — one full-width "Bring in your hero" card in two
    columns: the two doors stacked on the left (paste a code,
    drop your saves — the saves door holds all save-loading),
@@ -2834,13 +2856,11 @@ td{padding:7px 8px}
   </div>
   <!-- The Share panel lives inside the Share button's anchor in
        the instance panel above (see #sharePanel there): it drops
-       down from the button itself, so the copy buttons sit right
-       under the button that opened them. The third row is Copy
-       link: it stores the build with the share service
-       (POST /api/share) and copies the ?share=<id> link the
-       service hands back — never a link built from this frame's
-       own address. It is a deliberate, user-ordered share
-       feature: keep all three copy buttons. -->
+       down from the button itself, so the three copy buttons —
+       site code, game code and link — sit right under the button
+       that opened them. Copy link stores the build with the share
+       service and copies the ?share=<id> link it hands back;
+       opening one loads the build (see maybeLoadSharedBuild). -->
   <div class="sample-banner hidden" id="sampleBanner" role="note">
     <div style="flex:1 1 340px;min-width:0"><b>Sample build</b><p class="sub" id="sampleBannerText" style="margin:2px 0 0"></p></div>
     <button class="btn small" id="sampleClearBtn" type="button">Clear sample</button>
@@ -6167,7 +6187,7 @@ function fetchJSON(url,timeoutMs){
 function getJSON(path){if(cache[path])return cache[path];var p=fetchJSON(BASE+path,12000);cache[path]=p;p.catch(function(){if(cache[path]===p)delete cache[path]});return p}
 function getLiveJSON(path,timeoutMs){delete cache[path];var p=fetchJSON(BASE+path,timeoutMs||12000);cache[path]=p;p.catch(function(){if(cache[path]===p)delete cache[path]});return p}
 function getSnap(name){return fetchJSON('assets/snapshot/'+name,12000)}
-var SNAPSHOT_PATCH='90'; var SNAPSHOT_AT='2026-11-25T20:48:00.347Z'; var DEFAULT_LEAGUE='at1-sc-trade'; var liveState='boot';
+var SNAPSHOT_PATCH='90'; var SNAPSHOT_AT='2026-11-25T21:48:00.516Z'; var DEFAULT_LEAGUE='at1-sc-trade'; var liveState='boot';
 /* Patch history store — notes text only, a few KB per patch, bundled
    at assets/snapshot/patch-history.json. The hourly snapshot refresh
    adds exactly one entry when the patch number moves: {patch, build,
@@ -15531,6 +15551,46 @@ function renderBuffToggles(){
 /* Which compact skill rows are tapped open — kept across the
    table's re-renders so opening one row never collapses another. */
 var sknOpen={};
+/* A skill's own gem-level control — the slider in the Main skill
+   section drives only the main skill (state.gemLevel); every
+   other skill on the bar carries its level on its own bar entry
+   (e.gem), and until now nothing on the page could change it:
+   the level arrived with the save, build code or ladder hero
+   and stayed there. This control sits in each skill's own
+   detail — the Your skills rows and the panel under the Main
+   skill card — bound to that skill's own stored level, so a bar
+   skill's gem can be raised or lowered exactly like the main
+   skill's. The value it sets is the gem's own level; the gear
+   bonus rides on top everywhere the level is read (the same
+   split the main slider shows). Dragging writes the level and
+   the chip live; the full re-render lands on release (change),
+   so the thumb is never rebuilt mid-drag. On a read-only
+   starter the control wears the lock like the main slider does:
+   disabled, with the reason printed under it. */
+function gemCtlHTML(e,isMain){
+  var base=isMain?state.gemLevel:(e.gem||state.gemLevel);
+  var bonus=gearGemBonus(state);
+  var ro=!!state.starterRO;
+  return '<div class="skn-gemctl"><div class="label" style="margin:0">Gem level <span class="range-val" data-gemctl-val="'+esc(e.skill)+'">'+base+'</span>'+(bonus?'<span class="sub" data-gemctl-eff="'+esc(e.skill)+'"> + '+bonus+' from gear — Lv '+(base+bonus)+' in a fight</span>':'')+'</div>'
+   +'<input type="range" min="1" max="21" step="1" value="'+base+'" data-gemctl="'+esc(e.skill)+'" aria-label="Gem level for '+esc(skillName(e.skill))+'"'+(ro?' disabled':'')+'>'
+   +(ro?'<p class="sub" style="margin-top:2px">Locked on this starter — the plan is fixed as published, gem levels included. Duplicate it &amp; make it mine, and the level is yours.</p>':'')
+   +'</div>';
+}
+function bindGemCtl(scope,mutFn,afterFn){
+  if(!scope)return;
+  scope.querySelectorAll('[data-gemctl]').forEach(function(r){
+    var id=r.getAttribute('data-gemctl');
+    r.addEventListener('input',function(){
+      var v=Math.max(1,Math.min(21,Math.round(+r.value||1)));
+      var en=mutFn(id); en.gem=v;
+      if(id===state.skillId){state.gemLevel=v; var gr=$('gemRange'); if(gr)gr.value=v; var gv=$('gemVal'); if(gv)gv.textContent=v;}
+      var bonus=gearGemBonus(state);
+      scope.querySelectorAll('[data-gemctl-val]').forEach(function(el){if(el.getAttribute('data-gemctl-val')===id)el.textContent=v});
+      scope.querySelectorAll('[data-gemctl-eff]').forEach(function(el){if(el.getAttribute('data-gemctl-eff')===id)el.textContent=' + '+bonus+' from gear — Lv '+(v+bonus)+' in a fight'});
+    });
+    r.addEventListener('change',function(){afterFn()});
+  });
+}
 function renderSkillTable(){
   renderBuffToggles();
   var box=$('drawerSkillNums'); if(!box)return;
@@ -15590,6 +15650,7 @@ function renderSkillTable(){
     return '<div class="skn-row'+(open?' open':'')+'"><button type="button" class="skn-summary" data-skn-toggle="'+esc(e.skill)+'" aria-expanded="'+(open?'true':'false')+'" aria-label="'+esc(sk.Name)+' — details"><span class="skn-sum-main"><b>'+esc(sk.Name)+(isMain?' <span class="tag">Main</span>':'')+(e.onBar===false?' <span class="tag">Not on the bar</span>':'')+'</b><span class="skn-sum-meta">Gem Lv '+gemLv+' • '+sups.length+' linked'+(w>0?' • Weight '+w+'%':'')+'</span></span>'+sumRight+'<span class="skn-chev" aria-hidden="true">▾</span></button>'
      +(open?'<div class="skn-detail"><div class="skn-nums"><span>'+esc(sk.Kind==='Weapon'?'Weapon skill':(sk.Kind==='Basic'?'Basic attack':'Skill gem'))+' • '+openN+' of 6 sockets open at gem Lv '+gemLv+'</span></div>'
      +nums
+     +gemCtlHTML(e,isMain)
      +'<div class="skn-flags">'
      +(hasExec?'<label class="skn-flag" title="Count this skill as if the enemy is below half its life — Executioner\u2019s own more damage (35% on the physical part of a hit, 14% on the rest) counts while it is ticked"><input type="checkbox" data-skn-exec="'+esc(e.skill)+'"'+(e.exec?' checked':'')+'> Executioner — enemy below half life</label>':'')
      +'<label class="skn-flag" title="How much tree planning counts this skill beside your main skill">Weight <select data-skn-weight="'+esc(e.skill)+'" aria-label="Tree-planning weight for '+esc(sk.Name)+'">'+[0,25,50,75,100].map(function(x){return '<option value="'+x+'"'+(x===w?' selected':'')+'>'+x+'%</option>'}).join('')+'</select></label>'
@@ -15610,6 +15671,7 @@ function renderSkillTable(){
   box.querySelectorAll('[data-skn-sim]').forEach(function(cb){cb.addEventListener('change',function(){var e=mut(cb.getAttribute('data-skn-sim')); e.sim=cb.checked; after()})});
   box.querySelectorAll('[data-skn-weight]').forEach(function(sel){sel.addEventListener('change',function(){state.treeWeights=state.treeWeights||{}; state.treeWeights[sel.getAttribute('data-skn-weight')]=+sel.value; heatMap=null; schedulePersistInstances(); renderCode()})});
   box.querySelectorAll('[data-skn-main]').forEach(function(b){b.addEventListener('click',function(){setSkill(b.getAttribute('data-skn-main')); renderSkillTable()})});
+  bindGemCtl(box,mut,after);
   box.querySelectorAll('[data-skn-toggle]').forEach(function(b){b.addEventListener('click',function(){var id=b.getAttribute('data-skn-toggle'); sknOpen[id]=!sknOpen[id]; renderSkillTable()})});
 }
 /* The main skill's own detail panel, sitting directly under the
@@ -15656,6 +15718,7 @@ function renderMainSkillDetail(){
   box.innerHTML='<div class="skn-row open"><div class="skn-summary" style="cursor:default"><span class="skn-sum-main"><b>'+esc(sk.Name)+(isMainFocus?' <span class="tag">Main</span>':' <span class="tag">Viewing — not main</span>')+(e.onBar===false?' <span class="tag">Not on the bar</span>':'')+'</b><span class="skn-sum-meta">Gem Lv '+gemLv+' • '+sups.length+' linked'+(w>0?' • Weight '+w+'%':'')+(isMainFocus?'':' • Your main skill is '+esc(skillName(state.skillId)))+'</span></span>'+sumRight+'</div>'
    +'<div class="skn-detail"><div class="skn-nums"><span>'+esc(sk.Kind==='Weapon'?'Weapon skill':(sk.Kind==='Basic'?'Basic attack':'Skill gem'))+' • '+openN+' of 6 sockets open at gem Lv '+gemLv+'</span></div>'
    +nums
+   +gemCtlHTML(e,isMainFocus)
    +'<div class="skn-flags">'
    +(hasExec?'<label class="skn-flag" title="Count this skill as if the enemy is below half its life — Executioner\u2019s own more damage (35% on the physical part of a hit, 14% on the rest) counts while it is ticked"><input type="checkbox" data-skn-exec="'+esc(e.skill)+'"'+(e.exec?' checked':'')+'> Executioner — enemy below half life</label>':'')
    +'<label class="skn-flag" title="How much tree planning counts this skill beside your main skill">Weight <select data-skn-weight="'+esc(e.skill)+'" aria-label="Tree-planning weight for '+esc(sk.Name)+'">'+[0,25,50,75,100].map(function(x){return '<option value="'+x+'"'+(x===w?' selected':'')+'>'+x+'%</option>'}).join('')+'</select></label>'
@@ -15679,6 +15742,7 @@ function renderMainSkillDetail(){
      skill onto the main-skill card. */
   box.querySelectorAll('[data-view-main]').forEach(function(b){b.addEventListener('click',function(){viewSkillId=null; renderDrawerCard(); scrollToSkillCard(); sockMsg('Back to your main skill, '+skillName(state.skillId)+'.')})});
   box.querySelectorAll('[data-skn-weight]').forEach(function(sel){sel.addEventListener('change',function(){state.treeWeights=state.treeWeights||{}; state.treeWeights[sel.getAttribute('data-skn-weight')]=+sel.value; heatMap=null; schedulePersistInstances(); renderCode(); renderMainSkillDetail()})});
+  bindGemCtl(box,mut,after);
 }
 /* The drawer's Character section: everything about the character /
    plan in one place, under the skills — class, level, weapon, the
@@ -24884,8 +24948,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.381';
-var PLANNER_BUILT_AT='2026-11-25T14:43:44-07:00';
+var PLANNER_VERSION='0.385';
+var PLANNER_BUILT_AT='2026-11-25T15:17:30-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
