@@ -4347,16 +4347,51 @@ function mergeZh(cat,data,T){
     }else if(cat==='oath_masteries'){
       var mt=T.oath_masteries||{};
       (data.Masteries||[]).forEach(function(m){if(!m||!m.Id)return;setName(m,mt['Masteries.'+m.Id+'.Name']);(m.Oaths||[]).forEach(function(o){if(!o||!o.Id)return;var p='Masteries.'+m.Id+'.Oaths.'+o.Id+'.';setName(o,mt[p+'Name']);if(mt[p+'Text'])o.Text=mt[p+'Text'];});});
+    }else if(cat==='curses'){
+      /* v0.418 (F1): the castable curses ARE skills in the game's
+         own Chinese file (skills.<id>.Name — the same official
+         text the skill bar already shows), so their display names
+         merge from there and every place that names a curse (the
+         enemy-setup tick list, the curse note lines) reads
+         Chinese. Only the picks (Woes and Sentences) are renamed;
+         the other kinds keep their published names. */
+      var ct2=T.skills||{};
+      (data.curses||[]).forEach(function(c){if(!c||!c.Id)return;if(c.Kind!=='Woe'&&c.Kind!=='Sentence')return;setName(c,ct2['skills.'+c.Id+'.Name']);});
+    }else if(cat==='dragonling'){
+      /* v0.418 (F2): the game's Chinese file publishes NO
+         Dragonling entries at all, so no translation may be
+         invented — every node name and path name keeps its
+         English with the site's " (EN)" marker, the way other
+         no-Chinese data is marked. The aspects themselves are
+         element words the chrome dictionary already carries, so
+         they are not marked. */
+      markDragonlingTree(data);
     }
   }catch(e){}
   return data;
 }
+/* v0.418 (F2): the Dragonling (EN)-marking walker — every class
+   node list the file carries (the base tree, the Ascension 2.0
+   kits and the Hearts set), shared by the fetch merge above and
+   by the planner's data apply, which calls it through
+   window.BOP_MARK_DRAGONLING whenever Chinese is on, so the
+   marking holds whichever route delivered the data. Idempotent:
+   a name already carrying the marker is left alone. */
+function markDragonlingTree(data){
+  var T=data&&data.Tree; if(!T)return;
+  var markList=function(lst){(lst||[]).forEach(function(n){if(!n)return;if(n.Name&&!/\(EN\)$/.test(n.Name))n.Name=markEn(n.Name);if(n.Path&&!/\(EN\)$/.test(n.Path))n.Path=markEn(n.Path);});};
+  var markClasses=function(cm){if(!cm)return;Object.keys(cm).forEach(function(cn){markList(cm[cn]);});};
+  markClasses(T.Classes);
+  if(T.Asc2)markClasses(T.Asc2.Classes);
+  if(T.Hearts103)markClasses(T.Hearts103.Classes);
+}
+window.BOP_MARK_DRAGONLING=markDragonlingTree;
 var ZST=null,zstP=null;
 function loadZst(){
   if(!zstP){zstP=origFetch('assets/lang/zh-stat-text.json').then(function(r){return r.json();}).then(function(d){ZST=d||{};return ZST;}).catch(function(){ZST=null;return null;});}
   return zstP;
 }
-var CATRE=/\/(skills|supports|passive_tree|uniques|affixes|affixes_riven|oath_masteries|stat_text)\.json([?#]|$)/;
+var CATRE=/\/(skills|supports|passive_tree|uniques|affixes|affixes_riven|oath_masteries|stat_text|curses|dragonling)\.json([?#]|$)/;
 window.fetch=function(input,init){
   if(LANG!=='zh')return origFetch.apply(this,arguments);
   var url='';
@@ -4378,7 +4413,7 @@ if(LANG==='zh'){loadZh();loadZst();}
    types and scope words) — the sentence renderers translate them
    through this when Chinese is on, so a translated template never
    keeps an English "Fire" in the middle of it. */
-var TAG_ZH={Physical:'物理',Fire:'火焰',Cold:'冰霜',Lightning:'闪电',Poison:'毒素',Chaos:'混沌',Holy:'神圣',Shadow:'暗影',Arcane:'奥术',Elemental:'元素',Spell:'法术',Attack:'攻击',Melee:'近战',Projectile:'投射物',Minion:'召唤物',Slam:'猛击',Nova:'新星',Chain:'连锁',Duration:'持续',Movement:'位移',Trap:'陷阱',Shield:'盾牌',Totem:'图腾',Orbit:'环绕',Brand:'火花',Bow:'弓',Aura:'光环',Curse:'诅咒'};
+var TAG_ZH={Physical:'物理',Fire:'火焰',Cold:'冰霜',Lightning:'闪电',Poison:'毒素',Chaos:'混沌',Holy:'神圣',Shadow:'暗影',Arcane:'奥术',Elemental:'元素',Spell:'法术',Attack:'攻击',Melee:'近战',Projectile:'投射物',Minion:'召唤物',Slam:'猛击',Nova:'新星',Chain:'连锁',Duration:'持续',Movement:'位移',Trap:'陷阱',Shield:'盾牌',Totem:'图腾',Orbit:'环绕',Brand:'火花',Bow:'弓',Aura:'光环',Curse:'诅咒',Gem:'宝石'};
 window.BOP_TAG_ZH=function(t){return TAG_ZH[t]||t;};
 
 /* ---------- UI chrome: dictionary over rendered text ---------- */
@@ -4401,6 +4436,45 @@ var DICT={
 "Loot Filter":"掉落过滤器",
 "Collections":"收藏",
 "Patch Notes":"补丁说明",
+"History":"历史记录",
+"Latest patch below. Older patches are in History.":"最新补丁见下方。更早的补丁在历史记录中。",
+"All previous patches, newest first. Open a patch to read its notes.":"全部历史补丁，最新在前。打开一个补丁阅读其说明。",
+"No older patches yet.":"暂无更早的补丁。",
+"Rupture level":"裂隙等级",
+"Your Dragonling points come from Dragon Ruptures cleared — 1 point per level, 15 at Rupture 200. This is the same Rupture level as in Enemy setup: set it in either place and both agree.":"你的龙灵点数来自已通关的巨龙裂隙 — 每级 1 点，裂隙 200 时共 15 点。这与敌人设置中的裂隙等级相同：在任一处设置，两处都会同步。",
+"Own":"本职业",
+"Prefixes":"前缀",
+"Suffixes":"后缀",
+"Utility":"实用",
+"Primal":"原始",
+"Casting costs":"施法消耗",
+"Dual Blades":"双刃",
+"Fist Weapon":"拳套",
+"Mace and Shield":"锤与盾",
+"One-Handed Axe":"单手斧",
+"One-Handed Mace":"单手锤",
+"One-Handed Sword":"单手剑",
+"Rune Dagger":"符文匕首",
+"Scythe":"镰刀",
+"Two-Handed Axe":"双手斧",
+"Two-Handed Mace":"双手锤",
+"Two-Handed Spear":"双手长矛",
+"Two-Handed Sword":"双手剑",
+"Two-Handed Weapon":"双手武器",
+"• linked":"• 已链接",
+"Linked":"已链接",
+"Highest roll of the tier":"该阶级的最高洗值",
+"Lowest roll of the tier":"该阶级的最低洗值",
+"Highest second roll of the tier":"该阶级第二数值的最高洗值",
+"Lowest second roll of the tier":"该阶级第二数值的最低洗值",
+"This is the top of the range this affix tier can roll.":"这是此词缀阶级可洗出范围的上限。",
+"This is the bottom of the range this affix tier can roll.":"这是此词缀阶级可洗出范围的下限。",
+"It went up, so the tier can roll higher.":"它上升了，因此该阶级可以洗出更高数值。",
+"It went down, so the tier rolls lower at the top.":"它下降了，因此该阶级的上限更低。",
+"It went up, so the tier starts higher.":"它上升了，因此该阶级从更高数值起洗。",
+"It went down, so the tier can start lower.":"它下降了，因此该阶级可以从更低数值起洗。",
+"This is the top of the range for this affix tier’s second value.":"这是此词缀阶级第二个数值可洗出范围的上限。",
+"This is the bottom of the range for this affix tier’s second value.":"这是此词缀阶级第二个数值可洗出范围的下限。",
 "Planner":"规划器",
 "More":"更多",
 "Bring in your hero":"导入你的英雄",
@@ -6408,6 +6482,8 @@ var RULES=[
  [/^Steeping rolls by the game’s own weights, only mods and tiers open at the Rupture Level above, inside the vessel’s caps( — this ([\s\S]+) holds (\d+) prefix, (\d+) suffix(, an Oath mod)?( and a Core mod)?)?\. Oath and Core mods need a vessel with the slot for them\.$/,function(m){return '浸泡按游戏自己的权重洗练，只有上方裂隙等级开放的词缀和阶级，在器皿的上限内'+(m[1]?' — 这个'+m[2]+'可容纳 '+m[3]+' 条前缀、'+m[4]+' 条后缀'+(m[5]?'，一条誓约词缀':'')+(m[6]?'和一条核心词缀':''):'')+'。誓约和核心词缀需要带有对应槽位的器皿。';}],
  [/^— (Warrior|Mage|Ranger|Paladin|Necromancer|Samurai)$/,function(m){return '— '+classZh(m[1]);}],
  [/^([\s\S]+?) — ([\s\S]+):$/,function(m){return KIND_ZH[m[1]]?KIND_ZH[m[1]]+' — '+(m[1]==='Class'?classZh(m[2]):m[2])+':':m[0];}],
+ [/^Change — ([\s\S]+)$/,function(m){return '更换 — '+slotZh(m[1]);}],
+ [/^Add — ([\s\S]+)$/,function(m){return '添加 — '+slotZh(m[1]);}],
  [/^(\S+) — ([\s\S]+)$/,function(m){return CLASS_ZH[m[1]]?CLASS_ZH[m[1]]+' — '+m[2]:m[0];}],
  [/^([\s\S]*(?:capped by its maximum|Fortify is likewise)[\s\S]*)$/,function(m){var parts=m[1].replace(/\.$/,'').split('; ').map(function(p){return trLookup(p);});if(parts.indexOf(null)>=0)return m[0];return parts.join('；')+'。';}],
  [/^have no build published yet — their rank stands, but there is no build to open yet\. (\d+) of the (\d+) heroes shown have no build to open\.$/,function(m){return '尚未发布构建 — 其排名保留，但尚无可打开的构建。显示的 '+m[2]+' 名英雄中有 '+m[1]+' 名没有可打开的构建。';}],
@@ -6416,6 +6492,32 @@ var RULES=[
  [/^([+−-][\d.]+)% to critical strike multiplier → ([+−-][\d.]+)% to critical strike multiplier$/,function(m){return '暴击伤害加成 '+m[1]+'% → 暴击伤害加成 '+m[2]+'%';}],
  [/^([+−-][\d.]+)% to critical strike multiplier$/,function(m){return '暴击伤害加成 '+m[1]+'%';}],
  [/^([\s\S]+) (Warrior|Mage|Ranger|Paladin|Necromancer|Samurai)$/,function(m){return m[1]+' '+CLASS_ZH[m[2]];}],
+ /* ---- v0.418 zh completion: Patch Notes header (F7), affix
+    editor framing (F4), gear picker title (F5), Skills-view
+    sentences (F6) and the Dragonling aspect lines (F2). ---- */
+ [/^Patch (\S+) is the latest patch\. Older patches are in History\.$/,function(m){return '补丁 '+m[1]+' 是最新补丁。更早的补丁在历史记录中。';}],
+ [/^Affixes for ([\s\S]+)$/,function(m){return slotZh(m[1])+' 的词缀';}],
+ [/^(\d+) affixes can roll here\. Each picker groups them by what they do — Damage, Defence, Attributes, Utility\.( Pick an item above and the list narrows to that item\.)?$/,function(m){return m[1]+' 条词缀可在此洗出。每个选择器按作用分组 — 伤害、防御、属性、实用。'+(m[2]?' 在上方选择一件物品，列表会缩小到该物品。':'');}],
+ [/^(\d+) affixes can roll on this base · one affix per group$/,function(m){return m[1]+' 条词缀可在此基底上洗出 · 每组一条词缀';}],
+ [/^· up to (\d+)$/,function(m){return '· 最多 '+m[1]+' 条';}],
+ [/^Socket (\d+)$/,function(m){return '插槽 '+m[1];}],
+ [/^Setup ([AB]) — ([\s\S]+)$/,function(m){return '配置 '+m[1]+' — '+m[2];}],
+ [/^Gem Lv (\d+) • (\d+) linked(?: • Weight ([\d.]+)%)?(?: • Your main skill is ([\s\S]+))?$/,function(m){return '宝石等级 '+m[1]+' • 已链接 '+m[2]+' 个辅助'+(m[3]?' • 权重 '+m[3]+'%':'')+(m[4]?' • 你的主技能是 '+m[4]:'');}],
+ [/^([\d.]+) mana\/s$/,function(m){return m[1]+' 法力/秒';}],
+ [/^([\d.]+)\/s$/,function(m){return m[1]+'/秒';}],
+ [/^([\d,]+) mana$/,function(m){return m[1]+' 法力';}],
+ [/^of your ([\d,]+) pool — that mana is not there to spend\.$/,function(m){return '（你的法力池共 '+m[1]+'）— 这部分法力无法使用。';}],
+ [/^of your ([\d,]+) pool — ([\d.]+)% of the pool — that mana is not there to spend\.$/,function(m){return '（你的法力池共 '+m[1]+'，占法力池的 '+m[2]+'%）— 这部分法力无法使用。';}],
+ [/^of your ([\d,]+) pool — ([\d.]+)% of the pool plus ([\d,]+) held flat — that mana is not there to spend\.$/,function(m){return '（你的法力池共 '+m[1]+'，占法力池的 '+m[2]+'% 并另固定保留 '+m[3]+'）— 这部分法力无法使用。';}],
+ [/^runs dry in ([\d.]+)s$/,function(m){return '将在 '+m[1]+' 秒内耗尽';}],
+ [/^runs dry in under a second$/,function(m){return '将在不到一秒内耗尽';}],
+ [/^(\S+) aspect$/,function(m){var z=aspectZh(m[1]);return z!==m[1]?z+'形态':m[0];}],
+ [/^A (\S+) hatchling’s own aspect\.$/,function(m){return '这是'+classZh(m[1])+'幼龙自身的形态。';}],
+ [/^(— )?([\d.]+)% increased (\S+) damage · your hits penetrate ([\d.]+)% (\S+) resistance · \+([\d.]+)% (\S+) resistance$/,function(m){return (m[1]||'')+(TAG_ZH[m[3]]||m[3])+'伤害提高 '+m[2]+'% · 你的命中穿透 '+(TAG_ZH[m[5]]||m[5])+'抗性 '+m[4]+'% · '+(TAG_ZH[m[7]]||m[7])+'抗性 +'+m[6]+'%';}],
+ [/^(— )?([\d.]+)% increased damage · ([\d.]+)% increased critical strike chance · ([\d.]+)% increased maximum Mana$/,function(m){return (m[1]||'')+'伤害提高 '+m[2]+'% · 暴击率提高 '+m[3]+'% · 最大法力提高 '+m[4]+'%';}],
+ [/^(— )?([\d.]+)% increased (\S+) damage · gain ([\d.]+)% of Physical damage as extra (\S+) · \+([\d.]+)% (\S+) resistance$/,function(m){return (m[1]||'')+(TAG_ZH[m[3]]||m[3])+'伤害提高 '+m[2]+'% · 获得物理伤害的 '+m[4]+'% 作为额外'+(TAG_ZH[m[5]]||m[5])+'伤害 · '+(TAG_ZH[m[7]]||m[7])+'抗性 +'+m[6]+'%';}],
+ [/^(— )?([\d.]+)% increased Physical damage · ([\d.]+)% chance to cause Bleeding · ([\d.]+)% increased Armour$/,function(m){return (m[1]||'')+'物理伤害提高 '+m[2]+'% · '+m[3]+'% 几率造成流血 · 护甲提高 '+m[4]+'%';}],
+ [/^(— )?\+([\d.]+)% Entropy Multiplier · implosions ignore ([\d.]+)% Chaos Resistance · \+([\d.]+)% Poison resistance$/,function(m){return (m[1]||'')+'熵加成 +'+m[2]+'% · 内爆无视 '+m[3]+'% 混沌抗性 · 毒素抗性 +'+m[4]+'%';}],
  [/^([A-Za-z][A-Za-z0-9 ·()-]{0,60})$/,function(m){var p=statPhraseZh(m[1]);if(p)return p;var z=crumbZh(m[1]);return z||m[0];}]
 ];
 function trLookup(core){
@@ -6462,6 +6564,18 @@ function trAttrs(el){
       var rec=origAttr.get(el);if(!rec){rec={};origAttr.set(el,rec);touchedEls.add(el);}
       rec[ATTRS[i]]=a;
       el.setAttribute(ATTRS[i],v);
+    }}
+  }
+  /* v0.418 (F4): an <optgroup>'s group name lives in its label
+     attribute (the affix pickers' Damage / Defence / Attributes /
+     Utility) — translate it through the same record/restore
+     mechanism, so the English switch puts it back too. */
+  if(el.nodeName==='OPTGROUP'){
+    var lb=el.getAttribute&&el.getAttribute('label');
+    if(lb){var lv=trRaw(lb);if(lv!=null&&lv!==lb){
+      var rec2=origAttr.get(el);if(!rec2){rec2={};origAttr.set(el,rec2);touchedEls.add(el);}
+      if(rec2.label==null)rec2.label=lb;
+      el.setAttribute('label',lv);
     }}
   }
 }
@@ -6552,6 +6666,9 @@ function unTrAttr(el){
     var lead=/^\s*/.exec(a)[0],trail=/\s*$/.exec(a)[0];
     el.setAttribute(ATTRS[i],lead+en+trail);
   }
+  /* v0.418 (F4): the optgroup label sweep, mirror of trAttrs. */
+  var lb2=el.getAttribute&&el.getAttribute('label');
+  if(lb2){var core2=lb2.replace(/\s+/g,' ').trim();var en2=revDict()[core2];if(en2!=null)el.setAttribute('label',en2);}
 }
 function sweepEnAttrs(root){
   if(!root||root.nodeType!==1)return;
@@ -23041,7 +23158,14 @@ var PN_FIELD_INFO={
   'ReserveFlatPerLevel':{label:'Mana reserved per gem level',does:'This is how much more mana the skill reserves for each gem level above the first.',up:'It went up, so the skill reserves more mana as it levels.',down:'It went down, so the skill reserves less mana as it levels.'},
   'Minion.DamageMult':{label:'Minion damage multiplier',does:'This multiplies the damage the summoned minion deals.',up:'It went up, so the minion hits harder.',down:'It went down, so the minion hits softer.'},
   'PowerMods.Mod.Value':{label:'Power line size',unit:'%',does:'This is the size of the bonus on this runeword\u2019s power line \u2014 the line that counts at the item\u2019s own level.'},
-  'PowerBandMods.Mod.Value':{label:'Power line size',unit:'%',does:'This is the size of the bonus on this runeword\u2019s power line \u2014 the line that counts at the item\u2019s own level.'}
+  'PowerBandMods.Mod.Value':{label:'Power line size',unit:'%',does:'This is the size of the bonus on this runeword\u2019s power line \u2014 the line that counts at the item\u2019s own level.'},
+  /* v0.418 (F7): an affix tier's roll bounds are plain values a
+     player can read — the tier's highest / lowest roll — never
+     the raw field path ("Tiers Max") the changelog keys them by. */
+  'Tiers.Max':{label:'Highest roll of the tier',does:'This is the top of the range this affix tier can roll.',up:'It went up, so the tier can roll higher.',down:'It went down, so the tier rolls lower at the top.'},
+  'Tiers.Min':{label:'Lowest roll of the tier',does:'This is the bottom of the range this affix tier can roll.',up:'It went up, so the tier starts higher.',down:'It went down, so the tier can start lower.'},
+  'Tiers.Max2':{label:'Highest second roll of the tier',does:'This is the top of the range for this affix tier\u2019s second value.',up:'It went up, so the tier can roll higher.',down:'It went down, so the tier rolls lower at the top.'},
+  'Tiers.Min2':{label:'Lowest second roll of the tier',does:'This is the bottom of the range for this affix tier\u2019s second value.',up:'It went up, so the tier starts higher.',down:'It went down, so the tier can start lower.'}
 };
 function pnFieldInfo(file,field){
   var P=pnFieldParts(field);
@@ -23150,6 +23274,19 @@ function pnClassify(file,c){
 function pnRow(file,id,c){
   var cl=pnClassify(file,c);
   if(cl.kind==='hidden')return null;
+  /* v0.418 (F7) — render-side only (the stored changelog is never
+     rewritten): a row keyed by a raw internal field (BaseTags,
+     Art) or carrying raw internal ids as its values (art ids like
+     ra_…, snake_case keys) never renders — a line whose only
+     content is an internal id drops with its row. Fields that
+     resolve their values to plain names (a base item's name, a
+     renamed entry's name, a bonus's stat or tags) are exempt. */
+  var P0=pnFieldParts(c.field);
+  if(P0.path==='BaseTags'||P0.path==='Art')return null;
+  var idVal=/^(?:ra|ui|fx)_[a-z0-9_]+$|^[a-z][a-z0-9]*(?:_[a-z0-9]+)+$/;
+  if(P0.path!=='BaseId'&&P0.path!=='Name'&&P0.path!=='Mods.Stat'&&P0.path!=='Mods.Tags'){
+    if((c.old&&idVal.test(String(c.old).trim()))||(c.new&&idVal.test(String(c.new).trim())))return null;
+  }
   var info=pnFieldInfo(file,c.field);
   var badge='';
   if(cl.kind==='buff')badge='<span class="pn-badge pn-buff">\u25B2 Buff '+pnPctTxt(cl.pct)+'</span>';
@@ -23169,7 +23306,7 @@ function pnRow(file,id,c){
     vals='<span class="pn-old">'+esc(o!=null?pnFmtNum(o)+unit:pnDispVal(file,c.field,c.old))+'</span><span class="pn-arrow">\u2192</span><span class="pn-newval">'+esc(n!=null?pnFmtNum(n)+unit:pnDispVal(file,c.field,c.new))+'</span>';
   }
   var why=pnExplain(file,c,cl,info,nowTxt);
-  var html='<div class="pn-row"><div class="pn-line"><span class="pn-what">'+esc(info.label)+'</span>'+vals+badge+'<span class="pn-raw">'+esc(pnFieldLabel(c.field))+'</span></div>'
+  var html='<div class="pn-row"><div class="pn-line"><span class="pn-what">'+esc(info.label)+'</span>'+vals+badge+'</div>'
     +nowHtml+(why?'<p class="pn-why">'+esc(why)+'</p>':'')+'</div>';
   var P=pnFieldParts(c.field);
   return{kind:cl.kind,html:html,ctx:cl.kind==='nested'&&P.path==='Mods'};
@@ -25470,7 +25607,8 @@ function renderInstanceBar(){
   var box=$('instanceTabs'); if(!box)return;
   box.innerHTML=plannerInstances.map(function(inst){
     var active=inst.id===activeInstanceId;
-    var lab=active?instanceLabel({data:state,loadedHero:G.loadedHero}):(inst.label||instanceLabel(inst.snap));
+    var lab=active?instanceLabel({data:state,loadedHero:G.loadedHero}):(inst.snap?instanceLabel(inst.snap):(inst.label||{name:'New build',sub:''}));
+    if(!active&&inst.snap)inst.label=lab;
     return '<div class="inst-tab'+(active?' active':'')+'"><button class="inst-main" type="button" data-inst="'+inst.id+'" role="tab" aria-selected="'+active+'" title="'+esc(lab.name+(lab.sub?' — '+lab.sub:''))+'"><span class="inst-dot" aria-hidden="true"></span><b>'+esc(lab.name)+'</b>'+(lab.sub?'<small>'+esc(lab.sub)+'</small>':'')+'</button><button class="inst-x" type="button" data-inst-close="'+inst.id+'" aria-label="Close the '+esc(lab.name+(lab.sub?' — '+lab.sub:''))+' instance">×</button></div>';
   }).join('');
   var pc=$('plannerTabCount');
@@ -26731,8 +26869,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.417';
-var PLANNER_BUILT_AT='2026-11-26T14:52:00-08:00';
+var PLANNER_VERSION='0.418';
+var PLANNER_BUILT_AT='2026-11-26T15:05:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
@@ -27083,6 +27221,12 @@ function applyGameData(res){
   if(res[12]&&res[12].Rules&&res[12].Rules.Vows83&&res[12].Rules.Vows83.Shares&&res[12].Rules.Vows83.Shares.length)G.vowShares=res[12].Rules.Vows83.Shares;
   if(res[12]&&res[12].recipes&&res[12].recipes.length)G.cubeData=res[12];
   if(res[13]&&(res[13].Aspects||res[13].Tree)){G.dragonling=res[13]; G.dragonMap={}; G.aspectMap={}; (res[13].Aspects||[]).forEach(function(a){G.aspectMap[a.Id]=a}); var dcl=(res[13].Tree&&res[13].Tree.Classes)||{}; Object.keys(dcl).forEach(function(cn){(dcl[cn]||[]).forEach(function(n){G.dragonMap[n.Id]=n})}); var a2c=(res[13].Tree&&res[13].Tree.Asc2&&res[13].Tree.Asc2.Classes)||{}; Object.keys(a2c).forEach(function(cn){(a2c[cn]||[]).forEach(function(n){G.dragonMap[n.Id]=n})}); var h103=(res[13].Tree&&res[13].Tree.Hearts103&&res[13].Tree.Hearts103.Classes)||{}; Object.keys(h103).forEach(function(cn){var lst=h103[cn]; (Array.isArray(lst)?lst:[]).forEach(function(n){if(n&&n.Id&&!G.dragonMap[n.Id])G.dragonMap[n.Id]=n})});}
+  /* v0.418 (F2): with Chinese on, Dragonling node and path names
+     carry the site's (EN) marker (the game's Chinese file
+     publishes no Dragonling text, so none may be invented) —
+     applied here as well as in the language layer's fetch merge,
+     so the marking holds whichever route delivered the data. */
+  if(window.BOP_LANG==='zh'&&window.BOP_MARK_DRAGONLING&&G.dragonling)window.BOP_MARK_DRAGONLING(G.dragonling);
   if(res[14]&&res[14].classes&&res[14].classes.length){G.apiClasses=res[14].classes; mergeApiClasses(res[14].classes)}
   if(res[15]&&res[15].monsters&&res[15].monsters.length){G.monsters=res[15].monsters}
   if(res[16]&&res[16].Masteries){G.oathMasteries=res[16].Masteries; G.oathMap={}; G.masteryMap={}; res[16].Masteries.forEach(function(m){G.masteryMap[m.Id]=m; (m.Oaths||[]).forEach(function(o){G.oathMap[o.Id]={oath:o,mastery:m}})})}
@@ -27150,6 +27294,19 @@ function applyGameData(res){
   var dss=$('drawerSkillSearch'); if(dss)dss.placeholder='Search '+G.skills.filter(function(s){return s.Kind!=='Utility'}).length+' skills — name, tag, damage type…';
   renderSkillList(''); renderWeaponList(''); renderSupports(); renderPlanner();
   renderGemPalette(); renderTreeList(); renderDefenses(); renderCurseOptions(); renderEnemyOptions(); renderPotionOptions(); fillAffixDatalist(); renderSavedPlans(); renderHome(); renderGear(); renderBelt(); renderDrawerSkills(); renderLeagueRules(); renderQualityEst(); setTimeout(leakScan,800);
+  /* v0.418 (F3): a language switch reloads the game data through
+     this same path, and the views below were the ones it never
+     repainted — the Builds starter cards kept the old language's
+     skill/support names (they are rendered from data, so the
+     dictionary pass cannot fix them), the instance strip kept
+     its stored labels, and the workspace hub badges kept their
+     counts. Re-render them from the freshly loaded data on every
+     apply, so a switch repaints everything the reader can see,
+     in both directions; an open gear picker re-renders too. */
+  try{renderStarters()}catch(e){}
+  try{if(typeof plannerInstances!=='undefined')renderInstanceBar()}catch(e){}
+  try{updateWsBadges()}catch(e){}
+  try{if(typeof gearPick!=='undefined'&&gearPick.slot&&$('gpList')){gpRenderPickerList(); if(gearPick.view==='affixes')gpRenderAffixes();}}catch(e){}
   /* Views the reader is not looking at are NOT rendered here.
      Building every tab's DOM on every data load was most of the
      startup cost: the Items, Bestiary, Cube, Loot Filter and
