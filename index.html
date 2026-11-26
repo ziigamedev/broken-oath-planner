@@ -4881,6 +4881,7 @@ var DICT={
 "Data: Broken Oath public API • Fan-made, not official • Heroes have no player names in the published ladder — only their rank, class and build. • Item icons © Crater Studios — Broken Oath in-game art.":"数据：Broken Oath 公开 API • 粉丝自制，非官方 • 已发布天梯中的英雄没有玩家名称 — 只有其排名、职业和构建。 • 物品图标 © Crater Studios — Broken Oath 游戏内美术。",
 "Report a problem":"报告问题",
 "Privacy":"隐私",
+"The site counts visits anonymously — a total count and a count for each day — to see how much the planner is used. No personal information and no addresses are stored for this, and no cookie is used for it.":"本站会匿名统计访问量 — 一个总计数和一个每日计数 — 以了解规划器的使用情况。为此不存储任何个人信息或地址，也不使用任何 Cookie。",
 "Terms":"条款",
 "Disclaimer":"免责声明",
 "API docs":"API 文档",
@@ -24794,6 +24795,7 @@ var LEGAL_PAGES={
     'Sharing works by build code. A code carries the whole build inside it — anyone you give the code to can open and read that build, so share a code the way you would share the build itself.',
     'A share link is the one exception to builds staying in your browser. A build someone shares by link is stored on Cloudflare\u2019s servers so the link can open it — if you open such a link here, this page fetches that build and opens it. Anyone who has the link can open the build. No account and no personal details are stored with it — just the build itself. Builds you make here and never share by link are never stored anywhere but your own browser, exactly as described above.',
     'To show ladders, heroes and game numbers, the page fetches live game data from the official Broken Oath public API. The site itself is hosted on Cloudflare, which serves the page files and runs the small function behind the report form.',
+    'The site counts visits anonymously — a total count and a count for each day — to see how much the planner is used. No personal information and no addresses are stored for this, and no cookie is used for it.',
     'If you send a report with Report a problem, it travels from this page through a Cloudflare function to the project\u2019s GitHub Issues, where it is filed as a public issue. What is sent: the report text you wrote, the tab you picked, the game data version and the planner version \u2014 plus your build code and your screenshot, but only if you add them. Nothing else goes with it.',
     'There are no accounts and no sign-in, we run no tracking of our own, and there are no ads.'
   ]},
@@ -26729,8 +26731,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.416';
-var PLANNER_BUILT_AT='2026-11-26T14:31:00-08:00';
+var PLANNER_VERSION='0.417';
+var PLANNER_BUILT_AT='2026-11-26T14:52:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
@@ -27608,6 +27610,22 @@ init();
   var _renderPatches=renderPatches;
   renderPatches=function(){ _renderPatches(); renderPatchImpact(); };
 })();
+</script>
+<script>
+/* Anonymous visit count — one silent beacon per browser session,
+   sent only on the live site address (never in this dev space, on
+   a file:// copy, or on a self-hosted copy). It stores nothing
+   about the visitor; see the Privacy page. No UI, no output. */
+(function(){try{
+  var h=location.hostname||'';
+  if(h!=='broken-oath-planner.pages.dev'&&!h.endsWith('.broken-oath-planner.pages.dev'))return;
+  try{
+    if(sessionStorage.getItem('bop-counted'))return;
+    sessionStorage.setItem('bop-counted','1');
+  }catch(e){}
+  if(navigator.sendBeacon){navigator.sendBeacon('/api/hit','');}
+  else if(window.fetch){fetch('/api/hit',{method:'POST',keepalive:true}).catch(function(){});}
+}catch(e){}})();
 </script>
 </body>
 </html>
