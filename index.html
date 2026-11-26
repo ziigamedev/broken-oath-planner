@@ -2679,12 +2679,6 @@ td{padding:7px 8px}
    opens as a sheet over the planner and is gone when closed. The
    hub tools row is one slim line under the hub buttons. */
 .qw-sheet{max-width:min(680px,96vw)}
-.fx-row{display:flex;gap:8px;align-items:center;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line2);color:var(--text);font:inherit;padding:7px 2px;cursor:pointer}
-.fx-row:hover{background:var(--panel2)}
-.fx-row .fx-main{flex:1;min-width:0}
-.fx-row .fx-main b{font-size:13.5px}
-.fx-row .fx-main small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.fx-kind{flex:none;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--gold2);border:1px solid var(--line);border-radius:999px;padding:2px 8px}
 .fb-tip .tt-delta .delta-line{font-size:12.5px}
 .gem-tip .tt-delta{margin-top:4px}
 
@@ -3194,7 +3188,7 @@ body.tab-home .brand h1{display:none}
     <div class="planner-top2">
     <div class="pt-col">
     <div class="card gear-top" id="gearCard">
-      <div class="flex between"><h2>Gear</h2><!-- Copy / Paste gear hidden for now (display:none only) — the buttons, their handlers and the gear-code feature are untouched and come back by removing the style. --><div class="flex" style="display:none"><button class="btn small" id="copyGearBtn" type="button">Copy gear</button><button class="btn small" id="pasteGearBtn" type="button">Paste gear</button></div></div>
+      <div class="flex between"><h2>Gear</h2><!-- Copy / Paste gear hidden for now (display:none only) — the buttons, their handlers and the gear-code feature are untouched and come back by removing the style. --><div class="flex" style="display:none"><button class="btn small" id="copyGearBtn" type="button">Copy gear</button><button class="btn small" id="pasteGearBtn" type="button">Paste gear</button></div><button class="pop-link" data-pop="bis" type="button" aria-haspopup="dialog">Best in this slot</button></div>
       <div class="level-row"><span class="label" style="margin:0">Hero level</span><div class="stepper"><button class="btn small step-btn" id="levelDown" type="button" aria-label="Lower hero level">−</button><input type="number" id="levelRange" min="1" max="100" step="1" value="90" aria-label="Hero level"><button class="btn small step-btn" id="levelUp" type="button" aria-label="Raise hero level">+</button></div></div>
       <details class="fold-block" id="setsFold" style="display:none">
         <summary><span class="fold-title">Character setups</span><span class="fold-hint">Set 1, Set 2, Set 3 — each a full setup for this character</span></summary>
@@ -3336,6 +3330,7 @@ body.tab-home .brand h1{display:none}
         </div>
       </details>
       <div class="more-info-row">
+        <button class="more-info-btn" data-pop="gap" type="button" aria-haspopup="dialog">Where you stand</button>
         <button class="more-info-btn" data-pop="stats" type="button" aria-haspopup="dialog">Copy stats</button>
         <button class="more-info-btn" id="advOpenBtn" type="button" aria-haspopup="dialog">More info</button>
       </div>
@@ -3353,9 +3348,10 @@ body.tab-home .brand h1{display:none}
          the Modifier audit, Sworn buffs, and Defence (with "Your
          build asks" riding in the Defence block, where it has
          always sat) — same ids, same renderers. The tools are not
-         here: Enemy setup & Guardian tester, Best in this slot,
-         Where you stand and Tuning are their own popup sheets off
-         the planner tools row, and "What the simulator counts"
+         here: Enemy setup & Guardian tester and Tuning are their
+         own popup sheets off the planner tools row, Best in this
+         slot opens off the Gear card and Where you stand off this
+         card's own action row (v0.409), and "What the simulator counts"
          lives only behind "How much to trust this number ›" on
          the card. Offence and Attributes sit on the card itself,
          up front under the resistances. "What each piece is worth"
@@ -3420,21 +3416,20 @@ body.tab-home .brand h1{display:none}
          The toggles, renderBuffToggles and the state.buffOff
          pricing underneath are untouched, so any buff already
          switched off stays off in the numbers. -->
-    <!-- The planner's deep tools as one slim row of text buttons,
+    <!-- The planner's fight tools as one slim row of text buttons,
          standing where their folds used to sit: Enemy setup &
-         Guardian tester, Best in this slot, Where you stand and
-         Tuning. Each button opens its full section in the planner
-         popup — the same sheet as Skills, Dragonling and the
-         Passive tree — and the sections themselves wait in the
-         stash with every control untouched, so the planner page
-         reads clean and nothing is more than one tap away. Copy
-         stats rides on the Damage and Defense card, by More info. -->
+         Guardian tester and Tuning. Each button opens its full
+         section in the planner popup — the same sheet as Skills,
+         Dragonling and the Passive tree — and the sections
+         themselves wait in the stash with every control untouched,
+         so the planner page reads clean and nothing is more than
+         one tap away. The measure-up tools ride on the cards they
+         judge (v0.409): Best in this slot on the Gear card, Where
+         you stand on the Damage and Defense card by More info.
+         Search by effect was removed in v0.409, button and sheet. -->
     <div class="pop-links" role="group" aria-label="Planner tools — each opens as a popup">
       <button class="pop-link" data-pop="enemy" type="button" aria-haspopup="dialog">Enemy setup &amp; Guardian tester</button>
-      <button class="pop-link" data-pop="bis" type="button" aria-haspopup="dialog">Best in this slot</button>
-      <button class="pop-link" data-pop="gap" type="button" aria-haspopup="dialog">Where you stand</button>
       <button class="pop-link" data-pop="tuning" type="button" aria-haspopup="dialog">Tuning</button>
-      <button class="pop-link" id="fxSearchBtn" type="button" aria-haspopup="dialog">Search by effect</button>
     </div>
     <details class="card fold" id="enemyFold">
       <summary><span class="fold-title">Enemy setup &amp; Guardian tester</span><span class="fold-hint">Pick the enemy, then run the fight</span></summary>
@@ -3551,7 +3546,7 @@ body.tab-home .brand h1{display:none}
       </div>
     </details>
     <details class="card fold" id="csFold">
-      <summary><span class="fold-title">Copy stats — game vs sim</span><span class="fold-hint">Your real character sheet next to this plan</span></summary>
+      <summary><span class="fold-title">Compare stats — game vs sim</span><span class="fold-hint">Your real character sheet next to this plan</span></summary>
       <div class="fold-body">
       <p class="sub" style="margin-top:4px">In game, use Copy stats on your character sheet, paste the text here, and see your real sheet next to this plan, line by line.</p>
       <textarea id="csText" rows="5" spellcheck="false" placeholder="Paste your character sheet here — the game's own Copy stats text, exactly as the game gives it (&#34;skill Winter Orb | gem 25 | …&#34;, &#34;defence | life …&#34;)…"></textarea>
@@ -4470,7 +4465,6 @@ var DICT={
 "Best in this slot":"此槽位最佳",
 "Where you stand":"你的位置",
 "Tuning":"微调",
-"Search by effect":"按效果搜索",
 "Pick the enemy, then run the fight":"选择敌人，然后开始战斗",
 "How long would this plan take on a Guardian-sized health pool? A rough check, not a prediction.":"本方案打一个守护者级血量需要多久？只是粗略估算，不是预测。",
 "Guardian health":"守护者生命",
@@ -4523,7 +4517,7 @@ var DICT={
 "Crit multiplier (%)":"暴击倍率（%）",
 "Attack / cast speed bonus (%)":"攻击/施法速度加成（%）",
 "Passive points spent":"已花费的天赋点",
-"Copy stats — game vs sim":"复制属性 — 游戏对比模拟",
+"Compare stats — game vs sim":"比较属性 — 游戏对比模拟",
 "Your real character sheet next to this plan":"把你的真实角色面板放在本方案旁边",
 "In game, use Copy stats on your character sheet, paste the text here, and see your real sheet next to this plan, line by line.":"在游戏中，对角色面板使用“复制属性”，把文本粘贴到这里，即可逐行对比你的真实面板与本方案。",
 "Compare with this plan":"与本方案对比",
@@ -17124,7 +17118,7 @@ function renderDrawerSkills(){
    refreshes key off it exactly as before. */
 var wsCurrent='character';
 var WS_PANELS={character:'wsCharacter',skills:'skillsDrawer',dragon:'wsDragon',tree:'wsTree',enemy:'enemyFold',bis:'bisCard',gap:'gapFold',tuning:'tuningFold',stats:'csFold'};
-var POP_TITLES={skills:'Skills',dragon:'Dragonling',tree:'Passive tree',enemy:'Enemy setup & Guardian tester',bis:'Best in this slot',gap:'Where you stand',tuning:'Tuning',stats:'Copy stats — game vs sim'};
+var POP_TITLES={skills:'Skills',dragon:'Dragonling',tree:'Passive tree',enemy:'Enemy setup & Guardian tester',bis:'Best in this slot',gap:'Where you stand',tuning:'Tuning',stats:'Compare stats — game vs sim'};
 var popCurrent=null;
 /* The three workspaces that present as full-page views. While
    one is open wsViewOpen is set and wsReturnY holds the planner
@@ -26378,11 +26372,9 @@ function bindCube(){
   $('simIdolSel').addEventListener('change',renderSimIdol);
 }
 
-/* ---------- Quick wins: hover deltas everywhere, undo/redo,
-   search by effect ----------
+/* ---------- Quick wins: hover deltas everywhere, undo/redo ----------
    Built to add nothing permanent to the page: the deltas ride inside
-   the hover/tap cards that already exist, and the search list opens
-   as a sheet over the planner and is gone when closed. (The History
+   the hover/tap cards that already exist. (The History
    sheet with its browser checkpoints and the blockers pill were
    removed on 2026-11-23 at the owner's direction — undo/redo and
    its keyboard shortcuts stay.) */
@@ -26531,81 +26523,12 @@ function histGo(dir){
   histIdx=ni;
   histApply(histStack[ni]);
 }
-/* ---------- Search by effect ----------
-   One small search across skills, support gems, items, uniques and
-   passive tree nodes — by name, or by a word from what the thing
-   does ("cold", "block"). It lives in a sheet behind its button in
-   the planner's tool row; there is deliberately no command palette
-   and no keyboard shortcut. Picking a result takes you to the thing:
-   the Skills popup filtered to it, the gear picker opened on its
-   slot, or the tree opened on the node. */
-function openFxSearch(){
-  qwSheet('Search by effect','<p class="sub" style="margin-top:4px">Skills, support gems, items, uniques and tree nodes — by name, or by what a thing does. Try \u201Ccold\u201D, \u201Cblock\u201D, \u201Clife on hit\u201D.</p><div class="flex mt"><input type="search" id="fxInput" placeholder="Name or effect — e.g. cold, block, crit…" style="flex:1;min-width:160px" aria-label="Search skills, items, uniques and tree nodes by name or effect"></div><div id="fxResults" style="margin-top:6px"></div>');
-  var inp=$('fxInput');
-  if(inp){inp.addEventListener('input',function(){fxRun(inp.value)}); fxRun(''); setTimeout(function(){try{inp.focus()}catch(e){}},40)}
-}
-function fxRun(q){
-  var box=$('fxResults'); if(!box)return;
-  q=(q||'').trim().toLowerCase();
-  if(q.length<2){box.innerHTML='<p class="sub">Type at least two letters — a name, or a word from what a thing does: cold, block, life, crit…</p>'; return}
-  function row(kind,name,sub,attrs){return '<button class="fx-row" type="button" '+attrs+'><span class="fx-kind">'+kind+'</span><span class="fx-main"><b>'+esc(name)+'</b><small class="sub">'+esc(sub)+'</small></span></button>'}
-  var groups='';
-  function grp(title,rows){if(rows.length)groups+='<div class="label" style="margin:10px 0 2px">'+title+'</div>'+rows.join('')}
-  grp('Skills',G.skills.filter(function(s){return (s.Name+' '+s.Id+' '+(s.Tags||[]).join(' ')+' '+(s.Description||'')).toLowerCase().indexOf(q)>=0}).slice(0,8).map(function(s){return row('Skill',s.Name,(s.Tags||[]).join(' · '),'data-fx-skill="'+esc(s.Id)+'"')}));
-  grp('Support gems',G.supports.filter(function(s){return s.Id!=='hidden'&&(s.Name+' '+s.Id+' '+(s.Description||'')).toLowerCase().indexOf(q)>=0}).slice(0,6).map(function(s){return row('Gem',s.Name,s.Description||'','data-fx-sup="'+esc(s.Id)+'"')}));
-  var its=[];
-  G.allBases.forEach(function(b){if(its.length>=10)return; try{if(gpFilterHaystack(b,null).indexOf(q)>=0)its.push(row('Item',b.Name,(b.Class||'')+' · Lv '+(b.Level!=null?b.Level:'—'),'data-fx-item="'+esc(b.Id)+'"'))}catch(e){}});
-  grp('Items — bases and everything that can roll on them',its);
-  var uns=[];
-  G.uniques.forEach(function(u){if(uns.length>=8)return; var b=G.baseMap[u.BaseId]; if(!b)return; try{if(gpFilterHaystack(b,u).indexOf(q)>=0)uns.push(row('Unique',u.Name,(b.Class||'')+' · on '+b.Name,'data-fx-item="'+esc(b.Id)+'" data-fx-unique="'+esc(u.Id)+'"'))}catch(e){}});
-  grp('Uniques',uns);
-  grp('Passive tree nodes',G.passives.filter(function(n){return (n.Name+' '+nodeModsText(n)+' '+(n.Kind||'')).toLowerCase().indexOf(q)>=0}).slice(0,8).map(function(n){return row('Node',n.Name,nodeKindLabel(n.Kind)+' — '+nodeModsText(n),'data-fx-node="'+esc(n.Id)+'"')}));
-  box.innerHTML=groups||'<p class="sub">Nothing in the game data matches \u201C'+esc(q)+'\u201D by name or effect.</p>';
-  box.querySelectorAll('[data-fx-skill]').forEach(function(b){b.addEventListener('click',function(){fxGoSkill(b.getAttribute('data-fx-skill'))})});
-  box.querySelectorAll('[data-fx-sup]').forEach(function(b){b.addEventListener('click',function(){fxGoSup(b.getAttribute('data-fx-sup'))})});
-  box.querySelectorAll('[data-fx-item]').forEach(function(b){b.addEventListener('click',function(){fxGoItem(b.getAttribute('data-fx-item'),b.getAttribute('data-fx-unique'))})});
-  box.querySelectorAll('[data-fx-node]').forEach(function(b){b.addEventListener('click',function(){fxGoNode(b.getAttribute('data-fx-node'))})});
-}
-function fxGoSkill(id){
-  qwSheetClose(); openPlannerPop('skills');
-  var s=$('drawerSkillSearch'); if(s){s.value=skillName(id); renderDrawerSkills()}
-  /* The skill list lives in the "Add a skill" fold, closed by
-     default — a jump that only set the filter landed the reader in
-     the right popup with the result still folded away. Open the
-     fold so the picked skill is actually on screen. */
-  var dl=$('drawerSkillList'); var det=(dl&&dl.closest)?dl.closest('details'):null;
-  if(det){det.open=true; try{det.scrollIntoView({block:'start'})}catch(e){}}
-}
-function fxGoSup(id){
-  qwSheetClose(); openPlannerPop('skills');
-  var s=$('drawerSupportSearch'); if(s){s.value=supportName(id); renderGemPalette()}
-}
-function fxGoItem(baseId,uniqueId){
-  var b=G.baseMap[baseId]; if(!b)return;
-  var sd=GEAR_SLOTS.find(function(x){return x.apiSlot===b.Slot});
-  qwSheetClose();
-  if(!sd)return;
-  openGearPicker(sd.key);
-  var nm=uniqueId?((G.uniqueMap[uniqueId]||{}).Name||b.Name):b.Name;
-  gearPick.q=nm; gearPick.mode=uniqueId?'uniques':'items'; gearPick.showUniques=!!uniqueId;
-  var gs=$('gpSearch'); if(gs)gs.value=nm;
-  gpRenderPickerList();
-}
-function fxGoNode(id){
-  var n=G.passiveMap[id]; if(!n)return;
-  qwSheetClose(); openPlannerPop('tree');
-  var ts=$('treeSearch'); if(ts)ts.value=n.Name||'';
-  try{renderTreeList()}catch(e){}
-  try{updateTreeCanvasStates()}catch(e){}
-  try{showTreeDetail(id)}catch(e){}
-}
 /* The undo keys — keyboard only: the hub row's ↩ ↪ buttons were
    removed at the reader's request, and Ctrl+Z / Ctrl+Y (or
    Ctrl+Shift+Z) are the way to walk the history now. Text fields
    keep their own native undo — the planner shortcut only fires when
    the keystroke is not aimed at an input. */
 (function bindQuickWins(){
-  var fb=$('fxSearchBtn'); if(fb)fb.addEventListener('click',openFxSearch);
   document.addEventListener('keydown',function(e){
     if(!(e.ctrlKey||e.metaKey)||e.altKey)return;
     var k=(e.key||'').toLowerCase();
@@ -26641,8 +26564,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.408';
-var PLANNER_BUILT_AT='2026-11-26T12:49:00-07:00';
+var PLANNER_VERSION='0.409';
+var PLANNER_BUILT_AT='2026-11-26T13:10:00-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
