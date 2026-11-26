@@ -363,6 +363,23 @@ tr:hover td{background:color-mix(in srgb, var(--panel2) 60%, transparent)}
 .itic-disc .itic-glyph{display:none}
 .itic-disc.noimg img{display:none}
 .itic-disc.noimg .itic-glyph{display:block}
+.itic-disc.glyph-only .itic-glyph{display:block}
+/* The glyph's centre disc carries the rarity (v0.408): filled
+   with the rarity colour — Magic #84bde6, Rare #ead95e, Unique
+   #f09a3e, the site's own rarity palette — shaded deeper toward
+   the centre so the pale game art (and the fallback line glyph,
+   which sits on the same disc in a dark stroke) stays readable
+   at tile size; the rim keeps the full colour, so the rarity
+   reads at a glance. A Normal item keeps the plain dark disc
+   above. Oathword and Mythic discs wear their established
+   colours the same way. Item names and tile borders keep their
+   own rarity colours elsewhere — this disc is the icon's one
+   rarity signal. */
+.itic.rf-Magic .itic-disc{background:radial-gradient(circle at 50% 42%,#5f88a6,#84bde6 78%);border-color:#d6ecfa;color:#223644}
+.itic.rf-Rare .itic-disc{background:radial-gradient(circle at 50% 42%,#a89c44,#ead95e 78%);border-color:#faf3b8;color:#37330f}
+.itic.rf-Unique .itic-disc{background:radial-gradient(circle at 50% 42%,#ad6f2d,#f09a3e 78%);border-color:#ffd2a0;color:#3a240e}
+.itic.rf-Oathword .itic-disc{background:radial-gradient(circle at 50% 42%,#a17f3c,#dfb154 78%);border-color:#f2ddab;color:#36300f}
+.itic.rf-Mythic .itic-disc{background:radial-gradient(circle at 50% 42%,#a78d55,#e8c476 78%);border-color:#f7ead0;color:#38331a}
 /* Rarity frames on item icons (v0.406): every icon's frame is
    tinted by the item's rarity, in the same colours the item's
    name already wears — Magic blue, Rare yellow, Unique
@@ -370,12 +387,18 @@ tr:hover td{background:color-mix(in srgb, var(--panel2) 60%, transparent)}
    gold of their names. --rfc carries the colour to the places
    that ring the icon themselves (the gear board's round frame,
    the loot filter's flat chips). The glyph art is unchanged. */
-.itic.rf-Normal{--rfc:#8d8474;border-color:#8d8474;color:#b6ad9c}
-.itic.rf-Magic{--rfc:var(--blue);border-color:var(--blue);color:var(--blue);box-shadow:inset 0 2px 5px rgba(0,0,0,.45),0 0 7px color-mix(in srgb, var(--blue) 38%, transparent)}
-.itic.rf-Rare{--rfc:#d8c94a;border-color:#d8c94a;color:#d8c94a;box-shadow:inset 0 2px 5px rgba(0,0,0,.45),0 0 7px rgba(216,201,74,.38)}
-.itic.rf-Unique{--rfc:#f09a3e;border-color:#f09a3e;color:#f09a3e;background:radial-gradient(circle at 50% 32%,color-mix(in srgb, #f09a3e 22%, var(--panel2)),var(--input));box-shadow:inset 0 2px 5px rgba(0,0,0,.45),0 0 12px rgba(240,154,62,.5)}
-.itic.rf-Oathword{--rfc:var(--gold2);border-color:var(--gold2);color:var(--gold-text);box-shadow:inset 0 2px 5px rgba(0,0,0,.45),0 0 9px color-mix(in srgb, var(--gold) 45%, transparent)}
-.itic.rf-Mythic{--rfc:#e8c476;border-color:#e8c476;color:#e8c476;box-shadow:inset 0 2px 5px rgba(0,0,0,.45),0 0 10px rgba(232,196,118,.45)}
+/* Rarity frames (v0.406) are gone (v0.408): the rarity signal
+   moved into the glyph's centre disc (see the .itic-disc rules
+   below), so the icon box itself keeps its plain border for
+   every rarity — one signal, in the centre. --rfc stays defined
+   here: the Follow-a-build sheet still reads it for its chips'
+   glyph tint. */
+.itic.rf-Normal{--rfc:#8d8474}
+.itic.rf-Magic{--rfc:var(--blue)}
+.itic.rf-Rare{--rfc:#d8c94a}
+.itic.rf-Unique{--rfc:#f09a3e}
+.itic.rf-Oathword{--rfc:var(--gold2)}
+.itic.rf-Mythic{--rfc:#e8c476}
 .item-flex{display:flex;gap:10px;align-items:flex-start}
 .item-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
 .item-grid.align-start{align-items:start}
@@ -836,7 +859,17 @@ input[type="file"]{color:var(--muted);max-width:100%}
   .gear-slot.empty{padding-top:8px}
 }
 /* ---------- Idol grid — the game's 5 × 5 board, corners closed ---------- */
-.idol-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;max-width:340px}
+/* v0.408 — the rows are explicit and equal, and the board keeps
+   its proportions through aspect-ratio (340 wide → 270 tall, a
+   cell ≈ 64 × 50 as it has always measured). With implicit rows
+   the sizing came from each row's own contents, so a row crossed
+   only by row-spanning tiles collapsed and a 1×2 or 2×2 idol
+   rendered one row tall even though its placement and span were
+   right. Definite rows make every span render true at any width,
+   and the drag geometry (elementFromPoint cells, tile-rect
+   proportions, the ghost cloned from the tile's rect) reads the
+   same corrected boxes, so it stays aligned untouched. */
+.idol-grid{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(5,1fr);aspect-ratio:34/27;gap:5px;max-width:340px}
 .ig-cell{border:1px dashed var(--line2);border-radius:var(--radius-sm);min-height:44px;background:rgba(255,255,255,.015)}
 .ig-corner{border:1px solid transparent;border-radius:var(--radius-sm);min-height:44px;background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(0,0,0,.35) 6px 12px);display:grid;place-items:center;color:var(--faint);font-size:13px}
 .ig-tile{position:relative;border:1px solid var(--line);border-radius:var(--radius-sm);background:linear-gradient(180deg,var(--panel2),var(--panel));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:4px 3px;cursor:pointer;text-align:center;min-height:44px;touch-action:none}
@@ -959,6 +992,12 @@ input[type="file"]{color:var(--muted);max-width:100%}
 .ch-num{display:block;font-family:Cinzel,serif;font-size:31px;line-height:1.05;font-weight:800;color:var(--text);font-variant-numeric:tabular-nums}
 .ch-num-sm{display:block;font-family:Cinzel,serif;font-size:20px;line-height:1.1;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
 .ch-sub{margin:5px 0 0;font-size:12px;color:var(--muted);line-height:1.35}
+/* The endgame-fit note under the calibrated headline (v0.407)
+   wears bold + underline (v0.408) so a levelling build's low
+   headline is visibly explained, not missed in the muted sub
+   lines around it. Style only — the words and the 10+-level
+   show/hide condition in renderPlanner are untouched. */
+#calFitNote{font-weight:700;text-decoration:underline}
 .ch-kill{color:var(--gold2);font-weight:600}
 .mana-verdict{margin:16px 0 0;background:var(--panel2);border:1px solid var(--line2);border-radius:var(--radius-sm);padding:8px 12px;font-size:13.5px;line-height:1.4;color:var(--text)}
 .mana-verdict:empty{display:none}
@@ -1605,7 +1644,7 @@ body.adv-open{overflow:hidden}
 .fb-poe .fb-seg button{flex:1 1 auto}
 .fb-poe .btn{background:var(--panel2);border-color:var(--line);color:var(--text);box-shadow:none}
 .fb-poe .btn:hover{border-color:var(--gold);color:var(--text)}
-.fb-poe .itic{background:var(--chip);border-color:var(--rfc,var(--line2));color:var(--rfc,var(--muted))}
+.fb-poe .itic{background:var(--chip);border-color:var(--line2);color:var(--rfc,var(--muted))}
 .fb-poe-chips{display:flex;flex-wrap:wrap;gap:13px 7px;margin-top:13px}
 .fb-chip{position:relative;display:inline-flex;max-width:100%}
 .fb-chip-main{display:inline-flex;align-items:center;gap:7px;background:var(--chip);border:1px solid var(--line2);color:var(--text);padding:4px 10px 4px 5px;font-size:13.5px;font-weight:600;cursor:pointer;border-radius:3px;min-height:34px;max-width:100%}
@@ -1811,7 +1850,7 @@ th{border-bottom:2px solid color-mix(in srgb, var(--gold) 40%, var(--line))}
 .gear-slot.occupied::before{content:"2H";width:46px;height:46px;border:1.5px solid color-mix(in srgb, var(--gold) 35%, var(--line));border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;letter-spacing:.08em;line-height:1;color:var(--faint);margin-bottom:7px;background:radial-gradient(circle at 50% 38%,#1c1713,#12100e 78%)}
 .gear-slot-label{top:-8px;left:50%;transform:translateX(-50%);background:#0d0b09;border:1px solid var(--line2);border-radius:999px;padding:1px 9px;color:var(--gold);white-space:nowrap;z-index:1}
 .gear-icon{margin:2px 0 6px}
-.gear-icon .itic{border-radius:50%;box-shadow:0 0 0 3px #0a0806,0 0 0 4.5px color-mix(in srgb, var(--rfc, var(--gold)) 55%, #2a1c10),inset 0 2px 5px rgba(0,0,0,.45)}
+.gear-icon .itic{border-radius:50%;box-shadow:0 0 0 3px #0a0806,inset 0 2px 5px rgba(0,0,0,.45)}
 .ms-card{border-color:var(--line);box-shadow:inset 0 0 0 1px rgba(0,0,0,.5),inset 0 1px 0 rgba(192,138,45,.10),0 4px 14px rgba(0,0,0,.35)}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion: reduce){
@@ -11989,13 +12028,18 @@ function itemIconHTML(base,rarity,size,unique){
   var title=base?('Icon: '+(base.Icon||'\u2014')):'Item';
   var glyph='<svg class="itic-glyph" width="'+px+'" height="'+px+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+GLYPHS[glyphKey(base)]+'</svg>';
   var icon=(unique&&typeof unique==='object'&&unique.Icon)?unique.Icon:(base?base.Icon:null);
+  var dsz=Math.max(12,size-6);
   var art='';
   if(icon){
     var gname=ICON_GLYPH_FALLBACK[icon]||icon;
-    var dsz=Math.max(12,size-6), isz=Math.max(8,Math.round(dsz*0.8));
+    var isz=Math.max(8,Math.round(dsz*0.8));
     art='<span class="itic-disc" style="width:'+dsz+'px;height:'+dsz+'px"><img src="assets/icons/item-glyph/'+esc(gname)+'.png" width="'+isz+'" height="'+isz+'" alt="" loading="lazy" onerror="this.parentNode.classList.add(\'noimg\')">'+glyph+'</span>';
+  } else {
+    /* No published art: the line glyph rides on the same centre
+       disc, so the rarity fill reads the same way (v0.408). */
+    art='<span class="itic-disc glyph-only" style="width:'+dsz+'px;height:'+dsz+'px">'+glyph+'</span>';
   }
-  return '<span class="itic rf-'+esc(rarity||'Normal')+'" style="width:'+size+'px;height:'+size+'px" title="'+esc(title)+'">'+(art||glyph)+'</span>';
+  return '<span class="itic rf-'+esc(rarity||'Normal')+'" style="width:'+size+'px;height:'+size+'px" title="'+esc(title)+'">'+art+'</span>';
 }
 function gemIconSVG(){return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10l3 5-8 11L4 9z"/><path d="M4 9h16"/></svg>'}
 /* Faceted gem artwork, coloured by damage type like the game's gems */
@@ -13688,18 +13732,22 @@ function itemBadgeText(it,un){var p=itemBadgeParts(it,un); return p.length?('◆
 function storedItemAffixesHTML(it,un,base,slotKey){
   var out='', vi=0;
   /* The base's own numbers lead the card, as on the game tooltip —
-     one labelled bullet per stat ("Armour: 248"). Then (v0.404)
-     the rolled affixes are grouped under plain Prefix / Suffix
-     headings, in that order: each group lists the affixes of its
-     kind the item actually rolled, then one "(-)" line for every
-     slot the item's rarity allows but the item does not carry
-     (Rare up to 3 + 3, Magic 1 + 1, Normal none). Everything
-     else — implicits (family lines included), a unique's own mod
-     lines, vow lines, rune and runeword lines — follows after
-     the two groups, in the order it has always printed. A
-     Unique's own mods are never forced into the groups: on a
-     unique the affixes print ungrouped, exactly as before. */
+     one labelled bullet per stat ("Armour: 248"). The base's
+     implicits (family lines included) print next, directly under
+     the base stats (v0.408 — they used to sit after the groups,
+     where a tall card buried them). Then (v0.404) the rolled
+     affixes are grouped under plain Prefix / Suffix headings, in
+     that order: each group lists the affixes of its kind the item
+     actually rolled, then one "(-)" line for every slot the
+     item's rarity allows but the item does not carry (Rare up to
+     3 + 3, Magic 1 + 1, Normal none). Everything else — a
+     unique's own mod lines, vow lines, rune and runeword lines —
+     follows after the two groups, in the order it has always
+     printed. A Unique's own mods are never forced into the
+     groups: on a unique the affixes print ungrouped, exactly as
+     before. */
   if(base)out+=baseStatsHTML(base);
+  ((base&&base.Implicits)||[]).forEach(function(im){out+='<div class="affix implicit"><span class="imp-mark">◆</span> '+implicitLine(im,base)+'</div>'});
   var affs=(it.affixes||[]).map(function(a,ai){return {sa:a,ai:ai}}).filter(function(g){return !isRivenAffix(g.sa)});
   var grouped={Prefix:[],Suffix:[]}, rest=[];
   affs.forEach(function(g){
@@ -13717,7 +13765,6 @@ function storedItemAffixesHTML(it,un,base,slotKey){
       for(var k=grouped[tp].length;k<caps[tp];k++)out+='<div class="affix affix-empty">(-)</div>';
     });
   }
-  ((base&&base.Implicits)||[]).forEach(function(im){out+='<div class="affix implicit"><span class="imp-mark">◆</span> '+implicitLine(im,base)+'</div>'});
   (showGroups?rest:affs).forEach(function(g){out+=storedAffixHTML(g.sa,un,base,slotKey?(slotKey+'|'+g.ai):null)});
   if(it.unique)(it.affixes||[]).forEach(function(a){if(isRivenAffix(a)){out+=vowAffixHTML(a,vi,base); vi++}});
   out+=runeLinesHTML(it,base,slotKey);
@@ -26594,8 +26641,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.407';
-var PLANNER_BUILT_AT='2026-11-26T12:03:00-07:00';
+var PLANNER_VERSION='0.408';
+var PLANNER_BUILT_AT='2026-11-26T12:49:00-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
