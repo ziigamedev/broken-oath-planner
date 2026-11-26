@@ -1033,7 +1033,6 @@ input[type="file"]{color:var(--muted);max-width:100%}
 .sim-info-pop[hidden]{display:none}
 .sim-info-pop p{margin:0 0 5px}
 .sim-info-pop p:last-child{margin-bottom:0}
-.char-head.info-open .char-tip{opacity:0;visibility:hidden;pointer-events:none}
 .char-secs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
 .char-sec{background:var(--panel2);border:1px solid var(--line2);border-radius:var(--radius-sm);padding:8px 12px 9px;min-width:0}
 .char-sec h3{font-size:11.5px;margin:0 0 3px;color:var(--gold)}
@@ -2126,7 +2125,6 @@ details:not([open])>:not(summary){display:none}
 .pop-scroll>details.fold .fold-body{border-top:0;padding-top:6px}
 /* The slim row of text buttons standing where those sections'
    folds used to sit in the planner flow. */
-.pop-links{display:flex;flex-wrap:wrap;gap:2px 20px;align-items:center}
 .pop-link{background:none;border:0;padding:8px 2px;min-height:40px;color:var(--gold2);font-weight:700;font-size:14.5px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-decoration-color:color-mix(in srgb, var(--gold2) 55%, transparent);text-align:left}
 .pop-link:hover{color:var(--text)}
 .pop-link:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
@@ -2209,13 +2207,6 @@ details.card.fold{padding:0}
 .set-chip{white-space:nowrap}
 .sets-controls{display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap}
 .sets-controls input{padding:7px 9px}
-/* Levelling path — one compact row per point inside its fold:
-   a bronze level badge, the node, and what it grants. Rows past
-   the plan's current level are dimmed behind a divider. */
-.lp-lv{display:inline-block;min-width:52px;text-align:center;padding:2px 7px;margin-right:9px;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--chip);color:var(--gold2);font-weight:700;font-size:12.5px}
-.lp-big{color:var(--gold2)}
-.lp-future{opacity:.55}
-.lp-divider{margin:10px 0 2px;padding:5px 9px;border:1px dashed var(--line);border-radius:var(--radius-sm);color:var(--muted);font-size:12.5px;font-weight:600;text-align:center}
 /* Skills workspace — two working columns on wide screens: the
    socket board & linked supports, then the support palette. The
    skill bar & build summary, the comparator, the support scoring
@@ -2273,8 +2264,9 @@ body.ws-skills .sk-rail{display:flex}
    the view's right padding grows by the drawer's width while
    it is open, so the canvas stays fully on screen beside it
    and the rail steps left with it; on a phone the drawer
-   slides over the canvas with a scrim. The button for the
-   section the panel is showing wears the gold. */
+   slides over the canvas with a scrim. v0.413 — the rail is a
+   single button for the whole panel, and it wears the gold
+   while the panel is open. */
 body.ws-tree #view-workspace{padding-right:58px}
 @media(max-width:760px){body.ws-tree #view-workspace{padding-right:50px}}
 @media(min-width:900px){body.trp-open #view-workspace{padding-right:478px}}
@@ -3301,7 +3293,6 @@ body.tab-home .brand h1{display:none}
           <p class="ch-sub">The big number is our estimate for a real Guardian fight — the smaller one is the number on your in-game sheet.</p>
           <p class="ch-sub" id="dpsSub">Choose a skill and weapon to calculate.</p>
           <p class="ch-sub hidden" id="calFitNote" style="margin-top:2px"></p>
-          <button class="sim-trust-link" id="simInfoBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="simInfoPop">How much to trust this number ›</button>
           <div class="char-tip" role="tooltip" id="dmgTipBody"></div>
         </div>
         <div class="char-head" tabindex="0" aria-label="Toughness — effective health against a Guardian hit">
@@ -3320,15 +3311,23 @@ body.tab-home .brand h1{display:none}
           <div class="char-tip" role="tooltip" id="recTipBody"></div>
         </div>
       </div>
+      <!-- v0.413 — the "How much to trust this number ›" button
+           lives directly under the heads row, NOT inside the
+           Damage head cell: the cell is the hover host for the
+           Damage breakdown tip, so hovering the button in there
+           fired the breakdown popup over the number. Out here it
+           hovers clean, and its panel opens right below it. -->
+      <button class="sim-trust-link" id="simInfoBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="simInfoPop">How much to trust this number ›</button>
       <!-- "What the simulator counts — and what it leaves out",
-           behind the "How much to trust this number ›" line on the
-           Damage head: the plain-language note on how much to trust
-           the damage number, one tap away on the card itself. It
-           sits in flow directly under the heads row at the card's
-           full width (v0.410) — inside the Damage head it rendered
-           squeezed into that one grid cell, a narrow tall column
-           with the heading wrapped over three lines. The same text
-           sits in the fold of the same name inside More info. -->
+           behind the "How much to trust this number ›" line under
+           the heads row: the plain-language note on how much to
+           trust the damage number, one tap away on the card
+           itself. It sits in flow directly under the heads row at
+           the card's full width (v0.410) — inside the Damage head
+           it rendered squeezed into that one grid cell, a narrow
+           tall column with the heading wrapped over three lines.
+           The same text sits in the fold of the same name inside
+           More info. -->
       <div class="sim-info-pop" id="simInfoPop" role="dialog" aria-label="What the simulator counts — and what it leaves out" hidden>
         <div class="label" style="margin:0 0 4px">What the simulator counts — and what it leaves out</div>
         <p>This damage number is our best guess at a real Guardian fight — not the number on your in-game sheet.</p>
@@ -3394,6 +3393,8 @@ body.tab-home .brand h1{display:none}
         </div>
       </details>
       <div class="more-info-row">
+        <button class="more-info-btn" data-pop="enemy" type="button" aria-haspopup="dialog">Enemy setup &amp; Guardian tester</button>
+        <button class="more-info-btn" data-pop="tuning" type="button" aria-haspopup="dialog">Tuning</button>
         <button class="more-info-btn" data-pop="gap" type="button" aria-haspopup="dialog">Where you stand</button>
         <button class="more-info-btn" data-pop="stats" type="button" aria-haspopup="dialog">Copy stats</button>
         <button class="more-info-btn" id="advOpenBtn" type="button" aria-haspopup="dialog">More info</button>
@@ -3413,9 +3414,9 @@ body.tab-home .brand h1{display:none}
          build asks" riding in the Defence block, where it has
          always sat) — same ids, same renderers. The tools are not
          here: Enemy setup & Guardian tester and Tuning are their
-         own popup sheets off the planner tools row, Best in this
-         slot opens off the Gear card and Where you stand off this
-         card's own action row (v0.409), and "What the simulator counts"
+         own popup sheets off this card's action row (v0.413), Best
+         in this slot opens off the Gear card and Where you stand
+         off this card's own action row (v0.409), and "What the simulator counts"
          lives only behind "How much to trust this number ›" on
          the card. Offence and Attributes sit on the card itself,
          up front under the resistances. "What each piece is worth"
@@ -3480,21 +3481,18 @@ body.tab-home .brand h1{display:none}
          The toggles, renderBuffToggles and the state.buffOff
          pricing underneath are untouched, so any buff already
          switched off stays off in the numbers. -->
-    <!-- The planner's fight tools as one slim row of text buttons,
-         standing where their folds used to sit: Enemy setup &
-         Guardian tester and Tuning. Each button opens its full
-         section in the planner popup — the same sheet as Skills,
-         Dragonling and the Passive tree — and the sections
-         themselves wait in the stash with every control untouched,
-         so the planner page reads clean and nothing is more than
-         one tap away. The measure-up tools ride on the cards they
-         judge (v0.409): Best in this slot on the Gear card, Where
-         you stand on the Damage and Defense card by More info.
-         Search by effect was removed in v0.409, button and sheet. -->
-    <div class="pop-links" role="group" aria-label="Planner tools — each opens as a popup">
-      <button class="pop-link" data-pop="enemy" type="button" aria-haspopup="dialog">Enemy setup &amp; Guardian tester</button>
-      <button class="pop-link" data-pop="tuning" type="button" aria-haspopup="dialog">Tuning</button>
-    </div>
+    <!-- The planner's fight tools — Enemy setup & Guardian
+         tester and Tuning — open as popup sheets from the Damage
+         and Defense card's action row (v0.413; the standalone
+         tools row that stood here is gone). Each button opens its
+         full section in the planner popup — the same sheet as
+         Skills, Dragonling and the Passive tree — and the
+         sections themselves wait in the stash below with every
+         control untouched. The measure-up tools ride on the cards
+         they judge (v0.409): Best in this slot on the Gear card,
+         Where you stand on the Damage and Defense card by More
+         info. Search by effect was removed in v0.409, button and
+         sheet. -->
     <details class="card fold" id="enemyFold">
       <summary><span class="fold-title">Enemy setup &amp; Guardian tester</span><span class="fold-hint">Pick the enemy, then run the fight</span></summary>
       <div class="fold-body">
@@ -3726,7 +3724,7 @@ body.tab-home .brand h1{display:none}
             <div class="label" style="margin-top:2px">Tree versions</div>
             <div class="tree-bar-versions" style="margin-top:4px"><input type="text" id="treeVerName" placeholder="Name this tree version…" maxlength="40" aria-label="Name this tree version"><button class="btn small" id="treeVerSaveBtn" type="button">Save version</button><select id="treeVerSel" aria-label="Tree versions"></select><button class="btn small" id="treeVerApplyBtn" type="button">Apply version</button><button class="btn small danger" id="treeVerDelBtn" type="button">Delete</button></div>
             <p class="sub" id="treeVerMsg" style="min-height:16px;margin:3px 0 0"></p>
-            <div class="flex mt" id="treePlanActions" style="flex-wrap:wrap"><button class="btn small" id="treeHeatBtn" type="button" aria-pressed="false">Heat map: off</button><button class="btn small" id="treeBestBtn" type="button">Best next picks</button><button class="btn small" id="treePlanBtn" type="button">Plan next points</button><button class="btn small" id="treeOptimizeBtn" type="button">Optimize tree</button><button class="btn small" id="treeLevelBtn" type="button">Levelling path</button><button class="btn small" id="treeApplyBtn" type="button">Apply Take list to tuning</button><button class="btn small danger" id="treeResetBtn" type="button">Reset marks</button></div>
+            <div class="flex mt" id="treePlanActions" style="flex-wrap:wrap"><button class="btn small" id="treeHeatBtn" type="button" aria-pressed="false">Heat map: off</button><button class="btn small" id="treeBestBtn" type="button">Best next picks</button><button class="btn small" id="treePlanBtn" type="button">Plan next points</button><button class="btn small" id="treeOptimizeBtn" type="button">Optimize tree</button><button class="btn small" id="treeApplyBtn" type="button">Apply Take list to tuning</button><button class="btn small danger" id="treeResetBtn" type="button">Reset marks</button></div>
             <div class="flex mt" style="flex-wrap:wrap;gap:16px;align-items:flex-end">
               <div><div class="label" style="margin:0 0 2px">Optimize &amp; plan for — <span id="treeBlendVal">DPS only</span></div><input type="range" id="treeBlend" min="0" max="100" step="5" value="0" style="width:180px" aria-label="Balance between DPS and defence"></div>
               <div><div class="label" style="margin:0 0 2px">Resistance penalty</div><select id="resPenaltySel" aria-label="Resistance penalty"><option value="0">None</option><option value="10">−10%</option><option value="20">−20%</option><option value="30">−30%</option><option value="40">−40%</option><option value="50">−50%</option></select></div>
@@ -3739,10 +3737,6 @@ body.tab-home .brand h1{display:none}
               </div>
             </aside>
           </div>
-          <details class="fold-block" id="levelPathFold">
-            <summary><span class="fold-title">Levelling path</span><span class="fold-hint" id="levelPathHint">The order to take this plan&rsquo;s points, level by level</span></summary>
-            <div class="fold-block-body"><div id="levelPathBody"></div></div>
-          </details>
         </div>
   </div><!-- /wsTree -->
 
@@ -3816,10 +3810,12 @@ body.tab-home .brand h1{display:none}
           </div>
           <div id="skPickAdd" class="hidden">
             <p class="sub">Every skill gem, weapon skill and basic attack. Tap a skill and it goes straight on your 13-slot bar — your main skill is left alone; the Add button on a row does the same add. Hover or focus a row to see what the skill does first, without adding anything. <b>Make main</b> swaps it in as the skill you plan around; dragging a skill onto the main-skill card still makes it main, too. A skill that belongs to another class says so on its row — it still sockets. If the game&rsquo;s rules stop it counting for this build, the bar says why. Skills on your bar come first, and your class&rsquo;s starter skills are lined up at the top.</p>
+            <!-- v0.413 — the search field is the pane's only
+                 control: the tag / kind / class chip rows and the
+                 damage-type select that sat under it are gone, so
+                 the list is always the full, unfiltered list the
+                 search narrows. -->
             <input class="search" id="drawerSkillSearch" type="search" placeholder="Search skills — name, tag, damage type…">
-            <div class="chips" id="drawerTagChips" style="margin-top:8px"><button class="chip active" data-dtag="" type="button">All skills</button><button class="chip" data-dtag="poison" type="button">Always poisons</button><button class="chip" data-dtag="spell" type="button">Counts as a spell</button><button class="chip" data-dtag="r100" type="button">Newest set</button></div>
-            <div class="chips" id="drawerKindChips" style="margin-top:6px"><button class="chip active" data-dkind="" type="button">All kinds</button><button class="chip" data-dkind="Gem" type="button">Skill gems</button><button class="chip" data-dkind="Weapon" type="button">Weapon skills</button><button class="chip" data-dkind="Basic" type="button">Basic attacks</button></div>
-            <div class="flex" style="margin-top:6px;gap:8px;flex-wrap:wrap;align-items:center"><div class="chips" id="drawerClassChips"><button class="chip active" data-dcls="" type="button">All classes</button><button class="chip" data-dcls="mine" type="button">My class</button><button class="chip" data-dcls="other" type="button">Other classes</button></div><select id="drawerDmgSel" aria-label="Filter by damage type"><option value="">All damage types</option><option value="Physical">Physical</option><option value="Fire">Fire</option><option value="Cold">Cold</option><option value="Lightning">Lightning</option><option value="Poison">Poison</option><option value="Chaos">Chaos</option></select></div>
             <p class="sub" id="addSkillMsg" role="status" style="min-height:18px;margin-top:8px"></p>
             <div class="sub" id="drawerSkillCount" style="margin-top:2px"></div>
             <div class="drawer-sock-grid" id="drawerSkillList"></div>
@@ -3846,7 +3842,6 @@ body.tab-home .brand h1{display:none}
       <div style="margin-top:10px"><div class="label">Rupture level <span class="range-val" id="dragRuptureVal" style="float:right">0</span></div>
       <input type="range" id="dragRuptureRange" min="0" max="200" step="1" value="0" style="width:min(420px,100%)" aria-label="Rupture level">
       <p class="sub" style="margin:2px 0 0">Your Dragonling points come from Dragon Ruptures cleared — 1 point per level, 15 at Rupture 200. This is the same Rupture level as in Enemy setup: set it in either place and both agree.</p></div>
-      <p class="sub" style="margin-top:6px">Points: one per Dragon Rupture cleared (Rupture 10, 20, &hellip; 200) — 15 at Rupture 200. Ascension 2.0: take nodes from any of your paths; your first crown is free, and each further crown costs 3 points. Your tree is checked against that budget.</p>
       <div class="label" style="margin-top:14px">The hatchling's tree — <span id="dragClassName">—</span></div>
       <div class="flex mt"><input type="search" id="dragSearch" placeholder="Find a node or stat" style="flex:1;min-width:160px" aria-label="Find a Dragonling node or stat"></div>
       <div class="tree-stage drag-stage" id="dragStage">
@@ -3886,16 +3881,14 @@ body.tab-home .brand h1{display:none}
       <button class="sk-rail-btn" id="skRailSup" type="button" aria-label="Support gems" aria-pressed="false" title="Support gems"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10l4 6-9 12L3 9z"/><path d="M3 9h18M7 3l5 6 5-6M12 9v12"/></svg></button>
       <button class="sk-rail-btn" id="skRailAdd" type="button" aria-label="Add a skill" aria-pressed="false" title="Add a skill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
     </nav>
-    <!-- Slim icon rail (v0.411): rides the Passive Tree view's
-         right edge, in the Skills rail's language — a bookmark
-         for the tree versions, sliders for plan & optimize, a
-         list for the node list. Each button docks the planning
-         panel in from the right at its section; the view keeps
-         a gutter for the rail (see the body.ws-tree rules). -->
+    <!-- Slim icon rail (v0.411, merged to one button in v0.413):
+         rides the Passive Tree view's right edge, in the Skills
+         rail's language — one button opens the whole planning
+         panel (tree versions, plan & optimize and the node list
+         together, in that order). The view keeps a gutter for
+         the rail (see the body.ws-tree rules). -->
     <nav class="tree-rail" id="treeRail" aria-label="Tree planning tools">
-      <button class="tree-rail-btn" id="treeRailVers" type="button" aria-label="Tree versions" aria-pressed="false" title="Tree versions"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10v18l-5-3.6L7 21z"/></svg></button>
-      <button class="tree-rail-btn" id="treeRailPlan" type="button" aria-label="Plan and optimize" aria-pressed="false" title="Plan &amp; optimize"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M3 7h9M18 7h3M3 17h3M12 17h9"/><circle cx="15" cy="7" r="2.2"/><circle cx="9" cy="17" r="2.2"/></svg></button>
-      <button class="tree-rail-btn" id="treeRailList" type="button" aria-label="Node list" aria-pressed="false" title="Node list"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.3" fill="currentColor" stroke="none"/><circle cx="4.5" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="4.5" cy="18" r="1.3" fill="currentColor" stroke="none"/></svg></button>
+      <button class="tree-rail-btn" id="treeRailBtn" type="button" aria-label="Tree planning" aria-pressed="false" title="Tree planning"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v13M12 13c0-3 2.5-4 5-4M12 13c0-3-2.5-4-5-4"/><circle cx="12" cy="5" r="2.4"/><circle cx="17.5" cy="8.6" r="1.7"/><circle cx="6.5" cy="8.6" r="1.7"/></svg></button>
     </nav>
   </div>
   </section>
@@ -4646,7 +4639,6 @@ var DICT={
 "Best next picks":"最佳下一点",
 "Plan next points":"规划后续点数",
 "Optimize tree":"优化天赋树",
-"Levelling path":"升级路线",
 "Apply Take list to tuning":"把点取列表应用到微调",
 "Undo":"撤销",
 "Reset marks":"重置标记",
@@ -4719,7 +4711,6 @@ var DICT={
 "All damage types":"全部伤害类型",
 "Refund all":"全部退点",
 "Aspect — choose the hatchling's aspect":"形态 — 选择幼龙的形态",
-"Points: one per Dragon Rupture cleared (Rupture 10, 20, … 200) — 15 at Rupture 200. Ascension 2.0: take nodes from any of your paths; your first crown is free, and each further crown costs 3 points. Your tree is checked against that budget.":"点数：每通关一次巨龙裂隙获得一点（裂隙 10、20、… 200）— 裂隙 200 时共 15 点。Ascension 2.0：可从任意路径选取节点；第一个王冠免费，之后每个王冠消耗 3 点。你的天赋树会按此预算校验。",
 "The hatchling's tree —":"幼龙的天赋树 —",
 "Top 200 per class • refreshed every 15 minutes":"每职业前 200 名 • 每 15 分钟刷新",
 "Refresh ladder":"刷新天梯",
@@ -9851,26 +9842,22 @@ function advInfoKey(e){if(e.key==='Escape')closeAdvInfo()}
    (it grows the card and pushes what sits below it down — never
    a floating popover over it; v0.410 moved it out of the Damage
    head, where it rendered squeezed into that one grid cell);
-   the line again, a tap anywhere outside the head and the note,
-   or Escape closes it. While it is open the head carries
-   .info-open, which keeps its hover breakdown out of the way.
-   The line's id sits in the starter guard's allowlist — reading
-   the note is browsing, not editing, so it stays tappable on a
-   read-only starter. */
+   the line again, a tap anywhere outside the note, or Escape
+   closes it. v0.413 moved the line itself out of the Damage
+   head cell to under the heads row — inside the cell it sat in
+   the head's hover host, so hovering it fired the Damage
+   breakdown tip over the number. The line's id sits in the
+   starter guard's allowlist — reading the note is browsing,
+   not editing, so it stays tappable on a read-only starter. */
 function simInfoSet(open){
   var pop=$('simInfoPop'),btn=$('simInfoBtn'); if(!pop||!btn)return;
   pop.hidden=!open;
   btn.setAttribute('aria-expanded',open?'true':'false');
-  var head=btn.closest?btn.closest('.char-head'):null;
-  if(head)head.classList.toggle('info-open',open);
   if(open)document.addEventListener('keydown',simInfoKey);
   else{
     document.removeEventListener('keydown',simInfoKey);
-    /* The head's hover breakdown also shows on :focus-within, and
-       opening the note put focus on this button — so if closing left
-       focus here, the breakdown would stay pinned open after the
-       note closed. Drop focus off the button on close; the card
-       then hides as soon as the pointer leaves the head. */
+    /* Drop focus off the button on close, so nothing about the
+       closed note stays pinned by focus. */
     if(document.activeElement===btn)btn.blur();
   }
 }
@@ -15827,13 +15814,20 @@ function gpCommitAdd(){
      and is named here, never dropped quietly. */
   var removedOH=enforceTwoHandRule();
   renderGear(); renderPlanner();
-  var addMsg=nm+' added to '+sd.label+'.'
-   +(vowStored.length?' Its '+vowStored.length+' Vow line'+(vowStored.length===1?' is':'s are')+' counted at the Vow shares (100% / 85% / 70%).':'')
-   +(rwSaved?' The socketed runes form the Oathword — the item carries the runeword’s name in gold, its Oathword rarity and its lines, all counted in.':'')
-   +(rwMissed?' The socketed runes spell '+rwMissed.rec.Name+', but a '+rarity+' item does not become an Oathword; only a Normal one does, so the runes count by their own lines only.':'')
-   +(removedOH?' '+removedOH+' was removed from Off Hand — a two-handed weapon is held in both hands, so there is no hand left for it.':'');
+  /* v0.413 — a plain add says nothing in the Gear card: the
+     "<name> added to <slot>." lead is gone, and only the
+     consequence sentences ride this message now — the Vow
+     shares, an Oathword formed, runes that don't form on a
+     non-Normal item, and an Off Hand item a two-handed equip
+     took off (named in full, never dropped quietly). When no
+     consequence applies, no message shows at all. */
+  var addParts=[];
+  if(vowStored.length)addParts.push('Its '+vowStored.length+' Vow line'+(vowStored.length===1?' is':'s are')+' counted at the Vow shares (100% / 85% / 70%).');
+  if(rwSaved)addParts.push('The socketed runes form the Oathword — the item carries the runeword’s name in gold, its Oathword rarity and its lines, all counted in.');
+  if(rwMissed)addParts.push('The socketed runes spell '+rwMissed.rec.Name+', but a '+rarity+' item does not become an Oathword; only a Normal one does, so the runes count by their own lines only.');
+  if(removedOH)addParts.push(removedOH+' was removed from Off Hand — a two-handed weapon is held in both hands, so there is no hand left for it.');
   closeModal();
-  gearMsg(addMsg);
+  if(addParts.length)gearMsg(addParts.join(' '));
 }
 /* The draft pick's editor — the whole Affixes view, its sections
    in a single order down the screen: base, rarity,
@@ -16987,7 +16981,6 @@ function renderDrawerChar(){
   var tb=$('drawerTreeBtn');
   if(tb)tb.addEventListener('click',function(){switchWorkspace('tree'); var tc=$('treeCard'); if(tc)tc.scrollIntoView({behavior:'smooth',block:'start'});});
 }
-var drawerTagFilter='', drawerKindFilter='', drawerClassFilter='', drawerDmgFilter='';
 /* v0.398 — the support palette's sort order: 'attr' (the
    Str/Dex/Int grouping, the default, unchanged), 'name' (one
    flat A–Z list) and 'links' (most linked first). The link
@@ -17047,11 +17040,10 @@ function addSkillToBar(id){
   schedulePersistInstances(); renderCode(); renderPlanner(); renderDrawerBar(); renderSkillTable(); renderDrawerSkills();
   addSkillMsg(skillName(id)+' added — slot '+equippedBarEntries().length+' of 13 on your bar. Your main skill is unchanged; link its supports in Your skills, or tap Make main to plan around it.');
 }
+/* v0.413 — with the filter controls gone, clearing means just
+   the search field: the list returns to the full list. */
 function clearDrawerSkillFilters(){
-  drawerTagFilter=''; drawerKindFilter=''; drawerClassFilter=''; drawerDmgFilter='';
   var s=$('drawerSkillSearch'); if(s)s.value='';
-  var d=$('drawerDmgSel'); if(d)d.value='';
-  ['data-dtag','data-dkind','data-dcls'].forEach(function(a){document.querySelectorAll('['+a+']').forEach(function(x){x.classList.toggle('active',!x.getAttribute(a))})});
   renderDrawerSkills();
 }
 var dsTapStamp=0;
@@ -17078,19 +17070,8 @@ function renderDrawerSkills(){
      skill counts for this build is the game's own rules (weapon
      kind, requirements), which the bar rows name. Only the
      Utility kind (Move) stays out: it is not a socketable skill. */
-  function tagFits(s){
-    if(!drawerTagFilter)return true;
-    var g=G.gemTagMap?G.gemTagMap[s.Id]:null; if(!g)return false;
-    if(drawerTagFilter==='poison')return (g.PoisonChance||0)>=100;
-    if(drawerTagFilter==='spell')return (g.CountsAs||[]).indexOf('Spell')>=0;
-    if(drawerTagFilter==='r100')return !!g.Section;
-    return true;
-  }
-  function kindFits(s){return !drawerKindFilter||s.Kind===drawerKindFilter}
-  function classFits(s){if(!drawerClassFilter)return true; var off=!!skillOffHome(s.Id); return drawerClassFilter==='mine'?!off:off}
-  function dmgFits(s){return !drawerDmgFilter||(s.DamageType||'')===drawerDmgFilter}
   var all=G.skills.filter(function(s){return s.Kind!=='Utility'});
-  var arr=all.filter(tagFits).filter(kindFits).filter(classFits).filter(dmgFits).filter(function(s){return !q||s.Name.toLowerCase().indexOf(q)>=0||s.Id.indexOf(q)>=0||(s.Tags||[]).join(' ').toLowerCase().indexOf(q)>=0||(s.DamageType||'').toLowerCase().indexOf(q)>=0||gemTagWords(s.Id).join(' ').toLowerCase().indexOf(q)>=0});
+  var arr=all.filter(function(s){return !q||s.Name.toLowerCase().indexOf(q)>=0||s.Id.indexOf(q)>=0||(s.Tags||[]).join(' ').toLowerCase().indexOf(q)>=0||(s.DamageType||'').toLowerCase().indexOf(q)>=0||gemTagWords(s.Id).join(' ').toLowerCase().indexOf(q)>=0});
   /* Patch 87's skills panel order: equipped first, then not
      equipped. Equipped here = holding one of the bar's 13 slots,
      in bar order; the planned skill counts as equipped when no bar
@@ -17106,7 +17087,7 @@ function renderDrawerSkills(){
      golems…) are never suggested — they are found later, not at
      the start. Shown only on the unfiltered list. */
   var strip='';
-  if(!q&&!drawerTagFilter&&!drawerKindFilter&&!drawerClassFilter&&!drawerDmgFilter&&(G.gemHomes||[]).length){
+  if(!q&&(G.gemHomes||[]).length){
     var starters=G.gemHomes.filter(function(h){return (h.StarterClasses||[]).indexOf(state.cls)>=0&&G.skillMap[h.Id]&&G.skillMap[h.Id].Kind!=='Utility'});
     if(starters.length)strip='<div style="padding:2px 2px 0"><span class="sub"><b>Starters for a '+esc(state.cls)+'</b> — the skills this class begins with:</span> <span class="chips" style="display:inline-flex;vertical-align:middle">'+starters.map(function(h){return '<button type="button" class="chip'+(state.skillId===h.Id?' active':'')+'" data-skill="'+esc(h.Id)+'" data-ds-chip="1">'+esc(skillName(h.Id))+'</button>'}).join('')+'</span></div>';
   }
@@ -17120,12 +17101,7 @@ function renderDrawerSkills(){
   var bodyHtml;
   if(!all.length)bodyHtml='<p class="sub" style="padding:12px">Game data is still loading — the skill list fills in as soon as it lands.</p>';
   else if(!arr.length){
-    var bits=[]; if(q)bits.push('the search \u201C'+q+'\u201D');
-    if(drawerTagFilter)bits.push('the tag filter');
-    if(drawerKindFilter)bits.push('kind: '+(drawerKindFilter==='Gem'?'skill gems':drawerKindFilter==='Weapon'?'weapon skills':'basic attacks'));
-    if(drawerClassFilter)bits.push(drawerClassFilter==='mine'?('class: '+state.cls):'class: other classes');
-    if(drawerDmgFilter)bits.push('damage: '+drawerDmgFilter);
-    bodyHtml='<div class="ds-empty"><p class="sub">No skills match '+(bits.length?bits.join(' + '):'these filters')+'.</p><button type="button" class="btn small" data-ds-clear>Clear search &amp; filters</button></div>';
+    bodyHtml='<div class="ds-empty"><p class="sub">No skills match the search \u201C'+q+'\u201D.</p><button type="button" class="btn small" data-ds-clear>Clear search</button></div>';
   } else bodyHtml=(barFull?'<p class="sub ds-barnote">Your bar is full — 13 of 13 slots taken. Add to bar will say so until a slot frees up: open a skill\u2019s row in <b>Your skills</b> and untick <b>On bar</b>.</p>':'')+strip+rows;
   list.innerHTML=bodyHtml;
   /* Starter chips keep their quick-pick behaviour: tap (or drag
@@ -17421,33 +17397,24 @@ function skRailSync(){
    the blend slider, heat legend, preview, best picks and the
    node list — the same contents, the same ids) docks in from
    the tree view's right edge, opened from the slim icon rail
-   in the Skills rail's language. Each rail button opens the
-   panel at its section and wears the gold while that section
-   shows; tapping the lit button again, the panel's ×, the
-   phone scrim or Escape puts it away and the canvas takes the
-   full width back. Starters stay read-only exactly as before —
-   only the panel's door changed, nothing inside it. */
-var treeRailSection=null;
+   in the Skills rail's language. v0.413 — the rail is ONE
+   button: it opens the whole panel at once, all three sections
+   in their established order, and wears the gold while the
+   panel shows; tapping it again, the panel's ×, the phone
+   scrim or Escape puts it away and the canvas takes the full
+   width back. Starters stay read-only exactly as before — only
+   the panel's door changed, nothing inside it. */
 function treePlanDrawerOpen(){var d=$('treeToolsFold'); return !!(d&&d.classList.contains('open'))}
 function treeRailSync(){
-  var open=treePlanDrawerOpen();
-  [['treeRailVers','vers'],['treeRailPlan','plan'],['treeRailList','list']].forEach(function(p){
-    var b=$(p[0]); if(b)b.setAttribute('aria-pressed',(open&&treeRailSection===p[1])?'true':'false');
-  });
+  var b=$('treeRailBtn'); if(b)b.setAttribute('aria-pressed',treePlanDrawerOpen()?'true':'false');
 }
-function openTreePlanDrawer(section){
+function openTreePlanDrawer(){
   var d=$('treeToolsFold'); if(!d)return;
-  treeRailSection=section||treeRailSection||'vers';
   d.classList.add('open'); d.setAttribute('aria-hidden','false');
   document.body.classList.add('trp-open');
   var sc=$('treePlanScrim'); if(sc)sc.classList.remove('hidden');
   treeRailSync();
-  var body=$('treePlanBody');
-  if(body){
-    var target=treeRailSection==='plan'?$('treePlanActions'):(treeRailSection==='list'?$('treeList'):null);
-    if(target){var tr=target.getBoundingClientRect(), br=body.getBoundingClientRect(); body.scrollTop=Math.max(0,body.scrollTop+tr.top-br.top-6)}
-    else body.scrollTop=0;
-  }
+  var body=$('treePlanBody'); if(body)body.scrollTop=0;
 }
 function closeTreePlanDrawer(){
   var d=$('treeToolsFold'); if(d){d.classList.remove('open'); d.setAttribute('aria-hidden','true')}
@@ -17456,12 +17423,9 @@ function closeTreePlanDrawer(){
   treeRailSync();
 }
 function bindTreeRail(){
-  [['treeRailVers','vers'],['treeRailPlan','plan'],['treeRailList','list']].forEach(function(p){
-    var b=$(p[0]); if(!b)return;
-    b.addEventListener('click',function(){
-      if(treePlanDrawerOpen()&&treeRailSection===p[1])closeTreePlanDrawer();
-      else openTreePlanDrawer(p[1]);
-    });
+  var b=$('treeRailBtn'); if(b)b.addEventListener('click',function(){
+    if(treePlanDrawerOpen())closeTreePlanDrawer();
+    else openTreePlanDrawer();
   });
   var pc=$('treePlanClose'); if(pc)pc.addEventListener('click',closeTreePlanDrawer);
   var psc=$('treePlanScrim'); if(psc)psc.addEventListener('click',closeTreePlanDrawer);
@@ -17477,10 +17441,7 @@ function bindSkillsDrawer(){
   var open=$('openSkillsDrawerBtn'); if(open)open.addEventListener('click',openSkillsDrawer);
   var close=$('closeSkillsDrawerBtn'); if(close)close.addEventListener('click',closeSkillsDrawer);
   var search=$('drawerSkillSearch'); if(search)search.addEventListener('input',renderDrawerSkills);
-  document.querySelectorAll('[data-dtag]').forEach(function(ch){ch.addEventListener('click',function(){drawerTagFilter=ch.getAttribute('data-dtag')||''; document.querySelectorAll('[data-dtag]').forEach(function(x){x.classList.toggle('active',x===ch)}); renderDrawerSkills()})});
-  document.querySelectorAll('[data-dkind]').forEach(function(ch){ch.addEventListener('click',function(){drawerKindFilter=ch.getAttribute('data-dkind')||''; document.querySelectorAll('[data-dkind]').forEach(function(x){x.classList.toggle('active',x===ch)}); renderDrawerSkills()})});
-  document.querySelectorAll('[data-dcls]').forEach(function(ch){ch.addEventListener('click',function(){drawerClassFilter=ch.getAttribute('data-dcls')||''; document.querySelectorAll('[data-dcls]').forEach(function(x){x.classList.toggle('active',x===ch)}); renderDrawerSkills()})});
-  var dmgSel=$('drawerDmgSel'); if(dmgSel)dmgSel.addEventListener('change',function(){drawerDmgFilter=dmgSel.value||''; renderDrawerSkills()});
+
   var supSearch=$('drawerSupportSearch'); if(supSearch)supSearch.addEventListener('input',renderGemPalette);
   var supSortSel=$('drawerSupportSort'); if(supSortSel)supSortSel.addEventListener('change',function(){supportSort=supSortSel.value||'attr'; renderGemPalette()});
   /* The picker drawer's controls: its mode tabs, close button
@@ -18440,7 +18401,6 @@ function renderTreeList(){
   listEl.innerHTML=arr.length?arr.map(function(n){var mk=markOf(n.Id), tk=!!takenSet[n.Id]; return '<div class="item tree-node-row'+(tk?' taken':'')+'" style="margin-bottom:8px" data-tree-row="'+esc(n.Id)+'" tabindex="0" title="'+(tk?'Taken — click to refund it':'Click to take it — the shortest path is added')+'"><div class="flex between"><span><b>'+esc(n.Name||niceId(n.Id))+'</b> <span class="sub">'+esc(nodeKindLabel(n.Kind))+(n.Region?' • '+esc(nodeRegionLabel(n.Region)):'')+'</span></span><span class="flex"><span class="node-state">'+(tk?'Taken — click to refund':'Click to take')+'</span><button class="btn tree-btn'+(mk==='must'?' on-keep':'')+'" data-tree-act="must" data-tree-id="'+esc(n.Id)+'" type="button">Must take</button><button class="btn tree-btn'+(mk==='keep'?' on-keep':'')+'" data-tree-act="keep" data-tree-id="'+esc(n.Id)+'" type="button">Keep</button><button class="btn tree-btn'+(mk==='never'?' on-never':'')+'" data-tree-act="never" data-tree-id="'+esc(n.Id)+'" type="button">Never</button></span></div><p class="sub" style="margin:4px 0 0">'+esc(nodeModsText(n))+'</p></div>'}).join(''):'<p class="sub">No nodes match — try another search or filter.</p>';
   renderDrawerChar();
   updateTreeCanvasStates(); updateWsBadges();
-  renderLevelPath(); /* the levelling path follows the taken set like the list does */
   renderTreeSearchMeta(matchCount);
 }
 /* ---------- Tree heat map, best picks, plan & optimize ----------
@@ -18773,81 +18733,6 @@ function treeOptimize(){
     $('treeOptDismissBtn').addEventListener('click',function(){treePreview=null; bar.classList.add('hidden'); bar.innerHTML=''; updateTreeCanvasStates()});
   }
   updateTreeCanvasStates();
-}
-/* ---------- Levelling path — the plan's points, level by level ----------
-   The full path from level 1 to the plan's current level: which
-   node to take at each level, in order. The order is a walk out
-   from the class start through the plan's taken nodes, nearest
-   first — a breadth-first route over the taken set, so a node is
-   only ever listed once the path to it is already taken and every
-   point can be spent the level it is earned. The rate is the one
-   the scaling data publishes (Hero.PassivePointsPerLevel, 1), so
-   point N lands at hero level N; quest and bonus points ride on
-   top of that rate and can pull a few steps earlier, which the
-   panel says rather than guesses at. Steps past the plan's
-   current level are the road ahead, dimmed behind a divider.
-   Taken nodes the walk cannot reach from the start through the
-   taken set (a gateway hop, most likely) are listed last and
-   named as such instead of being silently renumbered. */
-function levelPathOrder(){
-  var taken=treeTakenIds();
-  if(!taken.length)return {order:[],lost:[]};
-  var g=treeGraph(), startId=treeStartId();
-  var inSet={}; taken.forEach(function(id){inSet[id]=1});
-  var order=[], seen={};
-  if(startId)seen[startId]=1;
-  var queue=startId?[startId]:[];
-  while(queue.length){
-    var cur=queue.shift();
-    Object.keys(g[cur]||{}).forEach(function(nb){
-      if(seen[nb])return; seen[nb]=1;
-      if(inSet[nb]){order.push(nb); queue.push(nb)}
-    });
-  }
-  var lost=taken.filter(function(id){return order.indexOf(id)<0});
-  return {order:order,lost:lost};
-}
-function renderLevelPath(){
-  var body=$('levelPathBody'); if(!body)return;
-  var hint=$('levelPathHint');
-  var taken=treeTakenIds();
-  if(!taken.length){
-    body.innerHTML=xpBlockHTML()+'<p class="sub">No passive points in this plan yet — take nodes on the tree above (or load a build) and the path from level 1 lines up here: one node per level, in the order to take them.</p>';
-    if(hint)hint.textContent='Take nodes on the tree and the path lines up here';
-    return;
-  }
-  var res=levelPathOrder(), order=res.order;
-  var ppl=(G.scaling&&G.scaling.Hero&&G.scaling.Hero.PassivePointsPerLevel)||1;
-  var curLv=Math.max(1,state.level||1);
-  /* Oath seats ride the path for free — they take no point, so
-     they take no level step either: a seat is listed at the
-     level the walk has reached when it is met. */
-  var orderPts=order.filter(function(id){return !isOathSeat(id)}).length;
-  var lastLv=orderPts?Math.ceil(orderPts/ppl):0;
-  if(hint)hint.textContent=orderPts+' point'+(orderPts===1?'':'s')+' • Lv 1 → Lv '+Math.max(curLv,lastLv)+(res.lost.length?' • '+res.lost.length+' off the walked route':'');
-  var rows=[], divided=false, stepN=0;
-  order.forEach(function(id){
-    if(!isOathSeat(id))stepN++;
-    var lv=Math.max(1,Math.ceil(stepN/ppl)), n=G.passiveMap[id];
-    if(!divided&&lv>curLv){rows.push('<div class="lp-divider">Past your current level (Lv '+curLv+') — the road ahead</div>'); divided=true}
-    var big=!!n&&(n.Kind==='Notable'||n.Kind==='Keystone'||isOathSeat(id));
-    rows.push('<div class="kv lp-row'+(lv>curLv?' lp-future':'')+'"><span><span class="lp-lv">Lv '+lv+'</span><b'+(big?' class="lp-big"':'')+'>'+esc(n?n.Name||niceId(id):niceId(id))+'</b> <small class="sub">'+esc(n?nodeKindLabel(n.Kind):'')+(n&&isOathSeat(id)?' • Oath seat':'')+'</small></span><span class="node-state">'+esc(nodeModsText(n||{}))+'</span></div>');
-  });
-  res.lost.forEach(function(id){
-    var n=G.passiveMap[id];
-    rows.push('<div class="kv lp-row lp-future"><span><span class="lp-lv">—</span><b>'+esc(n?n.Name||niceId(id):niceId(id))+'</b> <small class="sub">'+esc(n?nodeKindLabel(n.Kind):'')+'</small></span><span class="node-state">'+esc(nodeModsText(n||{}))+'</span></div>');
-  });
-  body.innerHTML=xpBlockHTML()+'<p class="sub" style="margin:0 0 4px">From your '+esc(state.cls)+' start, nearest first — every point spendable the level it is earned, at the published rate of '+ppl+' point'+(ppl===1?'':'s')+' per level. Quest and bonus points (Inscribed Quartz, Rupture milestones) land on top of that rate, so a few steps can come a little earlier in game.</p>'
-   +rows.join('')
-   +(orderPts<(state.passives||0)?'<p class="sub" style="margin-top:6px">This plan spends '+orderPts+' of its '+state.passives+' points by Lv '+lastLv+' — the rest of the budget is unspent in the plan.</p>':'')
-   +(res.lost.length?'<p class="sub" style="margin-top:6px">'+res.lost.length+' planned node'+(res.lost.length===1?' sits':'s sit')+' off the walked route — the walk from your start through the taken nodes never reaches '+(res.lost.length===1?'it':'them')+' (a gateway hop, most likely), so '+(res.lost.length===1?'it is':'they are')+' listed last without a level.</p>':'');
-}
-/* The Levelling path button opens the path's own fold and brings
-   it into view — the path itself always renders with the tree. */
-function renderLevelOrder(){
-  renderLevelPath();
-  var fold=$('levelPathFold');
-  if(fold){fold.open=true; try{fold.scrollIntoView({block:'nearest'})}catch(e){}}
 }
 /* Refund all — one click refunds every taken PASSIVE node.
    Refunds are free in this game (no refund points, no cost), so
@@ -24509,7 +24394,6 @@ function bindExtras(){
   $('treeNext').addEventListener('keydown',treeKeys);
   $('treeApplyBtn').addEventListener('click',treeApply);
   $('treeOptimizeBtn').addEventListener('click',treeOptimize);
-  var lvlBtn=$('treeLevelBtn'); if(lvlBtn)lvlBtn.addEventListener('click',renderLevelOrder);
   var sab=$('setAddBtn'); if(sab)sab.addEventListener('click',addSet);
   var sdb2=$('setDupBtn'); if(sdb2)sdb2.addEventListener('click',duplicateSet);
   var srb=$('setRenameBtn'); if(srb)srb.addEventListener('click',renameSet);
@@ -26719,8 +26603,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.412';
-var PLANNER_BUILT_AT='2026-11-26T13:02:00-08:00';
+var PLANNER_VERSION='0.413';
+var PLANNER_BUILT_AT='2026-11-26T13:12:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
@@ -26920,22 +26804,6 @@ function heroKeystoneName(passiveNodes){
   var pri=(G.archetypes&&G.archetypes.KeystonePriority)||[];
   for(var i=0;i<pri.length;i++)if(taken[pri[i]])return taken[pri[i]];
   return taken[ids[0]];
-}
-/* progression.json — the XP curve: what the next level costs,
-   what the road to this plan's level costs in total, and how
-   monsters grow per level, in plain words. */
-function xpBlockHTML(){
-  var p=G.progression; if(!p||!p.Levels||!p.Levels.length)return '';
-  var lv=Math.max(1,Math.min(100,state.level||1));
-  var total=0; for(var i=0;i<lv-1&&i<p.Levels.length;i++)total+=p.Levels[i];
-  var next=lv<100?p.Levels[lv-1]:null;
-  var html='<div style="margin:0 0 6px">'
-   +'<details class="mini-fold"><summary><span>XP totals</span></summary>'
-   +(next!=null?'<div class="kv"><span>XP to level '+(lv+1)+'</span><b>'+fmtFull(next)+'</b></div>':'<div class="kv"><span>XP</span><b>Level 100 — the top</b></div>')
-   +(lv>1?'<div class="kv"><span>XP from level 1 to '+lv+'</span><b>'+fmtFull(total)+'</b></div>':'')
-   +'</details>'
-   +'<p class="sub" style="margin:4px 0 0">Monsters grow as they level too: <b>+'+Math.round((p.MonsterLifePerLevel||0)*100)+'% life</b> and <b>+'+Math.round((p.MonsterDamagePerLevel||0)*100)+'% damage</b> for every monster level.</p></div>';
-  return html;
 }
 /* weapon_styles.json — how the equipped weapon blocks. The
    style comes from the weapon in hand (and a shield beside it);
@@ -27383,7 +27251,7 @@ function init(){
   var advClose=$('advCloseBtn'); if(advClose)advClose.addEventListener('click',closeAdvInfo);
   var advOv=$('advOverlay'); if(advOv)advOv.addEventListener('click',function(e){if(e.target===advOv)closeAdvInfo()});
   var simBtn=$('simInfoBtn'); if(simBtn)simBtn.addEventListener('click',function(e){e.stopPropagation();var pop=$('simInfoPop');simInfoSet(!!(pop&&pop.hidden));});
-  document.addEventListener('click',function(e){var pop=$('simInfoPop');if(!pop||pop.hidden)return;if(pop.contains(e.target))return;var btn=$('simInfoBtn');var head=btn&&btn.closest?btn.closest('.char-head'):null;if(head&&!head.contains(e.target))simInfoSet(false);});
+  document.addEventListener('click',function(e){var pop=$('simInfoPop');if(!pop||pop.hidden)return;if(pop.contains(e.target))return;simInfoSet(false);});
   $('bannerRetryBtn').addEventListener('click',function(){refreshLive()});
   // Self-healing: the moment the connection comes back or the tab is
   // visible again, retry the live API without waiting for the timer.
