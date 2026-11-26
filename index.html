@@ -363,8 +363,19 @@ tr:hover td{background:color-mix(in srgb, var(--panel2) 60%, transparent)}
 .itic-disc .itic-glyph{display:none}
 .itic-disc.noimg img{display:none}
 .itic-disc.noimg .itic-glyph{display:block}
-.itic.rf-Normal{border-color:#8d8474;color:#b6ad9c}.itic.rf-Magic{border-color:var(--blue);color:var(--blue)}
-.itic.rf-Rare{border-color:#d8c94a;color:#d8c94a}.itic.rf-Unique{border-color:var(--ember);color:var(--ember2);background:radial-gradient(circle at 50% 32%,color-mix(in srgb, var(--ember) 22%, var(--panel2)),var(--input))}
+/* Rarity frames on item icons (v0.406): every icon's frame is
+   tinted by the item's rarity, in the same colours the item's
+   name already wears — Magic blue, Rare yellow, Unique
+   orange-gold with a soft glow, Oathword and Mythic in the
+   gold of their names. --rfc carries the colour to the places
+   that ring the icon themselves (the gear board's round frame,
+   the loot filter's flat chips). The glyph art is unchanged. */
+.itic.rf-Normal{--rfc:#8d8474;border-color:#8d8474;color:#b6ad9c}
+.itic.rf-Magic{--rfc:var(--blue);border-color:var(--blue);color:var(--blue);box-shadow:inset 0 2px 5px rgba(0,0,0,.45),0 0 7px color-mix(in srgb, var(--blue) 38%, transparent)}
+.itic.rf-Rare{--rfc:#d8c94a;border-color:#d8c94a;color:#d8c94a;box-shadow:inset 0 2px 5px rgba(0,0,0,.45),0 0 7px rgba(216,201,74,.38)}
+.itic.rf-Unique{--rfc:#f09a3e;border-color:#f09a3e;color:#f09a3e;background:radial-gradient(circle at 50% 32%,color-mix(in srgb, #f09a3e 22%, var(--panel2)),var(--input));box-shadow:inset 0 2px 5px rgba(0,0,0,.45),0 0 12px rgba(240,154,62,.5)}
+.itic.rf-Oathword{--rfc:var(--gold2);border-color:var(--gold2);color:var(--gold-text);box-shadow:inset 0 2px 5px rgba(0,0,0,.45),0 0 9px color-mix(in srgb, var(--gold) 45%, transparent)}
+.itic.rf-Mythic{--rfc:#e8c476;border-color:#e8c476;color:#e8c476;box-shadow:inset 0 2px 5px rgba(0,0,0,.45),0 0 10px rgba(232,196,118,.45)}
 .item-flex{display:flex;gap:10px;align-items:flex-start}
 .item-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
 .item-grid.align-start{align-items:start}
@@ -828,8 +839,19 @@ input[type="file"]{color:var(--muted);max-width:100%}
 .idol-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;max-width:340px}
 .ig-cell{border:1px dashed var(--line2);border-radius:var(--radius-sm);min-height:44px;background:rgba(255,255,255,.015)}
 .ig-corner{border:1px solid transparent;border-radius:var(--radius-sm);min-height:44px;background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(0,0,0,.35) 6px 12px);display:grid;place-items:center;color:var(--faint);font-size:13px}
-.ig-tile{position:relative;border:1px solid var(--line);border-radius:var(--radius-sm);background:linear-gradient(180deg,var(--panel2),var(--panel));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:4px 3px;cursor:pointer;text-align:center;min-height:44px}
+.ig-tile{position:relative;border:1px solid var(--line);border-radius:var(--radius-sm);background:linear-gradient(180deg,var(--panel2),var(--panel));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:4px 3px;cursor:pointer;text-align:center;min-height:44px;touch-action:none}
 .ig-tile:hover{border-color:var(--gold)}
+/* Idol tile colour follows rarity (v0.406): the border — and the
+   name, through the shared .rarity-* classes — wear the same
+   colours as the gear board; the tile body stays dark stone. */
+.ig-tile.ig-r-Magic{border-color:#84bde6}
+.ig-tile.ig-r-Rare{border-color:#ead95e}
+.ig-tile.ig-r-Unique{border-color:#f09a3e;box-shadow:0 0 9px rgba(240,154,62,.4)}
+.ig-tile.ig-r-Magic:hover{border-color:#84bde6}
+.ig-tile.ig-r-Rare:hover{border-color:#ead95e}
+.ig-tile.ig-r-Unique:hover{border-color:#f09a3e}
+.ig-ghost{position:fixed;z-index:90;pointer-events:none;opacity:.92;margin:0;box-shadow:0 10px 24px rgba(0,0,0,.55)}
+.ig-drag-src{opacity:.35}
 .ig-tile .ig-name{font-size:10.5px;font-weight:700;line-height:1.15}
 .ig-tile .ig-shape{font-size:9.5px;color:var(--muted)}
 .ig-x{position:absolute;top:-7px;right:-7px;width:20px;height:20px;min-height:20px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--gold2);font-size:13px;line-height:1;display:grid;place-items:center;cursor:pointer;padding:0;z-index:2}
@@ -1583,7 +1605,7 @@ body.adv-open{overflow:hidden}
 .fb-poe .fb-seg button{flex:1 1 auto}
 .fb-poe .btn{background:var(--panel2);border-color:var(--line);color:var(--text);box-shadow:none}
 .fb-poe .btn:hover{border-color:var(--gold);color:var(--text)}
-.fb-poe .itic{background:var(--chip);border-color:var(--line2);color:var(--muted)}
+.fb-poe .itic{background:var(--chip);border-color:var(--rfc,var(--line2));color:var(--rfc,var(--muted))}
 .fb-poe-chips{display:flex;flex-wrap:wrap;gap:13px 7px;margin-top:13px}
 .fb-chip{position:relative;display:inline-flex;max-width:100%}
 .fb-chip-main{display:inline-flex;align-items:center;gap:7px;background:var(--chip);border:1px solid var(--line2);color:var(--text);padding:4px 10px 4px 5px;font-size:13.5px;font-weight:600;cursor:pointer;border-radius:3px;min-height:34px;max-width:100%}
@@ -1789,7 +1811,7 @@ th{border-bottom:2px solid color-mix(in srgb, var(--gold) 40%, var(--line))}
 .gear-slot.occupied::before{content:"2H";width:46px;height:46px;border:1.5px solid color-mix(in srgb, var(--gold) 35%, var(--line));border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;letter-spacing:.08em;line-height:1;color:var(--faint);margin-bottom:7px;background:radial-gradient(circle at 50% 38%,#1c1713,#12100e 78%)}
 .gear-slot-label{top:-8px;left:50%;transform:translateX(-50%);background:#0d0b09;border:1px solid var(--line2);border-radius:999px;padding:1px 9px;color:var(--gold);white-space:nowrap;z-index:1}
 .gear-icon{margin:2px 0 6px}
-.gear-icon .itic{border-radius:50%;box-shadow:0 0 0 3px #0a0806,0 0 0 4.5px color-mix(in srgb, var(--gold) 45%, #4a3423),inset 0 2px 5px rgba(0,0,0,.45)}
+.gear-icon .itic{border-radius:50%;box-shadow:0 0 0 3px #0a0806,0 0 0 4.5px color-mix(in srgb, var(--rfc, var(--gold)) 55%, #2a1c10),inset 0 2px 5px rgba(0,0,0,.45)}
 .ms-card{border-color:var(--line);box-shadow:inset 0 0 0 1px rgba(0,0,0,.5),inset 0 1px 0 rgba(192,138,45,.10),0 4px 14px rgba(0,0,0,.35)}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion: reduce){
@@ -2135,16 +2157,37 @@ details.card.fold{padding:0}
    the card and an outside tap is the natural way out; on desktop
    the card stays clickable beside the docked drawer, so drag and
    tap-to-place onto the rings keep working with it open. */
-.sk-pick-drawer{position:fixed;top:0;right:0;height:100dvh;width:min(520px,94vw);z-index:60;background:linear-gradient(180deg,var(--panel2),var(--panel));border-left:2px solid var(--line);box-shadow:-18px 0 40px rgba(0,0,0,.5);transform:translateX(106%);visibility:hidden;transition:transform .26s ease,visibility 0s linear .26s;display:flex;flex-direction:column}
+.sk-pick-drawer{position:fixed;top:0;right:0;height:100dvh;width:min(460px,94vw);max-width:100vw;z-index:60;background:linear-gradient(180deg,var(--panel2),var(--panel));border-left:2px solid var(--line);box-shadow:-18px 0 40px rgba(0,0,0,.5);transform:translateX(106%);visibility:hidden;transition:transform .26s ease,visibility 0s linear .26s;display:flex;flex-direction:column}
 .sk-pick-drawer.open{transform:none;visibility:visible;transition:transform .26s ease}
 .sk-pick-head{display:flex;align-items:center;gap:8px;padding:12px 14px 10px;border-bottom:1px solid var(--line2)}
 .sk-pick-tabs{display:flex;gap:6px;flex:1;min-width:0}
 .sk-pick-tabs button{flex:1 1 0;border:1px solid var(--line);background:var(--panel2);color:var(--muted);padding:8px 6px;border-radius:var(--radius-sm);font-weight:700;font-size:13px;cursor:pointer;min-height:40px;font-family:Cinzel,serif;letter-spacing:.03em}
 .sk-pick-tabs button[aria-selected="true"]{border-color:var(--gold);color:var(--gold2)}
-.sk-pick-body{padding:12px 14px 16px;overflow:auto;flex:1}
+.sk-pick-body{padding:12px 14px 16px;overflow:auto;flex:1;min-width:0}
 .sk-pick-scrim{display:none}
 @media(max-width:760px){.sk-pick-scrim{display:block;position:fixed;inset:0;z-index:59;background:rgba(0,0,0,.45)}}
 @media (prefers-reduced-motion: reduce){.sk-pick-drawer{transition:none}}
+/* v0.406 — the pane can never push the page wider than the
+   window or cover the main skill card again: on a wide screen
+   the Skills view gives the open pane its own room (the view's
+   right padding grows by the pane's width), so the card, the
+   bar strip and all six rings stay fully on screen and tappable
+   beside it; the pane itself is capped at the viewport width.
+   On a phone the pane slides over the view with its scrim, as
+   before. The slim icon rail rides the view's right edge in the
+   gutter the view always keeps for it, and steps left with the
+   pane when the pane is docked open. */
+body.ws-skills #view-workspace{padding-right:58px}
+@media(max-width:760px){body.ws-skills #view-workspace{padding-right:50px}}
+@media(min-width:900px){body.skd-open #view-workspace{padding-right:518px}}
+.sk-rail{position:fixed;right:8px;top:50%;transform:translateY(-50%);z-index:55;display:none;flex-direction:column;gap:8px}
+body.ws-skills .sk-rail{display:flex}
+@media(min-width:900px){body.skd-open .sk-rail{right:468px}}
+.sk-rail-btn{width:44px;height:44px;border:1px solid var(--gold);border-radius:10px;background:linear-gradient(180deg,var(--panel2),var(--panel));color:var(--gold2);display:grid;place-items:center;cursor:pointer;padding:0;box-shadow:0 4px 14px rgba(0,0,0,.45)}
+.sk-rail-btn:hover{color:var(--gold-text);border-color:var(--gold2)}
+.sk-rail-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.sk-rail-btn[aria-pressed="true"]{background:var(--gold);color:#171310;border-color:var(--gold2)}
+@media(max-width:760px){.sk-rail{right:5px}.sk-rail-btn{width:40px;height:40px}}
 /* The gem-level control's row on the main skill card's panel, with
    the information button that opens the per-level table. */
 .gemctl-row{display:flex;gap:8px;align-items:flex-start}
@@ -3725,6 +3768,15 @@ body.tab-home .brand h1{display:none}
   <div id="view-workspace" class="hidden">
     <div class="wsview-head"><button class="btn small" id="wsBackBtn" type="button">← Back to planner</button><h2 id="wsViewTitle">Skills</h2></div>
     <div id="wsViewBody"></div>
+    <!-- Slim icon rail (v0.406): rides the Skills view's right
+         edge, always visible while the view is open — a gem for
+         the Support gems pane, a + for the Add a skill pane. The
+         view keeps a gutter for it (see the body.ws-skills rules),
+         so it never sits over the card or the bar strip. -->
+    <nav class="sk-rail" id="skRail" aria-label="Skill tools">
+      <button class="sk-rail-btn" id="skRailSup" type="button" aria-label="Support gems" aria-pressed="false" title="Support gems"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10l4 6-9 12L3 9z"/><path d="M3 9h18M7 3l5 6 5-6M12 9v12"/></svg></button>
+      <button class="sk-rail-btn" id="skRailAdd" type="button" aria-label="Add a skill" aria-pressed="false" title="Add a skill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+    </nav>
   </div>
   </section>
 
@@ -13953,9 +14005,10 @@ function gearItemsList(){
    Idol slot shows the first); the layout below packs them onto
    the grid — largest first, backtracking over placements — and
    any idol that cannot be placed does not count, the same way
-   the game gives it no room. Positions are worked out fresh from
-   the idol set each time, so a code or a hero load needs no
-   stored coordinates. */
+   the game gives it no room. Since v0.406 a placed idol keeps
+   the square it was given: the square is stored on the item
+   (gx / gy) and the packer only places idols that do not carry
+   one yet, so removing or adding an idol never moves another. */
 function isIdolKey(k){return k==='Idol'||/^Idol\d+$/.test(k||'')}
 function idolKeysOf(gear){
   return Object.keys(gear||{}).filter(function(k){return isIdolKey(k)&&gear[k]&&gear[k].base}).sort(function(a,b){
@@ -13969,16 +14022,17 @@ function idolLayout(gear){
     return {key:k,w:w,h:h,area:w*h};
   });
   var blocked={'0,0':1,'4,0':1,'0,4':1,'4,4':1};
-  function tryPack(list){
-    var occ={}, place={}, nodes=0;
-    function fits(it,x,y){
-      for(var dx=0;dx<it.w;dx++)for(var dy=0;dy<it.h;dy++){
-        var cx=x+dx, cy=y+dy;
-        if(cx>4||cy>4)return false;
-        if(blocked[cx+','+cy]||occ[cx+','+cy])return false;
-      }
-      return true;
+  function fitsIn(occ,it,x,y){
+    for(var dx=0;dx<it.w;dx++)for(var dy=0;dy<it.h;dy++){
+      var cx=x+dx, cy=y+dy;
+      if(cx>4||cy>4)return false;
+      if(blocked[cx+','+cy]||occ[cx+','+cy])return false;
     }
+    return true;
+  }
+  function tryPack(list,occ0){
+    var occ={}, place={}, nodes=0;
+    Object.keys(occ0||{}).forEach(function(c){occ[c]=occ0[c]});
     function put(it,x,y,on){
       for(var dx=0;dx<it.w;dx++)for(var dy=0;dy<it.h;dy++)occ[(x+dx)+','+(y+dy)]=on?it.key:null;
     }
@@ -13987,7 +14041,7 @@ function idolLayout(gear){
       if(++nodes>300000)return false;
       var it=list[i];
       for(var y=0;y<=5-it.h;y++)for(var x=0;x<=5-it.w;x++){
-        if(!fits(it,x,y))continue;
+        if(!fitsIn(occ,it,x,y))continue;
         put(it,x,y,true); place[it.key]={x:x,y:y,w:it.w,h:it.h};
         if(dfs(i+1))return true;
         put(it,x,y,false); delete place[it.key];
@@ -13996,30 +14050,80 @@ function idolLayout(gear){
     }
     return dfs(0)?place:null;
   }
-  var work=items.slice().sort(function(a,b){return b.area-a.area});
-  var place=null;
-  while(work.length){
-    place=tryPack(work);
-    if(place)break;
+  /* v0.406 — placed idols keep their squares. An idol carrying
+     stored grid coordinates (gx / gy on the item, written when it
+     was placed and carried everywhere the item itself is carried
+     — plan codes, setups, saved instances) is pinned to them;
+     only idols without coordinates are packed, into the room the
+     pinned ones leave. Removing or adding an idol can therefore
+     never slide the others into new squares. With no stored
+     coordinates at all (a fresh hero, save or code load) the pack
+     below is the old largest-first backtracking pack, unchanged,
+     so which idols count is exactly what it always was. */
+  var place={}, occ={}, free=[];
+  items.forEach(function(it){
+    var g=gear[it.key];
+    if(g&&typeof g.gx==='number'&&typeof g.gy==='number'&&fitsIn(occ,it,g.gx,g.gy)){
+      place[it.key]={x:g.gx,y:g.gy,w:it.w,h:it.h};
+      for(var dx=0;dx<it.w;dx++)for(var dy=0;dy<it.h;dy++)occ[(g.gx+dx)+','+(g.gy+dy)]=it.key;
+    } else free.push(it);
+  });
+  var work=free.slice().sort(function(a,b){return b.area-a.area});
+  var packed=null;
+  while(true){
+    packed=tryPack(work,occ);
+    if(packed||!work.length)break;
     work.pop();
   }
-  if(!place)place={};
+  if(packed)Object.keys(packed).forEach(function(k){place[k]=packed[k]});
   var fitKeys={}; Object.keys(place).forEach(function(k){fitKeys[k]=1});
   var over=items.filter(function(it){return !fitKeys[it.key]}).map(function(it){return it.key});
   var used=items.reduce(function(s,it){return s+(fitKeys[it.key]?it.area:0)},0);
   return {place:place,over:over,used:used,items:items};
 }
 function idolFitSet(gear){var l=idolLayout(gear); var s={}; Object.keys(l.place).forEach(function(k){s[k]=1}); return s}
+/* Write the layout's squares onto any placed idol that does not
+   carry them yet, so its position survives removal of a
+   neighbour, a reload and a setup switch. Called from the idol
+   grid's render — never from a pricing path. */
+function idolStampCoords(){
+  var L=idolLayout(state.gear);
+  Object.keys(L.place).forEach(function(k){
+    var it=state.gear[k];
+    if(it&&typeof it.gx!=='number'){it.gx=L.place[k].x; it.gy=L.place[k].y}
+  });
+  return L;
+}
+/* Whether idol `key`'s footprint fits at (x, y) against the
+   placements in `place` (its own current square ignored) — the
+   drag-and-drop rule: free cells only, corners closed. */
+function idolCanPlace(key,x,y,place){
+  var it=state.gear[key]; if(!it)return false;
+  var b=gearBaseOf(it); if(!b)return false;
+  var w=Math.max(1,+b.Width||1), h=Math.max(1,+b.Height||1);
+  if(x<0||y<0||x+w>5||y+h>5)return false;
+  var blocked={'0,0':1,'4,0':1,'0,4':1,'4,4':1};
+  for(var dx=0;dx<w;dx++)for(var dy=0;dy<h;dy++)if(blocked[(x+dx)+','+(y+dy)])return false;
+  for(var k in place){
+    if(k===key)continue;
+    var p=place[k];
+    if(x<p.x+p.w&&x+w>p.x&&y<p.y+p.h&&y+h>p.y)return false;
+  }
+  return true;
+}
 function removeIdolKey(key){
-  var items=idolKeysOf(state.gear).filter(function(k){return k!==key}).map(function(k){return state.gear[k]});
-  idolKeysOf(state.gear).forEach(function(k){delete state.gear[k]});
-  items.forEach(function(it,i){state.gear[i===0?'Idol':'Idol'+(i+1)]=it});
+  /* v0.406 — removal empties only the removed idol's own slot.
+     The old code deleted every idol slot and re-packed the
+     survivors from the first slot, so the others slid into new
+     slots and new grid squares; now every other idol keeps its
+     exact slot key and its stored square. */
+  delete state.gear[key];
 }
 function nextIdolKey(){
-  var ks=idolKeysOf(state.gear);
+  /* The first free slot — a hole left by a removal is reused,
+     and no idol already placed is ever renumbered. */
   if(!state.gear.Idol||!state.gear.Idol.base)return 'Idol';
-  var mx=1; ks.forEach(function(k){var n=k==='Idol'?1:+k.slice(4); if(n>mx)mx=n});
-  return 'Idol'+(mx+1);
+  for(var n=2;;n++){var k='Idol'+n; if(!state.gear[k]||!state.gear[k].base)return k}
 }
 /* ---------- Socketed runes and jewels — runes.json ----------
    Items roll sockets (runes.json Rules: from monster level 30,
@@ -14295,14 +14399,39 @@ function renderGear(){
    the picker; × takes it off the board. An idol the layout cannot
    place is listed under the grid as not counting — it never
    reaches Defences, the gem tally or the asks. */
+/* Set when an idol drag ends, so the click the browser fires on
+   release does not also open the picker for the dragged tile. */
+var igDragSuppress=0;
+/* The grid cell under a pointer position, for idol dragging:
+   empty cells and corners carry their own coordinates; a point
+   over a tile (its own cells included) resolves through the
+   tile's placement and the point's offset inside it. */
+function igCellAt(box,x,y){
+  var el=document.elementFromPoint?document.elementFromPoint(x,y):null;
+  if(!el||!el.closest)return null;
+  var cellEl=el.closest('[data-cx]');
+  if(cellEl&&box.contains(cellEl))return {x:+cellEl.getAttribute('data-cx'),y:+cellEl.getAttribute('data-cy')};
+  var tile=el.closest('[data-ig-open]');
+  if(tile&&box.contains(tile)){
+    var p=idolLayout(state.gear).place[tile.getAttribute('data-ig-open')];
+    if(!p)return null;
+    var r=tile.getBoundingClientRect();
+    return {
+      x:p.x+Math.min(p.w-1,Math.max(0,Math.floor((x-r.left)/Math.max(1,r.width)*p.w))),
+      y:p.y+Math.min(p.h-1,Math.max(0,Math.floor((y-r.top)/Math.max(1,r.height)*p.h)))
+    };
+  }
+  return null;
+}
 function renderIdolGrid(){
   var box=$('idolGridBox'); if(!box)return;
   var keys=idolKeysOf(state.gear);
   var html='';
   if(keys.length||G.allBases.length){
+    idolStampCoords();
     var L=idolLayout(state.gear);
     html+='<div class="label" style="margin:0 0 2px">Idol grid</div>'
-     +'<p class="sub" style="margin:0 0 8px">The game&rsquo;s board: 5 × 5 with the corners closed — 21 cells. Idols are placed by their published footprints; one that cannot be placed does not count. The fullest real ladder build fills exactly 21.</p>';
+     +'<p class="sub" style="margin:0 0 8px">The game&rsquo;s board: 5 × 5 with the corners closed — 21 cells. Idols are placed by their published footprints; one that cannot be placed does not count. The fullest real ladder build fills exactly 21. Drag an idol to another square to rearrange it — it only lands where it fits — and removing one leaves the rest exactly where they stand.</p>';
     if(keys.length){
       html+='<div class="kv" style="margin-bottom:8px"><span>Cells used</span><b>'+L.used+' of 21'+(L.over.length?' • '+L.over.length+' idol'+(L.over.length===1?'':'s')+' not placed':'')+'</b></div>';
       var cells={};
@@ -14312,14 +14441,15 @@ function renderIdolGrid(){
       html+='<div class="idol-grid" role="img" aria-label="Idol grid — '+L.used+' of 21 cells used">';
       for(var y=0;y<5;y++)for(var x=0;x<5;x++){
         var id=x+','+y;
-        if((x===0||x===4)&&(y===0||y===4)){html+='<div class="ig-corner" aria-hidden="true">✕</div>'; continue}
+        if((x===0||x===4)&&(y===0||y===4)){html+='<div class="ig-corner" data-cx="'+x+'" data-cy="'+y+'" aria-hidden="true">✕</div>'; continue}
         if(covered[id])continue;
         var k=cells[id];
         if(k){
           var it=state.gear[k], b=gearBaseOf(it), un=it.unique?G.uniqueMap[it.unique]:null, p=L.place[k];
           var nm=un?un.Name:(b?b.Name:niceId(it.base));
-          html+='<div class="ig-tile" data-ig-open="'+k+'" role="button" tabindex="0" style="grid-column:'+(x+1)+' / span '+p.w+';grid-row:'+(y+1)+' / span '+p.h+'" aria-label="'+esc(nm)+' — tap to change"><button class="ig-x" data-ig-remove="'+k+'" type="button" aria-label="Remove '+esc(nm)+' from the idol grid">×</button><span class="ig-name">'+esc(nm)+'</span><span class="ig-shape">'+p.w+'×'+p.h+'</span></div>';
-        } else html+='<div class="ig-cell"></div>';
+          var rar=it.rarity||'Normal';
+          html+='<div class="ig-tile ig-r-'+esc(rar)+'" data-ig-open="'+k+'" role="button" tabindex="0" style="grid-column:'+(x+1)+' / span '+p.w+';grid-row:'+(y+1)+' / span '+p.h+'" aria-label="'+esc(nm)+' — tap to change, drag to move"><button class="ig-x" data-ig-remove="'+k+'" type="button" aria-label="Remove '+esc(nm)+' from the idol grid">×</button><span class="ig-name rarity-'+esc(rar)+'">'+esc(nm)+'</span><span class="ig-shape">'+p.w+'×'+p.h+'</span></div>';
+        } else html+='<div class="ig-cell" data-cx="'+x+'" data-cy="'+y+'"></div>';
       }
       html+='</div>';
       L.over.forEach(function(k){
@@ -14339,7 +14469,7 @@ function renderIdolGrid(){
   var add=$('igAddBtn');
   if(add)add.addEventListener('click',function(){openGearPicker(nextIdolKey())});
   box.querySelectorAll('[data-ig-open]').forEach(function(t){
-    t.addEventListener('click',function(e){if(e.target.closest('[data-ig-remove]'))return; openGearPicker(t.getAttribute('data-ig-open'))});
+    t.addEventListener('click',function(e){if(e.target.closest('[data-ig-remove]'))return; if(Date.now()-igDragSuppress<350)return; openGearPicker(t.getAttribute('data-ig-open'))});
     /* Hover / focus / tap preview on an idol tile, the same pattern
        as the gear board: the idol's own card plus what wearing it
        gives the priced build. A first tap pins the card; a second
@@ -14370,6 +14500,72 @@ function renderIdolGrid(){
       removeIdolKey(k);
       renderGear(); renderPlanner();
       gearMsg(nm+' removed from the idol grid.');
+    });
+  });
+  /* Drag to rearrange (v0.406): press an idol and move — mouse or
+     touch — and a ghost follows the pointer. On release the idol
+     lands only where its footprint fits (free cells, corners
+     closed); anywhere else it stays put, with a shake and a word
+     about why. A press that never moves is still the tap the
+     tile has always had (preview, then the picker). */
+  box.querySelectorAll('[data-ig-open]').forEach(function(t){
+    t.addEventListener('pointerdown',function(e){
+      if(e.button!=null&&e.button!==0)return;
+      if(e.target.closest&&e.target.closest('[data-ig-remove]'))return;
+      var key=t.getAttribute('data-ig-open');
+      var it=state.gear[key]; if(!it||!it.base)return;
+      var startPlace=idolLayout(state.gear).place[key]; if(!startPlace)return;
+      var rect=t.getBoundingClientRect();
+      var drag={key:key,sx:e.clientX,sy:e.clientY,active:false,ghost:null,cell:null,place:idolLayout(state.gear).place,
+        grabPX:e.clientX-rect.left,grabPY:e.clientY-rect.top,
+        grabCX:Math.min(startPlace.w-1,Math.max(0,Math.floor((e.clientX-rect.left)/Math.max(1,rect.width)*startPlace.w))),
+        grabCY:Math.min(startPlace.h-1,Math.max(0,Math.floor((e.clientY-rect.top)/Math.max(1,rect.height)*startPlace.h)))};
+      var move=function(ev){
+        if(!drag.active){
+          if(Math.hypot(ev.clientX-drag.sx,ev.clientY-drag.sy)<9)return;
+          drag.active=true; igDragSuppress=Date.now();
+          pinTipClear(); itemTipHide();
+          var g=t.cloneNode(true);
+          g.classList.add('ig-ghost'); g.removeAttribute('data-ig-open');
+          g.style.width=rect.width+'px'; g.style.height=rect.height+'px';
+          g.style.left=(ev.clientX-drag.grabPX)+'px'; g.style.top=(ev.clientY-drag.grabPY)+'px';
+          document.body.appendChild(g); drag.ghost=g;
+          t.classList.add('ig-drag-src');
+        }
+        if(drag.ghost){drag.ghost.style.left=(ev.clientX-drag.grabPX)+'px'; drag.ghost.style.top=(ev.clientY-drag.grabPY)+'px'}
+        drag.cell=igCellAt(box,ev.clientX,ev.clientY);
+      };
+      var up=function(ev){
+        window.removeEventListener('pointermove',move);
+        window.removeEventListener('pointerup',up);
+        window.removeEventListener('pointercancel',up);
+        if(!drag.active)return;
+        igDragSuppress=Date.now();
+        if(drag.ghost)drag.ghost.remove();
+        t.classList.remove('ig-drag-src');
+        var it2=state.gear[key];
+        var cell=drag.cell||igCellAt(box,ev.clientX,ev.clientY);
+        var done=false;
+        if(cell&&it2){
+          var tx=cell.x-drag.grabCX, ty=cell.y-drag.grabCY;
+          var cur=idolLayout(state.gear).place[key];
+          if(cur&&tx===cur.x&&ty===cur.y)done=true;
+          else if(idolCanPlace(key,tx,ty,drag.place)){
+            it2.gx=tx; it2.gy=ty;
+            renderGear(); renderPlanner();
+            gearMsg(gearItemName(it2)+' moved on the idol grid.');
+            done=true;
+          }
+        }
+        if(!done){
+          t.classList.add('shake');
+          setTimeout(function(){t.classList.remove('shake')},650);
+          if(it2)gearMsg('No room there — '+gearItemName(it2)+' stays where it was.');
+        }
+      };
+      window.addEventListener('pointermove',move);
+      window.addEventListener('pointerup',up);
+      window.addEventListener('pointercancel',up);
     });
   });
 }
@@ -15490,7 +15686,14 @@ function gpCommitAdd(){
     pickRunes=(gearPick.runes||[]).slice(0,pCap);
     if(pickRunes.length)pickSockets=pCap;
   }
+  /* Replacing an idol in its slot keeps the square the old idol
+     stood on (v0.406): the layout honours the stored square when
+     the new idol's footprint fits there, and packs it into the
+     first free space when it does not — either way no other idol
+     moves. */
+  var prevIdol=(typeof isIdolKey==='function'&&isIdolKey(gearPick.slot))?state.gear[gearPick.slot]:null;
   state.gear[gearPick.slot]={base:sel.baseId,unique:sel.uniqueId,rarity:rarity,item_level:ilvl,affixes:affixes,runes:pickRunes,sockets:pickSockets};
+  if(prevIdol&&typeof prevIdol.gx==='number'){state.gear[gearPick.slot].gx=prevIdol.gx; state.gear[gearPick.slot].gy=prevIdol.gy}
   gpPricedDelta={key:'',html:null}; gpDeltaKey='';
   var rwSaved=sel.uniqueId?null:runewordFor(state.gear[gearPick.slot],G.baseMap[sel.baseId]);
   var rwMissed=null;
@@ -16902,6 +17105,7 @@ function popEscKey(e){if(e.key==='Escape')closePlannerPop()}
    with the same instance and setup open (nothing is rebuilt). */
 function teardownPop(restoreScroll){
   var name=popCurrent; popCurrent=null; wsCurrent='character';
+  document.body.classList.remove('ws-skills');
   document.removeEventListener('keydown',popEscKey);
   /* The Skills view's drawer and gem-level sheet never outlive
      the view: leaving parks them shut, so the view always opens
@@ -16943,6 +17147,9 @@ function openWorkspaceView(name){
   wsReturnY=Math.max(0,Math.round(window.pageYOffset||0));
   viewStoreData.scroll.planner=wsReturnY; viewStoreSave();
   popCurrent=name; wsCurrent=name; wsViewOpen=true;
+  /* The Skills view carries the slim icon rail and its gutter
+     (v0.406): the class lives exactly as long as the view does. */
+  document.body.classList.toggle('ws-skills',name==='skills');
   var title=$('wsViewTitle'); if(title)title.textContent=POP_TITLES[name];
   view.setAttribute('aria-label',POP_TITLES[name]);
   el.classList.remove('hidden');
@@ -17052,6 +17259,7 @@ function setSkDrawerMode(mode){
   var tS=$('skPickTabSup'), tA=$('skPickTabAdd');
   if(tS)tS.setAttribute('aria-selected',skDrawerMode==='supports'?'true':'false');
   if(tA)tA.setAttribute('aria-selected',skDrawerMode==='add'?'true':'false');
+  skRailSync();
   if(skDrawerMode==='supports')renderGemPalette(); else renderDrawerSkills();
 }
 function openSkillsSideDrawer(mode,slotIdx){
@@ -17059,12 +17267,25 @@ function openSkillsSideDrawer(mode,slotIdx){
   skDrawerSlot=(typeof slotIdx==='number')?slotIdx:null;
   setSkDrawerMode(mode||'supports');
   d.classList.add('open'); d.setAttribute('aria-hidden','false');
+  document.body.classList.add('skd-open');
+  skRailSync();
   var sc=$('skPickScrim'); if(sc)sc.classList.remove('hidden');
 }
 function closeSkillsSideDrawer(){
   var d=$('skPickDrawer'); if(d){d.classList.remove('open'); d.setAttribute('aria-hidden','true')}
+  document.body.classList.remove('skd-open');
+  skRailSync();
   var sc=$('skPickScrim'); if(sc)sc.classList.add('hidden');
   skDrawerSlot=null;
+}
+/* The slim icon rail's lit state follows the pane: the button for
+   the pane that is open wears the gold; with the pane shut,
+   neither does. */
+function skRailSync(){
+  var open=skPickDrawerOpen();
+  var sup=$('skRailSup'), add=$('skRailAdd');
+  if(sup)sup.setAttribute('aria-pressed',(open&&skDrawerMode==='supports')?'true':'false');
+  if(add)add.setAttribute('aria-pressed',(open&&skDrawerMode==='add')?'true':'false');
 }
 function gemLevelsPopOpen(){var p=$('gemLevelsPop'); return !!(p&&!p.classList.contains('hidden'))}
 function setGemLevelsPop(open){
@@ -17091,6 +17312,11 @@ function bindSkillsDrawer(){
      own close button. */
   var osb=$('skOpenSupBtn'); if(osb)osb.addEventListener('click',function(){openSkillsSideDrawer('supports')});
   var oab=$('skOpenAddBtn'); if(oab)oab.addEventListener('click',function(){openSkillsSideDrawer('add')});
+  /* The slim icon rail (v0.406): the same two panes from the
+     view's right edge — tapping the lit button again puts its
+     pane away. */
+  var rsb=$('skRailSup'); if(rsb)rsb.addEventListener('click',function(){if(skPickDrawerOpen()&&skDrawerMode==='supports')closeSkillsSideDrawer(); else openSkillsSideDrawer('supports')});
+  var rab=$('skRailAdd'); if(rab)rab.addEventListener('click',function(){if(skPickDrawerOpen()&&skDrawerMode==='add')closeSkillsSideDrawer(); else openSkillsSideDrawer('add')});
   var pcb=$('skPickClose'); if(pcb)pcb.addEventListener('click',closeSkillsSideDrawer);
   var psc=$('skPickScrim'); if(psc)psc.addEventListener('click',closeSkillsSideDrawer);
   document.querySelectorAll('[data-skd-mode]').forEach(function(b){b.addEventListener('click',function(){skDrawerSlot=null; setSkDrawerMode(b.getAttribute('data-skd-mode'))})});
@@ -26326,8 +26552,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.405';
-var PLANNER_BUILT_AT='2026-11-26T11:18:36-07:00';
+var PLANNER_VERSION='0.406';
+var PLANNER_BUILT_AT='2026-11-26T11:44:24-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
