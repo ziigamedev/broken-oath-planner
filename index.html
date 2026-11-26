@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <meta name="color-scheme" content="dark"/>
-<link rel="icon" href="data:,"/>
+<link rel="icon" type="image/png" href="assets/logo-favicon.png"/>
 <title>Broken Oath Planner — Fan-made Build Planner</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2751,11 +2751,57 @@ td{padding:7px 8px}
 .char-tip .char-break,.char-tip .char-actions{border-top-color:var(--line-pop)}
 .affix-hover-panel th,.affix-hover-panel td{border-bottom-color:var(--line-pop)}
 </style>
+<style>
+/* v0.395 — nav lockup: the ring logo at nav height beside the
+   Cinzel site name; the transparent mark sits straight on the
+   topbar, no plate behind it. */
+.brand-logo{width:32px;height:32px;display:block;flex:none}
+/* v0.395 — the passive tree opens as a big full view: a wider
+   sheet and a taller canvas. */
+.pop-sheet.pop-tree{max-width:1680px;width:97vw}
+#wsTree .tree-stage svg{height:min(76vh,900px)}
+/* v0.395 — the tree's one slim control row: view toggles, node
+   filters, search, Undo and the tree versions in a single bar
+   that wraps only where the width forces it. */
+.tree-bar{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin-top:10px}
+.tree-bar .tree-controls{margin:0}
+.tree-bar-search{display:flex;gap:6px;align-items:center;flex:1 1 180px;min-width:160px}
+.tree-bar-search input{flex:1;min-width:0}
+.tree-bar-versions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.tree-bar-versions input{width:118px}
+.tree-bar-versions select{width:118px}
+.tree-bar-msgs{display:flex;gap:2px 18px;flex-wrap:wrap}
+.tree-bar-msgs p{margin:3px 0 0;min-height:16px}
+/* v0.395 — canvas + planning panel: the panel sits beside the
+   canvas on wide screens and under it on narrow ones. */
+.tree-layout{display:flex;gap:14px;align-items:flex-start;margin-top:8px}
+.tree-main{flex:1 1 auto;min-width:0}
+.tree-main .tree-stage{margin-top:0}
+#treeToolsFold{flex:0 0 350px;width:350px;margin-top:0}
+@media(max-width:920px){.tree-layout{flex-direction:column}#treeToolsFold{flex:1 1 auto;width:100%}}
+/* v0.395 — the skill bar's empty '+' slot, styled like one of
+   the game's empty hotbar slots: a dark inset well with a gold
+   plus, at the end of the bar. */
+.bs-add{border-style:dashed;cursor:pointer;background:transparent;text-align:left}
+.bs-add:hover{border-color:var(--gold)}
+.bs-add-box{flex:none;width:38px;height:38px;border:1px solid var(--line);border-radius:8px;background:#0d0b09;display:grid;place-items:center;font-size:22px;line-height:1;color:var(--gold2);box-shadow:inset 0 2px 6px rgba(0,0,0,.85)}
+/* v0.395 — gear draft editor: base on the left, Item level and
+   Rarity in a right-hand column; sockets in one compact row. */
+.gp-base-row{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
+.gp-base-row #gpBaseBox{flex:1 1 300px;min-width:0}
+.gp-base-row #gpRarityBox{flex:0 1 232px;min-width:200px}
+.gp-base-row #gpRarityBox .label:first-child{margin-top:0}
+.gp-side-field{margin:14px 0 2px}
+.gp-side-field input{margin-left:6px}
+.gp-sock-slots{display:flex;gap:6px;margin:8px 0}
+.gp-sock-slot{flex:1 1 0;min-width:0}
+@media(max-width:560px){.gp-sock-slots{flex-wrap:wrap}.gp-sock-slot{flex:1 1 30%}}
+</style>
 </head>
 <body>
 <div id="updateBanner" class="update-banner hidden" role="status"><span id="updateBannerText">A newer version of the planner is here. Refresh to get it.</span><span class="update-actions"><button class="btn small" id="updateRefreshBtn" type="button">Refresh</button><button class="update-x" id="updateDismissBtn" type="button" aria-label="Dismiss">×</button></span></div>
 <header class="topbar"><div class="topbar-in">
-  <div class="brand"><div class="mark">⚔</div><div><h1>Broken Oath Planner</h1><p>Fan-made planner • Live ladder, meta &amp; build inspector</p></div></div>
+  <div class="brand"><img class="brand-logo" src="assets/logo-mark.png" alt="" width="32" height="32"><h1>Broken Oath Planner</h1></div>
   <div class="controls">
     <span class="pill hidden" aria-hidden="true"><span class="dot" id="liveDot"></span><span id="liveText">Connecting…</span></span>
     <button class="btn small hidden" id="retryLiveBtn" type="button" aria-hidden="true" tabindex="-1">Retry live data</button>
@@ -2914,9 +2960,6 @@ td{padding:7px 8px}
     <div class="card gear-top" id="gearCard">
       <div class="flex between"><h2>Gear</h2><!-- Copy / Paste gear hidden for now (display:none only) — the buttons, their handlers and the gear-code feature are untouched and come back by removing the style. --><div class="flex" style="display:none"><button class="btn small" id="copyGearBtn" type="button">Copy gear</button><button class="btn small" id="pasteGearBtn" type="button">Paste gear</button></div></div>
       <div class="level-row"><span class="label" style="margin:0">Hero level</span><div class="stepper"><button class="btn small step-btn" id="levelDown" type="button" aria-label="Lower hero level">−</button><input type="number" id="levelRange" min="1" max="100" step="1" value="90" aria-label="Hero level"><button class="btn small step-btn" id="levelUp" type="button" aria-label="Raise hero level">+</button></div></div>
-      <p class="sub">Tap a slot to add an item — pick one, set it up, then press Add. Nothing goes into your build until you do.</p>
-      <p class="sub" id="gearMsg" style="min-height:20px;margin-top:6px"></p>
-      <div class="gear-grid mt" id="gearGrid"></div>
       <details class="fold-block" id="setsFold" style="display:none">
         <summary><span class="fold-title">Character setups</span><span class="fold-hint">Set 1, Set 2, Set 3 — each a full setup for this character</span></summary>
         <div class="fold-block-body">
@@ -2934,6 +2977,8 @@ td{padding:7px 8px}
           <p class="sub" id="setsNote" style="margin-top:6px"></p>
         </div>
       </details>
+      <p class="sub" id="gearMsg" style="min-height:20px;margin-top:6px"></p>
+      <div class="gear-grid mt" id="gearGrid"></div>
     </div>
     <!-- Idols sit directly under the gear: they are items, so
          they group with the gear, not down the column. -->
@@ -3331,7 +3376,6 @@ td{padding:7px 8px}
 
   <div id="wsTree" class="hidden">
     <div class="card" id="treeCard">
-          <p class="sub tree-intro">Click a node to take it — the shortest path from your class start comes with it. Click a taken node to refund it. Drag to pan, scroll to zoom. Diamond nodes are Oath seats: take one, then swear an Oath in its panel. Hold Shift and trace a route, then click once to take it all.</p>
           <details class="fold-block">
             <summary><span class="fold-title">Load a build code</span><span class="fold-hint">BO1 from the game, or BOP1 from this planner</span></summary>
             <div class="fold-block-body">
@@ -3343,40 +3387,49 @@ td{padding:7px 8px}
           </div>
             </div>
           </details>
-          <!-- Two wrapping rows for the whole workspace: the map's
-               view controls (Names, Gateways, zoom, My class, Fit,
-               Full screen) on their own row, the node filters on the
-               next — each control exactly once, and both rows wrap
-               so every control stays on screen at phone width. -->
-          <div class="chips tree-controls"><button class="chip" id="treeNamesBtn" type="button">Names</button><button class="chip" id="treeGateBtn" type="button">Gateways</button><button class="chip" id="treeZoomIn" type="button" aria-label="Zoom in">+</button><button class="chip" id="treeZoomOut" type="button" aria-label="Zoom out">−</button><button class="chip" id="treeHomeBtn" type="button">My class</button><button class="chip" id="treeFitBtn" type="button">Fit</button><button class="chip" id="treeFsBtn" type="button">Full screen</button></div>
-          <div class="chips tree-controls" id="treeFilterChips"><button class="chip active" data-tfilter="All">All nodes</button><button class="chip" data-tfilter="Keystone">Keystones</button><button class="chip" data-tfilter="Notable">Notables</button><button class="chip" data-tfilter="Mastery">Oath seats</button><button class="chip" data-tfilter="Marked">Marked</button></div>
-          <div class="tree-stage" id="treeStage">
-            <span class="tree-pts" id="treePts">— pts</span>
-            <div class="tree-trace-bar hidden" id="treeTraceBar"></div>
-            <svg id="treeSvg" role="img" aria-label="Passive tree map"></svg>
-            <div class="tree-tip hidden" id="treeTip"></div>
+          <!-- One slim control row for the whole workspace: the
+               map's view toggles, the node filters, search, Undo
+               and the tree versions — every control exactly once,
+               in a single row that wraps only where the width
+               forces it. -->
+          <div class="tree-bar">
+            <div class="chips tree-controls"><button class="chip" id="treeNamesBtn" type="button">Names</button><button class="chip" id="treeGateBtn" type="button">Gateways</button><button class="chip" id="treeZoomIn" type="button" aria-label="Zoom in">+</button><button class="chip" id="treeZoomOut" type="button" aria-label="Zoom out">−</button><button class="chip" id="treeHomeBtn" type="button">My class</button><button class="chip" id="treeFitBtn" type="button">Fit</button><button class="chip" id="treeFsBtn" type="button">Full screen</button></div>
+            <div class="chips tree-controls" id="treeFilterChips"><button class="chip active" data-tfilter="All">All nodes</button><button class="chip" data-tfilter="Keystone">Keystones</button><button class="chip" data-tfilter="Notable">Notables</button><button class="chip" data-tfilter="Mastery">Oath seats</button><button class="chip" data-tfilter="Marked">Marked</button></div>
+            <div class="tree-bar-search"><input type="search" id="treeSearch" placeholder="Search by name or stat — e.g. cold damage, life, crit chance, fire resistance…" aria-label="Search tree nodes by name or stat"><button class="btn small hidden" id="treeSearchClear" type="button">Clear</button></div>
+            <button class="btn small" id="treeUndoBtn" type="button">Undo</button>
+            <div class="tree-bar-versions"><input type="text" id="treeVerName" placeholder="Name this tree version…" maxlength="40" aria-label="Name this tree version"><button class="btn small" id="treeVerSaveBtn" type="button">Save version</button><select id="treeVerSel" aria-label="Tree versions"></select><button class="btn small" id="treeVerApplyBtn" type="button">Apply version</button><button class="btn small danger" id="treeVerDelBtn" type="button">Delete</button></div>
           </div>
-          <div id="treeDetail"></div>
-          <div class="flex mt"><input type="search" id="treeSearch" placeholder="Search by name or stat — e.g. cold damage, life, crit chance, fire resistance…" style="flex:1;min-width:160px" aria-label="Search tree nodes by name or stat"><button class="btn small hidden" id="treeSearchClear" type="button">Clear</button></div>
-          <p class="sub" id="treeSearchMeta" style="min-height:16px;margin:4px 0 0"></p>
-          <div id="treeSummary" class="mt"></div>
-          <details class="fold-block" id="treeToolsFold">
-            <summary><span class="fold-title">Tree planning tools</span><span class="fold-hint">Optimize, best next picks, versions &amp; the node list</span></summary>
-            <div class="fold-block-body">
-          <div class="flex mt" style="flex-wrap:wrap"><button class="btn small" id="treeHeatBtn" type="button" aria-pressed="false">Heat map: off</button><button class="btn small" id="treeBestBtn" type="button">Best next picks</button><button class="btn small" id="treePlanBtn" type="button">Plan next points</button><button class="btn small" id="treeOptimizeBtn" type="button">Optimize tree</button><button class="btn small" id="treeLevelBtn" type="button">Levelling path</button><button class="btn small" id="treeApplyBtn" type="button">Apply Take list to tuning</button><button class="btn small" id="treeUndoBtn" type="button">Undo</button><button class="btn small danger" id="treeResetBtn" type="button">Reset marks</button></div>
-          <div class="flex mt" style="flex-wrap:wrap;gap:16px;align-items:flex-end">
-            <div><div class="label" style="margin:0 0 2px">Optimize &amp; plan for — <span id="treeBlendVal">DPS only</span></div><input type="range" id="treeBlend" min="0" max="100" step="5" value="0" style="width:180px" aria-label="Balance between DPS and defence"></div>
-            <div><div class="label" style="margin:0 0 2px">Resistance penalty</div><select id="resPenaltySel" aria-label="Resistance penalty"><option value="0">None</option><option value="10">−10%</option><option value="20">−20%</option><option value="30">−30%</option><option value="40">−40%</option><option value="50">−50%</option></select></div>
-            <div id="treeWeightsBox"></div>
-          </div>
-          <div class="flex mt" style="flex-wrap:wrap"><input type="text" id="treeVerName" placeholder="Name this tree version…" maxlength="40" style="flex:1;min-width:140px"><button class="btn small" id="treeVerSaveBtn" type="button">Save version</button><select id="treeVerSel" aria-label="Tree versions" style="min-width:140px"></select><button class="btn small" id="treeVerApplyBtn" type="button">Apply version</button><button class="btn small danger" id="treeVerDelBtn" type="button">Delete</button></div>
-          <p class="sub" id="treeVerMsg" style="min-height:16px"></p>
-          <div id="treeHeatLegend" class="hidden"></div>
-          <div id="treePreviewBar" class="hidden"></div>
-          <div id="treeNext" class="mt"></div>
-          <div id="treeList" class="mt"></div>
+          <div class="tree-bar-msgs"><p class="sub" id="treeSearchMeta"></p><p class="sub" id="treeVerMsg"></p></div>
+          <!-- The canvas takes the room; the planning tools live in
+               one collapsible panel beside it (under it on narrow
+               screens), closed when the tree opens. -->
+          <div class="tree-layout">
+            <div class="tree-main">
+              <div class="tree-stage" id="treeStage">
+                <span class="tree-pts" id="treePts">— pts</span>
+                <div class="tree-trace-bar hidden" id="treeTraceBar"></div>
+                <svg id="treeSvg" role="img" aria-label="Passive tree map"></svg>
+                <div class="tree-tip hidden" id="treeTip"></div>
+              </div>
+              <div id="treeDetail"></div>
+              <div id="treeSummary" class="mt"></div>
             </div>
-          </details>
+            <details class="fold-block" id="treeToolsFold">
+              <summary><span class="fold-title">Tree planning tools</span><span class="fold-hint">Optimize, best next picks, heat map &amp; the node list</span></summary>
+              <div class="fold-block-body">
+            <div class="flex mt" style="flex-wrap:wrap"><button class="btn small" id="treeHeatBtn" type="button" aria-pressed="false">Heat map: off</button><button class="btn small" id="treeBestBtn" type="button">Best next picks</button><button class="btn small" id="treePlanBtn" type="button">Plan next points</button><button class="btn small" id="treeOptimizeBtn" type="button">Optimize tree</button><button class="btn small" id="treeLevelBtn" type="button">Levelling path</button><button class="btn small" id="treeApplyBtn" type="button">Apply Take list to tuning</button><button class="btn small danger" id="treeResetBtn" type="button">Reset marks</button></div>
+            <div class="flex mt" style="flex-wrap:wrap;gap:16px;align-items:flex-end">
+              <div><div class="label" style="margin:0 0 2px">Optimize &amp; plan for — <span id="treeBlendVal">DPS only</span></div><input type="range" id="treeBlend" min="0" max="100" step="5" value="0" style="width:180px" aria-label="Balance between DPS and defence"></div>
+              <div><div class="label" style="margin:0 0 2px">Resistance penalty</div><select id="resPenaltySel" aria-label="Resistance penalty"><option value="0">None</option><option value="10">−10%</option><option value="20">−20%</option><option value="30">−30%</option><option value="40">−40%</option><option value="50">−50%</option></select></div>
+              <div id="treeWeightsBox"></div>
+            </div>
+            <div id="treeHeatLegend" class="hidden"></div>
+            <div id="treePreviewBar" class="hidden"></div>
+            <div id="treeNext" class="mt"></div>
+            <div id="treeList" class="mt"></div>
+              </div>
+            </details>
+          </div>
           <details class="fold-block" id="levelPathFold">
             <summary><span class="fold-title">Levelling path</span><span class="fold-hint" id="levelPathHint">The order to take this plan&rsquo;s points, level by level</span></summary>
             <div class="fold-block-body"><div id="levelPathBody"></div></div>
@@ -4665,7 +4718,6 @@ var DICT={
 "Sockets — runes, in order":"插槽 — 符文，按顺序",
 "Basic":"基础",
 "Base":"基底",
-"Tap a slot to add an item — pick one, set it up, then press Add. Nothing goes into your build until you do.":"点击一个槽位添加物品 — 挑选一件、设置好，再按“添加”。在此之前，你的构建不会有任何改动。",
 "Pick an item on the Item tab, set it up on the Affixes tab — base, rarity, sockets, affixes — then press ":"在“物品”标签页挑选一件物品，在“词缀”标签页设置它 — 基底、稀有度、插槽、词缀 — 然后按",
 "Add item":"添加物品",
 " at the bottom. Nothing goes into your build until you press it, and closing this panel throws the pick away. To keep a finished build for next time, use ":"（位于底部）。在按下它之前，你的构建不会有任何改动，关闭此面板会丢弃这次挑选。若要把完成的构建留到下次，请使用",
@@ -5981,7 +6033,6 @@ var RULES=[
  [/^Nothing picked for ([\s\S]+) yet — pick an item on the Item tab and it lands here, ready to set up\. It goes into your build only when you press Add item\.$/,function(m){return slotZh(m[1])+'尚未挑选物品 — 在“物品”标签页点选一件，它会出现在这里供你设置。只有按下“添加物品”后，它才会进入你的构建。';}],
  [/^— ready to add to ([\s\S]+)$/,function(m){return '— 准备添加到'+slotZh(m[1]);}],
  [/^— adding it to ([\s\S]+) would do this to your build:$/,function(m){return '— 将它添加到'+slotZh(m[1])+'会对你的构建造成以下变化：';}],
- [/^([\s\S]+) picked for ([\s\S]+) — set it up below, then press Add item to put it in your build\.$/,function(m){return m[1]+' 已为'+slotZh(m[2])+'挑选 — 在下方设置好，然后按“添加物品”将其放入你的构建。';}],
  [/^([\s\S]+) added to ([\s\S]+)\.([\s\S]*)$/,function(m){return m[1]+' 已添加到'+slotZh(m[2])+'。'+m[3];}],
  [/^This item is ([\s\S]+) — its name turns gold, its rarity reads Oathword, and the lines above count on top of the socketed runes’ own lines, shown under each socket below\. The rarity is locked at Normal while it stands — take a rune back out and the Oathword comes undone\.$/,function(m){return '这件物品就是 '+m[1]+' — 它的名字变为金色，稀有度显示为誓言之语，上面的词条叠加在已镶嵌符文自身的词条之上（显示在每个插槽下方）。它存在期间稀有度锁定为普通 — 取出一颗符文，誓言之语随之消散。';}],
  [/^Step 1 of 2 — pick the Oathword for ([\s\S]+)\.$/,function(m){return '第 1 步 / 共 2 步 — 为'+slotZh(m[1])+'挑选誓言之语。';}],
@@ -15040,21 +15091,20 @@ function gpRenderEditor(){
      +'<div style="flex:1;min-width:0"><div class="gp-base-name"'+(rwLive?' style="color:var(--gold-text)"':'')+'>'+esc(nm)+rarityTagHTML(rwLive?'Oathword':rarNow)+'</div>'
      +'<div class="sub">'+(un?('Unique on the '+esc(base?base.Name:'')+' base'):('Base: '+esc(base?base.Name:niceId(sel.baseId))))+(base&&base.Level!=null?' • base Lv '+base.Level:'')+'</div>'
      +(base?implicitsHTML(base):'')
-     +'</div></div>'
-     +'<div class="flex mt"><label class="sub" style="font-weight:700">Item level <input type="number" id="gpIlvl" value="'+(liveIt&&liveIt.item_level!=null?liveIt.item_level:state.level)+'" min="1" max="100" style="width:90px"></label></div>';
-    var il=$('gpIlvl');
-    if(il)il.addEventListener('change',function(){gpRenderAffixes(); gpDraftChanged();});
+     +'</div></div>';
   }
   if(rarBox){
+    /* Item level and Rarity sit in the right-hand column beside
+       the base, not stacked full-width under it. */
+    var ilvlHTML='<div class="gp-side-field"><label class="sub" style="font-weight:700">Item level <input type="number" id="gpIlvl" value="'+(liveIt&&liveIt.item_level!=null?liveIt.item_level:state.level)+'" min="1" max="100" style="width:90px"></label></div>';
     if(un){
-      rarBox.innerHTML='<p class="label">Rarity</p><p class="sub" style="margin:0">Unique — a unique&rsquo;s rarity is fixed, and its mods below are the ones the game publishes for it.</p>';
+      rarBox.innerHTML=ilvlHTML+'<p class="label">Rarity</p><p class="sub" style="margin:0">Unique — a unique&rsquo;s rarity is fixed, and its mods below are the ones the game publishes for it.</p>';
     }else{
       var formed=gpFormedRw();
       var capNow=base?runeSocketCap(base,{sockets:null},gearPick.slot):0;
-      rarBox.innerHTML='<p class="label">Rarity</p>'
-       +'<div class="flex"><label class="sub" style="font-weight:700">Rarity <select id="gpRarity"'+(formed?' disabled':'')+'><option>Normal</option><option>Magic</option><option>Rare</option></select></label>'
-       +(capNow?'<span class="sub">Sockets on this base: <b>'+capNow+'</b> — socketing works straight away on a fresh Normal pick.</span>':'')
-       +'</div>'
+      rarBox.innerHTML=ilvlHTML+'<p class="label">Rarity</p>'
+       +'<div class="flex"><label class="sub" style="font-weight:700">Rarity <select id="gpRarity"'+(formed?' disabled':'')+'><option>Normal</option><option>Magic</option><option>Rare</option></select></label></div>'
+       +(capNow?'<p class="sub" style="margin:6px 0 0">Sockets on this base: <b>'+capNow+'</b> — socketing works straight away on a fresh Normal pick.</p>':'')
        +(formed?'<div class="gp-lock-note"><b>'+esc(formed.rec.Name)+'</b> stands on this item, and an Oathword can only exist on a Normal item — so the rarity is locked while it stands. Nothing here can silently drop a socket or a rune: to change the rarity, take a rune out first (the Oathword comes undone, out in the open).</div>':'');
       var rsel=$('gpRarity');
       if(rsel){
@@ -15078,6 +15128,8 @@ function gpRenderEditor(){
         });
       }
     }
+    var il=$('gpIlvl');
+    if(il)il.addEventListener('change',function(){gpRenderAffixes(); gpDraftChanged();});
   }
   gpRenderSockets();
   gpRenderAffixes();
@@ -15154,8 +15206,7 @@ function openGearPicker(slotKey){
    +'<div class="gp-editor-empty" id="gpEditorEmpty"></div>'
    +'<div class="gp-editor hidden" id="gpEditor">'
    +'<div class="gp-editor-head"><b>Your pick</b><span class="sub">Set it up here — it goes into your build only when you press Add item below.</span></div>'
-   +'<div id="gpBaseBox"></div>'
-   +'<div id="gpRarityBox"></div>'
+   +'<div class="gp-base-row"><div id="gpBaseBox"></div><div id="gpRarityBox"></div></div>'
    +'<div id="gpSockBox"></div>'
    +'<div id="gpAffixBox" class="mt"></div>'
    +'</div>'
@@ -15254,7 +15305,6 @@ function openGearPicker(slotKey){
     gpRenderPickerList();
     gpRenderEditor();
     gpDraftChanged();
-    gpMsg(gpDraftName()+' picked for '+sd.label+' — set it up below, then press Add item to put it in your build.');
     /* A new pick opens on the Affixes view, ready to set up — the
        same draft, still uncommitted until Add is pressed.
        Re-tapping the pick already drafted stays on the Item view,
@@ -15490,8 +15540,22 @@ function viewBarSkill(id){
    a mouse floats the skill's detail card; a touch tap goes
    straight to the
    card, it never has to tap twice through the hover card. The
-   strip only shows when there is more than the one planned
-   skill to show. */
+   bar always shows, and its last slot is the empty '+' slot
+   (barAddSlotHTML below). */
+/* The bar's last slot is always an empty '+' slot, styled like
+   one of the game's empty hotbar slots; tapping it opens the
+   Add a skill list (the section nav's own jump, fold included). */
+function barAddSlotHTML(){
+  return '<button type="button" class="bs-card bs-add" id="barAddSkill" aria-label="Add a skill — open the Add a skill list"><span class="bs-add-box">+</span><span class="bs-main"><b>Add a skill</b><span class="sub">Empty slot</span></span></button>';
+}
+function wireBarAddSlot(box){
+  var b=box.querySelector('#barAddSkill'); if(!b)return;
+  b.addEventListener('click',function(){
+    var nav=document.querySelector('[data-sk-nav="skSecAdd"]');
+    if(nav){nav.click(); return}
+    var t=document.getElementById('skSecAdd'); if(t)t.scrollIntoView();
+  });
+}
 function renderBarStrip(){
   var box=$('drawerBarStrip'); if(!box)return;
   skillHideTip();
@@ -15504,7 +15568,6 @@ function renderBarStrip(){
      (a hand-started build), so what you are editing is always
      among the rows. */
   if(state.skillId&&G.skillMap[state.skillId]&&!list.some(function(e){return e.skill===state.skillId}))list.unshift({skill:state.skillId,supports:state.supports||[]});
-  if(list.length<2){box.innerHTML=''; box.style.display='none'; return}
   box.style.display='';
   box.innerHTML=list.map(function(e){
     var sk=G.skillMap[e.skill]; if(!sk)return '';
@@ -15514,7 +15577,8 @@ function renderBarStrip(){
     var rings='';
     for(var i=0;i<6;i++){var sid=sups[i]; var sup=sid?G.supportMap[sid]:null; rings+='<span class="bs-ring'+(sup?' filled':'')+'">'+(sup?gemSVG(supColor(sup),11):'<i></i>')+'</span>'}
     return '<div class="bs-card'+(on?' active':'')+(viewing?' viewing':'')+'"><button type="button" class="bs-view" data-strip-skill="'+esc(e.skill)+'" aria-label="'+esc(sk.Name)+' — on your bar. Tap to open it on the Main skill card below; flip its Main skill switch on the panel below the card to make it your main skill."><span class="bs-icon">'+gemSVG(dmgColor(sk),26)+'</span><span class="bs-main"><b>'+esc(sk.Name)+'</b><span class="bs-rings">'+rings+'</span></span></button>'+(on?'<span class="bs-maintag">Main</span>':(viewing?'<span class="bs-viewtag">Viewing</span>':''))+'</div>';
-  }).join('');
+  }).join('')+barAddSlotHTML();
+  wireBarAddSlot(box);
   box.querySelectorAll('[data-strip-skill]').forEach(function(b){
     var id=b.getAttribute('data-strip-skill');
     b.addEventListener('mouseenter',function(){skillShowTip(b,id)});
@@ -16350,7 +16414,7 @@ function openPlannerPop(name){
   popCurrent=name; wsCurrent=name;
   var el=$(WS_PANELS[name]), root=$('plannerPopRoot');
   if(!el||!root){popCurrent=null; wsCurrent='character'; return}
-  root.innerHTML='<div class="modal" id="popBg"><div class="sheet pop-sheet" role="dialog" aria-modal="true" aria-label="'+POP_TITLES[name]+'">'
+  root.innerHTML='<div class="modal" id="popBg"><div class="sheet pop-sheet'+(name==='tree'?' pop-tree':'')+'" role="dialog" aria-modal="true" aria-label="'+POP_TITLES[name]+'">'
    +'<div class="flex between pop-head"><h2 style="margin:0">'+POP_TITLES[name]+'</h2><button class="btn" id="popClose" type="button">Close</button></div>'
    +'<div class="pop-scroll" id="popScroll"></div></div></div>';
   el.classList.remove('hidden');
@@ -24340,7 +24404,8 @@ function openLoadCharacterPrompt(){
    +'<div class="flex mt" style="flex-wrap:wrap;align-items:center"><button class="btn primary" id="lpFolderBtn" type="button">Show me my saves</button><button class="linkbtn" id="lpFilesBtn" type="button">or pick a single save file</button></div>'
    +'<p class="sub" style="margin:10px 0 0">Can&rsquo;t spot the folder? When the window opens, paste this into its address bar and press Enter — it takes you straight there.</p><input class="pathbox" id="lpPath" readonly value="'+esc(SAVE_FOLDER_PATH)+'"><div class="flex" style="margin-top:8px;align-items:center"><button class="btn small" id="lpCopyBtn" type="button">Copy the save-folder path</button><span class="sub" id="lpCopyMsg"></span></div></div>'
    +'<div style="margin-top:18px;border-top:1px solid var(--line2);padding-top:14px"><b>From a build code</b><p class="sub" style="margin:4px 0 0">Paste a build code (BO1 from the game, or BOP1 from this planner) — it loads the whole build: passive tree, skills and gear. A game code carries no gear affixes, so damage and defence read lower than in game; load your save file for exact numbers.</p>'
-   +'<div class="flex mt" style="gap:8px"><input type="text" id="lpCodeInput" placeholder="Paste the in-game BO1.… code" spellcheck="false" style="flex:1"><button class="btn" id="lpCodeBtn" type="button">Open it</button></div><p class="sub" id="lpCodeMsg" style="min-height:18px;margin:4px 0 0"></p></div>'
+   +'<div class="flex mt" style="gap:8px;align-items:center"><button class="btn primary" id="lpPasteBtn" type="button">Paste</button><span class="sub">Copy a build code first, then press Paste — the build opens on its own.</span></div>'
+   +'<div class="hidden" id="lpPasteFallback"><div class="flex mt" style="gap:8px"><input type="text" id="lpCodeInput" placeholder="Paste the in-game BO1.… code" spellcheck="false" style="flex:1"><button class="btn" id="lpCodeBtn" type="button">Open it</button></div></div><p class="sub" id="lpCodeMsg" style="min-height:18px;margin:4px 0 0"></p></div>'
    +'<div style="margin-top:14px;border-top:1px solid var(--line2);padding-top:14px"><b>Someone else&rsquo;s build</b><p class="sub" style="margin:4px 0 0">Start from a class starter template, or open a ranked hero&rsquo;s published build from the ladder.</p>'
    +'<div class="flex mt" style="flex-wrap:wrap"><button class="btn small" id="lpStartersBtn" type="button">See the starters</button><button class="btn small" id="lpLadderBtn" type="button">Browse the ladder</button></div></div>'
    +'</div></div>';
@@ -24356,6 +24421,28 @@ function openLoadCharacterPrompt(){
     loadBO1Code(code,$('codeMsg'));
   });
   $('lpCodeInput').addEventListener('keydown',function(e){if(e.key==='Enter')$('lpCodeBtn').click()});
+  /* The Paste button is the loader now: one press reads the
+     clipboard and opens the build with exactly the Open it
+     handling above (BO1 game codes and BOP1 planner codes
+     alike). When the browser will not hand the clipboard over
+     (iOS Safari, a denied permission), the paste box appears
+     as the fallback so the code can still be pasted by hand. */
+  var lpb=$('lpPasteBtn');
+  if(lpb)lpb.addEventListener('click',function(){
+    var msg=$('lpCodeMsg');
+    var blocked=function(){
+      var f=$('lpPasteFallback'); if(f)f.classList.remove('hidden');
+      if(msg)msg.textContent='This browser would not hand over the clipboard — paste the code in the box instead.';
+      var inp=$('lpCodeInput'); if(inp)inp.focus();
+    };
+    if(!navigator.clipboard||!navigator.clipboard.readText){blocked(); return}
+    navigator.clipboard.readText().then(function(t){
+      var code=(t||'').trim();
+      if(!bo1Extract(code)){if(msg)msg.textContent='That is not a build code — copy a BO1.… or BOP1.… code and press Paste again.'; return}
+      closeModal();
+      loadBO1Code(code,$('codeMsg'));
+    }).catch(blocked);
+  });
   $('lpStartersBtn').addEventListener('click',function(){closeModal(); switchTab('builds')});
   $('lpLadderBtn').addEventListener('click',function(){closeModal(); switchTab('ladder')});
 }
@@ -25367,8 +25454,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.394';
-var PLANNER_BUILT_AT='2026-11-26T00:13:44-07:00';
+var PLANNER_VERSION='0.395';
+var PLANNER_BUILT_AT='2026-11-25T23:25:44-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
