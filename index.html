@@ -12111,7 +12111,6 @@ var ICON_GLYPH_FALLBACK={
  ICON_SM_Wep_Ornate_GreatAxe_01_Dungeon_Clean:'ICON_DarkFantasy_Inventory_Swords_01_Clean'};
 function itemIconHTML(base,rarity,size,unique){
   size=size||40; var px=Math.round(size*0.62);
-  var title=base?('Icon: '+(base.Icon||'\u2014')):'Item';
   var glyph='<svg class="itic-glyph" width="'+px+'" height="'+px+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+GLYPHS[glyphKey(base)]+'</svg>';
   var icon=(unique&&typeof unique==='object'&&unique.Icon)?unique.Icon:(base?base.Icon:null);
   var dsz=Math.max(12,size-6);
@@ -12125,7 +12124,7 @@ function itemIconHTML(base,rarity,size,unique){
        disc, so the rarity ring reads the same way (v0.410). */
     art='<span class="itic-disc glyph-only" style="width:'+dsz+'px;height:'+dsz+'px">'+glyph+'</span>';
   }
-  return '<span class="itic rf-'+esc(rarity||'Normal')+'" style="width:'+size+'px;height:'+size+'px" title="'+esc(title)+'">'+art+'</span>';
+  return '<span class="itic rf-'+esc(rarity||'Normal')+'" style="width:'+size+'px;height:'+size+'px">'+art+'</span>';
 }
 function gemIconSVG(){return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10l3 5-8 11L4 9z"/><path d="M4 9h16"/></svg>'}
 /* Faceted gem artwork, coloured by damage type like the game's gems */
@@ -26720,8 +26719,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.411';
-var PLANNER_BUILT_AT='2026-11-26T12:36:00-08:00';
+var PLANNER_VERSION='0.412';
+var PLANNER_BUILT_AT='2026-11-26T13:02:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
