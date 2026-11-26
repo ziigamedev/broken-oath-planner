@@ -409,8 +409,8 @@ tr:hover td{background:color-mix(in srgb, var(--panel2) 60%, transparent)}
 .modline{font-size:14px;line-height:1.6;color:var(--muted)}
 
 /* ---------- Affix selection + full API detail ---------- */
-.affix-rows{display:grid;gap:8px}
-.affix-row{border:1px solid var(--line2);border-radius:var(--radius-sm);background:var(--panel2);padding:8px 10px}
+.affix-rows{display:grid;gap:8px;min-width:0}
+.affix-row{border:1px solid var(--line2);border-radius:var(--radius-sm);background:var(--panel2);padding:8px 10px;min-width:0}
 .affix-row select,.affix-row input[type=number]{min-width:0}
 .affix-meta{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.45}
 .affix-dps{font-size:12.5px;color:var(--muted);margin-top:3px}
@@ -442,6 +442,7 @@ tr:hover td{background:color-mix(in srgb, var(--panel2) 60%, transparent)}
    tall stack. Controls shrink to fit, and the per-row meta line is
    dropped: everything it says (type, group, rolls-on, weight) is in
    the collapsed full-data section right under it. */
+#gpAffixBox{min-width:0}
 #gpAffixBox .affix-rows{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
 #gpAffixBox .affix-row{padding:6px 8px}
 #gpAffixBox .affix-row .flex{gap:5px}
@@ -10133,7 +10134,7 @@ function renderCode(){
      the active set first, so the code's copy of the set being worn
      is the setup on screen, not the one from the last switch. */
   setsSyncActive();
-  var payload={v:2,pk:'plan',patch:currentPatch(),cls:state.cls,level:state.level,gem:state.gemLevel,aspect:state.aspect,skill:state.skillId,weapon:state.weaponId,supports:state.supports,bar:(state.barSkills||[]).map(function(e){return{s:e.skill,sup:(e.supports||[]).slice(0,6),g:e.gem||null,ob:e.onBar===false?0:1,lk:e.link||'',ex:e.exec?1:0,sm:e.sim===false?0:1}}),inc:state.inc,crit:state.crit,critMulti:state.critMulti,speed:state.speed,passives:state.passives,bp:state.bonusPassivePoints||0,ip:state.incPools||null,ipb:state.incPoolBase||0,pm:state.passiveMores||[],oc:state.orbCount||0,orr:state.orbRate||0,waff:(state.weaponAffixes||[]).map(function(r){return{a:r.affixId,t:r.tierIdx,v:r.value}}),wrar:state.weaponRarity,tree:state.tree,gear:state.gear,def:state.def,enemyRes:state.enemyRes,drag:state.dragonNodes||[],pn:state.passiveNodes||[],oaths:state.oaths||{},hr:state.heroRupture||0,el:state.enemyLevel,cu:state.curse||'',c2:state.curse2||'',eid:state.enemyId||'',emods:(state.enemyMods||[]).slice(),erar:state.enemyRarity||'',rup:state.rupture||0,dr:state.dread||0,sh:state.shockPct||0,shu:state.shockUp!=null?state.shockUp:100,mk:state.mark||0,bvl:state.bannerValour||0,btry:state.bannerTry?1:0,pot:state.potion||'',vb:state.vowbreak?1:0,fur:state.fury||0,blu:state.bloodlust||0,kin:state.kindling||0,unr:state.unravel!=null?state.unravel:25,rp:state.resPenalty||0,pin:state.supPin||[],blk:state.supBlock||[],sus:state.simSustain!==false,tb:state.treeBlend||0,tw:state.treeWeights||{},tv:state.treeVersions||[],note:String(state.planNote||'').slice(0,600),boff:(state.buffOff||[]).slice(),belt:(state.belt&&state.belt.length)?state.belt:null,sets:(state.sets&&state.sets.list&&state.sets.list.length)?state.sets:null};
+  var payload={v:2,pk:'plan',patch:currentPatch(),cls:state.cls,level:state.level,gem:state.gemLevel,aspect:state.aspect,skill:state.skillId,weapon:state.weaponId,supports:state.supports,bar:(state.barSkills||[]).map(function(e){return{s:e.skill,sup:(e.supports||[]).slice(0,6),g:e.gem||null,ob:e.onBar===false?0:1,lk:e.link||'',ex:e.exec?1:0,sm:e.sim===false?0:1}}),inc:state.inc,crit:state.crit,critMulti:state.critMulti,speed:state.speed,passives:state.passives,bp:state.bonusPassivePoints||0,ip:state.incPools||null,ipb:state.incPoolBase||0,pm:state.passiveMores||[],oc:state.orbCount||0,orr:state.orbRate||0,waff:(state.weaponAffixes||[]).map(function(r){return{a:r.affixId,t:r.tierIdx,v:r.value,v2:r.value2||undefined}}),wrar:state.weaponRarity,tree:state.tree,gear:state.gear,def:state.def,enemyRes:state.enemyRes,drag:state.dragonNodes||[],pn:state.passiveNodes||[],oaths:state.oaths||{},hr:state.heroRupture||0,el:state.enemyLevel,cu:state.curse||'',c2:state.curse2||'',eid:state.enemyId||'',emods:(state.enemyMods||[]).slice(),erar:state.enemyRarity||'',rup:state.rupture||0,dr:state.dread||0,sh:state.shockPct||0,shu:state.shockUp!=null?state.shockUp:100,mk:state.mark||0,bvl:state.bannerValour||0,btry:state.bannerTry?1:0,pot:state.potion||'',vb:state.vowbreak?1:0,fur:state.fury||0,blu:state.bloodlust||0,kin:state.kindling||0,unr:state.unravel!=null?state.unravel:25,rp:state.resPenalty||0,pin:state.supPin||[],blk:state.supBlock||[],sus:state.simSustain!==false,tb:state.treeBlend||0,tw:state.treeWeights||{},tv:state.treeVersions||[],note:String(state.planNote||'').slice(0,600),boff:(state.buffOff||[]).slice(),belt:(state.belt&&state.belt.length)?state.belt:null,sets:(state.sets&&state.sets.list&&state.sets.list.length)?state.sets:null};
   /* The planner's own plan code wears its own name — BOP1. — so it
      is never mistaken for the game's BO1. code. The game's code
      carries item bases without their rolled affixes; this one
@@ -10494,12 +10495,17 @@ function renderWeaponAffixes(){
      still prices every line internally for the Damage analysis. */
   var rowsHtml=affixRowsGroupedHTML(state.weaponAffixes,function(r,i){
     var a=G.affixMap[r.affixId];
-    var sent=a?affixSentence(a,r.value,null,base,a.Tiers[r.tierIdx]):'';
+    var tier=a?a.Tiers[r.tierIdx]:null;
+    var twoVal=!!(tier&&tier.Min2!=null);
+    if(a)r.value2=rowValue2(a,r.tierIdx,r.value2);
+    var sent=a?affixSentence(a,r.value,twoVal?r.value2:null,base,tier):'';
     return '<div class="affix-row"><div class="flex">'
-     +'<select data-wpn-affix="'+i+'" style="flex:2;min-width:0" aria-label="Weapon affix '+(i+1)+'">'+affixOptionsGroupedHTML(elig,r.affixId)+'</select></div>'
+     +'<select data-wpn-affix="'+i+'" style="flex:2;min-width:0" aria-label="Weapon affix '+(i+1)+'">'+affixOptionsGroupedHTML(elig,r.affixId,true)+'</select></div>'
      +'<div class="flex" style="margin-top:5px">'
      +'<select data-wpn-tier="'+i+'" style="flex:1;min-width:0" aria-label="Tier for weapon affix '+(i+1)+'">'+(a?a.Tiers:[]).map(function(t,ti){return '<option value="'+ti+'"'+(ti===r.tierIdx?' selected':'')+'>'+esc(affixTierPickLabel(t,ti))+'</option>'}).join('')+'</select>'
-     +'<span class="range-val">'+r.value+'</span></div>'
+     +'<input type="number" data-wpn-value="'+i+'" value="'+r.value+'" style="width:84px" aria-label="Value for weapon affix '+(i+1)+'">'
+     +(twoVal?'<input type="number" data-wpn-value2="'+i+'" value="'+r.value2+'" style="width:84px" aria-label="Second value for weapon affix '+(i+1)+'">':'')
+     +'</div>'
      +(a?'<div class="affix-meta">'+esc(sent||affixModText(a))+'</div>':'')
      +'</div>';
   },caps);
@@ -10518,6 +10524,27 @@ function renderWeaponAffixes(){
     state.wpnSeededFor=base.Id; state.wpnMsg='';
     renderWeaponAffixes(); renderPlanner();
   });
+  /* The row editors' change wiring, delegated on the panel itself
+     (which persists across renders) and attached once: picking an
+     affix re-rolls both of its values at the top tier, picking a
+     tier re-rolls the first value and re-clamps the second into
+     the new tier's range, and the two value inputs write their own
+     field only — the second value of a two-value affix is edited
+     independently here exactly as in the gear picker. */
+  if(panelAffix&&!panelAffix.__wpnEditWired){
+    panelAffix.__wpnEditWired=true;
+    panelAffix.addEventListener('change',function(e){
+      var t=e.target; if(!t.hasAttribute)return;
+      if(t.hasAttribute('data-wpn-affix')){var r1=state.weaponAffixes[+t.getAttribute('data-wpn-affix')]; if(r1){r1.affixId=t.value; r1.tierIdx=0; var a1=G.affixMap[r1.affixId]; if(a1){r1.value=rollVal(a1.Tiers[0]); r1.value2=rollVal2(a1.Tiers[0]);} state.wpnMsg='';} renderWeaponAffixes(); renderPlanner(); return}
+      if(t.hasAttribute('data-wpn-tier')){var r2=state.weaponAffixes[+t.getAttribute('data-wpn-tier')]; if(r2){r2.tierIdx=+t.value; var a2=G.affixMap[r2.affixId]; if(a2){r2.value=rollVal(a2.Tiers[r2.tierIdx]); r2.value2=rowValue2(a2,r2.tierIdx,r2.value2);} state.wpnMsg='';} renderWeaponAffixes(); renderPlanner(); return}
+      if(t.hasAttribute('data-wpn-value')){var r3=state.weaponAffixes[+t.getAttribute('data-wpn-value')]; if(r3)r3.value=+t.value||0; renderWeaponAffixes(); renderPlanner(); return}
+      if(t.hasAttribute('data-wpn-value2')){var r4=state.weaponAffixes[+t.getAttribute('data-wpn-value2')]; if(r4)r4.value2=+t.value||0; renderWeaponAffixes(); renderPlanner();}
+    });
+    panelAffix.addEventListener('click',function(e){
+      var add=e.target.closest?e.target.closest('[data-wpn-add]'):null;
+      if(add)wpnAddAffix();
+    });
+  }
 }
 function renderWeaponAffixOut(base){
   var out=$('wpnAffixOut'); if(!out||!base)return;
@@ -10527,7 +10554,7 @@ function renderWeaponAffixOut(base){
     var t=a.Tiers[r.tierIdx];
     if(a.Mod&&a.Mod.bLocal&&a.Mod.Stat==='Damage'&&a.Mod.Mode==='Inc')inc+=r.value;
     if(a.Mod&&a.Mod.bLocal&&a.Mod.Stat==='AddedDamage'&&a.Mod.Mode==='Flat')added+=r.value;
-    var sent=affixSentence(a,r.value,null,base,t);
+    var sent=affixSentence(a,r.value,(t&&t.Min2!=null)?rowValue2(a,r.tierIdx,r.value2):null,base,t);
     return '<div class="modline">• <span class="afx-sent">'+(sent?affixSentHTML(sent):esc(statPlain(a.Mod,r.value)))+'</span></div>';
   }).join('');
   var wpn='';
@@ -10572,7 +10599,7 @@ function wpnAddAffix(){
     var a=elig[i];
     if(used[a.Group])continue;
     if((counts[a.Type]||0)>=(caps[a.Type]||0))continue;
-    state.weaponAffixes.push({affixId:a.Id,tierIdx:0,value:rollVal(a.Tiers[0])});
+    state.weaponAffixes.push({affixId:a.Id,tierIdx:0,value:rollVal(a.Tiers[0]),value2:rollVal2(a.Tiers[0])});
     state.wpnMsg=''; renderWeaponAffixes(); renderPlanner(); return;
   }
   state.wpnMsg='No room for another affix — this weapon already carries the maximum its rarity allows.';
@@ -13274,6 +13301,35 @@ function affixTierRange(t){
   if(t.Min2!=null)s+=' / '+t.Min2+'\u2013'+t.Max2;
   return s;
 }
+/* A second-value roll inside its own range, for the affixes whose
+   tiers carry Min2/Max2 (the "Adds X to Y" lines): in the game the
+   two values roll independently, so the second is rolled on its
+   own — never derived from the first. */
+function rollVal2(tier){return tier&&tier.Min2!=null?Math.round(tier.Min2+Math.random()*(tier.Max2-tier.Min2)):0}
+/* A row's second value made valid for its tier: a stored value
+   that already sits inside the tier's second range is preserved
+   exactly (a loaded item's independent second roll survives the
+   editor untouched); one outside the range is clamped to it; and
+   an unset one (0 on a tier whose second range starts above 0 —
+   how rows seeded before value2 existed read) is rolled fresh
+   inside the range. Single-value tiers carry no second value. */
+function rowValue2(a,tierIdx,cur){
+  var t=a&&a.Tiers?a.Tiers[tierIdx]:null;
+  if(!t||t.Min2==null)return 0;
+  var v=+cur||0;
+  if(v===0&&t.Min2>0)return rollVal2(t);
+  return Math.max(t.Min2,Math.min(t.Max2,v));
+}
+/* The affix dropdown's label inside the editors: the game's own
+   mod sentence with its roll numbers blanked to placeholders
+   ("Adds # to # Physical Damage", "+# to Strength", "#% increased
+   Physical Damage") — the tier picker and the value inputs carry
+   the numbers, so the affix's name never bakes one tier's rolls
+   into itself. Editors only: affixModText itself is unchanged, so
+   lists and the loot filter keep the top-tier sentence. */
+function affixPlainLabel(a){
+  return affixModText(a).replace(/\d+(?:\.\d+)?\s*[\u2013\u2014-]\s*\d+(?:\.\d+)?/g,'#').replace(/\d+(?:\.\d+)?/g,'#');
+}
 function affixModText(a){
   var s=affixTierSentence(a,0);
   if(s)return s;
@@ -13926,7 +13982,7 @@ function fillDefaultAffixes(rows,elig,caps){
       if(used[a.Group])continue;
       if(!a.Tiers||!a.Tiers.length)continue;
       if((counts[type]||0)>=(caps[type]||0))break;
-      rows.push({affixId:a.Id,tierIdx:0,value:rollVal(a.Tiers[0])});
+      rows.push({affixId:a.Id,tierIdx:0,value:rollVal(a.Tiers[0]),value2:rollVal2(a.Tiers[0])});
       counts[type]++; used[a.Group]=1;
     }
   });
@@ -15262,7 +15318,7 @@ function gpTrialState(){
   }
   var st=deepClone(state);
   var rarity=gearPick.rarity||(($('gpRarity')||{}).value)||'Normal';
-  var stored=gearPick.rows.map(function(r){return {id:r.affixId,value:+r.value||0,tier:r.tierIdx+1}}).concat(gpVowStored());
+  var stored=gearPick.rows.map(function(r){return {id:r.affixId,value:+r.value||0,value2:+r.value2||0,tier:r.tierIdx+1}}).concat(gpVowStored());
   /* The socketed runes ride into the trial too, so a sequence
      that forms an Oathword prices the candidate with the
      runeword's lines in it, exactly as the saved item will. */
@@ -15300,7 +15356,10 @@ function gpRowsFromStored(stored){
   return (stored||[]).map(function(sa){
     var a=affixById(sa.id); if(!a)return null;
     var ti=Math.max(0,Math.min((a.Tiers||[]).length-1,((affixRolledTier(a,sa)||1)-1)));
-    return {affixId:a.Id,tierIdx:ti,value:sa.value};
+    /* The stored second value rides into the row untouched: on a
+       two-value affix it rolled independently in the game, and
+       the editor must not re-derive it from the first value. */
+    return {affixId:a.Id,tierIdx:ti,value:sa.value,value2:+sa.value2||0};
   }).filter(Boolean);
 }
 /* The bench's per-line re-rolls. Reroll line draws a fresh affix
@@ -15322,6 +15381,7 @@ function gpRerollValue(i){
   var row=gearPick.rows[i]; if(!row)return;
   var a=G.affixMap[row.affixId]; if(!a||!a.Tiers[row.tierIdx])return;
   row.value=rollVal(a.Tiers[row.tierIdx]);
+  row.value2=rollVal2(a.Tiers[row.tierIdx]);
   gearPick.rolls=(gearPick.rolls||0)+1;
   gpRenderAffixes();
 }
@@ -15467,7 +15527,7 @@ function gpVowsHTML(base){
     var pct=Math.round(vowShareAt(i)*100);
     return '<div class="affix-row"><div class="flex">'
      +'<span class="vow-tag" style="flex:0 0 auto">Vow '+(i+1)+' &middot; '+pct+'%</span>'
-     +'<select data-gp-vow="'+i+'" style="flex:2" aria-label="Vow '+(i+1)+' line">'+affixOptionsGroupedHTML(pool,v.affixId)+'</select>'
+     +'<select data-gp-vow="'+i+'" style="flex:2" aria-label="Vow '+(i+1)+' line">'+affixOptionsGroupedHTML(pool,v.affixId,true)+'</select>'
      +'<input type="number" data-gp-vow-value="'+i+'" value="'+v.value+'" style="width:84px" aria-label="Roll for Vow '+(i+1)+'"'+(t?' min="'+t.Min+'" max="'+t.Max+'"':'')+'>'
      +'<button class="btn small danger" data-gp-vow-remove="'+i+'" type="button">Remove</button></div>'
      +'<div class="affix mod">'+esc(vowAffixText({id:v.affixId,value:v.value},i,base))+'</div>'
@@ -15588,7 +15648,7 @@ function gpRenderAffixes(){
      affix line is priced against the same item without it. */
   function gpTrial(rows){
     var st=deepClone(state);
-    var stored=rows.map(function(r){return {id:r.affixId,value:+r.value||0,tier:r.tierIdx+1}}).concat(gpVowStored());
+    var stored=rows.map(function(r){return {id:r.affixId,value:+r.value||0,value2:+r.value2||0,tier:r.tierIdx+1}}).concat(gpVowStored());
     var trBase=gpBaseOf(sel.baseId);
     var trCap=trBase?runeSocketCap(trBase,{sockets:null},gearPick.slot):0;
     var trRunes=(gearPick.runes||[]).slice(0,trCap);
@@ -15620,12 +15680,21 @@ function gpRenderAffixes(){
      only while the bench is on (GP_BENCH_ON). */
   var rowsHtml=affixRowsGroupedHTML(gearPick.rows,function(r,i){
     var a=G.affixMap[r.affixId];
-    var sent=a?affixSentence(a,r.value,null,base,a.Tiers[r.tierIdx]):'';
+    var tier=a?a.Tiers[r.tierIdx]:null;
+    /* A two-value affix (its tier carries Min2/Max2) gets a
+       second, independent value input: the two rolls are separate
+       in the game, so each is edited and clamped against its own
+       range, and the sentence under the row reads both. */
+    var twoVal=!!(tier&&tier.Min2!=null);
+    if(a)r.value2=rowValue2(a,r.tierIdx,r.value2);
+    var sent=a?affixSentence(a,r.value,twoVal?r.value2:null,base,tier):'';
     return '<div class="affix-row"><div class="flex">'
-     +'<select data-gp-affix="'+i+'" style="flex:2" aria-label="Affix '+(i+1)+'">'+affixOptionsGroupedHTML(elig,r.affixId)+'</select></div>'
+     +'<select data-gp-affix="'+i+'" style="flex:2" aria-label="Affix '+(i+1)+'">'+affixOptionsGroupedHTML(elig,r.affixId,true)+'</select></div>'
      +'<div class="flex" style="margin-top:5px">'
      +'<select data-gp-tier="'+i+'" style="flex:1.4" aria-label="Tier for affix '+(i+1)+'">'+(a?a.Tiers:[]).map(function(t,ti){return '<option value="'+ti+'"'+(ti===r.tierIdx?' selected':'')+'>'+esc(affixTierPickLabel(t,ti))+'</option>'}).join('')+'</select>'
-     +'<input type="number" data-gp-value="'+i+'" value="'+r.value+'" style="width:84px" aria-label="Value for affix '+(i+1)+'"></div>'
+     +'<input type="number" data-gp-value="'+i+'" value="'+r.value+'" style="width:84px" aria-label="Value for affix '+(i+1)+'">'
+     +(twoVal?'<input type="number" data-gp-value2="'+i+'" value="'+r.value2+'" style="width:84px" aria-label="Second value for affix '+(i+1)+'">':'')
+     +'</div>'
      +(a?'<div class="affix mod">• <span class="afx-sent">'+(sent?affixSentHTML(sent):esc(affixModText(a)))+'</span></div>'+(GP_BENCH_ON?'<div class="affix-craft"><button class="btn small" data-gp-reroll-line="'+i+'" type="button">Reroll line</button><button class="btn small" data-gp-reroll-value="'+i+'" type="button">Reroll value</button></div>':''):'')
      +'</div>';
   },affixCapsFor(rarity,elig));
@@ -15673,7 +15742,7 @@ function gpRenderAffixes(){
   if(gvb)gvb.addEventListener('click',function(){
     /* Values only: the same affixes at the same tiers, each value
        rolled again inside its tier — the cheap re-roll. */
-    gearPick.rows.forEach(function(r){var a=G.affixMap[r.affixId]; if(a&&a.Tiers[r.tierIdx])r.value=rollVal(a.Tiers[r.tierIdx])});
+    gearPick.rows.forEach(function(r){var a=G.affixMap[r.affixId]; if(a&&a.Tiers[r.tierIdx]){r.value=rollVal(a.Tiers[r.tierIdx]); r.value2=rollVal2(a.Tiers[r.tierIdx])}});
     gearPick.note='';
     gearPick.rolls=(gearPick.rolls||0)+1;
     gpRenderAffixes();
@@ -15765,7 +15834,7 @@ function gpCommitAdd(){
       if(used[a.Group])return;
       if((counts[a.Type]||0)>=(caps[a.Type]||0))return;
       counts[a.Type]++; used[a.Group]=1;
-      affixes.push({id:a.Id,value:+r.value||0,tier:r.tierIdx+1,crafted:false});
+      affixes.push({id:a.Id,value:+r.value||0,value2:+r.value2||0,tier:r.tierIdx+1,crafted:false});
     });
   }
   /* Vow lines ride on top of the rolled affixes, outside the
@@ -16084,9 +16153,10 @@ function openGearPicker(slotKey){
   var abox=$('gpAffixBox');
   abox.addEventListener('change',function(e){
     var t=e.target;
-    if(t.hasAttribute('data-gp-affix')){var r1=gearPick.rows[+t.getAttribute('data-gp-affix')]; if(r1){r1.affixId=t.value; r1.tierIdx=0; var a1=G.affixMap[r1.affixId]; if(a1)r1.value=rollVal(a1.Tiers[0]);} gpRenderAffixes(); gpDraftChanged(); return}
-    if(t.hasAttribute('data-gp-tier')){var r2=gearPick.rows[+t.getAttribute('data-gp-tier')]; if(r2){r2.tierIdx=+t.value; var a2=G.affixMap[r2.affixId]; if(a2)r2.value=rollVal(a2.Tiers[r2.tierIdx]);} gpRenderAffixes(); gpDraftChanged(); return}
-    if(t.hasAttribute('data-gp-value')){var r3=gearPick.rows[+t.getAttribute('data-gp-value')]; if(r3){r3.value=+t.value||0; gpRenderAffixes(); gpDraftChanged();}}
+    if(t.hasAttribute('data-gp-affix')){var r1=gearPick.rows[+t.getAttribute('data-gp-affix')]; if(r1){r1.affixId=t.value; r1.tierIdx=0; var a1=G.affixMap[r1.affixId]; if(a1){r1.value=rollVal(a1.Tiers[0]); r1.value2=rollVal2(a1.Tiers[0]);}} gpRenderAffixes(); gpDraftChanged(); return}
+    if(t.hasAttribute('data-gp-tier')){var r2=gearPick.rows[+t.getAttribute('data-gp-tier')]; if(r2){r2.tierIdx=+t.value; var a2=G.affixMap[r2.affixId]; if(a2){r2.value=rollVal(a2.Tiers[r2.tierIdx]); r2.value2=rowValue2(a2,r2.tierIdx,r2.value2);}} gpRenderAffixes(); gpDraftChanged(); return}
+    if(t.hasAttribute('data-gp-value')){var r3=gearPick.rows[+t.getAttribute('data-gp-value')]; if(r3){r3.value=+t.value||0; gpRenderAffixes(); gpDraftChanged();} return}
+    if(t.hasAttribute('data-gp-value2')){var r4=gearPick.rows[+t.getAttribute('data-gp-value2')]; if(r4){r4.value2=+t.value||0; gpRenderAffixes(); gpDraftChanged();}}
   });
   abox.addEventListener('click',function(e){
     var rl=e.target.closest('[data-gp-reroll-line]');
@@ -20121,7 +20191,7 @@ function rollRandomAffixes(elig,caps,ilvl){
       if(!tiers.length)continue;
       var t=wpick(tiers,function(x){return +x.Weight||1});
       var ti=(a.Tiers||[]).indexOf(t);
-      rows.push({affixId:a.Id,tierIdx:ti<0?0:ti,value:rollVal(t)});
+      rows.push({affixId:a.Id,tierIdx:ti<0?0:ti,value:rollVal(t),value2:rollVal2(t)});
       counts[tp]++;
     }
   });
@@ -20151,14 +20221,17 @@ function rollOneAffix(elig,type,usedGroups,ilvl){
   var t=wpick(tiers,function(x){return +x.Weight||1});
   if(!t)return null;
   var ti=a.Tiers.indexOf(t);
-  return {affixId:a.Id,tierIdx:ti<0?0:ti,value:rollVal(t)};
+  return {affixId:a.Id,tierIdx:ti<0?0:ti,value:rollVal(t),value2:rollVal2(t)};
 }
 /* ---------- Affix pickers: grouped, plain, compact ----------
    The affix lists in the pickers are grouped by what the affix
    does — Damage, Defence, Attributes, Utility — under <optgroup>
    headings, and each option is just the plain mod line at its
-   best tier (name + value, via affixModText). Tier counts, item
-   levels and rolls-on lists stay out of the list. Grouping
+   best tier (name + value, via affixModText) — except inside
+   the affix editors, whose dropdowns pass plain=true and label
+   each option with the range-free affixPlainLabel instead, so
+   no tier's rolls are baked into the affix's name there. Tier
+   counts, item levels and rolls-on lists stay out of the list. Grouping
    reads the affix's own stat — no values, tiers or game data
    change, only how the choices are presented. */
 var AFFIX_CATS=['Damage','Defence','Attributes','Utility'];
@@ -20175,13 +20248,14 @@ function affixCategory(a){
 /* A picker's whole affix list as grouped <option>s: one optgroup
    per category, alphabetical inside each group so a line is easy
    to scan for. */
-function affixOptionsGroupedHTML(list,selId){
+function affixOptionsGroupedHTML(list,selId,plain){
+  var label=plain?affixPlainLabel:affixModText;
   var by={}; AFFIX_CATS.forEach(function(c){by[c]=[]});
   (list||[]).forEach(function(a){if(a)by[affixCategory(a)].push(a)});
   return AFFIX_CATS.map(function(c){
     var arr=by[c]; if(!arr.length)return '';
-    arr=arr.slice().sort(function(x,y){var s=affixModText(x),t=affixModText(y); return s<t?-1:(s>t?1:0)});
-    return '<optgroup label="'+c+'">'+arr.map(function(x){return '<option value="'+esc(x.Id)+'"'+(x.Id===selId?' selected':'')+'>'+esc(affixModText(x))+'</option>'}).join('')+'</optgroup>';
+    arr=arr.slice().sort(function(x,y){var s=label(x),t=label(y); return s<t?-1:(s>t?1:0)});
+    return '<optgroup label="'+c+'">'+arr.map(function(x){return '<option value="'+esc(x.Id)+'"'+(x.Id===selId?' selected':'')+'>'+esc(label(x))+'</option>'}).join('')+'</optgroup>';
   }).join('');
 }
 /* A tier as a picker option — just "Tier 2". */
@@ -24124,7 +24198,7 @@ function applyPlannerBO1(obj){
      a code written before sets existed leaves the sets as they
      stand, like the belt. */
   if(obj.sets){state.sets=sanitizeSets(obj.sets); renderSets()}
-  state.weaponAffixes=(obj.waff||[]).map(function(r){var a=r&&G.affixMap[r.a]; return a?{affixId:a.Id,tierIdx:Math.max(0,Math.min((a.Tiers||[]).length-1,r.t||0)),value:r.v}:null}).filter(Boolean);
+  state.weaponAffixes=(obj.waff||[]).map(function(r){var a=r&&G.affixMap[r.a]; return a?{affixId:a.Id,tierIdx:Math.max(0,Math.min((a.Tiers||[]).length-1,r.t||0)),value:r.v,value2:+r.v2||0}:null}).filter(Boolean);
   if(obj.wrar&&['Normal','Magic','Rare'].indexOf(obj.wrar)>=0)state.weaponRarity=obj.wrar;
   if(obj.def){for(var dk in obj.def)if(state.def.hasOwnProperty(dk))state.def[dk]=obj.def[dk];syncDefInputs();renderDefenses()}
   if(obj.enemyRes!=null){state.enemyRes=Math.max(0,Math.min(60,obj.enemyRes));$('enemyResRange').value=state.enemyRes;$('enemyResVal').textContent=state.enemyRes+'%'}
@@ -26605,8 +26679,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.414';
-var PLANNER_BUILT_AT='2026-11-26T14:50:00-08:00';
+var PLANNER_VERSION='0.415';
+var PLANNER_BUILT_AT='2026-11-26T14:56:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
