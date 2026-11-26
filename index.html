@@ -3913,7 +3913,6 @@ body.tab-home .brand h1{display:none}
         <div class="card"><h2>Top main skills</h2><div id="metaSkills" class="mt"></div></div>
         <div class="card"><h2>Keystones, ascendancies &amp; uniques</h2><div id="metaMisc" class="mt"></div></div>
       </div>
-      <div class="card"><h2>League rules, in plain words</h2><p class="sub">A league can be tuned before it starts — these are the settings the game offers, what each one does, and the range it can be set to. This panel only explains; nothing here changes your plan.</p><div id="leagueRulesBody" class="mt"></div></div>
     </div>
   </section>
 
@@ -4796,8 +4795,6 @@ var DICT={
 "Refresh meta":"刷新环境概览",
 "Top main skills":"热门核心技能",
 "Keystones, ascendancies & uniques":"基石、升华与传奇",
-"League rules, in plain words":"联赛规则，大白话版",
-"A league can be tuned before it starts — these are the settings the game offers, what each one does, and the range it can be set to. This panel only explains; nothing here changes your plan.":"联赛可以在开始前调整 — 这里是游戏提供的设置、每项的作用及其可设范围。本面板只作说明；这里的任何内容都不会改变你的方案。",
 "Item database":"物品数据库",
 "Every item base and unique in the current patch's game data, each with its in-game icon.":"当前补丁游戏数据中的每一个物品基底和传奇，都带有其游戏内图标。",
 "All":"全部",
@@ -5763,7 +5760,6 @@ var DICT={
 "Share":"占比",
 "Median Rupture Level":"裂隙等级中位数",
 "Ascendancies (Dragonling)":"升华（龙灵）",
-"Can be banned":"可以被禁用",
 "Planner estimate":"规划器估算",
 "Open starter":"打开入门构建",
 "Leads":"领跑",
@@ -5863,7 +5859,6 @@ var DICT={
 "Nothing in this patch matches that filter.":"此补丁中没有符合该筛选的内容。",
 "Open a build in the planner and this checks the newest patch against it — your skill, supports, tree, Dragonling and gear only.":"在规划器中打开一个构建，这里就会用最新补丁对它进行检查 — 只看你的技能、辅助、天赋树、龙灵和装备。",
 "The newest patch’s change list has not landed yet — it arrives with the game data.":"最新补丁的变更列表尚未到达 — 它随游戏数据一同到达。",
-"The league rules have not landed yet — they arrive with the game data.":"联赛规则尚未到达 — 它们随游戏数据一同到达。",
 "Each stone adds":"每块石头增加",
 "Maps of drops, roughly":"大约需要多少张图的掉落",
 "— heroes marked":"— 标有",
@@ -5873,12 +5868,6 @@ var DICT={
 "Every hero shown is in the published top 50 for their class, so each one has a build to open.":"显示的每位英雄都在其职业已发布的前 50 名内，因此每位都有可打开的构建。",
 "Ladder builds are counted with their real gear and passive trees, but without their Dragonling — so their Life and resist lines read a little low, and yours reads a little kind by comparison.":"天梯构建按其真实装备和天赋树计算，但不计其龙灵 — 因此它们的生命和抗性行读数略低，而你的相比之下略显宽容。",
 "Nothing — this build already carries everything the top of the group shares.":"没有 — 此构建已具备该组顶尖构建共有的全部内容。",
-"At most":"最多",
-"in total across everything. Starter and tutorial gems can never be banned, tutorial supports can never be banned, and gate bosses are protected. A tuned-down skill keeps at least":"总计，涵盖一切。入门与教学宝石永远不会被禁用，教学辅助永远不会被禁用，守门 Boss 受到保护。被调弱的技能若是入门技能，至少保留其伤害的",
-"of its damage if it is a starter. Each step of monster strength adds":"（若它是入门技能）。怪物强度每提升一步，增加",
-". One word the knobs use: a":"。说明一下这些设置使用的一个词：",
-"red":"红色物品",
-"is one of the game’s rarest unique items — the uniques whose names print in red — so “Banned reds” and “Red drop weight” below are about those uniques.":"是游戏中最稀有的传奇物品之一 — 那些名字以红色印出的传奇 — 因此下方的“禁用的红色物品”和“红色物品掉落权重”说的正是这些传奇。",
 "your resistances, each capped by its maximum":"你的各项抗性，各自受其上限封顶",
 "armour, counted against the typical hit":"护甲，按典型命中计算",
 "evasion, and block — chance times how much a block stops, capped at 75%":"闪避，以及格挡 — 几率乘以一次格挡能挡住的量，上限 75%",
@@ -6325,12 +6314,6 @@ var RULES=[
  [/^(\S+) • Lv (\d+) • ([\s\S]+)$/,function(m){return classZh(m[1])+' • 等级 '+m[2]+' • '+m[3];}],
  [/^(\S+) hero$/,function(m){return CLASS_ZH[m[1]]?CLASS_ZH[m[1]]+'英雄':m[0];}],
  [/^• ([\s\S]+)$/,function(m){var a=aspectZh(m[1]);return a!==m[1]?'• '+a:m[0];}],
- [/^On or off • starts (on|off)$/,function(m){return '可开或关 • 起始为'+(m[1]==='on'?'开':'关');}],
- [/^(-?[\d.]+) to (-?[\d.]+) each • set one at a time — none tuned at the start$/,function(m){return '每项 '+m[1]+' 至 '+m[2]+' • 一次调整一项 — 开始时均未调整';}],
- [/^(-?[\d.]+) to (-?[\d.]+) • starts at (-?[\d.]+)$/,function(m){return m[1]+' 至 '+m[2]+' • 起始值 '+m[3];}],
- [/^(-?[\d.]+) to (-?[\d.]+) • no single starting value published$/,function(m){return m[1]+' 至 '+m[2]+' • 未公布单一的起始值';}],
- [/^(\d+) bans$/,function(m){return m[1]+' 项禁用';}],
- [/^\+(\d+)% monster (life|damage)$/,function(m){return '+'+m[1]+'% 怪物'+(m[2]==='life'?'生命':'伤害');}],
  [/^Stones to reach (\d+) quality$/,function(m){return '达到 '+m[1]+' 品质所需的石头';}],
  [/^\+([\d.]+) quality on a (\w+) item$/,function(m){var r={rare:'稀有',magic:'魔法',normal:'普通',unique:'传奇'}[m[2]]||m[2];return '在'+r+'物品上 +'+m[1]+' 品质';}],
  [/^about ([\d,]+)$/,function(m){return '约 '+m[1];}],
@@ -26869,8 +26852,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.418';
-var PLANNER_BUILT_AT='2026-11-26T15:05:00-08:00';
+var PLANNER_VERSION='0.419';
+var PLANNER_BUILT_AT='2026-11-26T16:36:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
@@ -27107,42 +27090,6 @@ function weaponStyleNow(){
   if(typeof bt!=='number'||!isFinite(bt))bt=0.4;
   return {Id:st.Id,plain:WS_PLAIN[st.Id]||'your weapon',weight:bw,time:bt,own:st.BlockWeight!=null};
 }
-/* league_rules.json — the league tuning knobs, explained. Read
-   only: the panel shows each setting's own name and help text
-   from the file, grouped by its tabs, with its range and where
-   it starts. */
-function renderLeagueRules(){
-  var body=$('leagueRulesBody'); if(!body)return;
-  var L=G.leagueRules;
-  if(!L||!L.Knobs||!L.Knobs.length){body.innerHTML='<p class="sub">The league rules have not landed yet — they arrive with the game data.</p>'; return}
-  var byTab={}; L.Knobs.forEach(function(k){(byTab[k.Tab]=byTab[k.Tab]||[]).push(k)});
-  function rangeTxt(k){
-    if(k.Kind==='ban')return 'Can be banned';
-    if(k.Kind==='toggle')return 'On or off • starts '+(k.Default?'on':'off');
-    if(k.Min!=null&&k.Max!=null){
-      /* A scale_each knob tunes one gem, support, unique or mod at
-         a time, and its Default in the file is the map of per-item
-         values (empty at the start), not a number — printing it raw
-         showed "[object Object]". Say what the file actually says:
-         the range each one can be set to, and that the league
-         starts with none of them tuned. Any other knob whose
-         Default is not a plain number gets the same honesty: the
-         range, and no invented starting value. */
-      if(k.Kind==='scale_each')return k.Min+' to '+k.Max+' each • set one at a time — none tuned at the start';
-      if(typeof k.Default==='number')return k.Min+' to '+k.Max+' • starts at '+k.Default;
-      return k.Min+' to '+k.Max+' • no single starting value published';
-    }
-    return '';
-  }
-  var html='<p class="sub" style="margin:0 0 4px">At most <b>'+(L.MaxBans||40)+' bans</b> in total across everything. Starter and tutorial gems can never be banned, tutorial supports can never be banned, and gate bosses are protected. A tuned-down skill keeps at least <b>'+Math.round((L.StarterDamageFloor||0.75)*100)+'%</b> of its damage if it is a starter. Each step of monster strength adds <b>+'+Math.round((L.DifficultyLifePerStep||0.15)*100)+'% monster life</b> and <b>+'+Math.round((L.DifficultyDamagePerStep||0.1)*100)+'% monster damage</b>. One word the knobs use: a <b>red</b> is one of the game&rsquo;s rarest unique items — the uniques whose names print in red — so &ldquo;Banned reds&rdquo; and &ldquo;Red drop weight&rdquo; below are about those uniques.</p>';
-  (L.Tabs||[]).forEach(function(t){
-    var ks=byTab[t.Id]||[]; if(!ks.length)return;
-    html+='<h3 style="margin:12px 0 2px">'+esc(t.Name||niceId(t.Id))+'</h3>'+ks.map(function(k){
-      return '<div class="kv"><span><b>'+esc(k.Name||niceId(k.Id))+'</b>'+(k.Help?'<br><small class="sub">'+esc(k.Help)+'</small>':'')+'</span><b>'+esc(rangeTxt(k))+'</b></div>';
-    }).join('');
-  });
-  body.innerHTML=html;
-}
 /* quality_stones.json — the estimator: stones to 20 quality at
    the picked rarity and current quality, and roughly how many
    maps of drops that takes. The maps figures are the game's own
@@ -27169,7 +27116,7 @@ function bindItem4(){
   var r=$('qsRarity'), c=$('qsCur');
   if(r&&!r.__i4){r.__i4=1; r.addEventListener('change',renderQualityEst)}
   if(c&&!c.__i4){c.__i4=1; c.addEventListener('input',renderQualityEst); c.addEventListener('change',renderQualityEst)}
-  renderLeagueRules(); renderQualityEst();
+  renderQualityEst();
 }
 
 /* ---------- Regression scan: no internal tag may reach the page ----------
@@ -27262,7 +27209,7 @@ function applyGameData(res){
      which skills a class starts with (gem_homes), the archetype
      label format (archetypes), the XP curve (progression), the
      named weapons the game hands out (weapons), the extra skill
-     tags (new_gems85), the league tuning knobs (league_rules),
+     tags (new_gems85),
      the quality-stone costs (quality_stones), the block numbers
      per weapon style (weapon_styles) and the defence layers
      (defence_layers). Each is optional like the rest: a missing
@@ -27272,7 +27219,6 @@ function applyGameData(res){
   if(res[27]&&res[27].progression&&res[27].progression.length)G.progression=res[27].progression[0];
   if(res[28]&&res[28].weapons&&res[28].weapons.length){G.gameWeapons=res[28].weapons; G.gameWeaponMap={}; res[28].weapons.forEach(function(w){if(w&&w.Id)G.gameWeaponMap[w.Id]=w})}
   if(res[29]&&res[29].gems&&res[29].gems.length){G.gemTags=res[29].gems; G.gemTagMap={}; res[29].gems.forEach(function(g){if(g&&g.Id)G.gemTagMap[g.Id]=g})}
-  if(res[30]&&res[30].Knobs&&res[30].Knobs.length)G.leagueRules=res[30];
   if(res[31]&&res[31].Step)G.qualityStones=res[31];
   if(res[32]&&res[32].styles&&res[32].styles.length){G.weaponStyles=res[32].styles; G.weaponStyleMap={}; res[32].styles.forEach(function(s){if(s&&s.Id)G.weaponStyleMap[s.Id]=s})}
   if(res[33]&&res[33].Layers&&res[33].Layers.length)G.defenceLayers=res[33].Layers;
@@ -27293,7 +27239,7 @@ function applyGameData(res){
   if(!G.skillMap[state.skillId]&&G.skills.length){state.skillId=G.skillMap['lightning_arrow']?'lightning_arrow':G.skills[0].Id}
   var dss=$('drawerSkillSearch'); if(dss)dss.placeholder='Search '+G.skills.filter(function(s){return s.Kind!=='Utility'}).length+' skills — name, tag, damage type…';
   renderSkillList(''); renderWeaponList(''); renderSupports(); renderPlanner();
-  renderGemPalette(); renderTreeList(); renderDefenses(); renderCurseOptions(); renderEnemyOptions(); renderPotionOptions(); fillAffixDatalist(); renderSavedPlans(); renderHome(); renderGear(); renderBelt(); renderDrawerSkills(); renderLeagueRules(); renderQualityEst(); setTimeout(leakScan,800);
+  renderGemPalette(); renderTreeList(); renderDefenses(); renderCurseOptions(); renderEnemyOptions(); renderPotionOptions(); fillAffixDatalist(); renderSavedPlans(); renderHome(); renderGear(); renderBelt(); renderDrawerSkills(); renderQualityEst(); setTimeout(leakScan,800);
   /* v0.418 (F3): a language switch reloads the game data through
      this same path, and the views below were the ones it never
      repainted — the Builds starter cards kept the old language's
@@ -27352,7 +27298,7 @@ function loadSnapshot(){
      null, which every consumer already tolerates. */
   var tier2=Promise.all([getSnap('monsters.json').catch(function(){return null}),getSnap('runewords.json').catch(function(){return null}),getSnap('patch-history.json').catch(function(){return null})]);
   snapTier2Promise=tier2;
-  return Promise.all([getSnap('version.json'),getSnap('leagues.json'),getSnap('skills.json'),getSnap('supports.json'),getSnap('item_bases.json'),getSnap('passive_tree.json'),getSnap('uniques.json').catch(function(){return null}),getSnap('scaling.json').catch(function(){return null}),getSnap('changelog.json').catch(function(){return null}),getSnap('affixes.json').catch(function(){return null}),getSnap('curses.json').catch(function(){return null}),Promise.resolve(null),getSnap('affixes_riven.json').catch(function(){return null}),getSnap('stat_text.json').catch(function(){return null}),getSnap('cube_recipes.json').catch(function(){return null}),getSnap('dragonling.json').catch(function(){return null}),getSnap('classes.json').catch(function(){return null}),Promise.resolve(null),fetchJSON('assets/base_implicits95.json',12000).catch(function(){return null}),getSnap('oath_masteries.json').catch(function(){return null}),getSnap('guardian_resist.json').catch(function(){return null}),getSnap('potions.json').catch(function(){return null}),getSnap('runes.json').catch(function(){return null}),Promise.resolve(null),Promise.resolve(null),getSnap('blessings.json').catch(function(){return null}),getSnap('rules.json').catch(function(){return null}),getSnap('trap_prices.json').catch(function(){return null}),getSnap('monster_affixes.json').catch(function(){return null}),getSnap('mythic_lines.json').catch(function(){return null}),getSnap('gem_homes.json').catch(function(){return null}),getSnap('archetypes.json').catch(function(){return null}),getSnap('progression.json').catch(function(){return null}),getSnap('weapons.json').catch(function(){return null}),getSnap('new_gems85.json').catch(function(){return null}),getSnap('league_rules.json').catch(function(){return null}),getSnap('quality_stones.json').catch(function(){return null}),getSnap('weapon_styles.json').catch(function(){return null}),getSnap('defence_layers.json').catch(function(){return null})]).then(function(res){
+  return Promise.all([getSnap('version.json'),getSnap('leagues.json'),getSnap('skills.json'),getSnap('supports.json'),getSnap('item_bases.json'),getSnap('passive_tree.json'),getSnap('uniques.json').catch(function(){return null}),getSnap('scaling.json').catch(function(){return null}),getSnap('changelog.json').catch(function(){return null}),getSnap('affixes.json').catch(function(){return null}),getSnap('curses.json').catch(function(){return null}),Promise.resolve(null),getSnap('affixes_riven.json').catch(function(){return null}),getSnap('stat_text.json').catch(function(){return null}),getSnap('cube_recipes.json').catch(function(){return null}),getSnap('dragonling.json').catch(function(){return null}),getSnap('classes.json').catch(function(){return null}),Promise.resolve(null),fetchJSON('assets/base_implicits95.json',12000).catch(function(){return null}),getSnap('oath_masteries.json').catch(function(){return null}),getSnap('guardian_resist.json').catch(function(){return null}),getSnap('potions.json').catch(function(){return null}),getSnap('runes.json').catch(function(){return null}),Promise.resolve(null),Promise.resolve(null),getSnap('blessings.json').catch(function(){return null}),getSnap('rules.json').catch(function(){return null}),getSnap('trap_prices.json').catch(function(){return null}),getSnap('monster_affixes.json').catch(function(){return null}),getSnap('mythic_lines.json').catch(function(){return null}),getSnap('gem_homes.json').catch(function(){return null}),getSnap('archetypes.json').catch(function(){return null}),getSnap('progression.json').catch(function(){return null}),getSnap('weapons.json').catch(function(){return null}),getSnap('new_gems85.json').catch(function(){return null}),Promise.resolve(null),getSnap('quality_stones.json').catch(function(){return null}),getSnap('weapon_styles.json').catch(function(){return null}),getSnap('defence_layers.json').catch(function(){return null})]).then(function(res){
     if(res[18]&&res[18].Families&&res[18].Weapons)G.family95=res[18];
     if(res[23]&&res[23].runewords&&res[23].runewords.length)G.runewordsData=res[23];
     if(res[24]&&res[24].entries&&res[24].entries.length){G.patchHistory=res[24]; renderPatches()}
@@ -27436,7 +27382,7 @@ function refreshLive(){
       jobs.push(fetchRetry('game-data/progression.json',2,30000).catch(function(){return null}));
       jobs.push(fetchRetry('game-data/weapons.json',2,30000).catch(function(){return null}));
       jobs.push(fetchRetry('game-data/new_gems85.json',2,30000).catch(function(){return null}));
-      jobs.push(fetchRetry('game-data/league_rules.json',2,30000).catch(function(){return null}));
+      jobs.push(Promise.resolve(null));
       jobs.push(fetchRetry('game-data/quality_stones.json',2,30000).catch(function(){return null}));
       jobs.push(fetchRetry('game-data/weapon_styles.json',2,30000).catch(function(){return null}));
       jobs.push(fetchRetry('game-data/defence_layers.json',2,30000).catch(function(){return null}));
@@ -27476,7 +27422,7 @@ function refreshLive(){
           (res[28]&&res[28].progression&&res[28].progression.length)?res[28]:(G.progression?{progression:[G.progression]}:null),
           (res[29]&&res[29].weapons&&res[29].weapons.length)?res[29]:(G.gameWeapons&&G.gameWeapons.length?{weapons:G.gameWeapons}:null),
           (res[30]&&res[30].gems&&res[30].gems.length)?res[30]:(G.gemTags&&G.gemTags.length?{gems:G.gemTags}:null),
-          (res[31]&&res[31].Knobs&&res[31].Knobs.length)?res[31]:(G.leagueRules||null),
+          null,
           (res[32]&&res[32].Step)?res[32]:(G.qualityStones||null),
           (res[33]&&res[33].styles&&res[33].styles.length)?res[33]:(G.weaponStyles&&G.weaponStyles.length?{styles:G.weaponStyles}:null),
           (res[34]&&res[34].Layers&&res[34].Layers.length)?res[34]:(G.defenceLayers&&G.defenceLayers.length?{Layers:G.defenceLayers}:null)
