@@ -2348,8 +2348,8 @@
    "Id": "lightning_n0",
    "Name": "Thunderbrand",
    "Kind": "Notable",
-   "X": 714,
-   "Y": -1994,
+   "X": 724,
+   "Y": -1988,
    "Mods": [
     {
      "Stat": "Damage",
@@ -2399,8 +2399,8 @@
    "Id": "lightning_n1",
    "Name": "Static Mind",
    "Kind": "Notable",
-   "X": 620,
-   "Y": -2158,
+   "X": 619,
+   "Y": -2169,
    "Mods": [
     {
      "Stat": "Penetration",
@@ -2851,8 +2851,8 @@
    "Id": "spell_n0",
    "Name": "Arcane Scholarship",
    "Kind": "Notable",
-   "X": 94,
-   "Y": -2528,
+   "X": 105,
+   "Y": -2533,
    "Mods": [
     {
      "Stat": "Damage",
@@ -2900,8 +2900,8 @@
    "Id": "spell_n1",
    "Name": "Runic Ward",
    "Kind": "Notable",
-   "X": -94,
-   "Y": -2528,
+   "X": -105,
+   "Y": -2534,
    "Mods": [
     {
      "Stat": "EnergyShield",
@@ -2919,7 +2919,7 @@
      "Stat": "EsRechargeDelay",
      "Mode": "Inc",
      "Tags": [],
-     "Value": -30
+     "Value": -20
     },
     {
      "Stat": "Resist",
@@ -3358,8 +3358,8 @@
    "Id": "cold_n0",
    "Name": "Rime Mantle",
    "Kind": "Notable",
-   "X": -620,
-   "Y": -2158,
+   "X": -619,
+   "Y": -2169,
    "Mods": [
     {
      "Stat": "Damage",
@@ -3401,8 +3401,8 @@
    "Id": "cold_n1",
    "Name": "Frostbinder",
    "Kind": "Notable",
-   "X": -714,
-   "Y": -1994,
+   "X": -724,
+   "Y": -1988,
    "Mods": [
     {
      "Stat": "Damage",
@@ -3759,8 +3759,8 @@
    "Id": "starfall_n0",
    "Name": "Meteor Lore",
    "Kind": "Notable",
-   "X": 131,
-   "Y": -3909,
+   "X": 133,
+   "Y": -3917,
    "Mods": [
     {
      "Stat": "GrantSupport",
@@ -4710,7 +4710,7 @@
      "Stat": "EsRechargeDelay",
      "Mode": "Inc",
      "Tags": [],
-     "Value": -30
+     "Value": -20
     },
     {
      "Stat": "EnergyShieldMore",
@@ -5164,8 +5164,8 @@
    "Id": "reaper_n0",
    "Name": "Reaper's Due",
    "Kind": "Notable",
-   "X": 2071,
-   "Y": -490,
+   "X": 2070,
+   "Y": -493,
    "Mods": [
     {
      "Stat": "Damage",
@@ -5215,8 +5215,8 @@
    "Id": "reaper_n1",
    "Name": "Scythe Dance",
    "Kind": "Notable",
-   "X": 2192,
-   "Y": -420,
+   "X": 2200,
+   "Y": -423,
    "Mods": [
     {
      "Stat": "AttackSpeed",
@@ -5928,7 +5928,8 @@
     "bone_s3",
     "ossuary_entry",
     "lane112_necr_i2",
-    "lane112_necr_i3"
+    "lane112_necr_i3",
+    "road_bone_wellspring_0"
    ],
    "Orbit": [
     1386,
@@ -7210,8 +7211,8 @@
    "Id": "leech_n0",
    "Name": "Red Thirst",
    "Kind": "Notable",
-   "X": 5099,
-   "Y": -2858,
+   "X": 5107,
+   "Y": -2856,
    "Mods": [
     {
      "Stat": "LifeLeech",
@@ -7243,8 +7244,8 @@
    "Id": "leech_n1",
    "Name": "Red Harvest",
    "Kind": "Notable",
-   "X": 5024,
-   "Y": -2988,
+   "X": 5026,
+   "Y": -2996,
    "Mods": [
     {
      "Stat": "LifeOnKill",
@@ -7317,7 +7318,8 @@
     "lane112_necr_o5",
     "lane112_necr_o6",
     "r113_persona_necr_dirge",
-    "r113_persona_necr_gravehunger"
+    "r113_persona_necr_gravehunger",
+    "r124_corpse_necr_s0"
    ],
    "Fp": "6d168fef59"
   },
@@ -7457,8 +7459,8 @@
    "Id": "conduit_n0",
    "Name": "Open Conduit",
    "Kind": "Notable",
-   "X": 3628,
-   "Y": -3594,
+   "X": 3618,
+   "Y": -3596,
    "Mods": [
     {
      "Stat": "GrantSupport",
@@ -7847,8 +7849,8 @@
    "Id": "projectile_n0",
    "Name": "Fletcher's Focus",
    "Kind": "Notable",
-   "X": 1468,
-   "Y": 1551,
+   "X": 1461,
+   "Y": 1553,
    "Mods": [
     {
      "Stat": "Trigger",
@@ -8057,7 +8059,8 @@
     "bow_s2",
     "deadeye_s3",
     "lane112_rang_i14",
-    "lane112_rang_i15"
+    "lane112_rang_i15",
+    "deadeye_entry"
    ],
    "Orbit": [
     1958,
@@ -8299,8 +8302,8 @@
    "Id": "bow_n0",
    "Name": "Hunter's Focus",
    "Kind": "Notable",
-   "X": 2110,
-   "Y": 1365,
+   "X": 2108,
+   "Y": 1369,
    "Mods": [
     {
      "Stat": "GrantSupport",
@@ -8391,8 +8394,8 @@
    "Id": "bow_n2",
    "Name": "Deadeye Draw",
    "Kind": "Notable",
-   "X": 2255,
-   "Y": 1302,
+   "X": 2264,
+   "Y": 1305,
    "Mods": [
     {
      "Stat": "CritChance",
@@ -8932,8 +8935,8 @@
    "Id": "evasion_n1",
    "Name": "Gale Step",
    "Kind": "Notable",
-   "X": 2202,
-   "Y": 419,
+   "X": 2207,
+   "Y": 426,
    "Mods": [
     {
      "Stat": "Evasion",
@@ -9298,8 +9301,8 @@
    "Id": "siege_n0",
    "Name": "Iron Garrison",
    "Kind": "Notable",
-   "X": 3320,
-   "Y": 2068,
+   "X": 3325,
+   "Y": 2074,
    "Mods": [
     {
      "Stat": "TotemLife",
@@ -9870,7 +9873,8 @@
    "Links": [
     "chain_entry",
     "chain_s2",
-    "road_chain_speed_0"
+    "road_chain_speed_0",
+    "travel16_road_chain_speed_0__r70_elem_shatterglass_0_0"
    ],
    "Orbit": [
     4244,
@@ -10460,8 +10464,8 @@
    "Id": "edge_n0",
    "Name": "Endless Edge",
    "Kind": "Notable",
-   "X": -723,
-   "Y": 2002,
+   "X": -724,
+   "Y": 1991,
    "Mods": [
     {
      "Stat": "Trigger",
@@ -10509,8 +10513,8 @@
    "Id": "edge_n1",
    "Name": "Twin Discipline",
    "Kind": "Notable",
-   "X": -629,
-   "Y": 2166,
+   "X": -619,
+   "Y": 2172,
    "Mods": [
     {
      "Stat": "AttackSpeed",
@@ -10974,8 +10978,8 @@
    "Id": "swift_n0",
    "Name": "Swift Draw",
    "Kind": "Notable",
-   "X": 4,
-   "Y": 2469,
+   "X": -1,
+   "Y": 2465,
    "Mods": [
     {
      "Stat": "Damage",
@@ -11026,8 +11030,8 @@
    "Id": "swift_n1",
    "Name": "Flash Step",
    "Kind": "Notable",
-   "X": 4,
-   "Y": 2609,
+   "X": -1,
+   "Y": 2612,
    "Mods": [
     {
      "Stat": "MoveSpeed",
@@ -11546,8 +11550,8 @@
    "Id": "ki_n0",
    "Name": "Ki Breathing",
    "Kind": "Notable",
-   "X": 616,
-   "Y": 2190,
+   "X": 624,
+   "Y": 2187,
    "Mods": [
     {
      "Stat": "Evasion",
@@ -12015,8 +12019,8 @@
    "Id": "mirrorblade_n0",
    "Name": "Second Shadow",
    "Kind": "Notable",
-   "X": -133,
-   "Y": 3916,
+   "X": -135,
+   "Y": 3924,
    "Mods": [
     {
      "Stat": "GrantSupport",
@@ -12695,7 +12699,8 @@
    "Links": [
     "orbit_entry",
     "orbit_s1",
-    "road_crit_orbit_1"
+    "road_crit_orbit_1",
+    "lane112_samu_o6"
    ],
    "Orbit": [
     1113,
@@ -13091,8 +13096,8 @@
    "Id": "life_n0",
    "Name": "Birchheart",
    "Kind": "Notable",
-   "X": -2088,
-   "Y": 493,
+   "X": -2080,
+   "Y": 490,
    "Mods": [
     {
      "Stat": "Life",
@@ -13123,8 +13128,8 @@
    "Id": "life_n1",
    "Name": "Second Wind",
    "Kind": "Notable",
-   "X": -2209,
-   "Y": 423,
+   "X": -2210,
+   "Y": 420,
    "Mods": [
     {
      "Stat": "LifeRegenPct",
@@ -13514,8 +13519,8 @@
    "Id": "slam_n0",
    "Name": "Earthshaker",
    "Kind": "Notable",
-   "X": -2238,
-   "Y": 1152,
+   "X": -2241,
+   "Y": 1148,
    "Mods": [
     {
      "Stat": "Area",
@@ -13531,15 +13536,7 @@
      "Tags": [
       "Melee"
      ],
-     "Value": 39
-    },
-    {
-     "Stat": "Damage",
-     "Mode": "More",
-     "Tags": [
-      "Slam"
-     ],
-     "Value": 6
+     "Value": 26
     },
     {
      "Stat": "FortifyMax",
@@ -13556,7 +13553,7 @@
    "Links": [
     "slam_s1"
    ],
-   "Fp": "98cba03775"
+   "Fp": "ce01c0bf6b"
   },
   {
    "Id": "slam_n1",
@@ -13620,8 +13617,8 @@
    "Id": "slam_n2",
    "Name": "Seismic",
    "Kind": "Notable",
-   "X": -2256,
-   "Y": 1309,
+   "X": -2263,
+   "Y": 1315,
    "Mods": [
     {
      "Stat": "FissureSpikes",
@@ -13665,7 +13662,7 @@
      "Mode": "Inc",
      "Tags": [
       "Physical",
-      "Melee"
+      "Attack"
      ],
      "Value": 13
     },
@@ -13707,7 +13704,7 @@
      "Mode": "Inc",
      "Tags": [
       "Physical",
-      "Melee"
+      "Attack"
      ],
      "Value": 13
     },
@@ -13752,7 +13749,7 @@
      "Mode": "Inc",
      "Tags": [
       "Physical",
-      "Melee"
+      "Attack"
      ],
      "Value": 13
     },
@@ -13801,7 +13798,7 @@
      "Mode": "Inc",
      "Tags": [
       "Physical",
-      "Melee"
+      "Attack"
      ],
      "Value": 13
     },
@@ -13847,7 +13844,7 @@
      "Mode": "Inc",
      "Tags": [
       "Physical",
-      "Melee"
+      "Attack"
      ],
      "Value": 13
     },
@@ -13892,7 +13889,7 @@
      "Mode": "Inc",
      "Tags": [
       "Physical",
-      "Melee"
+      "Attack"
      ],
      "Value": 13
     },
@@ -13938,7 +13935,7 @@
      "Mode": "Inc",
      "Tags": [
       "Physical",
-      "Melee"
+      "Attack"
      ],
      "Value": 13
     },
@@ -13985,7 +13982,7 @@
      "Mode": "Inc",
      "Tags": [
       "Physical",
-      "Melee"
+      "Attack"
      ],
      "Value": 13
     },
@@ -14009,7 +14006,8 @@
    "Region": "Warrior",
    "Links": [
     "melee_entry",
-    "melee_s5"
+    "melee_s5",
+    "r59_phys3_n1"
    ],
    "Orbit": [
     -1386,
@@ -14021,15 +14019,15 @@
    "Id": "melee_n0",
    "Name": "Brutal Edge",
    "Kind": "Notable",
-   "X": -1565,
-   "Y": 1628,
+   "X": -1576,
+   "Y": 1623,
    "Mods": [
     {
      "Stat": "Damage",
      "Mode": "Inc",
      "Tags": [
       "Physical",
-      "Melee"
+      "Attack"
      ],
      "Value": 32
     },
@@ -14063,8 +14061,8 @@
    "Id": "melee_n1",
    "Name": "Ceaseless Steel",
    "Kind": "Notable",
-   "X": -1377,
-   "Y": 1628,
+   "X": -1366,
+   "Y": 1622,
    "Mods": [
     {
      "Stat": "Damage",
@@ -14461,8 +14459,8 @@
    "Id": "channel_n0",
    "Name": "Calm in the Thunder",
    "Kind": "Notable",
-   "X": -3444,
-   "Y": 1839,
+   "X": -3452,
+   "Y": 1841,
    "Mods": [
     {
      "Stat": "LifeLeech",
@@ -15066,8 +15064,8 @@
    "Id": "armour_n0",
    "Name": "Iron Skin",
    "Kind": "Notable",
-   "X": -5129,
-   "Y": 2874,
+   "X": -5124,
+   "Y": 2867,
    "Mods": [
     {
      "Stat": "Armour",
@@ -15199,7 +15197,7 @@
      "Mode": "Inc",
      "Tags": [
       "Physical",
-      "Melee"
+      "Attack"
      ],
      "Value": 22
     }
@@ -15230,7 +15228,7 @@
      "Mode": "Inc",
      "Tags": [
       "Physical",
-      "Melee"
+      "Attack"
      ],
      "Value": 22
     }
@@ -15245,7 +15243,8 @@
     "fury_s1",
     "road_armour_fury_1",
     "r60_socket_0",
-    "r113_persona_warr_gravefury"
+    "r113_persona_warr_gravefury",
+    "r113_rime_warr_n0"
    ],
    "Orbit": [
     -3041,
@@ -15265,7 +15264,7 @@
      "Mode": "Inc",
      "Tags": [
       "Physical",
-      "Melee"
+      "Attack"
      ],
      "Value": 22
     }
@@ -15299,7 +15298,7 @@
      "Mode": "Inc",
      "Tags": [
       "Physical",
-      "Melee"
+      "Attack"
      ],
      "Value": 22
     }
@@ -15332,7 +15331,7 @@
      "Mode": "Inc",
      "Tags": [
       "Physical",
-      "Melee"
+      "Attack"
      ],
      "Value": 22
     }
@@ -15764,8 +15763,8 @@
    "Id": "faith_n0",
    "Name": "Dawn's Verdict",
    "Kind": "Notable",
-   "X": -1463,
-   "Y": -1556,
+   "X": -1468,
+   "Y": -1552,
    "Mods": [
     {
      "Stat": "Area",
@@ -15801,7 +15800,8 @@
    "Links": [
     "faith_s1",
     "faith_s5",
-    "om103_paladin_dawn_c2"
+    "om103_paladin_dawn_c2",
+    "lane112_pala_sr3"
    ],
    "Fp": "7c23b74c2f"
   },
@@ -15809,8 +15809,8 @@
    "Id": "faith_n1",
    "Name": "Righteous Fervour",
    "Kind": "Notable",
-   "X": -1463,
-   "Y": -1696,
+   "X": -1468,
+   "Y": -1699,
    "Mods": [
     {
      "Stat": "CastSpeed",
@@ -16191,8 +16191,8 @@
    "Id": "zeal_n0",
    "Name": "Zealous Hammers",
    "Kind": "Notable",
-   "X": -2135,
-   "Y": -1230,
+   "X": -2127,
+   "Y": -1233,
    "Mods": [
     {
      "Stat": "Damage",
@@ -16247,8 +16247,8 @@
    "Id": "zeal_n1",
    "Name": "Crusader's Pace",
    "Kind": "Notable",
-   "X": -2256,
-   "Y": -1300,
+   "X": -2257,
+   "Y": -1303,
    "Mods": [
     {
      "Stat": "AttackSpeed",
@@ -16597,8 +16597,8 @@
    "Id": "bulwark_n0",
    "Name": "Stalwart",
    "Kind": "Notable",
-   "X": -2188,
-   "Y": -543,
+   "X": -2189,
+   "Y": -554,
    "Mods": [
     {
      "Stat": "Trigger",
@@ -16654,8 +16654,8 @@
    "Id": "bulwark_n1",
    "Name": "Shield Wall",
    "Kind": "Notable",
-   "X": -2094,
-   "Y": -379,
+   "X": -2084,
+   "Y": -373,
    "Mods": [
     {
      "Stat": "Block",
@@ -17146,7 +17146,7 @@
      "Stat": "SkyfallRepeat",
      "Mode": "Flat",
      "Tags": [],
-     "Value": 15
+     "Value": 8
     },
     {
      "Stat": "ManaCost",
@@ -17822,7 +17822,7 @@
    "Id": "resist_n0",
    "Name": "Warded Soul",
    "Kind": "Notable",
-   "X": -4874,
+   "X": -4884,
    "Y": -1308,
    "Mods": [
     {
@@ -18145,8 +18145,8 @@
    "Id": "overcharge_n0",
    "Name": "Storm Conduit",
    "Kind": "Notable",
-   "X": 792,
-   "Y": -2860,
+   "X": 799,
+   "Y": -2864,
    "Mods": [
     {
      "Stat": "Chains",
@@ -18187,8 +18187,8 @@
    "Id": "overcharge_n1",
    "Name": "Brand Smith",
    "Kind": "Notable",
-   "X": 646,
-   "Y": -2896,
+   "X": 641,
+   "Y": -2903,
    "Mods": [
     {
      "Stat": "BrandCount",
@@ -18265,7 +18265,8 @@
     "permafrost_s0",
     "permafrost_s3",
     "lane112_mage_i2",
-    "lane112_mage_i3"
+    "lane112_mage_i3",
+    "lane112_mage_sl2"
    ],
    "Fp": "f39796e58e"
   },
@@ -18466,8 +18467,8 @@
    "Id": "permafrost_n0",
    "Name": "Deep Winter",
    "Kind": "Notable",
-   "X": -649,
-   "Y": -2915,
+   "X": -644,
+   "Y": -2922,
    "Mods": [
     {
      "Stat": "Area",
@@ -18501,8 +18502,8 @@
    "Id": "permafrost_n1",
    "Name": "Winter Orrery",
    "Kind": "Notable",
-   "X": -795,
-   "Y": -2879,
+   "X": -802,
+   "Y": -2883,
    "Mods": [
     {
      "Stat": "OrbCount",
@@ -19094,7 +19095,7 @@
    "Id": "ossuary_n0",
    "Name": "Legion of Bone",
    "Kind": "Notable",
-   "X": 2199,
+   "X": 2208,
    "Y": -2020,
    "Mods": [
     {
@@ -19140,7 +19141,7 @@
    "Name": "Marrow Wall",
    "Kind": "Notable",
    "X": 2095,
-   "Y": -2128,
+   "Y": -2136,
    "Mods": [
     {
      "Stat": "MinionLife",
@@ -19212,7 +19213,8 @@
     "deadeye_s0",
     "deadeye_s3",
     "projectile_s4",
-    "r60_more_ranger_s0"
+    "r60_more_ranger_s0",
+    "bow_s1"
    ],
    "Fp": "ab03ce7780"
   },
@@ -19248,7 +19250,8 @@
    "Links": [
     "deadeye_entry",
     "deadeye_s1",
-    "r60_more_ranger_n1"
+    "r60_more_ranger_n1",
+    "road_siege_trap_2"
    ],
    "Orbit": [
     1942,
@@ -19558,7 +19561,8 @@
    "Links": [
     "artillery_n0",
     "artillery_s0",
-    "artillery_s2"
+    "artillery_s2",
+    "road_siege_affliction_1"
    ],
    "Orbit": [
     2595,
@@ -19646,8 +19650,8 @@
    "Id": "artillery_n0",
    "Name": "Second Battery",
    "Kind": "Notable",
-   "X": 2880,
-   "Y": 898,
+   "X": 2873,
+   "Y": 902,
    "Mods": [
     {
      "Stat": "TotemSpeed",
@@ -19689,8 +19693,8 @@
    "Id": "artillery_n1",
    "Name": "Bolt Rack",
    "Kind": "Notable",
-   "X": 2921,
-   "Y": 754,
+   "X": 2917,
+   "Y": 746,
    "Mods": [
     {
      "Stat": "Projectiles",
@@ -20206,8 +20210,8 @@
    "Id": "windstep_n0",
    "Name": "Wind Through Reeds",
    "Kind": "Notable",
-   "X": 657,
-   "Y": 2946,
+   "X": 650,
+   "Y": 2942,
    "Mods": [
     {
      "Stat": "Evasion",
@@ -20242,8 +20246,8 @@
    "Id": "windstep_n1",
    "Name": "Shuriken Storm",
    "Kind": "Notable",
-   "X": 803,
-   "Y": 2910,
+   "X": 808,
+   "Y": 2903,
    "Mods": [
     {
      "Stat": "Projectiles",
@@ -20468,8 +20472,8 @@
    "Id": "warpath_n0",
    "Name": "Mountainhold",
    "Kind": "Notable",
-   "X": -2904,
-   "Y": 741,
+   "X": -2903,
+   "Y": 739,
    "Mods": [
     {
      "Stat": "Trigger",
@@ -20530,8 +20534,8 @@
    "Id": "warpath_n1",
    "Name": "Bloodied Fury",
    "Kind": "Notable",
-   "X": -2863,
-   "Y": 885,
+   "X": -2853,
+   "Y": 890,
    "Mods": [
     {
      "Stat": "Damage",
@@ -20771,7 +20775,7 @@
    "Name": "Great Arc",
    "Kind": "Notable",
    "X": -2216,
-   "Y": 2044,
+   "Y": 2036,
    "Mods": [
     {
      "Stat": "Area",
@@ -20821,7 +20825,7 @@
    "Id": "cleave_n1",
    "Name": "Aftershock",
    "Kind": "Notable",
-   "X": -2112,
+   "X": -2103,
    "Y": 2152,
    "Mods": [
     {
@@ -21063,7 +21067,7 @@
    "Name": "Hallowed Ground",
    "Kind": "Notable",
    "X": -2092,
-   "Y": -2132,
+   "Y": -2140,
    "Mods": [
     {
      "Stat": "Area",
@@ -21106,7 +21110,7 @@
    "Id": "dawn_n1",
    "Name": "Hammer of Heaven",
    "Kind": "Notable",
-   "X": -2196,
+   "X": -2205,
    "Y": -2024,
    "Mods": [
     {
@@ -21326,8 +21330,8 @@
    "Id": "vigil_n0",
    "Name": "Steadfast Vigil",
    "Kind": "Notable",
-   "X": -2849,
-   "Y": -895,
+   "X": -2853,
+   "Y": -903,
    "Mods": [
     {
      "Stat": "Block",
@@ -21357,8 +21361,8 @@
    "Id": "vigil_n1",
    "Name": "Radiant Bulwark",
    "Kind": "Notable",
-   "X": -2890,
-   "Y": -751,
+   "X": -2897,
+   "Y": -747,
    "Mods": [
     {
      "Stat": "Resist",
@@ -21957,7 +21961,8 @@
    "Links": [
     "road_sigil_voidbound_1",
     "voidbound_entry",
-    "voidbound_s2"
+    "voidbound_s2",
+    "r98_focus_s0"
    ],
    "Orbit": [
     2300,
@@ -22898,8 +22903,8 @@
    "Id": "trap_n0",
    "Name": "Snare Lord",
    "Kind": "Notable",
-   "X": 1639,
-   "Y": 2829,
+   "X": 1629,
+   "Y": 2827,
    "Mods": [
     {
      "Stat": "Damage",
@@ -23627,7 +23632,8 @@
    "Links": [
     "fire_s0",
     "fire_s6",
-    "lane112_pala_i1"
+    "lane112_pala_i1",
+    "road_bulwark_fire_0"
    ],
    "Fp": "250c6379b3"
   },
@@ -25640,7 +25646,7 @@
      "Stat": "SkyfallRepeat",
      "Mode": "Flat",
      "Tags": [],
-     "Value": 20
+     "Value": 10
     },
     {
      "Stat": "ManaCost",
@@ -25661,7 +25667,7 @@
    ],
    "Icon": "ICON_DarkFantasy_Map_Star_01_Clean",
    "Group": "keystone",
-   "Text": "Every Skyfall strike falls twice: a second impact 0.4 seconds later for 20% of the damage. Other second fall sources, such as Twice Judged, Starcaller's Staff and Skyfire, add to the same impact, up to 100%.",
+   "Text": "Every Skyfall strike falls twice: a second impact 0.4 seconds later for 10% of the damage. Other second fall sources, such as Twice Judged, Starcaller's Staff and Skyfire, add to the same impact, up to 100%.",
    "ClassStart": "",
    "Region": "Mage",
    "Links": [
@@ -25725,7 +25731,7 @@
      "Tags": [
       "Minion"
      ],
-     "Value": 25
+     "Value": 12
     },
     {
      "Stat": "Keystone",
@@ -25759,7 +25765,7 @@
    ],
    "Icon": "ICON_DarkFantasy_Status_DefenseBroken_01_Clean",
    "Group": "keystone",
-   "Text": "12% more Spell Damage and 25% increased Damage. Your minions deal 25% more Damage.",
+   "Text": "12% more Spell Damage and 25% increased Damage. Your minions deal 12% more Damage.",
    "ClassStart": "",
    "Region": "Mage",
    "Links": [
@@ -25883,7 +25889,8 @@
     "bone_s3",
     "wellspring_s0",
     "lane112_necr_i1",
-    "lane112_necr_i2"
+    "lane112_necr_i2",
+    "bone_s2"
    ],
    "Fp": "f8ef501379"
   },
@@ -26812,7 +26819,8 @@
    "Region": "seam_60",
    "Links": [
     "conduit_s3",
-    "road_conduit_voidbound_1"
+    "road_conduit_voidbound_1",
+    "r113_crit_necr_n0"
    ],
    "Fp": "0484c80fb7"
   },
@@ -27048,6 +27056,12 @@
      "Mode": "More",
      "Tags": [],
      "Value": -6
+    },
+    {
+     "Stat": "MinionDamage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -6
     }
    ],
    "Icon": "ICON_DarkFantasy_Map_Skull_01_Clean",
@@ -27058,8 +27072,9 @@
    "Links": [
     "lord_of_the_dead_path_0"
    ],
-   "Price": "Your Vows, Heralds and Woes reserve 15% more mana. 6% less maximum Life.",
-   "Fp": "ef2ea536e5"
+   "Price": "Your Vows, Heralds and Woes reserve 15% more mana. 6% less maximum Life. Your minions deal 6% less damage.",
+   "Fp": "ef2ea536e5",
+   "_d25n9_BRAIN": "WTCOUNT253 (rule 67 count line, rule 68 cut by numbers): +1 each kind of minion is ~x1.12 on a 4-summon army; a summoner now pays 6% less minion damage (was hero-side prices only)."
   },
   {
    "Id": "lord_of_the_dead_path_0",
@@ -27138,21 +27153,28 @@
      "Tags": [
       "Minion"
      ],
-     "Value": 23,
+     "Value": 0,
      "Value2": 0
+    },
+    {
+     "Stat": "MinionDamage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -6
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_Burninating_01_Clean",
    "Group": "keystone",
-   "Text": "Your minions explode on death for 60% of their hit damage as Fire damage to enemies within 2.5 metres. +1 to the maximum number of each kind of minion. Your minions deal 23% increased damage.",
+   "Text": "Your minions explode on death for 60% of their hit damage as Fire damage to enemies within 2.5 metres. +1 to the maximum number of each kind of minion.",
    "ClassStart": "",
    "Region": "Necromancer",
    "Links": [
     "pyre_covenant_path_0"
    ],
-   "Price": "Your minions have 10% less Life.",
+   "Price": "Your minions have 10% less Life. Your minions deal 6% less damage.",
    "Flavour": "They swore to follow you into the fire. You held them to it.",
-   "Fp": "9ab0a8d070"
+   "Fp": "9ab0a8d070",
+   "_d25n9_BRAIN": "WTCOUNT253 (rule 67 count line, rule 68 cut by numbers): +1 each kind of minion is ~x1.12 on a 4-summon army; a summoner now pays 6% less minion damage (was hero-side prices only)."
   },
   {
    "Id": "pyre_covenant_path_0",
@@ -27410,7 +27432,8 @@
    "Region": "Ranger",
    "Links": [
     "road_siege_trap_1",
-    "trap_s5"
+    "trap_s5",
+    "deadeye_s0"
    ],
    "Fp": "959652ecab"
   },
@@ -27483,7 +27506,8 @@
    "Links": [
     "road_siege_affliction_0",
     "road_siege_affliction_2",
-    "might_ranger_int"
+    "might_ranger_int",
+    "artillery_s1"
    ],
    "Fp": "9251b64af9"
   },
@@ -28988,7 +29012,8 @@
    "Region": "Samurai",
    "Links": [
     "attack_s3",
-    "road_attack_crit_1"
+    "road_attack_crit_1",
+    "r114_chaos_samu_s1"
    ],
    "Fp": "b9acc5c62c"
   },
@@ -29222,7 +29247,8 @@
    "Region": "seam_300",
    "Links": [
     "orbit_s3",
-    "road_orbit_shatter_1"
+    "road_orbit_shatter_1",
+    "r113_rime_samu_n0"
    ],
    "Fp": "37a440380b"
   },
@@ -30853,7 +30879,8 @@
     "fire_s0",
     "bulwark_s2",
     "lane112_pala_i1",
-    "lane112_pala_i2"
+    "lane112_pala_i2",
+    "fire_entry"
    ],
    "Fp": "17b1871514"
   },
@@ -36746,8 +36773,8 @@
    "Id": "anvil_oath_n0",
    "Name": "Hammer and Shield",
    "Kind": "Notable",
-   "X": -7046,
-   "Y": -1192,
+   "X": -7051,
+   "Y": -1198,
    "Mods": [
     {
      "Stat": "Trigger",
@@ -36789,8 +36816,8 @@
    "Id": "anvil_oath_n1",
    "Name": "Sanctified Steel",
    "Kind": "Notable",
-   "X": -7069,
-   "Y": -1044,
+   "X": -7076,
+   "Y": -1039,
    "Mods": [
     {
      "Stat": "DamageAsExtra",
@@ -39372,8 +39399,8 @@
    "Id": "longwinter_n0",
    "Name": "Long Winter",
    "Kind": "Notable",
-   "X": -114,
-   "Y": -425,
+   "X": -115,
+   "Y": -426,
    "Mods": [
     {
      "Stat": "SkillDuration",
@@ -39435,7 +39462,7 @@
    "Id": "thunderhead_n0",
    "Name": "Thunderhead",
    "Kind": "Notable",
-   "X": 311,
+   "X": 302,
    "Y": -311,
    "Mods": [
     {
@@ -39510,7 +39537,7 @@
    "Id": "ancvigil_n0",
    "Name": "Ancestral Vigil",
    "Kind": "Notable",
-   "X": -425,
+   "X": -434,
    "Y": -114,
    "Mods": [
     {
@@ -39577,7 +39604,7 @@
    "Id": "stonecircle_n0",
    "Name": "Circle of Stones",
    "Kind": "Notable",
-   "X": 311,
+   "X": 302,
    "Y": 311,
    "Mods": [
     {
@@ -39704,8 +39731,8 @@
    "Id": "harmony_n0",
    "Name": "Harmony",
    "Kind": "Notable",
-   "X": 1893,
-   "Y": -1159,
+   "X": 1891,
+   "Y": -1150,
    "Mods": [
     {
      "Stat": "MinionKindMore",
@@ -39846,6 +39873,12 @@
      "Mode": "Inc",
      "Tags": [],
      "Value": 20
+    },
+    {
+     "Stat": "HolyElementalMore",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 30
     }
    ],
    "Icon": "ICON_DarkFantasy_Stat_Magic_04_Clean",
@@ -39887,6 +39920,12 @@
      "Mode": "More",
      "Tags": [],
      "Value": -5
+    },
+    {
+     "Stat": "HolyElementalMore",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 30
     }
    ],
    "Icon": "ICON_DarkFantasy_Stat_Magic_04_Clean",
@@ -40607,7 +40646,7 @@
    "Id": "eng_seam60_n0",
    "Name": "Road of Bloodlust",
    "Kind": "Notable",
-   "X": 2318,
+   "X": 2308,
    "Y": -3074,
    "Mods": [
     {
@@ -40865,7 +40904,7 @@
    "Id": "eng_seam300_n0",
    "Name": "Road of Bloodlust",
    "Kind": "Notable",
-   "X": 1513,
+   "X": 1504,
    "Y": 3536,
    "Mods": [
     {
@@ -40985,8 +41024,8 @@
    "Id": "r59_phys2_n1",
    "Name": "Marrowcrack",
    "Kind": "Notable",
-   "X": -1046,
-   "Y": 2017,
+   "X": -1053,
+   "Y": 2010,
    "Mods": [
     {
      "Stat": "CritChance",
@@ -41050,8 +41089,8 @@
    "Id": "r59_phys3_n1",
    "Name": "Steady Iron",
    "Kind": "Notable",
-   "X": -970,
-   "Y": 1523,
+   "X": -987,
+   "Y": 1527,
    "Mods": [
     {
      "Stat": "Damage",
@@ -41078,7 +41117,8 @@
    "Region": "Warrior",
    "Links": [
     "r59_phys3_s0",
-    "melee_s5"
+    "melee_s5",
+    "melee_s6"
    ],
    "Flavour": "The weapon is only as heavy as the hand that refuses to let go.",
    "Fp": "970989782b"
@@ -41237,8 +41277,8 @@
    "Id": "r59_phys6_n1",
    "Name": "Shade of the Blow",
    "Kind": "Notable",
-   "X": -780,
-   "Y": 1461,
+   "X": -764,
+   "Y": 1453,
    "Mods": [
     {
      "Stat": "Afterimages",
@@ -41565,7 +41605,7 @@
    "Id": "r59_ignite_w_n1",
    "Name": "Forge Heat",
    "Kind": "Notable",
-   "X": -2939,
+   "X": -2948,
    "Y": 461,
    "Mods": [
     {
@@ -42092,8 +42132,8 @@
    "Id": "r59_poison_r_n1",
    "Name": "Venom Tips",
    "Kind": "Notable",
-   "X": 2696,
-   "Y": 1218,
+   "X": 2685,
+   "Y": 1215,
    "Mods": [
     {
      "Stat": "PoisonChance",
@@ -43114,7 +43154,7 @@
    "Name": "Carrion Arrows",
    "Kind": "Notable",
    "X": 3824,
-   "Y": -460,
+   "Y": -469,
    "Mods": [
     {
      "Stat": "PoisonChance",
@@ -44068,7 +44108,7 @@
    "Id": "hallshaker_n0",
    "Name": "Hall-Shaker",
    "Kind": "Notable",
-   "X": -311,
+   "X": -320,
    "Y": 311,
    "Mods": [
     {
@@ -44143,7 +44183,7 @@
    "Id": "stillwater_n0",
    "Name": "Stillwater Step",
    "Kind": "Notable",
-   "X": 114,
+   "X": 104,
    "Y": 425,
    "Mods": [
     {
@@ -44185,7 +44225,7 @@
    "Id": "might_mage_dex",
    "Name": "Quick Ink",
    "Kind": "Notable",
-   "X": -1011,
+   "X": -1020,
    "Y": -3680,
    "Mods": [
     {
@@ -44211,7 +44251,7 @@
    "Id": "might_mage_str",
    "Name": "Stonecarrier",
    "Kind": "Notable",
-   "X": 688,
+   "X": 678,
    "Y": -4651,
    "Mods": [
     {
@@ -44237,8 +44277,8 @@
    "Id": "might_ranger_int",
    "Name": "Star Reckoning",
    "Kind": "Notable",
-   "X": 3712,
-   "Y": 963,
+   "X": 3703,
+   "Y": 960,
    "Mods": [
     {
      "Stat": "Int",
@@ -44264,7 +44304,7 @@
    "Id": "might_ranger_str",
    "Name": "Bowyer's Back",
    "Kind": "Notable",
-   "X": 3701,
+   "X": 3692,
    "Y": 2916,
    "Mods": [
     {
@@ -44290,7 +44330,7 @@
    "Id": "might_warrior_int",
    "Name": "Saga Memory",
    "Kind": "Notable",
-   "X": -2668,
+   "X": -2678,
    "Y": 2719,
    "Mods": [
     {
@@ -44316,7 +44356,7 @@
    "Id": "might_warrior_dex",
    "Name": "Light Feet",
    "Kind": "Notable",
-   "X": -4230,
+   "X": -4240,
    "Y": 1036,
    "Mods": [
     {
@@ -44342,8 +44382,8 @@
    "Id": "might_necromancer_str",
    "Name": "Gravedigger's Arm",
    "Kind": "Notable",
-   "X": 2967,
-   "Y": -2964,
+   "X": 2960,
+   "Y": -2971,
    "Mods": [
     {
      "Stat": "Str",
@@ -44368,7 +44408,7 @@
    "Id": "might_paladin_dex",
    "Name": "Road-Worn Feet",
    "Kind": "Notable",
-   "X": -4037,
+   "X": -4046,
    "Y": -1077,
    "Mods": [
     {
@@ -44394,7 +44434,7 @@
    "Id": "might_samurai_int",
    "Name": "Brush and Blade",
    "Kind": "Notable",
-   "X": 1099,
+   "X": 1090,
    "Y": 4050,
    "Mods": [
     {
@@ -44500,8 +44540,8 @@
    "Id": "rimebound_n0",
    "Name": "Bitter Cold",
    "Kind": "Notable",
-   "X": 800,
-   "Y": -6939,
+   "X": 795,
+   "Y": -6932,
    "Mods": [
     {
      "Stat": "FreezeDuration",
@@ -44716,8 +44756,8 @@
    "Id": "kindled_n0",
    "Name": "Banked Embers",
    "Kind": "Notable",
-   "X": -5608,
-   "Y": -4162,
+   "X": -5604,
+   "Y": -4153,
    "Mods": [
     {
      "Stat": "IgniteChance",
@@ -44758,7 +44798,8 @@
     "kindled_n1",
     "kindled_n2",
     "oath_of_the_pyre",
-    "om103_paladin_flame"
+    "om103_paladin_flame",
+    "r70_elem_rimeward_0"
    ],
    "Flavour": "Feed a fire a little each hour and it will outlast you.",
    "Fp": "2cd8044768"
@@ -44962,8 +45003,8 @@
    "Id": "snarewright_n0",
    "Name": "Tripwire Patience",
    "Kind": "Notable",
-   "X": 5608,
-   "Y": 4162,
+   "X": 5604,
+   "Y": 4153,
    "Mods": [
     {
      "Stat": "Damage",
@@ -45409,8 +45450,8 @@
    "Id": "stormbound_n0",
    "Name": "Gathering Storm",
    "Kind": "Notable",
-   "X": -6633,
-   "Y": -3868,
+   "X": -6630,
+   "Y": -3876,
    "Mods": [
     {
      "Stat": "ShockStacks",
@@ -45603,8 +45644,8 @@
    "Id": "wildfire_n0",
    "Name": "Forest Blaze",
    "Kind": "Notable",
-   "X": 33,
-   "Y": -7682,
+   "X": 42,
+   "Y": -7680,
    "Mods": [
     {
      "Stat": "IgniteSpreadOnKill",
@@ -45830,7 +45871,7 @@
    "Id": "shatterglass_n0",
    "Name": "Shatterglass",
    "Kind": "Notable",
-   "X": 6660,
+   "X": 6656,
    "Y": 3907,
    "Mods": [
     {
@@ -46033,8 +46074,8 @@
    "Id": "bloodletter_n0",
    "Name": "Open Veins",
    "Kind": "Notable",
-   "X": -6409,
-   "Y": 2779,
+   "X": -6401,
+   "Y": 2777,
    "Mods": [
     {
      "Stat": "BleedChance",
@@ -46253,8 +46294,8 @@
    "Id": "crimson_edge_n0",
    "Name": "Crimson Edge",
    "Kind": "Notable",
-   "X": -800,
-   "Y": 6939,
+   "X": -795,
+   "Y": 6932,
    "Mods": [
     {
      "Stat": "BleedChance",
@@ -46466,8 +46507,8 @@
    "Id": "slowruin_n0",
    "Name": "Lingering Ruin",
    "Kind": "Notable",
-   "X": 6410,
-   "Y": -2776,
+   "X": 6406,
+   "Y": -2777,
    "Mods": [
     {
      "Stat": "DotMulti",
@@ -46672,8 +46713,8 @@
    "Id": "stormarrow_n0",
    "Name": "Storm Quiver",
    "Kind": "Notable",
-   "X": 5020,
-   "Y": 5004,
+   "X": 5023,
+   "Y": 4997,
    "Mods": [
     {
      "Stat": "ShockStacks",
@@ -46821,8 +46862,8 @@
    "Id": "emberblade_n0",
    "Name": "Brushfire",
    "Kind": "Notable",
-   "X": 765,
-   "Y": 6709,
+   "X": 758,
+   "Y": 6708,
    "Mods": [
     {
      "Stat": "IgniteSpreadOnKill",
@@ -46993,7 +47034,7 @@
    "Name": "Glass Saints",
    "Kind": "Notable",
    "X": -5040,
-   "Y": -5014,
+   "Y": -5005,
    "Mods": [
     {
      "Stat": "ShatterOnKill",
@@ -47463,7 +47504,8 @@
    "Region": "Paladin",
    "Links": [
     "sanctified_path_0",
-    "r70_elem_rimeward_1"
+    "r70_elem_rimeward_1",
+    "kindled_n0"
    ],
    "Fp": "0ab3492c6b"
   },
@@ -47745,7 +47787,8 @@
     "waygate_samurai",
     "waygate_paladin",
     "travel16_waygate_warrior__road_channel_armour_2_0",
-    "r60_engine_warrior_s1"
+    "r60_engine_warrior_s1",
+    "lane112_warr_o10"
    ],
    "Flavour": "Links to the 5 other Waygates.",
    "Fp": "8d55428c30"
@@ -48101,7 +48144,7 @@
    "Id": "r74_hiddenedge_n0",
    "Name": "Hidden Edge",
    "Kind": "Notable",
-   "X": 916,
+   "X": 906,
    "Y": 1137,
    "Mods": [
     {
@@ -48665,7 +48708,8 @@
    "Links": [
     "road_chain_speed_0",
     "travel16_road_chain_speed_0__r70_elem_shatterglass_0_1",
-    "r97_dexstack_s0"
+    "r97_dexstack_s0",
+    "chain_s3"
    ],
    "Fp": "2dff85abae"
   },
@@ -50215,7 +50259,8 @@
    "Region": "seam_60",
    "Links": [
     "voidbound_s2",
-    "r98_focus_k0"
+    "r98_focus_k0",
+    "voidbound_s3"
    ],
    "Fp": "96b2f73190"
   },
@@ -50363,7 +50408,7 @@
    "Id": "om103_mage_iron",
    "Name": "Mastery of Iron",
    "Kind": "Notable",
-   "X": 788,
+   "X": 798,
    "Y": -4651,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Strength_03_Clean",
@@ -50381,8 +50426,8 @@
    "Id": "om103_mage_frost",
    "Name": "Mastery of Frost",
    "Kind": "Notable",
-   "X": -632,
-   "Y": -2056,
+   "X": -623,
+   "Y": -2051,
    "Mods": [
     {
      "Stat": "Feed85_ChillEffect",
@@ -50436,8 +50481,8 @@
    "Id": "om103_mage_frost_2",
    "Name": "Mastery of Frost",
    "Kind": "Notable",
-   "X": 860,
-   "Y": -7020,
+   "X": 865,
+   "Y": -7027,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Element_Ice_01_Clean",
    "Group": "cold",
@@ -50472,7 +50517,7 @@
    "Id": "om103_mage_wind",
    "Name": "Mastery of Wind",
    "Kind": "Notable",
-   "X": -911,
+   "X": -902,
    "Y": -3680,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Speed_03_Clean",
@@ -50490,8 +50535,8 @@
    "Id": "om103_mage_flame",
    "Name": "Mastery of Flame",
    "Kind": "Notable",
-   "X": -65,
-   "Y": -7702,
+   "X": -74,
+   "Y": -7704,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Burninating_01_Clean",
    "Group": "fire",
@@ -50508,8 +50553,8 @@
    "Id": "om103_mage_storm",
    "Name": "Mastery of Storm",
    "Kind": "Notable",
-   "X": 632,
-   "Y": -2056,
+   "X": 623,
+   "Y": -2051,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Map_Lightning_01_Clean",
    "Group": "lightning",
@@ -50526,8 +50571,8 @@
    "Id": "om103_mage_storm_c1",
    "Name": "Mastery of Storm",
    "Kind": "Notable",
-   "X": 701,
-   "Y": -2810,
+   "X": 699,
+   "Y": -2799,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Map_Lightning_01_Clean",
    "Group": "overcharge",
@@ -50544,8 +50589,8 @@
    "Id": "om103_mage_frost_c1",
    "Name": "Mastery of Frost",
    "Kind": "Notable",
-   "X": -704,
-   "Y": -2829,
+   "X": -702,
+   "Y": -2818,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Element_Ice_01_Clean",
    "Group": "permafrost",
@@ -50563,7 +50608,7 @@
    "Name": "Mastery of Spellcraft",
    "Kind": "Notable",
    "X": 0,
-   "Y": -2488,
+   "Y": -2477,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Magic_01_Clean",
    "Group": "spell",
@@ -50580,8 +50625,8 @@
    "Id": "om103_mage_sky",
    "Name": "Mastery of Starfall",
    "Kind": "Notable",
-   "X": 103,
-   "Y": -3810,
+   "X": 101,
+   "Y": -3802,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Map_Star_01_Clean",
    "Group": "starfall",
@@ -50598,8 +50643,8 @@
    "Id": "om103_necromancer_blight_2",
    "Name": "Mastery of Blight",
    "Kind": "Notable",
-   "X": 6520,
-   "Y": -2759,
+   "X": 6524,
+   "Y": -2758,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Poisoned_02_Clean",
    "Group": "affliction",
@@ -50616,8 +50661,8 @@
    "Id": "om103_necromancer_iron",
    "Name": "Mastery of Iron",
    "Kind": "Notable",
-   "X": 3038,
-   "Y": -2893,
+   "X": 3045,
+   "Y": -2886,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Strength_03_Clean",
    "Group": "anvil_oath",
@@ -50652,8 +50697,8 @@
    "Id": "om103_necromancer_spell",
    "Name": "Mastery of Spellcraft",
    "Kind": "Notable",
-   "X": 3726,
-   "Y": -3577,
+   "X": 3736,
+   "Y": -3575,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Element_Air_01_Clean",
    "Group": "conduit",
@@ -50688,8 +50733,8 @@
    "Id": "om103_necromancer_legion_c2",
    "Name": "Mastery of the Legion",
    "Kind": "Notable",
-   "X": 1918,
-   "Y": -1257,
+   "X": 1920,
+   "Y": -1266,
    "Mods": [],
    "Icon": "ICON_DarkFantasyMenus_Skull_02_Clean",
    "Group": "grave",
@@ -50706,8 +50751,8 @@
    "Id": "om103_necromancer_vigour",
    "Name": "Mastery of Vigour",
    "Kind": "Notable",
-   "X": 5001,
-   "Y": -2888,
+   "X": 4991,
+   "Y": -2882,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Vampiric_01_Clean",
    "Group": "leech",
@@ -50742,8 +50787,8 @@
    "Id": "om103_necromancer_legion_c3",
    "Name": "Mastery of the Legion",
    "Kind": "Notable",
-   "X": 2098,
-   "Y": -2025,
+   "X": 2089,
+   "Y": -2017,
    "Mods": [],
    "Icon": "ICON_DarkFantasyMenus_Skull_04_Clean",
    "Group": "ossuary",
@@ -50760,8 +50805,8 @@
    "Id": "om103_necromancer_legion_c4",
    "Name": "Mastery of the Legion",
    "Kind": "Notable",
-   "X": 2098,
-   "Y": -382,
+   "X": 2091,
+   "Y": -376,
    "Mods": [],
    "Icon": "ICON_SM_Wep_Scythe_01_DarkFantasy_Clean",
    "Group": "reaper",
@@ -50796,8 +50841,8 @@
    "Id": "om103_paladin_bulwark",
    "Name": "Mastery of Bulwark",
    "Kind": "Notable",
-   "X": -2176,
-   "Y": -441,
+   "X": -2185,
+   "Y": -436,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Armor_01_Clean",
    "Group": "bulwark",
@@ -50815,7 +50860,7 @@
    "Name": "Mastery of Frost",
    "Kind": "Notable",
    "X": -5039,
-   "Y": -5115,
+   "Y": -5124,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Element_Ice_01_Clean",
    "Group": "cold",
@@ -50832,8 +50877,8 @@
    "Id": "om103_paladin_dawn_c1",
    "Name": "Mastery of Dawn",
    "Kind": "Notable",
-   "X": -2095,
-   "Y": -2029,
+   "X": -2086,
+   "Y": -2021,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Spirit_01_Clean",
    "Group": "dawn",
@@ -50850,7 +50895,7 @@
    "Id": "om103_paladin_wind",
    "Name": "Mastery of Wind",
    "Kind": "Notable",
-   "X": -3937,
+   "X": -3928,
    "Y": -1077,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Speed_03_Clean",
@@ -50868,8 +50913,8 @@
    "Id": "om103_paladin_dawn_c2",
    "Name": "Mastery of Dawn",
    "Kind": "Notable",
-   "X": -1383,
-   "Y": -1626,
+   "X": -1373,
+   "Y": -1627,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Spirit_01_Clean",
    "Group": "faith",
@@ -50886,8 +50931,8 @@
    "Id": "om103_paladin_flame",
    "Name": "Mastery of Flame",
    "Kind": "Notable",
-   "X": -5648,
-   "Y": -4254,
+   "X": -5652,
+   "Y": -4263,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Element_Fire_01_Clean",
    "Group": "fire",
@@ -50940,8 +50985,8 @@
    "Id": "om103_paladin_storm",
    "Name": "Mastery of Storm",
    "Kind": "Notable",
-   "X": -6671,
-   "Y": -3774,
+   "X": -6674,
+   "Y": -3766,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Shocked_01_Clean",
    "Group": "lightning",
@@ -50958,7 +51003,7 @@
    "Id": "om103_paladin_vigour",
    "Name": "Mastery of Vigour",
    "Kind": "Notable",
-   "X": -4774,
+   "X": -4764,
    "Y": -1308,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_DefenseUp_01_Clean",
@@ -50976,8 +51021,8 @@
    "Id": "om103_paladin_bulwark_c1",
    "Name": "Mastery of Bulwark",
    "Kind": "Notable",
-   "X": -2802,
-   "Y": -805,
+   "X": -2791,
+   "Y": -801,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_DefenseUp_02_Clean",
    "Group": "vigil",
@@ -50994,8 +51039,8 @@
    "Id": "om103_paladin_dawn_c3",
    "Name": "Mastery of Dawn",
    "Kind": "Notable",
-   "X": -2229,
-   "Y": -1192,
+   "X": -2236,
+   "Y": -1186,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_FortifiedAttack_01_Clean",
    "Group": "zeal",
@@ -51012,8 +51057,8 @@
    "Id": "om103_ranger_blight",
    "Name": "Mastery of Blight",
    "Kind": "Notable",
-   "X": 2788,
-   "Y": 1247,
+   "X": 2799,
+   "Y": 1250,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Poisoned_02_Clean",
    "Group": "affliction",
@@ -51030,7 +51075,7 @@
    "Id": "om103_ranger_iron",
    "Name": "Mastery of Iron",
    "Kind": "Notable",
-   "X": 3801,
+   "X": 3810,
    "Y": 2916,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Strength_03_Clean",
@@ -51048,8 +51093,8 @@
    "Id": "om103_ranger_snare",
    "Name": "Mastery of the Snare",
    "Kind": "Notable",
-   "X": 2968,
-   "Y": 844,
+   "X": 2979,
+   "Y": 848,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Map_Blacksmith_01_Clean",
    "Group": "artillery",
@@ -51066,8 +51111,8 @@
    "Id": "om103_ranger_hunt",
    "Name": "Mastery of the Hunt",
    "Kind": "Notable",
-   "X": 2161,
-   "Y": 1267,
+   "X": 2154,
+   "Y": 1260,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Inventory_Arrows_01_Clean",
    "Group": "bow",
@@ -51084,7 +51129,7 @@
    "Id": "om103_ranger_frost",
    "Name": "Mastery of Frost",
    "Kind": "Notable",
-   "X": 6770,
+   "X": 6774,
    "Y": 3907,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Element_Ice_01_Clean",
@@ -51102,8 +51147,8 @@
    "Id": "om103_ranger_wind",
    "Name": "Mastery of Wind",
    "Kind": "Notable",
-   "X": 2144,
-   "Y": 336,
+   "X": 2139,
+   "Y": 329,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Stealthy_01_Clean",
    "Group": "evasion",
@@ -51138,8 +51183,8 @@
    "Id": "om103_ranger_storm",
    "Name": "Mastery of Storm",
    "Kind": "Notable",
-   "X": 4983,
-   "Y": 5102,
+   "X": 4980,
+   "Y": 5109,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Shocked_01_Clean",
    "Group": "lightning",
@@ -51156,8 +51201,8 @@
    "Id": "om103_ranger_hunt_c1",
    "Name": "Mastery of the Hunt",
    "Kind": "Notable",
-   "X": 1568,
-   "Y": 1521,
+   "X": 1575,
+   "Y": 1519,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Accuracy_01_Clean",
    "Group": "projectile",
@@ -51174,8 +51219,8 @@
    "Id": "om103_ranger_snare_c1",
    "Name": "Mastery of the Snare",
    "Kind": "Notable",
-   "X": 3248,
-   "Y": 1994,
+   "X": 3243,
+   "Y": 1988,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Map_Blacksmith_01_Clean",
    "Group": "siege",
@@ -51192,8 +51237,8 @@
    "Id": "om103_ranger_spell",
    "Name": "Mastery of Spellcraft",
    "Kind": "Notable",
-   "X": 3806,
-   "Y": 997,
+   "X": 3815,
+   "Y": 1000,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Magic_02_Clean",
    "Group": "sigil",
@@ -51210,8 +51255,8 @@
    "Id": "om103_ranger_snare_2",
    "Name": "Mastery of the Snare",
    "Kind": "Notable",
-   "X": 5648,
-   "Y": 4254,
+   "X": 5652,
+   "Y": 4263,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Map_Target_01_Clean",
    "Group": "trap",
@@ -51228,8 +51273,8 @@
    "Id": "om103_samurai_edge",
    "Name": "Mastery of the Edge",
    "Kind": "Notable",
-   "X": -860,
-   "Y": 7020,
+   "X": -865,
+   "Y": 7027,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Bleeding_01_Clean",
    "Group": "crit",
@@ -51246,8 +51291,8 @@
    "Id": "om103_samurai_edge_2",
    "Name": "Mastery of the Edge",
    "Kind": "Notable",
-   "X": -711,
-   "Y": 2104,
+   "X": -720,
+   "Y": 2109,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Attack_02_Clean",
    "Group": "edge",
@@ -51264,8 +51309,8 @@
    "Id": "om103_samurai_flame",
    "Name": "Mastery of Flame",
    "Kind": "Notable",
-   "X": 869,
-   "Y": 6718,
+   "X": 876,
+   "Y": 6719,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Burninating_01_Clean",
    "Group": "fire",
@@ -51282,8 +51327,8 @@
    "Id": "om103_samurai_stillness",
    "Name": "Mastery of Stillness",
    "Kind": "Notable",
-   "X": 521,
-   "Y": 2226,
+   "X": 513,
+   "Y": 2229,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Spirit_01_Clean",
    "Group": "ki",
@@ -51300,8 +51345,8 @@
    "Id": "om103_samurai_stillness_c1",
    "Name": "Mastery of Stillness",
    "Kind": "Notable",
-   "X": -105,
-   "Y": 3817,
+   "X": -103,
+   "Y": 3809,
    "Mods": [],
    "Icon": "ICON_DarkFantasyMenus_Sword_02_Clean",
    "Group": "mirrorblade",
@@ -51318,7 +51363,7 @@
    "Id": "om103_samurai_spell",
    "Name": "Mastery of Spellcraft",
    "Kind": "Notable",
-   "X": 1199,
+   "X": 1208,
    "Y": 4050,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Magic_02_Clean",
@@ -51354,8 +51399,8 @@
    "Id": "om103_samurai_wind",
    "Name": "Mastery of Wind",
    "Kind": "Notable",
-   "X": 84,
-   "Y": 2539,
+   "X": 94,
+   "Y": 2540,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Speed_03_Clean",
    "Group": "swift",
@@ -51372,7 +51417,7 @@
    "Id": "om103_samurai_snare",
    "Name": "Mastery of the Snare",
    "Kind": "Notable",
-   "X": 1016,
+   "X": 1026,
    "Y": 1137,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Entangled_01_Clean",
@@ -51390,8 +51435,8 @@
    "Id": "om103_samurai_wind_c1",
    "Name": "Mastery of Wind",
    "Kind": "Notable",
-   "X": 748,
-   "Y": 2996,
+   "X": 750,
+   "Y": 3007,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Speed_01_Clean",
    "Group": "windstep",
@@ -51408,8 +51453,8 @@
    "Id": "om103_warrior_iron",
    "Name": "Mastery of Iron",
    "Kind": "Notable",
-   "X": -5191,
-   "Y": 2955,
+   "X": -5196,
+   "Y": 2962,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Armor_01_Clean",
    "Group": "armour",
@@ -51426,8 +51471,8 @@
    "Id": "om103_warrior_fury_c1",
    "Name": "Mastery of Fury",
    "Kind": "Notable",
-   "X": -3344,
-   "Y": 1814,
+   "X": -3336,
+   "Y": 1812,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Element_Air_02_Clean",
    "Group": "channel",
@@ -51444,8 +51489,8 @@
    "Id": "om103_warrior_fury_c2",
    "Name": "Mastery of Fury",
    "Kind": "Notable",
-   "X": -2213,
-   "Y": 2147,
+   "X": -2222,
+   "Y": 2155,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Attack_01_Clean",
    "Group": "cleave",
@@ -51462,8 +51507,8 @@
    "Id": "om103_warrior_edge",
    "Name": "Mastery of the Edge",
    "Kind": "Notable",
-   "X": -975,
-   "Y": 2088,
+   "X": -968,
+   "Y": 2095,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Critical_01_Clean",
    "Group": "crit",
@@ -51480,7 +51525,7 @@
    "Id": "om103_warrior_wind",
    "Name": "Mastery of Wind",
    "Kind": "Notable",
-   "X": -4130,
+   "X": -4120,
    "Y": 1036,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Speed_03_Clean",
@@ -51498,7 +51543,7 @@
    "Id": "om103_warrior_flame",
    "Name": "Mastery of Flame",
    "Kind": "Notable",
-   "X": -2839,
+   "X": -2830,
    "Y": 461,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Element_Fire_01_Clean",
@@ -51516,8 +51561,8 @@
    "Id": "om103_warrior_fury",
    "Name": "Mastery of Fury",
    "Kind": "Notable",
-   "X": -6508,
-   "Y": 2802,
+   "X": -6516,
+   "Y": 2804,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Bleeding_01_Clean",
    "Group": "fury",
@@ -51534,8 +51579,8 @@
    "Id": "om103_warrior_fury_c3",
    "Name": "Mastery of Fury",
    "Kind": "Notable",
-   "X": -872,
-   "Y": 1501,
+   "X": -871,
+   "Y": 1505,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_DamageUp_02_Clean",
    "Group": "fury",
@@ -51552,8 +51597,8 @@
    "Id": "om103_warrior_vigour",
    "Name": "Mastery of Vigour",
    "Kind": "Notable",
-   "X": -2182,
-   "Y": 531,
+   "X": -2189,
+   "Y": 537,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Health_01_Clean",
    "Group": "life",
@@ -51571,7 +51616,7 @@
    "Name": "Mastery of Fury",
    "Kind": "Notable",
    "X": -1471,
-   "Y": 1668,
+   "Y": 1679,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Attack_01_Clean",
    "Group": "melee",
@@ -51588,7 +51633,7 @@
    "Id": "om103_warrior_spell",
    "Name": "Mastery of Spellcraft",
    "Kind": "Notable",
-   "X": -2568,
+   "X": -2558,
    "Y": 2719,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Magic_02_Clean",
@@ -51606,8 +51651,8 @@
    "Id": "om103_warrior_fury_c5",
    "Name": "Mastery of Fury",
    "Kind": "Notable",
-   "X": -2179,
-   "Y": 1245,
+   "X": -2169,
+   "Y": 1243,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Element_Earth_01_Clean",
    "Group": "slam",
@@ -51624,8 +51669,8 @@
    "Id": "om103_warrior_fury_c6",
    "Name": "Mastery of Fury",
    "Kind": "Notable",
-   "X": -2951,
-   "Y": 846,
+   "X": -2962,
+   "Y": 843,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_FortifiedHealth_01_Clean",
    "Group": "warpath",
@@ -51642,7 +51687,7 @@
    "Id": "om103_hub_snare",
    "Name": "Mastery of the Snare",
    "Kind": "Notable",
-   "X": 411,
+   "X": 420,
    "Y": 311,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Map_Blacksmith_01_Clean",
@@ -51660,7 +51705,7 @@
    "Id": "om103_hub_fury",
    "Name": "Mastery of Fury",
    "Kind": "Notable",
-   "X": -211,
+   "X": -202,
    "Y": 311,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_AttackUp_01_Clean",
@@ -51678,7 +51723,7 @@
    "Id": "om103_hub_storm",
    "Name": "Mastery of Storm",
    "Kind": "Notable",
-   "X": 411,
+   "X": 420,
    "Y": -311,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Map_Lightning_01_Clean",
@@ -51696,8 +51741,8 @@
    "Id": "om103_hub_frost",
    "Name": "Mastery of Frost",
    "Kind": "Notable",
-   "X": -37,
-   "Y": -338,
+   "X": -36,
+   "Y": -337,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Element_Ice_01_Clean",
    "Group": "permafrost",
@@ -51714,7 +51759,7 @@
    "Id": "om103_hub_snare_c1",
    "Name": "Mastery of the Snare",
    "Kind": "Notable",
-   "X": -325,
+   "X": -316,
    "Y": -114,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Map_Blacksmith_01_Clean",
@@ -51732,7 +51777,7 @@
    "Id": "om103_hub_stillness",
    "Name": "Mastery of Stillness",
    "Kind": "Notable",
-   "X": 214,
+   "X": 224,
    "Y": 425,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Speed_03_Clean",
@@ -51751,7 +51796,7 @@
    "Name": "Mastery of Blight",
    "Kind": "Notable",
    "X": 3824,
-   "Y": -359,
+   "Y": -350,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Poisoned_02_Clean",
    "Group": "affliction",
@@ -51786,8 +51831,8 @@
    "Id": "om103_seam_180_iron",
    "Name": "Mastery of Iron",
    "Kind": "Notable",
-   "X": -6989,
-   "Y": -1106,
+   "X": -6977,
+   "Y": -1105,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_DefenseUp_03_Clean",
    "Group": "anvil_oath",
@@ -51858,7 +51903,7 @@
    "Id": "om103_seam_300_fury",
    "Name": "Mastery of Fury",
    "Kind": "Notable",
-   "X": 1613,
+   "X": 1622,
    "Y": 3536,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_DamageUp_02_Clean",
@@ -51876,8 +51921,8 @@
    "Id": "om103_seam_300_snare",
    "Name": "Mastery of the Snare",
    "Kind": "Notable",
-   "X": 1737,
-   "Y": 2846,
+   "X": 1747,
+   "Y": 2848,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Entangled_01_Clean",
    "Group": "trap",
@@ -51912,7 +51957,7 @@
    "Id": "om103_seam_60_fury",
    "Name": "Mastery of Fury",
    "Kind": "Notable",
-   "X": 2418,
+   "X": 2428,
    "Y": -3074,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_DamageUp_02_Clean",
@@ -52795,7 +52840,8 @@
    "Region": "Mage",
    "Links": [
     "spell_s6",
-    "lane112_mage_i3"
+    "lane112_mage_i3",
+    "permafrost_entry"
    ],
    "Fp": "2b89134ff0"
   },
@@ -56125,7 +56171,8 @@
    "Region": "Samurai",
    "Links": [
     "orbit_entry",
-    "lane112_samu_o7"
+    "lane112_samu_o7",
+    "orbit_s0"
    ],
    "Fp": "9c1f5d1393"
   },
@@ -57158,7 +57205,8 @@
    "Region": "Warrior",
    "Links": [
     "lane112_warr_o8",
-    "lane112_warr_o10"
+    "lane112_warr_o10",
+    "r113_rime_warr_n0"
    ],
    "Fp": "a02cf168f2"
   },
@@ -57185,7 +57233,8 @@
     "lane112_warr_o9",
     "lane112_warr_o11",
     "r113_storm_warr_s0",
-    "r113_rime_warr_s0"
+    "r113_rime_warr_s0",
+    "waygate_warrior"
    ],
    "Fp": "a1314358fc"
   },
@@ -58091,7 +58140,8 @@
    "Region": "Paladin",
    "Links": [
     "faith_entry",
-    "faith_s1"
+    "faith_s1",
+    "faith_n0"
    ],
    "Fp": "4e8454b542"
   },
@@ -59160,7 +59210,8 @@
    "Region": "seam_60",
    "Links": [
     "r113_crit_necr_s1",
-    "road_conduit_voidbound_1"
+    "road_conduit_voidbound_1",
+    "road_conduit_voidbound_0"
    ],
    "Fp": "7ff0b4f2c2"
   },
@@ -59590,7 +59641,9 @@
    "ClassStart": "",
    "Region": "Warrior",
    "Links": [
-    "r113_rime_warr_s1"
+    "r113_rime_warr_s1",
+    "lane112_warr_o9",
+    "fury_s0"
    ],
    "Fp": "c5ffef81eb"
   },
@@ -59680,7 +59733,8 @@
    "Region": "seam_300",
    "Links": [
     "r113_rime_samu_s1",
-    "road_orbit_shatter_1"
+    "road_orbit_shatter_1",
+    "road_orbit_shatter_0"
    ],
    "Fp": "cac322c0c8"
   },
@@ -59702,7 +59756,7 @@
    "X": -5701,
    "Y": -3761,
    "Group": "fire",
-   "Text": "Bonuses to both elements raise the converted share. Fire crit, area and ailment lines apply once Fire is most of the hit. No conversion with Brutality or Melee Physical damage linked.",
+   "Text": "Physical and Fire bonuses both raise the converted share. Fire crit, area and ailment lines apply once Fire is most of the hit. No conversion with Brutality or Melee Physical damage linked.",
    "ClassStart": "",
    "Region": "Paladin",
    "Links": [
@@ -59729,7 +59783,7 @@
    "X": 1410,
    "Y": 2133,
    "Group": "cold",
-   "Text": "Bonuses to both elements raise the converted share. Cold crit, area and ailment lines apply once Cold is most of the hit. No conversion with Brutality or Melee Physical damage linked.",
+   "Text": "Physical and Cold bonuses both raise the converted share. Cold crit, area and ailment lines apply once Cold is most of the hit. No conversion with Brutality or Melee Physical damage linked.",
    "ClassStart": "",
    "Region": "Ranger",
    "Links": [
@@ -59755,7 +59809,7 @@
    "X": 397,
    "Y": -1983,
    "Group": "lightning",
-   "Text": "Bonuses to both elements raise the converted share. Lightning crit, area and ailment lines apply once Lightning is most of the hit. No conversion with Brutality or Melee Physical damage linked.",
+   "Text": "Physical and Lightning bonuses both raise the converted share. Lightning crit, area and ailment lines apply once Lightning is most of the hit. No conversion with Brutality or Melee Physical damage linked.",
    "ClassStart": "",
    "Region": "Mage",
    "Links": [
@@ -59810,7 +59864,7 @@
    "X": 4759,
    "Y": -1096,
    "Group": "poison",
-   "Text": "Bonuses to both elements raise the converted share. Poison crit, area and ailment lines apply once Poison is most of the hit.",
+   "Text": "Physical and Poison bonuses both raise the converted share. Poison crit, area and ailment lines apply once Poison is most of the hit.",
    "ClassStart": "",
    "Region": "Necromancer",
    "Links": [
@@ -60582,7 +60636,7 @@
       "StandingStill",
       "Slam"
      ],
-     "Value": 15
+     "Value": 10
     }
    ],
    "Id": "r113_persona_warr_anvil",
@@ -60590,14 +60644,14 @@
    "X": -1871,
    "Y": 1080,
    "Group": "slam",
-   "Text": "After you stand still for 0.8 seconds, your Slam skills deal 15% more damage until you move.",
+   "Text": "After you stand still for 0.8 seconds, your Slam skills deal 10% more damage until you move.",
    "ClassStart": "",
    "Region": "Warrior",
    "Links": [
     "slam_entry",
     "slam_s6"
    ],
-   "Fp": "36e9b7d67d"
+   "Fp": "f1056ccc32"
   },
   {
    "Name": "Red Rage",
@@ -61137,7 +61191,7 @@
     }
    ],
    "Group": "fire",
-   "Text": "Fresh corpses inside your Pyre of Faith burn out as holy fire: one every half second bursts in 2 metres for Fire damage equal to a share of its life (4% below Rupture Level 50, 2% at 50-99, 18% at 100-149, 33% at 150-199, 120% from 200).",
+   "Text": "Fresh corpses inside your Pyre of Faith burn out as holy fire: one every half second bursts in 2 metres for Fire damage equal to a share of its life (4.2% below Rupture Level 50, 8.4% at 50-99, 9.6% from 100).",
    "ClassStart": "",
    "Region": "Paladin",
    "X": -5647,
@@ -61633,7 +61687,8 @@
    "Y": 5455,
    "Links": [
     "r114_chaos_samu_s0",
-    "r114_chaos_samu_n0"
+    "r114_chaos_samu_n0",
+    "road_attack_crit_0"
    ],
    "Fp": "1cde13f053"
   },
@@ -62057,7 +62112,7 @@
     }
    ],
    "Group": "keystone",
-   "Text": "25% of your Melee hit damage is laid on the enemy as Entropy instead of striking. Your Slam hits implode your Entropy on each enemy they strike at once as Chaos damage, 20% more.",
+   "Text": "25% of your Melee hit damage is laid on the enemy as Entropy instead of striking. Your Slam hits implode your Entropy on each enemy they strike at once as Chaos damage, 5% more.",
    "Price": "15% less maximum Life.",
    "ClassStart": "",
    "Region": "Warrior",
@@ -62080,7 +62135,7 @@
      "Tags": [
       "Projectile"
      ],
-     "Value": 20
+     "Value": 10
     },
     {
      "Stat": "EntropyMarks",
@@ -62092,7 +62147,7 @@
     }
    ],
    "Group": "keystone",
-   "Text": "20% of your Projectile hit damage is laid on the enemy as Entropy instead of striking. When an enemy reaches 10 Hunter's Marks, your Entropy on it implodes at once as Chaos damage, 25% more, and its Marks are spent.",
+   "Text": "10% of your Projectile hit damage (not Rain of Arrows) is laid on the enemy as Entropy instead of striking. When an enemy reaches 10 Hunter's Marks, your Entropy on it implodes at once as Chaos damage, 25% more, and its Marks are spent.",
    "Price": "Your Projectiles that lay Entropy do not Chain or Fork.",
    "ClassStart": "",
    "Region": "Ranger",
@@ -62101,7 +62156,7 @@
    "Links": [
     "rain_s1"
    ],
-   "Fp": "146ba9b49e"
+   "Fp": "87fe58c8c6"
   },
   {
    "Id": "r114_chaos_rang_quarrysdebt",
@@ -62113,7 +62168,7 @@
      "Stat": "EntropyMarkedMulti",
      "Mode": "Flat",
      "Tags": [],
-     "Value": 25
+     "Value": 12
     }
    ],
    "Group": "chaos114",
@@ -62125,7 +62180,7 @@
    "Links": [
     "rain_s0"
    ],
-   "Fp": "33cc22af6a"
+   "Fp": "a4a78fb12a"
   },
   {
    "Id": "r114_chaos_pala_unhallowed",
@@ -62150,6 +62205,71 @@
     "aegis_entry"
    ],
    "Fp": "f1aa83d813"
+  },
+  {
+   "Id": "r124_corpse_necr_s0",
+   "Name": "Funeral Ash",
+   "Kind": "Small",
+   "Icon": "ICON_DarkFantasy_Map_Skull_01_Clean",
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Corpse"
+     ],
+     "Value": 12
+    }
+   ],
+   "Group": "conduit",
+   "Text": "",
+   "ClassStart": "",
+   "Region": "Necromancer",
+   "X": 3261,
+   "Y": -3588,
+   "Links": [
+    "conduit_entry",
+    "r124_corpse_necr_n0"
+   ],
+   "Fp": "01e8b3ca3a"
+  },
+  {
+   "Id": "r124_corpse_necr_n0",
+   "Name": "Pyre Procession",
+   "Kind": "Notable",
+   "Icon": "ICON_DarkFantasy_Status_Burninating_01_Clean",
+   "Mods": [
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Corpse"
+     ],
+     "Value": 30
+    },
+    {
+     "Stat": "HuskCount",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1
+    },
+    {
+     "Stat": "PyreChain",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1
+    }
+   ],
+   "Group": "conduit",
+   "Text": "",
+   "ClassStart": "",
+   "Region": "Necromancer",
+   "X": 3172,
+   "Y": -3833,
+   "Links": [
+    "r124_corpse_necr_s0"
+   ],
+   "Fp": "b6169d1c23"
   }
  ]
 }

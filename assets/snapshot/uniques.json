@@ -3812,8 +3812,8 @@
       "Tags": [],
       "Value": 0
      },
-     "Min": 70,
-     "Max": 90
+     "Min": 35,
+     "Max": 45
     },
     {
      "Mod": {
@@ -3844,8 +3844,8 @@
       ],
       "Value": 0
      },
-     "Min": 7,
-     "Max": 10
+     "Min": 5,
+     "Max": 7
     },
     {
      "Mod": {
@@ -3866,8 +3866,8 @@
       ],
       "Value": 0
      },
-     "Min": 2,
-     "Max": 2
+     "Min": 1,
+     "Max": 1
     }
    ],
    "Weapon": "u_starcaller",
@@ -6568,6 +6568,18 @@
      },
      "Min": 1,
      "Max": 1
+    },
+    {
+     "Mod": {
+      "Stat": "HuskRise",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 0,
+      "Value2": 0
+     },
+     "Min": 4,
+     "Max": 4,
+     "Text": "Your Husks rise as Skeleton Warriors for {v} seconds, then die"
     }
    ],
    "Jewel": "r_charnel_bell",
@@ -6576,6 +6588,7 @@
     1.0,
     1.0,
     1.35,
+    1.0,
     1.0
    ]
   },
@@ -6724,7 +6737,7 @@
    "Name": "Halo of the Restless Saint",
    "BaseId": "brigandine_helm_4",
    "Level": 52,
-   "DropWeight": 60,
+   "DropWeight": 4,
    "Flavour": "She stopped walking at last. The light never did.",
    "Mods": [
     {
@@ -6956,8 +6969,8 @@
       "Tags": [],
       "Value": 0
      },
-     "Min": 25,
-     "Max": 30
+     "Min": 15,
+     "Max": 20
     },
     {
      "Mod": {
@@ -6966,8 +6979,8 @@
       "Tags": [],
       "Value": 0
      },
-     "Min": 25,
-     "Max": 35
+     "Min": 12,
+     "Max": 18
     },
     {
      "Mod": {
@@ -6976,8 +6989,8 @@
       "Tags": [],
       "Value": 0
      },
-     "Min": 20,
-     "Max": 30
+     "Min": 10,
+     "Max": 15
     },
     {
      "Mod": {
@@ -7589,8 +7602,8 @@
       "Tags": [],
       "Value": 0
      },
-     "Min": 30,
-     "Max": 40
+     "Min": 20,
+     "Max": 25
     },
     {
      "Mod": {
@@ -7599,8 +7612,8 @@
       "Tags": [],
       "Value": 0
      },
-     "Min": 35,
-     "Max": 45
+     "Min": 18,
+     "Max": 22
     },
     {
      "Mod": {
@@ -7609,8 +7622,8 @@
       "Tags": [],
       "Value": 0
      },
-     "Min": 20,
-     "Max": 30
+     "Min": 10,
+     "Max": 15
     },
     {
      "Mod": {
@@ -8998,7 +9011,7 @@
      },
      "Min": 1,
      "Max": 1,
-     "Text": "When you land a Critical Strike, each of your Ballistas fires an extra volley at that enemy (each Ballista at most once every 2 seconds). Each shot a Ballista or totem of yours fires in a row at the same enemy deals 2% more damage, up to 50% more"
+     "Text": "When you land a Critical Strike, each of your Ballistas fires an extra volley at that enemy (each Ballista at most once every 2 seconds). Each shot a Ballista or totem of yours fires in a row at the same enemy deals 2% more damage, up to 10% more"
     },
     {
      "Mod": {
@@ -10360,8 +10373,8 @@
       "Tags": [],
       "Value": 0
      },
-     "Min": 25,
-     "Max": 25
+     "Min": 15,
+     "Max": 15
     },
     {
      "Mod": {
@@ -10635,7 +10648,7 @@
      "Max": 100,
      "Min2": 0.5,
      "Max2": 0.5,
-     "Text": "Every 4th Melee hit splits the floor: bone spikes erupt under enemies around you for 80% of the hit (at most once every 0.5 seconds, 3 metre radius)"
+     "Text": "Every 4th Melee hit splits the floor: bone spikes erupt under up to 4 enemies around you for 80% of the hit (at most once every 0.5 seconds, 3 metre radius)"
     }
    ],
    "Forged": [
@@ -11780,7 +11793,7 @@
   },
   {
    "Id": "pinnacle_void_crown",
-   "Name": "The Hollow Star",
+   "Name": "The a secret Oathword",
    "BaseId": "silk_helm_7",
    "Level": 84,
    "DropWeight": 0,
@@ -13602,7 +13615,7 @@
      "Max": 1
     }
    ],
-   "Weapon": "u_cinderwick"
+   "Weapon": "u_thunderchord"
   },
   {
    "Id": "kingbreaker_primal",
@@ -14374,8 +14387,8 @@
       "Tags": [],
       "Value": 0
      },
-     "Min": -30,
-     "Max": -25
+     "Min": -20,
+     "Max": -15
     },
     {
      "Mod": {
@@ -16948,8 +16961,8 @@
       "Value": 0,
       "Value2": 0
      },
-     "Min": 3,
-     "Max": 4,
+     "Min": 1,
+     "Max": 2,
      "Text": "Ballistas and Totems deal {v}% more Damage for each Ballista or Totem you have"
     }
    ],
@@ -17447,7 +17460,7 @@
    "Name": "Quarrybreaker Fists",
    "BaseId": "plate_gloves_4",
    "Level": 40,
-   "DropWeight": 25,
+   "DropWeight": 4,
    "Flavour": "One blow for the stone. One more to be sure.",
    "Mods": [
     {
@@ -18591,6 +18604,18 @@
      "Min": 2,
      "Max": 3,
      "Text": "Pyre Burst leaps on to {v} more fresh corpses"
+    },
+    {
+     "Mod": {
+      "Stat": "BossHusk",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 0,
+      "Value2": 0
+     },
+     "Min": 1,
+     "Max": 1,
+     "Text": "Your hits on a boss leave a Husk at its feet (at most 1 a second)"
     }
    ],
    "Forged": [
@@ -18598,6 +18623,7 @@
     1.25,
     1.25,
     1.25,
+    1.0,
     1.0
    ],
    "Weapon": "u_grave_psalter"
@@ -25344,7 +25370,7 @@
    "Id": "u200_rotfang_cleaver",
    "Art": "ra_rotfang_cleaver",
    "Name": "Rotfang Cleaver",
-   "BaseId": "ct_cleave_axe1h_8",
+   "BaseId": "axe1h_8",
    "Level": 78,
    "DropWeight": 70,
    "Flavour": "The butcher stopped washing it. The meat stopped needing salt.",
@@ -26098,7 +26124,7 @@
    "Id": "u200_firebrand_codex",
    "Art": "ra_firebrand_codex",
    "Name": "Firebrand Codex",
-   "BaseId": "ct_lore_tome_5",
+   "BaseId": "tome_5",
    "Level": 66,
    "DropWeight": 70,
    "Flavour": "The first writing was ink. The second was fire.",
@@ -26186,7 +26212,7 @@
    "Id": "u200_raijin_s_fist",
    "Art": "ra_raijin_s_fist",
    "Name": "Raijin's Fist",
-   "BaseId": "ct_knuckle_fist_6",
+   "BaseId": "fist_6",
    "Level": 74,
    "DropWeight": 70,
    "Flavour": "The storm god boxes. A sword would only slow him down.",
@@ -26293,7 +26319,7 @@
    "Id": "u200_marrow_reliquary",
    "Art": "ra_marrow_reliquary",
    "Name": "Marrow Reliquary",
-   "BaseId": "ct_lore_tome_5",
+   "BaseId": "tome_5",
    "Level": 66,
    "DropWeight": 70,
    "Flavour": "The lance stops. The bone does not.",
@@ -26453,7 +26479,7 @@
    "Id": "u200_carrion_lantern",
    "Art": "ra_carrion_lantern",
    "Name": "Carrion Lantern",
-   "BaseId": "ct_lore_tome_5",
+   "BaseId": "tome_5",
    "Level": 66,
    "DropWeight": 70,
    "Flavour": "It burns what the dead breathe out.",
@@ -26963,7 +26989,7 @@
    "Id": "u200_bloodmoon_quiver",
    "Art": "u200_bloodmoon_quiver",
    "Name": "Bloodmoon Quiver",
-   "BaseId": "ct_volley_volley_quiver",
+   "BaseId": "volley_quiver",
    "Level": 60,
    "DropWeight": 70,
    "Flavour": "The moon drinks first. The hunter drinks what it leaves.",
@@ -27035,7 +27061,7 @@
    "Id": "u200_bloodfletch_quiver",
    "Art": "u200_bloodfletch_quiver",
    "Name": "Bloodfletch Quiver",
-   "BaseId": "ct_volley_volley_quiver",
+   "BaseId": "volley_quiver",
    "Level": 62,
    "DropWeight": 70,
    "Flavour": "The first man it passes through only warns the second.",
@@ -27985,7 +28011,7 @@
    "Id": "u200_ember_tipped_quiver",
    "Art": "u200_ember_tipped_quiver",
    "Name": "Ember-Tipped Quiver",
-   "BaseId": "ct_volley_volley_quiver",
+   "BaseId": "volley_quiver",
    "Level": 60,
    "DropWeight": 70,
    "Flavour": "The fletcher dipped each head in the hearth. The hearth has not gone out since.",
@@ -29029,7 +29055,7 @@
    "Id": "u200_kitsune_fire_claws",
    "Art": "ra_kitsune_fire_claws",
    "Name": "Kitsune-Fire Claws",
-   "BaseId": "ct_rend_claw_7",
+   "BaseId": "claw_7",
    "Level": 76,
    "DropWeight": 25,
    "Flavour": "Nine tails, the stories say. Nobody who counted them wrote it down.",
@@ -29353,8 +29379,8 @@
       "Tags": [],
       "Value": 0
      },
-     "Min": -20,
-     "Max": -20
+     "Min": -15,
+     "Max": -15
     },
     {
      "Mod": {
@@ -29781,7 +29807,7 @@
    "Id": "u200_stormcaller_s_fletching",
    "Art": "u200_stormcaller_s_fletching",
    "Name": "Stormcaller's Fletching",
-   "BaseId": "ct_volley_stormfeather_quiver",
+   "BaseId": "stormfeather_quiver",
    "Level": 62,
    "DropWeight": 70,
    "Flavour": "The storm keeps count of everyone it has touched.",
@@ -29914,7 +29940,7 @@
    "Id": "u200_the_prismatic_codex",
    "Art": "ra_the_prismatic_codex",
    "Name": "The Prismatic Codex",
-   "BaseId": "ct_lore_tome_5",
+   "BaseId": "tome_5",
    "Level": 70,
    "DropWeight": 25,
    "Flavour": "Hold it up to the storm. It hands you back winter.",
@@ -30328,7 +30354,7 @@
    "Id": "u200_mamushi_knuckles",
    "Art": "ra_mamushi_knuckles",
    "Name": "Mamushi Knuckles",
-   "BaseId": "ct_knuckle_fist_6",
+   "BaseId": "fist_6",
    "Level": 74,
    "DropWeight": 70,
    "Flavour": "The viper does not hurry. It has already bitten.",
@@ -31470,8 +31496,8 @@
       "Value": 0,
       "Value2": 0
      },
-     "Min": 4,
-     "Max": 4,
+     "Min": 2,
+     "Max": 2,
      "Text": "Ballistas and Totems deal {v}% more Damage for each Ballista or Totem you have"
     },
     {
@@ -32134,6 +32160,18 @@
      },
      "Min": 10,
      "Max": 20
+    },
+    {
+     "Mod": {
+      "Stat": "HuskRise",
+      "Mode": "Flat",
+      "Tags": [],
+      "Value": 0,
+      "Value2": 0
+     },
+     "Min": 5,
+     "Max": 5,
+     "Text": "Your Husks rise as Skeleton Warriors for {v} seconds, then die"
     }
    ],
    "Jewel": "r_charnel_bell",
@@ -32142,6 +32180,7 @@
     1.0,
     1.0,
     1.35,
+    1.0,
     1.0,
     1.0,
     1.0
@@ -33208,7 +33247,7 @@
      },
      "Min": 0,
      "Max": 0,
-     "Text": "Grants Backdraft: your Fire hits on Ignited enemies have +40% to final critical strike chance and keep their full critical bonus; your Fire hits on enemies that are not Ignited have 25% less critical strike chance"
+     "Text": "Grants Backdraft: your Fire hits on Ignited enemies have +12% to final critical strike chance and keep their full critical bonus; your Fire hits on enemies that are not Ignited have 25% less critical strike chance"
     },
     {
      "Mod": {
@@ -33278,7 +33317,7 @@
      },
      "Min": 0,
      "Max": 0,
-     "Text": "Grants Contagion of the Oath: when an enemy you Poisoned dies, up to 8 of its Poisons move to the nearest enemy within 4.5 metres, keeping their time, once per death"
+     "Text": "Grants Contagion of the Oath: when an enemy you Poisoned dies, up to 8 of its Poisons move to the nearest enemy within 4.5 metres, keeping their time, once per death and up to 6 deaths a second"
     },
     {
      "Mod": {

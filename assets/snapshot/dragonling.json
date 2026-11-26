@@ -3700,7 +3700,7 @@
         "Value": 30
        }
       ],
-      "Text": "+30% chance to Ignite with Fire hits  ·  your Fire hits on Ignited enemies have +40% to final critical strike chance and keep their full critical bonus  ·  your Fire hits on enemies that are not Ignited have 25% less critical strike chance"
+      "Text": "+30% chance to Ignite with Fire hits  ·  your Fire hits on Ignited enemies have +12% to final critical strike chance and keep their full critical bonus  ·  your Fire hits on enemies that are not Ignited have 25% less critical strike chance"
      }
     },
     {
@@ -9490,7 +9490,7 @@
        "Stat": "SkyfallRepeat",
        "Mode": "Flat",
        "Tags": [],
-       "Value": 15
+       "Value": 8
       },
       {
        "Stat": "Damage",
@@ -9501,7 +9501,7 @@
        "Value": 45
       }
      ],
-     "Text": "Skyfall strikes 1 more time for 15% of its damage  ·  Skyfall deals 45% increased damage"
+     "Text": "Skyfall strikes 1 more time for 8% of its damage  ·  Skyfall deals 45% increased damage"
     },
     {
      "Id": "paladin_oathguard_1",
@@ -10852,7 +10852,7 @@
         "Value": -4
        }
       ],
-      "Text": "When you block a hit, the attacker within 3 m takes Physical damage equal to your Armour plus your maximum Life, grown by your increased and more Physical attack damage (up to 4 times a second)  ·  4% less chance to block"
+      "Text": "When you block a hit, the attacker within 3 m and enemies within 1.2 m of it take Physical damage equal to your Armour plus your maximum Life, grown by your increased and more Physical attack damage (up to 4 times a second)  ·  4% less chance to block"
      },
      "Pos76": {
       "Mods": [
@@ -10865,7 +10865,7 @@
         "Value": 1
        }
       ],
-      "Text": "When you block a hit, the attacker within 3 m takes Physical damage equal to your Armour plus your maximum Life, grown by your increased and more Physical attack damage (up to 4 times a second)"
+      "Text": "When you block a hit, the attacker within 3 m and enemies within 1.2 m of it take Physical damage equal to your Armour plus your maximum Life, grown by your increased and more Physical attack damage (up to 4 times a second)"
      }
     },
     {
@@ -11217,7 +11217,7 @@
         "Value": 50
        }
       ],
-      "Text": "When you block, the ground 3 m around you is hallowed for 3 s (once every 2 s), and enemies on hallowed ground deal 15% less damage to you, and your Auras hold a third less mana  ·  10% less maximum Life"
+      "Text": "When you block, the ground 3 m around you is hallowed for 3 s (once every 2 s): enemies on it deal 15% less damage to you and take 10% more damage, your hits on them gain +10% critical strike chance, and your Auras hold a third less mana  ·  10% less maximum Life"
      },
      "Pos76": {
       "Mods": [
@@ -11238,7 +11238,7 @@
         "Value": 50
        }
       ],
-      "Text": "When you block, the ground 3 m around you is hallowed for 3 s (once every 2 s), and enemies on hallowed ground deal 15% less damage to you, and your Auras hold a third less mana"
+      "Text": "When you block, the ground 3 m around you is hallowed for 3 s (once every 2 s): enemies on it deal 15% less damage to you and take 10% more damage, your hits on them gain +10% critical strike chance, and your Auras hold a third less mana"
      }
     },
     {
@@ -12492,7 +12492,7 @@
         "Value": -10
        }
       ],
-      "Text": "When an enemy you poisoned dies, up to 8 of its Poisons move to the nearest enemy within 4.5 m, keeping their time, once per death (a poison Oathword's jump on that death takes its place)  ·  10% reduced Poison damage"
+      "Text": "When an enemy you poisoned dies, up to 8 of its Poisons move to the nearest enemy within 4.5 m, keeping their time, once per death and up to 6 deaths a second (a poison Oathword's jump on that death takes its place)  ·  10% reduced Poison damage"
      },
      "Pos76": {
       "Mods": [
@@ -12505,7 +12505,7 @@
         "Value": 1
        }
       ],
-      "Text": "When an enemy you poisoned dies, up to 8 of its Poisons move to the nearest enemy within 4.5 m, keeping their time, once per death (a poison Oathword's jump on that death takes its place)"
+      "Text": "When an enemy you poisoned dies, up to 8 of its Poisons move to the nearest enemy within 4.5 m, keeping their time, once per death and up to 6 deaths a second (a poison Oathword's jump on that death takes its place)"
      }
     },
     {
@@ -13802,7 +13802,7 @@
    },
    "Backdraft": {
     "NoCritOther": 0,
-    "BigCrit": 40,
+    "BigCrit": 12,
     "OtherCritLess": 25
    },
    "Tempest": {
@@ -19940,7 +19940,7 @@
         "Value": 30
        }
       ],
-      "Text": "+30% chance to Ignite with Fire hits  ·  your Fire hits on Ignited enemies have +40% to final critical strike chance and keep their full critical bonus  ·  your Fire hits on enemies that are not Ignited have 25% less critical strike chance",
+      "Text": "+30% chance to Ignite with Fire hits  ·  your Fire hits on Ignited enemies have +12% to final critical strike chance and keep their full critical bonus  ·  your Fire hits on enemies that are not Ignited have 25% less critical strike chance",
       "Plumb": "E",
       "Ship": true,
       "From": "mage_pyromancer_fang_notable"
@@ -20300,10 +20300,12 @@
       ],
       "Mods": [
        {
-        "Stat": "TotemCount",
-        "Mode": "Flat",
-        "Tags": [],
-        "Value": 1
+        "Stat": "Damage",
+        "Mode": "Inc",
+        "Tags": [
+         "Totem"
+        ],
+        "Value": 15
        },
        {
         "Stat": "Damage",
@@ -20314,7 +20316,7 @@
         "Value": 24
        }
       ],
-      "Text": "+1 Totem  ·  24% increased Spell damage",
+      "Text": "15% increased Totem damage  ·  24% increased Spell damage",
       "Plumb": "E",
       "Ship": true,
       "From": "mage_arcanist_notable"
@@ -26028,7 +26030,7 @@
         "Stat": "SkyfallRepeat",
         "Mode": "Flat",
         "Tags": [],
-        "Value": 15
+        "Value": 8
        },
        {
         "Stat": "Damage",
@@ -26039,7 +26041,7 @@
         "Value": 45
        }
       ],
-      "Text": "Skyfall strikes 1 more time for 15% of its damage  ·  Skyfall deals 45% increased damage",
+      "Text": "Skyfall strikes 1 more time for 8% of its damage  ·  Skyfall deals 45% increased damage",
       "Plumb": "E",
       "Ship": true,
       "From": "paladin_judge_notable"
@@ -26492,7 +26494,7 @@
         "Value": 1
        }
       ],
-      "Text": "When you block a hit, the attacker within 3 m takes Physical damage equal to your Armour plus your maximum Life, grown by your increased and more Physical attack damage (up to 4 times a second)",
+      "Text": "When you block a hit, the attacker within 3 m and enemies within 1.2 m of it take Physical damage equal to your Armour plus your maximum Life, grown by your increased and more Physical attack damage (up to 4 times a second)",
       "Plumb": "E",
       "Ship": true,
       "From": "paladin_oathguard_fang_notable"
@@ -26648,17 +26650,17 @@
         "Value": 50
        }
       ],
-      "Text": "When you block, the ground 3 m around you is hallowed for 3 s (once every 2 s), and enemies on hallowed ground deal 15% less damage to you, and your Auras hold a third less mana",
+      "Text": "When you block, the ground 3 m around you is hallowed for 3 s (once every 2 s): enemies on it deal 15% less damage to you and take 10% more damage, your hits on them gain +10% critical strike chance, and your Auras hold a third less mana",
       "Plumb": "E",
       "Ship": true,
       "From": "paladin_oathguard_capstone"
      },
      {
       "Id": "paladin_a2_oathguard_step_6",
-      "Name": "Sacred Ward",
+      "Name": "Sworn Host",
       "Kind": "Small",
       "Path": "Oathguard",
-      "Icon": "resist_S",
+      "Icon": "bulwark_S",
       "X": -147.7,
       "Y": -26.0,
       "Links": [
@@ -26666,17 +26668,21 @@
       ],
       "Mods": [
        {
-        "Stat": "Resist",
-        "Mode": "Flat",
-        "Tags": [
-         "Elemental"
-        ],
-        "Value": 10
+        "Stat": "MinionDamage",
+        "Mode": "Inc",
+        "Tags": [],
+        "Value": 30
+       },
+       {
+        "Stat": "MinionLife",
+        "Mode": "Inc",
+        "Tags": [],
+        "Value": 15
        }
       ],
-      "Text": "+10% to elemental resistances",
+      "Text": "Minions deal 30% increased damage  ·  Minions have 15% increased life",
       "From": "paladin_oathguard_scale_2",
-      "Ship": false
+      "Ship": true
      },
      {
       "Id": "paladin_a2_oathguard_oath_echo",
@@ -26689,10 +26695,33 @@
       "Links": [
        "paladin_a2_oathguard_step_6"
       ],
-      "Mods": [],
-      "Text": "Your Vows reach your minions and totems within 10 m",
-      "Plumb": "M",
-      "Ship": false
+      "Mods": [
+       {
+        "Stat": "HolyElementalMore",
+        "Mode": "Flat",
+        "Tags": [],
+        "Value": 250
+       },
+       {
+        "Stat": "CritChance",
+        "Mode": "Inc",
+        "Tags": [
+         "Minion"
+        ],
+        "Value": 60
+       },
+       {
+        "Stat": "CritMulti",
+        "Mode": "Flat",
+        "Tags": [
+         "Minion"
+        ],
+        "Value": 10
+       }
+      ],
+      "Text": "Your Holy Elementals deal 250% more damage  ·  Minions have 60% increased critical strike chance and +10% to critical strike multiplier",
+      "Plumb": "S",
+      "Ship": true
      },
      {
       "Id": "paladin_a2_oathguard_war",
@@ -28145,7 +28174,7 @@
         "Value": 1
        }
       ],
-      "Text": "When an enemy you poisoned dies, up to 8 of its Poisons move to the nearest enemy within 4.5 m, keeping their time, once per death (a poison Oathword's jump on that death takes its place)",
+      "Text": "When an enemy you poisoned dies, up to 8 of its Poisons move to the nearest enemy within 4.5 m, keeping their time, once per death and up to 6 deaths a second (a poison Oathword's jump on that death takes its place)",
       "Plumb": "E",
       "Ship": true,
       "From": "necromancer_plague_scale_notable"
