@@ -215,6 +215,12 @@ input[type="range"]:disabled{opacity:.45;cursor:not-allowed}
 .stat b{display:block;font-size:17px;font-variant-numeric:tabular-nums}
 .stat span{font-size:12px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;font-weight:600}
 .bar-row{display:grid;grid-template-columns:130px 1fr 64px;gap:10px;align-items:center;margin:8px 0;font-size:13.5px}
+/* Meta "What the league is playing" rows get their own class: the
+   Skills drawer's .bar-row is a flex button rule that collapsed this
+   bar track to ~zero width. Same three-part shape (name + count |
+   track | share %), with the track taking all the middle width. */
+.meta-class-row{display:grid;grid-template-columns:130px 1fr 64px;gap:10px;align-items:center;margin:8px 0;font-size:13.5px}
+.meta-class-row .bar{height:12px}
 .bar{height:10px;background:var(--chip);border-radius:999px;overflow:hidden;border:1px solid var(--line2)}
 .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2))}
 /* DPS breakdown — plain-language steps: step name + running total on
@@ -918,7 +924,12 @@ input[type="file"]{color:var(--muted);max-width:100%}
    Share build / Follow a build / Copy stats live in the share
    card at the foot of the planner, with the plan code. */
 .char-panel .resists{margin-top:8px}
-.char-heads{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:8px;margin-top:10px;align-items:start}
+.char-heads{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:8px;margin-top:10px;align-items:stretch}
+/* Pools row: Life / Energy Shield / Mana as their own numbers in one
+   slim strip under the three heads, like the game's character sheet. */
+.pools-row{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--panel2);border:1px solid var(--line2);border-radius:var(--radius-sm);margin-top:8px;overflow:hidden}
+.pool-cell{padding:7px 12px 8px;min-width:0}
+.pool-cell+.pool-cell{border-left:1px solid var(--line2)}
 .char-head{position:relative;background:var(--panel2);border:1px solid var(--line2);border-radius:var(--radius-sm);padding:9px 12px 10px;cursor:help;outline:none;min-width:0}
 .char-head:focus-visible{border-color:var(--gold)}
 .ch-label{display:block;font-size:11.5px;color:var(--gold);letter-spacing:.09em;text-transform:uppercase;font-weight:700;font-family:Cinzel,serif}
@@ -3039,7 +3050,7 @@ td{padding:7px 8px}
     </div>
     <div class="pt-col">
     <div class="card plan-card char-panel" id="planCard">
-      <div class="flex between"><h2>Damage and Defense Analysis</h2><span class="pill" id="planSummary">—</span></div>
+      <div class="flex between"><h2>Damage and Defense Analysis</h2></div>
       <div class="char-heads">
         <div class="char-head char-head-dmg" tabindex="0" aria-label="Damage — calibrated DPS and tooltip DPS">
           <span class="ch-label">Damage</span>
@@ -3047,6 +3058,7 @@ td{padding:7px 8px}
           <b class="ch-num" id="dpsNum">—</b>
           <span class="ch-kind">Tooltip DPS</span>
           <b class="ch-num-sm" id="toolDpsNum">—</b>
+          <p class="ch-sub">The big number is our estimate for a real Guardian fight — the smaller one is the number on your in-game sheet.</p>
           <p class="ch-sub" id="dpsSub">Choose a skill and weapon to calculate.</p>
           <button class="sim-trust-link" id="simInfoBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="simInfoPop">How much to trust this number ›</button>
           <div class="char-tip" role="tooltip" id="dmgTipBody"></div>
@@ -3081,6 +3093,11 @@ td{padding:7px 8px}
           <p class="ch-sub">Life &amp; shield back per second</p>
           <div class="char-tip" role="tooltip" id="recTipBody"></div>
         </div>
+      </div>
+      <div class="pools-row" aria-label="Life, Energy Shield and Mana pools">
+        <div class="pool-cell"><span class="ch-label">Life</span><b class="ch-num-sm" id="poolLife">—</b></div>
+        <div class="pool-cell"><span class="ch-label">Energy Shield</span><b class="ch-num-sm" id="poolEs">—</b></div>
+        <div class="pool-cell"><span class="ch-label">Mana</span><b class="ch-num-sm" id="poolMana">—</b></div>
       </div>
       <div class="resists" tabindex="0" aria-label="Resistances — hover for the uncapped numbers">
         <div class="resists-top"><span>Resistances</span><small>Hover for the uncapped numbers</small></div>
@@ -5625,12 +5642,13 @@ var DICT={
 "Bonus size":"加成大小",
 "Drawback":"缺陷",
 "Node connections":"节点连接",
-"Internal fingerprint":"内部指纹",
+"Fingerprint":"指纹",
+"Effect text":"效果文本",
 "Stacking rules":"叠加规则",
 "Visual note":"视觉备注",
 "Base item":"基础物品",
 "Price":"价格",
-"Internal revision marker":"内部修订标记",
+"Revision marker":"修订标记",
 "Late-game damage multiplier":"后期伤害倍率",
 "Late-game damage scaling":"后期伤害缩放",
 "Cooldown":"冷却时间",
@@ -5719,17 +5737,19 @@ var DICT={
 "Taking this node comes with a trade-off, and that drawback is what changed — the new wording above is the price you now accept.":"点取此节点需要付出代价，而改变的正是这个缺陷 — 上方的新措辞就是你现在要接受的代价。",
 "Which neighbouring passive nodes this one connects to changed, so the paths you can take through the tree around it may route differently.":"它连接的相邻天赋节点变了，因此你在它周围穿过天赋树的路径可能会不同。",
 "Which neighbouring passive nodes this one connects to changed.":"它连接的相邻天赋节点变了。",
-"An internal fingerprint the game data uses to tell versions of this entry apart. It changes whenever the entry is touched and has no gameplay effect by itself.":"游戏数据用来区分此条目不同版本的内部指纹。每当条目被改动它就会变化，本身没有玩法效果。",
+"A fingerprint the game data uses to tell versions of this entry apart. It changes whenever the entry is touched and has no gameplay effect by itself.":"游戏数据用来区分此条目不同版本的指纹。每当条目被改动它就会变化，本身没有玩法效果。",
 "The description wording changed — the new text above is what it now says it does.":"描述措辞变了 — 上方的新文本就是它现在所说的效果。",
 "Only an art or visual note changed. Nothing about how it plays is affected.":"只有美术或视觉备注变了。玩法方面不受任何影响。",
 "The base item it is built on changed, which changes its built-in stats (things like its base damage or armour). The old and new bases are named above.":"它所基于的基础物品变了，这会改变其内置属性（例如基础伤害或护甲）。新旧基底已在上方列名。",
 "The wording changed — the new version above is what it says now.":"措辞变了 — 上方的新版本就是它现在的说法。",
+"The wording of the effect changed — the new version above is what it says now.":"效果的措辞变了 — 上方的新版本就是它现在的说法。",
+"The big number is our estimate for a real Guardian fight — the smaller one is the number on your in-game sheet.":"大数字是我们对真实守护者战斗的估算 — 小数字是你游戏内面板上的数字。",
 "Its whole list of bonuses was reworked. The “What it does now” line above is its current effect.":"它的整个加成列表被重做。上方的“现在的效果”一行就是它当前的效果。",
 "The special effect text was rewritten. Open the entry in the Items tab to read the new wording.":"特殊效果文本被重写。在“物品”标签页打开该条目可阅读新措辞。",
 "Its description was rewritten. The new text above is what it now says.":"它的描述被重写。上方的新文本就是它现在的说法。",
 "The written rules for how this bonus stacks when you have several copies of it were updated. The headline effect is unchanged — this settles how copies combine.":"当你拥有多个副本时此加成如何叠加的书面规则已更新。标题效果不变 — 这确定了副本的组合方式。",
 "A bookkeeping marker the developer uses to track this entry’s revision history. It has no gameplay effect by itself — the real changes are the other rows listed for this entry.":"开发者用来追踪此条目修订历史的记录标记。它本身没有玩法效果 — 真正的变更是此条目列出的其他行。",
-"Internal details of this entry were updated; the headline numbers are unchanged.":"此条目的内部细节已更新；主要数字不变。",
+"Details of this entry were updated; the headline numbers are unchanged.":"此条目的细节已更新；主要数字不变。",
 "The changelog only marks this text as rewritten, without printing it — the wording above is what it says in the current game data.":"更新日志只标注此文本已被重写，未印出它 — 上方的措辞是它在当前游戏数据中的说法。",
 "This bonus was rebuilt rather than just retuned: what it gave before is struck through, what it gives now is in bold.":"这项加成是重做而非仅调整数值：之前给予的内容带删除线，现在给予的内容以粗体显示。"
 };
@@ -5914,6 +5934,8 @@ var RULES=[
  [/^Class #(\d+)$/,function(m){return '职业第 '+m[1]+' 名';}],
  [/^Lv (\d+)( • Dead)?$/,function(m){return '等级 '+m[1]+(m[2]?' • 已死亡':'');}],
  [/^(\d+) of the (\d+) heroes shown have no build to open\.$/,function(m){return '显示的 '+m[2]+' 名英雄中有 '+m[1]+' 名没有可打开的构建。';}],
+ [/^— (\d+) of the (\d+) heroes shown have no build to open\.$/,function(m){return '— 显示的 '+m[2]+' 名英雄中有 '+m[1]+' 名没有可打开的构建。';}],
+ [/^— every hero shown has a build to open\.$/,function(m){return '— 显示的每位英雄都有可打开的构建。';}],
  [/^of the class’s ([\d,]+) published builds • Template Lv$/,function(m){return '（该职业共 '+m[1]+' 个已发布构建）• 模板等级';}],
  [/^• median kill ([\d.]+)s$/,function(m){return '• 中位击杀 '+m[1]+' 秒';}],
  [/^• (\S+) Dragonling$/,function(m){return '• '+aspectZh(m[1])+'龙灵';}],
@@ -6300,7 +6322,7 @@ function fetchJSON(url,timeoutMs){
 function getJSON(path){if(cache[path])return cache[path];var p=fetchJSON(BASE+path,12000);cache[path]=p;p.catch(function(){if(cache[path]===p)delete cache[path]});return p}
 function getLiveJSON(path,timeoutMs){delete cache[path];var p=fetchJSON(BASE+path,timeoutMs||12000);cache[path]=p;p.catch(function(){if(cache[path]===p)delete cache[path]});return p}
 function getSnap(name){return fetchJSON('assets/snapshot/'+name,12000)}
-var SNAPSHOT_PATCH='90'; var SNAPSHOT_AT='2026-11-26T06:48:00.194Z'; var DEFAULT_LEAGUE='at1-sc-trade'; var liveState='boot';
+var SNAPSHOT_PATCH='90'; var SNAPSHOT_AT='2026-11-26T08:48:00.732Z'; var DEFAULT_LEAGUE='at1-sc-trade'; var liveState='boot';
 /* Patch history store — notes text only, a few KB per patch, bundled
    at assets/snapshot/patch-history.json. The hourly snapshot refresh
    adds exactly one entry when the patch number moves: {patch, build,
@@ -6530,13 +6552,13 @@ function effAt(skill,gem){
    snapshot — the moment a patch's fit is meant to change.
 
    Hourly snapshot refresh, 2026-11-26 (snapshot generated
-   2026-11-26T04:48Z): the API's one-day measured window is
-   still refilling (builds republished 04:33Z), so just 13
-   ladder heroes carried a measured Guardian DPS when this
-   snapshot was taken. A refit over that sample cannot run
-   whole — no archetype reaches the 3-hero floor on it — so,
-   by the hermetic rule above, this refresh keeps the
-   outgoing 101-hero bake below unchanged, and recalibrate's
+   2026-11-26T08:48Z): the API's one-day measured window is
+   still refilling (builds republished 08:33Z), so just 40
+   heroes on the default ladder carried a measured Guardian
+   DPS when this snapshot was taken. A refit over that sample
+   cannot run whole — it sits under half the baked fit's 98
+   heroes — so, by the hermetic rule above, this refresh
+   keeps the outgoing bake below unchanged, and recalibrate's
    measured-window guard declines a same-patch sample under
    half the baked fit's size, so the thin window cannot
    reprice the page at startup either. The factor is rebaked
@@ -8955,7 +8977,6 @@ function renderPlanner(){
   var c=calc();
   if(logData)renderLogResults(); /* the log check re-evaluates itself against whichever character is open */
   renderDefenses(); /* the Resists plate and its EHP readout are counted from the plan, so they follow every planner change */
-  $('planSummary').textContent=state.cls+' • Lv '+state.level+' • '+skillName(state.skillId);
   var pwn=$('planWeaponName'); if(pwn){var pw=G.weaponMap[state.weaponId]||G.weaponMapCI[(state.weaponId||'').toLowerCase()]; pwn.textContent=pw?pw.Name:'No weapon — add one in the Gear board';}
   var psn=$('planSkillName'); if(psn)psn.textContent=skillName(state.skillId)+' • gem Lv '+effGemLevel(state)+(gearGemBonus(state)?' ('+state.gemLevel+' + '+gearGemBonus(state)+' from gear)':'');
   renderDrawerCard();
@@ -10222,7 +10243,7 @@ function renderLadder(){
   var withoutBuild=arr.length-withBuild;
   G.ladderShown=arr;
   // Desktop table + mobile cards combined as responsive table rows
-  var html='<div class="ladder-note" role="note"><b>Builds are only published for the top 50 of each class</b> — heroes marked <b>–</b> have no published build'+(emptyShown?', and heroes flagged <b>No build published</b> have no build published yet — their rank stands, but there is no build to open yet':'')+'. '+(withoutBuild? withoutBuild+' of the '+arr.length+' heroes shown have no build to open.':'Every hero shown is in the published top 50 for their class, so each one has a build to open.')+'</div>';
+  var html='<div class="ladder-note" role="note"><b>Builds are only published for the top 50 of each class</b> — '+(withoutBuild? withoutBuild+' of the '+arr.length+' heroes shown have no build to open.':'every hero shown has a build to open.')+'</div>';
   html+='<div class="table-wrap"><table class="ladder-table"><thead><tr><th>#</th><th>Hero</th><th>Main skill</th><th>Rupture Level</th><th>Guardian DPS <span class="th-note">(measured)</span></th><th>Build</th></tr></thead><tbody>';
   arr.forEach(function(h,hi){
     var hasBuild=!!(h.has_build&&h.build);
@@ -11094,7 +11115,7 @@ var KS_PLAIN_NAMES={'r79_intstack_k0':'Boundless Mind','r98_focus_k0':'Focus','r
 function renderMeta(){
   var m=G.meta; if(!m){$('metaSub').textContent='Loading meta…';return}
   $('metaSub').textContent=(m.heroes||0)+' active heroes (7 days, Rupture Level above 0)'+(m.sample?' • '+m.sample.heroes+' published builds sampled':'');
-  $('metaClasses').innerHTML=(m.classes||[]).map(function(c){return '<div class="bar-row"><span><b>'+esc(c.id)+'</b> • '+c.heroes+'</span><span class="bar"><i style="width:'+c.share+'%"></i></span><b>'+c.share+'%</b></div>'}).join('');
+  $('metaClasses').innerHTML=(m.classes||[]).map(function(c){return '<div class="meta-class-row"><span><b>'+esc(c.id)+'</b> • '+c.heroes+'</span><span class="bar"><i style="width:'+c.share+'%"></i></span><b>'+c.share+'%</b></div>'}).join('');
   $('metaSkills').innerHTML='<table><thead><tr><th>Archetype</th><th>Share</th><th>Median Rupture Level</th></tr></thead><tbody>'+(m.main_skills||[]).slice(0,20).map(function(s){return '<tr><td><b>'+esc(archetypeLabel(s.skill,s.class))+'</b></td><td>'+s.share+'% ('+s.heroes+')</td><td>'+s.median_rupture_level+' • best '+s.best_rupture_level+'</td></tr>'}).join('')+'</tbody></table>';
   var misc='';
   misc+='<h3>Ascendancies (Dragonling)</h3>'+(m.ascendancies||[]).slice(0,10).map(function(a){return '<div class="kv"><span>'+esc(ascLabel(a.id))+'</span><b>'+a.share+'%</b></div>'}).join('');
@@ -17137,6 +17158,9 @@ function renderDefenses(){
      every damage type. */
   var tn=$('toughNum'); if(tn)tn.textContent=(pool>0&&hit>0)?fmt(Math.round(pool/Math.max(0.01,(1-armRed/100)*blockAvg))):'—';
   var leL=$('lifeEsLine'); if(leL)leL.textContent='Life '+fmtFull(d.life)+' · Energy Shield '+fmtFull(d.es);
+  var pLife=$('poolLife'); if(pLife)pLife.textContent=fmtFull(d.life);
+  var pEs=$('poolEs'); if(pEs)pEs.textContent=fmtFull(d.es);
+  var pMana=$('poolMana'); if(pMana)pMana.textContent=fmtFull(d.mana);
   /* The summary bar's plates read the same derived numbers: EHP is
      the Toughness headline's own figure, Life and Energy Shield are
      the pool it divides, and the three attributes are the derived
@@ -21772,7 +21796,7 @@ function patchHistWhen(h){
 }
 function patchChangeText(c){
   if(c.from==null||c.from==='(nested)'||c.to==='(nested)')return c.field+' — rewritten (the changelog does not print the text)';
-  return c.field+' '+c.from+' → '+c.to;
+  return c.field+' '+pnCleanText(c.from)+' → '+pnCleanText(c.to);
 }
 /* The history as labelled rows (skill detail) … */
 function patchHistHTML(file,id){
@@ -21854,7 +21878,8 @@ var PN_FIELD_INFO={
   'Mods':{label:'Bonus list',nested:'Its whole list of bonuses was reworked. The \u201CWhat it does now\u201D line above is its current effect.'},
   'Price':{label:'Drawback',text:function(){return 'Taking this node comes with a trade-off, and that drawback is what changed \u2014 the new wording above is the price you now accept.'}},
   'Links':{label:'Node connections',nested:'Which neighbouring passive nodes this one connects to changed, so the paths you can take through the tree around it may route differently.',text:function(){return 'Which neighbouring passive nodes this one connects to changed, so the paths you can take through the tree around it may route differently.'}},
-  'Fp':{label:'Internal fingerprint',text:function(){return 'An internal fingerprint the game data uses to tell versions of this entry apart. It changes whenever the entry is touched and has no gameplay effect by itself.'}},
+  'Fp':{label:'Fingerprint',text:function(){return 'A fingerprint the game data uses to tell versions of this entry apart. It changes whenever the entry is touched and has no gameplay effect by itself.'}},
+  'Text':{label:'Effect text',text:function(){return 'The wording of the effect changed — the new version above is what it says now.'}},
   'Lines':{label:'Stacking rules',nested:'The written rules for how this bonus stacks when you have several copies of it were updated. The headline effect is unchanged \u2014 this settles how copies combine.'},
   'Description':{label:'Description',text:function(){return 'The description wording changed \u2014 the new text above is what it now says it does.'},nested:'Its description was rewritten. The new text above is what it now says.'},
   'Visual.Note':{label:'Visual note',text:function(){return 'Only an art or visual note changed. Nothing about how it plays is affected.'},nested:'Only an art or visual note changed. Nothing about how it plays is affected.'},
@@ -21872,7 +21897,7 @@ var PN_FIELD_INFO={
 };
 function pnFieldInfo(file,field){
   var P=pnFieldParts(field);
-  if(P.meta)return{label:'Internal revision marker',nested:'A bookkeeping marker the developer uses to track this entry\u2019s revision history. It has no gameplay effect by itself \u2014 the real changes are the other rows listed for this entry.'};
+  if(P.meta)return{label:'Revision marker',nested:'A bookkeeping marker the developer uses to track this entry\u2019s revision history. It has no gameplay effect by itself \u2014 the real changes are the other rows listed for this entry.'};
   if(P.parts[0]==='ElementTakenPct'&&P.parts[1]){
     var el=P.parts[1];
     return{label:el+' damage taken by cursed enemies',unit:'%',does:'Enemies suffering this curse take extra '+el+' damage \u2014 this is the size of that bonus.',up:'It went up, so cursed enemies take noticeably more '+el+' damage.',down:'It went down, so cursed enemies take less extra '+el+' damage.'};
@@ -21901,11 +21926,22 @@ function pnFieldInfo(file,field){
   if(/(At|From)$/.test(last))return pat(pnStatName(last),'This is the level at which the related scaling takes effect.','It moved up, so it kicks in later.','It moved down, so it kicks in earlier.');
   return{label:pnStatName(P.path.replace(/\./g,' ')),does:'This is one of the underlying values that define how it works.'};
 }
+/* The game's changelog writes stat text as templates — "{0}% increased
+   spell damage" — where the number is filled in by the game at runtime.
+   Displayed values go through this plain-text sanitiser so a template
+   words out in plain words ("increased spell damage") instead of
+   printing the raw placeholder. Only the "{n}" placeholder and a "%"
+   directly attached to it are stripped; values the diff actually
+   carries as numbers never reach here (they render via pnFmtNum). */
+function pnCleanText(s){
+  if(s==null)return s;
+  return String(s).replace(/\{\d+\}%?/g,'').replace(/\s+/g,' ').replace(/\s+([,.;:!?])/g,'$1').replace(/^[\s,;:]+/,'').trim();
+}
 function pnDispVal(file,field,v){
   var P=pnFieldParts(field);
   if(P.path==='BaseId'){var b=G.baseMap[v];return b&&b.Name?b.Name:niceId(v)}
   if(P.path==='Mods.Stat')return pnStatName(v);
-  return v;
+  return pnCleanText(v);
 }
 /* For a "(nested)" change the changelog says a text was rewritten but does
    not print it. Where the current game data is loaded, show the real new
@@ -21933,7 +21969,7 @@ function pnExplain(file,c,cl,info,nowTxt){
   var o=pnNum(c.old),n=pnNum(c.new);
   if(cl.kind==='nested'){
     if(nowTxt)return pnFieldParts(c.field).path==='Links'?(info.nested||'Which neighbouring passive nodes this one connects to changed.'):'The changelog only marks this text as rewritten, without printing it \u2014 the wording above is what it says in the current game data.';
-    return info.nested||'Internal details of this entry were updated; the headline numbers are unchanged.';
+    return info.nested||'Details of this entry were updated; the headline numbers are unchanged.';
   }
   if(cl.kind==='text')return info.text?info.text(c):'The wording changed \u2014 the new version above is what it says now.';
   if(!info.does)return'';
@@ -21973,7 +22009,7 @@ function pnRow(file,id,c){
   else if(cl.kind==='removed')badge='<span class="pn-badge pn-neut">Removed</span>';
   else if(cl.kind==='shift'&&cl.pct!=null)badge='<span class="pn-badge pn-neut">'+pnPctTxt(cl.pct)+'</span>';
   var unit=info.unit||'';
-  var nowTxt=cl.kind==='nested'?pnNowText(file,id,c.field):'';
+  var nowTxt=cl.kind==='nested'?pnCleanText(pnNowText(file,id,c.field)):'';
   var vals,nowHtml='';
   if(cl.kind==='nested'&&nowTxt){vals='';nowHtml='<span class="pn-now">'+esc(nowTxt)+'</span>'}
   else if(cl.kind==='nested')vals='';
@@ -25549,8 +25585,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.396';
-var PLANNER_BUILT_AT='2026-11-26T00:03:37-07:00';
+var PLANNER_VERSION='0.397';
+var PLANNER_BUILT_AT='2026-11-26T03:51:59-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
