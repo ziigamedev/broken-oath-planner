@@ -2265,6 +2265,35 @@ body.ws-skills .sk-rail{display:flex}
 .sk-rail-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .sk-rail-btn[aria-pressed="true"]{background:var(--gold);color:#171310;border-color:var(--gold2)}
 @media(max-width:760px){.sk-rail{right:5px}.sk-rail-btn{width:40px;height:40px}}
+/* v0.411 — the tree planning tools ride the same pattern as the
+   Skills panes: a slim icon rail on the tree view's right edge
+   (the view always keeps a gutter for it, so the canvas keeps
+   its layout) and the planning panel docked in from the right
+   as a drawer in the picker's own language. On a wide screen
+   the view's right padding grows by the drawer's width while
+   it is open, so the canvas stays fully on screen beside it
+   and the rail steps left with it; on a phone the drawer
+   slides over the canvas with a scrim. The button for the
+   section the panel is showing wears the gold. */
+body.ws-tree #view-workspace{padding-right:58px}
+@media(max-width:760px){body.ws-tree #view-workspace{padding-right:50px}}
+@media(min-width:900px){body.trp-open #view-workspace{padding-right:478px}}
+.tree-rail{position:fixed;right:8px;top:50%;transform:translateY(-50%);z-index:55;display:none;flex-direction:column;gap:8px}
+body.ws-tree .tree-rail{display:flex}
+@media(min-width:900px){body.trp-open .tree-rail{right:428px}}
+.tree-rail-btn{width:44px;height:44px;border:1px solid var(--gold);border-radius:10px;background:linear-gradient(180deg,var(--panel2),var(--panel));color:var(--gold2);display:grid;place-items:center;cursor:pointer;padding:0;box-shadow:0 4px 14px rgba(0,0,0,.45)}
+.tree-rail-btn:hover{color:var(--gold-text);border-color:var(--gold2)}
+.tree-rail-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.tree-rail-btn[aria-pressed="true"]{background:var(--gold);color:#171310;border-color:var(--gold2)}
+@media(max-width:760px){.tree-rail{right:5px}.tree-rail-btn{width:40px;height:40px}}
+.tree-plan-drawer{position:fixed;top:0;right:0;height:100dvh;width:min(420px,94vw);max-width:100vw;z-index:60;background:linear-gradient(180deg,var(--panel2),var(--panel));border-left:2px solid var(--line);box-shadow:-18px 0 40px rgba(0,0,0,.5);transform:translateX(106%);visibility:hidden;transition:transform .26s ease,visibility 0s linear .26s;display:flex;flex-direction:column}
+.tree-plan-drawer.open{transform:none;visibility:visible;transition:transform .26s ease}
+.tree-plan-head{display:flex;align-items:center;gap:8px;padding:12px 14px 10px;border-bottom:1px solid var(--line2)}
+.tree-plan-head .fold-title{flex:1;min-width:0}
+.tree-plan-body{padding:12px 14px 16px;overflow:auto;flex:1;min-width:0}
+.tree-plan-scrim{display:none}
+@media(max-width:760px){.tree-plan-scrim{display:block;position:fixed;inset:0;z-index:59;background:rgba(0,0,0,.45)}}
+@media (prefers-reduced-motion: reduce){.tree-plan-drawer{transition:none}}
 /* The gem-level control's row on the main skill card's panel, with
    the information button that opens the per-level table. */
 .gemctl-row{display:flex;gap:8px;align-items:flex-start}
@@ -3018,21 +3047,14 @@ body.tab-home .brand h1{display:none}
 .tree-bar-versions select{width:118px}
 .tree-bar-msgs{display:flex;gap:2px 18px;flex-wrap:wrap}
 .tree-bar-msgs p{margin:3px 0 0;min-height:16px}
-/* v0.395 — canvas + planning panel: the panel sits beside the
-   canvas on wide screens and under it on narrow ones. */
+/* v0.395 — canvas + planning panel: the panel sat beside the
+   canvas on wide screens and under it on narrow ones.
+   v0.411 — the panel left the layout entirely: it is a drawer
+   docked in from the right (see the tree rail rules below), so
+   the canvas keeps the full width whether it is open or shut. */
 .tree-layout{display:flex;gap:14px;align-items:flex-start;margin-top:8px}
 .tree-main{flex:1 1 auto;min-width:0}
 .tree-main .tree-stage{margin-top:0}
-#treeToolsFold{flex:0 0 350px;width:350px;margin-top:0}
-/* v0.398 — closed means closed: the folded panel hands its whole
-   350px column back to the canvas and leaves only a slim reopen
-   tab at the canvas edge, chip-scale like the Ladder filters. */
-#treeToolsFold:not([open]){flex:0 0 auto;width:auto}
-#treeToolsFold:not([open])>summary{padding:6px 10px;min-height:34px;gap:6px;align-items:center}
-#treeToolsFold:not([open]) .fold-title{font-size:13px;white-space:nowrap}
-#treeToolsFold:not([open]) .fold-hint{display:none}
-#treeToolsFold:not([open])>summary::after{margin-left:0}
-@media(max-width:920px){.tree-layout{flex-direction:column}#treeToolsFold{flex:1 1 auto;width:100%}#treeToolsFold:not([open]){flex:0 0 auto;width:auto;align-self:flex-start}}
 /* v0.395 — the skill bar's empty '+' slot, styled like one of
    the game's empty hotbar slots: a dark inset well with a gold
    plus, at the end of the bar. */
@@ -3677,11 +3699,11 @@ body.tab-home .brand h1{display:none}
             <div class="tree-bar-search"><input type="search" id="treeSearch" placeholder="Search by name or stat — e.g. cold damage, life, crit chance, fire resistance…" aria-label="Search tree nodes by name or stat"><button class="btn small hidden" id="treeSearchClear" type="button">Clear</button></div>
           </div>
           <div class="tree-bar-msgs"><p class="sub" id="treeSearchMeta"></p></div>
-          <!-- The canvas takes the room; the planning tools live in
-               one collapsible panel beside it (under it on narrow
-               screens), closed when the tree opens — and closed
-               now means the canvas keeps the panel's full width,
-               with only a slim reopen tab left at its edge. -->
+          <!-- The canvas takes the room; the planning tools live
+               in a drawer docked in from the right, opened from
+               the slim icon rail on the view's right edge (v0.411,
+               the Skills view's pattern) — shut, the canvas keeps
+               the full width and no reopen tab is left behind. -->
           <div class="tree-layout">
             <div class="tree-main">
               <div class="tree-stage" id="treeStage">
@@ -3694,16 +3716,17 @@ body.tab-home .brand h1{display:none}
               <div id="treeDetail"></div>
               <div id="treeSummary" class="mt"></div>
             </div>
-            <details class="fold-block" id="treeToolsFold">
-              <summary><span class="fold-title">Tree planning tools</span><span class="fold-hint">Optimize, best next picks, heat map &amp; the node list</span></summary>
-              <div class="fold-block-body">
+            <div class="tree-plan-scrim hidden" id="treePlanScrim"></div>
+            <aside class="tree-plan-drawer" id="treeToolsFold" aria-label="Tree planning tools" aria-hidden="true">
+              <div class="tree-plan-head"><span class="fold-title">Tree planning tools</span><button class="btn small" id="treePlanClose" type="button" aria-label="Close">×</button></div>
+              <div class="tree-plan-body" id="treePlanBody">
             <!-- v0.398 — the tree version controls live in the panel
                  now (they were the least-used row of the control
                  strip): same ids, same storage, same behaviour. -->
             <div class="label" style="margin-top:2px">Tree versions</div>
             <div class="tree-bar-versions" style="margin-top:4px"><input type="text" id="treeVerName" placeholder="Name this tree version…" maxlength="40" aria-label="Name this tree version"><button class="btn small" id="treeVerSaveBtn" type="button">Save version</button><select id="treeVerSel" aria-label="Tree versions"></select><button class="btn small" id="treeVerApplyBtn" type="button">Apply version</button><button class="btn small danger" id="treeVerDelBtn" type="button">Delete</button></div>
             <p class="sub" id="treeVerMsg" style="min-height:16px;margin:3px 0 0"></p>
-            <div class="flex mt" style="flex-wrap:wrap"><button class="btn small" id="treeHeatBtn" type="button" aria-pressed="false">Heat map: off</button><button class="btn small" id="treeBestBtn" type="button">Best next picks</button><button class="btn small" id="treePlanBtn" type="button">Plan next points</button><button class="btn small" id="treeOptimizeBtn" type="button">Optimize tree</button><button class="btn small" id="treeLevelBtn" type="button">Levelling path</button><button class="btn small" id="treeApplyBtn" type="button">Apply Take list to tuning</button><button class="btn small danger" id="treeResetBtn" type="button">Reset marks</button></div>
+            <div class="flex mt" id="treePlanActions" style="flex-wrap:wrap"><button class="btn small" id="treeHeatBtn" type="button" aria-pressed="false">Heat map: off</button><button class="btn small" id="treeBestBtn" type="button">Best next picks</button><button class="btn small" id="treePlanBtn" type="button">Plan next points</button><button class="btn small" id="treeOptimizeBtn" type="button">Optimize tree</button><button class="btn small" id="treeLevelBtn" type="button">Levelling path</button><button class="btn small" id="treeApplyBtn" type="button">Apply Take list to tuning</button><button class="btn small danger" id="treeResetBtn" type="button">Reset marks</button></div>
             <div class="flex mt" style="flex-wrap:wrap;gap:16px;align-items:flex-end">
               <div><div class="label" style="margin:0 0 2px">Optimize &amp; plan for — <span id="treeBlendVal">DPS only</span></div><input type="range" id="treeBlend" min="0" max="100" step="5" value="0" style="width:180px" aria-label="Balance between DPS and defence"></div>
               <div><div class="label" style="margin:0 0 2px">Resistance penalty</div><select id="resPenaltySel" aria-label="Resistance penalty"><option value="0">None</option><option value="10">−10%</option><option value="20">−20%</option><option value="30">−30%</option><option value="40">−40%</option><option value="50">−50%</option></select></div>
@@ -3714,7 +3737,7 @@ body.tab-home .brand h1{display:none}
             <div id="treeNext" class="mt"></div>
             <div id="treeList" class="mt"></div>
               </div>
-            </details>
+            </aside>
           </div>
           <details class="fold-block" id="levelPathFold">
             <summary><span class="fold-title">Levelling path</span><span class="fold-hint" id="levelPathHint">The order to take this plan&rsquo;s points, level by level</span></summary>
@@ -3742,7 +3765,6 @@ body.tab-home .brand h1{display:none}
             <p class="sub">What each gem level gives this skill: the hero level it opens at, its support sockets, base damage, power and mana cost. Your current level is lit.</p>
             <div class="log-scroll"><div id="drawerGemLevels"></div></div>
           </div>
-          <div class="flex" style="gap:8px;margin-top:10px"><button class="btn small" id="skOpenSupBtn" type="button">Support gems</button><button class="btn small" id="skOpenAddBtn" type="button">Add a skill</button></div>
           <p class="sub" id="sockMsg" style="min-height:18px;margin-top:8px"></p>
       <p class="mana-verdict" id="manaVerdict"></p>
       </section>
@@ -3771,11 +3793,11 @@ body.tab-home .brand h1{display:none}
       </details>
       <!-- v0.404 — the support palette and the Add-a-skill list
            live in this right-side drawer now. It opens from a
-           support ring tap (aimed at that socket), the Support
-           gems / Add a skill buttons under the card, or the bar
-           strip's + slot; it closes on its × , on Escape, and
-           once a pick lands. All the ids inside are the ones the
-           render functions have always used. -->
+           support ring tap (aimed at that socket), the icon
+           rail's gem / + buttons, or the bar strip's + slot; it
+           closes on its × , on Escape, and once a pick lands.
+           All the ids inside are the ones the render functions
+           have always used. -->
       <div class="sk-pick-scrim hidden" id="skPickScrim"></div>
       <aside class="sk-pick-drawer" id="skPickDrawer" aria-label="Support gems and add a skill" aria-hidden="true">
         <div class="sk-pick-head">
@@ -3815,6 +3837,15 @@ body.tab-home .brand h1{display:none}
       <div class="aspect-grid" id="aspectGrid"></div>
       <p class="sub" id="aspectChosenText" style="margin-top:6px"></p>
       <p class="drag-invalid hidden" id="dragInvalid" role="alert"></p>
+      <!-- v0.411 — the Rupture level lives here too: a blank
+           build starts at Rupture 0, so it has no Dragonling
+           points until this is set, and before this build the
+           only control was buried in Enemy setup. It writes
+           the same state.rupture that slider writes — one
+           source, so the two can never disagree. -->
+      <div style="margin-top:10px"><div class="label">Rupture level <span class="range-val" id="dragRuptureVal" style="float:right">0</span></div>
+      <input type="range" id="dragRuptureRange" min="0" max="200" step="1" value="0" style="width:min(420px,100%)" aria-label="Rupture level">
+      <p class="sub" style="margin:2px 0 0">Your Dragonling points come from Dragon Ruptures cleared — 1 point per level, 15 at Rupture 200. This is the same Rupture level as in Enemy setup: set it in either place and both agree.</p></div>
       <p class="sub" style="margin-top:6px">Points: one per Dragon Rupture cleared (Rupture 10, 20, &hellip; 200) — 15 at Rupture 200. Ascension 2.0: take nodes from any of your paths; your first crown is free, and each further crown costs 3 points. Your tree is checked against that budget.</p>
       <div class="label" style="margin-top:14px">The hatchling's tree — <span id="dragClassName">—</span></div>
       <div class="flex mt"><input type="search" id="dragSearch" placeholder="Find a node or stat" style="flex:1;min-width:160px" aria-label="Find a Dragonling node or stat"></div>
@@ -3854,6 +3885,17 @@ body.tab-home .brand h1{display:none}
     <nav class="sk-rail" id="skRail" aria-label="Skill tools">
       <button class="sk-rail-btn" id="skRailSup" type="button" aria-label="Support gems" aria-pressed="false" title="Support gems"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10l4 6-9 12L3 9z"/><path d="M3 9h18M7 3l5 6 5-6M12 9v12"/></svg></button>
       <button class="sk-rail-btn" id="skRailAdd" type="button" aria-label="Add a skill" aria-pressed="false" title="Add a skill"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+    </nav>
+    <!-- Slim icon rail (v0.411): rides the Passive Tree view's
+         right edge, in the Skills rail's language — a bookmark
+         for the tree versions, sliders for plan & optimize, a
+         list for the node list. Each button docks the planning
+         panel in from the right at its section; the view keeps
+         a gutter for the rail (see the body.ws-tree rules). -->
+    <nav class="tree-rail" id="treeRail" aria-label="Tree planning tools">
+      <button class="tree-rail-btn" id="treeRailVers" type="button" aria-label="Tree versions" aria-pressed="false" title="Tree versions"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10v18l-5-3.6L7 21z"/></svg></button>
+      <button class="tree-rail-btn" id="treeRailPlan" type="button" aria-label="Plan and optimize" aria-pressed="false" title="Plan &amp; optimize"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M3 7h9M18 7h3M3 17h3M12 17h9"/><circle cx="15" cy="7" r="2.2"/><circle cx="9" cy="17" r="2.2"/></svg></button>
+      <button class="tree-rail-btn" id="treeRailList" type="button" aria-label="Node list" aria-pressed="false" title="Node list"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.3" fill="currentColor" stroke="none"/><circle cx="4.5" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="4.5" cy="18" r="1.3" fill="currentColor" stroke="none"/></svg></button>
     </nav>
   </div>
   </section>
@@ -6567,7 +6609,7 @@ var CLASSES=[
  {Id:'Samurai',Str:14,Dex:20,Int:10,StrPerLevel:1.5,DexPerLevel:2.5,IntPerLevel:1,blurb:'Blades • Flurry, shuriken, speed'}
 ];
 var ASPECTS=['Fire','Lightning','Cold','Arcane','Poison','Physical','Shadow','Holy','None'];
-var state={cls:'Ranger',level:90,gemLevel:20,aspect:'Lightning',skillId:'lightning_arrow',weaponId:null,supports:[],barSkills:[],dragonNodes:[],passiveNodes:[],inc:120,crit:15,critMulti:150,speed:20,passives:113,bonusPassivePoints:24,league:null,
+var state={cls:'Ranger',level:90,gemLevel:1,aspect:'Lightning',skillId:'lightning_arrow',weaponId:null,supports:[],barSkills:[],dragonNodes:[],passiveNodes:[],inc:120,crit:15,critMulti:150,speed:20,passives:113,bonusPassivePoints:24,league:null,
  incPools:null,incPoolBase:0,passiveMores:[],orbCount:0,orbRate:0,
  enemyRes:25,enemyRarity:'Guardian',enemyId:'',enemyMods:[],rupture:0,simMode:'panel',curse:'',curse2:'',enemyLevel:84,dread:0,shockPct:0,shockUp:100,mark:0,bannerValour:0,bannerTry:false,potion:'',vowbreak:false,fury:0,bloodlust:0,kindling:0,unravel:25,resPenalty:0,simSustain:true,supPin:[],supBlock:[],treeBlend:0,treeWeights:{},treeVersions:[],planNote:'',buffOff:[],sets:null,treeFilter:'All',wpnSeededFor:null,execLow:false,starterRO:false,starterFrom:'',
  def:{life:4500,es:0,armour:8000,evasion:6000,block:0,enemyLvl:84,resFire:75,resCold:75,resLightning:75,resOther:60,hit:5000},
@@ -11972,7 +12014,12 @@ function starterEditBlocked(e){
     if(k==='Tab'||k==='Escape')return false;
     if(!t.closest('input,select,textarea')&&k!=='Enter'&&k!==' ')return false;
   }
-  if(t.closest('.tab,.ws-tab,.hub-btn,.pop-link,.more-info-btn,summary,.inst-main,.inst-x,.inst-newtab'))return false;
+  /* The tree planning rail and its drawer's own chrome (v0.411)
+     are browsing, like the fold summary they replaced: opening
+     the panel and putting it away change nothing in the plan,
+     so they stay free on a starter — every control INSIDE the
+     panel stays locked like the rest. */
+  if(t.closest('.tab,.ws-tab,.hub-btn,.pop-link,.more-info-btn,summary,.inst-main,.inst-x,.inst-newtab,.tree-rail-btn,#treePlanClose,#treePlanScrim'))return false;
   if(t.closest('#shareBuildBtn,#followBuildBtn,#copyStatsBtn,#fightBtn,#loadInstanceBtn,#shareBtn,#sharePanel,#gapRunBtn,#popClose,#wsBackBtn,#qwClose,#drawerTreeBtn,#advCloseBtn,#simInfoBtn'))return false;
   /* The support simulator and the setup comparator are analysis,
      like the fight test: running the best-link search, scoring
@@ -13517,48 +13564,6 @@ function rollQualityText(a,sa){
   var q=affixRollQuality(a,sa); if(!q)return '';
   return ' · rolled '+storedVal(sa.value)+(sa.value2?' / '+storedVal(sa.value2):'')+' of '+affixTierRange(q.t)+' — '+q.word;
 }
-/* Internal identifiers never belong in a player-facing data dump:
-   the record's own Id, the ids of the records it points at (BaseId,
-   Jewel), and asset/source ids (Art, Look, Weapon, Core) are
-   plumbing, not game data a player can read or act on. Any key
-   ending in "Id" is skipped too, so a future id field cannot leak
-   into the dump either. */
-var API_DUMP_ID_KEYS={Id:1,BaseId:1,Art:1,Core:1,Jewel:1,Look:1,Weapon:1};
-function apiDumpSkipKey(k){return !!API_DUMP_ID_KEYS[k]||/Id$/.test(k)}
-/* A value can be an internal id too — a skill, support or node id
-   sitting in a Tags list, say. Show its real name where the
-   catalogues know it and a readable form otherwise, so the raw
-   snake_case id never reaches the page. Plain words, numbers and
-   sentences pass through untouched. */
-function apiDumpValue(v){
-  if(typeof v!=='string')return v;
-  if(!/_/.test(v)||/\s/.test(v))return v;
-  var eq=v.indexOf('=');
-  if(eq>0)return niceId(v.slice(0,eq))+': '+apiDumpValue(v.slice(eq+1));
-  var s=(G.skillMap&&G.skillMap[v])||(G.skillMapCI&&G.skillMapCI[v.toLowerCase()])||(G.supportMap&&G.supportMap[v])||(G.supportMapCI&&G.supportMapCI[v.toLowerCase()])||(G.passiveMap&&G.passiveMap[v]);
-  return s&&s.Name?s.Name:niceId(v);
-}
-function apiDumpRows(o,prefix,rows){
-  rows=rows||[]; prefix=prefix||'';
-  Object.keys(o||{}).forEach(function(k){
-    if(apiDumpSkipKey(k))return;
-    var v=o[k]; var key=prefix?prefix+'.'+k:k;
-    if(v===null||v===undefined)rows.push([key,'—']);
-    else if(Array.isArray(v)){
-      if(!v.length)rows.push([key,'(none)']);
-      else if(v.every(function(x){return x===null||typeof x!=='object'}))rows.push([key,v.map(function(x){return x===null?'—':apiDumpValue(x)}).join(', ')]);
-      else v.forEach(function(x,i){if(x&&typeof x==='object')apiDumpRows(x,key+'['+i+']',rows); else rows.push([key+'['+i+']',String(apiDumpValue(x))])});
-    }
-    else if(typeof v==='object')apiDumpRows(v,key,rows);
-    else rows.push([key,String(apiDumpValue(v))]);
-  });
-  return rows;
-}
-function apiDumpHTML(o,label){
-  if(!o)return '';
-  var rows=apiDumpRows(o);
-  return '<details class="api-details"><summary>'+esc(label||'Full data')+'</summary>'+rows.map(function(r){return '<div class="kv"><span>'+esc(r[0])+'</span><b>'+esc(r[1])+'</b></div>'}).join('')+'</details>';
-}
 /* Retired for now: the "Full affix data" panel (type / group, roll
    weight, tier table with weights and chances) is no longer
    rendered anywhere — per-line detail is not shown. Kept in place
@@ -14008,6 +14013,21 @@ function gearMsg(t){var m=$('gearMsg'); if(m)m.textContent=t}
    occupancy check below looks at BOTH bases, and picking a weapon
    goes through pickPlannerWeapon, which enforces the same rule. */
 function gearBaseOf(it){return it&&it.base?(G.baseMap[it.base]||G.baseMapCI[(it.base||'').toLowerCase()]||null):null}
+/* v0.411 — the gear picker's base resolution. A stored item's
+   base id can differ from the catalogue's only in case (a save
+   writes "Greatsword_3"; the API keys "greatsword_3"), and the
+   display and pricing paths have always resolved that forgivingly
+   through gearBaseOf — but the picker's strict G.baseMap[id]
+   lookups got undefined, computed an empty affix pool and told
+   the player the item "takes no affixes". Every picker/editor
+   lookup fed by a stored id goes through gpBaseOf now, and the
+   draft is seeded with the catalogue's own spelling
+   (gpCanonBaseId), so the picker's id comparisons downstream
+   compare like with like. Stored plan data is never rewritten
+   on load — only the picker's working draft is normalised, and
+   what Add stores is the item the player just set up. */
+function gpBaseOf(id){return id?(G.baseMap[id]||G.baseMapCI[String(id).toLowerCase()]||null):null}
+function gpCanonBaseId(id){var b=gpBaseOf(id); return b?b.Id:(id||null)}
 function gearItemName(it){
   if(!it||!it.base)return 'Item';
   var un=it.unique?G.uniqueMap[it.unique]:null;
@@ -15260,7 +15280,7 @@ function gpTrialState(){
   /* The socketed runes ride into the trial too, so a sequence
      that forms an Oathword prices the candidate with the
      runeword's lines in it, exactly as the saved item will. */
-  var tBase=G.baseMap[sel.baseId];
+  var tBase=gpBaseOf(sel.baseId);
   var tCap=tBase?runeSocketCap(tBase,{sockets:null},gearPick.slot):0;
   var tRunes=(gearPick.runes||[]).slice(0,tCap);
   st.gear[gearPick.slot]={base:sel.baseId,unique:null,rarity:rarity,item_level:parseInt(($('gpIlvl')||{}).value,10)||state.level,affixes:stored,runes:tRunes,sockets:tRunes.length?tCap:null};
@@ -15278,7 +15298,7 @@ function gpTrialState(){
    IdolGrand) show up for the Idol slot's bases and nowhere else. */
 function gpEligible(){
   if(gearPick.sel){
-    var base=G.baseMap[gearPick.sel.baseId]; if(!base)return [];
+    var base=gpBaseOf(gearPick.sel.baseId); if(!base)return [];
     if(base.__gw)return [];
     return simAffixesFor(base);
   }
@@ -15410,7 +15430,7 @@ function gpSocketsHTML(base){
 function gpRenderSockets(){
   var box=$('gpSockBox'); if(!box)return;
   var sel=gearPick.sel;
-  var base=sel?G.baseMap[sel.baseId]:null;
+  var base=sel?gpBaseOf(sel.baseId):null;
   box.innerHTML=gpSocketsHTML(base);
   gpWireSockets(box);
 }
@@ -15420,7 +15440,7 @@ function gpWireSockets(box){
   var add=box.querySelector('#gpSockAdd');
   if(add)add.addEventListener('click',function(){
     var s=box.querySelector('#gpSockSel'); if(!s||!s.value)return;
-    var base=gearPick.sel?G.baseMap[gearPick.sel.baseId]:null; if(!base)return;
+    var base=gearPick.sel?gpBaseOf(gearPick.sel.baseId):null; if(!base)return;
     if((gearPick.runes||[]).length>=runeSocketCap(base,{sockets:null},gearPick.slot))return;
     gearPick.runes.push(s.value);
     gearPick.sockSel=s.value;
@@ -15529,12 +15549,11 @@ function gpRenderAffixes(){
   gpRenderViewTabs();
   var sel=gearPick.sel;
   var sd=gearDef(gearPick.slot);
-  var base=sel?G.baseMap[sel.baseId]:null;
+  var base=sel?gpBaseOf(sel.baseId):null;
   if(sel&&sel.uniqueId){
     var un=G.uniqueMap[sel.uniqueId];
     box.innerHTML='<p class="label">Affixes — fixed by the unique</p><p class="sub">A unique always rolls with the mods the game publishes for it, so there is nothing to choose. Here is everything the game gives it:</p>'
      +(base?catalogItemBodyHTML(base,un):'')
-     +(un?apiDumpHTML(un,'Full data for this unique'):'')
      +gpVowsHTML(base);
     gpWireVows(box);
     return;
@@ -15584,7 +15603,7 @@ function gpRenderAffixes(){
   function gpTrial(rows){
     var st=deepClone(state);
     var stored=rows.map(function(r){return {id:r.affixId,value:+r.value||0,tier:r.tierIdx+1}}).concat(gpVowStored());
-    var trBase=G.baseMap[sel.baseId];
+    var trBase=gpBaseOf(sel.baseId);
     var trCap=trBase?runeSocketCap(trBase,{sockets:null},gearPick.slot):0;
     var trRunes=(gearPick.runes||[]).slice(0,trCap);
     st.gear[gearPick.slot]={base:sel.baseId,unique:null,rarity:rarity,item_level:parseInt(($('gpIlvl')||{}).value,10)||state.level,affixes:stored,runes:trRunes,sockets:trRunes.length?trCap:null};
@@ -15691,7 +15710,7 @@ function gpMsg(t){
    Normal rarity itself). */
 function gpFormedRw(){
   var it=gpSocketItem(); if(!it)return null;
-  var base=G.baseMap[gearPick.sel.baseId];
+  var base=gpBaseOf(gearPick.sel.baseId);
   return base?runewordFor(it,base):null;
 }
 /* The draft pick's display name: a formed Oathword's gold name
@@ -15701,7 +15720,7 @@ function gpDraftName(){
   var sel=gearPick.sel; if(!sel)return '';
   var rw=sel.uniqueId?null:gpFormedRw();
   if(rw)return rw.rec.Name;
-  return sel.uniqueId?((G.uniqueMap[sel.uniqueId]||{}).Name||niceId(sel.uniqueId)):((G.baseMap[sel.baseId]||{}).Name||niceId(sel.baseId));
+  return sel.uniqueId?((G.uniqueMap[sel.uniqueId]||{}).Name||niceId(sel.uniqueId)):((gpBaseOf(sel.baseId)||{}).Name||niceId(sel.baseId));
 }
 /* Draft-and-Add: picking an item and every edit under it touch
    only the picker's working draft — the build itself does not
@@ -15739,7 +15758,7 @@ function gpCommitAdd(){
   var sd=gearDef(gearPick.slot); var sel=gearPick.sel; if(!sd||!sel)return;
   /* The game's rule, enforced at the door: while a two-handed weapon
      is equipped the Off Hand takes nothing but a bow's quiver. */
-  if(gearPick.slot==='OffHand'&&!offHandFits(G.baseMap[sel.baseId])){
+  if(gearPick.slot==='OffHand'&&!offHandFits(gpBaseOf(sel.baseId))){
     var thC=twoHandState();
     gpMsg(thC&&thC.quiverOnly?'Your bow is two-handed — while it is equipped the Off Hand can only hold a quiver, just like in the game.':'Your two-handed weapon uses both hands — the Off Hand stays empty, just like in the game. Swap to a one-handed weapon first.');
     return;
@@ -15751,7 +15770,7 @@ function gpCommitAdd(){
     /* The stored rarity is based on the affixes available on this
        item: never higher than its pool can reach, and the affixes
        kept are capped at what that rarity allows on this item. */
-    var baseForPick=G.baseMap[sel.baseId];
+    var baseForPick=gpBaseOf(sel.baseId);
     var eligForPick=baseForPick?simAffixesFor(baseForPick):[];
     rarity=clampRarity(rarity,eligForPick);
     var caps=affixCapsFor(rarity,eligForPick); var counts={Prefix:0,Suffix:0}; var used={};
@@ -15783,7 +15802,7 @@ function gpCommitAdd(){
      exactly as a loaded hero's runed item is read. */
   var pickRunes=[], pickSockets=null;
   if(!sel.uniqueId){
-    var pBase=G.baseMap[sel.baseId];
+    var pBase=gpBaseOf(sel.baseId);
     var pCap=pBase?runeSocketCap(pBase,{sockets:null},gearPick.slot):0;
     pickRunes=(gearPick.runes||[]).slice(0,pCap);
     if(pickRunes.length)pickSockets=pCap;
@@ -15797,12 +15816,12 @@ function gpCommitAdd(){
   state.gear[gearPick.slot]={base:sel.baseId,unique:sel.uniqueId,rarity:rarity,item_level:ilvl,affixes:affixes,runes:pickRunes,sockets:pickSockets};
   if(prevIdol&&typeof prevIdol.gx==='number'){state.gear[gearPick.slot].gx=prevIdol.gx; state.gear[gearPick.slot].gy=prevIdol.gy}
   gpPricedDelta={key:'',html:null}; gpDeltaKey='';
-  var rwSaved=sel.uniqueId?null:runewordFor(state.gear[gearPick.slot],G.baseMap[sel.baseId]);
+  var rwSaved=sel.uniqueId?null:runewordFor(state.gear[gearPick.slot],gpBaseOf(sel.baseId));
   var rwMissed=null;
   if(!sel.uniqueId&&pickRunes.length&&!rwSaved&&rarity!=='Normal'){
-    rwMissed=runewordFor({base:sel.baseId,unique:null,rarity:'Normal',item_level:ilvl,affixes:[],runes:pickRunes,sockets:null},G.baseMap[sel.baseId]);
+    rwMissed=runewordFor({base:sel.baseId,unique:null,rarity:'Normal',item_level:ilvl,affixes:[],runes:pickRunes,sockets:null},gpBaseOf(sel.baseId));
   }
-  var nm=rwSaved?rwSaved.rec.Name:(sel.uniqueId?(G.uniqueMap[sel.uniqueId]||{}).Name:((G.baseMap[sel.baseId]||{}).Name||niceId(sel.baseId)));
+  var nm=rwSaved?rwSaved.rec.Name:(sel.uniqueId?(G.uniqueMap[sel.uniqueId]||{}).Name:((gpBaseOf(sel.baseId)||{}).Name||niceId(sel.baseId)));
   if(gearPick.slot==='MainHand'){var w=G.weaponMap[sel.baseId]||G.weaponMapCI[sel.baseId.toLowerCase()]; if(w){state.weaponId=w.Id; state.weaponAffixes=gpRowsFromStored(affixes); state.weaponRarity=(rarity==='Unique'?'Rare':rarity); state.wpnSeededFor=w.Id; renderWeaponList('');}}
   /* Equipping a two-handed weapon over an occupied Off Hand: the
      game leaves no hand for the shield or tome, so it comes off —
@@ -15837,7 +15856,7 @@ function gpRenderEditor(){
   }
   if(editor)editor.classList.remove('hidden');
   if(emptyBox)emptyBox.classList.add('hidden');
-  var base=G.baseMap[sel.baseId];
+  var base=gpBaseOf(sel.baseId);
   var un=sel.uniqueId?G.uniqueMap[sel.uniqueId]:null;
   var liveIt=state.gear[gearPick.slot];
   var rwLive=liveIt?runewordFor(liveIt,base):null;
@@ -15907,7 +15926,7 @@ function gpRenderEditor(){
 function gpResyncFromState(){
   if(!gearPick.slot||!document.getElementById('gpList'))return;
   var cur=state.gear[gearPick.slot];
-  gearPick.sel=cur&&cur.base?{baseId:cur.base,uniqueId:cur.unique||null}:null;
+  gearPick.sel=cur&&cur.base?{baseId:gpCanonBaseId(cur.base),uniqueId:cur.unique||null}:null;
   gearPick.rows=cur?gpRowsFromStored(cur.affixes):[];
   gearPick.vows=(cur&&cur.unique)?(cur.affixes||[]).filter(isRivenAffix).map(function(a){return {affixId:a.id,value:+a.value||0}}):[];
   gearPick.runes=cur?(cur.runes||[]).slice():[];
@@ -15933,7 +15952,7 @@ function openGearPicker(slotKey){
     return;
   }
   var cur=state.gear[slotKey];
-  gearPick={slot:slotKey,q:'',type:'All',view:'item',sel:cur&&cur.base?{baseId:cur.base,uniqueId:cur.unique||null}:null,rows:cur?gpRowsFromStored(cur.affixes):[],vows:(cur&&cur.unique)?(cur.affixes||[]).filter(isRivenAffix).map(function(a){return {affixId:a.id,value:+a.value||0}}):[],runes:cur?(cur.runes||[]).slice():[],mode:cur&&cur.unique?'uniques':'items',rwPick:null,sockSel:'',sorts:{items:'level-desc',rw:'level-asc',rwBases:'level-desc'},note:'',showUniques:!!(cur&&cur.unique),rarity:cur&&cur.rarity&&cur.rarity!=='Unique'?cur.rarity:'Normal',filled:false,topUp:false,rolls:0,best:null};
+  gearPick={slot:slotKey,q:'',type:'All',view:'item',sel:cur&&cur.base?{baseId:gpCanonBaseId(cur.base),uniqueId:cur.unique||null}:null,rows:cur?gpRowsFromStored(cur.affixes):[],vows:(cur&&cur.unique)?(cur.affixes||[]).filter(isRivenAffix).map(function(a){return {affixId:a.id,value:+a.value||0}}):[],runes:cur?(cur.runes||[]).slice():[],mode:cur&&cur.unique?'uniques':'items',rwPick:null,sockSel:'',sorts:{items:'level-desc',rw:'level-asc',rwBases:'level-desc'},note:'',showUniques:!!(cur&&cur.unique),rarity:cur&&cur.rarity&&cur.rarity!=='Unique'?cur.rarity:'Normal',filled:false,topUp:false,rolls:0,best:null};
   $('modalRoot').innerHTML='<div class="modal" id="modalBg"><div class="sheet sheet-picker" style="max-width:min(1500px,97vw)"><div class="flex between"><h2>'+(cur?'Change':'Add')+' — '+esc(sd.label)+'</h2><button class="btn" id="closeModal" type="button">Close</button></div>'
    /* The two working views as tabs — Item (the catalogue, the
       filter and the list) and Affixes (the draft pick's editor).
@@ -16036,10 +16055,10 @@ function openGearPicker(slotKey){
        the runeword's runes, socketed in order, on a Normal item —
        always Normal, identical to socketing the runes by hand. */
     var rwRec=(gearPick.mode==='rwBases'&&!unId)?rwById(gearPick.rwPick):null;
-    gearPick.sel={baseId:baseId,uniqueId:unId};
+    gearPick.sel={baseId:gpCanonBaseId(baseId),uniqueId:unId};
     if(!same){
       var liveNow=state.gear[gearPick.slot];
-      if(liveNow&&liveNow.base===baseId&&(liveNow.unique||null)===unId){gearPick.rows=gpRowsFromStored(liveNow.affixes); gearPick.vows=unId?(liveNow.affixes||[]).filter(isRivenAffix).map(function(a){return {affixId:a.id,value:+a.value||0}}):[]; gearPick.runes=(liveNow.runes||[]).slice(); gearPick.rarity=liveNow.rarity&&liveNow.rarity!=='Unique'?liveNow.rarity:'Normal'}
+      if(liveNow&&gpCanonBaseId(liveNow.base)===baseId&&(liveNow.unique||null)===unId){gearPick.rows=gpRowsFromStored(liveNow.affixes); gearPick.vows=unId?(liveNow.affixes||[]).filter(isRivenAffix).map(function(a){return {affixId:a.id,value:+a.value||0}}):[]; gearPick.runes=(liveNow.runes||[]).slice(); gearPick.rarity=liveNow.rarity&&liveNow.rarity!=='Unique'?liveNow.rarity:'Normal'}
       else{
         gearPick.rows=[]; gearPick.vows=[]; gearPick.runes=[];
         /* A fresh pick starts Normal — the game's own starting
@@ -17021,7 +17040,11 @@ function addSkillToBar(id){
      stays exact from here on. */
   if(!state.barSkills.length&&state.skillId&&state.skillId!==id&&G.skillMap[state.skillId])state.barSkills.push({skill:state.skillId,supports:padSupports(state.supports),gem:state.gemLevel,onBar:true});
   if(e)e.onBar=true;
-  else state.barSkills.push({skill:id,supports:padSupports([]),gem:state.gemLevel,onBar:true});
+  /* v0.411 — a skill newly added to the bar starts at gem
+     level 1, like a blank build's main skill: it no longer
+     inherits the plan's current gem level. Skills already on
+     the bar keep the level they have. */
+  else state.barSkills.push({skill:id,supports:padSupports([]),gem:1,onBar:true});
   schedulePersistInstances(); renderCode(); renderPlanner(); renderDrawerBar(); renderSkillTable(); renderDrawerSkills();
   addSkillMsg(skillName(id)+' added — slot '+equippedBarEntries().length+' of 13 on your bar. Your main skill is unchanged; link its supports in Your skills, or tap Make main to plan around it.');
 }
@@ -17208,11 +17231,14 @@ function popEscKey(e){if(e.key==='Escape')closePlannerPop()}
 function teardownPop(restoreScroll){
   var name=popCurrent; popCurrent=null; wsCurrent='character';
   document.body.classList.remove('ws-skills');
+  document.body.classList.remove('ws-tree');
   document.removeEventListener('keydown',popEscKey);
   /* The Skills view's drawer and gem-level sheet never outlive
      the view: leaving parks them shut, so the view always opens
-     on the clean card. */
+     on the clean card. The tree planning drawer (v0.411) gets
+     the same treatment. */
   closeSkillsSideDrawer();
+  closeTreePlanDrawer();
   var glp=$('gemLevelsPop'); if(glp)glp.classList.add('hidden');
   stashPanel(name);
   var root=$('plannerPopRoot'); if(root)root.innerHTML='';
@@ -17250,8 +17276,10 @@ function openWorkspaceView(name){
   viewStoreData.scroll.planner=wsReturnY; viewStoreSave();
   popCurrent=name; wsCurrent=name; wsViewOpen=true;
   /* The Skills view carries the slim icon rail and its gutter
-     (v0.406): the class lives exactly as long as the view does. */
+     (v0.406): the class lives exactly as long as the view does.
+     The tree view's rail and gutter (v0.411) follow the same rule. */
   document.body.classList.toggle('ws-skills',name==='skills');
+  document.body.classList.toggle('ws-tree',name==='tree');
   var title=$('wsViewTitle'); if(title)title.textContent=POP_TITLES[name];
   view.setAttribute('aria-label',POP_TITLES[name]);
   el.classList.remove('hidden');
@@ -17389,6 +17417,56 @@ function skRailSync(){
   if(sup)sup.setAttribute('aria-pressed',(open&&skDrawerMode==='supports')?'true':'false');
   if(add)add.setAttribute('aria-pressed',(open&&skDrawerMode==='add')?'true':'false');
 }
+/* ---------- v0.411: the tree planning drawer + its icon rail ----------
+   The planning panel (tree versions, the plan/optimize tools,
+   the blend slider, heat legend, preview, best picks and the
+   node list — the same contents, the same ids) docks in from
+   the tree view's right edge, opened from the slim icon rail
+   in the Skills rail's language. Each rail button opens the
+   panel at its section and wears the gold while that section
+   shows; tapping the lit button again, the panel's ×, the
+   phone scrim or Escape puts it away and the canvas takes the
+   full width back. Starters stay read-only exactly as before —
+   only the panel's door changed, nothing inside it. */
+var treeRailSection=null;
+function treePlanDrawerOpen(){var d=$('treeToolsFold'); return !!(d&&d.classList.contains('open'))}
+function treeRailSync(){
+  var open=treePlanDrawerOpen();
+  [['treeRailVers','vers'],['treeRailPlan','plan'],['treeRailList','list']].forEach(function(p){
+    var b=$(p[0]); if(b)b.setAttribute('aria-pressed',(open&&treeRailSection===p[1])?'true':'false');
+  });
+}
+function openTreePlanDrawer(section){
+  var d=$('treeToolsFold'); if(!d)return;
+  treeRailSection=section||treeRailSection||'vers';
+  d.classList.add('open'); d.setAttribute('aria-hidden','false');
+  document.body.classList.add('trp-open');
+  var sc=$('treePlanScrim'); if(sc)sc.classList.remove('hidden');
+  treeRailSync();
+  var body=$('treePlanBody');
+  if(body){
+    var target=treeRailSection==='plan'?$('treePlanActions'):(treeRailSection==='list'?$('treeList'):null);
+    if(target){var tr=target.getBoundingClientRect(), br=body.getBoundingClientRect(); body.scrollTop=Math.max(0,body.scrollTop+tr.top-br.top-6)}
+    else body.scrollTop=0;
+  }
+}
+function closeTreePlanDrawer(){
+  var d=$('treeToolsFold'); if(d){d.classList.remove('open'); d.setAttribute('aria-hidden','true')}
+  document.body.classList.remove('trp-open');
+  var sc=$('treePlanScrim'); if(sc)sc.classList.add('hidden');
+  treeRailSync();
+}
+function bindTreeRail(){
+  [['treeRailVers','vers'],['treeRailPlan','plan'],['treeRailList','list']].forEach(function(p){
+    var b=$(p[0]); if(!b)return;
+    b.addEventListener('click',function(){
+      if(treePlanDrawerOpen()&&treeRailSection===p[1])closeTreePlanDrawer();
+      else openTreePlanDrawer(p[1]);
+    });
+  });
+  var pc=$('treePlanClose'); if(pc)pc.addEventListener('click',closeTreePlanDrawer);
+  var psc=$('treePlanScrim'); if(psc)psc.addEventListener('click',closeTreePlanDrawer);
+}
 function gemLevelsPopOpen(){var p=$('gemLevelsPop'); return !!(p&&!p.classList.contains('hidden'))}
 function setGemLevelsPop(open){
   var p=$('gemLevelsPop'); if(!p)return;
@@ -17406,21 +17484,21 @@ function bindSkillsDrawer(){
   var dmgSel=$('drawerDmgSel'); if(dmgSel)dmgSel.addEventListener('change',function(){drawerDmgFilter=dmgSel.value||''; renderDrawerSkills()});
   var supSearch=$('drawerSupportSearch'); if(supSearch)supSearch.addEventListener('input',renderGemPalette);
   var supSortSel=$('drawerSupportSort'); if(supSortSel)supSortSel.addEventListener('change',function(){supportSort=supSortSel.value||'attr'; renderGemPalette()});
-  /* v0.404 — the picker drawer's controls (the section tabs that
-     used to jump between Main skill / Skill tools / Add a skill
-     are gone; the drawer is what those jumps reached for): the
-     two open buttons under the card, the drawer's mode tabs, its
-     close button and the phone scrim, and the gem-level sheet's
-     own close button. */
-  var osb=$('skOpenSupBtn'); if(osb)osb.addEventListener('click',function(){openSkillsSideDrawer('supports')});
-  var oab=$('skOpenAddBtn'); if(oab)oab.addEventListener('click',function(){openSkillsSideDrawer('add')});
-  /* The slim icon rail (v0.406): the same two panes from the
-     view's right edge — tapping the lit button again puts its
-     pane away. */
+  /* The picker drawer's controls: its mode tabs, close button
+     and phone scrim, and the gem-level sheet's own close button.
+     (The old in-flow "Support gems" / "Add a skill" buttons under
+     the main skill card went in v0.411 — the icon rail is the
+     only door to those panes now.) */
+  /* The slim icon rail (v0.406): the two panes from the view's
+     right edge — tapping the lit button again puts its pane
+     away. */
   var rsb=$('skRailSup'); if(rsb)rsb.addEventListener('click',function(){if(skPickDrawerOpen()&&skDrawerMode==='supports')closeSkillsSideDrawer(); else openSkillsSideDrawer('supports')});
   var rab=$('skRailAdd'); if(rab)rab.addEventListener('click',function(){if(skPickDrawerOpen()&&skDrawerMode==='add')closeSkillsSideDrawer(); else openSkillsSideDrawer('add')});
   var pcb=$('skPickClose'); if(pcb)pcb.addEventListener('click',closeSkillsSideDrawer);
   var psc=$('skPickScrim'); if(psc)psc.addEventListener('click',closeSkillsSideDrawer);
+  /* The tree planning rail (v0.411): the same dock-and-toggle
+     behaviour on the tree view's right edge. */
+  bindTreeRail();
   document.querySelectorAll('[data-skd-mode]').forEach(function(b){b.addEventListener('click',function(){skDrawerSlot=null; setSkDrawerMode(b.getAttribute('data-skd-mode'))})});
   var glc=$('gemLevelsClose'); if(glc)glc.addEventListener('click',function(){setGemLevelsPop(false)});
   /* Escape peels the Skills view one layer at a time: the picker
@@ -17431,6 +17509,7 @@ function bindSkillsDrawer(){
      while a layer is still open over it. */
   document.addEventListener('keydown',function(e){
     if(e.key!=='Escape')return;
+    if(treePlanDrawerOpen()){closeTreePlanDrawer(); e.stopPropagation(); e.preventDefault(); return}
     if(skPickDrawerOpen()){closeSkillsSideDrawer(); e.stopPropagation(); e.preventDefault(); return}
     if(gemLevelsPopOpen()){setGemLevelsPop(false); e.stopPropagation(); e.preventDefault();}
   },true);
@@ -19443,6 +19522,17 @@ function dragonPointsUsed(){
 function heroRuptureLevel(){
   return Math.max(state.heroRupture||0,(G.loadedHero&&G.loadedHero.rupture_level)||0,state.rupture||0);
 }
+/* v0.411 — one Rupture level, two controls: the Enemy setup
+   slider and the Dragonling view's slider both write
+   state.rupture, and this keeps both faces (and their value
+   readouts) showing the same number whenever either moves. */
+function syncRuptureControls(){
+  var r=state.rupture||0;
+  var er=$('ruptureRange'); if(er)er.value=r;
+  var ev=$('ruptureVal'); if(ev)ev.textContent=r;
+  var dr=$('dragRuptureRange'); if(dr)dr.value=r;
+  var dv=$('dragRuptureVal'); if(dv)dv.textContent=r;
+}
 function dragAdjacency(nodes){
   var inSet={}, adj={};
   nodes.forEach(function(n){inSet[n.Id]=1});
@@ -19671,6 +19761,7 @@ function renderDragTaken(){
    +'<div class="node-chips">'+ids.map(function(id){var n=G.dragonMap[id]; return '<span class="node-chip" title="'+esc((n.Path?n.Path+' — ':'')+(n.Name||niceId(id))+': '+dragonNodeText(n))+'">'+esc(n.Name||niceId(id))+'</span>'}).join('')+'</div>';
 }
 function renderDragonPage(){
+  syncRuptureControls();
   renderAspectGrid(); buildDragonTree(); renderDragonPaths();
   var pill=$('dragPointsPill');
   if(pill){
@@ -19685,6 +19776,22 @@ function renderDragonPage(){
 }
 function bindDragonPage(){
   var ds=$('dragSearch'); if(ds)ds.addEventListener('input',function(){dragSearch=ds.value||''; renderDragonPaths()});
+  /* The Dragonling view's own Rupture control (v0.411): the
+     same state.rupture the Enemy setup slider writes. While
+     the slider moves, the readouts, the other control and the
+     points pill follow; on release the page and the planner
+     re-render, so the budget, the takeable nodes and the
+     resist-penalty maths all read the new level. */
+  var drr=$('dragRuptureRange');
+  if(drr){
+    drr.addEventListener('input',function(e){
+      state.rupture=+e.target.value;
+      syncRuptureControls();
+      var pill=$('dragPointsPill');
+      if(pill){var used=dragonPointsUsed(), budget=dragPointBudget(), over=budget>0&&used>budget; var paths=[]; dragClassNodes().forEach(function(n){if(n.Path&&paths.indexOf(n.Path)<0)paths.push(n.Path)}); pill.textContent=used+' / '+budget+' pts'+(paths.length?' • '+paths.join(' · '):''); pill.classList.toggle('bad',over)}
+    });
+    drr.addEventListener('change',function(){renderDragonPage(); renderPlanner(); schedulePersistInstances()});
+  }
   var grid=$('aspectGrid');
   if(grid)grid.addEventListener('click',function(e){var b=e.target.closest('[data-aspect]'); if(!b)return; state.aspect=b.getAttribute('data-aspect'); syncAspectOptions(); renderPlanner();});
   var paths=$('dragPaths');
@@ -24354,7 +24461,7 @@ function bindExtras(){
   }
   var vbBtn=$('vowbreakBtn'); if(vbBtn)vbBtn.addEventListener('click',function(){state.vowbreak=!state.vowbreak; vbBtn.textContent='Vowbreak: '+(state.vowbreak?'on':'off'); vbBtn.setAttribute('aria-pressed',state.vowbreak?'true':'false'); vbBtn.classList.toggle('primary',state.vowbreak); renderPlanner();});
   var enemySelEl=$('enemySel'); if(enemySelEl)enemySelEl.addEventListener('change',function(e){pickEnemy(e.target.value)});
-  var rupEl=$('ruptureRange'); if(rupEl)rupEl.addEventListener('input',function(e){state.rupture=+e.target.value; $('ruptureVal').textContent=state.rupture; renderEnemyInfo(); renderPlanner();});
+  var rupEl=$('ruptureRange'); if(rupEl)rupEl.addEventListener('input',function(e){state.rupture=+e.target.value; $('ruptureVal').textContent=state.rupture; syncRuptureControls(); renderEnemyInfo(); renderPlanner();});
   var cmpBtnEl=$('cmpBtn'); if(cmpBtnEl)cmpBtnEl.addEventListener('click',runComparator);
   var cmpSusBtn=$('cmpSustainBtn'); if(cmpSusBtn)cmpSusBtn.addEventListener('click',function(){cmpSustainOnly=!cmpSustainOnly; cmpSusBtn.textContent='Only setups my mana can sustain: '+(cmpSustainOnly?'on':'off'); cmpSusBtn.setAttribute('aria-pressed',cmpSustainOnly?'true':'false'); cmpSusBtn.classList.toggle('primary',cmpSustainOnly); runComparator();});
   var cmpApplyEl=$('cmpApplyBtn'); if(cmpApplyEl)cmpApplyEl.addEventListener('click',function(){
@@ -25687,7 +25794,11 @@ function startNewBuild(opts){
   opts=opts||{};
   beginSeparateInstance();
   state.cls=homeCls||state.cls;
-  state.level=opts.level||90; state.gemLevel=20; state.aspect=((G.dragonling&&G.dragonling.ClassAspect)||{})[state.cls]||'Lightning';
+  /* v0.411 — a blank build's main skill starts at gem level 1
+     (was 20): a fresh plan prices the gem it actually starts
+     with, and the slider still raises it from there. Loaded
+     heroes and starters keep the gem levels they carry. */
+  state.level=opts.level||90; state.gemLevel=1; state.aspect=((G.dragonling&&G.dragonling.ClassAspect)||{})[state.cls]||'Lightning';
   var starter=classStarter(state.cls);
   if(G.skillMap[starter.skill])state.skillId=starter.skill;
   state.supports=[]; state.barSkills=[]; state.dragonNodes=[]; state.passiveNodes=[]; state.inc=120; state.crit=15; state.critMulti=150; state.speed=20; state.bonusPassivePoints=opts.bonus!=null?opts.bonus:24; state.passives=Math.max(1,Math.min(123,(state.level-1)+state.bonusPassivePoints));
@@ -26609,8 +26720,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.410';
-var PLANNER_BUILT_AT='2026-11-26T13:38:00-08:00';
+var PLANNER_VERSION='0.411';
+var PLANNER_BUILT_AT='2026-11-26T12:36:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
