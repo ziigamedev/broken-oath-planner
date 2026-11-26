@@ -6199,7 +6199,7 @@ function fetchJSON(url,timeoutMs){
 function getJSON(path){if(cache[path])return cache[path];var p=fetchJSON(BASE+path,12000);cache[path]=p;p.catch(function(){if(cache[path]===p)delete cache[path]});return p}
 function getLiveJSON(path,timeoutMs){delete cache[path];var p=fetchJSON(BASE+path,timeoutMs||12000);cache[path]=p;p.catch(function(){if(cache[path]===p)delete cache[path]});return p}
 function getSnap(name){return fetchJSON('assets/snapshot/'+name,12000)}
-var SNAPSHOT_PATCH='90'; var SNAPSHOT_AT='2026-11-25T21:48:00.516Z'; var DEFAULT_LEAGUE='at1-sc-trade'; var liveState='boot';
+var SNAPSHOT_PATCH='90'; var SNAPSHOT_AT='2026-11-25T23:48:00.720Z'; var DEFAULT_LEAGUE='at1-sc-trade'; var liveState='boot';
 /* Patch history store — notes text only, a few KB per patch, bundled
    at assets/snapshot/patch-history.json. The hourly snapshot refresh
    adds exactly one entry when the patch number moves: {patch, build,
@@ -6275,7 +6275,18 @@ function effAt(skill,gem){
     if(gem<=hold) early=skill.EffectivenessEarly;
     else if(gem<full) early=1+(skill.EffectivenessEarly-1)*(1-(gem-hold)/Math.max(1,full-hold));
   }
-  return {eff:eff,early:early,total:eff*early};
+  /* Late2 (late2.json's own rule): a second multiplier riding on
+     top of the effectiveness above — x1 up to gem Late2From, a
+     straight line to xLate2Mult at gem Late2At, flat after. A
+     Mult under 1 is a real cut (Judgement 0.536), not a
+     bonus-only track; skills with no Late2 row keep 1. */
+  var late2=1;
+  if(skill.Late2Mult!=null && skill.Late2From!=null){
+    var lfrom=skill.Late2From, lat=skill.Late2At||lfrom;
+    if(gem>=lat) late2=skill.Late2Mult;
+    else if(gem>lfrom) late2=1+(skill.Late2Mult-1)*(gem-lfrom)/Math.max(1,(lat-lfrom));
+  }
+  return {eff:eff,early:early,late2:late2,total:eff*early*late2};
 }
 /* ---------- Sim calibration ----------
    Fitted against the Broken Oath public API's own data: ladder heroes
@@ -6386,48 +6397,36 @@ function effAt(skill,gem){
    ≈20M against Winter Orb's ≈77M (ratio 3.8; the game's own
    per-skill tips ratio is 4.7) — the ranking the old calc had
    backwards is right now. */
-/* Patch 90 bake (2026-11-25): the baked factor below is the
-   startup refit's own output over the snapshot bundled with
-   the page — recovered by running that refit over the shipped
-   snapshot files (ladder of 2026-11-25T14:48:01Z: 75 heroes
-   with a published build and a measured Guardian DPS, 74 of
-   them priced) and baking its committed values at full
-   precision, so first paint and the settled refit price from
-   the same line and the headline cannot move when the refit
-   lands.
+/* Patch 90 bake, refit 2026-11-26 after the Late2 / chill /
+   Ignite-Poison / Hunter's Mark corrections: per-skill factors
+   at true median for 16 archetypes with 3+ heroes; global line
+   on unclaimed heroes; DoT priced in the fit total — median
+   calibrated/measured exactly 1.00× across 101 priced heroes,
+   52/101 within 2×, 63/101 within 3×. The old fit under the new
+   damage math reads 2.74× median on the same sample, so this
+   refit was mandatory, not cosmetic. Two small-n archetypes
+   stay off-median (Arc 1.54× on 4 heroes, Pyre of Faith 1.11×
+   on 4) — wide scatter, not a fit failure.
 
-   Stale-bake incident (2026-11-25, the reason for this
-   re-bake): the snapshot files bundled with the page were
-   refreshed (the 11:57 ladder, 49 heroes) after the previous
-   bake had been computed from them, so the shipped bake no
-   longer matched the shipped snapshot's own fit. The sample
-   build read Calibrated DPS 107.95M once the refit settled
-   but 179.34M from the stale bake on any load read before
-   the refit landed — the two factors differ by ×1.6613 at
-   the sample's level, while its Tooltip DPS, priced from the
-   build alone, never moved. Two rules now keep the bake and
-   the refit from ever splitting again: the refit is hermetic
-   (see recalibrate — it waits for the deferred data files,
-   reads build files only from the bundled copies, and
-   refuses to commit a fit whose sample loaded only in part),
-   so its result is a pure function of the shipped snapshot;
-   and this bake is that function's value for the snapshot
-   actually shipped, so even a load where the refit cannot
-   run shows the identical number.
-
-   Reproducibility fix (2026-11-25): that startup refit used to
-   read the LIVE ladder — and refit again every time the live
-   ladder moved (the 5-minute poll) — so the same unchanged
-   build's headline Calibrated DPS drifted from load to load
-   (one sample build read 144.89M, then 142.74M on the same
-   patch, then 177.65M on the next, while its Tooltip DPS —
-   priced from the build alone — never moved). The fit now
-   reads ONLY the ladder snapshot bundled with the page (see
-   recalibrate below): same page build, same factor, same
-   number, every load, for every visitor. The factor changes
-   only when a new planner build ships a new snapshot — the
-   moment a patch's fit is meant to change. */
-var CAL={a:-3.4158015999778306,b:0.052707362128123256,n:74,patch:'90',at:'2026-11-25',sd:0.7301212000856806,within2:40,within3:50,median:0.9999999999999998,source:'bundled patch 90 snapshot refit'};
+   The hermetic rule stands, and it is why this bake can be
+   trusted to match what a visitor's page computes: the refit
+   runs at startup from the bundled snapshot only (see
+   recalibrate — it waits for the deferred data files, reads
+   build files only from the bundled copies, and refuses to
+   commit a fit whose sample loaded only in part), so its
+   result is a pure function of the shipped snapshot. The
+   per-archetype factors are median intercepts on the shared
+   global slope, and the fit's published stats are judged on
+   the line each hero actually prices with — the archetype
+   line where one is fitted, the global line otherwise. This
+   bake is that function's value for the snapshot actually
+   shipped, baked at full precision, so first paint and the
+   settled refit price from the same line and the headline
+   cannot move when the refit lands: same page build, same
+   factor, same number, every load, for every visitor. The
+   factor changes only when a new planner build ships a new
+   snapshot — the moment a patch's fit is meant to change. */
+var CAL={a:-2.2177783512842613, b:0.03403892237239757, n:101, patch:'90', at:'2026-11-26', sd:0.7714732057640669, within2:52, within3:63, median:1.0000000000000002, source:'auto-refit on the bundled snapshot ladder — same calculation as the Damage analysis'};
 var CAL_PREV={patch:'90',at:'2026-11-25',n:74,median:0.9999999999999998,within3:50,sd:0.7301212000856806,onNowN:74,onNowMedian:2.66402410422801,onNowWithin3:27};
 function calK(level){return Math.pow(10, CAL.a+CAL.b*level)}
 /* ---------- Per-archetype calibration (2026-11-24) ----------
@@ -6499,20 +6498,7 @@ function calK(level){return Math.pow(10, CAL.a+CAL.b*level)}
    prices from this table exactly as the settled refit does, so
    an archetype build's headline no longer moves when the refit
    lands either. */
-var CAL_ARCH={
-  'minion':{a:-1.980692918266639,b:0.052707362128123256,n:7,patch:'90',at:'2026-11-25',sd:0.5349596565255663,within2:5,within3:5,median:0.9999999999999998,source:'bundled patch 90 snapshot refit — per-archetype median intercept on the global slope'},
-  'skill:crescent_slash':{a:-3.9036327776787405,b:0.052707362128123256,n:4,patch:'90',at:'2026-11-25',sd:0.7953309547255402,within2:3,within3:3,median:1.1781671104001687,source:'bundled patch 90 snapshot refit — per-archetype median intercept on the global slope'},
-  'skill:cyclone':{a:-4.058573530305219,b:0.052707362128123256,n:5,patch:'90',at:'2026-11-25',sd:0.7094563401328673,within2:3,within3:3,median:0.9999999999999996,source:'bundled patch 90 snapshot refit — per-archetype median intercept on the global slope'},
-  'skill:death_coil':{a:-3.944379959995068,b:0.052707362128123256,n:3,patch:'90',at:'2026-11-25',sd:0.6411761450067021,within2:2,within3:2,median:1.0000000000000004,source:'bundled patch 90 snapshot refit — per-archetype median intercept on the global slope'},
-  'skill:hallowed_slam':{a:-3.9036703010252567,b:0.052707362128123256,n:9,patch:'90',at:'2026-11-25',sd:0.977617953513112,within2:4,within3:6,median:1.0000000000000002,source:'bundled patch 90 snapshot refit — per-archetype median intercept on the global slope'},
-  'skill:judgement':{a:-4.074746542200177,b:0.052707362128123256,n:4,patch:'90',at:'2026-11-25',sd:1.3516124885126404,within2:3,within3:3,median:1.004147207027881,source:'bundled patch 90 snapshot refit — per-archetype median intercept on the global slope'},
-  'skill:lightning_arrow':{a:-3.7711573654128587,b:0.052707362128123256,n:3,patch:'90',at:'2026-11-25',sd:0.3200356371079134,within2:1,within3:3,median:0.9999999999999998,source:'bundled patch 90 snapshot refit — per-archetype median intercept on the global slope'},
-  'skill:pyre_of_faith':{a:-4.168091425119608,b:0.052707362128123256,n:4,patch:'90',at:'2026-11-25',sd:0.5472732974634782,within2:2,within3:2,median:1.0902359915254491,source:'bundled patch 90 snapshot refit — per-archetype median intercept on the global slope'},
-  'skill:shield_throw':{a:-4.110542909240758,b:0.052707362128123256,n:3,patch:'90',at:'2026-11-25',sd:0.4082333955206362,within2:2,within3:2,median:0.9999999999999996,source:'bundled patch 90 snapshot refit — per-archetype median intercept on the global slope'},
-  'skill:split_shot':{a:-3.9651008312459,b:0.052707362128123256,n:3,patch:'90',at:'2026-11-25',sd:0.28332772756301894,within2:2,within3:3,median:1.0000000000000007,source:'bundled patch 90 snapshot refit — per-archetype median intercept on the global slope'},
-  'skill:thousand_cuts':{a:-3.8776958194339373,b:0.052707362128123256,n:5,patch:'90',at:'2026-11-25',sd:0.36280045008578987,within2:4,within3:4,median:1.0000000000000004,source:'bundled patch 90 snapshot refit — per-archetype median intercept on the global slope'},
-  'skill:venom_spark':{a:-3.1074247847245,b:0.052707362128123256,n:3,patch:'90',at:'2026-11-25',sd:0.5662101443266456,within2:1,within3:2,median:0.9999999999999998,source:'bundled patch 90 snapshot refit — per-archetype median intercept on the global slope'}
-};
+var CAL_ARCH={"skill:cyclone":{"a":-2.43559626751086,"b":0.03403892237239757,"n":6,"patch":"90","at":"2026-11-26","sd":0.8493333052379521,"within2":2,"within3":2,"median":1.0000000260449735,"source":"auto-refit — per-archetype median intercept on the global slope, fitted on the bundled snapshot ladder"},"skill:hallowed_slam":{"a":-2.2732688742248675,"b":0.03403892237239757,"n":11,"patch":"90","at":"2026-11-26","sd":0.9027449684477558,"within2":4,"within3":7,"median":0.9999999999999994,"source":"auto-refit — per-archetype median intercept on the global slope, fitted on the bundled snapshot ladder"},"skill:crescent_slash":{"a":-2.600857029903554,"b":0.03403892237239757,"n":4,"patch":"90","at":"2026-11-26","sd":1.078499073187234,"within2":2,"within3":2,"median":1.0161989967692797,"source":"auto-refit — per-archetype median intercept on the global slope, fitted on the bundled snapshot ladder"},"skill:thousand_cuts":{"a":-2.3266933675873234,"b":0.03403892237239757,"n":7,"patch":"90","at":"2026-11-26","sd":0.4132130011062953,"within2":5,"within3":5,"median":1.0000000000000002,"source":"auto-refit — per-archetype median intercept on the global slope, fitted on the bundled snapshot ladder"},"skill:venom_spark":{"a":-1.6755881039881932,"b":0.03403892237239757,"n":3,"patch":"90","at":"2026-11-26","sd":0.6028330928710074,"within2":2,"within3":2,"median":0.9999999999999998,"source":"auto-refit — per-archetype median intercept on the global slope, fitted on the bundled snapshot ladder"},"skill:shield_throw":{"a":-2.505057090248349,"b":0.03403892237239757,"n":3,"patch":"90","at":"2026-11-26","sd":0.6065304581654498,"within2":1,"within3":2,"median":0.9999999999999996,"source":"auto-refit — per-archetype median intercept on the global slope, fitted on the bundled snapshot ladder"},"skill:winter_orb":{"a":-1.7994487333694194,"b":0.03403892237239757,"n":5,"patch":"90","at":"2026-11-26","sd":0.5250866622542467,"within2":3,"within3":3,"median":1.0000000000000002,"source":"auto-refit — per-archetype median intercept on the global slope, fitted on the bundled snapshot ladder"},"minion":{"a":-0.4044615566668428,"b":0.03403892237239757,"n":10,"patch":"90","at":"2026-11-26","sd":0.6596563495038609,"within2":6,"within3":7,"median":1.0000261138015514,"source":"auto-refit — per-archetype median intercept on the global slope, fitted on the bundled snapshot ladder"},"skill:pyre_of_faith":{"a":-2.5424544013199433,"b":0.03403892237239757,"n":4,"patch":"90","at":"2026-11-26","sd":0.46228770945868014,"within2":2,"within3":2,"median":1.1076651926944212,"source":"auto-refit — per-archetype median intercept on the global slope, fitted on the bundled snapshot ladder"},"skill:rime_spark":{"a":-1.1906878987327558,"b":0.03403892237239757,"n":3,"patch":"90","at":"2026-11-26","sd":0.41080508180164194,"within2":1,"within3":2,"median":1.0000000000000002,"source":"auto-refit — per-archetype median intercept on the global slope, fitted on the bundled snapshot ladder"},"skill:split_shot":{"a":-2.277961661438375,"b":0.03403892237239757,"n":5,"patch":"90","at":"2026-11-26","sd":0.19477078563369477,"within2":4,"within3":5,"median":1,"source":"auto-refit — per-archetype median intercept on the global slope, fitted on the bundled snapshot ladder"},"skill:death_coil":{"a":-2.372322516761748,"b":0.03403892237239757,"n":3,"patch":"90","at":"2026-11-26","sd":0.39911710761641994,"within2":2,"within3":2,"median":1.0000000000000002,"source":"auto-refit — per-archetype median intercept on the global slope, fitted on the bundled snapshot ladder"},"skill:arc":{"a":-1.9611266580850386,"b":0.03403892237239757,"n":4,"patch":"90","at":"2026-11-26","sd":0.5903984259897421,"within2":0,"within3":2,"median":1.5440153323239358,"source":"auto-refit — per-archetype median intercept on the global slope, fitted on the bundled snapshot ladder"},"skill:ember_spark":{"a":-1.5806507809348753,"b":0.03403892237239757,"n":3,"patch":"90","at":"2026-11-26","sd":1.139450695299076,"within2":2,"within3":2,"median":0.9999999999999996,"source":"auto-refit — per-archetype median intercept on the global slope, fitted on the bundled snapshot ladder"},"skill:judgement":{"a":-2.0913125864342477,"b":0.03403892237239757,"n":6,"patch":"90","at":"2026-11-26","sd":0.4422322811620857,"within2":4,"within3":4,"median":1.0001142067506226,"source":"auto-refit — per-archetype median intercept on the global slope, fitted on the bundled snapshot ladder"},"skill:lightning_arrow":{"a":-2.3550768402860562,"b":0.03403892237239757,"n":6,"patch":"90","at":"2026-11-26","sd":0.43807212781578675,"within2":3,"within3":4,"median":1.0001830315035243,"source":"auto-refit — per-archetype median intercept on the global slope, fitted on the bundled snapshot ladder"}};
 /* The archetype key a plan state prices under. A trial state that
    reprices one bar skill of a build carries the build's key in
    calArchKey (stamped where the trial state is built); anything
@@ -7054,7 +7040,7 @@ function bannerOnBar(){
   return on;
 }
 function bannerActive(){return bannerOnBar()||!!state.bannerTry}
-function curseTakenMult(skill){
+function curseTakenMult(skill,extraTaken){
   var type=skill?(skill.DamageType||''):''; var tot=0;
   activeCurses().forEach(function(c){
     /* Hunter's Mark and the War Banner have their own stack
@@ -7079,6 +7065,12 @@ function curseTakenMult(skill){
     var dcap=state.enemyRarity==='Guardian'?(dc.Dread.BossCap!=null?dc.Dread.BossCap:(dc.Dread.Cap||0)):(dc.Dread.Cap||0);
     tot+=Math.min(state.dread,dcap)*(dc.Dread.EffectPct||0);
   }
+  /* Shock rides in the same total when the caller passes it:
+     it is a takes-more-damage effect on the enemy, and the
+     Hunter's Mark support's own text says Marks add with curses
+     and every other takes-more-damage effect — so Shock adds
+     here too instead of multiplying on top. */
+  if(extraTaken)tot+=extraTaken;
   return 1+tot/100;
 }
 /* Hunter's Mark strength for this bar: full when any non-minion
@@ -8227,8 +8219,10 @@ function calcFrom(st){
      deals 40% of the hit's physical damage each second for 4
      seconds, the strongest bleed holds (patch 90 cut the rate
      from 50%). Burning and poison ride the same published
-     structure at 50% on their own element's part of the hit,
-     each scaled by its own chance, its increased and
+     structure on their own element's part of the hit — burning
+     at 30% of the hit a second (scaling.json's IgniteFrac 1.2
+     over IgniteSeconds 4.0), poison at 20% (PoisonFracPerSec
+     0.2) — each scaled by its own chance, its increased and
      "more" ailment lines, and the Damage over Time Multiplier —
      whose sources MULTIPLY across kinds (support pool times tree
      pool), the fix lilshrimper's list calls out for Crack. A
@@ -8255,8 +8249,8 @@ function calcFrom(st){
     if(perSec>0)dotParts.push({kind:kind,el:el,dps:perSec*uptime,perSec:perSec});
   }
   ailTrack('Bleed','Physical',0.4,ailTot('bleedCh'),ailTot('bleedInc'),(ailSup.bleedMore||[]).concat((poolsAil&&poolsAil.bleedMore)||[]).concat(ailX.bleedMore));
-  ailTrack('Ignite','Fire',0.5,ailTot('igniteCh'),ailTot('igniteInc'),(ailSup.igniteMore||[]).concat((poolsAil&&poolsAil.igniteMore)||[]).concat(ailX.igniteMore));
-  ailTrack('Poison','Poison',0.5,ailTot('poisonCh'),ailTot('poisonInc'),(ailSup.poisonMore||[]).concat((poolsAil&&poolsAil.poisonMore)||[]).concat(ailX.poisonMore));
+  ailTrack('Ignite','Fire',0.3,ailTot('igniteCh'),ailTot('igniteInc'),(ailSup.igniteMore||[]).concat((poolsAil&&poolsAil.igniteMore)||[]).concat(ailX.igniteMore));
+  ailTrack('Poison','Poison',0.2,ailTot('poisonCh'),ailTot('poisonInc'),(ailSup.poisonMore||[]).concat((poolsAil&&poolsAil.poisonMore)||[]).concat(ailX.poisonMore));
   if(skill.Ground&&skill.Ground.TickScale&&skill.Ground.Tick){
     dotParts.push({kind:(skill.Name||'Ground')+' cloud',el:mainElem==='Poison'?'Poison':(skill.DamageType||'Physical'),dps:hit*(skill.Ground.TickScale/skill.Ground.Tick)*dotMultF,perSec:hit*(skill.Ground.TickScale/skill.Ground.Tick)*dotMultF});
   }
@@ -8273,12 +8267,13 @@ function calcFrom(st){
   var shockStacksC=1+ailSup.shockStacks+((poolsAil&&poolsAil.shockStacks)||0)+ailX.shockStacks;
   var lightningShare=hit>0?((compHit.Lightning||0)/hit):0;
   var shockTakenC=shockChanceTot>0?Math.min(75,25*lightningShare*(1+shockEffTot/100)*shockStacksC)*Math.min(1,shockChanceTot/100):0;
-  /* CHILL caps at 50% (lilshrimper's list, and the game's own
-     Slow numbers): the skill's published Slow, grown by Chill
-     effect, never past half. Freeze duration's sources multiply
-     the same way the DoT multiplier's do. */
+  /* CHILL caps at 30% (scaling.json's ChillMaxPct — 50% is
+     Shock's cap, not chill's): the skill's published Slow, grown
+     by Chill effect, never past the cap. Freeze duration's
+     sources multiply the same way the DoT multiplier's do. */
   var chillEffTot=ailTot('chillEff');
-  var chillPctC=skill.Slow?Math.min(50,(+skill.Slow)*100*(1+chillEffTot/100)):0;
+  var chillCap=(G.scaling&&G.scaling.Meta59&&G.scaling.Meta59.ChillMaxPct)||30;
+  var chillPctC=skill.Slow?Math.min(chillCap,(+skill.Slow)*100*(1+chillEffTot/100)):0;
   var freezeMultC=1;
   ailSup.freezeVals.forEach(function(v){freezeMultC*=(1+v/100)});
   if(poolsAil)(poolsAil.freezeVals||[]).forEach(function(v){freezeMultC*=(1+v/100)});
@@ -8326,8 +8321,8 @@ function calcFrom(st){
   var K=calKFor(st);
   var dotDpsCal=dotStruct*K;
   var dps=structural*K+dotDpsCal;
-  if(dotStruct>0)steps.push({name:'Damage over time',note:'Your hits also leave damage ticking: '+dotParts.filter(function(p2){return p2.dps>0}).map(function(p2){return p2.kind+' '+fmt(p2.dps)+' a second'}).join(', ')+' — Bleeding at 40% of the hit a second (patch 90), burning and poison at 50%, the strongest one holding and crits never multiplying a tick, scaled by each ailment\u2019s chance, its own increased and more lines, and the Damage over Time Multiplier at \u00d7'+dotMultF.toFixed(2)+' (its support, tree and gear sources multiply, they do not add). Chill and Brittle do not raise these ticks.',value:structural+dotStruct});
-  if(chillPctC>0||freezeMultC>1.01)steps.push({name:'Chill and freeze',note:(chillPctC>0?('Your hits chill for '+chillPctC.toFixed(0)+'% slower movement and action — Chill caps at 50%. '):'')+(freezeMultC>1.01?('Your freezes last \u00d7'+freezeMultC.toFixed(2)+' as long — every freeze-duration source multiplies. '):'')+'Neither changes the single-target number above; they buy control, and chilled enemies feed lines like Stormfrost, already counted in the hit.',value:structural+dotStruct});
+  if(dotStruct>0)steps.push({name:'Damage over time',note:'Your hits also leave damage ticking: '+dotParts.filter(function(p2){return p2.dps>0}).map(function(p2){return p2.kind+' '+fmt(p2.dps)+' a second'}).join(', ')+' — Bleeding at 40% of the hit a second (patch 90), burning at 30% of the hit a second and poison at 20%, the strongest one holding and crits never multiplying a tick, scaled by each ailment\u2019s chance, its own increased and more lines, and the Damage over Time Multiplier at \u00d7'+dotMultF.toFixed(2)+' (its support, tree and gear sources multiply, they do not add). Chill and Brittle do not raise these ticks.',value:structural+dotStruct});
+  if(chillPctC>0||freezeMultC>1.01)steps.push({name:'Chill and freeze',note:(chillPctC>0?('Your hits chill for '+chillPctC.toFixed(0)+'% slower movement and action — Chill caps at 30%. '):'')+(freezeMultC>1.01?('Your freezes last \u00d7'+freezeMultC.toFixed(2)+' as long — every freeze-duration source multiplies. '):'')+'Neither changes the single-target number above; they buy control, and chilled enemies feed lines like Stormfrost, already counted in the hit.',value:structural+dotStruct});
   steps.push({name:'The calibration step',note:'The steps above are only what this plan can see. This last step scales the result so it lines up with the damage real level '+st.level+' ladder builds deal in game (patch '+CAL.patch+').',value:dps});
   var compOut=Object.keys(compHit).map(function(el){return {element:el,hit:compHit[el],dps:compHit[el]*rate*critFactor*repMult*K}}).sort(function(a,b){return b.dps-a.dps});
   dotParts.forEach(function(p2){if(p2.dps>0)compOut.push({element:p2.el,hit:0,dps:p2.dps*K,dot:true,kind:p2.kind})});
@@ -9081,10 +9076,10 @@ function auditHowHtml(){
    +'<div class="kv"><span>More damage</span><b>Each \u201cmore\u201d source multiplies on its own, in turn, per type it applies to</b></div>'
    +'<div class="kv"><span>Speed &amp; crits</span><b>DPS = hit × hits/sec × crit factor × (1 + repeats); crit factor = 1 + chance/100 × (multiplier/100 − 1); orb skills strike on their published interval, once per orb</b></div>'
    +'<div class="kv"><span>Calibration</span><b>× K(level), fitted on '+CAL.n+' ladder heroes (patch '+CAL.patch+') — it stands in for what a plan cannot see: gear damage lines not counted on their own, extra pools, targets a hit reaches</b></div>'
-   +'<div class="kv"><span>Against an enemy</span><b>Per type × (1 − resist/100) after curse cuts and penetration, then the curses\u2019 taken-increases, Marks, Banner, Dread and Shock multiply</b></div>'
+   +'<div class="kv"><span>Against an enemy</span><b>Per type × (1 − resist/100) after curse cuts and penetration, then the curses\u2019 taken-increases, Marks, Banner, Dread and Shock add together into one taken-increase</b></div>'
    +'<div class="kv"><span>Tooltip DPS</span><b>The game\u2019s sheet number, counted the sheet\u2019s way: support \u201cmore\u201d damage and the bar\u2019s buffs stay out, and support-added flat damage grows only to the published gem cap</b></div>'
    +'<p class="sub" style="margin-top:8px"><b>Caps the model holds:</b> critical chance 95% • your resistances '+(HC.ResistCap||75)+'% (hard cap '+(HC.ResistHardCap||85)+'%, before +maximum mods) • block '+(HC.BlockMax||75)+'% • evasion '+(HC.EvasionMax||75)+'% • armour reduction '+(HC.ArmourMaxReduction||80)+'% • enemy resistance −50% to 60% (Patch 87 caps a Guardian variant at 60%) • leech '+(HC.LeechRatePct||20)+'% of the pool per second • Dread stops at its curse\u2019s published BossCap • a curse\u2019s lines scale by its published boss effect against a Guardian.</p>'
-   +'<p class="sub" style="margin-top:6px"><b>Not in the model at all:</b> enemy Ward — no enemy in the data carries one; extra projectiles, chains, forks and area as coverage; kill-fed effects and a herald\u2019s shatter; idol set effects; changes to the damage you take; minion life (the sim counts what minions deal, not what they soak). Their average effect on real builds rides inside the calibration step, the way it always has — the simulator invents none of them. Counted since the patch 89 mechanics fix: damage over time (the game\u2019s published DoT structure — strongest holds — with the DoT multiplier\u2019s sources multiplying), damage conversion sharing one 100%, Shock computed from the hit\u2019s Lightning share, chill capped at 50%, totem and trap clocks, minion damage and minion mana reservation, and conduit-linked skills striking on the trigger\u2019s clock. That whole pass follows the game\u2019s published skill and support text and has not been re-checked against measured fights yet. Patch 90: Bleeding ticks at 40% of the hit a second (was 50%; burning and poison stay at 50%), and crits no longer multiply Bleeding, Ignite or Poison — a tick is counted from the plain hit, and the fight tester ticks damage over time steadily instead of rolling it into its crit-shaped hits.</p>';
+   +'<p class="sub" style="margin-top:6px"><b>Not in the model at all:</b> enemy Ward — no enemy in the data carries one; extra projectiles, chains, forks and area as coverage; kill-fed effects and a herald\u2019s shatter; idol set effects; changes to the damage you take; minion life (the sim counts what minions deal, not what they soak). Their average effect on real builds rides inside the calibration step, the way it always has — the simulator invents none of them. Counted since the patch 89 mechanics fix: damage over time (the game\u2019s published DoT structure — strongest holds — with the DoT multiplier\u2019s sources multiplying), damage conversion sharing one 100%, Shock computed from the hit\u2019s Lightning share, chill capped at 30%, totem and trap clocks, minion damage and minion mana reservation, and conduit-linked skills striking on the trigger\u2019s clock. That whole pass follows the game\u2019s published skill and support text and has not been re-checked against measured fights yet. Patch 90: Bleeding ticks at 40% of the hit a second (was 50%; burning ticks at 30% of the hit a second and poison at 20%), and crits no longer multiply Bleeding, Ignite or Poison — a tick is counted from the plain hit, and the fight tester ticks damage over time steadily instead of rolling it into its crit-shaped hits.</p>';
 }
 function renderModifierAudit(c){
   var el=$('daAudit'); if(!el)return;
@@ -9287,7 +9282,7 @@ function renderDamageAnalysis(c,bt){
   html+='<div class="kv"><span>One hit on your enemy</span><b>'+fmtFull(enemyHit)+' after resists</b></div>';
   if(dotTot>0)html+='<div class="kv"><span>Damage over time</span><b>'+fmt(dotTot)+' DPS'+((c.dotParts&&c.dotParts.length)?' — '+c.dotParts.filter(function(p){return p.dps>0}).map(function(p){return esc(p.kind)+' '+fmt(p.dps)}).join(' • '):'')+'</b></div>';
   if(c.shockTaken>0)html+='<div class="kv"><span>Shock from your own hits</span><b>enemy takes +'+c.shockTaken.toFixed(1)+'% more — scaled by the Lightning share of the hit</b></div>';
-  if(c.chillPct>0)html+='<div class="kv"><span>Chill</span><b>'+c.chillPct.toFixed(0)+'% — capped at 50%</b></div>';
+  if(c.chillPct>0)html+='<div class="kv"><span>Chill</span><b>'+c.chillPct.toFixed(0)+'% — capped at 30%</b></div>';
   if(c.conv&&c.conv.length)html+='<div class="kv"><span>Conversion</span><b>'+c.conv.map(function(cv){return cv.pct+'% \u2192 '+esc(cv.target)}).join(' • ')+' — one shared 100%</b></div>';
   /* The Active Skill bar, accounted skill by skill: every other damage
      skill on the bar adds its own DPS, priced with the supports
@@ -11298,9 +11293,8 @@ function gemSVG(color,size){
 var dragSkillId=null;
 
 /* ---------- Enemy curses ---------- */
-function shockMult(){return 1+((state.shockPct||0)*(state.shockUp||0))/10000}
 function curseMult(skill){
-  var m=curseTakenMult(skill)*shockMult();
+  var m=curseTakenMult(skill,(state.shockPct||0)*(state.shockUp||0)/100);
   /* Woeweaver, on the damage skill's own link: its hits deal more
      to an enemy bearing Woes — 25% more against exactly one Woe,
      10% more against two, nothing against three or more (the
@@ -11426,15 +11420,15 @@ function enemyMultFor(st,c){
   try{return enemyMult(c)}finally{state=keep}
 }
 /* The taken-increase multiplier for one priced skill: the curses'
-   lines, plus Shock — the stronger of the enemy setup's hand-set
-   Shock (averaged over its uptime) and the Shock this skill's own
-   hits compute from their Lightning share (calcFrom's
-   shockTaken). Woeweaver rides on top, as in curseMult. */
+   lines, with Shock added into the same total — the stronger of
+   the enemy setup's hand-set Shock (averaged over its uptime)
+   and the Shock this skill's own hits compute from their
+   Lightning share (calcFrom's shockTaken). Woeweaver rides on
+   top, as in curseMult. */
 function curseMultFor(c){
   if(!c||!c.skill)return curseMult(c?c.skill:null);
-  var m=curseTakenMult(c.skill);
   var manual=(state.shockPct||0)*(state.shockUp||0)/100;
-  m*=1+Math.max(manual,c.shockTaken||0)/100;
+  var m=curseTakenMult(c.skill,Math.max(manual,c.shockTaken||0));
   if(supportsForSkillId(state,c.skill.Id).indexOf('woeweaver')>=0){
     var woes=activeCurses().filter(function(x){return x.Kind==='Woe'}).length;
     if(woes===1)m*=1.25; else if(woes===2)m*=1.10;
@@ -25046,8 +25040,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.389';
-var PLANNER_BUILT_AT='2026-11-25T15:57:01-07:00';
+var PLANNER_VERSION='0.390';
+var PLANNER_BUILT_AT='2026-11-25T17:29:07-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
