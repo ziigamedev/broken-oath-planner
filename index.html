@@ -24686,7 +24686,9 @@ var LEGAL_PAGES={
   disclaimer:{title:'Disclaimer',paras:[
     'This is a fan-made planner. It is not official, and it is not affiliated with or endorsed by Crater Studios.',
     'All game data on this page comes from the official Broken Oath public API.',
+    'Data: Broken Oath public API',
     'Item icons \u00a9 Crater Studios — Broken Oath in-game art.',
+    'Heroes on the ladder and in builds are shown by their rank, class and build only \u2014 a hero is never tied to a real person.',
     'The DPS figures and the other calculated numbers are estimates from a fan-made model of the game\u2019s rules. They are not the game\u2019s own numbers — the game is the final word on what a build does.'
   ]}
 };
@@ -26603,8 +26605,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.413';
-var PLANNER_BUILT_AT='2026-11-26T13:12:00-08:00';
+var PLANNER_VERSION='0.414';
+var PLANNER_BUILT_AT='2026-11-26T14:50:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
