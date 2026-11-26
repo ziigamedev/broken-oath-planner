@@ -179,7 +179,7 @@
    "Blessing": "flask_life",
    "Mods": [],
    "Weight": 40,
-   "Text": "Recovers 62% of maximum Life over 2.4 seconds",
+   "Text": "Recovers 62% of maximum Life, 70% at once and the rest over 1 second",
    "HudLiquid": {
     "R": 0.85,
     "G": 0.12,
@@ -205,7 +205,7 @@
    "Blessing": "flask_mana",
    "Mods": [],
    "Weight": 30,
-   "Text": "Recovers 65% of maximum Mana over 2.4 seconds",
+   "Text": "Recovers 65% of maximum Mana, 70% at once and the rest over 1 second",
    "HudLiquid": {
     "R": 0.2,
     "G": 0.42,
@@ -449,21 +449,21 @@
    "Tiers": [
     {
      "Tier": 1,
-     "Value": 40,
+     "Value": 80,
      "MinRL": 100,
-     "Value2": 25
+     "Value2": 10
     },
     {
      "Tier": 2,
-     "Value": 55,
+     "Value": 90,
      "MinRL": 120,
-     "Value2": 20
+     "Value2": 8
     },
     {
      "Tier": 3,
-     "Value": 70,
+     "Value": 100,
      "MinRL": 150,
-     "Value2": 15
+     "Value2": 6
     }
    ],
    "Text": "{v}% of recovery is instant, {v2}% less total recovery",
@@ -532,7 +532,7 @@
      "Value2": 10
     }
    ],
-   "Text": "{v}% more charges gained, {v2}% less recovery",
+   "Text": "{v}% more charges from kills, {v2}% less recovery",
    "R79": "R79_POTIONS"
   },
   {
@@ -549,19 +549,19 @@
      "Tier": 1,
      "Value": 100,
      "MinRL": 100,
-     "Value2": 30
+     "Value2": 15
     },
     {
      "Tier": 2,
      "Value": 100,
      "MinRL": 120,
-     "Value2": 22
+     "Value2": 10
     },
     {
      "Tier": 3,
      "Value": 100,
      "MinRL": 150,
-     "Value2": 15
+     "Value2": 5
     }
    ],
    "Text": "Instant when drunk below 50% Life, {v2}% less total recovery",
@@ -1584,7 +1584,7 @@
      "MinRL": 150
     }
    ],
-   "Text": "While active, a Guardian kill refills all your potions",
+   "Text": "While active, a Guardian or unique kill refills all your potions",
    "R79": "R79_POTIONS"
   },
   {

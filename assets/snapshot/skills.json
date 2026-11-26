@@ -243,7 +243,9 @@
    "EffectivenessEarlyHold": 5,
    "EffectivenessEarlyFull": 15,
    "_r109FTUE": "r109 FTUE young edge (fresh Warrior start kit lvl 6 vs ogre_warlord RL 5: 84 s, 3.2x the Samurai/Paladin 26 s; melee delivery 19% of the sheet): x1.8 at gem 1-6, x1 from gem 14 (gem 10 x1.4). Revert: remove the 4 keys.",
-   "EffectivenessLate": 11.719,
+   "_ZERO25_BRAIN_EffectivenessLate": "ZERO25 BRAIN GSCOLD231 (rule 83 P1 breaker, Friday band RL60-70, cut at source, rule 68): 10.3 -> 5.15 (x0.5, BASE layer late). Standard dummy band-true: live 9f7f307a card w16_gs69 19.6M = x13.9 of the n10 live RL60-79 post ruler 1.41M (w20r); no-Sentinels 12.1M x8.6 (w20a); ablation: no single interaction over x1.26 (Afterimage x1.26, Shade of the Blow x1.16, r60 more x1.08, Quarrybreaker/Bloodied Fury x1.0, Tear debt on, bleed part 9%), so the bare skill is the out-of-line source (bare x3.2; kit L40 census Slam 78K vs median 35K x2.2, ATTACK3 A3SW79). Expect kit L40 ~39K (x1.1), live card x4.3 no Sentinels. revert 10.3",
+   "EffectivenessLate": 5.15,
+   "_NGT25A_BRAIN_EffectivenessLate": "NGT25A BRAIN GS202 (v4 META#AT2V25, rule 68 cut at source): 11.719 -> 10.3 (x0.879, LATE layer BASE): live 9f7f307a Ground Slam x5.05 of the RL60-80 band-true game ruler (2.17M); at 10.43 gs203 read 9.82M x4.53 (1 leg), 10.3 -> ~x4.45; RL120+ mains 3e6a367a x1.88 of RL190+ ruler stays x1.67; revert 11.719",
    "_r108LIFT_EffectivenessLate": "r108 LIFTS row 87 +15% late (live x 0.50, RL200 0.32; +30% lifted the 1B+ Warrior CG/flurry cards whose damage dealer is Ground Slam x1.3, rule 28); revert 11.719; r109 LANDER (LEAD ladder #1 engine): reverted to 11.719, pre r108 value",
    "EffectivenessLateFrom": 8,
    "_r113META_EffectivenessLateAt": "r113 META s56 MONO2-113 (spark3/curve_audit.py: total base dmg fell on a gem level-up; mono_fit/trim_fit window-only): 14 -> 15 see Hold; revert 14",
@@ -597,7 +599,7 @@
    "Kind": "Gem",
    "Attribute": "Int",
    "Icon": "ICON_DarkFantasyMenus_Skull_04_Clean",
-   "Description": "Ring the toll: every Woe in the area is consumed and each cursed enemy takes Poison damage, more for each Dread.",
+   "Description": "Ring the toll: enemies in the area take Poison damage, more per Dread of their Woes, then the Woes are consumed and a Sentence ends, giving its charge.",
    "Tags": [
     "Spell",
     "Area",
@@ -613,14 +615,17 @@
    "HitStop": 0.0,
    "Shake": 0.12,
    "Family": "Dark",
-   "SpellMin": 22,
-   "SpellMax": 34,
+   "SpellMin": 31,
+   "SpellMax": 48,
    "SpellGrowth": 0.15,
    "CastSfx": "toll_cast",
    "ImpactSfx": "toll_ring",
-   "EffectivenessLate": 2.88,
+   "EffectivenessLate": 10.5,
    "EffectivenessLateFrom": 1,
-   "EffectivenessLateAt": 20
+   "EffectivenessLateAt": 12,
+   "Late2From": 13,
+   "Late2At": 20,
+   "Late2Mult": 2.86
   },
   {
    "Id": "death_sentence",
@@ -1257,7 +1262,7 @@
    "Kind": "Gem",
    "Attribute": "Int",
    "Icon": "ICON_DarkFantasy_Map_Dragon_01_Clean",
-   "Description": "Summons Cinder Mites that scuttle at your heels and spit embers that Ignite the nearest enemy. They never fight and enemies never target them.",
+   "Description": "Summons Cinder Mites that scuttle at your heels and spit embers that Ignite the nearest enemy. Enemies never target them.",
    "Tags": [
     "Spell",
     "Minion",
@@ -1334,7 +1339,7 @@
    "Kind": "Gem",
    "Attribute": "Dex",
    "Icon": "ICON_DarkFantasy_Status_Charmed_01_Clean",
-   "Description": "Summons Rime Sprites that drift at your shoulder and breathe frost that Chills nearby enemies. They never fight and enemies never target them.",
+   "Description": "Summons Rime Sprites that drift at your shoulder and breathe frost that Chills nearby enemies. Enemies never target them.",
    "Tags": [
     "Spell",
     "Minion",
@@ -1412,7 +1417,7 @@
    "Kind": "Gem",
    "Attribute": "Str",
    "Icon": "ICON_DarkFantasy_Map_Blacksmith_01_Clean",
-   "Description": "Summons Brass Sentinels, clockwork guards that arc lightning that Shocks the nearest enemy. They never fight and enemies never target them.",
+   "Description": "Summons Brass Sentinels, clockwork guards that arc lightning that Shocks the nearest enemy. Enemies never target them.",
    "Tags": [
     "Spell",
     "Minion",
@@ -1521,7 +1526,7 @@
     "Dex": 33
    },
    "Icon": "ICON_DarkFantasy_Stat_Magic_01_Clean",
-   "Description": "Swear an Elemental Echo: a kill leaves an echo of its element that grants more damage of that element. Break it for a short surge of power.",
+   "Description": "Swear an Elemental Echo: a kill, or a hit on a Rare or a boss, leaves an echo of its element that grants more damage of that element. Break it for a short surge of power.",
    "Tags": [
     "Spell",
     "Vow",
@@ -1564,12 +1569,13 @@
     "Scythe"
    ],
    "DamageType": "Physical",
-   "Effectiveness": 1.85,
-   "EffectivenessLate": 4.3,
+   "Effectiveness": 4.8,
+   "_A3SW85_ATTACK1": "r113 ATTACK1 A3SW85 (owner: all attacks viable; leg a1sw44 pkg 0147 vs Ground Slam same seat cards: L10 x0.62, L40 gem 13 x0.67, L50 x0.77, L70/L90 x1.12/1.27 = mid-band dip): Effectiveness 4.0 -> 4.8 (BASE x1.2) and EffectivenessLateAt 20 -> 16 (the existing ease reaches its gem-20 value 16.25 at gem 16); Early untouched, gem 16+ unchanged. Predicted L10 x0.74, L40 x0.88, L50 ~x1.0. revert 4.0 / 20",
+   "EffectivenessLate": 16.25,
    "EffectivenessLateFrom": 8,
-   "EffectivenessLateAt": 20,
-   "EffectivenessEarly": 1.18,
-   "EffectivenessEarlyHold": 10,
+   "EffectivenessLateAt": 16,
+   "EffectivenessEarly": 2.0,
+   "EffectivenessEarlyHold": 8,
    "EffectivenessEarlyFull": 14,
    "ActionSpeed": 1.0,
    "ManaCost": 14,
@@ -1641,7 +1647,7 @@
    "Kind": "Gem",
    "Attribute": "Int",
    "Icon": "ICON_DarkFantasyMenus_Spell_01_Clean",
-   "Description": "Hold to spin in a lightning vortex toward the cursor, shocking everything around you.",
+   "Description": "Hold to spin in a lightning vortex toward the cursor, striking everything around you.",
    "Tags": [
     "Spell",
     "Area",
@@ -1659,7 +1665,8 @@
    "ManaCost": 4,
    "Range": 240,
    "Radius": 240,
-   "EffectivenessLate": 1.4213,
+   "EffectivenessLate": 13.92,
+   "_d25s8WEAKLIFT25_EffectivenessLate": "STRIKE d25s8 25 Nov 23:0x WEAKLIFT25 slice 2 (LEAD 22:01 owner buffs, rule 66 < 0.75x goes up; 0 live users at RL150+): same live gear + same 6 supports on the 30 s band-true RL200 post, Storm Whirl 94M vs Arc 357M (Arc #1 L98) and 36M vs 108M (Rime Spark #3 L91) = x0.26-0.33 of Arc, x0.29 of 327M; late lift x3.4 (linear, BASE layer, gem 12+) to ~x1.0; revert 4.0933",
    "EffectivenessLateFrom": 12,
    "EffectivenessLateAt": 20,
    "Knockback": 8,
@@ -1901,7 +1908,8 @@
    "Cooldown": 1.0,
    "Range": 900,
    "Radius": 0,
-   "EffectivenessLate": 2.6793,
+   "EffectivenessLate": 2.061,
+   "_r113BRAIN_EMBER186": "EMBER179 family cut: game dummy pkg 1803 ember family n11 RL150+ median x2.59 band-true (top aae8f7be x16.3, 2ab6c592 x6.2); undo the r108 +30% late lift (its basis, fire landing 0.35 of sheet, no longer holds): 2.6793 -> 2.061 = x0.77 hits and burns; revert 2.6793",
    "EffectivenessLateFrom": 10,
    "EffectivenessLateAt": 20,
    "Knockback": 4,
@@ -2156,7 +2164,7 @@
    "Family": "Lightning",
    "ConvertShare": 100,
    "Effectiveness": 1.1286,
-   "EffectivenessLate": 5.2203,
+   "EffectivenessLate": 7.3084,
    "EffectivenessLateFrom": 8,
    "EffectivenessLateAt": 20,
    "ManaCost": 8,
@@ -2184,8 +2192,8 @@
     "FinalHitStop": 0.06,
     "FinalHeroHitStop": 0.05,
     "FinalShake": 0.3,
-    "FinalFx": "zap_strike_white",
-    "FinalFxScale": 0.8,
+    "FinalFx": "zap_strike_lightning",
+    "FinalFxScale": 1.3,
     "FinalSfx": "brand_zap"
    },
    "_r108SKILL_EffectivenessLate": "r108 SKILLS -18% late: Mage gem run by Samurai only (5 of 5, all top 100), live xe p50 1.67, after tonight 1.54 = 1.4x+ peers; bench path xe 1.46 -> 1.32; revert 6.3662",
@@ -2280,9 +2288,12 @@
    "Cooldown": 1.0,
    "Range": 900,
    "Radius": 220,
-   "EffectivenessLate": 5.4,
+   "EffectivenessLate": 21.384,
    "EffectivenessLateFrom": 10,
    "EffectivenessLateAt": 20,
+   "EffectivenessEarlyFull": 12,
+   "EffectivenessEarlyHold": 10,
+   "EffectivenessEarly": 2.9,
    "Knockback": 4,
    "HitStop": 0.02,
    "Shake": 0.08,
@@ -2418,6 +2429,11 @@
    "Family": "Dark",
    "DamageType": "Physical",
    "Effectiveness": 1.25,
+   "EffectivenessLate": 5.0,
+   "EffectivenessLateFrom": 4,
+   "EffectivenessLateAt": 20,
+   "_r98BASICLATE": {},
+   "_sw17_EffectivenessLate": "NGT25C ATTACK1 v4 ATTACK1#SW17 (owner make all attacks viable, BASE layer; family fix: Reap was the one weapon basic BASICLATE98 left flat at 1.25 forever, every other basic eases up by gem level): L25 sw24 pkg 2209 Training Post the_reaper 1.8k / grim_harvest 2.7k vs Unholy Void 6.6k, Holy Slash 16.5k. Eases from gem 4 (hero L7, first hour unchanged) to 5.0 at gem 20 (x1.94 gem 9 / x2.5 gem 12 / x4.0 gem 20; Holy Slash late 6.93, Twin Cuts 8.38); revert: drop the 3 Late keys",
    "ActionSpeed": 1.0,
    "Range": 230,
    "Angle": 160,
@@ -2436,7 +2452,7 @@
   },
   {
    "Id": "death_coil",
-   "EffectivenessLate": 3.105,
+   "EffectivenessLate": 10.87,
    "EffectivenessLateFrom": 10,
    "EffectivenessLateAt": 20,
    "_r98LATELIFT": {
@@ -2506,7 +2522,7 @@
    "_r113META_EffectivenessEarly": "r113 META s37 v2#3 step 2 (Necro lift, early): Death Coil RL0-59 heroes x0.45 of the field (n4, pull 0830); 2.6 -> 3.1 (+19%, gem 1-6 then fades by 14) = Necro RL0-59 robust 0.71 -> 0.76, no new crosser; revert 2.6",
    "_r107FTUE": "WeakFloor 17 Nov 08:30 RL 0-19: death_coil n 9 dps x0.48 of the field, kill 37.9 s -> young gem 1-3 penalty eased x0.72 -> x0.82 (+14%), gem 5+ unchanged",
    "_r110META": "r110 META (live 83, first hour): Death Coil Guardian dps 62 at hero level 1-5 (Mage Zap 133, Ranger Split Shot 211) and 174 at 6-10 (Mage Frost Nova 287, Split Shot 672), Necro first Guardian 13.2 min vs 6-7: young edge 0.82 hold 3 full 5 -> 1.6 hold 6 full 14 (gem 1-3 x1.95, gem 6 x1.6, gem 10 x1.3, gem 14+ unchanged); revert 0.82/3/5",
-   "Late2From": 18,
+   "Late2From": 8,
    "Late2At": 20,
    "Late2Mult": 1.65
   },
@@ -2735,8 +2751,10 @@
    "Chains": 3,
    "EffectivenessLateFrom": 8,
    "EffectivenessLateAt": 20,
-   "EffectivenessLate": 5.461,
-   "EffectivenessEarly": 1.25,
+   "EffectivenessLate": 17.48,
+   "_d25s8WEAKLIFT25_EffectivenessLate": "STRIKE d25s8 25 Nov 23:0x WEAKLIFT25 slice 2 (LEAD 22:01 owner buffs at their own lever, rule 66 < 0.75x goes up): best live Drain Life card on the 30 s band-true RL200 post 105M = x0.32 of 327M (pull 2030 card #2 L82, n 1; live best 98M per-second at RL167); late lift x3.2 (linear, as Death Coil 3.105 -> 10.87); revert 5.461",
+   "EffectivenessEarly": 2.0,
+   "_via51_EffectivenessEarly": "NGT25C ATTACK1 v4 ATTACK1#VIA51 (owner make all attacks viable, BASE layer): soul_siphon card on the band-true post L10 893 x0.80, L25 4486 x0.76, L40 17505 x0.62 of the Necro iconic median (run via51a pkg 2209); young edge 1.25 -> 2.0 = x1.60 base gem 1-14 (step 1 1.625 measured via51c only x1.11/1.18/1.10 total: base is ~1/3 of L40 damage) fading to x1.00 at gem 20 (gem 20 and L90 unchanged, gem_dip clean); revert 1.25",
    "EffectivenessEarlyHold": 14,
    "EffectivenessEarlyFull": 20,
    "_r108SKILL_EffectivenessLate": "r108 SKILLS +15% late (LEAD 18:07: Necro offset in the Necro spell home for TREE R5 curse-effect trims, Necro median card 0.749): with Death Coil +25% the Necro median card 0.749 -> 0.799, DL path xe 0.68 -> 0.80; revert 5.08 (pre night 3.1723)",
@@ -2744,7 +2762,7 @@
    "_r108LIFT_EffectivenessLate": "r108 LIFTS row 94 +60% late (17:4x: +10% more after AffixLineScale cut Drain Life cards to x0.70-0.83; was +15% at 17:0x; CURSE moved Withering generic 10 -> 0 = Drain Life (poison) cards x0.79 all seats; bench all live: DL path 0.79 -> 0.95); revert 3.1723",
    "Late2From": 18,
    "Late2At": 20,
-   "Late2Mult": 1.0
+   "Late2Mult": 1.71
   },
   {
    "Id": "vampire_dash",
@@ -2796,7 +2814,7 @@
    "Kind": "Gem",
    "Attribute": "Int",
    "Icon": "ICON_DarkFantasy_Status_Fortified_01_Clean",
-   "Description": "Tear up an enormous grave golem that soaks blows and smashes the ground. Its blessing regenerates your life.",
+   "Description": "Tear up an enormous grave golem that soaks blows and smashes the ground. Near it you regenerate up to 1% of your life a second and it takes up to 15% of every hit you take.",
    "Tags": [
     "Spell",
     "Minion",
@@ -2855,7 +2873,7 @@
     "RoomPower": 0.3,
     "PerLevels": [],
     "LifeMult": 4.088,
-    "DamageMult": 1.7514,
+    "DamageMult": 4.38,
     "MoveSpeed": 620,
     "Scale": 1.3,
     "Leash": 1000,
@@ -2908,7 +2926,7 @@
    "Kind": "Gem",
    "Attribute": "Str",
    "Icon": "ICON_DarkFantasy_Status_Burninating_01_Clean",
-   "Description": "Tear up an enormous flame golem that soaks blows and smashes the ground. Its blessing boosts your minions.",
+   "Description": "Tear up an enormous flame golem that soaks blows and smashes the ground. Near it your minions deal up to 12.5% more damage and slain foes burst for up to 6% of their life (counted at Rupture Level 150 at most, without pack bonus life).",
    "Tags": [
     "Spell",
     "Minion",
@@ -2953,7 +2971,7 @@
     "RoomPower": 0.3,
     "PerLevels": [],
     "LifeMult": 4.088,
-    "DamageMult": 1.7514,
+    "DamageMult": 4.38,
     "MoveSpeed": 620,
     "Scale": 1.3,
     "Leash": 1000,
@@ -3004,7 +3022,7 @@
    "Kind": "Gem",
    "Attribute": "Int",
    "Icon": "ICON_DarkFantasy_Status_Cold_01_Clean",
-   "Description": "Tear up an enormous ice golem that soaks blows and smashes the ground. Its blessing gives you armour and chills foes.",
+   "Description": "Tear up an enormous ice golem that soaks blows and smashes the ground. Near it you have up to 31% more armour, and foes are Chilled up to 15% and deal up to 8% less damage (half on Guardians).",
    "Tags": [
     "Spell",
     "Minion",
@@ -3053,7 +3071,7 @@
     "RoomPower": 0.3,
     "PerLevels": [],
     "LifeMult": 4.088,
-    "DamageMult": 1.7514,
+    "DamageMult": 4.38,
     "MoveSpeed": 620,
     "Scale": 1.3,
     "Leash": 1000,
@@ -3104,7 +3122,7 @@
    "Kind": "Gem",
    "Attribute": "Dex",
    "Icon": "ICON_DarkFantasy_Status_Shocked_01_Clean",
-   "Description": "Tear up an enormous storm golem that soaks blows and smashes the ground. Its blessing shocks foes and speeds your minions.",
+   "Description": "Tear up an enormous storm golem that soaks blows and smashes the ground. Near it your minions move and attack up to 15% faster, and foes hit are Shocked to take up to 10% more damage.",
    "Tags": [
     "Spell",
     "Minion",
@@ -3149,7 +3167,7 @@
     "RoomPower": 0.3,
     "PerLevels": [],
     "LifeMult": 4.088,
-    "DamageMult": 1.7514,
+    "DamageMult": 4.38,
     "MoveSpeed": 620,
     "Scale": 1.3,
     "Leash": 1000,
@@ -3200,7 +3218,7 @@
    "Kind": "Gem",
    "Attribute": "Int",
    "Icon": "ICON_DarkFantasy_Status_Poisoned_02_Clean",
-   "Description": "Tear up an enormous venom golem that soaks blows and smashes the ground. Its blessing makes enemies take more damage.",
+   "Description": "Tear up an enormous venom golem that soaks blows and smashes the ground. Foes near it take up to 7.5% more damage, and hits on them gain up to +20% Poison chance.",
    "Tags": [
     "Spell",
     "Minion",
@@ -3245,7 +3263,7 @@
     "RoomPower": 0.3,
     "PerLevels": [],
     "LifeMult": 4.088,
-    "DamageMult": 1.7514,
+    "DamageMult": 4.38,
     "MoveSpeed": 620,
     "Scale": 1.3,
     "Leash": 1000,
@@ -3386,7 +3404,7 @@
    "Kind": "Gem",
    "Attribute": "Int",
    "Icon": "ICON_DarkFantasyMenus_Skull_02_Clean",
-   "Description": "Call all your minions to your side. They fight on with more damage and speed for 4 seconds.",
+   "Description": "Call all your minions to your side. For 4 seconds they deal 30% more damage and act 20% faster.",
    "Tags": [
     "Spell",
     "Duration"
@@ -3422,11 +3440,12 @@
   },
   {
    "Id": "unholy_void",
+   "_v1820ATTACK": "v1820 ATTACK1 (owner 24 Nov 'make all attacks viable'): EffectivenessLate 9.75 -> 39.0 BASE layer; 0 live mains of 1202; post own hit 0.069M = x0.32 of the Venom Spark card -> ~x1.3; VIA27 EffectivenessLateFrom 8 -> 1 (young gems: gem 9 tooltip 597 = x0.27 of Reap 2184 on the same card, post run 201545; ramp now starts at gem 1, gem 20 unchanged); revert From 8",
    "Name": "Unholy Void",
    "Kind": "Gem",
    "Attribute": "Int",
    "Icon": "ICON_DarkFantasy_Status_Cursed_03_Clean",
-   "Description": "Open a void around you that poisons enemies inside, and gnaws at you too. Press again to close it.",
+   "Description": "Open a void around you that poisons enemies inside and slows them 10%. It drains you up to 0.9% life a second (your Poison resistance lowers it). Press again to close it.",
    "Tags": [
     "Spell",
     "Area",
@@ -3444,8 +3463,8 @@
    "Cooldown": 0.5,
    "Range": 0,
    "Radius": 320,
-   "EffectivenessLate": 9.75,
-   "EffectivenessLateFrom": 8,
+   "EffectivenessLate": 39.0,
+   "EffectivenessLateFrom": 1,
    "EffectivenessLateAt": 20,
    "Knockback": 0,
    "HitStop": 0.0,
@@ -3484,7 +3503,7 @@
     "Str": 40
    },
    "Icon": "ICON_SM_Wep_Shield_Gravestone_01_Dungeon_Clean",
-   "Description": "Sweep in a wide arc. Enemies it kills rise as Risen Thralls that fight for you. Part of its damage is poison.",
+   "Description": "Sweep in a wide arc. Enemies it kills rise as Risen Thralls that fight for you. 40% of its physical damage becomes Poison.",
    "Tags": [
     "Attack",
     "Melee",
@@ -3573,6 +3592,7 @@
   },
   {
    "Id": "soul_rend",
+   "_v1820ATTACK": "v1820 ATTACK1 (owner 24 Nov 'make all attacks viable'): EffectivenessLate 3.815 -> 8.4 BASE layer; 0 live mains of 1202",
    "Name": "Soul Rend",
    "Kind": "Gem",
    "Attribute": "Int",
@@ -3581,7 +3601,7 @@
     "Str": 40
    },
    "Icon": "ICON_DarkFantasy_Stat_Spirit_01_Clean",
-   "Description": "Two heavy chops tear at the soul. Rent enemies take more damage from your minions.",
+   "Description": "Two heavy chops tear at the soul. Rent enemies take 10% more damage from your minions for 4 seconds.",
    "Tags": [
     "Attack",
     "Melee",
@@ -3598,7 +3618,7 @@
    "Family": "Dark",
    "ConvertShare": 30,
    "Effectiveness": 1.82,
-   "EffectivenessLate": 3.815,
+   "EffectivenessLate": 8.4,
    "EffectivenessLateFrom": 8,
    "EffectivenessLateAt": 20,
    "ManaCost": 9,
@@ -3637,6 +3657,7 @@
   },
   {
    "Id": "marrow_lance",
+   "_v1820ATTACK": "v1820 ATTACK1 (owner 24 Nov 'make all attacks viable'): EffectivenessLate 5.9313 -> 10.8 -> 18.0 (VIA21, post 0.623M = x0.46 Soul Rend same card) BASE layer; 0 live mains of 1202",
    "Name": "Marrow Lance",
    "Kind": "Gem",
    "Attribute": "Int",
@@ -3672,7 +3693,7 @@
    "Family": "Dark",
    "ConvertShare": 40,
    "Effectiveness": 2.3,
-   "EffectivenessLate": 5.9313,
+   "EffectivenessLate": 18.0,
    "EffectivenessLateFrom": 8,
    "EffectivenessLateAt": 20,
    "ManaCost": 8,
@@ -3761,7 +3782,7 @@
    },
    "_r113META_EffectivenessEarly": "r113 META v2#10 (player F8): Marrow Lance at gem 8 killed nothing so it never raised its Risen Casters; young edge x2.0 to gem 6, x1.67 at gem 8, x1 from gem 12 (mid/late unchanged); revert = delete the 3 EffectivenessEarly fields",
    "EffectivenessEarly": 2.0,
-   "EffectivenessEarlyHold": 6,
+   "EffectivenessEarlyHold": 8,
    "EffectivenessEarlyFull": 12,
    "_r95ELID_was": {
     "CastSfx": "swing_heavy"
@@ -3812,7 +3833,7 @@
    "Kind": "Gem",
    "Attribute": "Int",
    "Icon": "ICON_DarkFantasy_Status_SpeedUp_01_Clean",
-   "Description": "Hold to draw fresh corpses near your aim into your minions. Each corpse gives them more damage and speed.",
+   "Description": "Hold to draw fresh corpses near your aim into your minions. Each corpse makes them deal 1% more damage and act 0.5% faster for 10 seconds, up to 10 corpses (20 at gem level 20).",
    "Tags": [
     "Spell",
     "Minion",
@@ -4085,7 +4106,7 @@
      "B": 0.42,
      "A": 1.0
     },
-    "MeshScale": 1.15,
+    "MeshScale": 2.2,
     "MeshRotation": {
      "Pitch": 0,
      "Yaw": 0,
@@ -4128,7 +4149,7 @@
     "Int": 40
    },
    "Icon": "ICON_DarkFantasy_Inventory_Hammers_01_Clean",
-   "Description": "Swear the hammers to the storm: for 6 seconds your spinning hammers turn faster, reach farther, hit harder and gain a second ring.",
+   "Description": "Swear the hammers to the storm: for 6 seconds your spinning hammers turn 20% faster, reach 35% farther, deal 10% more damage and 2 more hammers join them.",
    "Tags": [
     "Spell",
     "Duration",
@@ -4164,7 +4185,7 @@
     "Int": 40
    },
    "Icon": "ICON_DarkFantasy_Map_Healing_01_Clean",
-   "Description": "Plant your weapon and hallow the ground around you. Enemies on it burn, slow, take more damage and are crit more often; you regenerate life.",
+   "Description": "Hallow the ground around you. Enemies on it are hurt twice a second, slowed 15%, take 20% more damage and are crit with +8% chance (half for other classes); you regenerate 2% life a second on it.",
    "Tags": [
     "Spell",
     "Area",
@@ -4220,7 +4241,7 @@
    "Kind": "Gem",
    "Attribute": "Str",
    "Icon": "ICON_SM_Wep_Shield_Heater_01_Dungeon_Clean",
-   "Description": "Charge behind your shield and stun the first enemy in your path. Where the charge ends, holy light burns the ground, slowing enemies and healing you.",
+   "Description": "Charge behind your shield and stun the first enemy in your path. The ground where you stop is hallowed for 2 seconds: enemies on it are hurt and slowed 15%; you regenerate 2% life a second on it.",
    "Tags": [
     "Attack",
     "Melee",
@@ -4305,7 +4326,7 @@
     "Int": 50
    },
    "Icon": "ICON_DarkFantasy_Stat_Magic_04_Clean",
-   "Description": "Call down a Holy Elemental of living light that fights at your side. It shelters you: more block chance and life regeneration near it.",
+   "Description": "Call down a Holy Elemental of living light that fights at your side. Near it you gain +6% block chance and regenerate 0.5% of your life a second.",
    "Tags": [
     "Spell",
     "Minion",
@@ -4318,6 +4339,10 @@
    "SpellMin": 6,
    "SpellMax": 11,
    "SpellGrowth": 0.13,
+   "_v1820ATTACK_EffectivenessEarly": "VIA28 ATTACK1 (owner 24 Nov 'make all attacks viable', Friday wipe = everyone levels): young Holy Elemental x0.09 of Judgement at L25 (310 vs 3362 DPS) and x0.18 at L40 (8070 vs 44709), Training Post runs 202643 m/n; cause = the Paladin tree has few minion lines early (pet inc x2.12 vs the Necro cabal x7.39). Young edge x4 to gem 3, easing to x1 at gem 20 (BASE, spell spec = the pet hit), late unchanged; revert = delete the 3 EffectivenessEarly fields",
+   "EffectivenessEarly": 4.0,
+   "EffectivenessEarlyHold": 3,
+   "EffectivenessEarlyFull": 20,
    "CastTime": 0.45,
    "ManaCost": 15,
    "Cooldown": 1.5,
@@ -4334,7 +4359,8 @@
      10
     ],
     "LifeMult": 0.895,
-    "DamageMult": 1.396,
+    "_eng251h_DamageMult": "ENG251h ENGSYS 25 Nov 15:5x (owner engine pass, proven weak n2 legs): layer BASE (the pet hit). Best realistic Paladin HE main RL200 = 102.5M session = x0.50 of band 2.05e8 with Oath Echo 250 + HOLYMINION251 (MEASURED editor z46L h12, e25s; e25t 31.6M x0.15). 1.396 -> 2.8 (x2.0): still half a golem per second (golem 4.38 x 14.1 / 1.05 s vs 2.8 x 8.5 / 0.85 s), so a Necro on this gem stays under his golems; revert 1.396",
+    "DamageMult": 2.8,
     "MoveSpeed": 620,
     "Scale": 1.6,
     "Leash": 1100,
@@ -4398,7 +4424,8 @@
     "ReservePct": 25.0,
     "ReserveHomeClass": "Paladin",
     "ReserveHomeMult": 0.3,
-    "LevelDamage": 0.016,
+    "LevelDamage": 0.08,
+    "_eng251h_LevelDamage": "ENG251h ENGDOT 25 Nov (owner engine pass: every engine viable): layer BASE (pet level catch-up). Holy Elemental was the one 0.13-growth summon at 0.016 (golems and zombies 0.08); best realistic Paladin main RL200 with minion gear + Lightsworn Reliquary = 8.3M session = x0.04 of band (MEASURED e25d_2771fdd4 P91T12). Family parity 0.08 = about x3 late, small early; revert 0.016",
     "ShareBeyond": 4,
     "SharePerBody": 0.04
    }
@@ -4409,7 +4436,7 @@
    "Kind": "Gem",
    "Attribute": "Str",
    "Icon": "ICON_DarkFantasy_Status_Burninating_01_Clean",
-   "Description": "Light a pyre of holy fire around you: enemies inside burn for damage that grows with your maximum life. It burns you too; press again to put it out.",
+   "Description": "Light a pyre of holy fire around you: enemies inside burn for damage that grows with your maximum life. It burns you up to 6% life a second (your Fire resistance lowers it); press again to put it out.",
    "Tags": [
     "Spell",
     "Area",
@@ -4459,9 +4486,10 @@
    "EffectivenessLateFrom": 1,
    "EffectivenessLateAt": 20,
    "EffectivenessLate": 32.86,
-   "EffectivenessEarly": 1.8,
+   "EffectivenessEarly": 1.0,
    "EffectivenessEarlyHold": 17,
    "EffectivenessEarlyFull": 22,
+   "_NGT25A_BRAIN_PYREBRK192": "v4 BRAIN#PYREBRK192 (rule 68, BASE layer): young edge EffectivenessEarly 1.8 -> 1.0 (gem 1-17 x0.56: live young Pyre mains gem 6-14 kill Guardians x2.1-3.6 faster than their band median, pull 20261124_2030 n=10; dummy e80cd508 x8.25) and late2_98 Mult 1.25 -> 1.65 so gem 20 stays exactly the same (43.4 x 1.25 = 32.86 x 1.65 = 54.2) and a gem level up never lowers damage again (was 17 -> 18 and 20 -> 22 lower). Revert 1.8 / 1.25",
    "_r108LIFT_Radius": "r108 LIFTS row 65 radius +10% (Guardian reach; kill 103 s); revert 380",
    "_r113BRAIN_PYRELIFT113": "UNDONE d23au META2 (owner 14:0x NO BUFFS, never shipped; value back to 32.86). Was: r113 BRAIN v4 2#BR26c (rule 68 weak lift, BASE layer): RL150+ skill median x0.59 of band on BAND-TRUE dummy (n13, pull 20261123_0830), real Guardian x0.68; +25% late -> ~x0.74 dummy / ~x0.85 real ESTIMATED. Revert 32.86",
    "_r108LIFT_EffectivenessLate": "r108 LIFTS row 65 +30% late (live xe 0.65); revert 21.0631",
@@ -4473,7 +4501,7 @@
    "_r97kits_desc_was": "Light a pyre of holy fire around you: enemies inside burn twice a second for fire damage that grows with your maximum life. The pyre burns you too: 6% of your life per second, a quarter of that at 75% fire resistance, never the last tenth of your life: you need life regeneration. Press again to put it out. Its burn is a Fire spell hit: Fire, Spell, Area and Holy damage scale it; Burning damage modifiers scale Ignites, not the pyre.",
    "Late2From": 18,
    "Late2At": 20,
-   "Late2Mult": 1.25
+   "Late2Mult": 1.53
   },
   {
    "Id": "hallowed_slam",
@@ -4485,7 +4513,7 @@
     "Int": 40
    },
    "Icon": "ICON_SM_Wep_Hammer_Mace_Stone_01_Dungeon_Clean",
-   "Description": "Bring your weapon down on the ground in front of you. The ground is hallowed: enemies on it burn and take more damage, and you regain life.",
+   "Description": "Slam the ground in front of you and hallow it for 3 seconds: enemies on it are hurt twice a second and take 8% more damage (half for other classes); you regenerate 1% life a second on it.",
    "Tags": [
     "Attack",
     "Melee",
@@ -4627,9 +4655,10 @@
   },
   {
    "Id": "quick_shot",
-   "EffectivenessLate": 2.02,
+   "EffectivenessLate": 4.5,
    "EffectivenessLateFrom": 6,
    "EffectivenessLateAt": 20,
+   "_r113AT2SW21_EffectivenessLate": "r113 ATTACK2 AT2SW21 (owner all attacks viable; game truth pkg 2108, 3 Ranger donors L26-43: Quick Shot x0.10 / 0.19 / 0.25 of own main, 0 live mains of 1222): BASE 2.02 -> 4.5 at gem 20 (x2.23, 0-mana filler stays under the mana gems); revert 2.02",
    "_r98BASICLATE": {},
    "Name": "Quick Shot",
    "Kind": "Basic",
@@ -4692,9 +4721,14 @@
    ],
    "DamageType": "Physical",
    "Effectiveness": 3.2408,
-   "EffectivenessLate": 4.7737,
-   "EffectivenessLateFrom": 15,
+   "EffectivenessLate": 11.0,
+   "EffectivenessLateFrom": 5,
    "EffectivenessLateAt": 20,
+   "EffectivenessEarly": 1.15,
+   "EffectivenessEarlyHold": 10,
+   "EffectivenessEarlyFull": 14,
+   "_r113AT2V27_EffectivenessEarly": "r113 ATTACK2 AT2V27 (owner all attacks viable, Friday wipe band; twin census pull 2030 Ranger donors n39 L1-20): young edge 1.25/10/14 -> 1.65/8/14, BASE, monotonic per gem; L1-20 x0.62 -> 0.86 of band median, gem 14+ unchanged; revert 1.25 / 10 / 14",
+   "_r113AT2SW21_EffectivenessLate": "r113 ATTACK2 AT2SW21 (owner all attacks viable; game truth pkg 2108 a2cen_c2r0/c2r1, 3 Ranger donors L26-43: Piercing Shot x0.35 / 0.32 / 0.53 of own main, 0 live mains of 1222): BASE Late 4.7737 -> 11.0, LateFrom 15 -> 5 (grows like Lightning Arrow), young edge x1.25 gem 1-10 easing to x1 at 14 (monotonic: g9 6.64, g10 7.29, g13 7.84, g14 7.90, g20 11.0); gem 9 x2.05, gem 20 x2.31; revert 4.7737 / 15 / no Early keys",
    "ManaCost": 7,
    "Range": 1700,
    "ProjectileSpeed": 3400,
@@ -4712,10 +4746,7 @@
    "TravelSfx": "power_whistle",
    "ImpactSfx": "arrow_impact_heavy",
    "HitSfx": "hit_crit",
-   "HitFx": "hit_blood_arrow",
-   "EffectivenessEarly": 1.15,
-   "EffectivenessEarlyHold": 10,
-   "EffectivenessEarlyFull": 14
+   "HitFx": "hit_blood_arrow"
   },
   {
    "Id": "split_shot",
@@ -4841,7 +4872,10 @@
    },
    "EffectivenessEarly": 1.21,
    "EffectivenessEarlyHold": 10,
-   "EffectivenessEarlyFull": 14
+   "EffectivenessEarlyFull": 14,
+   "Late2From": 13,
+   "Late2At": 20,
+   "Late2Mult": 2.4
   },
   {
    "Id": "wind_vault",
@@ -4962,9 +4996,10 @@
     },
     "ProjectileGlowSize": 20
    },
-   "EffectivenessEarly": 1.38,
-   "EffectivenessEarlyHold": 10,
+   "EffectivenessEarly": 1.8,
+   "EffectivenessEarlyHold": 8,
    "EffectivenessEarlyFull": 14,
+   "_r113AT2V27_EffectivenessEarly": "r113 ATTACK2 AT2V27 (owner all attacks viable, Friday wipe band; twin census pull 2030 Ranger donors n39 L1-20): young edge 1.38/10/14 -> 1.8/8/14, BASE, monotonic per gem; L1-20 x0.59 -> 0.74 of band median, gem 14+ unchanged; revert 1.38 / 10 / 14",
    "_r108SKILL_EffectivenessLate": "r108 SKILLS +15% late on top of LIFTS +10%: at the RL 200 wall the 8 LA cards sit at 414M = 0.52 of the all class median (Ranger 0.77, lowest); bench Ranger median card 1.011 -> 1.074, LA path 0.88 -> 0.92; revert 9.5043 (pre night 8.6403)",
    "_r108T3_EffectivenessLate": "r108 TRUTH3 19:1x (LEAD 19:13): +15% late, Ranger the one class UNDER the Meta_Matrix band at RL 200 (S2 420M n10 after the craft cut; LA home p50 0.856 vs pre night, 12 of 19 Ranger cards); bench Ranger median 0.859 -> 0.954, caustic.5 RL260 2.03B -> 2.17B (LEAD ok, top = TRACE); revert 10.9299",
    "_r112RMC_EffectivenessLate": "r112 RANGER-MID C (LEAD PICK 11:30, METAC3 card 12:2x): Lightning Arrow mid curve 15.1021 -> 12.8 with late2 LA Mult 0.85 -> 1.003 (gem 22+ unchanged); Ranger RL60-119 1.40 -> 1.22 of band with the TREE 3 nodes; revert 15.1021",
@@ -5037,7 +5072,8 @@
   },
   {
    "Id": "caustic_arrow",
-   "EffectivenessLate": 10.8034,
+   "_d25nCALIFT25": "d25n BRAIN CALIFT25 (owner 25 Nov 22:0x buffs for weak engines, LEAD 22:01; F8 904076A2): best live card live_sk_caustic_arrow_1 L78 30 s band-true RL130 12.47M x0.45 -> 28.40M x1.01 (leg sw37_calift, pkg 2145), BASE layer; gem 1-8 unchanged; revert 10.8034",
+   "EffectivenessLate": 25.0,
    "EffectivenessLateFrom": 8,
    "EffectivenessLateAt": 20,
    "_r98LATELIFT": {
@@ -5122,7 +5158,8 @@
    "DamageType": "Fire",
    "Family": "Fire",
    "ConvertShare": 60,
-   "Effectiveness": 2.625,
+   "Effectiveness": 4.5,
+   "_r113ATTACK2_Effectiveness": "r113 ATTACK2 AT2V10 (owner 24 Nov make all attacks viable; Friday wipe = early bands): gem 1-8 x1.71, gem 14 x1.14, gem 20+ unchanged; swap3.py BANDTRUE pull 1430 RL20-49 n40 p50 0.56 -> 0.79, best honest donor 4.06; revert 2.625",
    "EffectivenessLate": 10.8351,
    "EffectivenessLateFrom": 8,
    "EffectivenessLateAt": 20,
@@ -5152,7 +5189,7 @@
    },
    "ProjectileGlowSize": 8,
    "ImpactLight": 6,
-   "Late2From": 18,
+   "Late2From": 13,
    "Late2At": 22,
    "Late2Mult": 1.85
   },
@@ -5181,9 +5218,10 @@
    "EffectivenessLate": 16.5,
    "EffectivenessLateFrom": 8,
    "EffectivenessLateAt": 20,
-   "EffectivenessEarly": 1.19,
-   "EffectivenessEarlyHold": 10,
+   "EffectivenessEarly": 1.6,
+   "EffectivenessEarlyHold": 11,
    "EffectivenessEarlyFull": 15,
+   "_r113AT2V27_EffectivenessEarly": "r113 ATTACK2 AT2V27 (owner all attacks viable, Friday wipe band; twin census pull 2030 Ranger donors n39/22/17 L1-40): young edge 1.19/10/15 -> 1.6/11/15, BASE, monotonic per gem; L1-40 x0.62-0.66 -> 0.85-0.87 of band median, gem 15+ unchanged; revert 1.19 / 10 / 15",
    "ManaCost": 7,
    "Range": 750,
    "ProjectileSpeed": 2600,
@@ -5394,7 +5432,10 @@
    "_r113META_EffectivenessLateAt": "r113 META s57 MONO3-113 (curve_audit dip; fit4.py lift-side, never lowers a gem level): 16 -> 14 see Late; revert 16",
    "_r113META_EffectivenessEarlyHold": "r113 META s57 MONO3-113 (curve_audit dip; fit4.py lift-side, never lowers a gem level): 10 -> 8 see Late; revert 10",
    "_r113META_EffectivenessEarlyFull": "r113 META s57 MONO3-113 (curve_audit dip; fit4.py lift-side, never lowers a gem level): 14 -> 19 see Late; revert 14",
-   "_r110META_Early": "r110 META (owner modest Samurai lift, starter kit Shuriken/Iaido then Blade Vortex): EffectivenessEarly 1.1 -> 1.3 (gem 1-10, gone by 14); revert .pre_r110_META3"
+   "_r110META_Early": "r110 META (owner modest Samurai lift, starter kit Shuriken/Iaido then Blade Vortex): EffectivenessEarly 1.1 -> 1.3 (gem 1-10, gone by 14); revert .pre_r110_META3",
+   "Late2From": 8,
+   "Late2At": 20,
+   "Late2Mult": 2.1
   },
   {
    "Id": "crescent_slash",
@@ -5455,6 +5496,10 @@
    "EffectivenessLateFrom": 8,
    "EffectivenessLateAt": 16,
    "EffectivenessLate": 8.6801,
+   "EffectivenessEarly": 1.8,
+   "EffectivenessEarlyHold": 8,
+   "EffectivenessEarlyFull": 14,
+   "_r113ATTACK2_AT2V24": "r113 ATTACK2 AT2V24 (owner all attacks viable, Friday wipe band): Crescent Slash young gems x0.33 (L1-20, n33) / x0.56 (L21-30, n15) of the RL band median on the band-true twin (swap3 pull 2030, Samurai donors) while L41+ read x1.13; young edge x1.8 to gem 8, x1 by gem 14 so every gem level hits harder (min step +2.4%, gem 14+ unchanged) (BASE layer, attacks via ATKEDGE93). Revert: delete the 3 EffectivenessEarly keys.",
    "_r95SIG_was": {
     "CastSfx": "swing_heavy"
    },
@@ -5501,12 +5546,20 @@
     10,
     18
    ],
-   "Pierce": 2,
+   "Pierce": 3,
    "Radius": 0,
    "Knockback": 8,
    "HitStop": 0.02,
    "HeroHitStop": 0.0,
    "Shake": 0.0,
+   "ArrowMeshScale": 1.6,
+   "_n25g17FEEL": "OWN17451c: thrown star body near invisible at game zoom (shur_n28 f08); 1.0 -> 1.6. revert 1.0",
+   "MeshSpin": 1080,
+   "MeshLay": {
+    "Pitch": 0,
+    "Yaw": 0,
+    "Roll": 0
+   },
    "TrailFx": "shuriken",
    "ImpactFx": "sh108_hit",
    "CastSfx": "shuriken_throw",
@@ -5515,12 +5568,12 @@
    "HitSfx": "hit_blade",
    "Vfx70": {
     "ProjectileGlow": {
-     "R": 0.78,
-     "G": 0.88,
-     "B": 1.0,
+     "R": 1.0,
+     "G": 0.66,
+     "B": 0.28,
      "A": 1
     },
-    "ProjectileGlowSize": 26,
+    "ProjectileGlowSize": 6,
     "ImpactLight": 0
    },
    "EffectivenessEarly": 2.1,
@@ -5772,7 +5825,10 @@
    "Vfx70": {
     "HitFx": "ve70_sam_hit"
    },
-   "_r113META2_Description": "d23bf META2 v4 2#BFB16 (rule 38): names the 15% feed (fMarkAll113) and that the burst uses Iaido Thrust's damage"
+   "_r113META2_Description": "d23bf META2 v4 2#BFB16 (rule 38): names the 15% feed (fMarkAll113) and that the burst uses Iaido Thrust's damage",
+   "Late2From": 8,
+   "Late2At": 20,
+   "Late2Mult": 3.0
   },
   {
    "Id": "viper_fang",
@@ -5832,7 +5888,10 @@
    },
    "EffectivenessEarly": 1.07,
    "EffectivenessEarlyHold": 10,
-   "EffectivenessEarlyFull": 14
+   "EffectivenessEarlyFull": 14,
+   "Late2From": 13,
+   "Late2At": 20,
+   "Late2Mult": 2.2
   },
   {
    "Id": "moonfall",
@@ -5867,7 +5926,8 @@
     "MaceShield"
    ],
    "DamageType": "Physical",
-   "Effectiveness": 2.09,
+   "Effectiveness": 3.4,
+   "_r113ATTACK2_Effectiveness": "r113 ATTACK2 AT2V8 (owner 24 Nov 18:2x make all attacks viable; Friday wipe = early bands): gem 1-19 lift, gem 20+ unchanged (late value / late2 row carry it); swap3.py BANDTRUE pull 1430 RL20-49 n30 p50 0.32-0.47 before; revert 2.09",
    "EffectivenessLate": 3.85,
    "EffectivenessLateFrom": 8,
    "EffectivenessLateAt": 20,
@@ -5903,7 +5963,10 @@
     "CastSfx": "swing_heavy",
     "ImpactSfx": "hit_cleave"
    },
-   "_r95SIG": "r95 AUDIO SIG95 seat 17 (owner 10 Nov: class/build identity matter): Tools/Audio/apply_r95_sig.py: the skill's own sound is heard (swap, same play count)"
+   "_r95SIG": "r95 AUDIO SIG95 seat 17 (owner 10 Nov: class/build identity matter): Tools/Audio/apply_r95_sig.py: the skill's own sound is heard (swap, same play count)",
+   "Late2From": 8,
+   "Late2At": 20,
+   "Late2Mult": 1.68
   },
   {
    "Id": "cyclone",
@@ -5932,8 +5995,8 @@
    ],
    "DamageType": "Physical",
    "Effectiveness": 1.3059,
-   "EffectivenessLate": 3.996,
-   "EffectivenessLateFrom": 17,
+   "EffectivenessLate": 17.18,
+   "EffectivenessLateFrom": 13,
    "EffectivenessLateAt": 20,
    "ManaCost": 3,
    "Range": 235,
@@ -5961,10 +6024,10 @@
     "ShakeCap": 0.25
    },
    "EffectivenessEarly": 1.6,
-   "EffectivenessEarlyHold": 17,
-   "EffectivenessEarlyFull": 18,
+   "EffectivenessEarlyHold": 13,
+   "EffectivenessEarlyFull": 20,
    "_r109FTUE": "r109 FTUE: fresh Warrior 3.2x the fastest first Guardian; young edge 1.25 -> 1.6 (gem <= 10, x1 at 15). Revert: 1.25.",
-   "_r113META_MONOCYC": "r113 META s55 MONOCYC-113: cyclone lost damage levelling gem 11-14 (r109 young edge 1.6 faded 10->15 while the late ramp waited for 17); edge now held to 17, gone at 18, so every gem level hits harder than the last. Live pull 20261120_1430 cyclone RL30-59 x0.54 n12, RL60-119 x0.26 n14, RL120+ x0.30 n13; late 3.4748 -> 3.996 (x1.15). Revert: Hold 10, Full 15, Late 3.4748.",
+   "_r113META_MONOCYC": "r113 META s55 MONOCYC-113: cyclone lost damage levelling gem 11-14 (r109 young edge 1.6 faded 10->15 while the late ramp waited for 17); edge now held to 17, gone at 18, so every gem level hits harder than the last. Live pull 20261120_1430 cyclone RL30-59 x0.54 n12, RL60-119 x0.26 n14, RL120+ x0.30 n13; late 3.4748 -> 3.996 (x1.15). Revert: Hold 10, Full 15, Late 3.4748. | r113 ATTACK2 CYC25 (AT2V17 late cliff, rule 64): gem 18->20 jumped x2.2 in 2 gems; ramp now from gem 13 (LateFrom 17->13) and the young edge fades over the same gems (Hold 17->13, Full 18->20): gem 1-13 and 20+ same, gem 14-19 x1.22-1.72, every gem +9-27%. Live 2030 cyclone RL54-80 kill 26.8 s vs band 19.5 s (n6), gem 16-17 users 20-47 s. Revert: LateFrom 17, Hold 17, Full 18.",
    "Late2From": 18,
    "Late2At": 22,
    "Late2Mult": 1.3
@@ -5994,7 +6057,8 @@
     "Claw"
    ],
    "DamageType": "Physical",
-   "Effectiveness": 1.1,
+   "Effectiveness": 2.0,
+   "_r113ATTACK2_Effectiveness": "r113 ATTACK2 AT2V8 (owner 24 Nov 18:2x make all attacks viable; Friday wipe = early bands): gem 1-19 lift, gem 20+ unchanged (late value / late2 row carry it); swap3.py BANDTRUE pull 1430 RL20-49 n30 p50 0.32-0.47 before; revert 1.1",
    "ManaCost": 7,
    "Cooldown": 1.2,
    "CooldownLate": 0.15,
@@ -6034,7 +6098,15 @@
    "MinCooldown": 0.5,
    "EffectivenessLateFrom": 8,
    "EffectivenessLateAt": 20,
-   "EffectivenessLate": 2.987
+   "EffectivenessLate": 4.48,
+   "EffectivenessEarly": 2.0,
+   "EffectivenessEarlyHold": 9,
+   "EffectivenessEarlyFull": 16,
+   "_r113ATTACK2_EffectivenessEarly": "r113 ATTACK2 AT2SW15 (owner 24 Nov make all attacks viable): Friday band game post, live shield donor 62158de0 L23 gem 9: Shield Charge x0.33 of his own Shield Throw (twin early p50 0.22, n4); young edge x2 at gem 1-9 easing to x1 at gem 16 (BASE layer), late band unchanged; revert = delete these 4 keys",
+   "_r113ATTACK2_EffectivenessLate": "r113 ATTACK2 AT2SW11 (owner 24 Nov make all attacks viable): game post, current late2, live Warrior a4825eeb: Shield Charge x0.59 of his own Cyclone = x~0.43; twin fit p50 x0.88/0.52/0.83 reads ~1.5x high; x1.5 at gem 20 -> ~0.65; revert 2.987",
+   "Late2From": 8,
+   "Late2At": 20,
+   "Late2Mult": 3.5
   },
   {
    "Id": "earthshatter",
@@ -6062,16 +6134,20 @@
     "skyfall"
    ],
    "DamageType": "Physical",
-   "Effectiveness": 2.667,
+   "Effectiveness": 3.536,
    "ActionSpeed": 1.15,
    "ManaCost": 10,
    "Cooldown": 1.2,
    "Range": 300,
    "Angle": 70,
    "Radius": 260,
-   "EffectivenessLate": 7.8814,
-   "EffectivenessLateFrom": 4,
-   "EffectivenessLateAt": 20,
+   "EffectivenessLate": 9.961,
+   "EffectivenessLateFrom": 8,
+   "EffectivenessLateAt": 15,
+   "EffectivenessEarly": 1.8,
+   "EffectivenessEarlyHold": 5,
+   "EffectivenessEarlyFull": 15,
+   "_r113ATTACK2_AT2SW22": "Earthshatter = x0.85 of Ground Slam at every gem level (same curve shape): game truth pkg 2209 a2m9 HitTrace: same 3 hits per cast and cadence, per hit x0.48 = numbers; 4 live mains, max RL27; revert Eff 2.667 Late 7.8814 From 4 At 20, no Early keys",
    "Knockback": 80,
    "Stun": 0.25,
    "HitStop": 0.06,
@@ -6109,7 +6185,7 @@
    "Kind": "Gem",
    "Attribute": "Str",
    "Icon": "ICON_SM_Wep_Cleaver_01_DarkFantasy_Clean",
-   "Description": "Bring a two-handed weapon down so hard the ground rends: a shock runs out toward the cursor, hitting every enemy on its line. A share of your maximum life joins the base damage.",
+   "Description": "Bring a two-handed weapon down so hard the ground rends: a shockwave runs out toward the cursor, hitting every enemy on its line. A share of your maximum life joins the base damage.",
    "Tags": [
     "Attack",
     "Melee",
@@ -6125,7 +6201,7 @@
    ],
    "DamageType": "Physical",
    "Effectiveness": 2.7,
-   "EffectivenessLate": 8.3966,
+   "EffectivenessLate": 29.39,
    "EffectivenessLateFrom": 8,
    "EffectivenessLateAt": 16,
    "ActionSpeed": 1.0,
@@ -6179,8 +6255,9 @@
     "Fist"
    ],
    "DamageType": "Physical",
-   "Effectiveness": 5.2,
-   "EffectivenessLate": 6.4285,
+   "Effectiveness": 6.4,
+   "_r113ATTACK2_Effectiveness": "r113 ATTACK2 AT2V8 (owner 24 Nov 18:2x make all attacks viable; Friday wipe = early bands): gem 1-19 lift, gem 20+ unchanged (late value / late2 row carry it); swap3.py BANDTRUE pull 1430 RL20-49 n30 p50 0.32-0.47 before; revert 5.2",
+   "EffectivenessLate": 7.7,
    "EffectivenessLateFrom": 8,
    "EffectivenessLateAt": 20,
    "ManaCost": 6,
@@ -6215,7 +6292,10 @@
    "_r95SIG_was": {
     "CastSfx": "swing_heavy"
    },
-   "_r95SIG": "r95 AUDIO SIG95 seat 17 (owner 10 Nov: class/build identity matter): Tools/Audio/apply_r95_sig.py: the skill's own sound is heard (swap, same play count)"
+   "_r95SIG": "r95 AUDIO SIG95 seat 17 (owner 10 Nov: class/build identity matter): Tools/Audio/apply_r95_sig.py: the skill's own sound is heard (swap, same play count)",
+   "Late2From": 8,
+   "Late2At": 20,
+   "Late2Mult": 4.0
   }
  ]
 }

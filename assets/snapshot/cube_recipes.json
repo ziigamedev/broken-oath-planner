@@ -57,6 +57,7 @@
   "g_brass_colossus": "sol",
   "g_void_archon": "perthro",
   "g_ossuary_king": "naud",
+  "g_steel_guardian": "ur",
   "g_bone_sovereign": "othala",
   "g_cyclops_tyrant": "hagal",
   "g_alpha_werewolf": "ehwaz",
@@ -77,7 +78,7 @@
   "g_shellback_tyrant": "ior",
   "g_drowned_captain": "ear",
   "g_weaver_queen": "eihwaz",
-  "g_steel_guardian": "ur"
+  "g_oathsmith": "cweorth"
  },
  "recipes": [
   {
@@ -304,13 +305,42 @@
    "Family": "Items",
    "Op": "Imbue",
    "Name": "Family Imbuing",
-   "Recipe": "a plain white weapon or armour + 3 jewels of one family",
-   "Result": "a magic item of the same base, one mod sure to be of the jewels' family",
+   "Recipe": "a plain white weapon or armour + 1 jewel",
+   "Result": "a magic item of the same base, one mod sure to be of the jewel's family",
    "bHidden": false,
-   "Jewels": 3,
-   "Makes": "a magic item, 1 mod of the jewels' family",
-   "UsesUp": "the 3 jewels",
+   "Jewels": 1,
+   "Makes": "a magic item, 1 mod of the jewel's family",
+   "UsesUp": "the jewel",
    "Keeps": "base and item level"
+  },
+  {
+   "Id": "item_infuse",
+   "Family": "Items",
+   "Op": "Infuse",
+   "Name": "Family Infusing",
+   "Recipe": "a magic item with one line + 2 Rough jewels of one family",
+   "Result": "the same magic item; its line stays and it gains one line of the jewels' family (Ember = fire, Frost = cold, Storm = lightning)",
+   "bHidden": false,
+   "Jewels": 2,
+   "JewelTier": 1,
+   "JewelMaxTier": 1,
+   "Rarity": "Magic",
+   "Makes": "the magic item + 1 line of the jewels' family",
+   "UsesUp": "the 2 jewels",
+   "Keeps": "its line, base, item level, sockets, runes"
+  },
+  {
+   "Id": "item_gearfuse",
+   "Family": "Items",
+   "Op": "GearFuse",
+   "Name": "Gear Fusing",
+   "Recipe": "3 magic items of one slot, nothing socketed",
+   "Result": "a rare on the base of the lowest item level of the three, rolled at that item level; all its mods are new",
+   "bHidden": false,
+   "Count": 3,
+   "Makes": "a rare of that slot, all mods new",
+   "UsesUp": "the 3 items",
+   "Keeps": "the base and item level of the lowest of the three"
   },
   {
    "Id": "item_awaken",
@@ -713,6 +743,38 @@
    "Makes": "the first idol with one more line",
    "UsesUp": "the second idol, Gloomsilver and gold",
    "Keeps": "every line of the first idol; a +1 line never moves"
+  },
+  {
+   "Id": "item_regrade",
+   "Family": "Items",
+   "Op": "Regrade",
+   "Name": "Regrading",
+   "Recipe": "any gear with a Base Grade under 90 + 1 rune of Tier II or higher + 1 jewel, Cut, Faceted or Radiant",
+   "Result": "the same item with its Base Grade rolled again on the drop odds (it can be lower)",
+   "bHidden": false,
+   "Runes": 1,
+   "RuneTier": 2,
+   "Jewels": 1,
+   "JewelTier": 2,
+   "Makes": "the same item with a new Base Grade, 1 to 100 (it can be lower)",
+   "UsesUp": "the rune and the jewel",
+   "Keeps": "every mod, item level, base, sockets, runes, quality"
+  },
+  {
+   "Id": "item_regrade_elite",
+   "Family": "Items",
+   "Op": "Regrade",
+   "Name": "Regrading, Grade 90+",
+   "Recipe": "any gear with Base Grade 90 or more + 1 rune of Tier III or higher + 2 jewels, Cut, Faceted or Radiant",
+   "Result": "the same item with its Base Grade rolled again on the drop odds (it can be lower)",
+   "bHidden": false,
+   "Runes": 1,
+   "RuneTier": 3,
+   "Jewels": 2,
+   "JewelTier": 2,
+   "Makes": "the same item with a new Base Grade, 1 to 100 (it can be lower)",
+   "UsesUp": "the rune and both jewels",
+   "Keeps": "every mod, item level, base, sockets, runes, quality"
   }
  ]
 }

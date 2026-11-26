@@ -1637,7 +1637,7 @@
      "Min": 3,
      "Max": 3,
      "Name": "Paragon's",
-     "Weight": 1000
+     "Weight": 250
     }
    ]
   },
@@ -1664,7 +1664,7 @@
      "Min": 3,
      "Max": 3,
      "Name": "Paragon's",
-     "Weight": 1000
+     "Weight": 250
     }
    ]
   },
@@ -1691,7 +1691,7 @@
      "Min": 4,
      "Max": 4,
      "Name": "Oathcrowned",
-     "Weight": 1000
+     "Weight": 250
     }
    ]
   },

@@ -286,11 +286,6 @@
    "Negative": "Lose {abs} Life per Enemy Killed"
   },
   {
-   "Key": "ManaOnKill.Flat",
-   "Text": "Gain {v} Mana per Enemy Killed",
-   "Negative": "Lose {abs} Mana per Enemy Killed"
-  },
-  {
    "Key": "LifeLeech.Flat",
    "Text": "{v}% of Damage Leeched as Life",
    "Negative": ""
@@ -519,6 +514,11 @@
    "Key": "MinionCap.Flat+holy_elemental",
    "Text": "+{v} to the maximum number of Holy Elementals (adds to your Minions from all sources; army max 36 minions in all, past it your Minions grow stronger)",
    "Negative": "-{abs} to the maximum number of Holy Elementals"
+  },
+  {
+   "Key": "HolyElementalMore.Flat",
+   "Text": "Your Holy Elementals deal {v}% more Damage",
+   "Negative": "Your Holy Elementals deal {abs}% less Damage"
   },
   {
    "Key": "Reservation.Inc",
@@ -1462,8 +1462,8 @@
   },
   {
    "Key": "PyreChain.Flat",
-   "Text": "The linked corpse burst leaps on to {v} more fresh corpses",
-   "Negative": "The linked corpse burst leaps on to {abs} fewer fresh corpses"
+   "Text": "Pyre Burst leaps on to {v} more fresh {n}|plural(one=corpse,other=corpses)",
+   "Negative": "Pyre Burst leaps on to {abs} fewer fresh {n}|plural(one=corpse,other=corpses)"
   },
   {
    "Key": "PyreChainShare.Flat",
@@ -2094,6 +2094,21 @@
    "Key": "EntropyVowReach.Flat",
    "Text": "Forsworn Crusade's Vowbreak reaches {v} metres further",
    "Negative": "Forsworn Crusade's Vowbreak reaches {abs} metres less far"
+  },
+  {
+   "Key": "HuskCount.Flat",
+   "Text": "Raises up to {v} more {n}|plural(one=Husk,other=Husks) at once",
+   "Negative": ""
+  },
+  {
+   "Key": "HuskRise.Flat",
+   "Text": "Your Husks rise as Skeleton Warriors for {v} seconds, then die",
+   "Negative": ""
+  },
+  {
+   "Key": "ManaOnKill.Flat",
+   "Text": "+{v} Mana gained on Kill",
+   "Negative": ""
   }
  ]
 }

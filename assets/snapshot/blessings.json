@@ -689,7 +689,7 @@
      ],
      "Value": 10,
      "Value2": 0,
-     "PerLevel": 0.5
+     "PerLevel": 0.2632
     },
     {
      "Stat": "DamageAsExtra",
@@ -700,7 +700,7 @@
      ],
      "Value": 10,
      "Value2": 0,
-     "PerLevel": 0.5
+     "PerLevel": 0.2632
     },
     {
      "Stat": "DamageAsExtra",
@@ -711,7 +711,7 @@
      ],
      "Value": 10,
      "Value2": 0,
-     "PerLevel": 0.5
+     "PerLevel": 0.2632
     },
     {
      "Stat": "DamageAsExtra",
@@ -722,7 +722,7 @@
      ],
      "Value": 10,
      "Value2": 0,
-     "PerLevel": 0.5
+     "PerLevel": 0.2632
     },
     {
      "Stat": "DamageAsExtra",
@@ -733,7 +733,7 @@
      ],
      "Value": 10,
      "Value2": 0,
-     "PerLevel": 0.5
+     "PerLevel": 0.2632
     }
    ],
    "Text": "Gain {0}% of your hit damage as extra fire damage. Your kills (and your minions' and totems' kills) burst into flame: 12% of the slain enemy's maximum life (counted at Rupture Level 150 at most, without pack bonus life) as fire damage within 2.5 metres.",
@@ -778,7 +778,7 @@
      ],
      "Value": 10,
      "Value2": 0,
-     "PerLevel": 0.5
+     "PerLevel": 0.2632
     },
     {
      "Stat": "DamageAsExtra",
@@ -789,7 +789,7 @@
      ],
      "Value": 10,
      "Value2": 0,
-     "PerLevel": 0.5
+     "PerLevel": 0.2632
     },
     {
      "Stat": "DamageAsExtra",
@@ -800,7 +800,7 @@
      ],
      "Value": 10,
      "Value2": 0,
-     "PerLevel": 0.5
+     "PerLevel": 0.2632
     },
     {
      "Stat": "DamageAsExtra",
@@ -811,7 +811,7 @@
      ],
      "Value": 10,
      "Value2": 0,
-     "PerLevel": 0.5
+     "PerLevel": 0.2632
     },
     {
      "Stat": "DamageAsExtra",
@@ -822,7 +822,7 @@
      ],
      "Value": 10,
      "Value2": 0,
-     "PerLevel": 0.5
+     "PerLevel": 0.2632
     }
    ],
    "Text": "Gain {0}% of your hit damage as extra cold damage. Your kills (and your minions' and totems' kills) shatter: 10% of the slain enemy's maximum life (counted at Rupture Level 150 at most, without pack bonus life) as cold damage within 3 metres (it chills).",
@@ -867,7 +867,7 @@
      ],
      "Value": 10,
      "Value2": 0,
-     "PerLevel": 0.5
+     "PerLevel": 0.2632
     },
     {
      "Stat": "DamageAsExtra",
@@ -878,7 +878,7 @@
      ],
      "Value": 10,
      "Value2": 0,
-     "PerLevel": 0.5
+     "PerLevel": 0.2632
     },
     {
      "Stat": "DamageAsExtra",
@@ -889,7 +889,7 @@
      ],
      "Value": 10,
      "Value2": 0,
-     "PerLevel": 0.5
+     "PerLevel": 0.2632
     },
     {
      "Stat": "DamageAsExtra",
@@ -900,7 +900,7 @@
      ],
      "Value": 10,
      "Value2": 0,
-     "PerLevel": 0.5
+     "PerLevel": 0.2632
     },
     {
      "Stat": "DamageAsExtra",
@@ -911,7 +911,7 @@
      ],
      "Value": 10,
      "Value2": 0,
-     "PerLevel": 0.5
+     "PerLevel": 0.2632
     }
    ],
    "Text": "Gain {0}% of your hit damage as extra lightning damage. Your kills (and your minions' and totems' kills) arc to the 3 nearest enemies within 5 metres: 8% of the slain enemy's maximum life (counted at Rupture Level 150 at most, without pack bonus life) as lightning damage.",
@@ -957,7 +957,7 @@
      ],
      "Value": 9,
      "Value2": 0,
-     "PerLevel": 0.45
+     "PerLevel": 0.2368
     },
     {
      "Stat": "DamageAsExtra",
@@ -968,7 +968,7 @@
      ],
      "Value": 9,
      "Value2": 0,
-     "PerLevel": 0.45
+     "PerLevel": 0.2368
     },
     {
      "Stat": "DamageAsExtra",
@@ -979,7 +979,7 @@
      ],
      "Value": 9,
      "Value2": 0,
-     "PerLevel": 0.45
+     "PerLevel": 0.2368
     },
     {
      "Stat": "DamageAsExtra",
@@ -990,7 +990,7 @@
      ],
      "Value": 9,
      "Value2": 0,
-     "PerLevel": 0.45
+     "PerLevel": 0.2368
     },
     {
      "Stat": "DamageAsExtra",
@@ -1001,7 +1001,7 @@
      ],
      "Value": 9,
      "Value2": 0,
-     "PerLevel": 0.45
+     "PerLevel": 0.2368
     }
    ],
    "Text": "Gain {0}% of your hit damage as extra poison damage. Your kills (and your minions' and totems' kills) burst into rot: 10% of the slain enemy's maximum life (counted at Rupture Level 150 at most, without pack bonus life) as poison damage within 2.5 metres.",
@@ -1046,7 +1046,7 @@
      ],
      "Value": 9,
      "Value2": 0,
-     "PerLevel": 0.45
+     "PerLevel": 0.2368
     },
     {
      "Stat": "DamageAsExtra",
@@ -1057,7 +1057,7 @@
      ],
      "Value": 9,
      "Value2": 0,
-     "PerLevel": 0.45
+     "PerLevel": 0.2368
     },
     {
      "Stat": "DamageAsExtra",
@@ -1068,7 +1068,7 @@
      ],
      "Value": 9,
      "Value2": 0,
-     "PerLevel": 0.45
+     "PerLevel": 0.2368
     },
     {
      "Stat": "DamageAsExtra",
@@ -1079,7 +1079,7 @@
      ],
      "Value": 9,
      "Value2": 0,
-     "PerLevel": 0.45
+     "PerLevel": 0.2368
     },
     {
      "Stat": "DamageAsExtra",
@@ -1090,7 +1090,7 @@
      ],
      "Value": 9,
      "Value2": 0,
-     "PerLevel": 0.45
+     "PerLevel": 0.2368
     }
    ],
    "Text": "Gain {0}% of your hit damage as extra physical damage. Your kills (and your minions' and totems' kills) burst into shards of steel: 9% of the slain enemy's maximum life (counted at Rupture Level 150 at most, without pack bonus life) as physical damage within 2.5 metres.",
@@ -1564,7 +1564,7 @@
    "Order": 25,
    "Max": 99,
    "Duration": 0.0,
-   "Icon": "ICON_DarkFantasy_Element_Earth_02_Clean",
+   "Icon": "ICON_DarkFantasy_Element_Fire_01_Clean",
    "Color": {
     "R": 1.0,
     "G": 0.55,
@@ -1593,7 +1593,7 @@
    "Order": 25,
    "Max": 99,
    "Duration": 0.0,
-   "Icon": "ICON_DarkFantasy_Status_Charmed_01_Clean",
+   "Icon": "ICON_DarkFantasy_Element_Ice_01_Clean",
    "Color": {
     "R": 0.62,
     "G": 0.85,
@@ -1622,7 +1622,7 @@
    "Order": 25,
    "Max": 99,
    "Duration": 0.0,
-   "Icon": "ICON_DarkFantasy_Status_DamageUp_04_Clean",
+   "Icon": "ICON_DarkFantasy_Map_Lightning_01_Clean",
    "Color": {
     "R": 1.0,
     "G": 0.86,
@@ -1746,7 +1746,7 @@
    "ReserveFlatPerLevel": 0,
    "ReservePct": 25,
    "Mods": [],
-   "Text": "A kill leaves an echo of its element: 12% more damage of that element while it lasts",
+   "Text": "A kill or a hit on a Rare or a boss leaves an echo of its element: 12% more damage of that element while it lasts",
    "Vowbreak": {
     "Seconds": 4.0,
     "Mult": 2.5,
@@ -1800,7 +1800,7 @@
    "Order": 27,
    "Max": 1,
    "Duration": 0.0,
-   "Icon": "ICON_DarkFantasy_Status_Burninating_01_Clean",
+   "Icon": "ICON_DarkFantasy_Element_Fire_01_Clean",
    "Color": {
     "R": 1.0,
     "G": 0.5,
@@ -1829,7 +1829,7 @@
    "Order": 27,
    "Max": 1,
    "Duration": 0.0,
-   "Icon": "ICON_DarkFantasy_Status_Cold_01_Clean",
+   "Icon": "ICON_DarkFantasy_Element_Ice_01_Clean",
    "Color": {
     "R": 0.62,
     "G": 0.85,
@@ -1858,7 +1858,7 @@
    "Order": 27,
    "Max": 1,
    "Duration": 0.0,
-   "Icon": "ICON_DarkFantasy_Status_Shocked_01_Clean",
+   "Icon": "ICON_DarkFantasy_Map_Lightning_01_Clean",
    "Color": {
     "R": 1.0,
     "G": 0.86,
@@ -1887,7 +1887,7 @@
    "Order": 27,
    "Max": 1,
    "Duration": 0.0,
-   "Icon": "ICON_DarkFantasy_Status_Poisoned_01_Clean",
+   "Icon": "ICON_DarkFantasy_Status_Poisoned_02_Clean",
    "Color": {
     "R": 0.55,
     "G": 0.85,

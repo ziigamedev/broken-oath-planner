@@ -421,28 +421,28 @@
     "Normal": 15.03025,
     "Magic": 10.71,
     "Rare": 9.775,
-    "Unique": 0.003156
+    "Unique": 0.005
    },
    {
     "ML": 35,
     "Normal": 11.6352,
     "Magic": 8.2687,
     "Rare": 13.5125,
-    "Unique": 0.00459
+    "Unique": 0.0065
    },
    {
     "ML": 45,
     "Normal": 8.58465,
     "Magic": 8.4262,
     "Rare": 13.8,
-    "Unique": 0.006024
+    "Unique": 0.0075
    },
    {
     "ML": 55,
     "Normal": 7.1635,
     "Magic": 8.505,
     "Rare": 13.8,
-    "Unique": 0.008032
+    "Unique": 0.0092
    },
    {
     "ML": 65,
@@ -1066,6 +1066,7 @@
   "CritBase": 5,
   "SpellCritBase": 6,
   "CritMultiBase": 150,
+  "DualWieldAttackSpeedMore": 25,
   "PassivePointsPerLevel": 1,
   "ActionRateMin": 0.75,
   "ActionRateMax": 4.0,

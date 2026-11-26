@@ -138,7 +138,7 @@
     },
     {
      "Id": "oath_mage_hollow_star",
-     "Name": "Oath of the Hollow Star",
+     "Name": "Oath of the a secret Oathword",
      "Text": "15% of your Spell hit damage is laid on the enemy as Entropy instead of striking",
      "Vow": "10% less critical strike chance with Spells",
      "Mods": [
@@ -444,7 +444,7 @@
     },
     {
      "Id": "oath_necro_owed_dead",
-     "Name": "Oath of the Owed Dead",
+     "Name": "Oath of the a secret Oathword",
      "Text": "With Grave Debt, a fallen minion or burst corpse implodes Entropy 2 metres further",
      "Vow": "",
      "Mods": [

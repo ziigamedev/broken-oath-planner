@@ -2989,39 +2989,39 @@
    "Tiers": [
     {
      "ILvl": 70,
-     "Min": 9,
-     "Max": 13,
+     "Min": 10,
+     "Max": 12,
      "Name": "Sundering",
      "Weight": 250,
-     "Min2": 14,
-     "Max2": 21
+     "Min2": 16,
+     "Max2": 19
     },
     {
      "ILvl": 56,
-     "Min": 7,
-     "Max": 11,
+     "Min": 8,
+     "Max": 10,
      "Name": "Cleaving",
      "Weight": 450,
-     "Min2": 12,
-     "Max2": 18
+     "Min2": 14,
+     "Max2": 16
     },
     {
      "ILvl": 44,
      "Min": 6,
-     "Max": 9,
+     "Max": 8,
      "Name": "Flensing",
      "Weight": 700,
-     "Min2": 10,
-     "Max2": 15
+     "Min2": 11,
+     "Max2": 14
     },
     {
      "ILvl": 32,
-     "Min": 4,
-     "Max": 7,
+     "Min": 5,
+     "Max": 6,
      "Name": "Jagged",
      "Weight": 1000,
-     "Min2": 8,
-     "Max2": 12
+     "Min2": 9,
+     "Max2": 11
     },
     {
      "ILvl": 20,
@@ -3077,8 +3077,8 @@
    "Tiers": [
     {
      "ILvl": 70,
-     "Min": 3,
-     "Max": 7,
+     "Min": 5,
+     "Max": 5,
      "Name": "Skyrending",
      "Weight": 250,
      "Min2": 57,
@@ -3086,8 +3086,8 @@
     },
     {
      "ILvl": 56,
-     "Min": 3,
-     "Max": 6,
+     "Min": 4,
+     "Max": 5,
      "Name": "Stormcalled",
      "Weight": 450,
      "Min2": 45,
@@ -3095,8 +3095,8 @@
     },
     {
      "ILvl": 44,
-     "Min": 2,
-     "Max": 5,
+     "Min": 3,
+     "Max": 4,
      "Name": "Thundering",
      "Weight": 700,
      "Min2": 33,
@@ -3104,8 +3104,8 @@
     },
     {
      "ILvl": 32,
-     "Min": 2,
-     "Max": 4,
+     "Min": 3,
+     "Max": 3,
      "Name": "Storming",
      "Weight": 1000,
      "Min2": 23,
@@ -3113,8 +3113,8 @@
     },
     {
      "ILvl": 20,
-     "Min": 1,
-     "Max": 3,
+     "Min": 2,
+     "Max": 2,
      "Name": "Jolting",
      "Weight": 1000,
      "Min2": 15,
@@ -3165,8 +3165,8 @@
    "Tiers": [
     {
      "ILvl": 70,
-     "Min": 7,
-     "Max": 12,
+     "Min": 9,
+     "Max": 10,
      "Name": "Hellborn",
      "Weight": 250,
      "Min2": 47,
@@ -3174,8 +3174,8 @@
     },
     {
      "ILvl": 56,
-     "Min": 6,
-     "Max": 10,
+     "Min": 7,
+     "Max": 9,
      "Name": "Infernal",
      "Weight": 450,
      "Min2": 37,
@@ -3183,8 +3183,8 @@
     },
     {
      "ILvl": 44,
-     "Min": 5,
-     "Max": 8,
+     "Min": 6,
+     "Max": 7,
      "Name": "Pyrelit",
      "Weight": 700,
      "Min2": 27,
@@ -3192,8 +3192,8 @@
     },
     {
      "ILvl": 32,
-     "Min": 4,
-     "Max": 7,
+     "Min": 5,
+     "Max": 6,
      "Name": "Blazing",
      "Weight": 1000,
      "Min2": 19,
@@ -3253,8 +3253,8 @@
    "Tiers": [
     {
      "ILvl": 70,
-     "Min": 7,
-     "Max": 12,
+     "Min": 9,
+     "Max": 10,
      "Name": "Hoarfrost",
      "Weight": 250,
      "Min2": 47,
@@ -3262,8 +3262,8 @@
     },
     {
      "ILvl": 56,
-     "Min": 6,
-     "Max": 10,
+     "Min": 7,
+     "Max": 9,
      "Name": "Glacial",
      "Weight": 450,
      "Min2": 37,
@@ -3271,8 +3271,8 @@
     },
     {
      "ILvl": 44,
-     "Min": 5,
-     "Max": 8,
+     "Min": 6,
+     "Max": 7,
      "Name": "Icebound",
      "Weight": 700,
      "Min2": 27,
@@ -3280,8 +3280,8 @@
     },
     {
      "ILvl": 32,
-     "Min": 4,
-     "Max": 7,
+     "Min": 5,
+     "Max": 6,
      "Name": "Wintry",
      "Weight": 1000,
      "Min2": 19,
@@ -4175,7 +4175,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 14,
      "Max": 16,
      "Name": "of Flurries",
@@ -4372,7 +4372,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 14,
      "Max": 16,
      "Name": "of Fluency",
@@ -4641,7 +4641,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 35,
      "Max": 35,
      "Name": "of the Gale",
@@ -4854,7 +4854,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 29,
      "Max": 38,
      "Name": "of the Red Harvest",
@@ -4914,7 +4914,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 29,
      "Max": 38,
      "Name": "Red Harvest",
@@ -4974,7 +4974,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 8,
      "Max": 10,
      "Name": "of the Soul Eater",
@@ -5034,7 +5034,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 8,
      "Max": 10,
      "Name": "Soul Eater's",
@@ -5095,7 +5095,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 44,
+     "ILvl": 84,
      "Min": 0.6,
      "Max": 0.7,
      "Name": "of the Mind Drinker",
@@ -5134,7 +5134,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 44,
+     "ILvl": 84,
      "Min": 0.6,
      "Max": 0.7,
      "Name": "Mind Drinker's",
@@ -5179,7 +5179,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 0.9,
      "Max": 1.0,
      "Name": "of the Soul Drinker",
@@ -5229,7 +5229,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 0.9,
      "Max": 1.0,
      "Name": "Soul Drinker's",
@@ -5276,7 +5276,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 44,
+     "ILvl": 84,
      "Min": 0.9,
      "Max": 1.0,
      "Name": "of the Blood Drinker",
@@ -5322,7 +5322,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 44,
+     "ILvl": 84,
      "Min": 0.9,
      "Max": 1.0,
      "Name": "Blood Drinker's",
@@ -5425,7 +5425,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 16,
      "Max": 20,
      "Name": "of the Wildfire",
@@ -5474,7 +5474,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 16,
      "Max": 20,
      "Name": "of the Tempest",
@@ -5522,7 +5522,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 21,
      "Max": 25,
      "Name": "Immolating",
@@ -5570,7 +5570,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 21,
      "Max": 25,
      "Name": "Blackblooded",
@@ -5618,7 +5618,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 18,
      "Max": 22,
      "Name": "Stormwrought",
@@ -5665,7 +5665,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 21,
      "Max": 25,
      "Name": "of the Long Winter",
@@ -5713,7 +5713,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 16,
      "Max": 20,
      "Name": "of Haemorrhage",
@@ -5762,7 +5762,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 21,
      "Max": 25,
      "Name": "Exsanguinating",
@@ -5860,7 +5860,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 21,
      "Max": 25,
      "Name": "of the White Silence",
@@ -6209,7 +6209,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 13,
      "Max": 15,
      "Name": "of the Wild Hunt",
@@ -6390,7 +6390,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 17,
      "Max": 20,
      "Name": "of the Doomsayer",
@@ -6427,7 +6427,7 @@
     "Amulet"
    ],
    "ExcludeTags": [],
-   "Weight": 8,
+   "Weight": 4,
    "Mod": {
     "Stat": "CurseLimit",
     "Mode": "Flat",
@@ -6436,7 +6436,7 @@
    },
    "Tiers": [
     {
-     "ILvl": 44,
+     "ILvl": 84,
      "Min": 1,
      "Max": 1,
      "Name": "Woe-sworn",
@@ -16148,25 +16148,25 @@
    },
    "Tiers": [
     {
-     "ILvl": 56,
+     "ILvl": 84,
      "Min": 14,
      "Max": 16,
      "Name": "of the Swift Sigil",
-     "Weight": 700
+     "Weight": 250
     },
     {
      "ILvl": 44,
      "Min": 11,
      "Max": 13,
      "Name": "of the Spellwright",
-     "Weight": 1000
+     "Weight": 450
     },
     {
      "ILvl": 32,
      "Min": 8,
      "Max": 10,
      "Name": "of the Scribe",
-     "Weight": 1000
+     "Weight": 700
     },
     {
      "ILvl": 20,
@@ -16438,6 +16438,56 @@
      "Max": 6,
      "Name": "of Owing",
      "Weight": 700
+    }
+   ]
+  },
+  {
+   "Id": "es_recharge",
+   "Type": "Suffix",
+   "Group": "EsRecharge",
+   "BaseTags": [
+    "Amulet",
+    "Belt",
+    "EnergyShield"
+   ],
+   "ExcludeTags": [
+    "Shield"
+   ],
+   "Weight": 40,
+   "Mod": {
+    "Stat": "EsRecharge",
+    "Mode": "Inc",
+    "Tags": [],
+    "Value": 0
+   },
+   "Tiers": [
+    {
+     "ILvl": 84,
+     "Min": 18,
+     "Max": 22,
+     "Name": "of the Unbroken Ward",
+     "Weight": 250
+    },
+    {
+     "ILvl": 44,
+     "Min": 14,
+     "Max": 17,
+     "Name": "of the Undimmed",
+     "Weight": 450
+    },
+    {
+     "ILvl": 32,
+     "Min": 10,
+     "Max": 13,
+     "Name": "of the Bright Ward",
+     "Weight": 700
+    },
+    {
+     "ILvl": 20,
+     "Min": 6,
+     "Max": 9,
+     "Name": "of Rekindling",
+     "Weight": 1000
     }
    ]
   },
@@ -18078,7 +18128,7 @@
      "Min": 3,
      "Max": 3,
      "Name": "Paragon's",
-     "Weight": 1000
+     "Weight": 250
     }
    ]
   },
@@ -18105,7 +18155,7 @@
      "Min": 3,
      "Max": 3,
      "Name": "Paragon's",
-     "Weight": 1000
+     "Weight": 250
     }
    ]
   },
@@ -18132,7 +18182,7 @@
      "Min": 4,
      "Max": 4,
      "Name": "Oathcrowned",
-     "Weight": 1000
+     "Weight": 250
     }
    ]
   },

@@ -847,7 +847,7 @@
   {
    "Id": "spell_echo",
    "Name": "Spell Echo",
-   "Description": "The spell repeats once. 15% less damage. 10% less cast speed. An echoed curse is 20% stronger. Never repeats a dash, a Vow, a toggle or a triggered spell. Repeats from a support gem and from your gear or passive tree stack, but the repeats from the smaller of the two deal 50% less damage.",
+   "Description": "The spell repeats once. 15% less damage. 10% less cast speed. An echoed curse is 20% stronger. On a Spark skill it adds one more striking Spark instead of a repeat. Never repeats a dash, a Vow, a toggle or a triggered spell. Repeats from a support gem and from your gear or passive tree stack, but the repeats from the smaller of the two deal 50% less damage.",
    "RequiresAnyTag": [
     "Spell"
    ],
@@ -1468,7 +1468,7 @@
   {
    "Id": "hunters_mark_support",
    "Name": "Hunter's Mark",
-   "Description": "Bow, Projectile and minion skills. Each hit puts 1 Hunter's Mark on the enemy: 1.7% more damage taken per Mark, up to 10. Marks fall off 3 s after your last hit. Adds with curses and every other takes-more-damage effect. Minions: half strength.",
+   "Description": "Bow, Projectile and minion skills. Each hit puts 1 Hunter's Mark on the enemy: 1.7% more damage taken per Mark, up to 10. Marks fall off 3 s after your last hit. Adds with curses and every other takes-more-damage effect. Minions: half strength. At full Marks, hits from skills without this support deal 15% more.",
    "RequiresAnyTag": [
     "Bow",
     "Projectile"
@@ -3303,7 +3303,7 @@
   {
    "Id": "rend",
    "Name": "Rend",
-   "Description": "Physical hits have a 50% chance to cause Bleeding: 40% of the hit's physical damage per second for 4 s (50% more while the enemy moves). 12% more and 100% increased Bleeding damage. Slams and crits cash 50% of the next 4 s at once.",
+   "Description": "Physical hits have a 50% chance to cause Bleeding: 40% of the hit's physical damage per second for 4 s (50% more while the enemy moves). 12% more and 100% increased Bleeding damage. Slams and crits cash 50% of the next 4 s at once. Minion skills at half strength.",
    "RequiresAnyTag": [
     "Attack",
     "Spell"
@@ -4125,7 +4125,7 @@
   {
    "Id": "funeral_pyre",
    "Name": "Funeral Pyre",
-   "Description": "Enemies killed by the skill's hits burst into flame, dealing Fire damage in 2.5 m equal to 15% of their maximum Life (counted at Rupture Level 150 at most). The burst is not a hit, so it never chains.",
+   "Description": "Enemies killed by the skill's hits burst into flame, dealing Fire damage in 2.5 m equal to 15% of their maximum Life (counted at Rupture Level 200 at most, bosses 150), grown by the skill's increased and more damage. The burst is not a hit, so it never chains.",
    "RequiresAnyTag": [
     "Attack",
     "Spell"
@@ -4387,7 +4387,7 @@
   {
    "Id": "dawnbringer",
    "Name": "Dawnbringer",
-   "Description": "Every third hit of the linked Holy attack calls a pillar of dawn, dealing 120% of the hit as Fire damage (once per second per enemy). For Holy Slash, Hallowed Slam, Holy Charge and Shield Throw.",
+   "Description": "Every third hit of the linked Holy attack calls a pillar of dawn, dealing 240% of the hit as Fire damage. For Holy Slash, Hallowed Slam, Holy Charge and Shield Throw.",
    "RequiresAnyTag": [
     "Holy"
    ],
@@ -4403,9 +4403,8 @@
       "DawnPillar",
       "Holy",
       "Nth=3",
-      "Pct=120",
+      "Pct=240",
       "Delay=0.2",
-      "PerTarget=1",
       "Element=Fire"
      ],
      "Value": 100,
@@ -4494,7 +4493,7 @@
   {
    "Id": "venom_bloom",
    "Name": "Venom Bloom",
-   "Description": "Every fourth hit of the linked Poison attack bursts in venom: enemies within 2.5 m take 45% of the hit as Poison damage, each enemy at most once every 0.5 seconds. For Gravereap, Soul Rend and Marrow Lance.",
+   "Description": "Every fourth hit of the linked Poison attack bursts in venom (once per 0.2 s): enemies within 2.5 m take 45% of the hit as Poison damage, each enemy at most once every 0.5 seconds. For Gravereap, Soul Rend and Marrow Lance.",
    "RequiresAnyTag": [
     "Poison"
    ],
@@ -4727,7 +4726,7 @@
   {
    "Id": "rampart_strike",
    "Name": "Rampart Strike",
-   "Description": "The linked Shield attack deals 0.8% more damage per 1% chance to block you have (50% block: 40% more). For Shield Charge, Holy Charge and Shield Throw.",
+   "Description": "The linked Shield attack deals 0.3% more damage per 1% chance to block you have (50% block: 15% more). For Shield Charge, Holy Charge and Shield Throw.",
    "RequiresAnyTag": [
     "Shield"
    ],
@@ -4739,7 +4738,7 @@
      "Stat": "BlockToDamage",
      "Mode": "Flat",
      "Tags": [],
-     "Value": 0.8,
+     "Value": 0.3,
      "Value2": 0
     }
    ],
@@ -4864,7 +4863,7 @@
   {
    "Id": "spreading_pyre",
    "Name": "Spreading Pyre",
-   "Description": "The linked corpse skill's fire leaps to 3 more fresh corpses, each within the burst's radius of the last, bursting at 70% of the one before (Pyre Burst at gem 20: 10%, 7%, 4.9%, 3.4% of the slain's life (counted at Rupture Level 150 at most, without pack bonus life)). Corpses its fire makes carry it on.",
+   "Description": "The linked corpse skill's fire leaps to 3 more fresh corpses, each within the burst's radius of the last, bursting at 70% of the one before. Pyre Burst at gem 20: 10%, 7%, 4.9%, 3.4% of the slain's life (counted at Rupture Level 150 at most, without pack bonus life), counted at Rupture Level 200 at most (bosses 150), without pack bonus life. Corpses its fire makes carry it on.",
    "RequiresAnyTag": [
     "Corpse"
    ],
@@ -5484,7 +5483,7 @@
   {
    "Id": "haemorrhage",
    "Name": "Haemorrhage",
-   "Description": "Hits of this skill deal 40% more damage to an enemy Bleeding from another of your skills (its own bleed does not count). Open with a bleed, then tear it with this.",
+   "Description": "Hits of this skill deal 15% more damage to an enemy Bleeding from another of your skills (its own bleed does not count). Open with a bleed, then tear it with this.",
    "RequiresAnyTag": [
     "Attack",
     "Spell"
@@ -5503,7 +5502,7 @@
      "Stat": "BleedTear103",
      "Mode": "Flat",
      "Tags": [],
-     "Value": 40,
+     "Value": 15,
      "Value2": 0
     }
    ],
@@ -5750,7 +5749,7 @@
   {
    "Id": "stormhound_pact",
    "Name": "Stormhound Pact",
-   "Description": "Critical strikes of the linked Lightning spell loose a Storm Wolf for 4 seconds (at most 2 wolves). Each wolf leaps at an enemy within 8 metres every 0.8 seconds for 16% of that critical hit as Lightning damage.",
+   "Description": "Critical strikes of the linked Lightning spell loose a Storm Wolf for 4 seconds (once a second, at most 2 wolves). Each wolf leaps at an enemy within 8 metres every 0.8 seconds for 16% of that critical hit as Lightning damage.",
    "RequiresAnyTag": [
     "Spell"
    ],
@@ -5980,7 +5979,7 @@
   {
    "Id": "kindled_remains",
    "Name": "Kindled Remains",
-   "Description": "Each pulse or hit (at most 4 times a second) sets off a fresh corpse within 2.5 m. It bursts in 2 m as the skill's damage type for a share of the corpse's life (13% below Rupture Level 50, 5% at 50-99, 54% at 100-149, 99% at 150-199, 360% from 200). Cannot crit.",
+   "Description": "Each pulse or hit sets off up to 3 fresh corpses within 2.5 m at once (at most 4 corpses a second). Each bursts in 2 m as the skill's damage type for a share of the corpse's life (12.6% below Rupture Level 50, 25.2% at 50-99, 28.8% from 100), grown by the skill's increased and more damage. Cannot crit.",
    "RequiresAnyTag": [
     "Area",
     "Melee",
@@ -6029,7 +6028,7 @@
   {
    "Id": "chaos",
    "Name": "Chaos",
-   "Description": "40% of this skill's hit damage is laid on the enemy as Entropy. It implodes 3 s later as Chaos damage, 25% more, ignoring Armour and elemental Resistance. A dying enemy bursts 30% of its Entropy onto enemies within 3 m. No Ailments or Leech.",
+   "Description": "40% of this skill's hit damage is laid on the enemy as Entropy. It implodes 3 s later as Chaos damage, ignoring Armour and elemental Resistance. A dying enemy bursts 30% of its Entropy onto enemies within 3 m. No Ailments or Leech.",
    "RequiresAnyTag": [
     "Attack",
     "Spell"
@@ -6055,7 +6054,7 @@
      "Stat": "EntropyMore",
      "Mode": "More",
      "Tags": [],
-     "Value": 25,
+     "Value": 0,
      "Value2": 0
     }
    ],
@@ -6089,7 +6088,7 @@
   {
    "Id": "entropic_focus",
    "Name": "Entropic Focus",
-   "Description": "Entropy this skill lays implodes for 22% more damage.",
+   "Description": "Entropy this skill lays implodes for 11% more damage.",
    "RequiresAnyTag": [
     "Attack",
     "Spell"
@@ -6108,7 +6107,7 @@
      "Stat": "EntropyMore",
      "Mode": "More",
      "Tags": [],
-     "Value": 22,
+     "Value": 11,
      "Value2": 0
     }
    ],
@@ -6202,7 +6201,7 @@
   {
    "Id": "gathering_dark",
    "Name": "Gathering Dark",
-   "Description": "Entropy this skill starts on an enemy implodes after 6 seconds instead of 3. Entropy this skill lays implodes for 20% more damage. Sheathe, Iaido Thrust and Grave Debt still implode it early.",
+   "Description": "Entropy this skill starts on an enemy implodes after 6 seconds instead of 3. Entropy this skill lays implodes for 10% more damage. Sheathe, Iaido Thrust and Grave Debt still implode it early.",
    "RequiresAnyTag": [
     "Attack",
     "Spell"
@@ -6228,7 +6227,7 @@
      "Stat": "EntropyMore",
      "Mode": "More",
      "Tags": [],
-     "Value": 20,
+     "Value": 10,
      "Value2": 0
     }
    ],
@@ -6315,7 +6314,7 @@
   {
    "Id": "pact_of_ruin",
    "Name": "Pact of Ruin",
-   "Description": "This skill costs life instead of mana (30% more cost). A further 15% of its hit damage is laid on the enemy as Entropy instead of striking. Entropy this skill lays implodes for 12% more damage.",
+   "Description": "This skill costs life instead of mana (30% more cost). A further 15% of its hit damage is laid on the enemy as Entropy instead of striking. Entropy this skill lays implodes for 6% more damage.",
    "RequiresAnyTag": [
     "Attack",
     "Spell"
@@ -6350,7 +6349,7 @@
      "Stat": "EntropyMore",
      "Mode": "More",
      "Tags": [],
-     "Value": 12,
+     "Value": 6,
      "Value2": 0
     }
    ],

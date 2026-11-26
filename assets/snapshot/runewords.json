@@ -1534,12 +1534,12 @@
        "thousand_cuts",
        "Count=2",
        "Pct=40",
-       "Radius=250"
+       "Radius=110"
       ],
       "Value": 20,
       "Value2": 0.6
      },
-     "Text": "Thousand Cuts hits have a 20% chance to bring down 2 falling blades within 2.5 metres for 40% of the hit (at most once every 0.6 seconds)"
+     "Text": "Thousand Cuts hits have a 20% chance to bring down 2 falling blades within 1.1 metres of the enemy struck for 40% of the hit (at most once every 0.6 seconds)"
     },
     {
      "Mod": {
@@ -3867,7 +3867,7 @@
       "Stat": "MinionDamage",
       "Mode": "Inc",
       "Tags": [],
-      "Value": 251
+      "Value": 102
      }
     },
     {
@@ -3894,7 +3894,7 @@
       "Stat": "MinionDamage",
       "Mode": "Inc",
       "Tags": [],
-      "Value": 288
+      "Value": 117
      }
     },
     {
@@ -6702,9 +6702,6 @@
    "Power2H": 2.0
   },
   {
-   "Sealed98": "CcTDIEEZ2ECYnxNpBKjK06G9GKWX8MMYbD6YzFaHisYw9Z3DhsQ7X5K4plewLnfJXBIC8czPldvoqLVpP67qhrpERmw20_AKIp8w8Nk84EJ_P0bZNmDn149CxGeyQacErzPmJ8uWrmWheOG4oYMnnDNYrj-R5SXZb-qKsn4LbeKBme_5wD_bk0KuOMxLfoKmiSpXwGMiH1rlg6qIvpRFieosVC6RZytyKDESvixPWEvnojat1kLx2hwgmvIa4tFIusl4J0YsRafztiteQsl8d3qcsCv58g_dUt13ErY6Q-bpuGl3yfi6ZGVdzsNPkvQEq0F3HExd287Owtp6g_BFYZhWAUOburPuUg"
-  },
-  {
    "Id": "red_barrowking",
    "Name": "Barrowking's Mandate",
    "Class": "Necromancer",
@@ -6817,15 +6814,6 @@
     }
    ],
    "Power2H": 2.0
-  },
-  {
-   "Sealed98": "eMfDIEEZ0IGYv9JoANIe-AZlSKIxjbDMg0TuZBoL5YDHCscx82CK8pm6gZcwKXDWJAp7aNJ2AIm6oAVxb65qh4GjkQQLM0Exc23zvxShBL1w_izyfegYyQU2qMU82baEg_uEmMNsVUJlny21SfhKGZWB7GW01GnxA0Om0noTpSwnr4P55qPbW5fziySQ5PfWX9HXM3s-lcdSjOK0hN1uRPFr-AneaRT9DDiZyLF7tUG5AR3Z4fhgqIh75NIwyQzFLyISxcSxEJK_h4AcRPPArBql6f0yCGF3nNQhicAKX2fiu_unrgyChkwIj32IAtd_lcxzlzIea1DJoJ44gI2gSpr4t6XfT-bJ5ZHJytRFiLuQH5siHDg5-UIXJUCikVAUcOtDMgmCtPwgCyFeRL3FzRv9QQGxBtrP0r-xYgdPUBAArqsrfZMRBn4hjiN7aXeE"
-  },
-  {
-   "Sealed98": "AcfDIEEZ2IIUvssYHNIgKFbtCJp-ASInj5r945xAJeEkLvNr50ShzZBFVXfKe43aZu0QThL8_WxXZAvHMIb3BVdhmjDPs9l7xpRgRaqz7eaxXVeK44NvsoXMORluaHr96RUHKLiTwvghHdyD6aE5fzzXoHbLnrhf9n8YWJ9QTwhBYLGQyFVvb4t0iRlmPtrLBgGdILQiYpErLJo3oUtXDrJ7T74DYFe3lRpukF78-wygmf4PJfDsHAqSn5ebqKHzdvl3LEJfGA9qvx5bPapIYBR5z2qqErP4RFMlFHo7uwk-KtlmbhUgezp9WY0POnIx7KYicRd5azNKk_K2tP5pWrw9DXsHNu_qpCyCSguIgqThwoueJcsDLlxzDM61EEqZB3UtR50--PccaIrptFhpK8X0vL5hqdBwC9vEhDPs87O1-dGOYX04RH44Hxai0M5wUg-eEZ-o4YO5j62twtIEo2hZrzN5jvac6TNIjLHphVAZKgJHcJOWXRVB"
-  },
-  {
-   "Sealed98": "V8bDIEEZ8IIav8toHNBiHfja-AHzPEZIO8kWBXVXpWE-ucknmpRzYfsRg0isGLcd4p7aO4EyymGqOsYs37kBovOYLQckg4T-2NuWc-saGQ_ciSShoEx10KrJV6p8EbOl_XcK-DZIjFTrTibFYO4612XWvNoRghA0BLtIEl89juZD93UDIKVsfgYS7ge_ygGd8CPHUywABStf5bHjfV1-1qfl-TTX37W0pJyQks91mfkg8hF2vPP9Mlr5MwMJt4pyJhiAmCbwMKNrFqWalB0_Dkj3If0BIbZKRLRhbOyTSt_HUWESmoH9eUQjAzVG4WILs67RYPm4L0UqJiC26QRFgxTzQ7GgZ4V9QhbgoDHCkW6pal68KYzqqusnEucukdLosef94wd94EhDHei00mi-EgJsJF2glOiFprT1nFNYOddpQyHxqu6Q4k1UfRrxgTd6t-E0yFz4HxD4BnkVWDqP6XLrbXGuqfCS3zzotc1gwHMAKDce4QKUdZetiK82vH1h8mlojxMKx9sGenG3sGcmZTC2Ne3fR-XXKCStxLgIhgzXoYaZav7ZNqDGNOmV-TfTY0LwXb8xM1hCg8K72d9tbtAHiJI6P5K2KkNl4kn-doBH7xIl_uis7FUk"
   },
   {
    "Id": "red_skyspear",
@@ -6945,7 +6933,7 @@
       ],
       "Value": 100
      },
-     "Text": "Every fifth Slam erupts again for 300% of its hit as Fire damage (4.5 metre radius)"
+     "Text": "Every fifth Slam erupts again: a fire spike strikes the nearest enemy within 4.5 metres for 300% of its hit as Fire damage"
     }
    ],
    "Flavour": "Kings were burned on oak. The oak remembers how.",
@@ -6980,18 +6968,6 @@
     }
    ],
    "Power2H": 2.0
-  },
-  {
-   "Sealed98": "jcfDIEEZ2IGUnxNpANAeeAcp0DJjuSosOkOSYnBy3TO0M_kcirqCuu0XEN-VtMrfgKxf6Whsuf_N3dM1XZ4Nxa7ulqK9qaIvirMz_joIpUeY28z_Ci0xIUHRMu5utI4HvOsRUcSVGP-DaAiz1vBallWqYpkMgd21Rd51BRj89aWFfXxQOUF3EJDrNP0790B3xIqg-5qBdY0tvMlJ0OMzeCqGxd-_BF6-FBbsAWCyoJ9zUipRUUaXm7hBaIsgdljkuTW_U15qWLHpeKgJT6zne_knB1V0zMBrsvQ3AP7-_TGdId45qKVoQD4Y2WW8mHnjTNoVWgVabvzVuMYCBD3AYdg9NFlzWtcWww7pQ5VT2GfJoThy_lBiN6L6VeZsD4Kolo6B2dYN3TM"
-  },
-  {
-   "Sealed98": "vcbDIEEZ0IGkvwsZHNMe28mCeQ2jKKsndZSMjbjaWMeAcIhetr3cMDJFH18J3bBy5sdTdSN_DaVvE0ResDknt1N0sKMUaNSS3oPFvTIeXOnb20V6CQWe054-vJgk_IhZDOuwiRdNNEErCwJd0yEfJxSQrINXHUXcP6FtIEA39t2c9GFI7CruoblTu9wqn16b8An41LfTfZZzaQAB4hT_nXbqVCldbMgy_j3108KyIp72KLGXOFXPdOk3P1NKth0R5LaCjNYOhI5UbUzxt_K2FopAvwEF68jVq5ofGAbSS2hTz1OvStH_5uhV9OLMfoajuGE8gmb_mtv2rhGqsX2T0ZMNQJ7X4P-d21zN46iPE8JwMHOrNUEp23FcsHIezGo8gzuXl4nMdTnqUj3fajd2brdNxbv83XoBv3y35DNpKJ77fj2h512V8KbYu4fW0IvIHudw1hcFr8V3RV1Ml2TIG8NyeGxS-ZpAZASbDGQbW4z8ZF-SG8qNsUMqK47txC6nY-2n8-z7N922VMfX0kk4WzSxl8FqyuGxrcNbg4X3zCsEbUP8_89wiwFj"
-  },
-  {
-   "Sealed98": "WcfDIEEZ0IEevhIZANOg-DkF-N0yyyOnh0RupKjIWID_oib0h6_Anf_akPae4hswVby6h8b3FPyfuMRaA84_jmbhkFkG0yb3Ko4k934JxdX4_YSkHtVscyJN_8zSzs6e_chHigDYLnCf3BjtAs65F6KAG0pqdzJyljZ7Nhd3tvmD9GkYj5k3YesgGz0Fju6wWFR2jSVwEupstZ6vRlc7-NvZJmoDtjVpVFnp1trnpLlpEaagkcFIzv0uUVMi9kby0ys3w-CarLOpge3dufO7HDyCupdZwUAsyt31p4AwgK6Ae4bOIX3VMP6B1yAGn_Rg8HXgZOisCMWNx_2f6GTYZ9Hw5L7oUeTnZK_6QdtNRUKFvKQmMkQNKXE1T9qu8r_RaTa0g_0CD8D34PzgDg8_kVdzRtMeZ7HKFsDQ6TetNqumbdwM7QgXiqmbkA6oKuHd5ZMiGc9HjYyqIcEMzrmSPsAO"
-  },
-  {
-   "Sealed98": "qcfDIEEZ0IEEvhNpHNOgOepC5J7V8cZnx_rog5x_dy5-WxUbrlcuzuu8RtGwQ3-CQKrx1_petMng1ePaiQZC-bEZsBqubrwpU2LPGRyhyBWq4cFthiv7EGQhnW0G4P6J5iDX9FPTQa4JGZ_DuXKoeeys1iEYLkhxXUjlaiyq37uV8_e68Gs9dScGiTFps2gelwqnEbTsFD8TizTfCEYvpRosuuebpGZAogfcmZLVdefWI9xvl761x-T7MEyBVxBFHgoPohINQCciVBaV8XRcUz9jrFv93L1jsGo9MOtqyfulXCMkUvhftGLJCjdkQMFSSbBAdzQIRNDwStZZNTZPYytgnWUNg5oOWV43AAyI7rSAwt4QxZEXTk2uLZlKvjJekSx9M1arGjL-SV-YFPcditGTkCpHQw"
   },
   {
    "Id": "red_orbit_ash",
@@ -7076,12 +7052,6 @@
     }
    ],
    "Power2H": 2.0
-  },
-  {
-   "Sealed98": "tcfDIEEZIIAUnhMZANKgKVbbHbwGqoZc4kWV-B7IhDNBAcPRi8mhrYFq_VcwJZTfXxhcbYbaqvSfyEJDCFWszcPoqZV-3TOjkun_8eHa6SIzYQZ3eW2yZdnEfBah4wlIKgM37IdVEn6OJHXUwy_ivQCxuv_iOlQ0dWCqcU9GXboi0cpqeINFnM1t_ccNVG0nsBXJtq_n2TRZw2toE3xMJJrjGeZ7NKFcGHHCWZECRUV8kP_pU0E9IkC5wt9uAVrr_AxurdI9b_b7YfDQUZapaB7tGIt6o4PVFdWmoYz3b4BSs7q1hxKiz1t2MUJegYYDyFQDTIMy289D9s134lYKiqDiXVL_Y0Kk0xcXziRvwPQFa0afTlxlwiy1ytpFJn693ccFmXrmGnw0LOASR6KdEwNqSvVUQaUbVpz2pryiz_wTPwC8bx24"
-  },
-  {
-   "Sealed98": "O8fDIEEZ2IKknxNpANMeuLlCLdjRbalBhdXy6E5691av55Kk9-jOMzVYwluzNUlk-wVsz_qsHW2cd4Y-umLSwIxpt_FLgtVKH3xWLEHDDQWllUxu6ls5KodiLveU1cLDfkbctsfx3ggEW76LVKRZV2g8PV0dEzq-QZ5lJhAfpoXc_1rvggzTfTjrRabwTxfHJwRzZpCWp-VCWS8W1TP-pynLEE-cJXpRtAz7CnQdPKGoCGftMZCXQ2YJI3A6OYu2j_uLR4qpeNQoHOtUHt6zhUOLbQ0PwDepMm4ty9vrsPSyEErDtlsieydWq2G6KJ25vTjF53IqxwoJCIl9aewjj5T1xYEdHhjK6_8Wr4SuGX2XDEfhX8jGRBp4SONus7Vwy-vMmKpSzPxQJrDb6MysfRvXEOMJy_SQXnffLnBfK3YRl9S2j30vYhydppuw6xfOQmrHyzP3GXsrHHqvwS38plgueR5Oio7tOJmkH-HM5h_SbgztZJVAUfj5DUaBCbF_pA"
   },
   {
    "Id": "red_thousand_hands",
@@ -7235,30 +7205,6 @@
     }
    ],
    "Power2H": 2.0
-  },
-  {
-   "Sealed98": "esfDIEEZ2IKUnxNpANAe3gepUa_Mj8x4kpZsctX1RGbYtQiluNbPW70DgHadS3a67cpf6cjmu40vHwH9hrdGqLubG5j2yWknTYE7Uirlx7BXcTvp0qIjMBmlrq2eL0E4ggOin5rTdLYDPyG6uuCOvahaAr6WBn0uH2SXD81CHhPApnmwyBzCg7iOTs6dmNDraYQGC1rj8q-oRWj1rDqddDrc4G9_tsBKrxLqkHwyZ3lyrgdrVGK6eF2IKqBGIVFz0o1Ha2GAc2Q69dEYmyWojprBD2iyjIO_mO-SkdhxQSe4fYFkHH-of8Vlu6oiaFthS67kykTVyn4ixTGjpbrGQf-_5yi3lLswHilTJLKeWMC5A9uU0RqfxBtRvyXaVv-SFYQumLWtlEkA1kP9e94sa3xdQbKiBJAO9s3eOL4PrQdY9R2qODOikIfrka_kUVzVer3ubgju1UPPjWe50W5A"
-  },
-  {
-   "Sealed98": "F8fDIEEZKEGqvwtpAOiKU7hyFRnm-CddsryahW4sJOR03bgzNRE6S8ivNgK9mR2G4w0TJzRn5_T-3J3-8CK5rHKQrSYy_uSeFhglOJsad6z4dv-E2SKrm9-EiwnxnVHiOJtx6R8rIdArbShSX74iZDviIQEt3HtTFnf0nvSDlydjJ1f7W_zeq1KGduEJr9IwJlNq0oUgDMSchaFFUkPs4HKOLfy7GMGEw9IrTDzQZAZmbR2KkpzmP_AUgIUVc5V_j7qi6THo8tbURh76PDNgfuNbKTmoe0c1cEKNe_eHiQzTtABj32y8CWZPFu18UEbvr7X6HrPCpEZ3NdC3V3Ayejqs_jYV_4DMx1tUS3AYffzpxrjE2xVwebOIBbL0e0NKwnIfeqJvwO0sNsn4K5879IOJGht210g09DaXdmPMry0lXOd0ivKEytmAyfAAiuJuGzTdtqHQtcfjnlUJR2zXD9KJ7NzMA4AdTIPtUGT11__XB5OsklvXxcO1bTAPH3YNfVe0ZSo-d7p_bWC-ORZhyxGGjEtTgjLKXJ9MWuWuORw"
-  },
-  {
-   "Sealed98": "GcfDIEEZIIGkvxJpANMeuCkF_KMXL-HHd8i6gI-8OsPkV9XtEVSRsgyj_taw1wBKV3p31Ghqse2t9C0fI-bWaxBtoMr0vu64kOBAzownZEH5_538VZhTgHg7ICSMrMb-oqW4gPNepT6g9gA8bUOrw0etQnvRl8G3Q60xN3SHEbUsueqjU0e3SbH73nHPBw3gPCfWBchHnDbh_6-zH_nZvxZTjlfrxhkrJAv4jdJzp4bEHLREksCNlenKZ-7WeAjj0Uuuv2a0Jnae3__8kwbMmCnlGicllYv24Ivjo8RcNfO2qGhHsFbpYjGJPHiQLjARf913ozRVQJH_j_EyRCUHkrXij8v_KRDTQaCz5M1b8W8yJEP5QY8L6FiP73ha0vuqG08z7xEPJlW9SRCfUJzhLnhifezZev0xikHIKhREB3TwfArzLGgqb-_38bpxDZQ0tKFUMKxqvGkft1UGoLuivbDU8474u-C_jU5wRb7sgdDf13ofLuoSvPBoDV-Y"
-  },
-  {
-   "Sealed98": "ZcfDIEEZ0IGIvxIZANMeWtsF-KsxSaSYleZYq2kM5YD_g3qvBoXT-OPlS9f6OZvtlPcH1XmK_-2tZX2mSZQKaJZpVhu3sd6Mi-fwERgowH1xos7PoKd8B81SFnoNt2Mvan7J64xb0Lr7AGqnabqJ_NvO2g5GeIhKPPb8Vv0W-RmCKrm2vvkDOFpVttu6AdYnLcItjfGUl_90PuiRl0vpy5UmqOzLzCU86CMeSq8J9Fgy7cfGO3dX9zt1KLjGb1p7jtktOeMaFORYp1tuLcv49qwjj9YVkOTg5zAbGRiE5dHCKlZWJn0BaHnTxF0ZhrKVf68tk8d3NwL_ktBIPfdTEam4X-131Hjuh6UksiAiqPu7rXv4a3hKXYMGne01MQRPqxfhF8R8WV0p6LXlJPJqjk5_ZTgpdnxzfeqzaP_x6h8WNawt_D6FDLEZCX5JMsm_In1IYG7Bb4Cr67ZcapMMOSua5EdhPYxHHO5rOQ"
-  },
-  {
-   "Sealed98": "4sfDIEEZ2IAUntNoANKgvHmx6OfOy-m85es9xV8z0-bmHZedmVRRX9dTKJE4_cVnnuuiMdQi1YPqZSKuuYTmcH6rg8SF-K8ytPoR2rR_jzZ1Nk35fDT6KD0T4XASboVZRqLMgTtH0zVomnQRMhTpcaPdXQRAa2-sYzmg59uSyy5uw2sAnwcqbflgfoQL9qRi7KEOo3cM5e6WM_wKZX3T2C0I7DJfxO1LFT35fZ2ngYZd5Ueng-oNHryLANIByhwjSxzcMG9Rr-_MVEgCxaFAczhixnvmVVs4AwQCK9PWLSCtUXpu7w3LICX4EeaDsm0lE7l0rBvgewaTL95YR-vjLsQF_LcjYMHOeeIiV0up4La4U0y2bRfJqTo9bXA3EQQvtRH2T-RsHbcvT_2Oq0fyLoAjWrZLra87zMK0yLpeJHhyM5HbpxYTCuxy3AQ"
-  },
-  {
-   "Sealed98": "aMfDIEEZKIGYn9NoANIe0lnd-tM-0sFq_Ou9OCtdNoIOtIWsmBQKX9dTKJG4ZNShNxbL-22Mv4fuZY6nVZQSSJa99Qy6JvIH3N-c2w_wXDUUugQkgbnodkSE_C9xTbZsWubmlVHbQOxgC6FwSqj8CnnxoWEoZqgoww7rsUuadASiltprONftPamdPVfbx6zqId2V1lZCvE8MLvFRPQNtOlZE6ie50upoywysyAvpxFeylCufByBn5xU6v21c1hyi-orjQuIRu_ThXNM8tfXNi7Aqg2_E3cMZYK1FzmfwB0atUBIbnH25EXJuDQJXJrEUEzfc71UWUd5tAYpTh4T-Z8kWSxXYqducP7Jrs7NyXUoAN_k_12DtPhqxvz7BmGPHAz2n18DVFAAw7oQmQsCiyaANEyYUZc_EzKIkwTslXJls0X-D6LTRNE0xy5ezWTxFLJad_UERLt-5qJevD1VuFmVX-5TZS_eGd8OrhYc1Mu66sQ"
-  },
-  {
-   "Sealed98": "jMfDIEEZKIGYn9NoANIe0tkWgMPRHW9-HMQ9tfhdNoIOpCsNC2hTXIspFb68ZVxfn8HwiQWI_9a9xxUBJ1toLM19QEo7lPywOlZuGZhM39Wt8etlHdrkfN9o3YDAvBVuZcqs00cA5yMbmlH5qfF_mqkvRECKeY5jdDsgwyECRM0Ype745ealNi-b9VogBjhtccFeW1uEus6U6QbtZjYJM_xD1yT5yt9yEd4MUtNf6vf3VvYhZK1nJLebdkHYvUb6qnjbMM7hsmW1vA2uNWGn-qB2dLyeb46Oe68ocjkTzyOXbIv5mRtMM7EO4EcTKeW3uvy_t3sRX5u8ecRuFDlEfjdo0G2q8qcndWg4yUu_rXZA-IeoDhp4TAwEnkP76UrqST8YdY2fQTuipQYbNLbSEZ-Jw2zbBcvGuvAyaZW-PlxTqdfeY9i_0jV4gACht3zkBfRm_RWkrA"
-  },
-  {
-   "Sealed98": "MMfDIEEZIIEentNoANOguHmx69PewfFqHexoQRaM7Ofqopb7unv-dPg0kZPU55ff8KiwgoaNXykUiK3GJZptyfBj7ipfmT6VequdE-DmB-E2C4pnZWPziFy8XuT090eUcW1zDJaMBjyHcSpjAzSI_CO9uCPj6ORQrOFqUKDpOBa3BGElM7G0ytoDTlUaGPR3s_tYcAO466jhRurUZbSDTvhs49KkkNsyzy3GCrynU1dCj1-CNT-K0sOH3RoLsYGywl0jYSxZAjI1ntuJiQr62QS8zoJePwOy6uAl_Qoa6qzgaFvmEXMDTtjTN-_bN8YXik1AZKNcX9YBQniHiN5jaErKxpHwG7NkL_qubw4askkdGN-BIoWamiwF-qqUfMkjv8DluYJLCl-XsQOo69sGENNodtk-VVyJ7WdbV_sdUZYkgSsqZpC0nn1FRbGH1ALXunjXWItPDNIbLX-77tDrHXH3cKmWAG92rXVAdpoQ2Oo3wVKgEHlfEGin41OeNhcA8zQBNxJU1qBJmR97kBQ"
   }
  ]
 }
