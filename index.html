@@ -597,6 +597,8 @@ tr:hover td{background:color-mix(in srgb, var(--panel2) 60%, transparent)}
 .efield .label{margin:10px 0 4px;font-size:11px}
 .efield select{width:100%}
 .efield .range-val{font-size:12px;padding:2px 8px;min-width:44px}
+.curse-check{display:flex;gap:8px;align-items:center;padding:3px 0;font-size:13.5px;cursor:pointer}
+.curse-check input{width:16px;height:16px;flex:none;margin:0;accent-color:var(--gold)}
 .res-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
 .res-chip{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--chip);border:1px solid var(--line2);color:var(--muted);font-variant-numeric:tabular-nums}
 .res-chip b{color:var(--text)}
@@ -3527,10 +3529,8 @@ body.tab-home .brand h1{display:none}
             <div class="efield" style="grid-column:1/-1"><div class="label">Monster mods — what this enemy carries</div>
               <div id="enemyModsBox" class="flex" style="flex-wrap:wrap;gap:6px"></div>
               <p class="sub" id="enemyModsNote" style="margin:4px 0 0"></p></div>
-            <div class="efield"><div class="label">Curse on the enemy</div>
-              <select id="curseSel"><option value="">No curse</option></select></div>
-            <div class="efield"><div class="label">Second curse — a Woe and a Sentence stack</div>
-              <select id="curse2Sel"><option value="">No second curse</option></select></div>
+            <div class="efield" style="grid-column:1/-1"><div class="label">Curses on the enemy — Woes and Sentences stack, with no limit</div>
+              <div id="curseListBox"></div></div>
             <div class="efield"><div class="label">Hunter&rsquo;s Mark stacks <span class="range-val" id="markVal" style="float:right">0</span></div>
               <input type="range" id="markRange" min="0" max="10" step="1" value="0">
               <p class="sub" id="markNote" style="margin:2px 0 0"></p></div>
@@ -4564,8 +4564,7 @@ var DICT={
 "Monster mods — what this enemy carries":"怪物词缀 — 该敌人携带的词缀",
 "Curse on the enemy":"施加在敌人身上的诅咒",
 "No curse":"无诅咒",
-"Second curse — a Woe and a Sentence stack":"第二个诅咒 — 一个灾祸与一个宣判叠加",
-"No second curse":"无第二个诅咒",
+"Curses on the enemy — Woes and Sentences stack, with no limit":"敌人身上的诅咒 — 灾祸与宣判可叠加，无上限",
 "Hunter’s Mark stacks":"猎手印记层数",
 "War Banner — Valour stacks":"战争旗帜 — 勇气层数",
 "Dread stacks":"恐惧层数",
@@ -6603,7 +6602,7 @@ var CLASSES=[
 var ASPECTS=['Fire','Lightning','Cold','Arcane','Poison','Physical','Shadow','Holy','None'];
 var state={cls:'Ranger',level:90,gemLevel:1,aspect:'Lightning',skillId:'lightning_arrow',weaponId:null,supports:[],barSkills:[],dragonNodes:[],passiveNodes:[],inc:120,crit:15,critMulti:150,speed:20,passives:113,bonusPassivePoints:24,league:null,
  incPools:null,incPoolBase:0,passiveMores:[],orbCount:0,orbRate:0,
- enemyRes:25,enemyRarity:'Guardian',enemyId:'',enemyMods:[],rupture:0,simMode:'panel',curse:'',curse2:'',enemyLevel:84,dread:0,shockPct:0,shockUp:100,mark:0,bannerValour:0,bannerTry:false,potion:'',vowbreak:false,fury:0,bloodlust:0,kindling:0,unravel:25,resPenalty:0,simSustain:true,supPin:[],supBlock:[],treeBlend:0,treeWeights:{},treeVersions:[],planNote:'',buffOff:[],sets:null,treeFilter:'All',wpnSeededFor:null,execLow:false,starterRO:false,starterFrom:'',
+ enemyRes:25,enemyRarity:'Guardian',enemyId:'',enemyMods:[],rupture:0,simMode:'panel',curse:'',curse2:'',curseList:[],enemyLevel:84,dread:0,shockPct:0,shockUp:100,mark:0,bannerValour:0,bannerTry:false,potion:'',vowbreak:false,fury:0,bloodlust:0,kindling:0,unravel:25,resPenalty:0,simSustain:true,supPin:[],supBlock:[],treeBlend:0,treeWeights:{},treeVersions:[],planNote:'',buffOff:[],sets:null,treeFilter:'All',wpnSeededFor:null,execLow:false,starterRO:false,starterFrom:'',
  def:{life:4500,es:0,armour:8000,evasion:6000,block:0,enemyLvl:84,resFire:75,resCold:75,resLightning:75,resOther:60,hit:5000},
  tree:{take:[],keep:[],never:[],must:[]},oaths:{},heroRupture:0,gear:{},grail:{},belt:null,itemsKind:'all',itemsSlot:'All',weaponAffixes:[],weaponRarity:'Rare',wpnTab:'weapon',wpnMsg:'',
  loot:{name:'My filter',fallback:'show',rules:[{action:'highlight',rarity:'Rare',slot:'Any',cls:'Any',min:60,max:0,name:'',affix:'',line:0,roll:'any',count:1,color:'',sound:'auto'},{action:'highlight',rarity:'Unique',slot:'Any',cls:'Any',min:0,max:0,name:'',affix:'',line:0,roll:'any',count:1,color:'',sound:'auto'},{action:'hide',rarity:'Normal',slot:'Any',cls:'Any',min:0,max:0,name:'',affix:'',line:0,roll:'any',count:1,color:'',sound:'auto'}]}};
@@ -7454,14 +7453,40 @@ function barEffects(st,opts){
   out.reserved=(1-out.reservedMult)*100;
   return out;
 }
+/* The hand-picked curses live in state.curseList — an open list,
+   because in the game curses and Woes stack with no limit: an
+   enemy can bear any number of distinct curses and every one
+   counts. state.curse / state.curse2 stay as mirrors of the
+   first two picks: saves and plan codes written before the list
+   existed carry only those two fields, and keeping the mirrors
+   in step means an older reader of a new code — or any code
+   path that still reads the pair — sees the same first two
+   picks the old two-slot setup would have shown. */
+function curseListNorm(){
+  if(!Array.isArray(state.curseList)){
+    state.curseList=[];
+    if(state.curse)state.curseList.push(state.curse);
+    if(state.curse2&&state.curse2!==state.curse)state.curseList.push(state.curse2);
+  }
+  return state.curseList;
+}
+function cursePicks(){
+  var out=[], seen={};
+  curseListNorm().forEach(function(id){if(id&&!seen[id]){seen[id]=1; out.push(id)}});
+  return out;
+}
+function syncCurseMirrors(){
+  var p=cursePicks();
+  state.curse=p[0]||''; state.curse2=p[1]||'';
+}
 /* The curses standing on the configured enemy: the ones the bar
-   casts (an active Woe / Sentence / curse skill) plus the ones
+   casts (an active Woe / Sentence / curse skill) plus every one
    picked by hand in the enemy settings, each counted once. */
 function activeCurses(){
   var out=[], seen={};
   function push(c){if(c&&!seen[c.Id]){seen[c.Id]=1; out.push(c)}}
   barEffects(state,{fight:1}).curses.forEach(push);
-  push(G.curseMap[state.curse]); push(G.curseMap[state.curse2]);
+  curseListNorm().forEach(function(id){push(G.curseMap[id])});
   return out;
 }
 /* Taken-increase the active curses give the main skill, with the
@@ -10127,14 +10152,16 @@ function renderCode(){
      and every sworn vow, herald, woe and curse, and the reopened
      plan priced far below the one that was copied (a 1.54B Winter
      Orb plan came back at 722.60M in testing on 2026-11-22). The
-     first curse (cu) and the configured enemy (eid/erar/rup) ride
-     along for the same reason — the rest of the enemy setup was
-     already in the payload. */
+     hand-picked curses (cl, with cu/c2 carrying the first two
+     picks for readers written before the list existed) and the
+     configured enemy (eid/erar/rup) ride along for the same
+     reason — the rest of the enemy setup was already in the
+     payload. */
   /* Build sets ride in the code too: fold the live setup back into
      the active set first, so the code's copy of the set being worn
      is the setup on screen, not the one from the last switch. */
   setsSyncActive();
-  var payload={v:2,pk:'plan',patch:currentPatch(),cls:state.cls,level:state.level,gem:state.gemLevel,aspect:state.aspect,skill:state.skillId,weapon:state.weaponId,supports:state.supports,bar:(state.barSkills||[]).map(function(e){return{s:e.skill,sup:(e.supports||[]).slice(0,6),g:e.gem||null,ob:e.onBar===false?0:1,lk:e.link||'',ex:e.exec?1:0,sm:e.sim===false?0:1}}),inc:state.inc,crit:state.crit,critMulti:state.critMulti,speed:state.speed,passives:state.passives,bp:state.bonusPassivePoints||0,ip:state.incPools||null,ipb:state.incPoolBase||0,pm:state.passiveMores||[],oc:state.orbCount||0,orr:state.orbRate||0,waff:(state.weaponAffixes||[]).map(function(r){return{a:r.affixId,t:r.tierIdx,v:r.value,v2:r.value2||undefined}}),wrar:state.weaponRarity,tree:state.tree,gear:state.gear,def:state.def,enemyRes:state.enemyRes,drag:state.dragonNodes||[],pn:state.passiveNodes||[],oaths:state.oaths||{},hr:state.heroRupture||0,el:state.enemyLevel,cu:state.curse||'',c2:state.curse2||'',eid:state.enemyId||'',emods:(state.enemyMods||[]).slice(),erar:state.enemyRarity||'',rup:state.rupture||0,dr:state.dread||0,sh:state.shockPct||0,shu:state.shockUp!=null?state.shockUp:100,mk:state.mark||0,bvl:state.bannerValour||0,btry:state.bannerTry?1:0,pot:state.potion||'',vb:state.vowbreak?1:0,fur:state.fury||0,blu:state.bloodlust||0,kin:state.kindling||0,unr:state.unravel!=null?state.unravel:25,rp:state.resPenalty||0,pin:state.supPin||[],blk:state.supBlock||[],sus:state.simSustain!==false,tb:state.treeBlend||0,tw:state.treeWeights||{},tv:state.treeVersions||[],note:String(state.planNote||'').slice(0,600),boff:(state.buffOff||[]).slice(),belt:(state.belt&&state.belt.length)?state.belt:null,sets:(state.sets&&state.sets.list&&state.sets.list.length)?state.sets:null};
+  var payload={v:2,pk:'plan',patch:currentPatch(),cls:state.cls,level:state.level,gem:state.gemLevel,aspect:state.aspect,skill:state.skillId,weapon:state.weaponId,supports:state.supports,bar:(state.barSkills||[]).map(function(e){return{s:e.skill,sup:(e.supports||[]).slice(0,6),g:e.gem||null,ob:e.onBar===false?0:1,lk:e.link||'',ex:e.exec?1:0,sm:e.sim===false?0:1}}),inc:state.inc,crit:state.crit,critMulti:state.critMulti,speed:state.speed,passives:state.passives,bp:state.bonusPassivePoints||0,ip:state.incPools||null,ipb:state.incPoolBase||0,pm:state.passiveMores||[],oc:state.orbCount||0,orr:state.orbRate||0,waff:(state.weaponAffixes||[]).map(function(r){return{a:r.affixId,t:r.tierIdx,v:r.value,v2:r.value2||undefined}}),wrar:state.weaponRarity,tree:state.tree,gear:state.gear,def:state.def,enemyRes:state.enemyRes,drag:state.dragonNodes||[],pn:state.passiveNodes||[],oaths:state.oaths||{},hr:state.heroRupture||0,el:state.enemyLevel,cu:state.curse||'',c2:state.curse2||'',cl:cursePicks(),eid:state.enemyId||'',emods:(state.enemyMods||[]).slice(),erar:state.enemyRarity||'',rup:state.rupture||0,dr:state.dread||0,sh:state.shockPct||0,shu:state.shockUp!=null?state.shockUp:100,mk:state.mark||0,bvl:state.bannerValour||0,btry:state.bannerTry?1:0,pot:state.potion||'',vb:state.vowbreak?1:0,fur:state.fury||0,blu:state.bloodlust||0,kin:state.kindling||0,unr:state.unravel!=null?state.unravel:25,rp:state.resPenalty||0,pin:state.supPin||[],blk:state.supBlock||[],sus:state.simSustain!==false,tb:state.treeBlend||0,tw:state.treeWeights||{},tv:state.treeVersions||[],note:String(state.planNote||'').slice(0,600),boff:(state.buffOff||[]).slice(),belt:(state.belt&&state.belt.length)?state.belt:null,sets:(state.sets&&state.sets.list&&state.sets.list.length)?state.sets:null};
   /* The planner's own plan code wears its own name — BOP1. — so it
      is never mistaken for the game's BO1. code. The game's code
      carries item bases without their rolled affixes; this one
@@ -12203,14 +12230,20 @@ function renderCurseNote(){
   el.innerHTML=parts.join('<br>');
 }
 function renderCurseOptions(){
-  var sel=$('curseSel'); if(!sel)return;
+  var box=$('curseListBox'); if(!box)return;
+  var list=curseListNorm();
   /* Only the castable curses are picks here — Woes and Sentences.
      Hunter's Mark, the War Banner and Unravel have their own stack
      controls in the enemy settings; the ailments are not cast. */
   var picks=G.curses.filter(function(c){return c.Kind==='Woe'||c.Kind==='Sentence'});
-  sel.innerHTML='<option value="">No curse</option>'+picks.map(function(c){return '<option value="'+esc(c.Id)+'"'+(state.curse===c.Id?' selected':'')+'>'+esc(c.Name)+'</option>'}).join('');
-  var sel2=$('curse2Sel');
-  if(sel2)sel2.innerHTML='<option value="">No second curse</option>'+picks.map(function(c){return '<option value="'+esc(c.Id)+'"'+(state.curse2===c.Id?' selected':'')+'>'+esc(c.Name)+'</option>'}).join('');
+  /* Every pick is a tick box: ticked means the enemy bears that
+     curse. Curses and Woes stack with no limit in the game, so
+     there is no cap on how many boxes can be ticked — and a
+     curse can never be picked twice, because each one is a
+     single box. */
+  box.innerHTML=picks.map(function(c){
+    return '<label class="curse-check"><input type="checkbox" data-curse-pick="'+esc(c.Id)+'"'+(list.indexOf(c.Id)>=0?' checked':'')+'><span>'+esc(c.Name)+'</span></label>';
+  }).join('');
   renderCurseNote();
 }
 
@@ -24187,7 +24220,7 @@ function applyPlannerBO1(obj){
   state.dragonNodes=obj.drag||[];state.passiveNodes=stripStartNodes(obj.pn);state.inc=obj.inc!=null?obj.inc:state.inc;state.crit=obj.crit!=null?obj.crit:state.crit;state.critMulti=obj.critMulti||state.critMulti;state.speed=obj.speed!=null?obj.speed:state.speed;state.passives=obj.passives||state.passives;state.bonusPassivePoints=obj.bp||0;state.incPools=obj.ip||null;state.incPoolBase=obj.ipb||0;state.passiveMores=obj.pm||[];state.orbCount=obj.oc||0;state.orbRate=obj.orr||0;
   if(obj.tree){state.tree={take:stripStartNodes(obj.tree.take),keep:stripStartNodes(obj.tree.keep),never:stripStartNodes(obj.tree.never),must:stripStartNodes(obj.tree.must)};renderTreeList()}
   state.oaths=(obj.oaths&&typeof obj.oaths==='object')?obj.oaths:{}; normalizeOaths(); state.heroRupture=obj.hr||0;
-  state.enemyLevel=obj.el||84; state.curse=obj.cu||''; state.curse2=obj.c2||''; state.enemyId=obj.eid||''; state.enemyMods=Array.isArray(obj.emods)?obj.emods.filter(function(x){return typeof x==='string'}):[]; if(obj.erar)state.enemyRarity=obj.erar; state.rupture=obj.rup||0; state.dread=obj.dr||0; state.shockPct=obj.sh||0; state.shockUp=obj.shu!=null?obj.shu:100; state.mark=obj.mk||0; state.bannerValour=obj.bvl||0; state.bannerTry=!!obj.btry; state.potion=obj.pot||''; state.vowbreak=!!obj.vb; state.fury=obj.fur||0; state.bloodlust=obj.blu||0; state.kindling=obj.kin||0; state.unravel=obj.unr!=null?obj.unr:25; state.resPenalty=obj.rp||0; state.supPin=obj.pin||[]; state.supBlock=obj.blk||[]; state.simSustain=obj.sus!==false; state.treeBlend=obj.tb||0; state.treeWeights=obj.tw||{}; state.treeVersions=obj.tv||[]; state.planNote=String(obj.note||'').slice(0,600); state.buffOff=Array.isArray(obj.boff)?obj.boff.filter(function(x){return typeof x==='string'}):[];
+  state.enemyLevel=obj.el||84; state.curseList=null; if(Array.isArray(obj.cl))state.curseList=obj.cl.filter(function(x){return typeof x==='string'}); state.curse=obj.cu||''; state.curse2=obj.c2||''; curseListNorm(); syncCurseMirrors(); state.enemyId=obj.eid||''; state.enemyMods=Array.isArray(obj.emods)?obj.emods.filter(function(x){return typeof x==='string'}):[]; if(obj.erar)state.enemyRarity=obj.erar; state.rupture=obj.rup||0; state.dread=obj.dr||0; state.shockPct=obj.sh||0; state.shockUp=obj.shu!=null?obj.shu:100; state.mark=obj.mk||0; state.bannerValour=obj.bvl||0; state.bannerTry=!!obj.btry; state.potion=obj.pot||''; state.vowbreak=!!obj.vb; state.fury=obj.fur||0; state.bloodlust=obj.blu||0; state.kindling=obj.kin||0; state.unravel=obj.unr!=null?obj.unr:25; state.resPenalty=obj.rp||0; state.supPin=obj.pin||[]; state.supBlock=obj.blk||[]; state.simSustain=obj.sus!==false; state.treeBlend=obj.tb||0; state.treeWeights=obj.tw||{}; state.treeVersions=obj.tv||[]; state.planNote=String(obj.note||'').slice(0,600); state.buffOff=Array.isArray(obj.boff)?obj.boff.filter(function(x){return typeof x==='string'}):[];
   if(obj.gear){state.gear=obj.gear||{};renderGear()}
   /* The potion belt rides in the plan code too — a code written
      before the belt existed simply leaves the belt as it stands. */
@@ -24209,8 +24242,7 @@ function applyPlannerBO1(obj){
   if($('bloodRange')){$('bloodRange').value=state.bloodlust||0;$('bloodVal').textContent=state.bloodlust||0}
   if($('kindRange')){$('kindRange').value=state.kindling||0;$('kindVal').textContent=state.kindling||0}
   if($('potionSel'))$('potionSel').value=state.potion||'';
-  if($('curseSel'))$('curseSel').value=state.curse||'';
-  if($('curse2Sel'))$('curse2Sel').value=state.curse2||'';
+  renderCurseOptions();
   if($('enemySel')){$('enemySel').value=state.enemyId||''; renderEnemyInfo()}
   if($('enemyRarity'))$('enemyRarity').value=state.enemyRarity||'Guardian';
   var vbb2=$('vowbreakBtn'); if(vbb2){vbb2.textContent='Vowbreak: '+(state.vowbreak?'on':'off'); vbb2.setAttribute('aria-pressed',state.vowbreak?'true':'false'); vbb2.classList.toggle('primary',!!state.vowbreak)}
@@ -24352,8 +24384,21 @@ function showCharPrompt(list){
 function bindExtras(){
   $('enemyRarity').addEventListener('change',function(e){state.enemyRarity=e.target.value; var presets={Normal:0,Magic:15,Rare:25,Guardian:25}; state.enemyRes=presets[state.enemyRarity]; $('enemyResRange').value=state.enemyRes; $('enemyResVal').textContent=state.enemyRes+'%'; renderPlanner();});
   $('enemyResRange').addEventListener('input',function(e){state.enemyRes=+e.target.value; $('enemyResVal').textContent=state.enemyRes+'%'; renderPlanner();});
-  $('curseSel').addEventListener('change',function(e){state.curse=e.target.value; renderCurseNote(); renderPlanner();});
-  var c2El=$('curse2Sel'); if(c2El)c2El.addEventListener('change',function(e){state.curse2=e.target.value; renderCurseNote(); renderPlanner();});
+  /* The curse picks are a tick list now (see curseListNorm): one
+     delegated change listener on the list box covers every box,
+     since renderCurseOptions rebuilds the rows whenever the
+     enemy settings are re-synced. Ticking adds the curse's Id
+     to state.curseList, unticking takes it back out. */
+  var curseBox=$('curseListBox');
+  if(curseBox)curseBox.addEventListener('change',function(e){
+    var t=e.target; if(!t||!t.getAttribute)return;
+    var id=t.getAttribute('data-curse-pick'); if(!id)return;
+    var list=curseListNorm(), i=list.indexOf(id);
+    if(t.checked&&i<0)list.push(id);
+    if(!t.checked&&i>=0)list.splice(i,1);
+    syncCurseMirrors();
+    renderCurseNote(); renderPlanner();
+  });
   var elvlEl=$('enemyLevelRange'); if(elvlEl)elvlEl.addEventListener('input',function(e){state.enemyLevel=+e.target.value; $('enemyLevelVal').textContent=state.enemyLevel; renderEnemyInfo(); renderPlanner();});
   var drEl=$('dreadRange'); if(drEl)drEl.addEventListener('input',function(e){state.dread=+e.target.value; $('dreadVal').textContent=state.dread; renderCurseNote(); renderPlanner();});
   var shEl=$('shockRange'); if(shEl)shEl.addEventListener('input',function(e){state.shockPct=+e.target.value; $('shockVal').textContent=state.shockPct+'%'; renderCurseNote(); renderPlanner();});
@@ -25304,7 +25349,7 @@ var plannerInstances=[];
 var activeInstanceId=null;
 var instanceSeq=0;
 var instanceGuard=false;
-var PLANNER_KEYS=['cls','level','gemLevel','aspect','skillId','weaponId','supports','barSkills','dragonNodes','passiveNodes','inc','crit','critMulti','speed','passives','incPools','incPoolBase','passiveMores','orbCount','orbRate','enemyRes','enemyRarity','enemyId','enemyMods','rupture','curse','curse2','enemyLevel','dread','shockPct','shockUp','mark','bannerValour','bannerTry','potion','vowbreak','fury','bloodlust','kindling','unravel','def','tree','oaths','heroRupture','gear','weaponAffixes','weaponRarity','wpnTab','wpnSeededFor','belt','sets','planNote','buffOff','starterRO','starterFrom'];
+var PLANNER_KEYS=['cls','level','gemLevel','aspect','skillId','weaponId','supports','barSkills','dragonNodes','passiveNodes','inc','crit','critMulti','speed','passives','incPools','incPoolBase','passiveMores','orbCount','orbRate','enemyRes','enemyRarity','enemyId','enemyMods','rupture','curse','curse2','curseList','enemyLevel','dread','shockPct','shockUp','mark','bannerValour','bannerTry','potion','vowbreak','fury','bloodlust','kindling','unravel','def','tree','oaths','heroRupture','gear','weaponAffixes','weaponRarity','wpnTab','wpnSeededFor','belt','sets','planNote','buffOff','starterRO','starterFrom'];
 function deepClone(o){if(o==null)return o; try{return JSON.parse(JSON.stringify(o))}catch(e){return o}}
 function snapshotPlanner(){
   var data={};
@@ -25329,6 +25374,12 @@ function applyPlannerSnapshot(snap){
      all — normalise to "no sets" rather than leaking the set list
      of whichever plan was open before the switch. */
   state.sets=sanitizeSets(state.sets);
+  /* Instances saved before the curse list existed carry only
+     the two old picks — seed the list from them so the plan
+     restores with the same curses standing on the enemy, then
+     keep the old pair mirrored to the list's first two picks. */
+  if(!Object.prototype.hasOwnProperty.call(snap.data,'curseList')){state.curseList=null; curseListNorm()}
+  syncCurseMirrors();
   /* Instances saved before starters existed carry no lock flag —
      they are the reader's own plans, so they restore unlocked. */
   if(!Object.prototype.hasOwnProperty.call(snap.data,'starterRO')){state.starterRO=false; state.starterFrom=''}
@@ -25569,8 +25620,7 @@ function syncPlannerInputs(){
   if($('enemyRarity'))$('enemyRarity').value=state.enemyRarity||'Guardian';
   if($('enemySel')){$('enemySel').value=state.enemyId||''; renderEnemyInfo()}
   if($('ruptureRange')){$('ruptureRange').value=state.rupture||0; $('ruptureVal').textContent=state.rupture||0}
-  if($('curseSel'))$('curseSel').value=state.curse||'';
-  if($('curse2Sel'))$('curse2Sel').value=state.curse2||'';
+  renderCurseOptions();
   if($('enemyLevelRange')){$('enemyLevelRange').value=state.enemyLevel||84; $('enemyLevelVal').textContent=state.enemyLevel||84}
   if($('dreadRange')){$('dreadRange').value=state.dread||0; $('dreadVal').textContent=state.dread||0}
   if($('shockRange')){$('shockRange').value=state.shockPct||0; $('shockVal').textContent=(state.shockPct||0)+'%'}
@@ -25761,7 +25811,7 @@ function startNewBuild(opts){
   var starter=classStarter(state.cls);
   if(G.skillMap[starter.skill])state.skillId=starter.skill;
   state.supports=[]; state.barSkills=[]; state.dragonNodes=[]; state.passiveNodes=[]; state.inc=120; state.crit=15; state.critMulti=150; state.speed=20; state.bonusPassivePoints=opts.bonus!=null?opts.bonus:24; state.passives=Math.max(1,Math.min(123,(state.level-1)+state.bonusPassivePoints));
-  state.tree={take:[],keep:[],never:[],must:[]}; state.oaths={}; state.heroRupture=0; state.gear={}; state.weaponAffixes=[]; state.weaponRarity='Rare'; state.wpnSeededFor=null; state.wpnTab='weapon'; state.wpnMsg=''; state.enemyRes=25; state.curse=''; state.curse2=''; state.enemyLevel=84; state.dread=0; state.shockPct=0; state.shockUp=100; state.mark=0; state.bannerValour=0; state.bannerTry=false; state.potion=''; state.vowbreak=false; state.fury=0; state.bloodlust=0; state.kindling=0; state.unravel=25; state.resPenalty=0; state.supPin=[]; state.supBlock=[]; state.treeBlend=0; state.treeWeights={}; state.treeVersions=[]; state.planNote=''; state.buffOff=[]; state.sets=null; state.enemyId=''; state.rupture=0; state.enemyRarity='Guardian'; state.starterRO=false; state.starterFrom='';
+  state.tree={take:[],keep:[],never:[],must:[]}; state.oaths={}; state.heroRupture=0; state.gear={}; state.weaponAffixes=[]; state.weaponRarity='Rare'; state.wpnSeededFor=null; state.wpnTab='weapon'; state.wpnMsg=''; state.enemyRes=25; state.curse=''; state.curse2=''; state.curseList=[]; state.enemyLevel=84; state.dread=0; state.shockPct=0; state.shockUp=100; state.mark=0; state.bannerValour=0; state.bannerTry=false; state.potion=''; state.vowbreak=false; state.fury=0; state.bloodlust=0; state.kindling=0; state.unravel=25; state.resPenalty=0; state.supPin=[]; state.supBlock=[]; state.treeBlend=0; state.treeWeights={}; state.treeVersions=[]; state.planNote=''; state.buffOff=[]; state.sets=null; state.enemyId=''; state.rupture=0; state.enemyRarity='Guardian'; state.starterRO=false; state.starterFrom='';
   /* The previous plan's tree tuning must not ride into a blank
      build: incPools / incPoolBase / passiveMores / orb counts are
      priced from the old plan's passive tree, and with the blank
@@ -25789,7 +25839,7 @@ function startNewBuild(opts){
   if($('enemySel'))$('enemySel').value=''; if($('enemyRarity'))$('enemyRarity').value='Guardian';
   if($('ruptureRange')){$('ruptureRange').value=0; $('ruptureVal').textContent='0'}
   renderEnemyInfo();
-  if($('curseSel'))$('curseSel').value=''; renderCurseNote();
+  renderCurseOptions();
   var dssReset=$('drawerSkillSearch'); if(dssReset)dssReset.value='';
   if($('loadedText'))$('loadedText').textContent='None loaded yet. Open the Ladder tab and choose “Load into planner” on any hero with a published build.';
   if($('loadedBody'))$('loadedBody').innerHTML='';
@@ -26679,8 +26729,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.415';
-var PLANNER_BUILT_AT='2026-11-26T14:56:00-08:00';
+var PLANNER_VERSION='0.416';
+var PLANNER_BUILT_AT='2026-11-26T14:31:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
