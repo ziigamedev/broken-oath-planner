@@ -1022,6 +1022,7 @@ body.adv-open{overflow:hidden}
 .gp-tab.active{background:linear-gradient(180deg,var(--gold2),var(--gold));border-color:#7c5c1e;color:#12100e;box-shadow:0 3px 10px color-mix(in srgb, var(--gold) 28%, transparent)}
 .gp-tab-count{font-family:"IBM Plex Sans",sans-serif;font-size:12px;font-weight:700;background:var(--chip);border:1px solid var(--line2);color:var(--muted);border-radius:999px;padding:1px 8px;font-variant-numeric:tabular-nums}
 .gp-tab.active .gp-tab-count{background:rgba(18,16,14,.16);border-color:rgba(18,16,14,.25);color:#12100e}
+.chip.active .gp-tab-count{background:rgba(18,16,14,.16);border-color:rgba(18,16,14,.25);color:#12100e}
 /* Gear picker — the two working views, Item and Affixes, as a tab
    strip above the scrolling area, in the same shape as the weapon
    panel's Weapon base / Affixes tabs. The catalogue tabs (Basic /
@@ -2153,7 +2154,8 @@ details.card.fold{padding:0}
 .dc-node.k-Capstone{fill:#2b2019;stroke:var(--gold2);stroke-width:3}
 .dc-node.taken{fill:var(--gold);stroke:var(--gold2)}
 .dc-node.reach{stroke:var(--gold2)}
-.dc-label{fill:var(--gold2);font-family:Cinzel,serif;font-weight:700;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:rgba(0,0,0,.8);stroke-width:5px}
+.dc-label{fill:var(--gold2);font-family:Cinzel,serif;font-weight:700;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:rgba(0,0,0,.8);stroke-width:5px;transition:opacity .18s ease}
+@media (prefers-reduced-motion: reduce){.dc-label{transition:none}}
 /* Real game icons on the tree / Dragonling nodes: an <image> laid
    over each drawn node disc, clipped to a circle inside the ring so
    the node's state colours (taken, reach, never, heat) stay visible
@@ -2811,7 +2813,15 @@ td{padding:7px 8px}
 .tree-main{flex:1 1 auto;min-width:0}
 .tree-main .tree-stage{margin-top:0}
 #treeToolsFold{flex:0 0 350px;width:350px;margin-top:0}
-@media(max-width:920px){.tree-layout{flex-direction:column}#treeToolsFold{flex:1 1 auto;width:100%}}
+/* v0.398 — closed means closed: the folded panel hands its whole
+   350px column back to the canvas and leaves only a slim reopen
+   tab at the canvas edge, chip-scale like the Ladder filters. */
+#treeToolsFold:not([open]){flex:0 0 auto;width:auto}
+#treeToolsFold:not([open])>summary{padding:6px 10px;min-height:34px;gap:6px;align-items:center}
+#treeToolsFold:not([open]) .fold-title{font-size:13px;white-space:nowrap}
+#treeToolsFold:not([open]) .fold-hint{display:none}
+#treeToolsFold:not([open])>summary::after{margin-left:0}
+@media(max-width:920px){.tree-layout{flex-direction:column}#treeToolsFold{flex:1 1 auto;width:100%}#treeToolsFold:not([open]){flex:0 0 auto;width:auto;align-self:flex-start}}
 /* v0.395 — the skill bar's empty '+' slot, styled like one of
    the game's empty hotbar slots: a dark inset well with a gold
    plus, at the end of the bar. */
@@ -3445,21 +3455,23 @@ td{padding:7px 8px}
             </div>
           </details>
           <!-- One slim control row for the whole workspace: the
-               map's view toggles, the node filters, search, Undo
-               and the tree versions — every control exactly once,
-               in a single row that wraps only where the width
-               forces it. -->
+               map's view toggles, the node filters, search and
+               Undo — every control exactly once, in a single row
+               that wraps only where the width forces it. (The
+               tree versions moved into the planning tools panel
+               in v0.398.) -->
           <div class="tree-bar">
             <div class="chips tree-controls"><button class="chip" id="treeNamesBtn" type="button">Names</button><button class="chip" id="treeGateBtn" type="button">Gateways</button><button class="chip" id="treeZoomIn" type="button" aria-label="Zoom in">+</button><button class="chip" id="treeZoomOut" type="button" aria-label="Zoom out">−</button><button class="chip" id="treeHomeBtn" type="button">My class</button><button class="chip" id="treeFitBtn" type="button">Fit</button><button class="chip" id="treeFsBtn" type="button">Full screen</button></div>
             <div class="chips tree-controls" id="treeFilterChips"><button class="chip active" data-tfilter="All">All nodes</button><button class="chip" data-tfilter="Keystone">Keystones</button><button class="chip" data-tfilter="Notable">Notables</button><button class="chip" data-tfilter="Mastery">Oath seats</button><button class="chip" data-tfilter="Marked">Marked</button></div>
             <div class="tree-bar-search"><input type="search" id="treeSearch" placeholder="Search by name or stat — e.g. cold damage, life, crit chance, fire resistance…" aria-label="Search tree nodes by name or stat"><button class="btn small hidden" id="treeSearchClear" type="button">Clear</button></div>
             <button class="btn small" id="treeUndoBtn" type="button">Undo</button>
-            <div class="tree-bar-versions"><input type="text" id="treeVerName" placeholder="Name this tree version…" maxlength="40" aria-label="Name this tree version"><button class="btn small" id="treeVerSaveBtn" type="button">Save version</button><select id="treeVerSel" aria-label="Tree versions"></select><button class="btn small" id="treeVerApplyBtn" type="button">Apply version</button><button class="btn small danger" id="treeVerDelBtn" type="button">Delete</button></div>
           </div>
-          <div class="tree-bar-msgs"><p class="sub" id="treeSearchMeta"></p><p class="sub" id="treeVerMsg"></p></div>
+          <div class="tree-bar-msgs"><p class="sub" id="treeSearchMeta"></p></div>
           <!-- The canvas takes the room; the planning tools live in
                one collapsible panel beside it (under it on narrow
-               screens), closed when the tree opens. -->
+               screens), closed when the tree opens — and closed
+               now means the canvas keeps the panel's full width,
+               with only a slim reopen tab left at its edge. -->
           <div class="tree-layout">
             <div class="tree-main">
               <div class="tree-stage" id="treeStage">
@@ -3474,6 +3486,12 @@ td{padding:7px 8px}
             <details class="fold-block" id="treeToolsFold">
               <summary><span class="fold-title">Tree planning tools</span><span class="fold-hint">Optimize, best next picks, heat map &amp; the node list</span></summary>
               <div class="fold-block-body">
+            <!-- v0.398 — the tree version controls live in the panel
+                 now (they were the least-used row of the control
+                 strip): same ids, same storage, same behaviour. -->
+            <div class="label" style="margin-top:2px">Tree versions</div>
+            <div class="tree-bar-versions" style="margin-top:4px"><input type="text" id="treeVerName" placeholder="Name this tree version…" maxlength="40" aria-label="Name this tree version"><button class="btn small" id="treeVerSaveBtn" type="button">Save version</button><select id="treeVerSel" aria-label="Tree versions"></select><button class="btn small" id="treeVerApplyBtn" type="button">Apply version</button><button class="btn small danger" id="treeVerDelBtn" type="button">Delete</button></div>
+            <p class="sub" id="treeVerMsg" style="min-height:16px;margin:3px 0 0"></p>
             <div class="flex mt" style="flex-wrap:wrap"><button class="btn small" id="treeHeatBtn" type="button" aria-pressed="false">Heat map: off</button><button class="btn small" id="treeBestBtn" type="button">Best next picks</button><button class="btn small" id="treePlanBtn" type="button">Plan next points</button><button class="btn small" id="treeOptimizeBtn" type="button">Optimize tree</button><button class="btn small" id="treeLevelBtn" type="button">Levelling path</button><button class="btn small" id="treeApplyBtn" type="button">Apply Take list to tuning</button><button class="btn small danger" id="treeResetBtn" type="button">Reset marks</button></div>
             <div class="flex mt" style="flex-wrap:wrap;gap:16px;align-items:flex-end">
               <div><div class="label" style="margin:0 0 2px">Optimize &amp; plan for — <span id="treeBlendVal">DPS only</span></div><input type="range" id="treeBlend" min="0" max="100" step="5" value="0" style="width:180px" aria-label="Balance between DPS and defence"></div>
@@ -3521,7 +3539,7 @@ td{padding:7px 8px}
         <div class="sk-col sk-col-b">
           <div class="label">Support gems</div>
           <p class="sub">Hover or tap a gem to see what it does. Pick it up with a click or a second tap, then tap a socket — or drag it onto the card. Only gems that can support your skill are shown.</p>
-          <input class="search" id="drawerSupportSearch" type="search" placeholder="Search support gems — name…">
+          <div class="flex" style="gap:8px;align-items:center"><input class="search" id="drawerSupportSearch" type="search" placeholder="Search support gems — name…" style="flex:1;min-width:0"><select id="drawerSupportSort" aria-label="Sort support gems"><option value="attr">Sort: Attribute</option><option value="name">Sort: Name</option><option value="links">Sort: Most linked</option></select></div>
           <div class="gem-groups" id="gemPalette"></div>
           <div class="gem-delta hidden" id="gemDelta"></div>
         </div>
@@ -4781,6 +4799,12 @@ var DICT={
 " at the foot of the planner.":"（位于规划器底部）。",
 "Your pick":"你的挑选",
 "Set it up here — it goes into your build only when you press Add item below.":"在这里设置它 — 只有按下方的“添加物品”后，它才会进入你的构建。",
+"Nothing goes into your build until you press Add item.":"在你按下“添加物品”之前，任何东西都不会进入你的构建。",
+"Only the bases it fits are listed — nothing goes into your build until you press Add item.":"这里只列出它能装的基底 — 在你按下“添加物品”之前，任何东西都不会进入你的构建。",
+"Sort: Attribute":"排序：属性",
+"Sort: Name":"排序：名称",
+"Sort: Most linked":"排序：最常链接",
+"Sort support gems":"排序辅助宝石",
 "No item picked yet — pick one on the Item tab.":"尚未挑选物品 — 在“物品”标签页挑选一件。",
 "Picked":"已挑选",
 "The filter narrows the list by name or by the mods on an item, the chips narrow it to one type of item, and the Sort menu orders the list — by level, by name, by type, or by damage on items that carry damage numbers. Your pick is set up on the Affixes tab: base, rarity, sockets and affixes. Press Add item at the bottom when it is ready.":"筛选框按名称或物品词缀缩小列表，标签页签把列表缩小到一种物品类型，排序菜单则按等级、名称、类型，或按带伤害数值的物品的伤害来排序列表。你的挑选在“词缀”标签页中设置：基底、稀有度、插槽与词缀。准备好后，按底部的“添加物品”。",
@@ -6094,7 +6118,7 @@ var RULES=[
  [/^All (\d+) sockets are filled — take a rune back out to change the sequence\.$/,function(m){return '全部 '+m[1]+' 个插槽都已镶满 — 取出一颗符文即可更改序列。';}],
  [/^([\s\S]+) stands on this item, and an Oathword can only exist on a Normal item — so the rarity is locked while it stands\. Nothing here can silently drop a socket or a rune: to change the rarity, take a rune out first \(the Oathword comes undone, out in the open\)\.$/,function(m){return m[1]+' 正立于这件物品上，而誓言之语只能存在于普通物品上 — 所以它存在期间稀有度被锁定。这里任何操作都不会悄悄丢掉插槽或符文：要更改稀有度，先取出一颗符文（誓言之语会随之公开消散）。';}],
  [/^([\s\S]+) stands on this item — its rarity is locked at Normal while the Oathword stands\. Take a rune out first if you want to change it\.$/,function(m){return m[1]+' 正立于这件物品上 — 誓言之语存在期间，其稀有度锁定为普通。若要更改，先取出一颗符文。';}],
- [/^Pick the item for ([\s\S]+) — nothing is added yet\.$/,function(m){return '为'+slotZh(m[1])+'挑选物品 — 尚未添加任何东西。';}],
+ [/^Pick the item for ([\s\S]+)\.$/,function(m){return '为'+slotZh(m[1])+'挑选物品。';}],
  [/^Nothing picked for ([\s\S]+) yet — pick an item on the Item tab and it lands here, ready to set up\. It goes into your build only when you press Add item\.$/,function(m){return slotZh(m[1])+'尚未挑选物品 — 在“物品”标签页点选一件，它会出现在这里供你设置。只有按下“添加物品”后，它才会进入你的构建。';}],
  [/^— ready to add to ([\s\S]+)$/,function(m){return '— 准备添加到'+slotZh(m[1]);}],
  [/^— adding it to ([\s\S]+) would do this to your build:$/,function(m){return '— 将它添加到'+slotZh(m[1])+'会对你的构建造成以下变化：';}],
@@ -12249,15 +12273,30 @@ function renderGemPalette(){
   }
   /* Grouped by the gem's own attribute — Strength (red), Dexterity
      (green), Intelligence (violet), the colour its icon already
-     wears — instead of one long alphabetical wall. */
+     wears — instead of one long alphabetical wall. That grouping
+     is the Attribute order, still the default; the sort control
+     beside the search box can also lay the same filtered list out
+     flat by Name, or by Most linked (bundled ladder link counts —
+     see supportLinkCounts). Search, the linked marks and the
+     legality filter above are identical in every order. */
   var ATTR_ORDER=['Str','Dex','Int'], ATTR_NAMES={Str:'Strength',Dex:'Dexterity',Int:'Intelligence'};
-  var groups={}, gorder=[];
-  arr.forEach(function(s){var a=s.Attribute||''; if(!groups[a]){groups[a]=[]; gorder.push(a)} groups[a].push(s)});
-  gorder.sort(function(a,b){var ia=ATTR_ORDER.indexOf(a), ib=ATTR_ORDER.indexOf(b); if(ia<0)ia=99; if(ib<0)ib=99; return ia-ib||String(a).localeCompare(String(b))});
-  pal.innerHTML=gorder.map(function(a){
-    var list=groups[a];
-    return '<div class="gem-group"><div class="gem-group-head"><span class="gem-group-dot" style="background:'+supColor(list[0])+';color:'+supColor(list[0])+'"></span>'+esc(ATTR_NAMES[a]||a||'Other')+' supports <span class="gem-group-count">'+list.length+'</span></div><div class="gem-palette">'+list.map(chipHTML).join('')+'</div></div>';
-  }).join('')||'<span class="sub">'+(sq?('No support gems that fit '+esc((skill||{}).Name||'this skill')+' match that search.'):(G.supports.length?('No support gems fit '+esc((skill||{}).Name||'this skill')+'.'):'Supports load with the game data.'))+'</span>';
+  var palHTML='';
+  if(supportSort==='name'){
+    palHTML=arr.length?('<div class="gem-palette">'+arr.map(chipHTML).join('')+'</div>'):'';
+  } else if(supportSort==='links'){
+    var lc=supportLinkCounts()||{};
+    var larr=arr.slice().sort(function(a,b){return ((lc[b.Id]||0)-(lc[a.Id]||0))||a.Name.localeCompare(b.Name)});
+    palHTML=larr.length?('<div class="gem-palette">'+larr.map(chipHTML).join('')+'</div>'):'';
+  } else {
+    var groups={}, gorder=[];
+    arr.forEach(function(s){var a=s.Attribute||''; if(!groups[a]){groups[a]=[]; gorder.push(a)} groups[a].push(s)});
+    gorder.sort(function(a,b){var ia=ATTR_ORDER.indexOf(a), ib=ATTR_ORDER.indexOf(b); if(ia<0)ia=99; if(ib<0)ib=99; return ia-ib||String(a).localeCompare(String(b))});
+    palHTML=gorder.map(function(a){
+      var list=groups[a];
+      return '<div class="gem-group"><div class="gem-group-head"><span class="gem-group-dot" style="background:'+supColor(list[0])+';color:'+supColor(list[0])+'"></span>'+esc(ATTR_NAMES[a]||a||'Other')+' supports <span class="gem-group-count">'+list.length+'</span></div><div class="gem-palette">'+list.map(chipHTML).join('')+'</div></div>';
+    }).join('');
+  }
+  pal.innerHTML=palHTML||'<span class="sub">'+(sq?('No support gems that fit '+esc((skill||{}).Name||'this skill')+' match that search.'):(G.supports.length?('No support gems fit '+esc((skill||{}).Name||'this skill')+'.'):'Supports load with the game data.'))+'</span>';
   pal.querySelectorAll('[data-gem]').forEach(function(chip){
     var id=chip.getAttribute('data-gem');
     function showDelta(){
@@ -14219,9 +14258,13 @@ function gpHasRwTab(){return gpRwForSlot().length>0}
 function gpTabsHTML(){
   var f=gearPickFiltered(true);
   var mode=gearPick.mode;
+  /* v0.398 — the catalogue switch is compact chips now, in the
+     Ladder class filters' .chips/.chip style, instead of a second
+     full-width gold tab row; counts and the selected state ride
+     along exactly as they did on the tabs. */
   function tab(key,label,n){
     var on=(mode===key)||(key==='rw'&&mode==='rwBases');
-    return '<button class="gp-tab'+(on?' active':'')+'" data-gp-tab="'+key+'" type="button" aria-pressed="'+on+'">'+label+'<span class="gp-tab-count">'+n+'</span></button>';
+    return '<button class="chip'+(on?' active':'')+'" data-gp-tab="'+key+'" type="button" aria-pressed="'+on+'">'+label+' <span class="gp-tab-count">'+n+'</span></button>';
   }
   return tab('items','Basic',f.bases.length+(f.gw?f.gw.length:0))
    +tab('uniques','Unique',f.uns.length)
@@ -14323,8 +14366,7 @@ function gpRwBasesHTML(){
   var bases=gpSortBases(gpRwSlotBases(rec).filter(function(b){return !toks.length||toks.every(function(t){return gpFilterHaystack(b,null).indexOf(t)>=0||gpTypeLabel(b).toLowerCase().indexOf(t)>=0})}));
   var head='<div class="gp-rw-head"><button class="btn small" data-gp-rw-back type="button">&larr; All Oathwords</button>'
    +' <b class="rw" style="font-size:15px">'+esc(rec.Name)+'</b> <span class="tag">Lv '+rec.Level+'</span>'
-   +'<div class="rw-runes">'+rwRuneChipsHTML(rec)+'</div>'
-   +'<p class="sub" style="margin:0">Pick the base — only the bases in this slot that '+esc(rec.Name)+' can form on are listed; the rest are hidden because they can&rsquo;t take this runeword. The filter above narrows the list by name or mod. Your pick is created whole on the Affixes tab: a <b>Normal</b> base with these runes already socketed, so it is the Oathword the moment you Add it. Its lines are the runeword&rsquo;s, counted at the item level set there.</p></div>';
+   +'<div class="rw-runes">'+rwRuneChipsHTML(rec)+'</div></div>';
   if(!bases.length)return head+'<p class="sub gp-empty">No base for '+esc(rec.Name)+' matches that filter.</p>';
   function rwBaseBtn(b){var picked=gearPick.sel&&!gearPick.sel.uniqueId&&gearPick.sel.baseId===b.Id; return '<button class="opt'+(picked?' gp-selected':'')+'" data-gp-base="'+esc(b.Id)+'" data-gp-unique="" type="button" aria-label="'+esc(b.Name)+' — make it as '+esc(rec.Name)+'"><span class="item-flex">'+itemIconHTML(b,'Normal',36)+'<span style="flex:1;min-width:0"><b>'+esc(b.Name)+'</b><br><small class="sub">Lv '+b.Level+' • becomes '+esc(rec.Name)+'</small></span>'+(picked?'<span class="gp-picked">Picked</span>':'')+'</span></button>'}
   var basesHTML=(gearPick.slot==='MainHand'||gearPick.slot==='OffHand')?gpGroupedHTML(bases,rwBaseBtn):bases.map(rwBaseBtn).join('');
@@ -14542,9 +14584,14 @@ function gpRenderPickerList(){
   var intro=$('gpIntro');
   if(intro){
     var sd=gearDef(gearPick.slot);
-    if(gearPick.mode==='rw')intro.innerHTML='<b>Pick the Oathword for '+(sd?esc(sd.label):'this slot')+'.</b> Every runeword that fits this slot, with its runes in order and its mods on the card — all from the game&rsquo;s own runeword data. Picking one lists the bases it fits; picking a base makes the whole item your pick on the Affixes tab — Normal with the runes already socketed — ready to Add.';
-    else if(gearPick.mode==='rwBases'){var rwI=rwById(gearPick.rwPick); intro.innerHTML='<b>Pick the base for '+(rwI?esc(rwI.Name):'the Oathword')+'.</b> These are the bases in this slot the runeword fits — the only ones listed — and the filter narrows them by name or mod. Picking one makes it your pick on the Affixes tab — a Normal base with the runes already socketed — where you set its item level and see its lines, then press Add item.';}
-    else intro.innerHTML='<b>Pick the item for '+(sd?esc(sd.label):'this slot')+' — nothing is added yet.</b> The filter narrows the list by name or by the mods on an item, the chips narrow it to one type of item, and the Sort menu orders the list — by level, by name, by type, or by damage on items that carry damage numbers. Your pick is set up on the Affixes tab: base, rarity, sockets and affixes. Press Add item at the bottom when it is ready.';
+    /* v0.398 — one short instruction line for the whole sheet:
+       the pick is a draft, and nothing reaches the build until
+       Add item is pressed. The rwBases line also carries the
+       strict-filter reason: only the chosen runeword's fitting
+       bases are ever listed. */
+    if(gearPick.mode==='rw')intro.innerHTML='<b>Pick the Oathword for '+(sd?esc(sd.label):'this slot')+'.</b> Nothing goes into your build until you press Add item.';
+    else if(gearPick.mode==='rwBases'){var rwI=rwById(gearPick.rwPick); intro.innerHTML='<b>Pick the base for '+(rwI?esc(rwI.Name):'the Oathword')+'.</b> Only the bases it fits are listed — nothing goes into your build until you press Add item.';}
+    else intro.innerHTML='<b>Pick the item for '+(sd?esc(sd.label):'this slot')+'.</b> Nothing goes into your build until you press Add item.';
   }
   /* The filter box names what it filters in the mode on screen,
      so it never reads as lost in Oathword mode: on a chosen
@@ -15291,7 +15338,6 @@ function openGearPicker(slotKey){
   var cur=state.gear[slotKey];
   gearPick={slot:slotKey,q:'',type:'All',view:'item',sel:cur&&cur.base?{baseId:cur.base,uniqueId:cur.unique||null}:null,rows:cur?gpRowsFromStored(cur.affixes):[],vows:(cur&&cur.unique)?(cur.affixes||[]).filter(isRivenAffix).map(function(a){return {affixId:a.id,value:+a.value||0}}):[],runes:cur?(cur.runes||[]).slice():[],mode:cur&&cur.unique?'uniques':'items',rwPick:null,sockSel:'',sorts:{items:'level-desc',rw:'level-asc',rwBases:'level-desc'},note:'',showUniques:!!(cur&&cur.unique),rarity:cur&&cur.rarity&&cur.rarity!=='Unique'?cur.rarity:'Normal',filled:false,topUp:false,rolls:0,best:null};
   $('modalRoot').innerHTML='<div class="modal" id="modalBg"><div class="sheet sheet-picker" style="max-width:min(1500px,97vw)"><div class="flex between"><h2>'+(cur?'Change':'Add')+' — '+esc(sd.label)+'</h2><button class="btn" id="closeModal" type="button">Close</button></div>'
-   +'<p class="sub gp-keep">Pick an item on the Item tab, set it up on the Affixes tab — base, rarity, sockets, affixes — then press <b>Add item</b> at the bottom. Nothing goes into your build until you press it, and closing this panel throws the pick away. To keep a finished build for next time, use <b>Save plan</b> at the foot of the planner.</p>'
    /* The two working views as tabs — Item (the catalogue, the
       filter and the list) and Affixes (the draft pick's editor).
       The Affixes tab is disabled until a pick exists; its count
@@ -15302,7 +15348,7 @@ function openGearPicker(slotKey){
    +'</div>'
    +'<div class="gp-scroll" id="gpScroll">'
    +'<div id="gpViewItem">'
-   +'<div class="gp-tabs" id="gpTabs" role="group" aria-label="Item lists for this slot">'+gpTabsHTML()+'</div>'
+   +'<div class="chips" id="gpTabs" role="group" aria-label="Item lists for this slot" style="margin-top:10px">'+gpTabsHTML()+'</div>'
    +'<p class="sub gp-intro" id="gpIntro" style="margin-top:10px"></p>'
    /* The tab's list — Basic, Unique or Oathword. */
    +'<div class="flex mt"><input type="search" id="gpSearch" placeholder="Filter '+esc(sd.label)+' items by name or mod — e.g. maximum Life, Fire resist…" style="flex:1;min-width:160px" aria-label="Filter '+esc(sd.label)+' items by name or mod"></div>'
@@ -15311,7 +15357,6 @@ function openGearPicker(slotKey){
    +'<div id="gpSortRow"></div>'
    +'<div class="gp-list" id="gpList"></div>'
    +'<div class="gp-delta hidden" id="gpDelta"></div>'
-   +'<p class="sub" style="margin-top:10px">Already wearing the item in game? Loading your hero on the Home page brings its real gear in with its exact rolls — still the surest way to get an item in whole. There is deliberately no &ldquo;read a screenshot&rdquo; button here: reading numbers off a screenshot is not reliable enough — one misread digit would quietly put a wrong item in your build — so the exact ways in stay the save, a pasted gear code, and picking here.</p>'
    +'</div>'
    /* The Affixes view: the draft pick's editor — base, rarity,
       sockets/runes, affixes, in that order down the screen — with
@@ -16210,7 +16255,10 @@ function renderMainSkillDetail(){
   if(!role&&!blocker)c=isMainFocus?(bt?bt.main:null):priceBarSkill(focusId);
   if(blocker)nums='<div class="skn-nums"><span>Does not count — '+esc(blocker)+'</span></div>';
   else if(role)nums='<div class="skn-nums"><span>'+esc(role)+'</span></div>';
-  else if(c)nums='<div class="skn-nums"><span>DPS <b>'+fmt(c.dps)+'</b></span><span>DPS vs your enemy <b>'+fmt(c.dps*enemyMultFor(state,c))+'</b></span><span>Tooltip DPS <b>'+fmt(c.tooltip)+'</b></span><span>Average hit <b>'+fmtFull(c.hit)+'</b></span><span>Crit <b>'+c.critChance.toFixed(0)+'% ×'+(c.critMulti/100).toFixed(2)+'</b></span>'+(e.sim===false?'<span>— left out of the fight-test totals</span>':'')+'</div>';
+  /* v0.398 — the plain DPS is not repeated here: the skill card's
+     big figure is the one headline number. Vs-enemy, tooltip and
+     average hit stay, at the same values as before. */
+  else if(c)nums='<div class="skn-nums"><span>DPS vs your enemy <b>'+fmt(c.dps*enemyMultFor(state,c))+'</b></span><span>Tooltip DPS <b>'+fmt(c.tooltip)+'</b></span><span>Average hit <b>'+fmtFull(c.hit)+'</b></span><span>Crit <b>'+c.critChance.toFixed(0)+'% ×'+(c.critMulti/100).toFixed(2)+'</b></span>'+(e.sim===false?'<span>— left out of the fight-test totals</span>':'')+'</div>';
   else nums='<div class="skn-nums"><span>Not counted</span></div>';
   var sumRight='';
   if(blocker)sumRight='<span class="skn-sum-note">Doesn&rsquo;t count</span>';
@@ -16325,6 +16373,37 @@ function renderDrawerChar(){
   if(tb)tb.addEventListener('click',function(){switchWorkspace('tree'); var tc=$('treeCard'); if(tc)tc.scrollIntoView({behavior:'smooth',block:'start'});});
 }
 var drawerTagFilter='', drawerKindFilter='', drawerClassFilter='', drawerDmgFilter='';
+/* v0.398 — the support palette's sort order: 'attr' (the
+   Str/Dex/Int grouping, the default, unchanged), 'name' (one
+   flat A–Z list) and 'links' (most linked first). The link
+   counts come ONLY from the bundled snapshot's ladder file for
+   the current league — the same ladder data the page already
+   carries: each published hero's main-skill supports
+   (main_supports), counted once per hero per support. Nothing
+   is estimated; if the snapshot cannot be read the counts stay
+   empty and Most linked falls back to name order until they
+   land. */
+var supportSort='attr', supLinkCounts=null, supLinkCountsBusy=false;
+function supportLinkCounts(){
+  if(supLinkCounts||supLinkCountsBusy)return supLinkCounts;
+  supLinkCountsBusy=true;
+  getSnap('ladder-'+(state.league||DEFAULT_LEAGUE)+'.json').then(function(d){
+    var cnt={};
+    ((d&&d.heroes)||[]).forEach(function(h){
+      if(!h||!h.has_build)return;
+      var seen={};
+      (h.main_supports||[]).forEach(function(sid){
+        if(!sid)return;
+        var c=canonSupportId(sid);
+        if(!c||seen[c])return;
+        seen[c]=1; cnt[c]=(cnt[c]||0)+1;
+      });
+    });
+    supLinkCounts=cnt; supLinkCountsBusy=false;
+    if(supportSort==='links')renderGemPalette();
+  }).catch(function(){supLinkCounts={}; supLinkCountsBusy=false; if(supportSort==='links')renderGemPalette()});
+  return null;
+}
 function addSkillMsg(t){var m=$('addSkillMsg'); if(m)m.textContent=t}
 /* Put a skill on the plan's 13-slot bar without touching the main
    skill — what a tap on an Add-list row does, what the row's Add
@@ -16610,6 +16689,7 @@ function bindSkillsDrawer(){
   document.querySelectorAll('[data-dcls]').forEach(function(ch){ch.addEventListener('click',function(){drawerClassFilter=ch.getAttribute('data-dcls')||''; document.querySelectorAll('[data-dcls]').forEach(function(x){x.classList.toggle('active',x===ch)}); renderDrawerSkills()})});
   var dmgSel=$('drawerDmgSel'); if(dmgSel)dmgSel.addEventListener('change',function(){drawerDmgFilter=dmgSel.value||''; renderDrawerSkills()});
   var supSearch=$('drawerSupportSearch'); if(supSearch)supSearch.addEventListener('input',renderGemPalette);
+  var supSortSel=$('drawerSupportSort'); if(supSortSel)supSortSel.addEventListener('change',function(){supportSort=supSortSel.value||'attr'; renderGemPalette()});
   /* Section nav — jump between Main skill / Skill tools / Add a
      skill inside the popup; jumping to Add a skill opens its fold
      on the way. */
@@ -18660,6 +18740,15 @@ function buildDragonTree(){
 function applyDragView(){
   var svg=$('dragSvg'); if(!svg||!dc.vb)return;
   svg.setAttribute('viewBox',dc.vb.x+' '+dc.vb.y+' '+dc.vb.w+' '+dc.vb.h);
+  /* v0.398 — node labels follow the passive tree's lead: at the
+     fit view they are faded right out, so the dense centre reads
+     clean with no label piles, and they fade in as you zoom in
+     until they are fully legible. Every view change (zoom, pan,
+     Fit, full screen) runs through here, so the fade always
+     tracks the zoom on screen. */
+  var dz=dc.vbHome?dc.vbHome.w/Math.max(dc.vb.w,1):1;
+  var dOp=dz<=1.45?0:(dz>=2.6?1:(dz-1.45)/1.15);
+  svg.querySelectorAll('.dc-label').forEach(function(l){l.style.opacity=dOp.toFixed(2)});
   /* Same zoom compensation as the passive tree: hit discs track
      ≈46px on screen (floor: the node's +16 disc; cap: +190 over
      the node's radius), recomputed when the view's width moves. */
@@ -25585,8 +25674,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.397';
-var PLANNER_BUILT_AT='2026-11-26T03:51:59-07:00';
+var PLANNER_VERSION='0.398';
+var PLANNER_BUILT_AT='2026-11-26T11:01:15-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
