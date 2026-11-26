@@ -48,6 +48,10 @@
    "Cold": -20.0,
    "Fire": 20.0
   },
+  "g_drowned_captain": {
+   "Cold": 20.0,
+   "Fire": -20.0
+  },
   "g_elysia": {
    "Fire": 20.0,
    "Poison": -20.0
@@ -80,6 +84,10 @@
    "Cold": 20.0,
    "Fire": -20.0
   },
+  "g_oathsmith": {
+   "Fire": 20.0,
+   "Poison": -20.0
+  },
   "g_ogre_warlord": {
    "Cold": -20.0,
    "Fire": 20.0
@@ -92,6 +100,10 @@
    "Cold": -20.0,
    "Lightning": 20.0
   },
+  "g_shellback_tyrant": {
+   "Cold": 20.0,
+   "Lightning": -20.0
+  },
   "g_steel_guardian": {
    "Fire": 20.0,
    "Lightning": -20.0
@@ -103,6 +115,10 @@
   "g_void_archon": {
    "Lightning": 20.0,
    "Poison": -20.0
+  },
+  "g_weaver_queen": {
+   "Fire": -20.0,
+   "Poison": 20.0
   }
  },
  "identity": {
@@ -154,6 +170,10 @@
    "Fire",
    "Cold"
   ],
+  "g_drowned_captain": [
+   "Cold",
+   "Fire"
+  ],
   "g_elysia": [
    "Fire",
    "Poison"
@@ -186,6 +206,10 @@
    "Cold",
    "Fire"
   ],
+  "g_oathsmith": [
+   "Fire",
+   "Poison"
+  ],
   "g_ogre_warlord": [
    "Fire",
    "Cold"
@@ -198,6 +222,10 @@
    "Lightning",
    "Cold"
   ],
+  "g_shellback_tyrant": [
+   "Cold",
+   "Lightning"
+  ],
   "g_steel_guardian": [
    "Fire",
    "Lightning"
@@ -209,30 +237,34 @@
   "g_void_archon": [
    "Lightning",
    "Poison"
+  ],
+  "g_weaver_queen": [
+   "Poison",
+   "Fire"
   ]
  },
  "shift": {
   "Cold": {
-   "exact": 9.7,
-   "kill_time_x": 1.065,
+   "exact": 6.6,
+   "kill_time_x": 1.11,
    "strong": 20.0,
    "weak": -20.0
   },
   "Fire": {
-   "exact": 14.4,
-   "kill_time_x": 1.039,
+   "exact": 12.8,
+   "kill_time_x": 1.063,
    "strong": 20.0,
    "weak": -20.0
   },
   "Lightning": {
-   "exact": 17.1,
-   "kill_time_x": 1.013,
+   "exact": 18.9,
+   "kill_time_x": 1.004,
    "strong": 20.0,
    "weak": -20.0
   },
   "Poison": {
-   "exact": 9.1,
-   "kill_time_x": 1.055,
+   "exact": 8.4,
+   "kill_time_x": 1.068,
    "strong": 20.0,
    "weak": -20.0
   }

@@ -19,7 +19,7 @@
    "means": "Spark: cast speed quickens strikes: interval = base interval / (cast speed multiplier ^ CastSpeedExp)"
   },
   "r87.SPARKS.CastSpeedExp": {
-   "value": "0.7",
+   "value": "0.5",
    "means": "Spark: the exponent above (0.5 = square root of the cast speed multiplier)"
   },
   "r87.SPARKS.EchoBodies": {
