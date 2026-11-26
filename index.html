@@ -3206,6 +3206,7 @@ body.tab-home .brand h1{display:none}
           <b class="ch-num-sm" id="toolDpsNum">—</b>
           <p class="ch-sub">The big number is our estimate for a real Guardian fight — the smaller one is the number on your in-game sheet.</p>
           <p class="ch-sub" id="dpsSub">Choose a skill and weapon to calculate.</p>
+          <p class="ch-sub hidden" id="calFitNote" style="margin-top:2px"></p>
           <button class="sim-trust-link" id="simInfoBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="simInfoPop">How much to trust this number ›</button>
           <div class="char-tip" role="tooltip" id="dmgTipBody"></div>
           <!-- "What the simulator counts — and what it leaves out",
@@ -3253,6 +3254,7 @@ body.tab-home .brand h1{display:none}
           <span class="resist res-light" data-res="Lightning" tabindex="0"><span class="res-lab"><i></i>Lightning</span><b class="res-val" id="resLightVal">—</b><small class="res-note res-state" id="resLightState"></small></span>
           <span class="resist res-poison" data-res="Poison" tabindex="0"><span class="res-lab"><i></i>Poison</span><b class="res-val" id="resOtherVal">—</b><small class="res-note res-state" id="resOtherState"></small></span>
         </div>
+        <p class="sub" id="resPenNote" style="margin:6px 0 0" hidden></p>
         <div class="resists-panel" role="tooltip">
           <div class="label" style="margin:0 0 2px" id="resTipTitle">Rolled vs capped</div>
           <div id="resTipBody"></div>
@@ -6191,6 +6193,9 @@ var RULES=[
  [/^Life ([\d,]+) · Energy Shield ([\d,]+)$/,function(m){return '生命 '+m[1]+' · 能量护盾 '+m[2];}],
  [/^vs a ([\d,]+) hit$/,function(m){return '对比一次 '+m[1]+' 的命中';}],
  [/^▼ (\d+) below cap$/,function(m){return '▼ 低于上限 '+m[1];}],
+ [/^Resists show the −(\d+) area penalty at Rupture (\d+) — set your Rupture in Enemy setup\.$/,function(m){return '抗性已计入裂隙 '+m[2]+' 的 −'+m[1]+' 区域惩罚 — 在敌人设置中设置你的裂隙等级。';}],
+ [/^Resists show the −(\d+) resistance penalty set in the tree tools — change it there under Resistance penalty\.$/,function(m){return '抗性已计入在天赋树工具中设置的 −'+m[1]+' 抗性惩罚 — 在那里的“抗性惩罚”处修改。';}],
+ [/^This build is Lv (\d+) — the calibration is fitted on endgame heroes, so this number reads low while levelling\.$/,function(m){return '此构建为 '+m[1]+' 级 — 校准是按终局英雄拟合的，因此这个数字在升级期间会偏低。';}],
  [/^([\s\S]+?): ([\s\S]+), (\d+) affixes? — hover or tap for its stats$/,function(m){return slotZh(m[1])+'：'+m[2]+'，'+m[3]+' 条词缀 — 悬停或点按查看属性';}],
  [/^Remove ([\s\S]+) from ([\s\S]+)$/,function(m){return '从'+slotZh(m[2])+'移除'+m[1];}],
  [/^([\s\S]+) — empty, click to add$/,function(m){return (trLookup(m[1])||m[1])+' — 空，点按添加';}],
@@ -9225,7 +9230,7 @@ function renderPlanner(){
   updateWsBadges();
   if(wsCurrent==='dragon')renderDragonPage();
   if(wsCurrent==='tree'){buildTreeCanvas(); updateTreeCanvasStates();}
-  if(!c){$('dpsNum').textContent='—';var hsD0=$('hsDps'); if(hsD0)hsD0.textContent='—';var td0=$('toolDpsNum'); if(td0)td0.textContent='—';var tn0=$('tuneDpsNum'); if(tn0)tn0.textContent='—';var tt0=$('tuneToolDpsNum'); if(tt0)tt0.textContent='—';var kl0=$('killLine'); if(kl0)kl0.textContent='';var dt0=$('dmgTipBody'); if(dt0)dt0.innerHTML='';renderDamageAnalysis(null);var bdNone=$('breakdown'); if(bdNone)bdNone.innerHTML='';try{histObserve()}catch(e){} return}
+  if(!c){$('dpsNum').textContent='—';var hsD0=$('hsDps'); if(hsD0)hsD0.textContent='—';var td0=$('toolDpsNum'); if(td0)td0.textContent='—';var tn0=$('tuneDpsNum'); if(tn0)tn0.textContent='—';var tt0=$('tuneToolDpsNum'); if(tt0)tt0.textContent='—';var kl0=$('killLine'); if(kl0)kl0.textContent='';var cf0=$('calFitNote'); if(cf0){cf0.textContent='';cf0.classList.add('hidden');}var dt0=$('dmgTipBody'); if(dt0)dt0.innerHTML='';renderDamageAnalysis(null);var bdNone=$('breakdown'); if(bdNone)bdNone.innerHTML='';try{histObserve()}catch(e){} return}
   /* The headline is the WHOLE bar: the planned skill plus every
      other damage skill on the bar, each with its own link — the
      number the Damage analysis breaks down skill by skill. */
@@ -9237,6 +9242,17 @@ function renderPlanner(){
   var tnN=$('tuneDpsNum'); if(tnN)tnN.textContent=fmt(headDps);
   var ttN=$('tuneToolDpsNum'); if(ttN)ttN.textContent=fmt(headTip);
   $('dpsSub').textContent=c.skill.Name+' — '+ (c.weapon?c.weapon.Name:'no weapon') +' • Gem '+effGemLevel(state)+(gearGemBonus(state)?' ('+state.gemLevel+' + '+gearGemBonus(state)+' from gear)':'')+' • '+state.supports.filter(Boolean).length+' supports linked'+(bt&&bt.parts.length?' • +'+bt.parts.length+' more damage skill'+(bt.parts.length===1?'':'s')+' on the bar in the total':'')+(bt&&bt.mainBlocked?' • '+c.skill.Name+' does not count: '+bt.mainBlocked:'')+(bt&&bt.mainSimOff?' • '+c.skill.Name+' is left out of the totals — Include in fight test is off for it':'');
+  /* The calibration is fitted on endgame heroes' measured
+     Guardian fights, so on a build still far under the Guardian's
+     level (84) the headline reads low for reasons that have
+     nothing to do with the build — say so beside the number
+     instead of letting it look broken. A gap of 10+ levels only;
+     endgame builds see nothing new. */
+  var cfn=$('calFitNote');
+  if(cfn){
+    if(84-(state.level||0)>=10){cfn.textContent='This build is Lv '+state.level+' — the calibration is fitted on endgame heroes, so this number reads low while levelling.'; cfn.classList.remove('hidden');}
+    else{cfn.textContent=''; cfn.classList.add('hidden');}
+  }
   var oh=$('offHit'); if(oh)oh.textContent=fmtFull(c.tooltipHit);
   var orr=$('offRate'); if(orr)orr.textContent=c.rate.toFixed(2);
   var oc=$('offCrit'); if(oc)oc.textContent=c.critChance.toFixed(0)+'% • ×'+(c.critMulti/100).toFixed(2);
@@ -17624,7 +17640,8 @@ function deriveDefenses(){
     var rl=0; try{rl=heroRuptureLevel()||0}catch(e){rl=0}
     return Math.min(max,Math.floor(rl/per)*step);
   }
-  var penNow=Math.max(state.resPenalty||0,areaResistPenalty());
+  var areaPen=areaResistPenalty();
+  var penNow=Math.max(state.resPenalty||0,areaPen);
   function cappedRes(e){
     var cap=Math.min(capBase+(maxRes[e]||0),hardCap);
     return Math.max(-100,Math.min(cap,(res[e]||0)-penNow));
@@ -17675,7 +17692,7 @@ function deriveDefenses(){
   return {life:life,es:es,armour:armour,evasion:evasion,noEvasion:noEvasion,noEvasionSrc:noEvasionSrc,block:block,mana:mana,enemyLvl:enemyLvl,hit:hit,guardianName:guardianName,runeOver:runeOver,
     resPhysical:cappedRes('Physical'),resFire:cappedRes('Fire'),resCold:cappedRes('Cold'),resLightning:cappedRes('Lightning'),resOther:cappedRes('Poison'),
     attrs:attrs,maxRes:maxRes,rec:rec,prov:prov,
-    resPen:penNow,resRaw:res,
+    resPen:penNow,resPenArea:areaPen,resRaw:res,
     resRaw:{Physical:res.Physical,Fire:res.Fire,Cold:res.Cold,Lightning:res.Lightning,Poison:res.Poison},
     resCap:{Physical:Math.min(capBase+(maxRes.Physical||0),hardCap),Fire:Math.min(capBase+(maxRes.Fire||0),hardCap),Cold:Math.min(capBase+(maxRes.Cold||0),hardCap),Lightning:Math.min(capBase+(maxRes.Lightning||0),hardCap),Poison:Math.min(capBase+(maxRes.Poison||0),hardCap)}};
 }
@@ -17777,6 +17794,11 @@ function renderDefenses(){
   var d=deriveDefenses(); var HC=(G.scaling&&G.scaling.Hero)||{};
   var hardCap=HC.ResistHardCap||85;
   function er(r){return Math.max(-100,Math.min(hardCap,r||0))}
+  /* erD is er for printing only: the game's own sheet shows whole
+     numbers, so every resist figure the sheet prints goes through
+     it. The sums underneath keep their fractions — er stays the
+     value the EHP maths reads; erD only rounds what is shown. */
+  function erD(r){return Math.round(er(r))}
   /* Source breakdowns for the hover panels: contributions grouped
      by where they came from (each gear piece by name, passive
      nodes grouped by node name, Dragonling, vows), biggest first. */
@@ -17839,26 +17861,46 @@ function renderDefenses(){
   var physPct=physMit(physRefHit);
   var rp=$('resPhysVal'); if(rp)rp.textContent=physMitText(physRefHit);
   var rv=$('resPhysVs'); if(rv)rv.textContent='vs a '+fmtFull(physRefHit)+' hit';
-  var rf=$('resFireVal'); if(rf)rf.textContent=er(d.resFire)+'%';
-  var rc=$('resColdVal'); if(rc)rc.textContent=er(d.resCold)+'%';
-  var rl=$('resLightVal'); if(rl)rl.textContent=er(d.resLightning)+'%';
-  var ro=$('resOtherVal'); if(ro)ro.textContent=er(d.resOther)+'%';
+  var rf=$('resFireVal'); if(rf)rf.textContent=erD(d.resFire)+'%';
+  var rc=$('resColdVal'); if(rc)rc.textContent=erD(d.resCold)+'%';
+  var rl=$('resLightVal'); if(rl)rl.textContent=erD(d.resLightning)+'%';
+  var ro=$('resOtherVal'); if(ro)ro.textContent=erD(d.resOther)+'%';
   /* Cap state as words, not colour alone: each elemental resist
      carries a text twin — "✓ capped" at or past its cap, or how
      far below the cap it sits — so the state reads in greyscale. */
   [['Fire','resFireState',d.resFire],['Cold','resColdState',d.resCold],['Lightning','resLightState',d.resLightning],['Poison','resOtherState',d.resOther]].forEach(function(t){
     var el=$(t[1]); if(!el)return;
     var cap=(d.resCap&&d.resCap[t[0]]!=null)?Math.round(d.resCap[t[0]]):75;
-    var shown=er(t[2]);
+    var shown=erD(t[2]);
     el.textContent=shown>=cap?'✓ capped':'▼ '+(cap-shown)+' below cap';
     el.classList.toggle('is-cap',shown>=cap);
   });
+  /* One shared line under the whole resist block naming the
+     penalty already inside the numbers above — without it a
+     resist can sit 50 points under its rolled total with nothing
+     on the sheet saying why. It names where the penalty comes
+     from and where it is set: the Rupture area rule (changed in
+     Enemy setup) or the manual dial in the tree tools, whichever
+     of the two is the one biting. No penalty, no line. */
+  var pn=$('resPenNote');
+  if(pn){
+    var pen=d.resPen||0;
+    if(pen>0){
+      if((state.resPenalty||0)>(d.resPenArea||0)){
+        pn.textContent='Resists show the −'+pen+' resistance penalty set in the tree tools — change it there under Resistance penalty.';
+      }else{
+        var rlNow=0; try{rlNow=heroRuptureLevel()||0}catch(e){rlNow=0}
+        pn.textContent='Resists show the −'+pen+' area penalty at Rupture '+rlNow+' — set your Rupture in Enemy setup.';
+      }
+      pn.hidden=false;
+    }else{pn.textContent=''; pn.hidden=true;}
+  }
   /* The same capped numbers ride on the hero summary bar's
      Resistances plate. */
-  var hf=$('hsResFire'); if(hf)hf.textContent=er(d.resFire)+'%';
-  var hc2=$('hsResCold'); if(hc2)hc2.textContent=er(d.resCold)+'%';
-  var hl=$('hsResLight'); if(hl)hl.textContent=er(d.resLightning)+'%';
-  var ho=$('hsResOther'); if(ho)ho.textContent=er(d.resOther)+'%';
+  var hf=$('hsResFire'); if(hf)hf.textContent=erD(d.resFire)+'%';
+  var hc2=$('hsResCold'); if(hc2)hc2.textContent=erD(d.resCold)+'%';
+  var hl=$('hsResLight'); if(hl)hl.textContent=erD(d.resLightning)+'%';
+  var ho=$('hsResOther'); if(ho)ho.textContent=erD(d.resOther)+'%';
   var pool=d.life+d.es; var hit=d.hit;
   var effF=(HC.ArmourFactor||5)+(HC.ArmourBigHitSlope||0.02)*Math.max(0,hit-(HC.ArmourBigHitRef||1000));
   var armRed=d.armour>0?Math.min(HC.ArmourMaxReduction||80,100*d.armour/(d.armour+effF*hit)):0;
@@ -17898,10 +17940,10 @@ function renderDefenses(){
      until the API publishes the exact rule. */
   var esWard=Math.round(0.25*d.es);
   function eleFrac(frac){if(!esWard||!hit)return frac; var dmg=hit*frac; return Math.max(0.01,(dmg-0.5*Math.min(dmg,esWard))/hit)}
-  html+=row('Fire — '+er(d.resFire)+'% resist'+(esWard?' • ES ward':''),eleFrac((1-er(d.resFire)/100)*blockAvg));
-  html+=row('Cold — '+er(d.resCold)+'% resist'+(esWard?' • ES ward':''),eleFrac((1-er(d.resCold)/100)*blockAvg));
-  html+=row('Lightning — '+er(d.resLightning)+'% resist'+(esWard?' • ES ward':''),eleFrac((1-er(d.resLightning)/100)*blockAvg));
-  html+=row('Poison — '+er(d.resOther)+'% resist',(1-er(d.resOther)/100)*blockAvg);
+  html+=row('Fire — '+erD(d.resFire)+'% resist'+(esWard?' • ES ward':''),eleFrac((1-er(d.resFire)/100)*blockAvg));
+  html+=row('Cold — '+erD(d.resCold)+'% resist'+(esWard?' • ES ward':''),eleFrac((1-er(d.resCold)/100)*blockAvg));
+  html+=row('Lightning — '+erD(d.resLightning)+'% resist'+(esWard?' • ES ward':''),eleFrac((1-er(d.resLightning)/100)*blockAvg));
+  html+=row('Poison — '+erD(d.resOther)+'% resist',(1-er(d.resOther)/100)*blockAvg);
   html+='<div class="kv"><span>Chance to evade (attacks, estimate)</span><b>'+evade.toFixed(0)+'%</b></div>';
   html+='<div class="kv"><span>Block</span><b>'+bc+'% chance • blocked hits reduced '+(HC.BlockReduction||85)+'%</b></div>';
   if(esWard)html+='<div class="kv"><span>Energy Shield ward (Patch 88)</span><b>'+fmtFull(esWard)+' — 25% of your max ES, halving that much of each fire, cold and lightning hit</b></div>';
@@ -26552,8 +26594,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.406';
-var PLANNER_BUILT_AT='2026-11-26T11:44:24-07:00';
+var PLANNER_VERSION='0.407';
+var PLANNER_BUILT_AT='2026-11-26T12:03:00-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
