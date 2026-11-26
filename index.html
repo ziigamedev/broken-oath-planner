@@ -7295,12 +7295,12 @@ function gearVowEffect(st){
    each grows per gem level, and its own Vowbreak window; the
    stacking buffs (Fury, Bloodlust, Kindling, the War Banner) with
    their per-stack lines and caps; and the draught blessings with
-   their durations. One conflict, settled for the text: a record's
-   reservation percent runs a quarter higher than the same Vow's
-   own text across the whole file (25 against the text's 20), and
-   five sworn Vows at the record's percent would reserve more
-   than the whole pool — so the percent follows the skill text,
-   the number the game itself shows. Everything else is priced
+   their durations. A record's reservation percent is the RAW
+   charge (25 for a Herald), and resv() applies the game's
+   patch-82 "20% less" to it exactly once, inside `less` — so
+   the Herald is charged 20, matching its on-bar tooltip; where
+   a skill's text prints a percent, that printed percent takes
+   the same single x 0.8 through `less`. Everything else is priced
    from the record: a Vow's published skill text is plain prose
    with no numbers in it at all, so its steady aura lines (speed,
    crit, armour, penetration and the rest) come from its record's
@@ -7353,8 +7353,12 @@ function barEffects(st,opts){
       /* The game's own reservation rule, from Economical Vow's
          published text: "Every Vow and Herald already reserves
          20% less on its own (patch 82)", and a linked Economical
-         Vow takes a further share off. So the share a Vow really
-         holds is its printed percent x 0.8 x (1 - reserveLess),
+         Vow takes a further share off. The percent enters RAW —
+         the skill text's printed percent when its text carries
+         one, otherwise the record's ReservePct — and the single
+         x 0.8 lives in `less` below, applied once alongside
+         (1 - reserveLess). So the share a Vow really holds is
+         its raw percent x 0.8 x (1 - reserveLess),
          and each share comes off what the sworn skills before it
          left — the holds stack multiplicatively, never additively:
          five 20% Vows at 14.4% each leave 0.856^5 = 46% of the
@@ -7365,7 +7369,7 @@ function barEffects(st,opts){
          of the pool the percent-holds take together. */
       var less=0.8*(1-Math.min(90,fx.reserveLess)/100);
       var rm=desc.match(/Reserves (\d+(?:\.\d+)?)% of your mana/);
-      var pct=rm?(+rm[1]):(bl&&bl.ReservePct?(+bl.ReservePct)*0.8:0);
+      var pct=rm?(+rm[1]):(bl&&bl.ReservePct?(+bl.ReservePct):0);
       if(pct>0)out.reservedMult*=(1-(pct*less)/100);
       if(bl&&(bl.ReserveFlat||bl.ReserveFlatPerLevel))out.reservedFlat+=((+bl.ReserveFlat||0)+(+bl.ReserveFlatPerLevel||0)*Math.max(0,gem-1))*less;
     }
@@ -26852,8 +26856,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.419';
-var PLANNER_BUILT_AT='2026-11-26T16:36:00-08:00';
+var PLANNER_VERSION='0.420';
+var PLANNER_BUILT_AT='2026-11-26T16:47:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
