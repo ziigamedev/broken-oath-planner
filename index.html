@@ -1962,8 +1962,8 @@ details:not([open])>:not(summary){display:none}
    tight, compact spacing throughout; every card and row earns the
    room it takes. */
 .hub-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0}
-/* Share dropdown — the three copy actions (site code, game code,
-   link) live here only, inside the Share button's own dropdown:
+/* Share dropdown — the two copy actions (site code, game code)
+   live here only, inside the Share button's own dropdown:
    the panel hangs directly under the button, right-aligned with
    it (the patch-history dropdown's shape), so the copy buttons
    sit right where the tap on Share landed instead of in a
@@ -2801,6 +2801,20 @@ td{padding:7px 8px}
    Cinzel site name; the transparent mark sits straight on the
    topbar, no plate behind it. */
 .brand-logo{width:32px;height:32px;display:block;flex:none}
+/* On Home the nav brand is the ring alone — the Home lockup below
+   carries the name, so the words would only stutter. switchTab
+   toggles body.tab-home; every other tab keeps the full brand. */
+body.tab-home .brand h1{display:none}
+/* Phones: with the words gone the Home brand collapses to the
+   ring alone and the top bar drops to one row, while every other
+   tab's bar wraps to two — switching tabs would shift the whole
+   page, and the shorter first screen dropped the saves-help row
+   into the fixed bottom nav's band at first paint. On Home the
+   brand keeps its own row at phone width (ring only, exactly
+   where the full brand sits on the other tabs), so the bar is
+   the same height on every tab and the first screen keeps the
+   geometry the v306/v318 trims were tuned against. */
+@media(max-width:680px){body.tab-home .brand{flex:1 1 100%}}
 /* v0.395 — the passive tree opens as a big full view: a wider
    sheet and a taller canvas. */
 .pop-sheet.pop-tree{max-width:1680px;width:97vw}
@@ -2839,13 +2853,17 @@ td{padding:7px 8px}
 .bs-add:hover{border-color:var(--gold)}
 .bs-add-box{flex:none;width:38px;height:38px;border:1px solid var(--line);border-radius:8px;background:#0d0b09;display:grid;place-items:center;font-size:22px;line-height:1;color:var(--gold2);box-shadow:inset 0 2px 6px rgba(0,0,0,.85)}
 /* v0.395 — gear draft editor: base on the left, Item level and
-   Rarity in a right-hand column; sockets in one compact row. */
-.gp-base-row{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
-.gp-base-row #gpBaseBox{flex:1 1 300px;min-width:0}
-.gp-base-row #gpRarityBox{flex:0 1 232px;min-width:200px}
-.gp-base-row #gpRarityBox .label:first-child{margin-top:0}
-.gp-side-field{margin:14px 0 2px}
-.gp-side-field input{margin-left:6px}
+   Rarity in a right-hand column; sockets in one compact row.
+   v0.401 — the right-hand column is gone: Item level and Rarity
+   sit in the base's own area, on ONE row under the base (the
+   Item level input and the Rarity select side by side, each
+   labelled), so no dead gap opens on wide screens. */
+.gp-base-row{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+.gp-base-row #gpBaseBox{flex:none;min-width:0}
+.gp-base-row #gpRarityBox{flex:none;min-width:0}
+.gp-lvl-rar-row{display:flex;gap:14px 26px;align-items:flex-start;flex-wrap:wrap}
+.gp-lvl-field input{margin-left:6px}
+.gp-lvl-field select{margin-left:6px}
 .gp-sock-slots{display:flex;gap:6px;margin:8px 0}
 .gp-sock-slot{flex:1 1 0;min-width:0}
 @media(max-width:560px){.gp-sock-slots{flex-wrap:wrap}.gp-sock-slot{flex:1 1 30%}}
@@ -2854,7 +2872,7 @@ td{padding:7px 8px}
 <body>
 <div id="updateBanner" class="update-banner hidden" role="status"><span id="updateBannerText">A newer version of the planner is here. Refresh to get it.</span><span class="update-actions"><button class="btn small" id="updateRefreshBtn" type="button">Refresh</button><button class="update-x" id="updateDismissBtn" type="button" aria-label="Dismiss">×</button></span></div>
 <header class="topbar"><div class="topbar-in">
-  <div class="brand"><img class="brand-logo" src="assets/logo-mark.png" alt="" width="32" height="32"><h1>Broken Oath Planner</h1></div>
+  <div class="brand"><img class="brand-logo" src="assets/logo-mark.png" alt="" width="32" height="32"><h1 id="brandWords">Broken Oath Planner</h1></div>
   <div class="controls">
     <span class="pill hidden" aria-hidden="true"><span class="dot" id="liveDot"></span><span id="liveText">Connecting…</span></span>
     <button class="btn small hidden" id="retryLiveBtn" type="button" aria-hidden="true" tabindex="-1">Retry live data</button>
@@ -2931,13 +2949,6 @@ td{padding:7px 8px}
       </div>
     </div>
 
-    <div class="card starter-card" id="homeStarterPanel">
-      <div class="flex between"><h2>Starter builds</h2><span class="starter-lock">From the ladder snapshot</span></div>
-      <p class="sub" id="homeStarterSub">Counting the ladder…</p>
-      <div class="starter-grid" id="homeStarterGrid"></div>
-      <p class="sub hidden" id="homeStarterDpsNote" style="margin-top:10px"></p>
-    </div>
-
     <div class="home-strip" id="homeStrip">
       <span id="homeStripLadder"></span>
       <button class="linkbtn" id="homeStripPatch" data-goto="patches" type="button"></button>
@@ -2955,7 +2966,7 @@ td{padding:7px 8px}
   <!-- BUILDS -->
   <section id="view-builds" class="hidden">
     <div class="card starter-card" id="starterPanel">
-      <div class="flex between"><h2>Starter builds</h2><span class="starter-lock">From the ladder snapshot</span></div>
+      <div class="flex between"><h2>Starter builds</h2><span class="starter-lock">Kept from the last complete published builds</span></div>
       <p class="sub" id="starterPanelSub">Counting the ladder…</p>
       <div class="starter-grid" id="starterGrid"></div>
       <p class="sub hidden" id="starterDpsNote" style="margin-top:10px"></p>
@@ -3101,7 +3112,6 @@ td{padding:7px 8px}
           <span class="ch-label">Toughness</span>
           <b class="ch-num" id="toughNum">—</b>
           <p class="ch-sub">Effective health vs a Guardian hit</p>
-          <p class="ch-sub" id="lifeEsLine">Life — · Energy Shield —</p>
           <div class="char-tip" role="tooltip">
             <div class="label" style="margin:0 0 2px">Defenses &amp; EHP</div>
             <div id="ehpHoverBody"></div>
@@ -3502,7 +3512,7 @@ td{padding:7px 8px}
             <div class="label" style="margin-top:2px">Tree versions</div>
             <div class="tree-bar-versions" style="margin-top:4px"><input type="text" id="treeVerName" placeholder="Name this tree version…" maxlength="40" aria-label="Name this tree version"><button class="btn small" id="treeVerSaveBtn" type="button">Save version</button><select id="treeVerSel" aria-label="Tree versions"></select><button class="btn small" id="treeVerApplyBtn" type="button">Apply version</button><button class="btn small danger" id="treeVerDelBtn" type="button">Delete</button></div>
             <p class="sub" id="treeVerMsg" style="min-height:16px;margin:3px 0 0"></p>
-            <div class="flex mt" style="flex-wrap:wrap"><button class="btn small" id="treeHeatBtn" type="button" aria-pressed="false">Heat map: off</button><button class="btn small" id="treeBestBtn" type="button">Best next picks</button><button class="btn small" id="treePlanBtn" type="button">Plan next points</button><button class="btn small" id="treeOptimizeBtn" type="button">Optimize tree</button><button class="btn small" id="treeLevelBtn" type="button">Levelling path</button><button class="btn small" id="treeApplyBtn" type="button">Apply Take list to tuning</button><button class="btn small danger" id="treeResetBtn" type="button">Reset marks</button></div>
+            <div class="flex mt" style="flex-wrap:wrap"><button class="btn small" id="treeHeatBtn" type="button" aria-pressed="false">Heat map: off</button><button class="btn small" id="treeBestBtn" type="button">Best next picks</button><button class="btn small" id="treePlanBtn" type="button">Plan next points</button><button class="btn small" id="treeOptimizeBtn" type="button">Optimize tree</button><button class="btn small" id="treeLevelBtn" type="button">Levelling path</button><button class="btn small" id="treeApplyBtn" type="button">Apply Take list to tuning</button><button class="btn small danger" id="treeRefundAllBtn" type="button">Refund all</button><button class="btn small danger" id="treeResetBtn" type="button">Reset marks</button></div>
             <div class="flex mt" style="flex-wrap:wrap;gap:16px;align-items:flex-end">
               <div><div class="label" style="margin:0 0 2px">Optimize &amp; plan for — <span id="treeBlendVal">DPS only</span></div><input type="range" id="treeBlend" min="0" max="100" step="5" value="0" style="width:180px" aria-label="Balance between DPS and defence"></div>
               <div><div class="label" style="margin:0 0 2px">Resistance penalty</div><select id="resPenaltySel" aria-label="Resistance penalty"><option value="0">None</option><option value="10">−10%</option><option value="20">−20%</option><option value="30">−30%</option><option value="40">−40%</option><option value="50">−50%</option></select></div>
@@ -4181,7 +4191,7 @@ var DICT={
 "The full league picture":"联赛全貌",
 "Counting the ladder…":"正在统计天梯…",
 "Starter builds":"入门构建",
-"From the ladder snapshot":"来自天梯快照",
+"Kept from the last complete published builds":"取自最近的完整已发布构建",
 "Build instances":"构建实例",
 "Load a character":"载入角色",
 "However your hero reaches the planner — a save from this PC, or a build code — they open as their own plan in the tabs above. The plan you have open is not touched.":"无论你的英雄以哪种方式进入规划器 — 本机存档，还是构建代码 — 都会在上方标签页中作为独立的方案打开。你当前打开的方案不会被改动。",
@@ -4372,10 +4382,13 @@ var DICT={
 "Keystones":"基石",
 "Notables":"核心天赋",
 "Oath seats":"誓约席位",
+"An empty seat gives nothing. Take this seat, then swear one of its Oaths here — its mods count while the seat is taken. Taking a seat costs no passive points.":"空席位不提供任何加成。点取这个席位，然后在这里立下它的一项誓约 — 席位被点取期间，誓约的词缀生效。点取席位不消耗被动点数。",
+"Refund all":"全部退点",
 "Marked":"已标记",
 "Clear":"清除",
 "Tree planning tools":"天赋树规划工具",
 "Optimize, best next picks, versions & the node list":"优化、最佳下一点、版本与节点列表",
+"No passive points to refund — the tree holds no passive nodes right now.":"没有可退的被动点 — 当前天赋树没有点取任何被动节点。",
 "Heat map: off":"热力图：关",
 "Best next picks":"最佳下一点",
 "Plan next points":"规划后续点数",
@@ -5043,7 +5056,7 @@ var DICT={
 "None loaded yet. Open the Ladder tab and choose “Load into planner” on any hero with a published build.":"尚未载入任何英雄。打开天梯标签页，在任意公布了构建的英雄上选择“载入规划器”。",
 "Open a plan in the Build Planner to count it against this monster.":"在构建规划器中打开一个方案，即可按这只怪物计算它。",
 "The meta picture did not load for this league. It may not have one yet — try again in a moment.":"本联赛的环境概览未能加载。它可能尚不存在 — 请稍后重试。",
-"The ladder snapshot has not landed yet — the starters are counted from it, so they arrive with it.":"天梯快照尚未到达 — 入门构建按它统计，因此会随它一同到达。",
+"The last complete published builds have not landed yet — the starters are counted from them, so they arrive with them.":"最近的完整已发布构建尚未到达 — 入门构建按它们统计，因此会随它们一同到达。",
 "The ladder snapshot has not landed yet.":"天梯快照尚未到达。",
 "The changelog loads with the game data — give it a moment and it will appear here.":"更新日志随游戏数据加载 — 请稍等片刻，它会出现在这里。",
 "The newest patch’s change list has not landed yet — it arrives with the game data.":"最新补丁的变更列表尚未到达 — 它随游戏数据一同到达。",
@@ -5167,7 +5180,7 @@ var DICT={
 "Online:":"在线：",
 "Developer's notes:":"开发者说明：",
 "Full data changes — 88 vs 87:":"完整数据变更 — 88 对 87：",
-"A starting point, not a copy: each starter follows a main skill its class’s published ladder builds lead with, opened from the strongest complete published build for that pairing. Everything in it opens read-only — gear, skills, passive tree and Dragonling — duplicate it to edit anything. Counted from the bundled ladder snapshot; nothing here is uploaded or saved on a server.":"一个起点，而非复制品：每个入门构建都以其职业已发布天梯构建主用的一个核心技能为核心，取自该搭配最强的完整已发布构建。其中一切都以只读方式打开 — 装备、技能、天赋树和龙灵 — 复制一份即可编辑任何内容。按内置的天梯快照统计；这里的任何内容都不会上传或保存在服务器上。",
+"A starting point, not a copy: each starter follows a main skill its class’s published ladder builds lead with, opened from the strongest complete published build for that pairing. Everything in it opens read-only — gear, skills, passive tree and Dragonling — duplicate it to edit anything. Counted from the last complete published builds, kept with the page so a new season cannot empty them; nothing here is uploaded or saved on a server.":"一个起点，而非复制品：每个入门构建都以其职业已发布天梯构建主用的一个核心技能为核心，取自该搭配最强的完整已发布构建。其中一切都以只读方式打开 — 装备、技能、天赋树和龙灵 — 复制一份即可编辑任何内容。按最近的完整已发布构建统计，这些构建随页面保留，新赛季也不会让它们消失；这里的任何内容都不会上传或保存在服务器上。",
 "Builds are only published for the top 50 of each class":"每个职业只公布前 50 名的构建",
 "Top of its ladder":"其天梯的榜首",
 "Guardian DPS median (measured)":"守护者 DPS 中位数（实测）",
@@ -5949,7 +5962,7 @@ var RULES=[
  [/^([\s\S]+) starts (Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday), (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2})$/,function(m){var WD={Monday:'星期一',Tuesday:'星期二',Wednesday:'星期三',Thursday:'星期四',Friday:'星期五',Saturday:'星期六',Sunday:'星期日'};var MO={Jan:'1月',Feb:'2月',Mar:'3月',Apr:'4月',May:'5月',Jun:'6月',Jul:'7月',Aug:'8月',Sep:'9月',Oct:'10月',Nov:'11月',Dec:'12月'};return (trLookup(m[1])||m[1])+' 将于 '+MO[m[3]]+m[4]+'日（'+WD[m[2]]+'）开始';}],
  [/^The (\S+) — ([\s\S]+) ladder build\. Clear it any time from the planner\.$/,function(m){return classZh(m[1])+' — '+m[2]+' 天梯构建。可随时在规划器中清除。';}],
  [/^This is a sample build — (\S+) — ([\s\S]+), a published ladder hero — opened so you can look around: everything in it stays exactly as published\. Clear it to start your own plan; nothing of yours is touched\.$/,function(m){return '这是一个示例构建 — '+classZh(m[1])+' — '+m[2]+'，一位已发布的天梯英雄 — 打开它供你浏览：其中一切都与发布时完全一致。清除它即可开始你自己的方案；不会动到你的任何内容。';}],
- [/^This plan is the (\S+) — ([\s\S]+) template, opened from the ladder snapshot\. Everything in it — gear, skills, passive tree and Dragonling — is fixed as published\. Duplicate the plan to edit anything\. Your own builds are never touched\.$/,function(m){return '本方案是 '+classZh(m[1])+' — '+m[2]+' 模板，取自天梯快照。其中一切 — 装备、技能、天赋树和龙灵 — 都按发布时的样子固定。复制本方案即可编辑任何内容。绝不会动到你自己的构建。';}],
+ [/^This plan is the (\S+) — ([\s\S]+) template, opened from the last complete published builds\. Everything in it — gear, skills, passive tree and Dragonling — is fixed as published\. Duplicate the plan to edit anything\. Your own builds are never touched\.$/,function(m){return '本方案是 '+classZh(m[1])+' — '+m[2]+' 模板，取自最近的完整已发布构建。其中一切 — 装备、技能、天赋树和龙灵 — 都按发布时的样子固定。复制本方案即可编辑任何内容。绝不会动到你自己的构建。';}],
  [/^Patch (\d+) \((\d{4}-\d{2}-\d{2})\), checked against the build now in the planner: (\d+) named pieces — skill, supports, tree, Dragonling and gear\.$/,function(m){return '补丁 '+m[1]+'（'+m[2]+'），已对照规划器中当前的构建检查：'+m[3]+' 个具名部件 — 技能、辅助、天赋树、龙灵与装备。';}],
  [/^No build is open yet\. Bring in a hero from Home, then come back — this list will name only what Patch (\d+) changed for that build\.$/,function(m){return '尚未打开任何构建。从首页载入一位英雄后再回来 — 此列表只会列出补丁 '+m[1]+' 为该构建带来的变更。';}],
  [/^Nothing in Patch (\d+) names anything in this build — the patch passed it by\.$/,function(m){return '补丁 '+m[1]+' 没有提及本构建中的任何内容 — 这个补丁与它无关。';}],
@@ -5982,6 +5995,10 @@ var RULES=[
  [/^([\d.]+)s$/,function(m){return m[1]+' 秒';}],
  [/^(\d+) instances?$/,function(m){return m[1]+' 个实例';}],
  [/^(\d+) out of (\d+)$/,function(m){return m[1]+' / '+m[2]+' 个节点';}],
+ [/^(\d+) out of (\d+) · (\d+) points? unallocated · (\d+) Oath seats? — free$/,function(m){return m[1]+' / '+m[2]+' 个节点 · '+m[3]+' 点未分配 · '+m[4]+' 个誓约席位 — 免费';}],
+ [/^(\d+) out of (\d+) · (\d+) points? unallocated$/,function(m){return m[1]+' / '+m[2]+' 个节点 · '+m[3]+' 点未分配';}],
+ [/^(\d+) out of (\d+) · (\d+) Oath seats? — free$/,function(m){return m[1]+' / '+m[2]+' 个节点 · '+m[3]+' 个誓约席位 — 免费';}],
+ [/^Refunded all (\d+) passive points — refunds are free\. Oath seats stay taken; they cost no points\.$/,function(m){return '已退回全部 '+m[1]+' 个被动点 — 退点免费。誓约席位保持点取；它们不消耗点数。';}],
  [/^Close the (\S+) hero — (\S+) • Lv (\d+) • ([\s\S]+) instance$/,function(m){return '关闭'+classZh(m[1])+'英雄 — '+classZh(m[2])+' • 等级 '+m[3]+' • '+m[4]+' 实例';}],
  [/^(\S+) • Lv (\d+) • ([\s\S]+)$/,function(m){return classZh(m[1])+' • 等级 '+m[2]+' • '+m[3];}],
  [/^(\S+) hero$/,function(m){return CLASS_ZH[m[1]]?CLASS_ZH[m[1]]+'英雄':m[0];}],
@@ -6371,7 +6388,9 @@ var SNAPSHOT_PATCH='90'; var SNAPSHOT_AT='2026-11-26T08:48:00.732Z'; var DEFAULT
    owner's direction (Patch Notes holds Patch 88 only): the refresh
    must NOT re-add an entry for patch 87, and patchHistoryEntries
    filters one out if it ever reappears. */
-var PATCH_HISTORY_DEFAULT={version:1,updated_at:'2026-11-24',entries:[
+var PATCH_HISTORY_DEFAULT={version:1,updated_at:'2026-11-26',entries:[
+ {patch:92,build:92,date:'2026-11-26',source:'developer_changelog',has_written_notes:true,written_notes_note:"These notes come from the developer's announcement on Discord. The game's data feed has not caught up with this patch yet, so the details might change.",changes:["A few numbers first shared on Discord didn't match the game's own data — the values here are the game's.","It is an alpha — meta and damage will keep changing.","Buffs for everyone:","Endgame monsters — Rupture Level 200 and every Riven Tier, Guardians included — have 10% less life and deal 5% less damage.","Skill damage at gem 20:","Cyclone x4.3, Rending Slam x3.5 (from gem 16), Death Coil x3.5, Storm Whirl x3.4, Drain Life x5.5 at gem 20, Caustic Arrow x2.3, Holy Elemental x2.","Dual wielding: 25% more attack speed (was 10%).","Entropy (Chaos support): Entropy from your hits now pays its full share (was half).","Grounded Storm (Mage Ascendancy): forced crit ailments keep their full crit bonus, x1.18.","Heralds: new Resonance — +12% per other sworn Herald or Woe aura of the same element. Heralds now give 15% at gem 20 (was 19.5%); Rot and Steel 13.5% (was 17.55%).","Nerfs:","The Long Battery: 2% more per Ballista or Totem (was 4%); 1 to 2% (was 3 to 4%).","Bina's Spotter's Helm: ramp to 10% more (was 25%); new totems no longer reset the volley; Arc totem x0.64.","Blood Ledger: Slam Entropy 5% more (was 20%).","Glass Cannon: minion damage 12% more (was 25%).","Pyre Covenant and Marrow Lord: minions 6% less; Pyre Covenant loses its 23% increased minion damage.","Gravebloom Oathword: minion damage 102 (was 251).","Entropy lines: Pact of Ruin 6% (was 12%); Entropic Focus 11% (was 22%); Gathering Dark support 10% (was 20%); Quarry's Debt 12 (was 25); Ruin Fletching 10 (was 20).","Inevitable Judgement and Moonlit Stance: crit ailments lose the Ascendancy crit bonus.","The Blackbile Censer and The Blackbile Seal: Poison chance, Poison damage and Ailment Duration rolls about halved.","Riven gem level lines: the top tier costs 4 Rivenstones and drops 4x rarer.","Target farming:","Guardian kills drop Red Shards — shards of 8 reds, each from one land, Guardian or Riven Lord (its tooltip says where).","Oathbind (Forge): makes the red from 6 shards, a plain base and 3 Oathsteel. Riven Bind adds 6 Rivenstones for the best rolls.","Red Forge (Forge): makes a red from 1 Forgeheart, 20 Gloomsilver, 40 Oathsteel, 2M gold and a plain base, costing x1.5 more each time this league.","Rivenhold (Forge): 24 Rivenstones cut a Dwarven Rune Socket into a rare ring, belt or boots.","Loot:","Rivenstone and Forgeheart drop with a tall ember gold beam and their own sound; Oathsteel and Gloomsilver with a cold white beam and a soft chime.","New Clear loot filter preset; your own filter is unchanged.","Rare and named monsters carry 35% of a Guardian's Oathsteel and Gloomsilver.","Map cards name the 2 reds that drop 4x more there; the Rupture end card shows your Sigil stake and return.","Fixes:","Co-op join from Steam invites; gamepad works on every screen.","Guardian life bar shows its hold phase.","Catacombs cart stalls, the Elven Capital wagon freeze and AMD graphics hangs are fixed.","Faster Rupture loads; the download is 160 MB smaller."]},
+ {patch:91,build:91,date:'2026-11-25',source:'developer_changelog',has_written_notes:true,written_notes_note:"These notes come from the developer's announcement on Discord. The game's data feed has not caught up with this patch yet, so the details might change.",changes:["A few numbers first shared on Discord didn't match the game's own data — the values here are the game's.","Skills:","Ground Slam: 56% less damage at gem 20.","Ember Spark: 23% less damage at gem 20.","Damage up at gem 20: Storm Whirl x2.9, Wayward Orb x4, Thunderfall x1.4, Unholy Void x4, Ancestral Warrior x3.8, Shield Charge x5.25 in total.","Drain Life: x1.6 damage at early gem levels.","All five Golem skills deal x2.5 damage.","Pyre of Faith: less hit damage at gem levels 1–17 and its burn no longer ignites, but 22% more damage at gem 20.","Supports:","Haemorrhage: its Bleed bonus is now 15% (the published data had 40%).","Rampart Strike: 0.3% more damage per 1% block chance (was 0.8%).","Items:","Bina's Spotter's Helm: ramp 25% (was 50%).","Starcaller's Staff: 35–45% increased damage (was 70–90%) and +1 to Skyfall (was +2).","Arcane Lattice: the +1 Totem is gone — now 15% increased Totem damage.","Halo of the Restless Saint and Quarrybreaker Fists drop much less often.","New suffix on amulets, belts and Energy Shield armour: 6–22% faster Energy Shield recharge.","Minions and corpses:","Each minion kind past the second makes every kind reserve 25% more Mana.","Kindled Remains deals 25.2% of corpse life at Rupture Level 50–99 and 28.8% from level 100.","Two new Necromancer notables: Pyre Procession and Funeral Ash.","Grave Psalter leaves a Husk when a boss is hit; Charnel Bell raises Husks as Skeleton Warriors.","Endgame and the tree:","New Guardian: The Oathsmith, a Rupture Level 1–100 climb boss.","Guardian kills at Rupture Level 105, 115, 125, 135 and 145 each give 1 passive point, once per hero.","Passive tree: 18 new shortcut links; no node moved.","Drop tiers now cap at Rupture Level or hero level +5.","Cube:","Family Imbuing now uses 1 jewel (was 3).","New recipes: Family Infusing and Gear Fusing."]},
  {patch:90,build:90,date:'2026-11-24',source:'detected_changes',has_written_notes:false,changes:["Full data changes — 90 vs 89:","Skills — 98 changed:","Skill descriptions were rewritten across the board — shorter, plainer wording (97 of the 98 changed skills). The mechanics changes:","Hallowed Slam: late-game effectiveness 20.28 → 12.17 (-40%, nerf)","Orbiting Hammers: empowered orbit — extra projectiles 3 → 2, more damage 40% → 10%, speed multiplier 1.5 → 1.2","Shuriken Fan: visual effects updated","Split Shot: late-game effectiveness 14.48 → 18.1 (+25%, buff) — the Patch 89 cut is undone","Holy Elemental: minion damage multiplier 1.79 → 1.396 (-22%, nerf)","Summon Skeletal Mage: minion damage multiplier 1.65 → 1.287 (-22%, nerf)","Summon Skeletons: minion damage multiplier 1 → 0.78 (-22%, nerf); mana cost 12 → 8","Raise Zombie: minion damage multiplier 1.3 → 1.014 (-22%, nerf)","War Banner: description now spells out moving the banner — use it again more than 1.5 metres away to move it; closer, it stays and costs nothing","Flame Golem, Ice Golem, Storm Golem, Venom Golem: each gains a cast effect","Description rewritten only: Rain of Arrows, Blade Vortex, Caustic Arrow, Consecrated Ground, Death Coil, Death Sentence, Drain Life, Earthshatter, Ember Spark","Description rewritten only: Flame Dash, Flurry, Fuse Arrow, Glacial Shards, Grave Call, Gravereap, Gravefeast, Ground Slam, Hammerstorm","Description rewritten only: Herald of Embers, Herald of Rime, Herald of Rot, Herald of Steel, Herald of Storms, Hoarfrost Volley, Holy Charge, Holy Slash, Iaido Thrust","Description rewritten only: Jarl's Roar, Judgement, Lightning Arrow, Marrow Lance, Moonfall, Move, Ancestral Warrior, Brass Sentinels, Cinder Mites","Description rewritten only: Elemental Echo, Horn of the Jarls, Oath of the Fallen, Rime Sprites, Pyre Burst, Pyre of Faith, Reap, Rending Slam, Rime Spark","Description rewritten only: Sentence of Chains, Sentence of Exposure, Sentence of Rot, Sheathe, Shield Charge, Shield Throw, Soul Rend, Storm Spark, Storm Whirl","Description rewritten only: Ballista, Grave Golem","29 more changed skills aren't individually named in the API's published change list (it caps at 60 names) — all are description rewrites only. 98 changed in total.","Support gems — 76 changed:","Cascading Ruin: required level 38 → 27","Chaos: Entropy more multiplier 50% → 25% (-50%, nerf)","Entropic Focus: required level 31 → 27","Gathering Dark: required level 38 → 27","Killer Instinct: base critical strike chance +4% → +2%; critical strike multiplier +25% → +20%","Melee Physical Damage: renamed (was 'Melee Physical damage' — capitalisation only)","Pact of Ruin: required level 31 → 27","Skyfall: gains a mod line — 20% less Damage (its description now states it too)","Description rewritten only: Added Fire, Added Poison, Afterimage, Arc Conduit, Arrow Totem, Bloodbound, Bloodlust, Bone Guard, Brutality","Description rewritten only: Cast on Crit, Cast on Minion Death, Cast when Hit, Chain, Chain Detonation, Channel Conduit, Contagious Flame, Dawnbringer, Deep Wounds","Description rewritten only: Defiant Roar, Elemental Focus, Executioner, Fervent Vow, Focused Volley, Fork, Frostbreak, Funeral Pyre, Gather Fury","Description rewritten only: Grave Conscription, Gravesown, Haemorrhage, Hunter's Mark, Ironclad Fury, Kindled Remains, Kindling, Gathering Storm, Lone Herald","Description rewritten only: Maim, Multiple Totems, Multistrike, Orbit, Pale Apprentices, Quarry Command, Rain, Rallying Standard, Rampart Strike","Description rewritten only: Rend, Repeat, Rimewake, Sanctifying Light, Shatter, Skyward Oath, Spell Echo","16 more changed support gems aren't individually named in the API's published change list (it caps at 60 names) — 76 changed in total.","Scaling rules:","Bleeding now deals 40% of the hit per second (was 50%)","Freeze meter: fills 20% per hit (was 12%), growth 1 (was 1.5)","Passive tree — 5 changed:","Harmony: 3% more damage per kind of minion (was 10%)","Oath of the White Silence: text — Freeze duration now also covers Crack damage","Mastery nodes moved on the tree (position only, effect unchanged): 2 Necromancer Legion nodes, 1 Ranger Hunt node","Oath masteries — 6 changed:","Every class mastery gains a fourth oath, all Entropy-themed:","Mastery of the Archmage: new oath — Oath of the Hollow Star: 15% of your Spell hit damage is laid on the enemy as Entropy instead of striking","Mastery of the Gravelord: new oath — Oath of the Owed Dead: With Grave Debt, a fallen minion or burst corpse implodes Entropy 2 metres further","Mastery of the Crusader: new oath — Oath of the Forsworn: With Forsworn Crusade, your Vowbreak implodes Entropy 3 metres further","Mastery of the Pathfinder: new oath — Oath of the Spent Mark: Ruin Fletching needs 3 fewer Hunter's Marks to implode your Entropy","Mastery of the Ronin: new oath — Oath of the Sheathed Moon: With Quiet Ruin, your Entropy fades 4 seconds later","Mastery of the Warlord: new oath — Oath of the Red Ledger: With Blood Ledger, your Slams implode Entropy for 10% more Chaos damage","Blessings — 2 changed:","Bloodlust: text gains two more lines — melee attack speed and movement speed","Kindling: text gains a second line — cast speed","Curses — 2 changed:","Woe of Sundering: enemies take 24% more Physical damage (was 30%)","Poisoned ailment: status icon changed","Dragonling:","Hammerbearer (Paladin path): Ringing Blows near bonus 15% more (was 25%); Anvil of Heaven burst 100% (was 150%)","New Dragonling tree rules for 15 nodes: Ancestral Echo, Bastion Nest, Bastion of Hope, Eyrie Watch, Fault Lines, Forge Wind, Heart of Furnace, Mistwalker, Patient Host, Petal Storm, Sentinel of Radiance, Shadowed Blood, Sheathed Fury, War Banner, Wound Echo","Shadow Twin node reworked: text now reads ‘+1 Afterimage on Movement Skills that strike’ (was ‘Movement skills strike 1 more time’)","Orbit of the Forge (Paladin path): Orbit hits deal 15% more damage near you (was 25%)","Bone Sovereign (Necromancer path): minion critical strike multiplier +10% (was +20%)","Node renames: Tailwind → Fleet Wing (Ranger); Single Cut → Keen Draw (Samurai); Heavy Orbit → Ringing Iron (Paladin)","Cold aspect texts (hearts and Ascension 2.0, every class) now read ‘Freeze duration and Crack damage’","Ascension 2.0: 39 more nodes are now available","Runewords — 2 changed:","Bladesong: every power line cut about 43% — leading power mod 20 → 11, top band 184 → 105","Barrowking's Mandate: increased Minion damage mod 176 → 70","Uniques — 14 new, 329 changed:","New unique: Bloodmoon Hakama","New unique: Cinderfall Greathelm","New unique: Core-Splinter Idol","New unique: Gloomsilver Reliquary","New unique: Heart of the Earthbreaker","New unique: Hollow Saint's Garb","New unique: Scab of the Wound","New unique: Seal of the Plague Lord","New unique: Seal of the Pyromancer","New unique: Seal of the Skyhunter","New unique: Seraphfall Mail","New unique: Slimeheart Idol","New unique: The Last Square","New unique: Wyrmhide Coat","Across all 329 changed uniques: 233 gain in-game art, 125 have their forged-tier values adjusted, 94 change look, 84 change mod lines, 17 change drop weight, 10 change flavour text","Dwarven Rune of the Falling Sky: mod roll 50–50 → 25–25","Hand of Dawn: mod roll 40–40 → 10–10","The six Signet of the Lost Order variants are now named for their keystone: (Blood Magic), (Chain Reaction), (Elemental Overload), (Hollow Covenant), (Iron Resolve), (Spellblade)","269 more changed uniques aren't individually named in the API's published change list (it caps at 60 names) — 329 changed in total.","Item bases — 49 new, 10 changed:","New axes: Splitting Axe (Lv 6), Ironbark Axe (Lv 34), Warden's Axe (Lv 46), Ember Cleaver (Lv 58), Gloomreaver (Lv 70), Oathsplitter (Lv 80)","New spears: Hunting Spear (Lv 3), Boar Spear (Lv 14), Pike (Lv 30), Partisan (Lv 44), Glaive Spear (Lv 60), Oathlance (Lv 76)","New katanas: Drifter Katana (Lv 3), Reed Katana (Lv 9), Tide Katana (Lv 16), Falcon Katana (Lv 21), Dusk Katana (Lv 28), Wolfsbane Katana (Lv 33), Ember Katana (Lv 40), Ringed Katana (Lv 48), Frostveil Katana (Lv 56), Nightfall Katana (Lv 62), Dragonbone Katana (Lv 72)","New clubs and hammers: Cudgel (Lv 3), Ironbound Club (Lv 20), Bellringer's Hammer (Lv 30), Gravewarden (Lv 44), Dreadmaul (Lv 72)","New off-hand books: Vellum Folio (Lv 8), Psalter (Lv 19), Black Ledger (Lv 35), Oathbound Missal (Lv 52), Runewright Compendium (Lv 60), Ember Codex (Lv 74)","Plus 15 Ashen bases — Ashen versions of 12 of the bases above, the Ashen Cleaver, and two Ashen daggers (Glyph Athame and Sigilfang): Ashen Cleaver (Lv 22), Ashen Oathbound Missal (Lv 52), Ashen Frostveil Katana (Lv 56), Ashen Ember Cleaver (Lv 58), Ashen Glaive Spear (Lv 60), Ashen Runewright Compendium (Lv 60), Ashen Nightfall Katana (Lv 62), Ashen Glyph Athame (Lv 64), Ashen Gloomreaver (Lv 70), Ashen Dragonbone Katana (Lv 72), Ashen Dreadmaul (Lv 72), Ashen Ember Codex (Lv 74), Ashen Oathlance (Lv 76), Ashen Sigilfang (Lv 78), Ashen Oathsplitter (Lv 80)","Renamed: Splitting Axe → Hewing Axe (plain, Ashen and Core Touched)","Seven Ashen two-handers trade a point between minimum and maximum damage (Ashen Greataxe, Ashen Greatmace ×2, Ashen Greatsword ×4)","Weapons — 35 new, 1 changed:","35 new weapons matching the new bases above — the plain axe, spear, katana, club and book lines, plus the Ashen Cleaver","Splitting Axe renamed Hewing Axe, as with its item base","Cube recipes — 2 new, 14 changed:","New cube recipe: Dwarven Carving — a Normal or Magic Dwarven Rune + 1 Tier III or IV rune + 2 jewels of Cut or finer + Core Embers from your Forge store (4 for Magic, 10 for Rare) → the Dwarven Rune comes out one rarity up (Normal to Magic, Magic to Rare) with its lines rolled new; the rune, 2 jewels and the Embers are used up","New cube recipe: Dwarven Mending — a Rare Dwarven Rune + 1 Tier III or IV rune + 1 jewel of Cut or finer + 3 Core Embers (from your Forge store) → its weakest line melts and a new line of the same kind pours in; every other line stays","Idol Binding, Idol Fusing, Idol Merging and Idol Resist Turning: result and keeps text reworded — Fusing and Merging now say the kept line is 'the line of the idol in the first cube slot'","10 more recipes change only the wording of what is kept ('nothing - only…' → 'nothing, only…')","Monsters — 8 new, 2 changed:","New monster: Drowned Keener","New monster: Bracken Elder","New monster: Nightpelt Bear","New monster: Sandmane Prowler","New monster: Tidecoil Stalker","New monster: Abyss Stalker","New monster: Gloam Goblin","New monster: Gravecap","The Rock Titan: attack range 390 → 270, reach 250 → 130","Oathless Lich: second attack damage 0.9 → 0.63","Classes — 1 changed:","Ranger: Shuriken Fan animation set removed","Stacking rules — 80 added, 20 changed:","Changed stacking lines named in the API’s change list: Overload Coil, The Regent's Thirst, Shadow Twin (Samurai, Ascension 2.0), Shadow Twin (Samurai notable), Glacial Quillstaff, Marrow Reliquary, Ninth Hammer Shard, Sentence of the Ninth Bell, The Avalanche Edict, The Eighth Blade Ornament, The Hollow Throne, The Split Aspect","The 80 added stacking lines mostly cover the new weapon bases above; changed lines are named only.","Stat text:","Minion-count texts now say ‘army max 36’ (was 28); Freeze duration texts now read ‘Freeze duration and Crack damage’","Quality stones:","Cog stone weights cut: Normal 0.006 → 0.004, Magic 0.02 → 0.013, Rare 0.06 → 0.04","Gem homes:","The gem homes list is reordered only — every gem keeps the same home classes","New systems:","New: the Oath Sigil system: 17 upsides and 30 downsides, sigil slots unlocking from 1 to 8 (first sigil, gates, a boon, Rupture Tiers 10/30/100), drop chances from Guardians, rares and strongboxes, and 26 red Oath Sigils","New: The Core endgame: Core ruptures from Rupture Level 80, minimum hero level 90, a Guardian pool of 4, jackpot rewards (primal, deep-forged, signature reds and more), about 1 sigil per 12 maps with pity after 3 clears"]},
  {patch:89,build:89,date:'2026-11-23',source:'developer_changelog',has_written_notes:true,changes:["Developer's notes:","Changes:","Split Shot: 20% less damage at gem level 20. Thornwake Bleeding 15 to 22% more (was 30 to 45%).","Bladesong on a bow keeps 24% increased Physical Damage (was about 200%); Maelstrom on a bow 1/1.75 as large. Melee unchanged. Bow Oathwords: Heartseeker, Viperstring, Windrider, Stormlash.","Hallowed Slam: 35% less damage at gem level 20 and up. Sure Strike Bleeding 36% more (was 57%). Twinscar: 1 extra Bleed (was 3), Physical Damage 30% lower.","Reliquary of the Second Dawn: 20% less Holy Spell Damage. Judgement with it about 20% less.","Barrowking's Mandate: +1 to every minion limit (was +3). Poison minions count Physical damage at half for Poison.","Trap: each Trap past the first adds 5% (was 20%). Iron Garrison, Second Battery and Circle of Stones give 15% increased Totem damage instead of a totem (points refunded).","Curses: Dread and Curse Effect add instead of multiplying. Evasion into damage halved, Energy Shield into damage 25% less. Entropy implosions 20% less.","Summon Skeletons and Raise Zombie: 25% more damage at gem level 20. Oath of the Living Storm, White Silence, Wind and Steel and Signet of the Lost Order go up. Hunter's Mark fits every Projectile skill.","New:","16 new red Oath Sigils, 21 in all, each a harder map with its promise on the card. Crimson Ink on the Riven Atlas: 50% more red Oath Sigils.","12 new chase reds from Pinnacle bosses at RL 170+, Riven Lords, Riven Tier 50+ Guardians and Cores.","Dragonling Void Aspect. Entropy lines on rare items and idols. Idol Filling in the Cube. Qhikazar prize cards pay more.","Events show their stakes and your co op friend sees the whole show. 1 in 3 Cursed Hoards is a defence.","Pack kills no longer blink out, elemental golem kills crush in their element, harsh sounds quieter.","Online:","Market inbox and Capital rooms are on. Ladders rank by Rupture Level, then Riven Tier; hero level no longer counts.","Co op: a carried hero's fast climb never refuses a save.","Full notes with every number are in the patch notes post.","Press F8 if something feels off.","Full data changes — 89 vs 88:","Skills — 46 changed:","Chain Lightning: up to +45% damage at gem levels 18–24 (buff)","Caustic Arrow: up to -7% damage at gem levels 18–20 (nerf)","Cyclone: up to +30% damage at gem levels 18–22 (buff)","Death Coil: up to +65% damage at gem levels 18–20 (buff)","Ember Bolt: up to +80% damage at gem levels 18–24 (buff)","Ember Spark: up to +45% damage at gem levels 18–24 (buff)","Flurry: up to +30% damage at gem levels 18–24 (buff)","Frost Nova: up to +45% damage at gem levels 18–24 (buff)","Fuse Arrow: up to +85% damage at gem levels 18–22 (buff)","Glacial Shards: up to +12% damage at gem levels 18–22 (buff)","Hallowed Slam: 35% less damage at gem level 20 and up (nerf)","Hoarfrost Volley: up to +12% damage at gem levels 18–22 (buff)","Judgement: up to -46% damage at gem levels 16–21 (nerf)","Lightning Arrow: up to +25% damage at gem levels 18–22 (buff)","Pyre Burst: description changed — a minion is sacrificed only when you cast it yourself (not from a trigger or conduit)","Pyre of Faith: up to +25% damage at gem levels 18–20 (buff)","Rime Spark: up to +100% damage at gem levels 18–24 (buff)","Split Shot: 20% less damage at gem level 20 (nerf); up to +6% damage at gem levels 6–8 (buff)","Storm Spark: up to +19% damage at gem levels 18–21 (buff)","Grave Golem: up to -18% damage at gem levels 18–20 (nerf)","Flame Golem: each golem now dies with its own element's death effect and sound (was the shared stone effect)","Ice Golem: each golem now dies with its own element's death effect and sound (was the shared stone effect)","Summon Skeletal Mage: up to +35% damage at gem levels 18–20 (buff)","Summon Skeletons: up to +69% damage at gem levels 18–20 (buff)","Storm Golem: each golem now dies with its own element's death effect and sound (was the shared stone effect)","Venom Golem: each golem now dies with its own element's death effect and sound (was the shared stone effect)","Raise Zombie: up to +56% damage at gem levels 18–20 (buff)","Thousand Cuts: up to +30% damage at gem levels 18–24 (buff)","Living Orb: up to +45% damage at gem levels 18–24 (buff)","Venom Spark: up to +50% damage at gem levels 18–20 (buff)","Wind Vault: gains a cast effect","Winter Orb: up to +95% damage at gem levels 18–24 (buff)","Zap: up to +45% damage at gem levels 18–24 (buff)","Woe of Cinders, Woe of Entropy, Woe of Faltering, Woe of Rime, Woe of Sundering, Woe of the Tempest, Woe of Withering: descriptions now state the listed effect is at no Dread","Hit feel (screen shake / hit-stop) changed: Arcane Bolt, Blade Vortex, Hammerstorm, Orbiting Hammers, Wayward Orb","Late-game scaling: a new damage curve for 27 skills — damage rises from a starting gem level to a listed multiplier, then stays flat; it applies on top of the normal damage curve","Support gems — 15 changed:","Arrow Totem: description changed","Hunter's Mark: now fits every Projectile skill as well as Bow skills","Killer Instinct: critical strike multiplier +40% → +25% (-38%, nerf)","Orbit: description changed","Skyfall: description changed","Spell Totem: description changed","Trap: description changed — traps are live the moment they land, go off when an enemy comes within 4 metres and re-arm about a second later","Uniques — 106 new, 117 changed:","New unique: Ninth Hammer Shard","New unique: Runehollow Idol","New unique: Sentence of the Ninth Bell","New unique: The Avalanche Edict","New unique: The Eighth Blade Ornament","New unique: The Hollow Throne","New unique: The Roadless Stride","New unique: The Twinfletch Idol","New unique: The Wyrmling's Second Heart","New unique: Hands of the Gemwright (×75 variants — each grants a different pair of support gems)","New unique: Oathstone of the Nameless King (×15 variants — each pairs two keystones)","New unique: The Split Aspect (×7 variants — one per Dragonling aspect: your Dragonling also carries a second aspect, both at 40% reduced effect)","Bulwark of the Last Gate: mod text gains: 'Triggered hits cannot crit and set off nothing'","The Debt Collector: now has its own weapon","Debtor's Maul: now has its own weapon and artwork","Silent Scabbard: now has its own weapon and artwork","The Sundered Vow: now has its own weapon and artwork","Cinderwick: mod text now lists Storm Spark instead of Storm Brand among Spark skills","Cinderwick (Primal): mod text now lists Storm Spark instead of Storm Brand among Spark skills","Wild Trog's Thunderchord: mod text now lists Storm Spark instead of Storm Brand among Spark skills","Dawnwall Bulwark: mod text gains: 'Triggered hits cannot crit and set off nothing'","Dreadcrown (Primal): now has its own artwork","The Hollow Star: renamed (was listed under a placeholder name)","Quiver of the Ninth Storm: +2 → +1 to Level of Lightning Bow Skill Gems (−50%, nerf)","Reliquary of the Second Dawn: gained mod line: 20% less Damage with Holy Spells","Shadowsilk Wraps (Primal): now has its own artwork","Signet of the Lost Order (all 6 variants): flat Life roll 30–50 → 60–90; all Attributes roll 10–20 → 20–30 (buff)","The Gate That Answers: mod text gains: 'Triggered hits cannot crit and set off nothing'","The Long Battery (Primal): now has its own artwork","57 more changed uniques aren't listed here — 117 changed in total.","Passive tree — 31 changed:","Second Battery: no longer grants +1 Totem; gains 15% increased Totem Damage","Dawnsworn Blade: melee and Holy damage 23 → 57 (+148%, buff); loses a +34 melee damage line","Grim Sweep: gains +20 poison damage with melee","Swift Ward: 25% less energy shield (nerf)","Fleet Shadow: evasion bonus halved, 45% more → 22.5% more (-50%, nerf)","Oath of the Living Storm: +35% chance to Shock (was 25%, buff); shock effect -5% (was -10%, buff)","Oath of the Long Night: text capitalisation only","Oath of the Pyre: text capitalisation only","Oath of the White Silence: frozen enemies you kill shatter for 25% of their maximum Life (was 20%, buff)","Legion of Bone: skeleton warriors gain +30% damage","Marrow Wall: zombies gain +30% damage","Patient Edge: -15% critical strike chance","Blood Ledger: -15 maximum Life","Black Blood: +20% damage with projectiles and poison","Sure Strike: bleeding 36% more damage (was 57%, nerf); each Slam hit now shakes the ground for 15% of that hit within 2 metres as Physical damage","Iron Garrison: no longer grants +1 Totem; Totem Damage 15% → 30% increased","Meteor Lore: description reworded — now reads 'Not on Thunderfall, Ember Spark, Drain Life, Living Orb or Glacial Shards (a socketed Skyfall gem still works there).'","Circle of Stones: no longer grants +1 Totem; Totem Damage 15% → 30% increased","Oath of Wind and Steel: +20% increased attack speed (was 15%, buff)","Stormbrim: renamed to Static (5 nodes)","Oath masteries — 6 changed:","Mastery of Ward: Oath of the Glass Ward: 18% increased maximum Energy Shield → 36% increased maximum Energy Shield (+100%, buff)","Mastery of the Edge: Oath of the Glass Edge: +12% to critical strike multiplier → +24% (+100%, buff) (×5)","Runewords — 5 changed (none removed):","Bladesong: bow Physical Damage 24% increased (was about 200%, nerf)","Maelstrom: bow area about 1/1.75 as large (nerf)","Barrowking's Mandate: +1 to every minion limit (was +3)","Weapons — 15 new:","New weapon: Bloodfire Wand","New weapon: Carrion Lantern","New weapon: Communion Mace","New weapon: The Debt Collector","New weapon: Debtor's Maul","New weapon: Frostmoon Katana","New weapon: Hallowed Cinderfall","New weapon: Kitsune-Fire Claws","New weapon: Mamushi Knuckles","New weapon: The Parrying Tsuba","New weapon: The Prismatic Codex","New weapon: Silent Scabbard","New weapon: Starsplitter Wand","New weapon: The Sundered Vow","New weapon: Aegis of the Unbowed Saint","Potions — 2 changed:","of the Warded Answer: price 0.14 → 0.105 (−25%, cut)","of the Windward Answer: price 0.125 → 0.0625 (−50%, cut)","Affixes — 14 new:","New affix: Entropy multiplier on jewels — top tier of the Long Debt (11–14)","New affix: Entropy multiplier on weapons — top tier Starless (21–25)","New affix: Chaos penetration on idols — top tier of the Void (2–4)","New affix: Entropy multiplier on idols — top tier of the Long Debt (12–14)","New affix: Entropy multiplier on small idols — top tier of the Long Debt (7–8)","New affix: Entropy implodes sooner on idols — top tier of the Called Debt (0.2–0.25)","New affix: Curse effect on Riven gear — top tier of the Doomsayer (21–24)","New affix: Entropy multiplier on Riven jewels — top tier of the Long Debt (15–17)","New affix: Entropy multiplier on Riven weapons — top tier Starless (26–30)","New affix: Minion critical strike chance on Riven gear — top tier of the Last Vigil (40–46)","New affix: Poison penetration on Riven one-handed weapons — top tier of the Rotted Oath (7–7)","New affix: Poison penetration on Riven two-handed weapons — top tier of the Rotted Oath (13–14)","New affix: Movement speed on Riven rings — top tier of the Endless Road (6–6)","New affix: Vow effect on Riven gear — top tier of the Fervent Oath (21–24)","Riven affixes — 8 new:","The eight new Riven affixes above also join the Riven affix pool","Item bases — 1 new:","New item base: Core Touched Emberglow Amulet (Amulet, level 76, Core Touched)","Cube recipes — 1 new:","New cube recipe: Idol Filling — a rare idol with a free line + 1 Tier III or IV rune + 2 jewels of Cut or finer + 4 Core Embers → the idol gains 1 new random line of a kind it has room for","Dragonling — 1 new aspect:","New Dragonling aspect: Void — +20% Entropy Multiplier · implosions ignore 4% Chaos Resistance · +20% Poison resistance; Void lines added for every class in the Dragonling tree","Dragonling tree text now says Spark where it said Brand","Small text cleanups (capitalisation and wording only, no numbers changed) across skills, supports, uniques and the tree."]},
  {patch:'88',build:88,date:'2026-11-22',source:'developer_changelog',has_written_notes:true,changes:['Developer\'s notes:','Chaos damage, 5 Golem gems, 87 red uniques rewritten, defence no longer doubles as damage, better events and a fixed Catacombs. It is an alpha playtest: meta and damage will keep changing.','Per class (net, median hero):','Mage STRONGER x1.17. Paladin WEAKER x0.84. Ranger, Warrior, Necromancer and Samurai about even.','Buffs: Death Coil, Venom Spark, Ember Bolt, Winter Orb, Storm Spark, Cyclone, Pyre of Faith, Lightning Arrow, Thousand Cuts, Raise Zombie.','Nerfs: Tear cashes at most 4 seconds of a Bleed. Shuriken Fan 19% less. Heralds count a converted hit once. Skyfall counts Increased Area once. Sure Strike Bleeding 57% more (was 120%).','One node per defence still turns it into damage: Bastion\'s Reckoning (Armour), Fleet Shadow (Evasion), Swift Ward (Energy Shield), Oathstone Body (Life), Dawnmarch (Block).','21 other nodes lose that line and refund their points. Ironclad Fury pays for Armour only.','Hit hardest, 15 to 34%: Shield Throw, Shuriken Fan, Pyre of Faith, Judgement, Split Shot and Hallowed Slam stackers. Spend the refund on your defence\'s keystone.','Chaos damage (new):','Hits lay Entropy on enemies. It implodes 3 seconds later as Chaos damage that ignores Armour and elemental Resistance, and an enemy that dies owing Entropy bursts onto the pack.','A Chaos support, 5 chaos supports, one chaos keystone per class (any class can take any), 7 chaos reds and 6 chaos Oathwords.','Golems (new):','Grave, Flame, Ice, Storm and Venom Golem are their own gems, each with a blessing near it (Life regen, burning kills, Chill, Shock, more damage taken).','Press the gem again to send your golem leaping where you aim.','Red uniques:','87 reds now use the game\'s own lines: Sentence, Fury, Woes, item Oaths and Dragonling relics. Reds you own take the new lines when you log in.','NERFS on owned reds: The Regent\'s Thirst, Stormstring, Ashbrand of the Tyrant, Oathbreaker, The Thunder Psalm, Thunderstead Shield and Stormcaller\'s Fletching lose power.','19 retired count lines return on mega rare Primal twins. 16 new endgame reds.','Red uniques start dropping at monster level 35 (was 10).','Events and endgame:','Catacombs is fixed: the cart no longer stalls at the crypt. The first clear always pays Gloomsilver.','Qhikazar opens 3 prize cards; you pick one.','The Courier walks a patrol and turns on you. The Obelisk has 6 waves, Hoards and Warding Circles bring more monsters, Orsk guards a full Hoard, Hordes hold up to 28 enemies.','Into the Wound pays better reds at Depth 4 and 5. The Bounty hunter can drop a second chase unique.','Guardian life set from real kill times. Arena walls fall when the Guardian dies, and no rock stands inside an arena.','Gnome Realms has its own entry page with a map.','Interface, feel, audio:','Panels fade in and out. Drop banners are one line. Chat names line up. Tooltip ranges show the true top roll. Every support gem has its own icon.','Packs die on one beat with the element\'s light. The kill streak keeps its embers and adds a warm light; the magic circle is gone.','32 boss sounds remixed, harsh cues removed, Lightning Arrow 3.5 dB softer.','The shader cache ships with the game: far fewer hitches the first time you enter a land.','Full data changes — 88 vs 87:','Skills — 5 new, 8 changed:','New skill: Flame Golem','New skill: Ice Golem','New skill: Storm Golem','New skill: Venom Golem','New skill: Woe of Entropy','Blade Vortex: orbit body lock set to 0.8 (was none)','Holy Charge: allowed weapons changed','Shield Charge: allowed weapons changed','Shield Throw: allowed weapons changed','Shuriken Fan: early-level damage effectiveness 2.6 → 2.1 (−19%, nerf); late-level damage effectiveness 23.5 → 18.9 (−20%, nerf)','Grave Golem: description \'...shes the ground around it; it burns in the colour of its supports\' element. Only one answers at a time. Each golem blesses those near it: the grave golem heals you 1% of your life a second, the flame golem gives your minions 12.5% more damage, the ice golem gives you 31% more armour, the storm golem makes your minions 15% faster, and the venom golem makes enemies take 7.5% more damage. A blessing grows with y...\' → \'...shes the ground around it. Supports change its damage, never its form or its blessing. Only one golem answers at a time. Use it again while the golem stands to send it leaping where you aim, once every 6 seconds. Its blessing: you regenerate 1% of your life a second near it, and the golem takes 15% of the damage of hits you take near it (never its last life point). A blessing grows with y...\'; its standard aura gained a second line: the golem takes 15% of the damage of hits you take near it; its Poison aura gained a second line: a 20% chance for enemies near it to be Poisoned','Raise Zombie: its minions\' slam radius 170 → 220 (+29%, buff)','Thousand Cuts: early-level damage effectiveness 1.1 → 1.6 (+45%, buff)','Support gems — 5 new, 85 changed:','New support: Cascading Ruin','New support: Entropic Focus','New support: Gathering Dark','New support: Hastened Ruin','New support: Pact of Ruin','Deep Wounds: description \'...ore. Hits are unchanged. On a minion skill it work...\' → \'...ore. Hits are unchanged. A Slam or a crit cashes 50% of the next 4 seconds of bleed at once. On a minion skill it work...\'','Ironclad Fury: description \'...e damage per 1,000 Armour, 0.4% more per 1,000 Evasion, 0.9% more per 1,000 maximum Energy Shield and 0.3% more per 1,000 maximum Life you have. Every 1,000 counts in full: at 16,000 Armour and 8,000 Life, 6.4% more. It adds into the same damage engine as the passive tree\'s lines that pay your defences. Any attack or spell, totems and traps too: the walls you built now hit back.\' → \'...e damage per 1,000 Armour you have. Every 1,000 counts in full: at 40,000 Armour, 10% more. It adds into the same damage engine as the passive tree\'s lines that pay your defences. Any attack or spell, totems and traps too.\'; lost mod line: 0.4% more Damage for every 1,000 Evasion you have; lost mod line: 0.9% more Damage for every 1,000 maximum Energy Shield you have; lost mod line: 0.3% more Damage for every 1,000 maximum Life you have','Volatile Dead: description \'... blast deals Fire Damage in 3 metres equal to 80% of its hit damage. Recast at your limit to...\' → \'... blast deals Fire Damage equal to 80% of its hit damage in 3 metres, wider with area of effect. Recast at your limit to...\'','New icons for 73 support gems: Added Cold, Added Fire, Added Lightning, Added Poison, Affliction, Afterimage, Arrow Totem, Bloodlust, Bone Guard, Brutality, Chain, Chain Detonation, Channel Conduit, Concentrated Effect, Conjured Pair, Controlled Destruction, Dawnbringer, Deathblow, Deepened Woe, Economical Vow, Faster Attacks, Faster Casting, Fervent Vow, Flame, Focused Volley, Funeral Pyre, Grave Conscription, Honed Edge, Hunter\'s Mark, Ice, Increased Area, Inspiration, Killer Instinct, Life Leech, Lingering Woe, Melee Physical Damage, Minion Damage, Minion Life, Minion Speed, Multiple Projectiles, Multiple Totems, Pale Apprentices, Pass Sentence, Elemental Penetration, Pierce, Rallying Standard, Rampart Strike, Ravening Host, Repeat, Rimewake, Ruinous Herald, Sanctifying Light, Siphon, Skyfall, Skyward Oath, Spell Echo, Spreading Pyre, Stormfrost, Stormhound Pact, Swift Step, Tempered Aura, Tether, Spell Totem, Toxic Focus, Unravel, Venom Bloom, Venom, War Banner, Whirling Host, Wide Burst, Woe Bearer, Woebringer, Lightning','Bloodbound (changed)','Defiant Roar (changed)','Elemental Focus: description changed','Gather Fury (changed)','Kindling (changed)','Rend: description changed','Tithe (changed)','Trap: description changed','Chaos (changed)','Uniques — 42 new, 148 changed:','New unique: Ashen Crown (Primal)','New unique: The Debt Collector','New unique: Debtor\'s Maul','New unique: Heart of Entropy','New unique: Ninefold Quiver','New unique: Silent Scabbard','New unique: Starless Crown','New unique: The Sundered Vow','New unique: The Charnel Bell (Primal)','New unique: Dreadcrown (Primal)','New unique: Ironroot Signet (Primal)','New unique: Orrery of the Long Night (Primal)','New unique: Shadowsilk Wraps (Primal)','New unique: Frostbone Staff','New unique: Glacial Quillstaff','New unique: Gravedigger\'s Oath','New unique: Thunderstead Shield','25 more new uniques (Primal variants and the newest series) — the published change list names only the first 60 alphabetically, so the rest aren\'t individually named in the published diff.','Aegis of the Oath: lost mod line: 25% increased Area of Effect of Duration Skills','Ashen Crown (changed)','Breastplate of the Long Verdict: lost mod line: Leap Slam breaks the ground where it lands: 5 spikes erupt under enemies within 3.5 metres, each dealing 60% of the hit as Physical Damage (at most once every 0.6 seconds)','Bulwark of the Last Gate: no longer drops; no longer a Guardian signature','Chainbreaker: no longer drops','The Charnel Bell (changed)','Cinderknuckle (changed)','Aaron\'s Golemheart: gained mod line: +1 to the maximum number of Golems; gained mod line: Your Golems\' blessings are 30% stronger; lost mod line: +1 to the maximum number of Grave Golems; lost mod line: Your Golems\' auras stack, one blessing for every Golem, and are 30% stronger','Wild Trog\'s Thunderchord (changed)','Crook of the Vale (changed)','Crown of the Bone King (changed)','Dawnwall Bulwark: no longer drops','Dreadcrown (changed)','Emberheart (changed)','Engineer\'s Lodestone (changed)','Frostbloom Signet (changed)','Frostcaller Lantern (changed)','Galeheart Greataxe (changed)','Girdle of the Turning Earth: lost mod line: Every third Melee hit sends a shockwave through the ground: enemies within 2.6 metres take 40% of the hit as Physical Damage (at most once every 0.2 seconds)','Grave Psalter: gained mod line: Pyre Burst leaps on to 3 more fresh corpses','Gravesong (changed)','Gravesong (Primal) (changed)','Gravetithe: gained mod line: Enemies Rent by Soul Rend take 25% more Damage from your Minions instead of 10% (+150%, buff); gained mod line: Soul Rend chops 1 additional time','Halo of the Restless Saint (changed)','Hammerbearer\'s Relic (changed)','Hand of Dawn: gained mod line: When an Orbiting Hammer hits a Burning or Shocked enemy, a pillar of dawn strikes it and your Sentenced enemy for 35% of the hammer\'s hit as Fire Damage (each enemy at most once every 0.8 seconds); lost mod line: When an Orbiting Hammer hits a Burning or Shocked enemy, a pillar of dawn strikes it for 35% of the hammer\'s hit as Fire Damage (each enemy at most once every 0.8 seconds)','Heart of the White Silence (changed)','Hoarfall (changed)','Hoarfrost Reliquary (changed)','Hollow Moon Signet (changed)','Ironroot Signet (changed)','Jarl\'s Roarhelm (changed)','Jarlsbane (changed)','Kingbreaker (changed)','Kingbreaker (Primal) (changed)','Lightsworn Reliquary: gained mod line: Your Holy Elementals deal 40% more Damage','Mainspring Maul (changed)','Nightglass (changed)','Oathbleeder (changed)','Crown of the Unbroken: gained mod line: Grants Heartstopper: every 10 seconds, for 5 seconds you take 30% less damage from hits','Grasp of the Sworn (changed)','Heart of the Rupture: gained mod line: 6% increased Rarity of Items found for each of More Monster Life and More Monster Damage on your Rupture','Stride of the First Oath: gained mod line: You cannot be slowed; gained mod line: Oath of the Road: each second you keep moving, 2% more damage (10% at most). Stopping breaks it','The Keeper\'s Ember: gained mod line: Your Woes are 2% stronger for each of your living minions (20% at most)','The Last Feast: gained mod line: While you move, a fresh corpse within 1.5 metres is consumed for a Fury charge (at most 2 a second)','The Mirror Oath: gained mod line: Repeats from gear and support gems stack at full damage','Oathbreaker: gained mod line: Oath of Embers: each second you drink no flask, 2% more damage (10% at most). A flask breaks it','Oathfire Censer (changed)','Orrery of the Long Night (changed)','88 more changed uniques aren\'t individually named in the published change list (it caps at 60 names) — 148 changed in total.','Passive tree — 21 new nodes, 337 changed:','New node: Entropic Overload','New node: Patient Ruin','New node: Grave Debt','New node: Hungering Graves','New node: Compounding Debt','New node: Entropy (Necromancer) (×2)','New node: Ruin (Necromancer) (×2)','New node: Forsworn Crusade','New node: Unhallowed Ground','New node: Quarry\'s Debt','New node: Ruin Fletching','New node: Stillness Before Ruin','New node: Last Breath','New node: Quiet Ruin','New node: Entropy (Samurai) (×2)','New node: Ruin (Samurai) (×2)','New node: Blood Ledger','Aegis (changed) (×2)','Warding Oath: text removed: \'No diminishing returns.\'','Hammer and Shield (changed)','Iron Skin: text removed: \'No diminishing returns.\'','Second Battery: Mark Stacks 1.5 → Mark Stacks 1.12 (−25%, nerf)','Ferocity (changed) (×2)','Carrion Hymn: Poison Chance 0.25 → Poison Chance 0.19 (−24%, nerf)','Bone Armour: text removed: \'No diminishing returns.\'','Stalwart: +0.15 to maximum Fortified stacks (melee hits you land give stacks, each 1% less damage taken from hits) → +5 to maximum Fortified stacks (melee hits you land give stacks, each 1% less damage taken from hits) (+3233%, buff); 5% more Melee Damage for every Fortified stack you have → 0.36% more Melee Damage for every Fortified stack you have (−93%, nerf)','Shield Wall: Block Chance 0.5 → Block Chance 0.38 (−24%, nerf)','Choir of Bones: text \'... are supported by Chain (the gem\'s own price: ...\' → \'... are supported by Chain (its usual 5% less Dam...\'','Swift Ward (changed)','Fleet Shadow (changed)','Gale Step (changed)','Gravecaller: Poison Chance 0.2 → Poison Chance 0.15 (−25%, nerf)','Hammer of Judgement: 0.5% more Slam Damage for every 1,000 Armour you have → 0.375% more Slam Damage for every 1,000 Armour you have (−25%, nerf)','Wrath of the Wound (changed)','Covenant of Stone and Bone (changed)','Storm Spotter: Mark Stacks 4 → Mark Stacks 3 (−25%, nerf)','A Thousand Wounds: Repeat Index 5 → Repeat Index 3.75 (−25%, nerf)','Venom Mark: Mark Stacks 3 → Mark Stacks 2.25 (−25%, nerf)','Brand of the Woe: Woe Effect Match 0.5 → Woe Effect Match 0.38 (−24%, nerf)','Ki Breathing (changed)','Intelligence: +5 to Intelligence → +10 to Intelligence (×35) (+100%, buff)','277 more changed tree nodes aren\'t individually named in the published change list (it caps at 60 names) — 337 changed in total.','Oath masteries — 64 changed:','Mastery of the Archmage: Oath of the Arcane Mantle mod value 8 → 16 (+100%, buff); Oath of the Arcane Mantle mod value 3 → 6 (+100%, buff)','Mastery of the Gravelord: Oath of the Cold Hand: +6% to damage over time multiplier → +10% to damage over time multiplier (+67%, buff)','Mastery of the Pathfinder: Oath of the Eagle: +10% to critical strike multiplier with Projectile skills → +19% to critical strike multiplier with Projectile skills (+90%, buff)','Mastery of the Ronin: Oath of the Blade Dance: 5% increased attack speed with Melee skills → 9% increased attack speed with Melee skills (+80%, buff)','Mastery of the Warlord: Oath of the Unbowed: 6% increased maximum Life → 12% increased maximum Life (+100%, buff)','Mastery of Fury: Oath of the Brute: 10% increased Melee damage → 20% increased Melee damage (+100%, buff)','Mastery of Stillness: Oath of the Drawn Breath: 10% increased damage with Dash skills → 20% increased damage with Dash skills (+100%, buff); Oath of the Open Hand mod value 12 → 20 (+67%, buff)','Mastery of Storm: Oath of the Arcing Pulse: Your Shocks are 10% stronger → Your Shocks are 20% stronger (+100%, buff); Oath of the Thunder Eye: 15% increased critical strike chance with Lightning skills → 30% increased critical strike chance with Lightning skills (+100%, buff)','Mastery of Flame: Oath of Kindling: +6% chance to Ignite → +12% chance to Ignite (+100%, buff); Oath of the Long Smoulder: 12% increased Ignite damage → 24% increased Ignite damage (+100%, buff)','Mastery of Iron: Oath of the Stone Root: 4% increased maximum Life and 8% increased Armour → 16% increased maximum Life and 8% increased Armour (Life +300%, buff; Armour unchanged)','Mastery of Starfall: Oath of the Falling Star: 8% increased Skyfall damage → 16% increased Skyfall damage (+100%, buff); Oath of the Night Sky: 15% increased critical strike chance with Skyfall skills → 30% increased critical strike chance with Skyfall skills (+100%, buff)','Mastery of Spellcraft: Oath of the Swift Tongue: 4% increased cast speed → 8% increased cast speed (+100%, buff)','Mastery of Spellcraft (changed) (×6)','Mastery of Storm (changed) (×7)','Mastery of Ward (changed)','Mastery of Blight (changed) (×5)','Mastery of Iron (changed) (×4)','Mastery of the Legion (changed)','Mastery of Vigour (changed) (×2)','Mastery of Bulwark (changed) (×2)','Mastery of Dawn (changed)','Mastery of Flame (changed) (×6)','Mastery of the Hunt (changed) (×3)','Mastery of the Edge (changed) (×5)','Mastery of Stillness (changed)','Mastery of Fury (changed) (×4)','4 more changed masteries aren\'t named in the published change list (it caps at 60 names) — 64 changed in total.','Stacking rules — 75 added, 133 changed:','Changed or added lines named in the published change list: Warding Oath, Aegis of the Oath, Hammer and Shield, Iron Skin, Ashen Crown (Primal), Bone Armour, Breastplate of the Long Verdict, Stalwart, Cascading Ruin, The Debt Collector, Debtor\'s Maul, Heart of Entropy, Ninefold Quiver, Silent Scabbard, Starless Crown, The Sundered Vow, The Charnel Bell (Primal), Cinderknuckle, Wild Trog\'s Thunderchord, Crook of the Vale, Crown of the Bone King, Dreadcrown, Dreadcrown (Primal), Emberheart, Entropic Focus, Gale Step, Frostbloom Signet, Gathering Dark, Girdle of the Turning Earth, Grave Psalter, Gravesong, Gravesong (Primal), Gravetithe, Halo of the Restless Saint, Hand of Dawn, Hastened Ruin, Ironclad Fury, Ironroot Signet, Ironroot Signet (Primal), Jarl\'s Roarhelm, Jarlsbane, Covenant of Stone and Bone, Ki Breathing, Kingbreaker, Kingbreaker (Primal), Lightsworn Reliquary, and the Mage ascendancy step and scaling nodes','148 more stacking lines changed or added beyond the 60 names the published change list carries — 75 added and 133 changed in total.','Curses — 1 new:','New curse: Woe of Entropy','Gem homes — 5 new:','New skill home: Flame Golem','New skill home: Ice Golem','New skill home: Storm Golem','New skill home: Venom Golem','New skill home: Woe of Entropy','Mythic lines — 1 new:','New Mythic line: Voidheart (Entropy multiplier, +20)','Runes — 1 new:','New rune: Nyd (Tier 6, level 84)','Weapons — 4 new:','New weapon: Frostbone Staff','New weapon: Glacial Quillstaff','New weapon: Gravedigger\'s Oath','New weapon: Thunderstead Shield','Potions — 5 changed:','of the Iron Answer: price 0.5 → 0.17 (−66%, cut)','of the Oaken Answer: price 0.5 → 0.1 (−80%, cut)','of the Shield\'s Answer: price 0.5 → 0.33 (−34%, cut)','of the Warded Answer: price 0.5 → 0.14 (−72%, cut)','of the Windward Answer: price 0.5 → 0.125 (−75%, cut)','Runewords — 2 changed:','Oathwall (runeword mods changed)','Veilward (runeword mods changed)','Affixes — 1 changed:','The global Energy Shield affix moved to the flat Energy Shield defence group','Classes — 2 changed:','Paladin: base Str 18 / Dex 10 / Int 14 → Str 20 (+11%, buff) / Dex 6 (−40%, nerf) / Int 14 (unchanged)','Necromancer (changed — the published diff does not say what changed)','Dragonling — updated:','Dragonling data updated (one headline value changed; no Dragonling entries changed)','Stat text — updated:','Stat text updated (no entries added or changed)']}
@@ -10618,9 +10637,21 @@ function passivePointBudget(level,bonus,taken){
   var bud=Math.max(0,(Math.max(1,level||1)-1))*per+Math.max(0,bonus||0);
   return Math.max(bud,taken||0);
 }
+/* Oath Mastery seats cost no passive points (the game's rule):
+   a seat joins the taken set so its sworn Oath counts, but it
+   never spends from the passive budget. Every points total in
+   the tree — the pill, the plan totals, the take limits, the
+   Optimize / Plan-next-points math — counts passives only,
+   through treePassiveSpent; seats are reported separately, as
+   free. (isOathSeat is defined with the tree code below.) */
+function treePassiveSpent(ids){
+  return (ids||treeTakenIds()).filter(function(id){return !isOathSeat(id)}).length;
+}
 function passivePointsText(){
-  var t=treeTakenIds().length, b=state.passives, un=b-t;
-  return t+' out of '+b+(un>0?(' · '+un+' point'+(un===1?'':'s')+' unallocated'):'');
+  var ids=treeTakenIds();
+  var seats=ids.filter(isOathSeat).length;
+  var t=ids.length-seats, b=state.passives, un=b-t;
+  return t+' out of '+b+(un>0?(' · '+un+' point'+(un===1?'':'s')+' unallocated'):'')+(seats?(' · '+seats+' Oath seat'+(seats===1?'':'s')+' — free'):'');
 }
 function loadHeroIntoPlanner(d){
   beginSeparateInstance();
@@ -10700,7 +10731,7 @@ function loadHeroIntoPlanner(d){
   if(d.ascendancy)state.aspect=d.ascendancy;
   if(b.gem_levels&&b.main_skill&&b.gem_levels[b.main_skill])state.gemLevel=b.gem_levels[b.main_skill];
   state.bonusPassivePoints=b.bonus_passive_points||0;
-  state.passives=passivePointBudget(state.level,state.bonusPassivePoints,state.passiveNodes.length);
+  state.passives=passivePointBudget(state.level,state.bonusPassivePoints,(state.passiveNodes||[]).filter(function(id){return !isOathSeat(id)}).length);
   if(d.rupture_level!=null){state.heroRupture=d.rupture_level; state.rupture=d.rupture_level; var rrEl=$('ruptureRange'); if(rrEl)rrEl.value=state.rupture; var rvEl=$('ruptureVal'); if(rvEl)rvEl.textContent=state.rupture}
   state.oaths={};
   if(b.oaths&&typeof b.oaths==='object')state.oaths=JSON.parse(JSON.stringify(b.oaths));
@@ -10918,10 +10949,11 @@ function recalibrate(auto){
   calibBusy=true;
   var entryPatch=String((G.version&&G.version.patch)||SNAPSHOT_PATCH);
   var fitPatch=SNAPSHOT_PATCH;
-  /* The fit reads ONLY the ladder snapshot bundled with the page
-     — never the live ladder, never the ladder on screen (which
-     the live refresh may have replaced). The heroes are fixed
-     the moment the page ships, so the fitted factor is identical
+  /* The fit reads ONLY the preserved starter ladder bundled
+     with the page — never the live ladder, never the ladder on
+     screen (which the live refresh may have replaced, and which
+     a season rollover can empty). The heroes are fixed the
+     moment the page ships, so the fitted factor is identical
      on every load. The fit is hermetic about its other inputs
      too (2026-11-25): it waits for the deferred tier-2 files
      before pricing (runeword data feeds the calc, so pricing
@@ -10934,7 +10966,7 @@ function recalibrate(auto){
      whichever subset a slow network happened to deliver. A
      fit that cannot run whole leaves the baked factor, which
      is this same fit's value over the shipped snapshot. */
-  var ladderPromise=getSnap('ladder-'+DEFAULT_LEAGUE+'.json').then(function(lad){fitPatch=String(lad.patch||SNAPSHOT_PATCH);return lad});
+  var ladderPromise=getSnap('starters/ladder-at1-sc-trade.json').then(function(lad){fitPatch=String(lad.patch||SNAPSHOT_PATCH);return lad});
   var dataReady=(snapTier2Promise||Promise.resolve(null)).catch(function(){return null});
   var fitFetchFailed=false;
   return Promise.all([ladderPromise,dataReady]).then(function(pair){
@@ -10962,7 +10994,7 @@ function recalibrate(auto){
       var sk=G.skillMap[h.main_skill]; if(!sk)return;
       if(h.main_skill==='judgement'||h.main_skill==='hallowed_slam'||((sk.Tags||[]).indexOf('Minion')>=0&&sk.Minion))pick.push(h);
     });
-    return Promise.all(pick.map(function(h){return fetchBuildRaw('assets/snapshot/'+h.build,15000).then(parseBuildBuffer).then(function(d){return {h:h,d:d}}).catch(function(){fitFetchFailed=true;return null})}));
+    return Promise.all(pick.map(function(h){return fetchBuildRaw('assets/snapshot/starters/'+h.build,15000).then(parseBuildBuffer).then(function(d){return {h:h,d:d}}).catch(function(){fitFetchFailed=true;return null})}));
   }).then(function(res){
     if(fitFetchFailed)throw new Error('a bundled build file failed to load — fit not committed');
     var rows=[];
@@ -11208,21 +11240,42 @@ function renderPatchPanel(){
 }
 
 /* ---------- Home strip — the slim row of league facts ----------
-   Three plain items under the Home starters, re-rendered with
+   Three plain items under "Bring in your hero", re-rendered with
    the patch panel (and when the league list lands): how many
-   heroes the pinned default-league ladder holds — read from
-   that ladder itself, never typed in — a link to the current
-   patch's notes, and, only while a league's start is still
-   ahead, the day it opens. The hero count is remembered from
-   the pinned ladder alone, so browsing another league on the
-   Ladder tab never rewrites Home's number. */
-var homeLadderN=null;
+   heroes the current live season's ladder holds — the league
+   the Ladder tab defaults to, read from that ladder itself,
+   never typed in — a button naming the newest Patch Notes
+   entry, and, only while a league's start is still ahead, the
+   day it opens. The hero count is remembered from that league's
+   ladder alone, so browsing another league on the Ladder tab
+   never rewrites Home's number. */
+var homeLadderN=null, homeLadderFor=null;
 function renderHomeStrip(){
   var ladEl=$('homeStripLadder'); if(!ladEl)return;
-  if(G.ladder&&(!G.ladder.league||G.ladder.league===DEFAULT_LEAGUE)&&(G.ladder.heroes||[]).length)homeLadderN=G.ladder.heroes.length;
+  /* The count comes from the current live season — the league
+     the Ladder tab defaults to, resolved the same way
+     applyLeagues resolves it (defaultLeaguePick) — never the
+     ended season the pinned DEFAULT_LEAGUE names. When that
+     ladder is not the one on hand, its bundled file is read for
+     the count, so the strip and the Ladder tab's own sub-line
+     always agree. */
+  var pick=null; try{pick=defaultLeaguePick()}catch(e){}
+  var homeLeagueId=(pick&&pick.id)||state.league||DEFAULT_LEAGUE;
+  if(G.ladder&&G.ladder.league===homeLeagueId&&(G.ladder.heroes||[]).length)homeLadderN=G.ladder.heroes.length;
+  else if(homeLadderFor!==homeLeagueId){
+    homeLadderFor=homeLeagueId;
+    getSnap('ladder-'+homeLeagueId+'.json').then(function(d){if(d&&(d.heroes||[]).length){homeLadderN=d.heroes.length; renderHomeStrip()}}).catch(function(){});
+  }
   ladEl.textContent=homeLadderN!=null?('Ladder — '+homeLadderN.toLocaleString('en-US')+' heroes'):'Ladder';
   var pb=$('homeStripPatch');
-  if(pb)pb.textContent='Patch '+((G.meta&&G.meta.patch)||SNAPSHOT_PATCH)+' notes';
+  if(pb){
+    /* The button names the newest Patch Notes entry, read from
+       the patch-history data — not the snapshot's patch number.
+       If the history data is unavailable, the old label stands. */
+    var newestPatch=null;
+    try{var ents=patchHistoryEntries(); if(ents&&ents.length)newestPatch=ents[0].patch}catch(e){}
+    pb.textContent='Patch '+((newestPatch!=null?newestPatch:((G.meta&&G.meta.patch)||SNAPSHOT_PATCH)))+' notes';
+  }
   var tr=$('homeStripTrial');
   if(tr){
     var now=Date.now(), up=null;
@@ -11241,9 +11294,10 @@ function renderHomeStrip(){
 }
 
 /* ---------- Starter builds — ladder-derived templates ----------
-   A small set of starting points counted from the bundled ladder
-   snapshot alone — no uploads, no server-saved builds, nothing
-   beyond the official API data the rest of the page already reads.
+   A small set of starting points counted from the last complete
+   published builds, preserved with the page — no uploads, no
+   server-saved builds, nothing beyond the official API data the
+   rest of the page already reads.
    For each class the starters follow the main skills its published
    builds actually lead with: the most-played skill, plus every
    other skill at least half as played, up to three per class. The
@@ -11255,11 +11309,35 @@ function renderHomeStrip(){
    read-only — gear, skills, passive tree and Dragonling alike
    (see starterEditBlocked) — and one tap on "Duplicate it &
    make it mine" turns the open plan into a fully editable copy.
-   The list is recomputed whenever the ladder data refreshes, from
-   the same snapshot the Ladder view reads. */
+   The list is counted from that preserved ladder, so a new
+   season's ladder can never empty it. */
 var starterList=[];
+/* The preserved starter ladder: the last complete published
+   builds, kept with the page under assets/snapshot/starters/ so
+   a season rollover can never empty the starters. It is NOT the
+   current season's ladder — the Ladder tab owns G.ladder, and
+   this copy is never written over it. The starters and the
+   calibration fit are its only readers. */
+var starterLadderLoading=false;
+function loadStarterLadder(){
+  if(G.starterLadder||starterLadderLoading)return;
+  starterLadderLoading=true;
+  getSnap('starters/ladder-at1-sc-trade.json').then(function(d){G.starterLadder=d;starterLadderLoading=false;renderStarters()}).catch(function(){starterLadderLoading=false});
+}
+/* Starter build files come from the preserved copies only —
+   bundled, with no live-API fallback: the API no longer serves
+   those paths, so a fallback would only burn retries. */
+function fetchStarterBuildJSON(path){
+  var key='starters/'+path;
+  if(buildCache[key])return buildCache[key];
+  var p=fetchBuildRaw('assets/snapshot/starters/'+path,15000).then(parseBuildBuffer);
+  buildCache[key]=p;
+  p.catch(function(){if(buildCache[key]===p)delete buildCache[key]});
+  return p;
+}
 function computeStarters(){
-  var lad=G.ladder; if(!lad||!(lad.heroes||[]).length)return [];
+  var lad=G.starterLadder;
+  if(!lad||!(lad.heroes||[]).length){loadStarterLadder(); return []}
   var cand=lad.heroes.filter(function(h){return h.has_build&&h.build&&h.main_skill});
   /* Template strength, best first: a measured Guardian DPS where
      the API publishes one (only some heroes carry it), then the
@@ -11337,22 +11415,22 @@ function buildIsComplete(d){
   return true;
 }
 function renderStarters(){
-  /* One render feeds both starter grids — the Builds tab panel
-     and the Home row — from the same starterList, so the two
-     never quote different heroes or numbers. */
+  /* One render feeds the Builds tab starter grid from
+     starterList. (The Home row that mirrored it was removed in
+     v0.401; the guarded Home lookups below simply find nothing.) */
   var grids=[$('starterGrid'),$('homeStarterGrid')].filter(function(g){return !!g});
   if(!grids.length)return;
   var sub=$('starterPanelSub'), homeSub=$('homeStarterSub');
   starterList=computeStarters();
   if(!starterList.length){
-    if(sub)sub.textContent='The ladder snapshot has not landed yet — the starters are counted from it, so they arrive with it.';
-    if(homeSub)homeSub.textContent='The ladder snapshot has not landed yet — the starters are counted from it, so they arrive with it.';
+    if(sub)sub.textContent='The last complete published builds have not landed yet — the starters are counted from them, so they arrive with them.';
+    if(homeSub)homeSub.textContent='The last complete published builds have not landed yet — the starters are counted from them, so they arrive with them.';
     var dn0=$('starterDpsNote'); if(dn0)dn0.classList.add('hidden');
     var dn0h=$('homeStarterDpsNote'); if(dn0h)dn0h.classList.add('hidden');
     grids.forEach(function(g){g.innerHTML=''});
     return;
   }
-  if(sub)sub.textContent='A starting point, not a copy: each starter follows a main skill its class\u2019s published ladder builds lead with, opened from the strongest complete published build for that pairing. Everything in it opens read-only — gear, skills, passive tree and Dragonling — duplicate it to edit anything. Counted from the bundled ladder snapshot; nothing here is uploaded or saved on a server.';
+  if(sub)sub.textContent='A starting point, not a copy: each starter follows a main skill its class\u2019s published ladder builds lead with, opened from the strongest complete published build for that pairing. Everything in it opens read-only — gear, skills, passive tree and Dragonling — duplicate it to edit anything. Counted from the last complete published builds, kept with the page so a new season cannot empty them; nothing here is uploaded or saved on a server.';
   if(homeSub&&sub)homeSub.textContent=sub.textContent;
   var dpsNote=$('starterDpsNote');
   if(dpsNote){dpsNote.textContent='Two numbers, counted two ways: Measured is the template hero\u2019s real Guardian DPS off the ladder; the planner estimate is this planner\u2019s own calculation for the same build, and it is the number the planner\u2019s headline shows once the starter is open. They rarely agree exactly.'; dpsNote.classList.remove('hidden');}
@@ -11436,7 +11514,7 @@ function fillStarterEstimates(){
     (function next(){
       if(idx>=cands.length){s.calDps=0; s.calDone=true; s.calFor=(s.hero&&s.hero.build)||null; s.calBusy=false; s.noComplete=true; if(seq===starterCalSeq)refreshStarterCard(i); return}
       var h=cands[idx++];
-      fetchBuildJSON(h.build).then(function(d){
+      fetchStarterBuildJSON(h.build).then(function(d){
         if(!buildIsComplete(d)){next(); return}
         if(calSig()!==calStart){s.calBusy=false; s.calDps=null; s.calDone=false; s.calFor=null; if(seq===starterCalSeq)fillStarterEstimates(); return}
         var bt=null;
@@ -11500,7 +11578,7 @@ function openStarter(i){
   function tryNext(){
     if(idx>=cands.length){fail(); return}
     var h=cands[idx++];
-    fetchBuildJSON(h.build).then(function(d){
+    fetchStarterBuildJSON(h.build).then(function(d){
       if(!buildIsComplete(d)){sawIncomplete=true; tryNext(); return}
       /* The file is complete; before it is shown as the template,
          prove the planner can actually hold it — the hero's gear
@@ -11550,7 +11628,7 @@ function renderStarterBanner(){
   bn.classList.toggle('hidden',!on);
   if(on){
     var tx=$('starterBannerText');
-    if(tx)tx.textContent='This plan is the '+(state.starterFrom||'starter')+' template, opened from the ladder snapshot. Everything in it — gear, skills, passive tree and Dragonling — is fixed as published. Duplicate the plan to edit anything. Your own builds are never touched.';
+    if(tx)tx.textContent='This plan is the '+(state.starterFrom||'starter')+' template, opened from the last complete published builds. Everything in it — gear, skills, passive tree and Dragonling — is fixed as published. Duplicate the plan to edit anything. Your own builds are never touched.';
   }
 }
 /* The read-only lock: while a starter instance is active, edits
@@ -15267,16 +15345,18 @@ function gpRenderEditor(){
      +'</div></div>';
   }
   if(rarBox){
-    /* Item level and Rarity sit in the right-hand column beside
-       the base, not stacked full-width under it. */
-    var ilvlHTML='<div class="gp-side-field"><label class="sub" style="font-weight:700">Item level <input type="number" id="gpIlvl" value="'+(liveIt&&liveIt.item_level!=null?liveIt.item_level:state.level)+'" min="1" max="100" style="width:90px"></label></div>';
+    /* Item level and Rarity sit in the base's own area, on one
+       row under the base display: the Item level input and the
+       Rarity select side by side, each labelled (v0.401 — the
+       old right-hand column left a dead gap on wide screens). */
+    var ilvlHTML='<div class="gp-lvl-field"><label class="sub" style="font-weight:700">Item level <input type="number" id="gpIlvl" value="'+(liveIt&&liveIt.item_level!=null?liveIt.item_level:state.level)+'" min="1" max="100" style="width:90px"></label></div>';
     if(un){
-      rarBox.innerHTML=ilvlHTML+'<p class="label">Rarity</p><p class="sub" style="margin:0">Unique — a unique&rsquo;s rarity is fixed, and its mods below are the ones the game publishes for it.</p>';
+      rarBox.innerHTML='<div class="gp-lvl-rar-row">'+ilvlHTML+'<div class="gp-lvl-field"><span class="sub" style="font-weight:700">Rarity</span><p class="sub" style="margin:2px 0 0">Unique — a unique&rsquo;s rarity is fixed, and its mods below are the ones the game publishes for it.</p></div></div>';
     }else{
       var formed=gpFormedRw();
       var capNow=base?runeSocketCap(base,{sockets:null},gearPick.slot):0;
-      rarBox.innerHTML=ilvlHTML+'<p class="label">Rarity</p>'
-       +'<div class="flex"><label class="sub" style="font-weight:700">Rarity <select id="gpRarity"'+(formed?' disabled':'')+'><option>Normal</option><option>Magic</option><option>Rare</option></select></label></div>'
+      rarBox.innerHTML='<div class="gp-lvl-rar-row">'+ilvlHTML
+       +'<div class="gp-lvl-field"><label class="sub" style="font-weight:700">Rarity <select id="gpRarity"'+(formed?' disabled':'')+'><option>Normal</option><option>Magic</option><option>Rare</option></select></label></div></div>'
        +(capNow?'<p class="sub" style="margin:6px 0 0">Sockets on this base: <b>'+capNow+'</b> — socketing works straight away on a fresh Normal pick.</p>':'')
        +(formed?'<div class="gp-lock-note"><b>'+esc(formed.rec.Name)+'</b> stands on this item, and an Oathword can only exist on a Normal item — so the rarity is locked while it stands. Nothing here can silently drop a socket or a rune: to change the rarity, take a rune out first (the Oathword comes undone, out in the open).</div>':'');
       var rsel=$('gpRarity');
@@ -17247,7 +17327,6 @@ function renderDefenses(){
      are what answer a plain hit. The hover readout below carries
      every damage type. */
   var tn=$('toughNum'); if(tn)tn.textContent=(pool>0&&hit>0)?fmt(Math.round(pool/Math.max(0.01,(1-armRed/100)*blockAvg))):'—';
-  var leL=$('lifeEsLine'); if(leL)leL.textContent='Life '+fmtFull(d.life)+' · Energy Shield '+fmtFull(d.es);
   var pLife=$('poolLife'); if(pLife)pLife.textContent=fmtFull(d.life);
   var pEs=$('poolEs'); if(pEs)pEs.textContent=fmtFull(d.es);
   var pMana=$('poolMana'); if(pMana)pMana.textContent=fmtFull(d.mana);
@@ -17586,7 +17665,8 @@ function renderTreeList(){
   var inc=0,life=0;
   state.tree.take.forEach(function(id){var n=G.passiveMap[id]; if(!n)return; (n.Mods||[]).forEach(function(m){if(m.Stat==='Damage'&&m.Mode==='Inc')inc+=m.Value; if(m.Stat==='Life'&&m.Mode==='Flat')life+=m.Value;});});
   var oathSeats=Object.keys(state.oaths||{}).length, oathN=Object.keys(state.oaths||{}).reduce(function(a,k){return a+(state.oaths[k]||[]).length},0);
-  $('treeSummary').innerHTML='<div class="kv"><span>Points planned (Take)</span><b>'+state.tree.take.length+' / '+state.passives+'</b></div><div class="kv"><span>Take-list totals</span><b>+'+inc+'% increased damage • +'+life+' flat life</b></div>'
+  var takeSeats=state.tree.take.filter(isOathSeat).length;
+  $('treeSummary').innerHTML='<div class="kv"><span>Points planned (Take)</span><b>'+(state.tree.take.length-takeSeats)+' / '+state.passives+(takeSeats?(' · '+takeSeats+' Oath seat'+(takeSeats===1?'':'s')+' — free'):'')+'</b></div><div class="kv"><span>Take-list totals</span><b>+'+inc+'% increased damage • +'+life+' flat life</b></div>'
    +'<div class="kv"><span>Marks — Must take / Keep / Never</span><span class="tree-mark-row"><b>'+(state.tree.must||[]).length+' / '+state.tree.keep.length+' / '+state.tree.never.length+'</b>'
    +((state.tree.must||[]).length?'<button class="btn small" data-clear-mark="must" type="button">Clear Must</button>':'')
    +(state.tree.keep.length?'<button class="btn small" data-clear-mark="keep" type="button">Clear Keep</button>':'')
@@ -17671,7 +17751,7 @@ function renderTreeWeights(){
 function renderTreeVersions(){
   var sel=$('treeVerSel'); if(!sel)return;
   var vs=state.treeVersions||[];
-  sel.innerHTML=vs.length?vs.map(function(v,i){return '<option value="'+i+'">'+esc(v.name)+' ('+(v.ids||[]).length+' pts)</option>'}).join(''):'<option value="">No saved versions</option>';
+  sel.innerHTML=vs.length?vs.map(function(v,i){return '<option value="'+i+'">'+esc(v.name)+' ('+(v.ids||[]).filter(function(x){return !isOathSeat(x)}).length+' pts)</option>'}).join(''):'<option value="">No saved versions</option>';
 }
 function saveTreeVersion(){
   var inp=$('treeVerName');
@@ -17680,7 +17760,7 @@ function saveTreeVersion(){
   state.treeVersions.push({name:name,ids:treeTakenIds(),marks:{keep:(state.tree.keep||[]).slice(),never:(state.tree.never||[]).slice(),must:(state.tree.must||[]).slice()}});
   if(inp)inp.value='';
   renderTreeVersions();
-  var m=$('treeVerMsg'); if(m)m.textContent='Saved "'+name+'" — '+treeTakenIds().length+' points, with its Must / Keep / Never marks.';
+  var m=$('treeVerMsg'); if(m)m.textContent='Saved "'+name+'" — '+treePassiveSpent()+' points, with its Must / Keep / Never marks.';
   schedulePersistInstances(); renderCode();
 }
 function applyTreeVersion(){
@@ -17690,7 +17770,8 @@ function applyTreeVersion(){
   state.tree.keep=(v.marks&&v.marks.keep||[]).slice();
   state.tree.never=(v.marks&&v.marks.never||[]).slice();
   state.tree.must=(v.marks&&v.marks.must||[]).slice();
-  if((v.ids||[]).length>state.passives){state.passives=v.ids.length; var pr=$('passRange'); if(pr)pr.value=Math.min(123,state.passives); var pv=$('passVal'); if(pv)pv.textContent=state.passives}
+  var vSpent=(v.ids||[]).filter(function(x){return !isOathSeat(x)}).length;
+  if(vSpent>state.passives){state.passives=vSpent; var pr=$('passRange'); if(pr)pr.value=Math.min(123,state.passives); var pv=$('passVal'); if(pv)pv.textContent=state.passives}
   commitTreeTaken((v.ids||[]).slice());
   treeApply();
   var m=$('treeVerMsg'); if(m)m.textContent='Applied "'+v.name+'" — Undo in the tree buttons takes it back.';
@@ -17726,6 +17807,9 @@ function computeHeat(done){
       var path=bfsTreePath(n.Id,[startId].concat(base),blocked);
       if(!path){heatMap[n.Id]={noPath:true}; continue}
       var nodes2=base.concat(path);
+      /* Per-point worth divides by the path's PASSIVE cost —
+         an Oath seat on the path (or as the target) costs 0. */
+      var pcost=path.filter(function(x){return !isOathSeat(x)}).length;
       var dps=priceFor(nodes2);
       /* A Mastery seat gives nothing on its own — its worth is
          the best Oath it can swear, so a seat is priced with that
@@ -17741,14 +17825,14 @@ function computeHeat(done){
           if(od>dps+0.001){dps=od; oathPick={oid:o.Id,name:o.Name}}
         });
       }
-      var delta=dps-baseDps, per=path.length?delta/path.length/Math.max(1,baseDps)*100:0;
+      var delta=dps-baseDps, per=delta/Math.max(1,pcost)/Math.max(1,baseDps)*100;
       var defPct=0, defPer=0;
       if(blendW>0&&baseFig){
         try{
           var vst=deepClone(state); vst.passiveNodes=nodes2; vst.tree=Object.assign({},state.tree||{},{take:nodes2});
           var tv=tuningVariant(nodes2); Object.keys(tv).forEach(function(k){vst[k]=tv[k]});
           var pf=planFigures(vst);
-          if(pf){defPct=(pf.pool-baseFig.pool)/Math.max(1,baseFig.pool)*100; defPer=path.length?defPct/path.length:0}
+          if(pf){defPct=(pf.pool-baseFig.pool)/Math.max(1,baseFig.pool)*100; defPer=defPct/Math.max(1,pcost)}
         }catch(e){}
       }
       var priced=(n.Mods||[]).some(function(m){return ['Damage','CritChance','CritMulti','AttackSpeed','CastSpeed'].indexOf(m.Stat)>=0})||!!oathPick;
@@ -17824,7 +17908,7 @@ function renderBestPicks(){
 function renderPlanNext(){
   var box=$('treeNext'); if(!box)return;
   if(!heatMap){box.innerHTML='<p class="sub">Counting the tree…</p>'; computeHeat(renderPlanNext); return}
-  var left=state.passives-treeTakenIds().length;
+  var left=state.passives-treePassiveSpent();
   if(left<=0){box.innerHTML='<p class="sub">No unspent points — the plan is fully spent. Refund a node to plan further.</p>'; return}
   var have={}; treeTakenIds().forEach(function(id){have[id]=1});
   var blocked={}; (state.tree.never||[]).forEach(function(x){blocked[x]=1});
@@ -17838,9 +17922,12 @@ function renderPlanNext(){
   for(var qi=0;qi<queue.length&&spent<left;qi++){
     var id=queue[qi]; if(seenQ[id]||have[id])continue; seenQ[id]=1;
     var path=bfsTreePath(id,[startId].concat(Object.keys(have)),blocked);
-    if(!path||!path.length||spent+path.length>left)continue;
+    /* A path's cost is its passive nodes only — an Oath seat on
+       the way (or as the target) costs 0, as in the game. */
+    var pcost=path?path.filter(function(x){return !isOathSeat(x)}).length:0;
+    if(!path||!path.length||spent+pcost>left)continue;
     path.forEach(function(x){have[x]=1});
-    spent+=path.length;
+    spent+=pcost;
     var hv=heatMap[id];
     steps.push({id:id,path:path,oath:(hv&&hv.oathPick)?hv.oathPick.oid:null,note:((state.tree.must||[]).indexOf(id)>=0?'Must take':(hv?('+'+hv.pct.toFixed(2)+'% DPS'):''))+((hv&&hv.oathPick)?(' • swear '+hv.oathPick.name):'')});
   }
@@ -17855,7 +17942,11 @@ function treeOptimize(){
   if(!heatMap){var box=$('treeNext'); if(box)box.innerHTML='<p class="sub">Counting the tree…</p>'; computeHeat(treeOptimize); return}
   var startId=treeStartId();
   var cur=treeTakenIds(), curSet={}; cur.forEach(function(id){curSet[id]=1});
-  var total=cur.length;
+  /* The point count Optimize preserves is the PASSIVE count:
+     Oath seats cost nothing, so they neither consume the fill
+     budget nor need to be matched one-for-one. */
+  var total=treePassiveSpent(cur);
+  function nextSpent(){return Object.keys(next).filter(function(x){return !isOathSeat(x)}).length}
   /* Stay-put set: taken keystones, jewel sockets, choice / trigger
      nodes, Must-take marks, and — by default — notables with no
      priced damage lines never move. */
@@ -17881,17 +17972,17 @@ function treeOptimize(){
   }
   Object.keys(keepSet).forEach(function(id){growTo(id)});
   var ranked=heatRanked();
-  for(var i=0;i<ranked.length&&Object.keys(next).length<total;i++){
+  for(var i=0;i<ranked.length&&nextSpent()<total;i++){
     var id=ranked[i].id;
     if(next[id])continue;
     var path=bfsTreePath(id,[startId].concat(Object.keys(next)),blocked);
     if(!path)continue;
-    if(Object.keys(next).length+path.length>total)continue;
+    if(nextSpent()+path.filter(function(x){return !isOathSeat(x)}).length>total)continue;
     path.forEach(function(x){if(!next[x]){next[x]=1; order.push(x)}});
   }
   /* Any points still unspent (nothing better reachable) stay where
      they were — the preview only moves a point when it gains. */
-  cur.forEach(function(id){if(Object.keys(next).length<total&&!next[id])growTo(id)});
+  cur.forEach(function(id){if(nextSpent()<total&&!next[id])growTo(id)});
   /* Oath pass: at every seat the new tree holds, the sworn Oath
      is a choice too — keep it, swap it, or leave the seat empty,
      whichever prices best for this skill. A seat the fill has
@@ -17979,11 +18070,16 @@ function renderLevelPath(){
   var res=levelPathOrder(), order=res.order;
   var ppl=(G.scaling&&G.scaling.Hero&&G.scaling.Hero.PassivePointsPerLevel)||1;
   var curLv=Math.max(1,state.level||1);
-  var lastLv=order.length?Math.ceil(order.length/ppl):0;
-  if(hint)hint.textContent=order.length+' point'+(order.length===1?'':'s')+' • Lv 1 → Lv '+Math.max(curLv,lastLv)+(res.lost.length?' • '+res.lost.length+' off the walked route':'');
-  var rows=[], divided=false;
-  order.forEach(function(id,i){
-    var lv=Math.ceil((i+1)/ppl), n=G.passiveMap[id];
+  /* Oath seats ride the path for free — they take no point, so
+     they take no level step either: a seat is listed at the
+     level the walk has reached when it is met. */
+  var orderPts=order.filter(function(id){return !isOathSeat(id)}).length;
+  var lastLv=orderPts?Math.ceil(orderPts/ppl):0;
+  if(hint)hint.textContent=orderPts+' point'+(orderPts===1?'':'s')+' • Lv 1 → Lv '+Math.max(curLv,lastLv)+(res.lost.length?' • '+res.lost.length+' off the walked route':'');
+  var rows=[], divided=false, stepN=0;
+  order.forEach(function(id){
+    if(!isOathSeat(id))stepN++;
+    var lv=Math.max(1,Math.ceil(stepN/ppl)), n=G.passiveMap[id];
     if(!divided&&lv>curLv){rows.push('<div class="lp-divider">Past your current level (Lv '+curLv+') — the road ahead</div>'); divided=true}
     var big=!!n&&(n.Kind==='Notable'||n.Kind==='Keystone'||isOathSeat(id));
     rows.push('<div class="kv lp-row'+(lv>curLv?' lp-future':'')+'"><span><span class="lp-lv">Lv '+lv+'</span><b'+(big?' class="lp-big"':'')+'>'+esc(n?n.Name||niceId(id):niceId(id))+'</b> <small class="sub">'+esc(n?nodeKindLabel(n.Kind):'')+(n&&isOathSeat(id)?' • Oath seat':'')+'</small></span><span class="node-state">'+esc(nodeModsText(n||{}))+'</span></div>');
@@ -17994,7 +18090,7 @@ function renderLevelPath(){
   });
   body.innerHTML=xpBlockHTML()+'<p class="sub" style="margin:0 0 4px">From your '+esc(state.cls)+' start, nearest first — every point spendable the level it is earned, at the published rate of '+ppl+' point'+(ppl===1?'':'s')+' per level. Quest and bonus points (Inscribed Quartz, Rupture milestones) land on top of that rate, so a few steps can come a little earlier in game.</p>'
    +rows.join('')
-   +(order.length<(state.passives||0)?'<p class="sub" style="margin-top:6px">This plan spends '+order.length+' of its '+state.passives+' points by Lv '+lastLv+' — the rest of the budget is unspent in the plan.</p>':'')
+   +(orderPts<(state.passives||0)?'<p class="sub" style="margin-top:6px">This plan spends '+orderPts+' of its '+state.passives+' points by Lv '+lastLv+' — the rest of the budget is unspent in the plan.</p>':'')
    +(res.lost.length?'<p class="sub" style="margin-top:6px">'+res.lost.length+' planned node'+(res.lost.length===1?' sits':'s sit')+' off the walked route — the walk from your start through the taken nodes never reaches '+(res.lost.length===1?'it':'them')+' (a gateway hop, most likely), so '+(res.lost.length===1?'it is':'they are')+' listed last without a level.</p>':'');
 }
 /* The Levelling path button opens the path's own fold and brings
@@ -18003,6 +18099,27 @@ function renderLevelOrder(){
   renderLevelPath();
   var fold=$('levelPathFold');
   if(fold){fold.open=true; try{fold.scrollIntoView({block:'nearest'})}catch(e){}}
+}
+/* Refund all — one click refunds every taken PASSIVE node.
+   Refunds are free in this game (no refund points, no cost), so
+   this is a plain commit of the seats-only taken set through the
+   same commitTreeTaken path a manual refund uses: Undo restores
+   the tree exactly as it does after a manual refund, and the
+   canvas, totals, heat map and plan tools all re-render off the
+   emptied set. Oath seats are a separate system and cost no
+   points — Refund all does NOT clear them, and any Oaths sworn
+   at them stay sworn. Marks are untouched (Reset marks is the
+   separate control for those). */
+function treeRefundAll(){
+  var taken=treeTakenIds();
+  var passives=taken.filter(function(id){return !isOathSeat(id)});
+  var nb=$('treeNext');
+  if(!passives.length){
+    if(nb)nb.innerHTML='<p class="sub">No passive points to refund — the tree holds no passive nodes right now.</p>';
+    return;
+  }
+  commitTreeTaken(taken.filter(isOathSeat));
+  if(nb)nb.innerHTML='<p class="sub">Refunded all '+passives.length+' passive points — refunds are free. Oath seats stay taken; they cost no points.</p>';
 }
 function treeUndo(){
   var prev=treeHistory.pop(); if(!prev)return;
@@ -18268,6 +18385,16 @@ function updateTreeCanvasStates(){
     if(tc.gates&&kind!=='Socket'&&kind!=='Choice')cl+=' dim';
     if(treeTrace&&treeTrace.set[id])cl+=' trace';
     if(swords.length)cl+=(n&&treeNodeMatches(n,swords))?' match':' dim';
+    /* The filter chips dim the canvas with the node list's own
+       predicates. Before this, the chips only filtered the list —
+       on the canvas they changed nothing, which is the v0.401
+       report's "some of these buttons is not working" (All nodes /
+       Keystones / Notables / Oath seats / Marked). */
+    var tf=state.treeFilter;
+    if(tf&&tf!=='All'&&n&&cl.indexOf(' dim')<0){
+      var fmatch=tf==='Keystone'?n.Kind==='Keystone':tf==='Notable'?n.Kind==='Notable':tf==='Mastery'?isOathSeat(id):tf==='Marked'?!!markOf(id):true;
+      if(!fmatch)cl+=' dim';
+    }
     if(el._tcCls!==cl){el.setAttribute('class',cl); el._tcCls=cl}
     /* The node's icon follows the two fade states, so a dimmed or
        other-class node reads faded as a whole, art included. */
@@ -18361,7 +18488,7 @@ function showTreeDetail(id,msg){
 function oathSeatHTML(seid,taken){
   var m=masteryForSeat(seid), sworn=swornOaths(seid);
   var h='<div style="margin-top:10px;border-top:1px solid var(--line2);padding-top:8px"><div class="label" style="margin:0 0 4px">◆ Oath Mastery seat</div>';
-  if(!taken)h+='<p class="sub" style="margin:0">An empty seat gives nothing. Take this seat, then swear one of its Oaths here — its mods count while the seat is taken.</p>';
+  if(!taken)h+='<p class="sub" style="margin:0">An empty seat gives nothing. Take this seat, then swear one of its Oaths here — its mods count while the seat is taken. Taking a seat costs no passive points.</p>';
   else if(!m)h+='<p class="sub" style="margin:0">The game data names no Oaths for this seat yet — it gives nothing until it does.</p>';
   else{
     var blocked=oathBlocked(seid);
@@ -18420,10 +18547,13 @@ function treeNodeClick(id){
     var path=bfsTreePath(id,[startId].concat(taken),blocked);
     if(!path){showTreeDetail(id,'No path to this node that avoids your Never marks.'); return}
     path.forEach(function(x){set[x]=1});
-    var newTotal=Object.keys(set).length;
+    /* Oath seats on the path cost nothing: the limit is judged
+       on passive points only, so taking a seat is never refused
+       for lack of points and never consumes the budget. */
+    var newTotal=treePassiveSpent(Object.keys(set));
     if(newTotal>state.passives){showTreeDetail(id,'Not enough passive points — this path takes the plan to '+newTotal+' pts, but it only has '+state.passives+'. Refund a node first, or raise the points under Passive points spent.'); return}
     commitTreeTaken(Object.keys(set));
-    showTreeDetail(id,'Took '+(n.Name||niceId(id))+(path.length>1?(' — the shortest path came with it ('+path.length+' nodes, '+taken.length+' → '+Object.keys(set).length+' pts)'):'')+'.');
+    showTreeDetail(id,'Took '+(n.Name||niceId(id))+(path.length>1?(' — the shortest path came with it ('+path.length+' nodes, '+treePassiveSpent(taken)+' → '+newTotal+' pts)'):'')+'.');
   }
 }
 /* ---------- Shift-trace a route ----------
@@ -18440,7 +18570,7 @@ function treeNodeClick(id){
 function renderTreeTraceBar(){
   var bar=$('treeTraceBar'); if(!bar)return;
   if(!treeTrace||!treeTrace.ids.length){bar.classList.add('hidden'); bar.innerHTML=''; return}
-  var total=treeTakenIds().length+treeTrace.ids.length, over=total>state.passives;
+  var total=treePassiveSpent()+treeTrace.ids.filter(function(x){return !isOathSeat(x)}).length, over=total>state.passives;
   bar.classList.remove('hidden');
   bar.classList.toggle('over',over);
   bar.innerHTML='<b>Route traced: '+treeTrace.ids.length+' node'+(treeTrace.ids.length===1?'':'s')+'</b> — '+(over?('that already runs to '+total+' pts before the joins, over your '+state.passives+' — hover back along the route to trim it, or refund first'):'click any traced node to take the whole route')+'<button class="btn small" type="button" data-trace-clear="1">Clear</button>';
@@ -18477,10 +18607,10 @@ function commitTreeTrace(clickId){
   }
   var lastId=route[route.length-1];
   if(fail){showTreeDetail(fail,'No path to this node that avoids your Never marks — the traced route was left untaken, and it stays traced so you can trim it.'); return true}
-  var total=Object.keys(set).length;
+  var total=treePassiveSpent(Object.keys(set));
   if(total>state.passives){showTreeDetail(lastId,'Not enough passive points — this route takes the plan to '+total+' pts, but it only has '+state.passives+'. The route stays traced: hover back along it to trim it, refund a node first, or raise the points under Passive points spent.'); return true}
   commitTreeTaken(Object.keys(set));
-  showTreeDetail(lastId,'Took the traced route — '+added+' new node'+(added===1?'':'s')+' ('+taken.length+' → '+total+' pts).');
+  showTreeDetail(lastId,'Took the traced route — '+added+' new node'+(added===1?'':'s')+' ('+treePassiveSpent(taken)+' → '+total+' pts).');
   return true;
 }
 function bindTreeCanvas(){
@@ -22249,17 +22379,22 @@ function pnEntName(file,id){
   return niceId(id);
 }
 /* ---------- Patch history ----------
-   Patch Notes shows the latest patch as the detailed entry;
-   every other patch lives inside the History button, in the
-   dropdown panel that drops from it, newest first, one
-   collapsible entry per patch. Entries come from the patch-history store
+   Patch Notes shows the latest patch up front; every other patch
+   lives inside the History button, in the dropdown panel that
+   drops from it, newest first, one collapsible entry per patch.
+   Entries come from the patch-history store
    (assets/snapshot/patch-history.json, mirrored by
-   PATCH_HISTORY_DEFAULT). The entry for the patch whose full
-   changelog this page holds renders as the detailed entry;
-   every other entry — older patches, and any store entry newer
-   than the changelog's patch (a patch announced before the API
-   publishes its data) — shows in History with only its patch
-   number, its date, and the changes its store record carries. */
+   PATCH_HISTORY_DEFAULT). Normally the up-front entry is the
+   patch whose full changelog this page holds, rendered as the
+   detailed deep-diff entry. When a store entry is newer than
+   that bundled patch — a patch the developer has announced
+   before the game's data feed publishes it — the newest such
+   entry takes the up-front position instead, presented the way
+   history entries are presented, and the bundled patch moves
+   into History with its full detailed rendering intact. The
+   choice is made from the build numbers alone, so when the data
+   feed catches up the bundled patch takes the front back with
+   no special case left behind. */
 function patchHistoryEntries(){
   var h=(G.patchHistory&&G.patchHistory.entries&&G.patchHistory.entries.length)?G.patchHistory:PATCH_HISTORY_DEFAULT;
   /* Patch 87's entry was removed at the owner's direction on
@@ -22443,6 +22578,44 @@ function renderPatches(){
   if(entryCur&&entryCur.date)metaCur.push(phDateLabel(entryCur.date));
   else if(ch.game_data_updated_at)metaCur.push(phDateLabel(ch.game_data_updated_at));
   var detailCur='<details class="ph-entry" open><summary><span class="ph-title">Patch '+esc(ch.patch)+'</span><span class="ph-meta">'+esc(metaCur.join(' • '))+'</span></summary><div class="ph-body"><p class="sub">'+esc(subCur)+'</p>'+summary+filters+(fileCards||'<p class="sub">Nothing in this patch matches that filter.</p>')+'</div></details>';
+  /* A store entry newer than the bundled changelog — a patch the
+     developer has announced before the game's data feed publishes
+     it — takes the up-front position, presented the way history
+     entries are presented (its introduction, its store record's
+     note, and its section cards), and the bundled patch moves
+     into History with the full detailed rendering built above.
+     The test is purely the build numbers, so when the data feed
+     catches up — the store entry replaced in place and the
+     bundled changelog reaching that patch — this branch stops
+     firing and the bundled patch renders up front exactly as
+     before, with nothing shown twice. */
+  var bundledBuild=(ch.game_build!=null?Number(ch.game_build):Number(ch.patch))||0;
+  var allEntries=patchHistoryEntries();
+  var frontEntry=null;
+  for(var fi=0;fi<allEntries.length;fi++){if((allEntries[fi].build||0)>bundledBuild){frontEntry=allEntries[fi]; break}}
+  if(frontEntry){
+    $('patchSub').textContent='Patch '+frontEntry.patch+' is the latest patch. Older patches are in History.';
+    var metaFront=[];
+    if(frontEntry.build!=null)metaFront.push('Build '+frontEntry.build);
+    if(frontEntry.date)metaFront.push(phDateLabel(frontEntry.date));
+    body.innerHTML='<details class="ph-entry" open><summary><span class="ph-title">Patch '+esc(frontEntry.patch)+'</span>'+(metaFront.length?'<span class="ph-meta">'+esc(metaFront.join(' • '))+'</span>':'')+'</summary><div class="ph-body">'+phEntryBodyHtml(frontEntry)+'</div></details>';
+    if(histBody){
+      var prevBundled=histBody.querySelector('details[data-pn-bundled]');
+      var bundledWasOpen=!!(prevBundled&&prevBundled.open);
+      histBody.innerHTML=allEntries.filter(function(e){return String(e.patch)!==String(frontEntry.patch)}).map(function(e){
+        var meta=[];
+        if(e.build!=null)meta.push('Build '+e.build);
+        if(e.date)meta.push(phDateLabel(e.date));
+        if(String(e.patch)===String(ch.patch)){
+          return '<details class="ph-entry" data-pn-bundled="1"'+(bundledWasOpen?' open':'')+'><summary><span class="ph-title">Patch '+esc(e.patch)+'</span>'+(meta.length?'<span class="ph-meta">'+esc(meta.join(' • '))+'</span>':'')+'</summary><div class="ph-body"><p class="sub">'+esc(subCur)+'</p>'+summary+filters+(fileCards||'<p class="sub">Nothing in this patch matches that filter.</p>')+'</div></details>';
+        }
+        return '<details class="ph-entry"><summary><span class="ph-title">Patch '+esc(e.patch)+'</span>'+(meta.length?'<span class="ph-meta">'+esc(meta.join(' • '))+'</span>':'')+'</summary><div class="ph-body">'+phEntryBodyHtml(e)+'</div></details>';
+      }).join('')||'<p class="sub patch-history-empty">No older patches yet.</p>';
+    }
+    syncPatchHistoryUI(frontEntry.patch);
+    if(histBody)histBody.querySelectorAll('.pn-filter').forEach(function(b){b.addEventListener('click',function(ev){ev.stopPropagation(); pnFilter=b.getAttribute('data-pnf'); renderPatches()})});
+    return;
+  }
   body.innerHTML=detailCur;
   if(histBody)histBody.innerHTML=patchHistoryHtml(ch.patch,ch.game_build)||'<p class="sub patch-history-empty">No older patches yet.</p>';
   syncPatchHistoryUI(ch.patch);
@@ -23384,7 +23557,7 @@ function bindExtras(){
      Resists plate and its hover panel (renderDefenses). */
   $('treeSearch').addEventListener('input',scheduleTreeSearch);
   var tscEl=$('treeSearchClear'); if(tscEl)tscEl.addEventListener('click',function(){var tsx=$('treeSearch'); if(tsx){tsx.value=''; tsx.focus()} renderTreeList();});
-  $('treeFilterChips').addEventListener('click',function(e){var b=e.target.closest('[data-tfilter]'); if(!b)return; state.treeFilter=b.getAttribute('data-tfilter'); document.querySelectorAll('[data-tfilter]').forEach(function(x){x.classList.toggle('active',x===b)}); renderTreeList();});
+  $('treeFilterChips').addEventListener('click',function(e){var b=e.target.closest('[data-tfilter]'); if(!b)return; state.treeFilter=b.getAttribute('data-tfilter'); document.querySelectorAll('[data-tfilter]').forEach(function(x){x.classList.toggle('active',x===b)}); renderTreeList(); updateTreeCanvasStates();});
   $('treeFsBtn').addEventListener('click',function(){var c=$('treeCard'); if(document.fullscreenElement)document.exitFullscreen(); else if(c&&c.requestFullscreen)c.requestFullscreen();});
   function treeClick(e){
     var b=e.target.closest('[data-tree-act]');
@@ -23424,6 +23597,7 @@ function bindExtras(){
   var tbb=$('treeBestBtn'); if(tbb)tbb.addEventListener('click',renderBestPicks);
   var tpb=$('treePlanBtn'); if(tpb)tpb.addEventListener('click',renderPlanNext);
   $('treeUndoBtn').addEventListener('click',treeUndo);
+  var trab=$('treeRefundAllBtn'); if(trab)trab.addEventListener('click',treeRefundAll);
   $('treeResetBtn').addEventListener('click',function(){pushTreeHist(); state.tree={take:[],keep:[],never:[],must:[]}; treePreview=null; renderTreeList(); renderCode(); updateTreeCanvasStates();});
   var tsum=$('treeSummary'); if(tsum)tsum.addEventListener('click',function(e){var b=e.target.closest('[data-clear-mark]'); if(b)clearTreeMarks(b.getAttribute('data-clear-mark'))});
   $('itemsSearch').addEventListener('input',renderItems);
@@ -24957,6 +25131,7 @@ function switchTab(name,opts){
   if(name==='planner')ensurePlannerInstance();
   if(currentTab&&currentTab!==name)viewStoreData.scroll[currentTab]=Math.max(0,Math.round(window.pageYOffset||0));
   currentTab=name;
+  document.body.classList.toggle('tab-home',name==='home');
   viewStoreData.tab=name; viewStoreSave();
   document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('active',t.getAttribute('data-tab')===name)});
   TAB_NAMES.forEach(function(v){$('view-'+v).classList.toggle('hidden',v!==name)});
@@ -25684,8 +25859,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.399';
-var PLANNER_BUILT_AT='2026-11-26T11:56:23-07:00';
+var PLANNER_VERSION='0.401';
+var PLANNER_BUILT_AT='2026-11-26T06:52:00-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
@@ -26171,6 +26346,7 @@ function loadSnapshot(){
     applyVersion(res[0]); applyLeagues(res[1]); applyGameData([res[2],res[3],res[4],res[5],res[6],res[7],res[8],res[9],res[10],res[11],res[12],res[13],res[14],res[15],res[16],res[17],res[19],res[20],res[21],res[22],res[25],res[26],res[27],res[28],res[29],res[30],res[31],res[32],res[33],res[34],res[35],res[36],res[37],res[38]]);
     getSnap('ladder-'+DEFAULT_LEAGUE+'.json').then(function(d){if(state.league===DEFAULT_LEAGUE&&!G.ladder){G.ladder=d;G.ladderSource='snapshot';if(currentTab==='ladder')renderLadder()}}).catch(function(){});
     getSnap('meta-'+DEFAULT_LEAGUE+'.json').then(function(d){if(state.league===DEFAULT_LEAGUE&&!G.meta){G.meta=d;G.metaSource='snapshot';if(currentTab==='meta')renderMeta()}}).catch(function(){});
+    loadStarterLadder();
     /* Second-tier apply: exactly the pieces that read the
        deferred files re-render — the enemy picker and the
        planner (a Guardian's published hit feeds the Defence
@@ -26339,6 +26515,7 @@ function init(){
   if(!startTab&&viewStoreData.tab&&TAB_NAMES.indexOf(viewStoreData.tab)>=0)startTab=viewStoreData.tab;
   if(startTab&&startTab!=='home')switchTab(startTab,{skipHash:true});
   else if(startTab==='home')currentTab='home';
+  if(!startTab||startTab==='home')document.body.classList.add('tab-home');
   restoreViewY();
   $('retryLiveBtn').addEventListener('click',function(){refreshLive()});
   var aob=$('daAuditOpen'); if(aob)aob.addEventListener('click',openModifierAudit);
