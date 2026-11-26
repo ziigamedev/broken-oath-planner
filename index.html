@@ -2761,17 +2761,23 @@ td{padding:7px 8px}
    open by a tap it takes pointer events and carries its own close
    button; it never grows past most of the screen. */
 .fb-tip.skill-tip,.fb-tip.gem-tip{max-height:min(62vh,560px);overflow:auto}
-/* Every .fb-tip card is capped to the screen and scrolls inside:
-   a tall item card (a five-vow unique plus its "Wearing it gives
-   this build" delta) used to run off the bottom of the screen,
-   its last lines impossible to see. The skill / gem cap above
-   stays the tighter one (higher specificity); the item, gear and
-   loot cards get the full screen height. A card that had to be
-   capped (.fb-scroll, set by fbPlaceTip) takes pointer events so
-   its overflow can be scrolled to, on hover and pinned alike; a
-   card that fits keeps pointer-events:none exactly as before. */
-.fb-tip{max-height:calc(100dvh - 16px);overflow-y:auto}
-.fb-tip.fb-scroll{pointer-events:auto}
+/* Every .fb-tip card is capped and scrolls inside: a tall item
+   card (a five-vow unique plus its "Wearing it gives this build"
+   delta) used to run off the bottom of the screen, its last
+   lines impossible to see. The cap is 85% of the viewport
+   height (v0.405 — vh first, dvh where supported, so a browser
+   without dvh still caps the card instead of letting it grow
+   past the screen), and a capped card's scrolling stays inside
+   the card: overscroll never chains through to the page. The
+   skill / gem cap above stays the tighter one (higher
+   specificity). A card that had to be capped (.fb-scroll, set
+   by fbPlaceTip) takes pointer events so its overflow can be
+   scrolled to with wheel and touch, on hover and pinned alike,
+   and it stays open while the pointer is over it (the mouseleave
+   wiring where each card element is created); a card that fits
+   keeps pointer-events:none exactly as before. */
+.fb-tip{max-height:85vh;max-height:85dvh;overflow-y:auto;overscroll-behavior:contain}
+.fb-tip.fb-scroll{pointer-events:auto;touch-action:pan-y}
 .fb-tip.pinned{pointer-events:auto}
 .tip-x{position:absolute;top:5px;right:5px;width:28px;height:28px;min-height:28px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--muted);font-size:15px;line-height:1;display:none;place-items:center;cursor:pointer;padding:0;z-index:2}
 .fb-tip.pinned .tip-x{display:grid}
@@ -10367,7 +10373,7 @@ function renderWeaponAffixOut(base){
    +'<p class="sub" style="margin-top:6px">Hover or tap the weapon to see its stats and affixes. Damage, crit and speed affixes on this weapon count in your DPS — watch them move under "How the number is built" in Damage and Defense Analysis. The rest ride inside the calibration step, like the rest of your gear.</p>';
   if(!out.__wpnTipBound){out.__wpnTipBound=true;
     out.addEventListener('mouseover',function(e){var c=e.target.closest?e.target.closest('#wpnSummaryCard'):null; if(c)itemTipShow(c,'wpn',wpnSummaryTipHTML)});
-    out.addEventListener('mouseout',function(e){var c=e.target.closest?e.target.closest('#wpnSummaryCard'):null; if(!c)return; if(e.relatedTarget&&c.contains(e.relatedTarget))return; if(e.relatedTarget&&itemTipEl&&itemTipEl.contains(e.relatedTarget))return; itemTipHide()});
+    out.addEventListener('mouseout',function(e){var c=e.target.closest?e.target.closest('#wpnSummaryCard'):null; if(!c)return; if(e.relatedTarget&&c.contains(e.relatedTarget))return; if(e.relatedTarget&&itemTipEl&&itemTipEl.contains(e.relatedTarget))return; tipHideLater(itemTipHide,itemTipEl)});
     out.addEventListener('focusin',function(e){var c=e.target.closest?e.target.closest('#wpnSummaryCard'):null; if(c)itemTipShow(c,'wpn',wpnSummaryTipHTML)});
     out.addEventListener('focusout',function(){itemTipHide()});
     out.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('#wpnSummaryCard'))itemTipHide()});
@@ -10553,7 +10559,7 @@ function heroItemTip(anchor){
 function bindHeroItemTips(){
   var mr=$('modalRoot'); if(!mr||mr.__heroTipBound)return; mr.__heroTipBound=true;
   mr.addEventListener('mouseover',function(e){var c=e.target.closest?e.target.closest('[data-hero-item]'):null; if(c)heroItemTip(c)});
-  mr.addEventListener('mouseout',function(e){var c=e.target.closest?e.target.closest('[data-hero-item]'):null; if(!c)return; if(e.relatedTarget&&c.contains(e.relatedTarget))return; if(e.relatedTarget&&itemTipEl&&itemTipEl.contains(e.relatedTarget))return; itemTipHide()});
+  mr.addEventListener('mouseout',function(e){var c=e.target.closest?e.target.closest('[data-hero-item]'):null; if(!c)return; if(e.relatedTarget&&c.contains(e.relatedTarget))return; if(e.relatedTarget&&itemTipEl&&itemTipEl.contains(e.relatedTarget))return; tipHideLater(itemTipHide,itemTipEl)});
   mr.addEventListener('focusin',function(e){var c=e.target.closest?e.target.closest('[data-hero-item]'):null; if(c)heroItemTip(c)});
   mr.addEventListener('focusout',function(){itemTipHide()});
   mr.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-hero-item]'))itemTipHide()});
@@ -13504,27 +13510,27 @@ function affixSentHTML(sent){
     return i%2?'<b class="afx-num">'+esc(p)+'</b>':esc(p);
   }).join('');
 }
-/* The tier tag on an item card's affix line (v0.404): after the
-   rolled sentence, " - T1" names the tier the affix rolled at —
-   T1 is the affix's top tier, the first in its published tier
-   list, T2 the next, and so on — and the tier's own roll range
-   follows in small muted text ("· 80–92"). A line whose tier
-   cannot be read carries no tag; a tier that is one fixed value
-   has no range to show, so it carries the tag alone. */
+/* The tier tag on an item card's affix line (v0.404, range
+   removed v0.405): after the rolled sentence, " - T1" names the
+   tier the affix rolled at — T1 is the affix's top tier, the
+   first in its published tier list, T2 the next, and so on. The
+   tier's roll range is NOT shown on hover cards (the reader
+   asked for the rolled value and the tier, nothing more); the
+   ranges stay where they are needed, in the affix editor. A
+   line whose tier cannot be read carries no tag. */
 function affixTierTagHTML(a,sa){
   var rt=affixRolledTier(a,sa); if(!rt)return '';
-  var t=(a.Tiers||[])[rt-1]; if(!t)return '';
-  var hasRange=(t.Max>t.Min)||(t.Min2!=null&&t.Max2>t.Min2);
-  return ' <span class="afx-tier">- T'+rt+'</span>'+(hasRange?' <span class="afx-range">· '+esc(affixTierRange(t))+'</span>':'');
+  if(!(a.Tiers||[])[rt-1])return '';
+  return ' <span class="afx-tier">- T'+rt+'</span>';
 }
 /* The same line for an item card: the mod sentence in full
-   colour, the rolled number inside it, and its tier tag with the
-   tier's roll range in small muted text after it (v0.404 — the
-   old "rolled X of lo–hi · high/mid/low roll" chip is gone from
-   the card; the roll's quality is read off the value against the
-   range shown). The rest of the per-line detail (worth, pool
-   weights, tier tables) is not shown for now — the planner still
-   prices every line internally for the Damage analysis. */
+   colour, the rolled number inside it, and its tier tag after it
+   (v0.404 — the old "rolled X of lo–hi · high/mid/low roll" chip
+   is gone from the card; v0.405 — the tier's roll range no longer
+   rides along either: value and tier only). The rest of the
+   per-line detail (worth, pool weights, tier tables) is not
+   shown for now — the planner still prices every line internally
+   for the Damage analysis. */
 function storedAffixHTML(sa,un,base,worthKey){
   var id=String((sa&&sa.id)||'');
   var a=(id&&!/^unique:\d+$/.test(id)&&!isRivenAffix(sa))?affixById(id):null;
@@ -14345,7 +14351,7 @@ function renderIdolGrid(){
       itemTipShow(t,'idol:'+k,storedItemTipHTML(it,un,b,esc(sd?sd.label:'Idol')+' • '+esc(it.rarity||'Normal'),k)+gearSlotWorthHTML(k));
     }
     t.addEventListener('mouseenter',igTip);
-    t.addEventListener('mouseleave',function(e){if(e.relatedTarget&&itemTipEl&&itemTipEl.contains(e.relatedTarget))return; itemTipHide()});
+    t.addEventListener('mouseleave',function(e){if(e.relatedTarget&&itemTipEl&&itemTipEl.contains(e.relatedTarget))return; tipHideLater(itemTipHide,itemTipEl)});
     t.addEventListener('focus',igTip);
     t.addEventListener('blur',function(){itemTipHide()});
     t.addEventListener('pointerdown',function(e){
@@ -14844,7 +14850,7 @@ function gpRenderPickerList(){
   gpDeltaKey=''; gpPricedDelta={key:'',html:null};
   var gl0=$('gpList');
   if(gl0&&!gl0.__deltaBound){gl0.__deltaBound=true; gl0.addEventListener('mouseover',function(e){var b=e.target.closest('[data-gp-base]'); if(b){gpHoverDelta(b); gpCardTip(b)}}); gl0.addEventListener('focusin',function(e){var b=e.target.closest('[data-gp-base]'); if(b){gpHoverDelta(b); gpCardTip(b)}});
-    gl0.addEventListener('mouseout',function(e){var b=e.target.closest?e.target.closest('[data-gp-base]'):null; if(!b)return; if(e.relatedTarget&&b.contains(e.relatedTarget))return; if(e.relatedTarget&&itemTipEl&&itemTipEl.contains(e.relatedTarget))return; itemTipHide()});
+    gl0.addEventListener('mouseout',function(e){var b=e.target.closest?e.target.closest('[data-gp-base]'):null; if(!b)return; if(e.relatedTarget&&b.contains(e.relatedTarget))return; if(e.relatedTarget&&itemTipEl&&itemTipEl.contains(e.relatedTarget))return; tipHideLater(itemTipHide,itemTipEl)});
     gl0.addEventListener('focusout',function(){itemTipHide()});
     gl0.addEventListener('click',function(){itemTipHide()});
     /* Touch: a first tap pins the card's detail open; a second tap
@@ -15843,7 +15849,7 @@ function bindGear(){
     var s=e.target.closest?e.target.closest('[data-gear-open]'):null; if(!s)return;
     if(e.relatedTarget&&s.contains(e.relatedTarget))return;
     if(e.relatedTarget&&gearTipEl&&gearTipEl.contains(e.relatedTarget))return;
-    gearHideTip();
+    tipHideLater(gearHideTip,gearTipEl);
   });
   grid.addEventListener('focusin',function(e){
     var s=e.target.closest?e.target.closest('[data-gear-open]'):null; if(!s)return;
@@ -19604,20 +19610,31 @@ function uniqueVariantLabel(u){
     var am=/carries the ([A-Za-z]+) Aspect/.exec((mods[i2]&&mods[i2].Text)||'');
     if(am)return am[1]==='Iron'?'Physical':am[1];
   }
+  var sibs=(G.uniques||[]).filter(function(x){return x&&x.Name===u.Name&&x.Id!==u.Id});
+  /* A regular unique whose only namesakes are its Primal version
+     gets no label at all (v0.405): the "Primal" tag on the twin's
+     row already tells the pair apart, and the fallback below used
+     to hang a whole stat sentence on the regular's row instead. */
+  if(sibs.length&&sibs.every(function(s){return /_primal$/.test(s.Id||'')}))return '';
   /* Any other shared name: the first of this variant's mod lines
      that no namesake carries, so the row still says what makes
-     this one different. A line whose wording is not published
-     (the plain layer's "special line" placeholder) never serves
-     as a label; if no readable line differs, the variant's own
-     level is the distinguishing fact. */
-  var sibs=(G.uniques||[]).filter(function(x){return x&&x.Name===u.Name&&x.Id!==u.Id});
+     this one different — but only when that line is a short
+     fragment. A stat sentence may never serve as a label: no
+     parentheses, no sentence punctuation, at most 40 characters.
+     A line whose wording is not published (the plain layer's
+     "special line" placeholder) never serves either. If no short
+     line differs, the variant's own level is the distinguishing
+     fact — and only when the namesakes actually differ in level;
+     otherwise the row carries no label. */
   for(var j=0;j<mods.length;j++){
     var line=uniqueModPlain(mods[j]);
     if(!line||/^A special line|^A triggered effect|^STAT\s/.test(line))continue;
+    if(line.length>40||/[.!?;:]/.test(line)||line.indexOf('(')>=0||line.indexOf(')')>=0)continue;
     var shared=sibs.every(function(s){return (s.Mods||[]).some(function(sm){return uniqueModPlain(sm)===line})});
     if(!shared)return line;
   }
-  return u.Level!=null?('Level '+u.Level):'';
+  if(u.Level!=null&&sibs.some(function(s){return s.Level!==u.Level}))return 'Lv '+u.Level;
+  return '';
 }
 /* A unique mod's line as plain text — uniqueModText without the
    HTML escaping, for places that escape the whole label at once. */
@@ -19708,7 +19725,7 @@ function catalogItemTip(anchor){
 function bindCatalogTips(body){
   if(!body||body.__tipBound)return; body.__tipBound=true;
   body.addEventListener('mouseover',function(e){var c=e.target.closest?e.target.closest('[data-catalog-item]'):null; if(c)catalogItemTip(c)});
-  body.addEventListener('mouseout',function(e){var c=e.target.closest?e.target.closest('[data-catalog-item]'):null; if(!c)return; if(e.relatedTarget&&c.contains(e.relatedTarget))return; if(e.relatedTarget&&itemTipEl&&itemTipEl.contains(e.relatedTarget))return; itemTipHide()});
+  body.addEventListener('mouseout',function(e){var c=e.target.closest?e.target.closest('[data-catalog-item]'):null; if(!c)return; if(e.relatedTarget&&c.contains(e.relatedTarget))return; if(e.relatedTarget&&itemTipEl&&itemTipEl.contains(e.relatedTarget))return; tipHideLater(itemTipHide,itemTipEl)});
   body.addEventListener('focusin',function(e){var c=e.target.closest?e.target.closest('[data-catalog-item]'):null; if(c)catalogItemTip(c)});
   body.addEventListener('focusout',function(){itemTipHide()});
   body.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-catalog-item]'))itemTipHide()});
@@ -21563,6 +21580,7 @@ function fbRenderRunes(){
 var fbTipEl=null, fbTipFor='';
 function fbHideUniqTip(){if(fbTipEl)fbTipEl.classList.remove('on'); fbTipFor=''}
 function fbShowUniqTip(anchor,name){
+  tipHideCancel();
   if(!anchor)return;
   if(fbTipFor===name&&fbTipEl&&fbTipEl.classList.contains('on'))return;
   var e=null; fbUniqueList().forEach(function(x){if(x.name===name)e=x});
@@ -21580,6 +21598,7 @@ function fbShowUniqTip(anchor,name){
    +'<div>DropLevel: '+e.level+'</div>'
    +(e.chase?'<div>Chase unique — the rarest uniques there are</div>':(e.minW!==null?'<div>Drop weight: '+e.minW+'</div>':'<div>Special source — never drops from regular monsters</div>'))
    +'</div>'
+   +((b&&b.Implicits&&b.Implicits.length)?'<div class="fb-tip-mods">'+b.Implicits.map(function(im){return '<div>◆ '+implicitLine(im,b)+'</div>'}).join('')+'</div>':'')
    +((u&&u.Mods&&u.Mods.length)?'<div class="fb-tip-mods">'+u.Mods.map(function(m){return '<div>'+uniqueModText(m)+'</div>'}).join('')+'</div>':'')
    +(u&&u.Flavour?'<div class="fb-tip-flavour">\u201C'+esc(u.Flavour)+'\u201D</div>':'')
    +(pinIdx>=0?'<div class="fb-tip-pin lf-'+pinAct+'">In your filter: '+lootActionLabel(pinAct)+' — Rule '+(pinIdx+1)+'</div>':'<div class="fb-tip-pin dim">Not set — follows your other rules</div>');
@@ -21600,6 +21619,7 @@ function fbShowUniqTip(anchor,name){
 var itemTipEl=null, itemTipFor='';
 function itemTipHide(){if(itemTipEl)itemTipEl.classList.remove('on'); itemTipFor=''}
 function itemTipShow(anchor,key,html){
+  tipHideCancel();
   if(!anchor)return;
   if(itemTipFor===key&&itemTipEl&&itemTipEl.classList.contains('on'))return;
   if(!itemTipEl){itemTipEl=document.createElement('div'); itemTipEl.id='itemTip'; itemTipEl.className='fb-tip gear-tip'; itemTipEl.setAttribute('role','tooltip'); document.body.appendChild(itemTipEl); itemTipEl.addEventListener('mouseleave',function(){if(pinTip.hide!==itemTipHide)itemTipHide()})}
@@ -21646,6 +21666,26 @@ function storedItemTipHTML(it,un,base,subLine,slotKey){
 var pinTip={key:'',el:null,hide:null};
 function pinTipArm(key,el,hide){pinTip.key=key; pinTip.el=el; pinTip.hide=hide}
 function pinTipClear(callHide){if(pinTip.hide&&callHide!==false)pinTip.hide(); pinTip.key=''; pinTip.el=null; pinTip.hide=null}
+/* Hover-intent grace for the item cards: a card floats a few
+   pixels away from the item that opened it, so the pointer
+   crosses background on its way onto the card, and the item's
+   mouse-out would close the card before the pointer arrives —
+   leaving a capped card impossible to scroll into. The item
+   mouse-out handlers therefore close through tipHideLater:
+   the close lands a beat later, and not at all when the
+   pointer is on the card as the beat ends (the card's own
+   mouse-leave then closes it as usual). Showing any card
+   cancels a pending close. */
+var tipHideTimer=null;
+function tipHideLater(hide,el){
+  tipHideCancel();
+  tipHideTimer=setTimeout(function(){
+    tipHideTimer=null;
+    if(el&&el.matches&&el.matches(':hover'))return;
+    hide();
+  },350);
+}
+function tipHideCancel(){if(tipHideTimer){clearTimeout(tipHideTimer); tipHideTimer=null}}
 /* Any press outside a pinned card puts the card away — touch and
    mouse alike (this used to listen to touch only, so a card pinned
    by a tap could outlive the popup it belonged to). A press inside
@@ -21691,6 +21731,7 @@ document.addEventListener('keydown',function(e){
 var gearTipEl=null, gearTipFor='';
 function gearHideTip(){if(gearTipEl)gearTipEl.classList.remove('on'); gearTipFor=''}
 function gearShowTip(anchor,key){
+  tipHideCancel();
   if(!anchor)return;
   var it=state.gear[key]; if(!it||!it.base)return;
   if(gearTipFor===key&&gearTipEl&&gearTipEl.classList.contains('on'))return;
@@ -22360,7 +22401,7 @@ function bindLoot(){
     var uniqBox=$('fbUniqBox');
     if(uniqBox){
       uniqBox.addEventListener('mouseover',function(e){var c=e.target.closest('[data-fb-uniq-tip]'); if(c)fbShowUniqTip(c,c.getAttribute('data-fb-uniq-tip'))});
-      uniqBox.addEventListener('mouseout',function(e){var c=e.target.closest('[data-fb-uniq-tip]'); if(c&&!(e.relatedTarget&&(c.contains(e.relatedTarget)||(fbTipEl&&fbTipEl.contains(e.relatedTarget)))))fbHideUniqTip()});
+      uniqBox.addEventListener('mouseout',function(e){var c=e.target.closest('[data-fb-uniq-tip]'); if(c&&!(e.relatedTarget&&(c.contains(e.relatedTarget)||(fbTipEl&&fbTipEl.contains(e.relatedTarget)))))tipHideLater(fbHideUniqTip,fbTipEl)});
       uniqBox.addEventListener('focusin',function(e){var c=e.target.closest('[data-fb-uniq-tip]'); if(c)fbShowUniqTip(c,c.getAttribute('data-fb-uniq-tip'))});
       uniqBox.addEventListener('focusout',function(){fbHideUniqTip()});
     }
@@ -26285,8 +26326,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.404';
-var PLANNER_BUILT_AT='2026-11-26T10:29:24-07:00';
+var PLANNER_VERSION='0.405';
+var PLANNER_BUILT_AT='2026-11-26T11:18:36-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
