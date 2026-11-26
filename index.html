@@ -2452,13 +2452,17 @@ td{padding:7px 8px}
    The Builds tab keeps its own starter panel, fed by the same
    render. */
 #view-builds .starter-card{margin-top:0}
-/* ---------- Planner top — two columns, slim gear rows, the
+/* ---------- Planner top — two columns, the gear slot grid, the
    Skills bar strip and the skill hover card ----------
    The top of the Build Planner is two columns: Gear (with Idols
    under it) on the left, Damage and Defense on the right, so a
    build's gear and its damage are both on screen at once. The
-   gear board is no longer a board of tall niches — each slot is
-   one slim row: slot name, icon, item name and one key line. The
+   gear board is a slot grid in the game's own inventory spirit
+   (v0.399): Weapon and Off Hand as two wide tiles on the top
+   row, the other nine worn slots as compact tiles under them —
+   slot label pill, icon, item name in its rarity colour, one
+   key line. Clicks, the hover card, the remove × and the
+   picker all ride the same hooks the rows used before them. The
    Skills workspace opens with a strip of the whole bar — icon,
    name and support rings per skill — and a skill's detail rides
    in a hover card, never inline. Everything stacks on narrow
@@ -2467,20 +2471,25 @@ td{padding:7px 8px}
 .pt-col{display:flex;flex-direction:column;gap:10px;min-width:0}
 .pt-col>*{min-width:0}
 @media(max-width:980px){.planner-top2{grid-template-columns:1fr}}
-.gear-grid{display:flex;flex-direction:column;gap:6px;padding:10px 2px 2px}
-.gear-slot{flex-direction:row;align-items:center;justify-content:flex-start;text-align:left;min-height:0;padding:7px 10px;gap:10px;border-radius:var(--radius)}
-.gear-slot-label{position:static;transform:none;background:none;border:0;border-radius:0;padding:0;flex:0 0 88px;order:-1}
-.gear-slot .gear-icon{margin:0;flex:none;line-height:0}
-.gear-slot .gear-icon .itic{width:34px !important;height:34px !important}
-.gear-info{flex:1;min-width:0}
-.gear-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.gear-key{font-size:11.5px;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.gear-slot.empty{padding:7px 10px}
-.gear-slot.empty::before{width:30px;height:30px;font-size:16px;margin:0;flex:none}
-.gear-slot.occupied{padding:7px 10px}
-.gear-slot.occupied::before{width:30px;height:30px;font-size:10px;margin:0;flex:none}
-.gear-x{top:50%;right:6px;transform:translateY(-50%);width:22px;height:22px;min-height:22px;font-size:13px}
-.gear-slot.filled{padding-right:34px}
+.gear-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 8px;padding:16px 2px 2px;grid-template-areas:"weapon weapon offhand offhand" "helm body gloves boots" "ring1 ring2 amulet belt" "rune rune . ."}
+.gear-slot{flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;min-height:110px;padding:15px 6px 8px;gap:0;border-radius:var(--radius)}
+.gear-slot-label{position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:#0d0b09;border:1px solid var(--line2);border-radius:999px;padding:1px 9px;color:var(--gold);white-space:nowrap;flex:none;order:0}
+.gear-slot .gear-icon{margin:0 0 4px;flex:none;line-height:0}
+.gear-slot .gear-icon .itic{width:44px !important;height:44px !important}
+.gear-info{flex:none;width:100%;min-width:0}
+.gear-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12.5px}
+.gear-key{font-size:11px;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+.gear-slot.empty{padding:15px 6px 8px;justify-content:center}
+.gear-slot.empty::before{width:40px;height:40px;font-size:19px;margin:0 0 6px;flex:none}
+.gear-slot.occupied{padding:15px 6px 8px;justify-content:center}
+.gear-slot.occupied::before{width:40px;height:40px;font-size:11px;margin:0 0 6px;flex:none}
+.gear-empty-text{font-size:11.5px;line-height:1.35}
+.gear-x{top:-8px;right:-8px;transform:none;width:24px;height:24px;min-height:24px;font-size:15px}
+.gear-slot.filled{padding-right:6px}
+@media(max-width:680px){
+  .gear-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"weapon offhand" "helm body" "gloves boots" "ring1 ring2" "amulet belt" "rune rune"}
+  .gear-slot{min-height:112px}
+}
 .bar-strip{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .bs-card{flex:1 1 170px;display:flex;gap:9px;align-items:center;text-align:left;background:var(--panel2);border:1px solid var(--line2);border-radius:10px;padding:7px 9px;color:var(--text);font:inherit;min-width:0}
 .bs-card:hover{border-color:var(--line)}
@@ -2558,11 +2567,12 @@ td{padding:7px 8px}
   .inst-x::after{content:"";position:absolute;inset:-9px;border-radius:50%}
   .inst-newtab::after{content:"";position:absolute;inset:-8px;border-radius:50%}
   /* The gear × grows its real box to 44px on coarse pointers,
-     still inside the row's right end, so the target a finger
-     gets is the target that measures 44px — no invisible
-     expansion, and nothing sticks out past the card edge. */
-  .gear-x{width:44px;height:44px;min-height:44px;top:50%;right:4px;transform:translateY(-50%);font-size:15px}
-  .gear-slot.filled{padding-right:54px}
+     pinned over the tile's own top-right corner, so the target
+     a finger gets is the target that measures 44px — no
+     invisible expansion, and it never reaches the tile beside
+     it. */
+  .gear-x{width:44px;height:44px;min-height:44px;top:-4px;right:-4px;transform:none;font-size:16px}
+  .gear-slot.filled{padding-right:6px}
   .bar-row .sock::after{content:"";position:absolute;inset:-4px;border-radius:50%}
 }
 /* Guided first run — one compact card, two steps. */
@@ -13985,10 +13995,10 @@ function renderGear(){
     var nm=gearItemName(it);
     var rwIt=un?null:runewordFor(it,base);
     var affN=(it.affixes||[]).length;
-    /* A filled slot is one slim row: the slot's name, the item's
-       icon, its name in its rarity colour with the rarity as a
-       word tag beside it, and one key line — item level and
-       affix count. The full card — base
+    /* A filled slot is one grid tile: the slot's name on its
+       pill, the item's icon, its name in its rarity colour with
+       the rarity as a word tag beside it, and one key line —
+       item level and affix count. The full card — base
        stats, implicits, every rolled affix as its mod sentence —
        lives in the hover/tap detail (see gearShowTip), the same
        detail the board used to print inline. */
@@ -25674,8 +25684,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.398';
-var PLANNER_BUILT_AT='2026-11-26T11:01:15-07:00';
+var PLANNER_VERSION='0.399';
+var PLANNER_BUILT_AT='2026-11-26T11:56:23-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
