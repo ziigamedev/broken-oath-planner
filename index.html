@@ -1929,9 +1929,9 @@ details:not([open])>:not(summary){display:none}
 /* ===== Character hub redesign =====
    The Character view is the one place a player works from: a hero
    summary bar up top, then three big buttons — Skills, Dragonling,
-   Passive Tree — each opening its workspace as a popup sheet (the
-   same .modal/.sheet system as the Modifier audit; a bottom sheet
-   on phones). The old workspace tab row is gone. */
+   Passive Tree — each opening its workspace (a full-page view
+   since v0.403; before that, a popup sheet). The old workspace
+   tab row is gone. */
 /* Hero summary bar — our own read of the hero at a glance: identity
    and the level stepper on the first row, then a row of engraved
    stat plates. Not a copy of anyone else's bar: the plates sit in
@@ -2003,9 +2003,10 @@ details:not([open])>:not(summary){display:none}
 .hub-btn small{font-size:12.5px;font-weight:600;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
 .hub-btn small.bad{color:#ff9d85;font-weight:700}
 @media(max-width:680px){.hub-bar{grid-template-columns:1fr}}
-/* Popup sheets for the three workspaces — the audit sheet's shape:
-   a fixed header, the workspace scrolling under it, near-full
-   height so the tree canvases and socket board have room. */
+/* Popup sheets for the tool sections — the audit sheet's shape:
+   a fixed header, the section scrolling under it, near-full
+   height so the section has room. (The three workspaces rode
+   this sheet too until v0.403 made them full-page views.) */
 .pop-sheet{display:flex;flex-direction:column;overflow:hidden;max-width:1280px;height:min(92vh,1200px);max-height:92vh}
 @media(max-width:719px){.pop-sheet{height:100dvh;max-height:100dvh}}
 .pop-head{flex:0 0 auto;padding-bottom:10px;border-bottom:1px solid var(--line2)}
@@ -2031,6 +2032,23 @@ details:not([open])>:not(summary){display:none}
 .pop-link:hover{color:var(--text)}
 .pop-link:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 #wsStash{display:none !important}
+/* Full-page workspace views (v0.403) — Skills, Dragonling and the
+   Passive Tree are no longer popup sheets: each opens as its own
+   page inside the planner, the way the game switches screens.
+   While one is open, the planner chrome (instance bar, banners,
+   the Character hub) steps aside and only the view shows; the
+   tool sections keep the popup sheet. The view head carries the
+   workspace's title and the way back. */
+.wsview-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 14px}
+.wsview-head h2{margin:0;font-size:24px}
+#wsBackBtn{flex:0 0 auto}
+#view-planner.ws-open .instance-bar,#view-planner.ws-open .sample-banner,#view-planner.ws-open .starter-banner,#view-planner.ws-open #wsCharacter{display:none}
+/* Inside the view the Skills panel drops its card frame and its
+   own head row, exactly as it did inside the popup sheet — the
+   view head above carries the title and the way back instead. */
+#wsViewBody .skills-drawer{border:0;background:transparent}
+#wsViewBody .skills-drawer-head{display:none}
+#wsViewBody .skills-drawer-body{padding:2px 2px 10px}
 /* Folded sections — the planner's second rank of tools (Damage
    analysis, Guardian tester, Tuning, Copy stats,
    Loaded hero) sits as a stack of labelled stone bars under the
@@ -3029,7 +3047,7 @@ body.tab-home .brand h1{display:none}
          the very foot is hidden for now; its Copy plan code
          button lives in the Share dropdown under the Share
          button above.) -->
-    <div class="hub-bar" role="group" aria-label="Your skills, Dragonling and passive tree — each opens as a popup">
+    <div class="hub-bar" role="group" aria-label="Your skills, Dragonling and passive tree — each opens as a full page">
       <button class="hub-btn" data-pop="skills" type="button" title="Skills"><span class="hub-name">Skills</span><span class="hub-sep" aria-hidden="true">—</span><small id="wsSkillName">—</small></button>
       <button class="hub-btn" data-pop="dragon" type="button" title="Dragonling"><span class="hub-name">Dragonling</span><span class="hub-sep" aria-hidden="true">—</span><small id="wsDragonCount">—</small></button>
       <button class="hub-btn" data-pop="tree" type="button" title="Passive tree"><span class="hub-name">Passive tree</span><span class="hub-sep" aria-hidden="true">—</span><small id="wsTreeCount">—</small></button>
@@ -3454,7 +3472,8 @@ body.tab-home .brand h1{display:none}
   </div><!-- /wsCharacter -->
   <!-- The Skills / Dragonling / Passive Tree panels and the tool
        sections (enemy setup, best in slot, where you stand, tuning,
-       copy stats) live here, out of sight, until a hub or tool
+       copy stats) live here, out of sight, until a hub button moves
+       one into its full-page view (#view-workspace) or a tool
        button moves one into the popup sheet (#plannerPopRoot).
        Their ids never change, so every render function keeps
        finding its targets wherever a panel sits. -->
@@ -3646,6 +3665,17 @@ body.tab-home .brand h1{display:none}
   </div><!-- /wsDragon -->
   </div><!-- /ws-main -->
   </div><!-- /planner-shell -->
+  <!-- Full-page workspace views (v0.403): Skills, Dragonling and
+       the Passive Tree open here as their own page inside the
+       planner instead of a popup sheet. The open workspace's
+       panel is moved into #wsViewBody (ids unchanged, so every
+       render function finds its targets wherever the panel
+       sits); Back returns it to the stash and lands on the
+       planner exactly as it was left. -->
+  <div id="view-workspace" class="hidden">
+    <div class="wsview-head"><button class="btn" id="wsBackBtn" type="button">← Back to planner</button><h2 id="wsViewTitle">Skills</h2></div>
+    <div id="wsViewBody"></div>
+  </div>
   </section>
 
   <!-- LADDER -->
@@ -4211,6 +4241,7 @@ var DICT={
 "Skills":"技能",
 "Dragonling":"龙灵",
 "Passive tree":"天赋树",
+"← Back to planner":"← 返回规划器",
 "Copy site code":"复制本站代码",
 "Copy game code":"复制游戏代码",
 "Copy link":"复制链接",
@@ -5197,7 +5228,7 @@ var DICT={
 "Active Skill bar total":"主动技能栏总计",
 "It is the Active Skill bar:":"这就是主动技能栏：",
 "Also count — other bar skills":"同时计入 — 其他技能栏技能",
-"Include in fight test is off for it (in the Skills popup)":"它的“计入战斗测试”已关闭（在技能弹窗中）",
+"Include in fight test is off for it (in the Skills view)":"它的“计入战斗测试”已关闭（在技能视图中）",
 "— left out of the fight-test totals":"— 未计入战斗测试总计",
 "— the headline above: every damage skill on the bar, each with its linked supports":"— 上方标题：技能栏上的每个伤害技能，各自带其连接的辅助",
 "Executioner — enemy below half life":"处刑者 — 敌人生命低于一半",
@@ -5499,7 +5530,7 @@ var DICT={
 "Pin this DPS as a baseline":"将此 DPS 钉为基线",
 "Pin the number, change the plan, and see the gain or loss right here.":"钉住这个数字，修改方案，即可在此处看到增益或损失。",
 "Planner tools — each opens as a popup":"规划器工具 — 各自以弹窗打开",
-"Your skills, Dragonling and passive tree — each opens as a popup":"你的技能、龙灵与天赋树 — 各自以弹窗打开",
+"Your skills, Dragonling and passive tree — each opens as a full page":"你的技能、龙灵与天赋树 — 各自以整页打开",
 "Cube Recipes":"魔方配方",
 "Item Bases":"物品基底",
 "Oath Masteries":"誓约精通",
@@ -6088,7 +6119,7 @@ var RULES=[
  [/^Your sparks latch on and strike every ([\d.]+)s — the skill’s own interval, quickened by your cast speed — for (\d+) seconds a cast, and recasts keep them at their limit: (\d+) compressed bod(?:y|ies) striking, ([\d.]+) strikes a second in all\.( Each strike also leaps to (\d+) more enemies, a tenth less on each jump — only the host’s strikes count in this number\.)? (\d+)% of your hits are crits dealing (\d+)% damage, which works out to ×([\d.]+) on average\. Speed and crits turn your damage per hit into damage per second\.$/,function(m){return '你的火花附着并每 '+m[1]+' 秒打击一次 — 这是技能自身的间隔，受你的施法速度加快 — 每次施放持续 '+m[2]+' 秒，反复施放使它们保持在上限：'+m[3]+' 个压缩实体在打击，总计每秒 '+m[4]+' 次打击。'+(m[5]?'每次打击还会跳跃到另外 '+m[6]+' 个敌人，每跳减少十分之一 — 此数字只计宿主的打击。':'')+'你的命中中有 '+m[7]+'% 是暴击，造成 '+m[8]+'% 伤害，平均下来为 ×'+m[9]+'。速度和暴击将你的每次命中伤害转化为每秒伤害。';}],
  [/^You hit ([\d.]+) times a second\. (\d+)% of your hits are crits dealing (\d+)% damage, which works out to ×([\d.]+) on average\. Speed and crits turn your damage per hit into damage per second\.$/,function(m){return '你每秒命中 '+m[1]+' 次。你的命中中有 '+m[2]+'% 是暴击，造成 '+m[3]+'% 伤害，平均下来为 ×'+m[4]+'。速度和暴击将你的每次命中伤害转化为每秒伤害。';}],
  [/^The steps above are only what this plan can see\. This last step scales the result so it lines up with the damage real level (\d+) ladder builds deal in game \(patch (\d+)\)\.$/,function(m){return '以上步骤只是本方案能看到的部分。最后这一步将结果缩放，使其与真实 '+m[1]+' 级天梯构建在游戏中造成的伤害对齐（补丁 '+m[2]+'）。';}],
- [/^Dragonling tree is not valid — (\d+) points spent against (\d+) earned under the planner’s current budget\. The numbers below still count the tree as it stands; refund nodes in the Dragonling popup to make it a tree the game would let you wear\.$/,function(m){return '龙灵天赋树无效 — 已花费 '+m[1]+' 点，而按规划器当前预算只能获得 '+m[2]+' 点。下方数字仍按现状计算这棵树；在龙灵弹窗中退掉节点，使它成为游戏允许你穿戴的树。';}],
+ [/^Dragonling tree is not valid — (\d+) points spent against (\d+) earned under the planner’s current budget\. The numbers below still count the tree as it stands; refund nodes in the Dragonling view to make it a tree the game would let you wear\.$/,function(m){return '龙灵天赋树无效 — 已花费 '+m[1]+' 点，而按规划器当前预算只能获得 '+m[2]+' 点。下方数字仍按现状计算这棵树；在龙灵视图中退掉节点，使它成为游戏允许你穿戴的树。';}],
  [/^This plan’s damage after the calibration step — scaled to match what real builds deal in game, the number measured Guardian kills back up\.( It is the Active Skill bar: ([\s\S]+?) plus ([\s\S]+), each with its own linked supports\.)?$/,function(m){return '本方案在校准步骤后的伤害 — 已缩放以匹配真实构建在游戏中的表现，就是实测守护者击杀所印证的数字。'+(m[1]?'它就是主动技能栏：'+m[2]+' 加上 '+m[3]+'，各自带有其链接的辅助。':'');}],
  [/^Against (\d+) ([\s\S]+), counted from their published builds:$/,function(m){var sc=m[2];var a=/^([\s\S]+) (Warrior|Mage|Ranger|Paladin|Necromancer|Samurai) heroes$/.exec(sc);var b=/^all (Warrior|Mage|Ranger|Paladin|Necromancer|Samurai) heroes \(only a few run ([\s\S]+) with a published build\)$/.exec(sc);if(a)sc=a[1]+' '+classZh(a[2])+' 英雄';else if(b)sc='全部'+classZh(b[1])+'英雄（只有少数人使用 '+b[2]+' 并发布了构建）';return '与 '+m[1]+' 个'+sc+'对比，按其已发布构建计算：';}],
  [/^([\d,]+) — better than (\d+)% of (\d+)$/,function(m){return m[1]+' — 优于 '+m[3]+' 个构建中的 '+m[2]+'%';}],
@@ -6260,8 +6291,8 @@ function startI18n(){
    above is the primary mechanism, but an attribute can still be
    left holding Chinese when its record was never written or the
    element was out of the document at restore time (the planner's
-   workspace panels are parked in a stash and moved into a popup
-   sheet, and their static search boxes are never re-rendered —
+   workspace panels are parked in a stash and moved into a view
+   or popup sheet, and their static search boxes are never re-rendered —
    a missed record there stayed Chinese in English mode for
    exactly the Skills support-gem and Dragonling search boxes).
    The sweep walks every element and puts back the English key
@@ -6959,8 +6990,25 @@ function blessModAt(m,gem){return (+m.Value||0)+(+m.PerLevel||0)*Math.max(0,(gem
 /* The longest Vowbreak window among the bar's sworn Vows — the
    fight numbers spend one break at the start of the fight, and
    every sworn Vow's window opens together. */
-function vowbreakSeconds(st){var bs=barEffects(st).vowbreaks||[]; var s=0; bs.forEach(function(w){if(w.seconds>s)s=w.seconds}); return s||4}
-function barEffects(st){
+function vowbreakSeconds(st){var bs=barEffects(st,{fight:1}).vowbreaks||[]; var s=0; bs.forEach(function(w){if(w.seconds>s)s=w.seconds}); return s||4}
+/* barEffects(st) reads the bar as built — the character sheet's
+   read: every sworn buff counts, sim switches and all. The fight
+   track passes {fight:1}: a bar entry whose "Include in fight
+   test" switch is off (e.sim===false) is then skipped ENTIRELY —
+   no buffs, no Herald sworn count, no curse, no Vowbreak window
+   and no mana reservation from that entry — because the fight
+   numbers must not feel a buff the reader left out of the test.
+   barTotals already kept a sim-off skill's own damage row out of
+   the totals; without this mode its buffs still leaked into the
+   main skill's price through here (a toggled-off Vow of Zeal
+   went on speeding the headline). Only the fight-track callers
+   pass the flag — calcFrom, the vs-enemy reads, the fight panel
+   and the curse/vowbreak helpers; the sheet callers
+   (deriveDefenses, the mana-regen reads, the sworn-buffs panel)
+   keep the plain read, so the sheet still shows the plan as
+   built and only fight-test numbers move. */
+function barEffects(st,opts){
+  var fightMode=!!(opts&&opts.fight);
   var out={speedMore:0,critInc:0,critMulti:0,penElem:0,heralds:[],esMore:0,armourMore:0,evasionMore:0,esRecharge:0,resistAll:0,reserved:0,reservedMult:1,reservedFlat:0,manaRegen:0,burstDmgMore:0,freeCasts:false,vowbreaks:[],list:[],curses:[],unpriced:[]};
   /* The plan's gear Vow effect, summed once: it strengthens every
      Vow on the bar, so each Vow entry below reads the same total. */
@@ -6971,10 +7019,12 @@ function barEffects(st){
   var heraldSworn=0;
   (st.barSkills||[]).forEach(function(e){
     if(!barEntryActive(e)||barSkillBlocker(st,e))return;
+    if(fightMode&&e.sim===false)return;
     var sk0=G.skillMap[e.skill]; if(sk0&&(sk0.Tags||[]).indexOf('Herald')>=0)heraldSworn++;
   });
   (st.barSkills||[]).forEach(function(e){
     if(!barEntryActive(e))return;
+    if(fightMode&&e.sim===false)return;
     if(barSkillBlocker(st,e))return;
     var sk=G.skillMap[e.skill]; if(!sk)return;
     var tags=sk.Tags||[], desc=sk.Description||'', gem=e.gem||st.gemLevel||20;
@@ -7190,7 +7240,7 @@ function barEffects(st){
 function activeCurses(){
   var out=[], seen={};
   function push(c){if(c&&!seen[c.Id]){seen[c.Id]=1; out.push(c)}}
-  barEffects(state).curses.forEach(push);
+  barEffects(state,{fight:1}).curses.forEach(push);
   push(G.curseMap[state.curse]); push(G.curseMap[state.curse2]);
   return out;
 }
@@ -7871,7 +7921,7 @@ function calcFrom(st){
     if(mcR){
       var wpnM=G.weaponMap[st.weaponId]||G.weaponMapCI[(st.weaponId||'').toLowerCase()];
       var clsM=CLASSES.find(function(c){return c.Id===st.cls})||CLASSES[0];
-      return {skill:skill,weapon:wpnM||null,hit:mcR.hit,rate:mcR.rate,dps:mcR.dps,structural:mcR.structural,tooltip:mcR.tooltip,tooltipHit:mcR.hit,K:calKFor(st),critChance:mcR.critChance,critMulti:mcR.critMulti,mana:0,steps:[{name:'Priced through its minions',note:skill.Name+' is priced through its minions — the same minion model the Active Skill bar uses — not as a spell you strike with yourself.',value:mcR.dps}],attrs:{Str:Math.round(clsM.Str+clsM.StrPerLevel*(st.level-1)),Dex:Math.round(clsM.Dex+clsM.DexPerLevel*(st.level-1)),Int:Math.round(clsM.Int+clsM.IntPerLevel*(st.level-1))},eff:effAt(skill,(st.gemLevel||20)+gearGemBonus(st)),comps:mcR.comps,pen:0,barFx:barEffects(st),dragPen:{},pools:{all:0,elemental:0,elem:{}},spark:null,sparkK:1,trapPrice:null,entDps:mcR.entDps||0,dotDps:0,dotParts:[],shockTaken:0,chillPct:0,freezeMult:1,conv:[],totemCount:0,minionCount:mcR.minionCount};
+      return {skill:skill,weapon:wpnM||null,hit:mcR.hit,rate:mcR.rate,dps:mcR.dps,structural:mcR.structural,tooltip:mcR.tooltip,tooltipHit:mcR.hit,K:calKFor(st),critChance:mcR.critChance,critMulti:mcR.critMulti,mana:0,steps:[{name:'Priced through its minions',note:skill.Name+' is priced through its minions — the same minion model the Active Skill bar uses — not as a spell you strike with yourself.',value:mcR.dps}],attrs:{Str:Math.round(clsM.Str+clsM.StrPerLevel*(st.level-1)),Dex:Math.round(clsM.Dex+clsM.DexPerLevel*(st.level-1)),Int:Math.round(clsM.Int+clsM.IntPerLevel*(st.level-1))},eff:effAt(skill,(st.gemLevel||20)+gearGemBonus(st)),comps:mcR.comps,pen:0,barFx:barEffects(st,{fight:1}),dragPen:{},pools:{all:0,elemental:0,elem:{}},spark:null,sparkK:1,trapPrice:null,entDps:mcR.entDps||0,dotDps:0,dotParts:[],shockTaken:0,chillPct:0,freezeMult:1,conv:[],totemCount:0,minionCount:mcR.minionCount};
     }
   }
   var weapon=G.weaponMap[st.weaponId]||G.weaponMapCI[(st.weaponId||'').toLowerCase()];
@@ -8091,7 +8141,7 @@ function calcFrom(st){
      carries neither a herald's extra damage nor a vow's speed), so
      they live in the fight track and the vs-enemy numbers, where
      real kills feel them. */
-  var be=barEffects(st);
+  var be=barEffects(st,{fight:1});
   if(be.speedMore)sSpdMore*=(1+be.speedMore/100);
   if(be.critInc)sCritInc+=be.critInc;
   if(be.critMulti)sCritMulti+=be.critMulti;
@@ -9127,7 +9177,7 @@ function renderPlanner(){
   var vbRowEl=$('vbRow'), vbEl=$('vbDps');
   if(vbRowEl&&vbEl){
     var vbLabel=$('vbLabel');
-    var vbs=[]; try{vbs=barEffects(fst).vowbreaks||[]}catch(e){vbs=[]}
+    var vbs=[]; try{vbs=barEffects(fst,{fight:1}).vowbreaks||[]}catch(e){vbs=[]}
     if(vbLabel)vbLabel.textContent=vbs.length?('Vowbreak window — '+vbs.map(function(w){return w.name+': '+w.seconds+'s at '+w.mult+'×, then '+w.lockout+'s locked out'}).join('; ')):'Vowbreak window — 4 seconds at 2.5× your Vows';
     if(state.vowbreak&&btF){
       var vst=Object.assign({},fst,{__vb:true}), btV=null;
@@ -9612,7 +9662,7 @@ function renderDamageAnalysis(c,bt){
      budget without ever opening that tab. The sim still counts
      the tree as it stands; nothing is silently cut down. */
   var dgUsed=0, dgBud=0; try{dgUsed=dragonPointsUsed(); dgBud=dragPointBudget()}catch(e){}
-  if(dgBud>0&&dgUsed>dgBud)html+='<p class="drag-invalid" role="alert" style="margin:0 0 10px">Dragonling tree is not valid — '+dgUsed+' points spent against '+dgBud+' earned under the planner\u2019s current budget. The numbers below still count the tree as it stands; refund nodes in the Dragonling popup to make it a tree the game would let you wear.</p>';
+  if(dgBud>0&&dgUsed>dgBud)html+='<p class="drag-invalid" role="alert" style="margin:0 0 10px">Dragonling tree is not valid — '+dgUsed+' points spent against '+dgBud+' earned under the planner\u2019s current budget. The numbers below still count the tree as it stands; refund nodes in the Dragonling view to make it a tree the game would let you wear.</p>';
   if(c.comps&&c.comps.length>1){
     html+=c.comps.map(function(cp){return '<div class="kv"><span>'+esc(cp.element)+' damage'+(cp.dot?' — '+esc(cp.kind||'damage over time'):'')+'</span><b>'+fmt(cp.dps)+' DPS ('+(c.dps?Math.round(cp.dps/c.dps*100):0)+'%)</b></div>'}).join('');
   }
@@ -9645,8 +9695,8 @@ function renderDamageAnalysis(c,bt){
     if(curseNames.length)html+='<div class="kv"><span>Debuffing the enemy</span><b>'+esc(curseNames.join(' • '))+' — counted in the vs-enemy numbers</b></div>';
     barRows.filter(function(r){return r.role==='minion'||r.role==='utility'}).forEach(function(r){html+='<div class="kv"><span>'+esc(r.name)+'</span><b>'+(r.role==='minion'?'Minion skill — its minions publish no countable damage record, so they are not counted':'No steady damage to count — utility, movement or kill-fed')+'</b></div>'});
     barRows.filter(function(r){return r.role==='blocked'}).forEach(function(r){html+='<div class="kv"><span>'+esc(r.name)+' — on the bar, but it does not count</span><b>'+esc(r.why)+'</b></div>'});
-    barRows.filter(function(r){return r.role==='simoff'}).forEach(function(r){html+='<div class="kv"><span>'+esc(r.name)+' — on the bar, left out of the fight test</span><b>Include in fight test is off for it (in the Skills popup)</b></div>'});
-    if(bt&&bt.mainSimOff)html+='<div class="kv"><span>'+esc(c.skill.Name)+' — your planned skill, left out of the totals</span><b>Include in fight test is off for it (in the Skills popup) — its own numbers above still count</b></div>';
+    barRows.filter(function(r){return r.role==='simoff'}).forEach(function(r){html+='<div class="kv"><span>'+esc(r.name)+' — on the bar, left out of the fight test</span><b>Include in fight test is off for it (in the Skills view)</b></div>'});
+    if(bt&&bt.mainSimOff)html+='<div class="kv"><span>'+esc(c.skill.Name)+' — your planned skill, left out of the totals</span><b>Include in fight test is off for it (in the Skills view) — its own numbers above still count</b></div>';
   }
   // What would help most: re-run the whole plan with one change each.
   // The glance shows only the winner; the full list is in the detail.
@@ -9822,7 +9872,7 @@ function renderContributions(c){
     rows=rows.concat(prows.slice(0,10));
     if(prows.length>10)passiveNote='<p class="sub">Showing the 10 passive nodes worth the most of '+prows.length+' counted nodes — the rest each move the number less.</p>';
   } else if(nodeList.length){
-    passiveNote='<p class="sub">This plan&rsquo;s passives are counted through the Tuning sliders rather than node by node, so they are not broken out here — load a character or apply a Take list in the Passive Tree popup to count every node.</p>';
+    passiveNote='<p class="sub">This plan&rsquo;s passives are counted through the Tuning sliders rather than node by node, so they are not broken out here — load a character or apply a Take list in the Passive Tree view to count every node.</p>';
   }
   rows.sort(function(a,b){return b.drop-a.drop});
   if(!rows.length){box.innerHTML='<p class="sub">Nothing to take out yet — link supports, pick a weapon or take passive nodes first.</p>'; return}
@@ -11679,20 +11729,25 @@ function renderStarterBanner(){
    sockets, tree rows and Dragonling paths, typing and arrow
    keys in form fields) — while Tab and Escape always pass. */
 /* The guard's banner flash is invisible from inside a popup
-   sheet — the sheet covers the planner, banner and all — so a
-   blocked gesture in a popup also raises this note at the top
-   of the sheet itself, where the hand actually is. Without it
-   a locked control in a popup (the gem slider above all) just
-   sits there doing nothing, with no sign why. */
+   sheet or a full-page workspace view — either covers the
+   planner, banner and all — so a blocked gesture there also
+   raises this note at the top of the sheet or view itself,
+   where the hand actually is. Without it a locked control
+   (the gem slider above all) just sits there doing nothing,
+   with no sign why. */
 var popLockTimer=null;
 function showPopLockNote(){
-  var sheet=document.querySelector('#plannerPopRoot .pop-sheet'); if(!sheet)return;
+  var sheet=document.querySelector('#plannerPopRoot .pop-sheet');
+  var host=sheet||null, anchor=sheet?sheet.querySelector('#popScroll'):null;
+  if(!host&&wsViewOpen){host=$('view-workspace'); anchor=$('wsViewBody');}
+  if(!host)return;
   var note=document.getElementById('popLockNote');
   if(!note){
     note=document.createElement('div');
     note.id='popLockNote'; note.className='pop-lock-note';
-    var sc=sheet.querySelector('#popScroll');
-    if(sc)sheet.insertBefore(note,sc); else sheet.appendChild(note);
+  }
+  if(note.parentNode!==host){
+    if(anchor)host.insertBefore(note,anchor); else host.appendChild(note);
   }
   note.textContent='This starter is fixed as published — nothing in it can be changed. Close this, tap “Duplicate it & make it mine”, and the same plan opens as yours to edit in full.';
   note.classList.remove('hidden');
@@ -11717,7 +11772,7 @@ function starterEditBlocked(e){
     if(!t.closest('input,select,textarea')&&k!=='Enter'&&k!==' ')return false;
   }
   if(t.closest('.tab,.ws-tab,.hub-btn,.pop-link,.more-info-btn,summary,.inst-main,.inst-x,.inst-newtab'))return false;
-  if(t.closest('#shareBuildBtn,#followBuildBtn,#copyStatsBtn,#fightBtn,#loadInstanceBtn,#shareBtn,#sharePanel,#gapRunBtn,#popClose,#qwClose,#drawerTreeBtn,#advCloseBtn,#simInfoBtn'))return false;
+  if(t.closest('#shareBuildBtn,#followBuildBtn,#copyStatsBtn,#fightBtn,#loadInstanceBtn,#shareBtn,#sharePanel,#gapRunBtn,#popClose,#wsBackBtn,#qwClose,#drawerTreeBtn,#advCloseBtn,#simInfoBtn'))return false;
   /* The support simulator and the setup comparator are analysis,
      like the fight test: running the best-link search, scoring
      supports, flipping their sustain toggles and pinning/blocking
@@ -11730,16 +11785,17 @@ function starterEditBlocked(e){
   /* Popup backdrops: a tap on the dimmed backdrop itself (not on
      anything inside the sheet) is the tap-outside close — let
      exactly that target through, nothing deeper. The sheets'
-     contents do NOT pass: the Skills, Dragonling and Passive
-     tree workspaces open inside #popBg, so exempting the whole
-     popup would exempt every edit they carry. */
+     contents do NOT pass: exempting a whole sheet would exempt
+     every edit it carries. The three workspaces need no such
+     carve-out — they are full-page views now, and every edit
+     control inside them stays locked like the rest. */
   if(t.id==='advOverlay'||t.id==='popBg'||t.id==='qwBg')return false;
   e.preventDefault(); e.stopPropagation();
   var bn=$('starterBanner');
   if(bn){bn.classList.add('flash'); setTimeout(function(){bn.classList.remove('flash')},650);
     var tx=$('starterBannerText');
     if(tx)tx.textContent='That part of the starter is fixed as published — nothing on a starter can be changed. Tap \u201cDuplicate it & make it mine\u201d and the same plan opens as yours to edit in full.';}
-  if(t.closest('#plannerPopRoot'))showPopLockNote();
+  if(t.closest('#plannerPopRoot')||t.closest('#view-workspace'))showPopLockNote();
   return true;
 }
 function bindStarterGuard(){
@@ -11949,7 +12005,7 @@ function enemyResMap(){
     var f=(state.enemyRarity==='Guardian'&&c.BossEffect!=null)?c.BossEffect:1;
     Object.keys(c.ResistDown||{}).forEach(function(el){if(out[el]!=null)out[el]-=c.ResistDown[el]*f});
   });
-  var pen=barEffects(state).penElem;
+  var pen=barEffects(state,{fight:1}).penElem;
   if(pen){['Fire','Cold','Lightning'].forEach(function(el){out[el]-=pen})}
   /* The Dragonling's own penetration — the aspect's gift and any
      taken node's — comes off its own elements the same way. */
@@ -16484,7 +16540,7 @@ function renderDrawerChar(){
     if(keys.length)html+='<div class="label" style="margin-top:8px">Keystones</div><div class="node-chips">'+keys.map(function(nm){return '<span class="node-chip">'+esc(nm)+'</span>'}).join('')+'</div>';
     if(nots.length)html+='<div class="label" style="margin-top:8px">Notables</div><div class="node-chips">'+nots.slice(0,16).map(function(nm){return '<span class="node-chip">'+esc(nm)+'</span>'}).join('')+(nots.length>16?'<span class="node-chip">+'+(nots.length-16)+' more</span>':'')+'</div>';
   } else {
-    html+='<p class="sub" style="margin-top:6px">No passive nodes yet — mark nodes in the Passive Tree popup, or load a character or ladder hero.</p>';
+    html+='<p class="sub" style="margin-top:6px">No passive nodes yet — mark nodes in the Passive Tree view, or load a character or ladder hero.</p>';
   }
   html+='<div class="flex" style="margin-top:10px"><button class="btn small" id="drawerTreeBtn" type="button">Open the passive tree planner</button></div>';
   box.innerHTML=html;
@@ -16661,33 +16717,46 @@ function renderDrawerSkills(){
   list.querySelectorAll('[data-ds-clear]').forEach(function(b){b.addEventListener('click',clearDrawerSkillFilters)});
 }
 
-/* ---------- Planner workspaces — popups off the Character hub ----------
+/* ---------- Planner workspaces — full-page views off the Character hub ----------
    The Character view is the hub: the hero summary bar, the gear
    board and the Damage and Defense Analysis stay on the page, and
    Skills, Dragonling and the Passive Tree are buttons in that view.
-   The deep tools ride the same system: Enemy setup & Guardian
-   tester, Best in this slot, Where you stand and Tuning are text
-   buttons in one slim row under the cards, Copy stats is a text
-   button on the Damage and Defense card, and each opens its fold
-   — ids and controls untouched — in this popup.
-   Clicking one moves its panel into a popup sheet built on the same
-   .modal/.sheet system as the Modifier audit (a bottom sheet on
-   phones); closing returns the panel to the hidden stash. Panel ids
-   never change, so every render function finds its targets wherever
-   a panel currently sits. openSkillsDrawer / closeSkillsDrawer keep
-   their names (instance switching and the drawer-era buttons still
-   call them) and now open / close the popup. wsCurrent names the
-   open popup, or 'character' when none is open — renderPlanner's
-   per-workspace refreshes key off it exactly as before. */
+   Since v0.403 those three open as full-page views inside the
+   planner (#view-workspace), the way the game switches screens —
+   no overlay, no backdrop, no popup frame; Back returns to the
+   planner exactly as it was left. The deep tools keep the popup
+   sheet: Enemy setup & Guardian tester, Best in this slot, Where
+   you stand and Tuning are text buttons in one slim row under
+   the cards, Copy stats is a text button on the Damage and
+   Defense card, and each opens its fold — ids and controls
+   untouched — in a popup sheet on the same .modal/.sheet system
+   as the Modifier audit (a bottom sheet on phones).
+   Opening either presentation moves its panel out of the hidden
+   stash; closing returns it. Panel ids never change, so every
+   render function finds its targets wherever a panel currently
+   sits. openSkillsDrawer / closeSkillsDrawer keep their names
+   (instance switching and the drawer-era buttons still call
+   them) and now open / close whichever presentation is up.
+   popCurrent names what is open (a full-page view or a tool
+   popup), or null; wsCurrent names the open workspace, or
+   'character' when none is open — renderPlanner's per-workspace
+   refreshes key off it exactly as before. */
 var wsCurrent='character';
 var WS_PANELS={character:'wsCharacter',skills:'skillsDrawer',dragon:'wsDragon',tree:'wsTree',enemy:'enemyFold',bis:'bisCard',gap:'gapFold',tuning:'tuningFold',stats:'csFold'};
 var POP_TITLES={skills:'Skills',dragon:'Dragonling',tree:'Passive tree',enemy:'Enemy setup & Guardian tester',bis:'Best in this slot',gap:'Where you stand',tuning:'Tuning',stats:'Copy stats — game vs sim'};
 var popCurrent=null;
+/* The three workspaces that present as full-page views. While
+   one is open wsViewOpen is set and wsReturnY holds the planner
+   scroll position Back returns to (also written into the saved
+   view state, so a reload mid-view restores the planner there). */
+var WS_FULLPAGE={skills:1,dragon:1,tree:1};
+var wsViewOpen=false, wsReturnY=0;
 /* Going to Skills lands on the main-skill card — the one useful
    behaviour the old floating edge tab had, now carried by the
-   popup itself. The card lives inside the popup's own scroll
-   container (#popScroll), so the jump scrolls that container
-   directly, two frames out: opening the popup queues its own
+   view itself. When the card sits inside a scrolling popup
+   sheet (#popScroll) the jump scrolls that container directly;
+   in the full-page Skills view it scrolls the page instead.
+   Either way it runs two frames out: opening queues its own
    open-at-the-top reset for the first frame, and the jump has
    to land after it instead of being overwritten by it. */
 function scrollToSkillCard(){
@@ -16711,26 +16780,87 @@ function stashPanel(name){
   if(el)el.classList.add('hidden');
 }
 function popEscKey(e){if(e.key==='Escape')closePlannerPop()}
-function closePlannerPop(){
-  if(!popCurrent)return;
-  /* No hover card outlives the popup: the skill and gem cards are
-     fixed elements on the page, so closing the sheet takes them
-     down with it instead of leaving one floating over the planner. */
-  pinTipClear(); skillHideTip(); gemHideTip();
+/* Tear down whichever presentation is up — the full-page view or
+   the tool popup sheet — and park its panel back in the stash.
+   restoreScroll belongs to the full-page view: leaving it lands
+   on the planner at the exact scroll position it was left at,
+   with the same instance and setup open (nothing is rebuilt). */
+function teardownPop(restoreScroll){
   var name=popCurrent; popCurrent=null; wsCurrent='character';
   document.removeEventListener('keydown',popEscKey);
   stashPanel(name);
   var root=$('plannerPopRoot'); if(root)root.innerHTML='';
+  if(wsViewOpen){
+    wsViewOpen=false;
+    var vw=$('view-workspace'); if(vw)vw.classList.add('hidden');
+    var vp=$('view-planner'); if(vp)vp.classList.remove('ws-open');
+    if(restoreScroll){
+      viewStoreData.scroll.planner=wsReturnY; viewStoreSave();
+      window.scrollTo(0,wsReturnY);
+    }
+  }
+}
+function closePlannerPop(){
+  if(!popCurrent)return;
+  /* No hover card outlives the view: the skill and gem cards are
+     fixed elements on the page, so leaving takes them down with
+     it instead of leaving one floating over the planner. */
+  pinTipClear(); skillHideTip(); gemHideTip();
+  teardownPop(true);
+  updateWsBadges();
+}
+/* Open one of the three workspaces as a full-page view: the
+   planner chrome steps aside (the .ws-open rules), the panel
+   moves into the view body under its title and the Back control,
+   and the page lands at the view's top. The planner underneath
+   is never rebuilt — the same instance, the same setup and the
+   saved scroll position wait behind Back, and edits made in the
+   view apply live to the plan exactly as they did in the popup. */
+function openWorkspaceView(name){
+  if(popCurrent)teardownPop(true);
+  var el=$(WS_PANELS[name]), body=$('wsViewBody'), view=$('view-workspace'), vp=$('view-planner');
+  if(!el||!body||!view){popCurrent=null; wsCurrent='character'; return}
+  wsReturnY=Math.max(0,Math.round(window.pageYOffset||0));
+  viewStoreData.scroll.planner=wsReturnY; viewStoreSave();
+  popCurrent=name; wsCurrent=name; wsViewOpen=true;
+  var title=$('wsViewTitle'); if(title)title.textContent=POP_TITLES[name];
+  view.setAttribute('aria-label',POP_TITLES[name]);
+  el.classList.remove('hidden');
+  body.appendChild(el);
+  view.classList.remove('hidden');
+  if(vp)vp.classList.add('ws-open');
+  document.addEventListener('keydown',popEscKey);
+  window.scrollTo(0,0);
+  if(name==='skills'){renderDrawerSkills(); renderSockets(); renderDrawerBar(); renderDrawerChar(); renderGemPalette(); renderSimPins(); renderSimPinBoard(); renderManaVerdict(); renderSkillTable(); renderGemLevels(); addSkillMsg('');}
+  if(name==='dragon')renderDragonPage();
+  if(name==='tree'){buildTreeCanvas(); renderTreeList(); updateTreeCanvasStates(); centerTreeOnClass(false);}
+  /* The tree canvases are sized from their stage the moment the
+     view opens — on a phone the layout is still settling into
+     its final size on that first frame, and a canvas centred
+     against a half-laid-out stage opens panned away from every
+     node (the stage shows, the tree does not). One frame later
+     the layout is final: rebuild if the canvas came up empty,
+     re-apply the Dragonling view, and centre the passive tree
+     for real. */
+  if(name==='dragon'||name==='tree'){
+    var settleTree=function(){
+      if(popCurrent!==name)return;
+      if(name==='dragon'){buildDragonTree(); applyDragView()}
+      else{buildTreeCanvas(); centerTreeOnClass(true)}
+    };
+    if(window.requestAnimationFrame)requestAnimationFrame(settleTree); else settleTree();
+  }
   updateWsBadges();
 }
 function openPlannerPop(name){
   if(!POP_TITLES[name]){closePlannerPop(); return}
   if(popCurrent===name)return;
-  if(popCurrent)stashPanel(popCurrent);
+  if(WS_FULLPAGE[name]){openWorkspaceView(name); return}
+  if(popCurrent)teardownPop(true);
   popCurrent=name; wsCurrent=name;
   var el=$(WS_PANELS[name]), root=$('plannerPopRoot');
   if(!el||!root){popCurrent=null; wsCurrent='character'; return}
-  root.innerHTML='<div class="modal" id="popBg"><div class="sheet pop-sheet'+(name==='tree'?' pop-tree':'')+'" role="dialog" aria-modal="true" aria-label="'+POP_TITLES[name]+'">'
+  root.innerHTML='<div class="modal" id="popBg"><div class="sheet pop-sheet" role="dialog" aria-modal="true" aria-label="'+POP_TITLES[name]+'">'
    +'<div class="flex between pop-head"><h2 style="margin:0">'+POP_TITLES[name]+'</h2><button class="btn" id="popClose" type="button">Close</button></div>'
    +'<div class="pop-scroll" id="popScroll"></div></div></div>';
   el.classList.remove('hidden');
@@ -16741,30 +16871,8 @@ function openPlannerPop(name){
   $('popClose').addEventListener('click',closePlannerPop);
   $('popBg').addEventListener('click',function(e){if(e.target.id==='popBg')closePlannerPop()});
   document.addEventListener('keydown',popEscKey);
-  if(name==='skills'){renderDrawerSkills(); renderSockets(); renderDrawerBar(); renderDrawerChar(); renderGemPalette(); renderSimPins(); renderSimPinBoard(); renderManaVerdict(); renderSkillTable(); renderGemLevels(); addSkillMsg('');}
-  if(name==='dragon')renderDragonPage();
-  if(name==='tree'){buildTreeCanvas(); renderTreeList(); updateTreeCanvasStates(); centerTreeOnClass(false);}
-  /* The tree canvases are sized from their stage the moment the
-     sheet opens — on a phone the sheet is still settling into its
-     final size on that first frame, and a canvas centred against
-     a half-laid-out stage opens panned away from every node (the
-     stage shows, the tree does not). One frame later the layout
-     is final: rebuild if the canvas came up empty, re-apply the
-     Dragonling view, and centre the passive tree for real. */
-  if(name==='dragon'||name==='tree'){
-    var settleTree=function(){
-      if(popCurrent!==name)return;
-      if(name==='dragon'){buildDragonTree(); applyDragView()}
-      else{buildTreeCanvas(); centerTreeOnClass(true)}
-    };
-    if(window.requestAnimationFrame)requestAnimationFrame(settleTree); else settleTree();
-  }
   updateWsBadges();
-  /* Every popup opens at its own top. The Skills popup used to
-     scroll straight to the main-skill card, which parked the
-     gem-level slider and the bar row above the fold with no sign
-     they were there; now it opens on the section nav and the
-     slider, like every other popup opens on its first row. */
+  /* Every popup opens at its own top. */
   var ps=$('popScroll'); if(ps)ps.scrollTop=0;
   if(window.requestAnimationFrame)requestAnimationFrame(function(){var p2=$('popScroll'); if(p2)p2.scrollTop=0;});
 }
@@ -16790,6 +16898,7 @@ function bindWsNav(){
   document.querySelectorAll('[data-pop]').forEach(function(b){
     b.addEventListener('click',function(){switchWorkspace(b.getAttribute('data-pop'))});
   });
+  var back=$('wsBackBtn'); if(back)back.addEventListener('click',closePlannerPop);
   /* Park the workspace panels and the tool sections in the stash
      until first opened, so the Character view — its hub row and
      the slim tool-button row — is the only thing in the flow. */
@@ -25137,7 +25246,7 @@ window.addEventListener('touchmove',function(){viewUserMoved=true},{passive:true
 var viewScrollTimer=null;
 window.addEventListener('scroll',function(){
   if(viewScrollTimer)return;
-  viewScrollTimer=setTimeout(function(){viewScrollTimer=null; if(currentTab){viewStoreData.scroll[currentTab]=Math.max(0,Math.round(window.pageYOffset||0)); viewStoreData.tab=currentTab; viewStoreSave()}},250);
+  viewScrollTimer=setTimeout(function(){viewScrollTimer=null; if(currentTab&&!wsViewOpen){viewStoreData.scroll[currentTab]=Math.max(0,Math.round(window.pageYOffset||0)); viewStoreData.tab=currentTab; viewStoreSave()}},250);
 },{passive:true});
 /* Measure the sticky bars into the CSS vars the sticky offsets
    and the root scroll-padding read (--tbh top bar, --sbh menu,
@@ -25901,8 +26010,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.402';
-var PLANNER_BUILT_AT='2026-11-26T08:33:00-07:00';
+var PLANNER_VERSION='0.403';
+var PLANNER_BUILT_AT='2026-11-26T16:08:29-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
