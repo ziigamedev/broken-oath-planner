@@ -364,22 +364,24 @@ tr:hover td{background:color-mix(in srgb, var(--panel2) 60%, transparent)}
 .itic-disc.noimg img{display:none}
 .itic-disc.noimg .itic-glyph{display:block}
 .itic-disc.glyph-only .itic-glyph{display:block}
-/* The glyph's centre disc carries the rarity (v0.408): filled
-   with the rarity colour — Magic #84bde6, Rare #ead95e, Unique
-   #f09a3e, the site's own rarity palette — shaded deeper toward
-   the centre so the pale game art (and the fallback line glyph,
-   which sits on the same disc in a dark stroke) stays readable
-   at tile size; the rim keeps the full colour, so the rarity
-   reads at a glance. A Normal item keeps the plain dark disc
-   above. Oathword and Mythic discs wear their established
-   colours the same way. Item names and tile borders keep their
-   own rarity colours elsewhere — this disc is the icon's one
-   rarity signal. */
-.itic.rf-Magic .itic-disc{background:radial-gradient(circle at 50% 42%,#5f88a6,#84bde6 78%);border-color:#d6ecfa;color:#223644}
-.itic.rf-Rare .itic-disc{background:radial-gradient(circle at 50% 42%,#a89c44,#ead95e 78%);border-color:#faf3b8;color:#37330f}
-.itic.rf-Unique .itic-disc{background:radial-gradient(circle at 50% 42%,#ad6f2d,#f09a3e 78%);border-color:#ffd2a0;color:#3a240e}
-.itic.rf-Oathword .itic-disc{background:radial-gradient(circle at 50% 42%,#a17f3c,#dfb154 78%);border-color:#f2ddab;color:#36300f}
-.itic.rf-Mythic .itic-disc{background:radial-gradient(circle at 50% 42%,#a78d55,#e8c476 78%);border-color:#f7ead0;color:#38331a}
+/* The glyph's OUTER RING carries the rarity (v0.410): the
+   circular rim around the glyph emblem takes the rarity colour
+   — Magic #84bde6, Rare #ead95e, Unique #f09a3e, the site's own
+   rarity palette — worn a touch thicker than the plain rim so
+   it reads at tile size. The centre disc itself is back to the
+   plain dark treatment above, so the game art (and the fallback
+   line glyph) sits on the same dark ground for every rarity.
+   A Normal item keeps the plain muted rim. Oathword and Mythic
+   rings wear their established colours the same way. Item names
+   and tile borders keep their own rarity colours elsewhere —
+   this ring is the icon's one rarity signal. (v0.408 put the
+   colour in the centre disc instead; Gerome corrected it to
+   the outer colour.) */
+.itic.rf-Magic .itic-disc{border:2px solid #84bde6}
+.itic.rf-Rare .itic-disc{border:2px solid #ead95e}
+.itic.rf-Unique .itic-disc{border:2px solid #f09a3e}
+.itic.rf-Oathword .itic-disc{border:2px solid #dfb154}
+.itic.rf-Mythic .itic-disc{border:2px solid #e8c476}
 /* Rarity frames on item icons (v0.406): every icon's frame is
    tinted by the item's rarity, in the same colours the item's
    name already wears — Magic blue, Rare yellow, Unique
@@ -388,9 +390,10 @@ tr:hover td{background:color-mix(in srgb, var(--panel2) 60%, transparent)}
    that ring the icon themselves (the gear board's round frame,
    the loot filter's flat chips). The glyph art is unchanged. */
 /* Rarity frames (v0.406) are gone (v0.408): the rarity signal
-   moved into the glyph's centre disc (see the .itic-disc rules
-   below), so the icon box itself keeps its plain border for
-   every rarity — one signal, in the centre. --rfc stays defined
+   rides on the glyph's own outer ring (see the .itic-disc rules
+   above; the centre-disc fill of v0.408 moved out to the ring
+   in v0.410), so the icon box itself keeps its plain border for
+   every rarity — one signal, on the ring. --rfc stays defined
    here: the Follow-a-build sheet still reads it for its chips'
    glyph tint. */
 .itic.rf-Normal{--rfc:#8d8474}
@@ -1012,14 +1015,17 @@ input[type="file"]{color:var(--muted);max-width:100%}
 .char-head-r .char-tip{left:auto;right:0}
 /* "What the simulator counts" — a short "How much to trust this
    number ›" line under the damage number on the Damage head; one
-   tap opens the plain-language note IN FLOW inside the head, so
-   opening it grows the Damage head and pushes the Toughness /
-   Recovery heads, the resistances and everything below them down
-   the page — it never floats over them. (It used to be an
-   absolutely-positioned popover under the head, and it covered
-   exactly those cards: Toughness/Recovery on phones, resistances
-   and attributes on desktop.) While the note is open the head's
-   own hover breakdown steps aside. */
+   tap opens the plain-language note IN FLOW directly under the
+   heads row, spanning the full width of the Damage and Defense
+   card, so opening it grows the card and pushes the pools row,
+   the resistances and everything below them down the page — it
+   never floats over them. (It used to be an absolutely-positioned
+   popover under the head, and it covered exactly those cards:
+   Toughness/Recovery on phones, resistances and attributes on
+   desktop; then it sat in flow inside the Damage head itself,
+   squeezed into that grid cell — v0.410 gave it the card's full
+   width under the heads.) While the note is open the head's own
+   hover breakdown steps aside. */
 .sim-trust-link{display:block;margin-top:7px;padding:2px 0;min-height:28px;background:none;border:0;color:var(--gold2);font-weight:700;font-size:12.5px;line-height:1.3;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-decoration-color:color-mix(in srgb, var(--gold2) 55%, transparent);text-align:left;font-family:"IBM Plex Sans",sans-serif}
 .sim-trust-link:hover{color:var(--text)}
 .sim-trust-link:focus-visible{outline:none;box-shadow:var(--ring)}
@@ -1037,6 +1043,38 @@ input[type="file"]{color:var(--muted);max-width:100%}
 .attr-row:hover .attr-tip,.attr-row:focus-within .attr-tip{opacity:1;visibility:visible;transform:translate(-50%,0);pointer-events:auto}
 .attr-tip .src-lines{margin:1px 0 4px}
 @media (prefers-reduced-motion: reduce){.attr-tip{transition:none}}
+/* Hover tidy for this card's tips (v0.410): the three head tips,
+   the Resistances panel and the attribute source tips all used
+   to fire the instant the pointer crossed their host, so moving
+   across the card flashed one card after another ("popups
+   everywhere") and a tip pinned by focus could sit open beside
+   the one the pointer was asking for. Two behaviour rules, the
+   tips' words and placement untouched:
+   1. Hover intent — a pointer-opened tip now waits 350ms (the
+      item cards' hover-intent grace) before it fades in, so a
+      pointer merely crossing a host on its way somewhere else
+      opens nothing; leaving early cancels the opening outright,
+      and leaving after it opened still closes it at once (the
+      delay lives only on the hover-shown transition). Keyboard
+      focus (:focus-within) still opens its tip straight away.
+   2. One at a time — while the pointer is on any one host on
+      this card, every other tip on the card is held shut,
+      including one pinned open by focus; the hovered host's own
+      tip is the only one that can show. */
+.char-head:hover .char-tip{transition:opacity .13s ease .35s,transform .13s ease .35s,visibility 0s linear .35s}
+.resists:hover .resists-panel{transition:opacity .13s ease .35s,transform .13s ease .35s,visibility 0s linear .35s}
+.attr-row:hover .attr-tip{transition:opacity .13s ease .35s,transform .13s ease .35s,visibility 0s linear .35s}
+#planCard:has(.char-head:hover) .resists-panel,
+#planCard:has(.char-head:hover) .attr-tip,
+#planCard:has(.char-head:hover) .char-head:not(:hover) .char-tip,
+#planCard:has(.resists:hover) .char-tip,
+#planCard:has(.resists:hover) .attr-tip,
+#planCard:has(.attr-row:hover) .char-tip,
+#planCard:has(.attr-row:hover) .resists-panel,
+#planCard:has(.attr-row:hover) .attr-row:not(:hover) .attr-tip{opacity:0;visibility:hidden;pointer-events:none}
+@media (prefers-reduced-motion: reduce){
+  .char-head:hover .char-tip,.resists:hover .resists-panel,.attr-row:hover .attr-tip{transition:none}
+}
 .char-sec .kv b{font-variant-numeric:tabular-nums;text-align:right}
 .char-break{margin-top:12px;padding-top:10px;border-top:1px solid var(--line2)}
 .char-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--line2)}
@@ -2885,9 +2923,10 @@ td{padding:7px 8px}
 .affix-hover-panel,.attr-tip{padding:5px 8px 6px}
 .tree-tip{padding:7px 9px}
 .char-tip,.resists-panel{top:calc(100% + 4px)}
-/* .sim-info-pop is in-flow now (see its rule at the Damage head):
-   no top offset — opening it reflows the card instead of covering
-   the Toughness / Recovery / resistance cards below it. */
+/* .sim-info-pop is in-flow now (see its rule at the Damage and
+   Defense card): no top offset — opening it reflows the card
+   instead of covering the Toughness / Recovery / resistance
+   cards below it. */
 .affix-hover-panel{top:calc(100% + 3px)}
 #gpAffixBox .affix-row:nth-child(n+5) .affix-hover-panel{bottom:calc(100% + 3px)}
 @media(min-width:1100px){#gpAffixBox .affix-row:nth-child(n+4) .affix-hover-panel{bottom:calc(100% + 3px)}}
@@ -3242,20 +3281,6 @@ body.tab-home .brand h1{display:none}
           <p class="ch-sub hidden" id="calFitNote" style="margin-top:2px"></p>
           <button class="sim-trust-link" id="simInfoBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="simInfoPop">How much to trust this number ›</button>
           <div class="char-tip" role="tooltip" id="dmgTipBody"></div>
-          <!-- "What the simulator counts — and what it leaves out",
-               behind the "How much to trust this number ›" line on
-               this head: the plain-language note on how much to
-               trust the damage number, one tap away on the card
-               itself. The same text sits in the fold of the same
-               name inside More info. -->
-          <div class="sim-info-pop" id="simInfoPop" role="dialog" aria-label="What the simulator counts — and what it leaves out" hidden>
-            <div class="label" style="margin:0 0 4px">What the simulator counts — and what it leaves out</div>
-            <p>This damage number is our best guess at a real Guardian fight — not the number on your in-game sheet.</p>
-            <p>We counted everything on your build — your gear, tree, Dragonling, Oaths, skills and their supports, auras and curses — plus damage over time, minions and totems.</p>
-            <p>Some bonuses only count against the enemy you picked in the Guardian tester.</p>
-            <p>We left out things that only happen when you kill something, and the enemy&rsquo;s Ward.</p>
-            <p>Bleeding is counted at 40% of a hit each second, and crits don&rsquo;t make it bigger — checked against real Guardian fights.</p>
-          </div>
         </div>
         <div class="char-head" tabindex="0" aria-label="Toughness — effective health against a Guardian hit">
           <span class="ch-label">Toughness</span>
@@ -3272,6 +3297,23 @@ body.tab-home .brand h1{display:none}
           <p class="ch-sub">Life &amp; shield back per second</p>
           <div class="char-tip" role="tooltip" id="recTipBody"></div>
         </div>
+      </div>
+      <!-- "What the simulator counts — and what it leaves out",
+           behind the "How much to trust this number ›" line on the
+           Damage head: the plain-language note on how much to trust
+           the damage number, one tap away on the card itself. It
+           sits in flow directly under the heads row at the card's
+           full width (v0.410) — inside the Damage head it rendered
+           squeezed into that one grid cell, a narrow tall column
+           with the heading wrapped over three lines. The same text
+           sits in the fold of the same name inside More info. -->
+      <div class="sim-info-pop" id="simInfoPop" role="dialog" aria-label="What the simulator counts — and what it leaves out" hidden>
+        <div class="label" style="margin:0 0 4px">What the simulator counts — and what it leaves out</div>
+        <p>This damage number is our best guess at a real Guardian fight — not the number on your in-game sheet.</p>
+        <p>We counted everything on your build — your gear, tree, Dragonling, Oaths, skills and their supports, auras and curses — plus damage over time, minions and totems.</p>
+        <p>Some bonuses only count against the enemy you picked in the Guardian tester.</p>
+        <p>We left out things that only happen when you kill something, and the enemy&rsquo;s Ward.</p>
+        <p>Bleeding is counted at 40% of a hit each second, and crits don&rsquo;t make it bigger — checked against real Guardian fights.</p>
       </div>
       <div class="pools-row" aria-label="Life, Energy Shield and Mana pools">
         <div class="pool-cell"><span class="ch-label">Life</span><b class="ch-num-sm" id="poolLife">—</b></div>
@@ -9762,14 +9804,17 @@ function closeAdvInfo(){
 function advInfoKey(e){if(e.key==='Escape')closeAdvInfo()}
 /* "What the simulator counts" behind the "How much to trust this
    number ›" line under the damage number on the Damage head: one
-   tap opens the plain-language note in flow inside the head (it
-   grows the head and pushes the cards below down — never a
-   floating popover over them);
-   the line again, a tap anywhere outside the head, or Escape
-   closes it. While it is open the head carries .info-open, which
-   keeps its hover breakdown out of the way. The line's id sits in
-   the starter guard's allowlist — reading the note is browsing,
-   not editing, so it stays tappable on a read-only starter. */
+   tap opens the plain-language note in flow directly under the
+   heads row, at the full width of the Damage and Defense card
+   (it grows the card and pushes what sits below it down — never
+   a floating popover over it; v0.410 moved it out of the Damage
+   head, where it rendered squeezed into that one grid cell);
+   the line again, a tap anywhere outside the head and the note,
+   or Escape closes it. While it is open the head carries
+   .info-open, which keeps its hover breakdown out of the way.
+   The line's id sits in the starter guard's allowlist — reading
+   the note is browsing, not editing, so it stays tappable on a
+   read-only starter. */
 function simInfoSet(open){
   var pop=$('simInfoPop'),btn=$('simInfoBtn'); if(!pop||!btn)return;
   pop.hidden=!open;
@@ -12030,7 +12075,7 @@ function itemIconHTML(base,rarity,size,unique){
     art='<span class="itic-disc" style="width:'+dsz+'px;height:'+dsz+'px"><img src="assets/icons/item-glyph/'+esc(gname)+'.png" width="'+isz+'" height="'+isz+'" alt="" loading="lazy" onerror="this.parentNode.classList.add(\'noimg\')">'+glyph+'</span>';
   } else {
     /* No published art: the line glyph rides on the same centre
-       disc, so the rarity fill reads the same way (v0.408). */
+       disc, so the rarity ring reads the same way (v0.410). */
     art='<span class="itic-disc glyph-only" style="width:'+dsz+'px;height:'+dsz+'px">'+glyph+'</span>';
   }
   return '<span class="itic rf-'+esc(rarity||'Normal')+'" style="width:'+size+'px;height:'+size+'px" title="'+esc(title)+'">'+art+'</span>';
@@ -26564,8 +26609,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.409';
-var PLANNER_BUILT_AT='2026-11-26T13:10:00-07:00';
+var PLANNER_VERSION='0.410';
+var PLANNER_BUILT_AT='2026-11-26T13:38:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
@@ -27228,7 +27273,7 @@ function init(){
   var advClose=$('advCloseBtn'); if(advClose)advClose.addEventListener('click',closeAdvInfo);
   var advOv=$('advOverlay'); if(advOv)advOv.addEventListener('click',function(e){if(e.target===advOv)closeAdvInfo()});
   var simBtn=$('simInfoBtn'); if(simBtn)simBtn.addEventListener('click',function(e){e.stopPropagation();var pop=$('simInfoPop');simInfoSet(!!(pop&&pop.hidden));});
-  document.addEventListener('click',function(e){var pop=$('simInfoPop');if(!pop||pop.hidden)return;var head=pop.parentNode;if(head&&!head.contains(e.target))simInfoSet(false);});
+  document.addEventListener('click',function(e){var pop=$('simInfoPop');if(!pop||pop.hidden)return;if(pop.contains(e.target))return;var btn=$('simInfoBtn');var head=btn&&btn.closest?btn.closest('.char-head'):null;if(head&&!head.contains(e.target))simInfoSet(false);});
   $('bannerRetryBtn').addEventListener('click',function(){refreshLive()});
   // Self-healing: the moment the connection comes back or the tab is
   // visible again, retry the live API without waiting for the timer.
