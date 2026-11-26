@@ -2092,7 +2092,7 @@ details.card.fold{padding:0}
    buttons to zoom, node tooltips floating over it. */
 .tree-stage{position:relative;border:1px solid var(--line);border-radius:var(--radius);background:radial-gradient(900px 480px at 50% 42%,#1a1410,#12100e 78%);overflow:hidden;margin-top:12px;touch-action:none}
 .tree-intro{font-size:12.5px;line-height:1.4;margin:0}
-.tree-controls{margin:8px 0 10px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.tree-controls{margin:8px 0 10px;flex-wrap:wrap}
 .tree-controls .chip{flex:0 0 auto;padding:5px 9px;font-size:12.5px;white-space:nowrap}
 #treeCard .tree-stage{margin-top:0}
 .tree-stage svg{display:block;width:100%;height:min(68vh,640px);cursor:grab}
@@ -3329,21 +3329,25 @@ td{padding:7px 8px}
 
   <div id="wsTree" class="hidden">
     <div class="card" id="treeCard">
-          <p class="sub tree-intro"><b>Click a node</b> to take it — the shortest path from your class start comes with it. Click a taken node to refund it. Drag to pan, scroll to zoom. Diamond nodes are Oath seats: take one, then swear an Oath in its panel. Search by name or by stat. <b>Hold Shift</b> and trace a route, then click once to take it all.</p>
+          <p class="sub tree-intro">Click a node to take it — the shortest path from your class start comes with it. Click a taken node to refund it. Drag to pan, scroll to zoom. Diamond nodes are Oath seats: take one, then swear an Oath in its panel. Hold Shift and trace a route, then click once to take it all.</p>
+          <details class="fold-block">
+            <summary><span class="fold-title">Load a build code</span><span class="fold-hint">BO1 from the game, or BOP1 from this planner</span></summary>
+            <div class="fold-block-body">
           <div class="tree-code-load">
-            <div class="label" style="margin-top:12px">Paste a build code</div>
-            <p class="sub" style="margin:2px 0 0">Paste a build code <b>(BO1 from the game, or BOP1 from this planner)</b> — it loads the whole build: passive tree, skills and gear.</p>
-            <p class="sub" style="margin:2px 0 0">A game code carries no gear affixes, so damage and defence read lower than in game; load your save file for exact numbers. A plan code keeps the affixes.</p>
+            <div class="label">Paste a build code</div>
+            <p class="sub" style="margin:2px 0 0">It loads the whole build: passive tree, skills and gear. A game code carries no gear affixes, so damage and defence read lower than in game; load your save file for exact numbers. A plan code keeps the affixes.</p>
             <div class="flex fr-code-row"><input type="text" id="treeCodeInput" placeholder="Paste the in-game BO1.… code" spellcheck="false"><button class="btn small" id="treeCodeBtn" type="button">Open it</button></div>
             <p class="sub" id="treeCodeMsg" style="min-height:18px;margin:2px 0 0"></p>
           </div>
-          <!-- One control row for the whole workspace: the map's view
-               controls (Names, Gateways, zoom, My class, Fit, Full
-               screen) and the node filters together — the corner set
-               inside the canvas and the row below it carried the
-               same Gateways and Full screen twice, so they are
-               merged here, each control exactly once. -->
-          <div class="chips tree-controls" id="treeFilterChips"><button class="chip" id="treeNamesBtn" type="button">Names</button><button class="chip" id="treeGateBtn" type="button">Gateways</button><button class="chip" id="treeZoomIn" type="button" aria-label="Zoom in">+</button><button class="chip" id="treeZoomOut" type="button" aria-label="Zoom out">−</button><button class="chip" id="treeHomeBtn" type="button">My class</button><button class="chip" id="treeFitBtn" type="button">Fit</button><button class="chip" id="treeFsBtn" type="button">Full screen</button><button class="chip active" data-tfilter="All">All nodes</button><button class="chip" data-tfilter="Keystone">Keystones</button><button class="chip" data-tfilter="Notable">Notables</button><button class="chip" data-tfilter="Mastery">Oath seats</button><button class="chip" data-tfilter="Marked">Marked</button></div>
+            </div>
+          </details>
+          <!-- Two wrapping rows for the whole workspace: the map's
+               view controls (Names, Gateways, zoom, My class, Fit,
+               Full screen) on their own row, the node filters on the
+               next — each control exactly once, and both rows wrap
+               so every control stays on screen at phone width. -->
+          <div class="chips tree-controls"><button class="chip" id="treeNamesBtn" type="button">Names</button><button class="chip" id="treeGateBtn" type="button">Gateways</button><button class="chip" id="treeZoomIn" type="button" aria-label="Zoom in">+</button><button class="chip" id="treeZoomOut" type="button" aria-label="Zoom out">−</button><button class="chip" id="treeHomeBtn" type="button">My class</button><button class="chip" id="treeFitBtn" type="button">Fit</button><button class="chip" id="treeFsBtn" type="button">Full screen</button></div>
+          <div class="chips tree-controls" id="treeFilterChips"><button class="chip active" data-tfilter="All">All nodes</button><button class="chip" data-tfilter="Keystone">Keystones</button><button class="chip" data-tfilter="Notable">Notables</button><button class="chip" data-tfilter="Mastery">Oath seats</button><button class="chip" data-tfilter="Marked">Marked</button></div>
           <div class="tree-stage" id="treeStage">
             <span class="tree-pts" id="treePts">— pts</span>
             <div class="tree-trace-bar hidden" id="treeTraceBar"></div>
@@ -6199,7 +6203,7 @@ function fetchJSON(url,timeoutMs){
 function getJSON(path){if(cache[path])return cache[path];var p=fetchJSON(BASE+path,12000);cache[path]=p;p.catch(function(){if(cache[path]===p)delete cache[path]});return p}
 function getLiveJSON(path,timeoutMs){delete cache[path];var p=fetchJSON(BASE+path,timeoutMs||12000);cache[path]=p;p.catch(function(){if(cache[path]===p)delete cache[path]});return p}
 function getSnap(name){return fetchJSON('assets/snapshot/'+name,12000)}
-var SNAPSHOT_PATCH='90'; var SNAPSHOT_AT='2026-11-26T02:48:00.421Z'; var DEFAULT_LEAGUE='at1-sc-trade'; var liveState='boot';
+var SNAPSHOT_PATCH='90'; var SNAPSHOT_AT='2026-11-26T04:48:01.258Z'; var DEFAULT_LEAGUE='at1-sc-trade'; var liveState='boot';
 /* Patch history store — notes text only, a few KB per patch, bundled
    at assets/snapshot/patch-history.json. The hourly snapshot refresh
    adds exactly one entry when the patch number moves: {patch, build,
@@ -6429,8 +6433,8 @@ function effAt(skill,gem){
    snapshot — the moment a patch's fit is meant to change.
 
    Hourly snapshot refresh, 2026-11-26 (snapshot generated
-   2026-11-26T02:48Z): the API's one-day measured window is
-   still refilling (builds republished 02:33Z), so just 13
+   2026-11-26T04:48Z): the API's one-day measured window is
+   still refilling (builds republished 04:33Z), so just 13
    ladder heroes carried a measured Guardian DPS when this
    snapshot was taken. A refit over that sample cannot run
    whole — no archetype reaches the 3-hero floor on it — so,
@@ -16356,7 +16360,7 @@ function openPlannerPop(name){
   document.addEventListener('keydown',popEscKey);
   if(name==='skills'){renderDrawerSkills(); renderSockets(); renderDrawerBar(); renderDrawerChar(); renderGemPalette(); renderSimPins(); renderSimPinBoard(); renderManaVerdict(); renderSkillTable(); renderGemLevels(); addSkillMsg('');}
   if(name==='dragon')renderDragonPage();
-  if(name==='tree'){buildTreeCanvas(); updateTreeCanvasStates(); centerTreeOnClass(false);}
+  if(name==='tree'){buildTreeCanvas(); renderTreeList(); updateTreeCanvasStates(); centerTreeOnClass(false);}
   /* The tree canvases are sized from their stage the moment the
      sheet opens — on a phone the sheet is still settling into its
      final size on that first frame, and a canvas centred against
@@ -17288,18 +17292,21 @@ function treeNodeMatches(n,words){
   for(var i=0;i<words.length;i++){if(txt.indexOf(words[i])<0)return false}
   return true;
 }
-function renderTreeSearchMeta(){
+var treeSearchTimer=null;
+function scheduleTreeSearch(){ if(treeSearchTimer)clearTimeout(treeSearchTimer); treeSearchTimer=setTimeout(function(){treeSearchTimer=null; renderTreeList()},140); }
+function renderTreeSearchMeta(preCount){
   var meta=$('treeSearchMeta'); if(!meta)return;
   var inp=$('treeSearch'), q=inp?inp.value.trim():'';
   var clr=$('treeSearchClear'); if(clr)clr.classList.toggle('hidden',!q);
   if(!q){meta.textContent=''; return}
-  var words=treeQueryWords(q), count=0;
-  G.passives.forEach(function(n){if(!isStartNode(n.Id)&&treeNodeMatches(n,words))count++});
+  var words=treeQueryWords(q), count=(typeof preCount==='number')?preCount:0;
+  if(typeof preCount!=='number')G.passives.forEach(function(n){if(!isStartNode(n.Id)&&treeNodeMatches(n,words))count++});
   if(!count)meta.textContent='No node grants “'+q+'” — try one word of it, like “'+(words[0]||q)+'”.';
   else meta.textContent=count+(count===1?' node grants ':' nodes grant ')+'“'+q+'” — lit on the tree, the rest dimmed'+(count>80?', first 80 listed below':', listed below')+'.';
 }
 function renderTreeList(){
   var listEl=$('treeList'); if(!listEl)return;
+  if(popCurrent!=='tree'){updateWsBadges(); return}
   var inc=0,life=0;
   state.tree.take.forEach(function(id){var n=G.passiveMap[id]; if(!n)return; (n.Mods||[]).forEach(function(m){if(m.Stat==='Damage'&&m.Mode==='Inc')inc+=m.Value; if(m.Stat==='Life'&&m.Mode==='Flat')life+=m.Value;});});
   var oathSeats=Object.keys(state.oaths||{}).length, oathN=Object.keys(state.oaths||{}).reduce(function(a,k){return a+(state.oaths[k]||[]).length},0);
@@ -17312,6 +17319,7 @@ function renderTreeList(){
   /* treeNext belongs to Best next picks / Plan next points /
      Optimize — renders leave it alone. */
   var words=treeQueryWords(($('treeSearch').value||'')); var f=state.treeFilter;
+  var matchCount=0;
   var arr=G.passives.filter(function(n){
     if(isStartNode(n.Id))return false;
     if(f==='Keystone'&&n.Kind!=='Keystone')return false;
@@ -17320,6 +17328,7 @@ function renderTreeList(){
     if(f==='Mastery'&&!isOathSeat(n.Id))return false;
     if(f==='Marked'&&!markOf(n.Id))return false;
     if(words.length&&!treeNodeMatches(n,words))return false;
+    matchCount++;
     return true;
   }).slice(0,80);
   var takenSet={}; treeTakenIds().forEach(function(id){takenSet[id]=1});
@@ -17327,7 +17336,7 @@ function renderTreeList(){
   renderDrawerChar();
   updateTreeCanvasStates(); updateWsBadges();
   renderLevelPath(); /* the levelling path follows the taken set like the list does */
-  renderTreeSearchMeta();
+  renderTreeSearchMeta(matchCount);
 }
 /* ---------- Tree heat map, best picks, plan & optimize ----------
    Every figure here is priced the same way the detail panel prices
@@ -17786,10 +17795,14 @@ function treeTakenIds(){
   ((state.tree&&state.tree.take)||[]).concat(state.passiveNodes||[]).forEach(function(id){if(id&&!seen[id]&&!isStartNode(id)){seen[id]=1; out.push(id)}});
   return out;
 }
+var treeStartCacheKey='', treeStartCacheId=null;
 function treeStartId(){
+  var key=state.cls+'|'+G.passives.length;
+  if(key===treeStartCacheKey)return treeStartCacheId;
   var s=null;
   G.passives.forEach(function(n){if(!s&&n.ClassStart===state.cls)s=n.Id});
   if(!s)G.passives.forEach(function(n){if(!s&&n.Kind==='Start')s=n.Id});
+  treeStartCacheKey=key; treeStartCacheId=s;
   return s;
 }
 var treeAdj=null, treeAdjKey='';
@@ -17972,16 +17985,18 @@ function updateTreeCanvasStates(){
     if(state.tree.never.indexOf(id)>=0)cl+=' never';
     if((state.tree.must||[]).indexOf(id)>=0)cl+=' must';
     if(treePreview){if(treePreview.take[id])cl+=' preview-take'; if(treePreview.refund[id])cl+=' preview-refund'}
-    if(treeHeatOn&&heatMap){var hv=heatMap[id]; if(hv&&!set[id])el.style.fill=hv.dead?'#2e4237':(hv.per>0.05?'rgba(84,160,60,'+Math.min(0.95,0.3+hv.per/4)+')':(hv.per<-0.05?'#a03a26':'#51645a')); else el.style.fill=''}
-    else if(el.style.fill)el.style.fill='';
+    var fill='';
+    if(treeHeatOn&&heatMap){var hv=heatMap[id]; if(hv&&!set[id])fill=hv.dead?'#2e4237':(hv.per>0.05?'rgba(84,160,60,'+Math.min(0.95,0.3+hv.per/4)+')':(hv.per<-0.05?'#a03a26':'#51645a'))}
+    if(el._tcFill===undefined)el._tcFill='';
+    if(el._tcFill!==fill){el.style.fill=fill; el._tcFill=fill}
     if(tc.gates&&kind!=='Socket'&&kind!=='Choice')cl+=' dim';
     if(treeTrace&&treeTrace.set[id])cl+=' trace';
     if(swords.length)cl+=(n&&treeNodeMatches(n,swords))?' match':' dim';
-    el.setAttribute('class',cl);
+    if(el._tcCls!==cl){el.setAttribute('class',cl); el._tcCls=cl}
     /* The node's icon follows the two fade states, so a dimmed or
        other-class node reads faded as a whole, art included. */
     var iel=tc.iconEls?tc.iconEls[id]:null;
-    if(iel){var icl='tc-icon'; if(cl.indexOf(' dim')>=0)icl+=' dim'; if(cl.indexOf(' start-other')>=0)icl+=' start-other'; iel.setAttribute('class',icl)}
+    if(iel){var icl='tc-icon'; if(cl.indexOf(' dim')>=0)icl+=' dim'; if(cl.indexOf(' start-other')>=0)icl+=' start-other'; if(iel._tcCls!==icl){iel.setAttribute('class',icl); iel._tcCls=icl}}
   });
   var tEdges={};
   if(treeTrace&&treeTrace.ids.length){
@@ -17993,7 +18008,8 @@ function updateTreeCanvasStates(){
   }
   Object.keys(tc.edgeEls).forEach(function(k){
     var p=k.split('|'), on=(set[p[0]]||p[0]===startId)&&(set[p[1]]||p[1]===startId);
-    tc.edgeEls[k].setAttribute('class','tc-edge'+(on?' on':(tEdges[k]?' trace':'')));
+    var edgeEl=tc.edgeEls[k], ecl='tc-edge'+(on?' on':(tEdges[k]?' trace':''));
+    if(edgeEl._tcCls!==ecl){edgeEl.setAttribute('class',ecl); edgeEl._tcCls=ecl}
   });
   var pp=$('treePts'); if(pp)pp.textContent=passivePointsText();
   renderTreeTraceBar();
@@ -18268,7 +18284,7 @@ function bindTreeCanvas(){
   $('treeHomeBtn').addEventListener('click',function(){tc.centeredFor=''; centerTreeOnClass(true)});
   $('treeNamesBtn').addEventListener('click',function(){tc.names=!tc.names; document.querySelectorAll('.tc-label').forEach(function(l){l.classList.toggle('hidden',!tc.names)})});
   $('treeGateBtn').addEventListener('click',function(){tc.gates=!tc.gates; this.classList.toggle('active',tc.gates); updateTreeCanvasStates()});
-  var ts=$('treeSearch'); if(ts)ts.addEventListener('input',updateTreeCanvasStates);
+  var ts=$('treeSearch'); if(ts)ts.addEventListener('input',scheduleTreeSearch);
   var ttb=$('treeTraceBar'); if(ttb)ttb.addEventListener('click',function(e){if(e.target.closest('[data-trace-clear]'))clearTreeTrace()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&treeTrace)clearTreeTrace()});
 }
@@ -23069,7 +23085,7 @@ function bindExtras(){
   $('fightBtn').addEventListener('click',runFight);
   /* Defense inputs are gone — defenses show read-only in Your plan's
      Resists plate and its hover panel (renderDefenses). */
-  $('treeSearch').addEventListener('input',renderTreeList);
+  $('treeSearch').addEventListener('input',scheduleTreeSearch);
   var tscEl=$('treeSearchClear'); if(tscEl)tscEl.addEventListener('click',function(){var tsx=$('treeSearch'); if(tsx){tsx.value=''; tsx.focus()} renderTreeList();});
   $('treeFilterChips').addEventListener('click',function(e){var b=e.target.closest('[data-tfilter]'); if(!b)return; state.treeFilter=b.getAttribute('data-tfilter'); document.querySelectorAll('[data-tfilter]').forEach(function(x){x.classList.toggle('active',x===b)}); renderTreeList();});
   $('treeFsBtn').addEventListener('click',function(){var c=$('treeCard'); if(document.fullscreenElement)document.exitFullscreen(); else if(c&&c.requestFullscreen)c.requestFullscreen();});
@@ -25271,8 +25287,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.391';
-var PLANNER_BUILT_AT='2026-11-25T20:53:54-07:00';
+var PLANNER_VERSION='0.392';
+var PLANNER_BUILT_AT='2026-11-25T22:06:52-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
