@@ -2039,7 +2039,7 @@ details:not([open])>:not(summary){display:none}
    the Character hub) steps aside and only the view shows; the
    tool sections keep the popup sheet. The view head carries the
    workspace's title and the way back. */
-.wsview-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 14px}
+.wsview-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 14px;position:sticky;top:0;z-index:30;background:var(--bg);padding:8px 0 10px;border-bottom:1px solid var(--line2)}
 .wsview-head h2{margin:0;font-size:24px}
 #wsBackBtn{flex:0 0 auto}
 #view-planner.ws-open .instance-bar,#view-planner.ws-open .sample-banner,#view-planner.ws-open .starter-banner,#view-planner.ws-open #wsCharacter{display:none}
@@ -2127,6 +2127,57 @@ details.card.fold{padding:0}
 .sk-col .label:first-child{margin-top:2px}
 @media(max-width:760px){.sk-cols{grid-template-columns:1fr}}
 #wsSkills .drawer-sock-grid{grid-template-columns:repeat(auto-fill,minmax(86px,1fr))}
+/* v0.404 — the Skills view's right-side picker drawer: the support
+   palette and the Add-a-skill list live here now, not in the view.
+   Fixed to the right edge of the screen: on wide screens it docks
+   beside the view's content, on a phone it slides over it. The
+   scrim only exists on narrow screens, where the drawer covers
+   the card and an outside tap is the natural way out; on desktop
+   the card stays clickable beside the docked drawer, so drag and
+   tap-to-place onto the rings keep working with it open. */
+.sk-pick-drawer{position:fixed;top:0;right:0;height:100dvh;width:min(520px,94vw);z-index:60;background:linear-gradient(180deg,var(--panel2),var(--panel));border-left:2px solid var(--line);box-shadow:-18px 0 40px rgba(0,0,0,.5);transform:translateX(106%);visibility:hidden;transition:transform .26s ease,visibility 0s linear .26s;display:flex;flex-direction:column}
+.sk-pick-drawer.open{transform:none;visibility:visible;transition:transform .26s ease}
+.sk-pick-head{display:flex;align-items:center;gap:8px;padding:12px 14px 10px;border-bottom:1px solid var(--line2)}
+.sk-pick-tabs{display:flex;gap:6px;flex:1;min-width:0}
+.sk-pick-tabs button{flex:1 1 0;border:1px solid var(--line);background:var(--panel2);color:var(--muted);padding:8px 6px;border-radius:var(--radius-sm);font-weight:700;font-size:13px;cursor:pointer;min-height:40px;font-family:Cinzel,serif;letter-spacing:.03em}
+.sk-pick-tabs button[aria-selected="true"]{border-color:var(--gold);color:var(--gold2)}
+.sk-pick-body{padding:12px 14px 16px;overflow:auto;flex:1}
+.sk-pick-scrim{display:none}
+@media(max-width:760px){.sk-pick-scrim{display:block;position:fixed;inset:0;z-index:59;background:rgba(0,0,0,.45)}}
+@media (prefers-reduced-motion: reduce){.sk-pick-drawer{transition:none}}
+/* The gem-level control's row on the main skill card's panel, with
+   the information button that opens the per-level table. */
+.gemctl-row{display:flex;gap:8px;align-items:flex-start}
+.gemctl-row .skn-gemctl{flex:1;min-width:0}
+.gem-info-btn{flex:0 0 auto;width:32px;height:32px;margin-top:2px;border-radius:50%;border:1px solid var(--gold);background:var(--panel2);color:var(--gold2);font-family:Georgia,serif;font-style:italic;font-weight:700;font-size:16px;line-height:1;cursor:pointer}
+.gem-info-btn:hover{background:var(--hover-bg)}
+.gem-info-btn[aria-expanded="true"]{background:var(--gold);color:#171310}
+/* The per-level gem table, opened from that button — a sheet that
+   appears under the card's panel only while it is asked for. */
+.gemlvl-pop{border:1px solid var(--line2);border-radius:var(--radius);background:var(--panel2);padding:10px 13px 13px;margin-top:12px}
+.gemlvl-pop-head{display:flex;align-items:baseline;gap:12px}
+.gemlvl-pop-head .fold-title{font-size:15px}
+.gemlvl-pop-head .btn{margin-left:auto;flex:0 0 auto}
+/* Tree canvas actions (v0.404): Undo and Refund all ride on the
+   passive-tree canvas itself, top-right — clear of the points pill
+   (top-left), the trace bar (top-centre, which drops a row on
+   phones) and the zoom tools (bottom-right on the Dragonling). */
+.tree-canvas-actions{position:absolute;top:10px;right:10px;z-index:4;display:flex;gap:6px}
+.tree-canvas-actions .btn{background:color-mix(in srgb, var(--hover-bg) 88%, transparent)}
+/* Item hover card (v0.404): rolled affixes grouped under Prefix /
+   Suffix headings, an "(-)" line for each slot the rarity allows
+   but the item does not carry, the tier tag after the line and the
+   tier's roll range in small muted text after that. */
+.affix-group-head{font-family:Cinzel,serif;font-weight:700;font-size:12.5px;letter-spacing:.05em;color:var(--gold2);margin-top:7px}
+.affix.affix-empty{color:var(--faint)}
+.afx-tier{color:var(--gold2);font-weight:700}
+.afx-range{color:var(--faint);font-size:12px}
+/* Unique variant labels (v0.404): uniques that share a name are
+   told apart by what the variant itself grants — a line under the
+   name in the gear picker, and a quiet tag beside the name on the
+   item hover cards. */
+.gp-variant{display:block;font-size:12px;font-weight:600;color:var(--gold2);margin-top:1px}
+.fb-tip-variant{font-size:12.5px;font-weight:600;color:var(--gold2)}
 /* Aspect cards (Dragonling workspace) */
 .aspect-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(132px,100%),1fr));gap:6px;margin-top:6px}
 .aspect-card{text-align:left;border:1px solid var(--line2);background:var(--panel2);border-radius:var(--radius);padding:5px 9px;cursor:pointer;color:var(--text);display:flex;align-items:center;min-height:0}
@@ -2648,9 +2699,6 @@ td{padding:7px 8px}
 /* Section nav — three plain jumps, pinned to the top of the popup's
    scroll area so the sections are always one tap away. Sections
    carry a scroll margin so a jump never parks a heading under it. */
-.sk-nav{position:sticky;top:0;z-index:3;display:flex;gap:6px;background:var(--panel);padding:6px 0 8px;margin:0 0 4px}
-.sk-nav button{flex:1 1 0;border:1px solid var(--line);background:var(--panel2);color:var(--muted);padding:8px 6px;border-radius:var(--radius-sm);font-weight:700;font-size:13px;cursor:pointer;min-height:40px;font-family:Cinzel,serif;letter-spacing:.03em}
-.sk-nav button:hover{border-color:var(--gold);color:var(--gold2)}
 .sk-sec{scroll-margin-top:58px;margin-top:16px}
 .sk-sec:first-of-type{margin-top:2px}
 .sk-sec-title{font-family:Cinzel,serif;font-size:16px;font-weight:700;color:var(--gold2);letter-spacing:.04em;margin:0 0 4px}
@@ -3210,20 +3258,56 @@ body.tab-home .brand h1{display:none}
          untouched — skills keep their slots, and the damage
          counting still uses them. -->
     <!-- Advanced detail for the Damage and Defense card, behind its
-         "More info" text button: what the build asks, the defence
-         section, how the number is built and the modifier audit,
-         unchanged — same ids, same renderers — shown in a popup sheet
-         instead of on the card. Offence and Attributes sit on the
-         card itself, up front under the resistances. "What each
-         piece is worth" and "Check against your real fights" stay
-         on the card itself too, above the More info button. -->
+         "More info" text button. The sheet carries exactly four
+         sections, in this order (v0.404): How the number is built,
+         the Modifier audit, Sworn buffs, and Defence (with "Your
+         build asks" riding in the Defence block, where it has
+         always sat) — same ids, same renderers. The tools are not
+         here: Enemy setup & Guardian tester, Best in this slot,
+         Where you stand and Tuning are their own popup sheets off
+         the planner tools row, and "What the simulator counts"
+         lives only behind "How much to trust this number ›" on
+         the card. Offence and Attributes sit on the card itself,
+         up front under the resistances. "What each piece is worth"
+         and "Check against your real fights" stay on the card
+         itself too, above the More info button. -->
     <div class="adv-overlay" id="advOverlay" hidden>
       <div class="sheet adv-sheet" role="dialog" aria-modal="true" aria-labelledby="advTitle">
         <div class="flex between">
-          <div><h2 id="advTitle" style="margin:0">Damage and Defense — more info</h2><p class="sub" style="margin:2px 0 0">The advanced detail behind the numbers on the card: what your build asks, your defence in full, how the damage number is built, and the modifier audit.</p></div>
+          <div><h2 id="advTitle" style="margin:0">Damage and Defense — more info</h2><p class="sub" style="margin:2px 0 0">The advanced detail behind the numbers on the card: how the damage number is built, the modifier audit, your sworn buffs, and your defence in full.</p></div>
           <button class="btn" id="advCloseBtn" type="button">Close</button>
         </div>
         <div class="adv-scroll">
+        <details class="fold-block">
+          <summary><span class="fold-title">How the number is built</span><span class="fold-hint">Steps &amp; best upgrades</span></summary>
+          <div class="fold-block-body">
+            <p class="sub" style="margin-top:4px">Each step multiplies the one above it — the order the game stacks damage in. The number on the right is your damage after that step.</p>
+            <div id="breakdown"></div>
+            <div id="daLifts"></div>
+            <div id="daGains"></div>
+            <p class="sub" style="margin-top:12px"><b>The last step is an estimate.</b> It scales your number to match what real ladder builds deal in game — across the 98 ladder builds the fit is checked on, the middle build lands exactly on its measured Guardian DPS (median 1.00×), 52 of the 98 land within ×/÷2 of it and 61 of 98 within ×/÷3. Brand, spark and trigger builds can land further off.</p>
+          </div>
+        </details>
+        <!-- "What the simulator counts — and what it leaves out"
+             is NOT in More info (v0.404): that note lives only
+             behind the "How much to trust this number ›" line on
+             the card itself, in the wording the user approved
+             (25 Nov 2026). More info explains the numbers; it
+             does not repeat the card. -->
+        <div class="audit-card">
+          <div class="audit-card-main">
+            <span class="fold-title">Modifier audit</span>
+            <div id="daAudit"><p class="sub" style="margin:2px 0 0">Pick a skill and a weapon — the audit lists every modifier line in the plan and what the simulator does with it.</p></div>
+          </div>
+          <button class="btn small primary" id="daAuditOpen" type="button" disabled>Open the audit</button>
+        </div>
+        <details class="fold-block">
+        <summary><span class="fold-title">Sworn buffs — vows, heralds &amp; auras</span><span class="fold-hint">Switch a buff off and every number moves with it</span></summary>
+        <div class="fold-block-body">
+        <p class="sub" style="margin-top:4px">Every vow, herald and aura on your bar, each with its own switch and its own worth. Turn one off and your damage, defences and mana move by exactly what it was carrying — the skill keeps its bar slot.</p>
+        <div id="buffToggles"></div>
+        </div>
+        </details>
       <div class="char-secs">
         <div class="char-sec">
           <details class="mini-fold">
@@ -3237,55 +3321,15 @@ body.tab-home .brand h1{display:none}
           <div id="defLayersNote"></div>
         </div>
       </div>
-        <details class="fold-block">
-          <summary><span class="fold-title">How the number is built</span><span class="fold-hint">Steps &amp; best upgrades</span></summary>
-          <div class="fold-block-body">
-            <p class="sub" style="margin-top:4px">Each step multiplies the one above it — the order the game stacks damage in. The number on the right is your damage after that step.</p>
-            <div id="breakdown"></div>
-            <div id="daLifts"></div>
-            <div id="daGains"></div>
-            <p class="sub" style="margin-top:12px"><b>The last step is an estimate.</b> It scales your number to match what real ladder builds deal in game — across the 98 ladder builds the fit is checked on, the middle build lands exactly on its measured Guardian DPS (median 1.00×), 52 of the 98 land within ×/÷2 of it and 61 of 98 within ×/÷3. Brand, spark and trigger builds can land further off.</p>
-          </div>
-        </details>
-        <!-- "What the simulator counts — and what it leaves out":
-             the plain-language note on how much to trust the damage
-             number, in the wording the user approved (25 Nov 2026),
-             replacing the old technical pass. The same text sits
-             behind the "How much to trust this number ›" line under
-             the damage number on the card itself; this fold keeps
-             it in More info too. -->
-        <details class="fold-block">
-          <summary><span class="fold-title">What the simulator counts — and what it leaves out</span></summary>
-          <div class="fold-block-body">
-            <p class="sub" style="margin-top:4px">This damage number is our best guess at a real Guardian fight — not the number on your in-game sheet.</p>
-            <p class="sub">We counted everything on your build — your gear, tree, Dragonling, Oaths, skills and their supports, auras and curses — plus damage over time, minions and totems.</p>
-            <p class="sub">Some bonuses only count against the enemy you picked in the Guardian tester.</p>
-            <p class="sub">We left out things that only happen when you kill something, and the enemy&rsquo;s Ward.</p>
-            <p class="sub">Bleeding is counted at 40% of a hit each second, and crits don&rsquo;t make it bigger — checked against real Guardian fights.</p>
-          </div>
-        </details>
-        <div class="audit-card">
-          <div class="audit-card-main">
-            <span class="fold-title">Modifier audit</span>
-            <div id="daAudit"><p class="sub" style="margin:2px 0 0">Pick a skill and a weapon — the audit lists every modifier line in the plan and what the simulator does with it.</p></div>
-          </div>
-          <button class="btn small primary" id="daAuditOpen" type="button" disabled>Open the audit</button>
-        </div>
         </div>
       </div>
     </div>
-    <!-- Sworn buffs HIDDEN for now (display:none only): the fold,
-         its toggles, renderBuffToggles and the state.buffOff
-         pricing underneath are all untouched — any buff already
-         switched off stays off in the numbers — and the section
-         comes back by removing the style. -->
-    <details class="fold-block" style="display:none">
-    <summary><span class="fold-title">Sworn buffs — vows, heralds &amp; auras</span><span class="fold-hint">Switch a buff off and every number moves with it</span></summary>
-    <div class="fold-block-body">
-    <p class="sub" style="margin-top:4px">Every vow, herald and aura on your bar, each with its own switch and its own worth. Turn one off and your damage, defences and mana move by exactly what it was carrying — the skill keeps its bar slot.</p>
-    <div id="buffToggles"></div>
-    </div>
-    </details>
+    <!-- Sworn buffs live in More info now (v0.404): the fold with
+         #buffToggles sits inside the More info sheet, between the
+         Modifier audit and the Defence section — its one home.
+         The toggles, renderBuffToggles and the state.buffOff
+         pricing underneath are untouched, so any buff already
+         switched off stays off in the numbers. -->
     <!-- The planner's deep tools as one slim row of text buttons,
          standing where their folds used to sit: Enemy setup &
          Guardian tester, Best in this slot, Where you stand and
@@ -3494,16 +3538,16 @@ body.tab-home .brand h1{display:none}
             </div>
           </details>
           <!-- One slim control row for the whole workspace: the
-               map's view toggles, the node filters, search and
-               Undo — every control exactly once, in a single row
-               that wraps only where the width forces it. (The
-               tree versions moved into the planning tools panel
-               in v0.398.) -->
+               map's view toggles, the node filters and search —
+               every control exactly once, in a single row that
+               wraps only where the width forces it. (The tree
+               versions moved into the planning tools panel in
+               v0.398; Undo and Refund all ride on the canvas
+               itself since v0.404.) -->
           <div class="tree-bar">
             <div class="chips tree-controls"><button class="chip" id="treeNamesBtn" type="button">Names</button><button class="chip" id="treeGateBtn" type="button">Gateways</button><button class="chip" id="treeZoomIn" type="button" aria-label="Zoom in">+</button><button class="chip" id="treeZoomOut" type="button" aria-label="Zoom out">−</button><button class="chip" id="treeHomeBtn" type="button">My class</button><button class="chip" id="treeFitBtn" type="button">Fit</button><button class="chip" id="treeFsBtn" type="button">Full screen</button></div>
             <div class="chips tree-controls" id="treeFilterChips"><button class="chip active" data-tfilter="All">All nodes</button><button class="chip" data-tfilter="Keystone">Keystones</button><button class="chip" data-tfilter="Notable">Notables</button><button class="chip" data-tfilter="Mastery">Oath seats</button><button class="chip" data-tfilter="Marked">Marked</button></div>
             <div class="tree-bar-search"><input type="search" id="treeSearch" placeholder="Search by name or stat — e.g. cold damage, life, crit chance, fire resistance…" aria-label="Search tree nodes by name or stat"><button class="btn small hidden" id="treeSearchClear" type="button">Clear</button></div>
-            <button class="btn small" id="treeUndoBtn" type="button">Undo</button>
           </div>
           <div class="tree-bar-msgs"><p class="sub" id="treeSearchMeta"></p></div>
           <!-- The canvas takes the room; the planning tools live in
@@ -3516,6 +3560,7 @@ body.tab-home .brand h1{display:none}
               <div class="tree-stage" id="treeStage">
                 <span class="tree-pts" id="treePts">— pts</span>
                 <div class="tree-trace-bar hidden" id="treeTraceBar"></div>
+                <div class="tree-canvas-actions"><button class="btn small" id="treeUndoBtn" type="button">Undo</button><button class="btn small danger" id="treeRefundAllBtn" type="button">Refund all</button></div>
                 <svg id="treeSvg" role="img" aria-label="Passive tree map"></svg>
                 <div class="tree-tip hidden" id="treeTip"></div>
               </div>
@@ -3531,7 +3576,7 @@ body.tab-home .brand h1{display:none}
             <div class="label" style="margin-top:2px">Tree versions</div>
             <div class="tree-bar-versions" style="margin-top:4px"><input type="text" id="treeVerName" placeholder="Name this tree version…" maxlength="40" aria-label="Name this tree version"><button class="btn small" id="treeVerSaveBtn" type="button">Save version</button><select id="treeVerSel" aria-label="Tree versions"></select><button class="btn small" id="treeVerApplyBtn" type="button">Apply version</button><button class="btn small danger" id="treeVerDelBtn" type="button">Delete</button></div>
             <p class="sub" id="treeVerMsg" style="min-height:16px;margin:3px 0 0"></p>
-            <div class="flex mt" style="flex-wrap:wrap"><button class="btn small" id="treeHeatBtn" type="button" aria-pressed="false">Heat map: off</button><button class="btn small" id="treeBestBtn" type="button">Best next picks</button><button class="btn small" id="treePlanBtn" type="button">Plan next points</button><button class="btn small" id="treeOptimizeBtn" type="button">Optimize tree</button><button class="btn small" id="treeLevelBtn" type="button">Levelling path</button><button class="btn small" id="treeApplyBtn" type="button">Apply Take list to tuning</button><button class="btn small danger" id="treeRefundAllBtn" type="button">Refund all</button><button class="btn small danger" id="treeResetBtn" type="button">Reset marks</button></div>
+            <div class="flex mt" style="flex-wrap:wrap"><button class="btn small" id="treeHeatBtn" type="button" aria-pressed="false">Heat map: off</button><button class="btn small" id="treeBestBtn" type="button">Best next picks</button><button class="btn small" id="treePlanBtn" type="button">Plan next points</button><button class="btn small" id="treeOptimizeBtn" type="button">Optimize tree</button><button class="btn small" id="treeLevelBtn" type="button">Levelling path</button><button class="btn small" id="treeApplyBtn" type="button">Apply Take list to tuning</button><button class="btn small danger" id="treeResetBtn" type="button">Reset marks</button></div>
             <div class="flex mt" style="flex-wrap:wrap;gap:16px;align-items:flex-end">
               <div><div class="label" style="margin:0 0 2px">Optimize &amp; plan for — <span id="treeBlendVal">DPS only</span></div><input type="range" id="treeBlend" min="0" max="100" step="5" value="0" style="width:180px" aria-label="Balance between DPS and defence"></div>
               <div><div class="label" style="margin:0 0 2px">Resistance penalty</div><select id="resPenaltySel" aria-label="Resistance penalty"><option value="0">None</option><option value="10">−10%</option><option value="20">−20%</option><option value="30">−30%</option><option value="40">−40%</option><option value="50">−50%</option></select></div>
@@ -3558,41 +3603,22 @@ body.tab-home .brand h1{display:none}
   <div id="wsSkills">
     <div class="skills-drawer-head"><h2>Skills</h2><button class="btn small" id="closeSkillsDrawerBtn" type="button">← Character</button></div>
     <div class="skills-drawer-body">
-      <nav class="sk-nav" aria-label="Skills sections">
-        <button type="button" data-sk-nav="skSecMain">Main skill</button>
-        <button type="button" data-sk-nav="skSecYours">Skill tools</button>
-        <button type="button" data-sk-nav="skSecAdd">Add a skill</button>
-      </nav>
       <section class="sk-sec" id="skSecMain" aria-label="Main skill">
-      <h3 class="sk-sec-title">Main skill</h3>
-      <div class="sk-cols">
-        <div class="sk-col sk-col-a">
           <div class="label" id="barStripLabel">On your bar — every skill &amp; its supports</div>
           <div class="bar-strip" id="drawerBarStrip"></div>
           <div class="ms-flex">
           <div class="ms-card" id="drawerMainCard"></div>
           </div>
           <div id="drawerMainDetail"></div>
+          <div class="gemlvl-pop hidden" id="gemLevelsPop" role="dialog" aria-label="Gem levels — what each level gives this skill">
+            <div class="gemlvl-pop-head"><span class="fold-title">Gem levels — what each level gives this skill</span><button class="btn small" id="gemLevelsClose" type="button">Close</button></div>
+            <p class="sub">What each gem level gives this skill: the hero level it opens at, its support sockets, base damage, power and mana cost. Your current level is lit.</p>
+            <div class="log-scroll"><div id="drawerGemLevels"></div></div>
+          </div>
+          <div class="flex" style="gap:8px;margin-top:10px"><button class="btn small" id="skOpenSupBtn" type="button">Support gems</button><button class="btn small" id="skOpenAddBtn" type="button">Add a skill</button></div>
           <p class="sub" id="sockMsg" style="min-height:18px;margin-top:8px"></p>
-        </div>
-        <div class="sk-col sk-col-b">
-          <div class="label">Support gems</div>
-          <p class="sub">Hover or tap a gem to see what it does. Pick it up with a click or a second tap, then tap a socket — or drag it onto the card. Only gems that can support your skill are shown.</p>
-          <div class="flex" style="gap:8px;align-items:center"><input class="search" id="drawerSupportSearch" type="search" placeholder="Search support gems — name…" style="flex:1;min-width:0"><select id="drawerSupportSort" aria-label="Sort support gems"><option value="attr">Sort: Attribute</option><option value="name">Sort: Name</option><option value="links">Sort: Most linked</option></select></div>
-          <div class="gem-groups" id="gemPalette"></div>
-          <div class="gem-delta hidden" id="gemDelta"></div>
-        </div>
-      </div>
       <p class="mana-verdict" id="manaVerdict"></p>
       </section>
-      <section class="sk-sec" id="skSecYours" aria-label="Skill tools">
-      <details class="fold-block">
-      <summary><span class="fold-title">Gem levels — what each level gives this skill</span><span class="fold-hint">Base damage, power, mana and sockets, level by level</span></summary>
-      <div class="fold-block-body">
-      <p class="sub">What each gem level gives this skill: the hero level it opens at, its support sockets, base damage, power and mana cost. Your current level is lit.</p>
-      <div class="log-scroll"><div id="drawerGemLevels"></div></div>
-      </div>
-      </details>
       <details class="fold-block">
       <summary><span class="fold-title">Compare support setups</span><span class="fold-hint">Setup A vs B — DPS and damage mix</span></summary>
       <div class="fold-block-body">
@@ -3616,23 +3642,41 @@ body.tab-home .brand h1{display:none}
       <div id="simResults" class="mt"></div>
       </div>
       </details>
-      </section>
-      <section class="sk-sec" id="skSecAdd" aria-label="Add a skill">
-      <h3 class="sk-sec-title">Add a skill</h3>
-      <details class="fold-block" id="addSkillFold">
-      <summary><span class="fold-title">Add a skill</span><span class="fold-hint">Every skill gem, weapon skill and basic attack</span></summary>
-      <div class="fold-block-body">
-      <p class="sub">Every skill gem, weapon skill and basic attack. Tap a skill and it goes straight on your 13-slot bar — your main skill is left alone; the Add button on a row does the same add. Hover or focus a row to see what the skill does first, without adding anything. <b>Make main</b> swaps it in as the skill you plan around; dragging a skill onto the main-skill card still makes it main, too. A skill that belongs to another class says so on its row — it still sockets. If the game&rsquo;s rules stop it counting for this build, the bar says why. Skills on your bar come first, and your class&rsquo;s starter skills are lined up at the top.</p>
-      <input class="search" id="drawerSkillSearch" type="search" placeholder="Search skills — name, tag, damage type…">
-      <div class="chips" id="drawerTagChips" style="margin-top:8px"><button class="chip active" data-dtag="" type="button">All skills</button><button class="chip" data-dtag="poison" type="button">Always poisons</button><button class="chip" data-dtag="spell" type="button">Counts as a spell</button><button class="chip" data-dtag="r100" type="button">Newest set</button></div>
-      <div class="chips" id="drawerKindChips" style="margin-top:6px"><button class="chip active" data-dkind="" type="button">All kinds</button><button class="chip" data-dkind="Gem" type="button">Skill gems</button><button class="chip" data-dkind="Weapon" type="button">Weapon skills</button><button class="chip" data-dkind="Basic" type="button">Basic attacks</button></div>
-      <div class="flex" style="margin-top:6px;gap:8px;flex-wrap:wrap;align-items:center"><div class="chips" id="drawerClassChips"><button class="chip active" data-dcls="" type="button">All classes</button><button class="chip" data-dcls="mine" type="button">My class</button><button class="chip" data-dcls="other" type="button">Other classes</button></div><select id="drawerDmgSel" aria-label="Filter by damage type"><option value="">All damage types</option><option value="Physical">Physical</option><option value="Fire">Fire</option><option value="Cold">Cold</option><option value="Lightning">Lightning</option><option value="Poison">Poison</option><option value="Chaos">Chaos</option></select></div>
-      <p class="sub" id="addSkillMsg" role="status" style="min-height:18px;margin-top:8px"></p>
-      <div class="sub" id="drawerSkillCount" style="margin-top:2px"></div>
-      <div class="drawer-sock-grid" id="drawerSkillList"></div>
-      </div>
-      </details>
-      </section>
+      <!-- v0.404 — the support palette and the Add-a-skill list
+           live in this right-side drawer now. It opens from a
+           support ring tap (aimed at that socket), the Support
+           gems / Add a skill buttons under the card, or the bar
+           strip's + slot; it closes on its × , on Escape, and
+           once a pick lands. All the ids inside are the ones the
+           render functions have always used. -->
+      <div class="sk-pick-scrim hidden" id="skPickScrim"></div>
+      <aside class="sk-pick-drawer" id="skPickDrawer" aria-label="Support gems and add a skill" aria-hidden="true">
+        <div class="sk-pick-head">
+          <div class="sk-pick-tabs" role="tablist" aria-label="Picker">
+            <button type="button" role="tab" id="skPickTabSup" aria-selected="true" data-skd-mode="supports">Support gems</button>
+            <button type="button" role="tab" id="skPickTabAdd" aria-selected="false" data-skd-mode="add">Add a skill</button>
+          </div>
+          <button class="btn small" id="skPickClose" type="button" aria-label="Close">×</button>
+        </div>
+        <div class="sk-pick-body">
+          <div id="skPickSupports">
+            <p class="sub">Hover or tap a gem to see what it does. Pick it up with a click or a second tap, then tap a socket — or drag it onto the card. Only gems that can support your skill are shown.</p>
+            <div class="flex" style="gap:8px;align-items:center"><input class="search" id="drawerSupportSearch" type="search" placeholder="Search support gems — name…" style="flex:1;min-width:0"><select id="drawerSupportSort" aria-label="Sort support gems"><option value="attr">Sort: Attribute</option><option value="name">Sort: Name</option><option value="links">Sort: Most linked</option></select></div>
+            <div class="gem-groups" id="gemPalette"></div>
+            <div class="gem-delta hidden" id="gemDelta"></div>
+          </div>
+          <div id="skPickAdd" class="hidden">
+            <p class="sub">Every skill gem, weapon skill and basic attack. Tap a skill and it goes straight on your 13-slot bar — your main skill is left alone; the Add button on a row does the same add. Hover or focus a row to see what the skill does first, without adding anything. <b>Make main</b> swaps it in as the skill you plan around; dragging a skill onto the main-skill card still makes it main, too. A skill that belongs to another class says so on its row — it still sockets. If the game&rsquo;s rules stop it counting for this build, the bar says why. Skills on your bar come first, and your class&rsquo;s starter skills are lined up at the top.</p>
+            <input class="search" id="drawerSkillSearch" type="search" placeholder="Search skills — name, tag, damage type…">
+            <div class="chips" id="drawerTagChips" style="margin-top:8px"><button class="chip active" data-dtag="" type="button">All skills</button><button class="chip" data-dtag="poison" type="button">Always poisons</button><button class="chip" data-dtag="spell" type="button">Counts as a spell</button><button class="chip" data-dtag="r100" type="button">Newest set</button></div>
+            <div class="chips" id="drawerKindChips" style="margin-top:6px"><button class="chip active" data-dkind="" type="button">All kinds</button><button class="chip" data-dkind="Gem" type="button">Skill gems</button><button class="chip" data-dkind="Weapon" type="button">Weapon skills</button><button class="chip" data-dkind="Basic" type="button">Basic attacks</button></div>
+            <div class="flex" style="margin-top:6px;gap:8px;flex-wrap:wrap;align-items:center"><div class="chips" id="drawerClassChips"><button class="chip active" data-dcls="" type="button">All classes</button><button class="chip" data-dcls="mine" type="button">My class</button><button class="chip" data-dcls="other" type="button">Other classes</button></div><select id="drawerDmgSel" aria-label="Filter by damage type"><option value="">All damage types</option><option value="Physical">Physical</option><option value="Fire">Fire</option><option value="Cold">Cold</option><option value="Lightning">Lightning</option><option value="Poison">Poison</option><option value="Chaos">Chaos</option></select></div>
+            <p class="sub" id="addSkillMsg" role="status" style="min-height:18px;margin-top:8px"></p>
+            <div class="sub" id="drawerSkillCount" style="margin-top:2px"></div>
+            <div class="drawer-sock-grid" id="drawerSkillList"></div>
+          </div>
+        </div>
+      </aside>
     </div>
   </div>
   </section>
@@ -3673,7 +3717,7 @@ body.tab-home .brand h1{display:none}
        sits); Back returns it to the stash and lands on the
        planner exactly as it was left. -->
   <div id="view-workspace" class="hidden">
-    <div class="wsview-head"><button class="btn" id="wsBackBtn" type="button">← Back to planner</button><h2 id="wsViewTitle">Skills</h2></div>
+    <div class="wsview-head"><button class="btn small" id="wsBackBtn" type="button">← Back to planner</button><h2 id="wsViewTitle">Skills</h2></div>
     <div id="wsViewBody"></div>
   </div>
   </section>
@@ -4307,6 +4351,7 @@ var DICT={
 "More info":"更多信息",
 "Damage and Defense — more info":"伤害与防御 — 更多信息",
 "The advanced detail behind the numbers on the card: what your build asks, your defence in full, how the damage number is built, and the modifier audit.":"卡片数字背后的进阶细节：你的构建需求、完整的防御、伤害数字的构成方式，以及词缀审计。",
+"The advanced detail behind the numbers on the card: how the damage number is built, the modifier audit, your sworn buffs, and your defence in full.":"卡片数字背后的进阶细节：伤害数字的构成方式、词缀审计、你的誓约增益，以及完整的防御。",
 "Close":"关闭",
 "Your build asks":"你的构建需求",
 "What your gear & skills need":"你的装备与技能所需",
@@ -4444,6 +4489,9 @@ var DICT={
 "Main skill gem level":"核心技能宝石等级",
 "On your bar — every skill & its supports":"在你的技能栏上 — 每个技能及其辅助",
 "Support gems":"辅助宝石",
+"Support gems and add a skill":"辅助宝石与添加技能",
+"Prefix":"前缀",
+"Suffix":"后缀",
 "Hover or tap a gem to see what it does. Pick it up with a click or a second tap, then tap a socket — or drag it onto the card. Only gems that can support your skill are shown.":"悬停或点击一颗宝石查看它的作用。单击或再次点击拾起它，然后点击一个插槽 — 或把它拖到卡片上。只显示能辅助你的技能的宝石。",
 "Every skill in this plan as one row — its level, its links and its DPS. Tap a row for the rest of its numbers (tooltip DPS, average hit and crit) and its switches:":"本方案的每个技能占一行 — 显示其等级、连接和 DPS。点击一行查看其余数值（面板 DPS、平均命中和暴击）及其开关：",
 "when it is linked, tree":"当它被连接时，天赋树",
@@ -8892,7 +8940,7 @@ function gpCardTip(btn){
   var b=G.baseMap[baseId]; if(!b)return;
   var u=unId?G.uniqueMap[unId]:null;
   var html=''
-   +'<div class="fb-tip-name r-'+(u?'Unique':'Normal')+'">'+esc(u?u.Name:b.Name)+'</div>'
+   +'<div class="fb-tip-name r-'+(u?'Unique':'Normal')+'">'+esc(u?u.Name:b.Name)+(u?uniqueVariantTipHTML(u):'')+'</div>'
    +'<div class="fb-tip-sub">'+esc(b.Class||'')+' • '+esc(b.Name)+' • Lv '+(b.Level!=null?b.Level:'—')+'</div>'
    +'<div class="fb-tip-lines">'+catalogItemBodyHTML(b,u)+'</div>'
    +(u&&u.Flavour?'<div class="fb-tip-flavour">\u201C'+esc(u.Flavour)+'\u201D</div>':'');
@@ -9585,10 +9633,11 @@ function openModifierAudit(){
 /* "More info" popup for the Damage and Defense card: the headline
    damage stays on the card, along with "What each piece is worth"
    and "Check against your real fights"; this sheet carries the
-   remaining advanced detail (offence / attributes / defence, how
-   the number is built, the modifier audit). The sections live in
-   the sheet's markup from the start, so every renderer keeps
-   finding its ids whether the sheet is open or not. */
+   remaining advanced detail in four sections — how the number is
+   built, the modifier audit, the sworn buffs, and the defence
+   build-up. The sections live in the sheet's markup from the
+   start, so every renderer keeps finding its ids whether the
+   sheet is open or not. */
 function openAdvInfo(){
   var ov=$('advOverlay'); if(!ov||!ov.hidden)return;
   ov.hidden=false;
@@ -12501,9 +12550,22 @@ function renderGemPalette(){
     chip.addEventListener('click',function(){
       gemHideTip();
       if(!gemFitsSkill(id,skill)){sockMsg(supportName(id)+' does not fit '+skillName(focusId)+' — its required tags don\u2019t match. Drop it on a skill in the list that it does fit.'); return}
-      if(pickedGem===id){pickedGem=null; sockMsg('Put '+supportName(id)+' down.');}
-      else {pickedGem=id; sockMsg(supportName(id)+' picked up — tap a support slot to link it, or drop it on a skill.');}
+      if(pickedGem===id){pickedGem=null; sockMsg('Put '+supportName(id)+' down.'); renderGemPalette(); return}
+      /* A drawer opened from a ring tap is aimed at that socket:
+         this pick lands straight in it, and the drawer closes
+         behind the placement (placeGem does the closing). If the
+         socket refuses the gem the drawer stays open, aimed. */
+      if(skPickDrawerOpen()&&skDrawerSlot!=null){
+        var slot=skDrawerSlot;
+        placeGem(slot,id); pickedFrom=null;
+        renderGemPalette();
+        return;
+      }
+      pickedGem=id; sockMsg(supportName(id)+' picked up — tap a support slot to link it, or drop it on a skill.');
       renderGemPalette();
+      /* The gem is in hand: close the drawer so the card's
+         sockets are reachable for the tap that seats it. */
+      closeSkillsSideDrawer();
     });
   });
 }
@@ -12554,6 +12616,10 @@ function placeGem(slotIdx,supId){
   t.sups[slotIdx]=supId; pickedGem=null;
   if(t.main){renderSupports(); renderPlanner();}
   else commitSockTarget();
+  /* A landed pick closes the picker drawer, whichever gesture
+     placed it — a palette click, a drag onto a ring, a tap with
+     the gem in hand. */
+  closeSkillsSideDrawer();
   showSupportDetail(supId);
   sockMsg(supportName(supId)+' linked in slot '+(slotIdx+1)+(t.main?'.':' of '+skillName(t.id)+'.'));
 }
@@ -12796,7 +12862,10 @@ function handleSocketTap(i){
   var sid=t.sups[i];
   if(sid){pickedGem=sid; pickedFrom=i; renderGemPalette(); renderSockets(); sockMsg(supportName(sid)+' picked up — tap another socket to move it there, or tap it again to put it back.');}
   else if(i>=socketsOpenAt(t.gemLv))sockMsg('Socket '+(i+1)+' is shut — it opens at gem level '+socketOpensAt(i)+', and this skill\u2019s gem is level '+t.gemLv+'. Sockets open at gem levels '+socketsAtLevels().join(', ')+'.');
-  else sockMsg('That socket is empty — drag a support gem onto it, or tap a gem in the palette first.');
+  /* An empty, open socket with nothing in hand: open the picker
+     drawer aimed at this socket — the pick made there lands in
+     it directly (see the palette's click handler). */
+  else openSkillsSideDrawer('supports',i);
 }
 /* Pointer drag: press, move past a threshold and a gem ghost follows the
    pointer (mouse or finger) until release — the in-game pickup feel. A press
@@ -13435,13 +13504,27 @@ function affixSentHTML(sent){
     return i%2?'<b class="afx-num">'+esc(p)+'</b>':esc(p);
   }).join('');
 }
+/* The tier tag on an item card's affix line (v0.404): after the
+   rolled sentence, " - T1" names the tier the affix rolled at —
+   T1 is the affix's top tier, the first in its published tier
+   list, T2 the next, and so on — and the tier's own roll range
+   follows in small muted text ("· 80–92"). A line whose tier
+   cannot be read carries no tag; a tier that is one fixed value
+   has no range to show, so it carries the tag alone. */
+function affixTierTagHTML(a,sa){
+  var rt=affixRolledTier(a,sa); if(!rt)return '';
+  var t=(a.Tiers||[])[rt-1]; if(!t)return '';
+  var hasRange=(t.Max>t.Min)||(t.Min2!=null&&t.Max2>t.Min2);
+  return ' <span class="afx-tier">- T'+rt+'</span>'+(hasRange?' <span class="afx-range">· '+esc(affixTierRange(t))+'</span>':'');
+}
 /* The same line for an item card: the mod sentence in full
-   colour, the rolled number inside it, and the roll-quality chip
-   (meter plus the words "rolled X of lo–hi · high/mid/low roll",
-   so the judgement never rides on colour alone). The rest of the
-   per-line detail (worth, tier / pool weights, tier tables) is
-   not shown for now — the planner still prices every line
-   internally for the Damage analysis. */
+   colour, the rolled number inside it, and its tier tag with the
+   tier's roll range in small muted text after it (v0.404 — the
+   old "rolled X of lo–hi · high/mid/low roll" chip is gone from
+   the card; the roll's quality is read off the value against the
+   range shown). The rest of the per-line detail (worth, pool
+   weights, tier tables) is not shown for now — the planner still
+   prices every line internally for the Damage analysis. */
 function storedAffixHTML(sa,un,base,worthKey){
   var id=String((sa&&sa.id)||'');
   var a=(id&&!/^unique:\d+$/.test(id)&&!isRivenAffix(sa))?affixById(id):null;
@@ -13449,7 +13532,7 @@ function storedAffixHTML(sa,un,base,worthKey){
   var rt=affixRolledTier(a,sa);
   var sent=affixSentence(a,sa.value,sa.value2,base,rt?a.Tiers[rt-1]:null);
   if(!sent)return '<div class="affix mod">• <span class="afx-sent">'+storedAffixLine(sa,un,base)+'</span></div>';
-  return '<div class="affix mod">• <span class="afx-sent">'+affixSentHTML(sent)+'</span>'+(sa.crafted?' <span class="affix-tier">Crafted</span>':'')+rollQualityHTML(a,sa)+'</div>';
+  return '<div class="affix mod">• <span class="afx-sent">'+affixSentHTML(sent)+'</span>'+(sa.crafted?' <span class="affix-tier">Crafted</span>':'')+affixTierTagHTML(a,sa)+'</div>';
 }
 /* ---------- Vowbound (riven) affixes ----------
    Vowbinding adds extra mods to an item — its vows. In build data
@@ -13531,11 +13614,37 @@ function itemBadgeText(it,un){var p=itemBadgeParts(it,un); return p.length?('◆
 function storedItemAffixesHTML(it,un,base,slotKey){
   var out='', vi=0;
   /* The base's own numbers lead the card, as on the game tooltip —
-     one labelled bullet per stat ("Armour: 248") — then its
-     implicits, then the affixes it rolled, each with its tier. */
+     one labelled bullet per stat ("Armour: 248"). Then (v0.404)
+     the rolled affixes are grouped under plain Prefix / Suffix
+     headings, in that order: each group lists the affixes of its
+     kind the item actually rolled, then one "(-)" line for every
+     slot the item's rarity allows but the item does not carry
+     (Rare up to 3 + 3, Magic 1 + 1, Normal none). Everything
+     else — implicits (family lines included), a unique's own mod
+     lines, vow lines, rune and runeword lines — follows after
+     the two groups, in the order it has always printed. A
+     Unique's own mods are never forced into the groups: on a
+     unique the affixes print ungrouped, exactly as before. */
   if(base)out+=baseStatsHTML(base);
+  var affs=(it.affixes||[]).map(function(a,ai){return {sa:a,ai:ai}}).filter(function(g){return !isRivenAffix(g.sa)});
+  var grouped={Prefix:[],Suffix:[]}, rest=[];
+  affs.forEach(function(g){
+    var id=String((g.sa&&g.sa.id)||'');
+    var a=(!un&&id&&!/^unique:\d+$/.test(id))?affixById(id):null;
+    if(a&&(a.Type==='Prefix'||a.Type==='Suffix'))grouped[a.Type].push({g:g,a:a});
+    else rest.push(g);
+  });
+  var showGroups=!un&&(grouped.Prefix.length||grouped.Suffix.length);
+  if(showGroups){
+    var caps=(it.rarity==='Rare')?{Prefix:3,Suffix:3}:((it.rarity==='Magic')?{Prefix:1,Suffix:1}:{Prefix:0,Suffix:0});
+    ['Prefix','Suffix'].forEach(function(tp){
+      out+='<div class="affix-group-head">'+tp+'</div>';
+      grouped[tp].forEach(function(e){out+=storedAffixHTML(e.g.sa,un,base,slotKey?(slotKey+'|'+e.g.ai):null)});
+      for(var k=grouped[tp].length;k<caps[tp];k++)out+='<div class="affix affix-empty">(-)</div>';
+    });
+  }
   ((base&&base.Implicits)||[]).forEach(function(im){out+='<div class="affix implicit"><span class="imp-mark">◆</span> '+implicitLine(im,base)+'</div>'});
-  (it.affixes||[]).forEach(function(a,ai){if(!isRivenAffix(a))out+=storedAffixHTML(a,un,base,slotKey?(slotKey+'|'+ai):null)});
+  (showGroups?rest:affs).forEach(function(g){out+=storedAffixHTML(g.sa,un,base,slotKey?(slotKey+'|'+g.ai):null)});
   if(it.unique)(it.affixes||[]).forEach(function(a){if(isRivenAffix(a)){out+=vowAffixHTML(a,vi,base); vi++}});
   out+=runeLinesHTML(it,base,slotKey);
   out+=runewordLinesHTML(it,base);
@@ -14704,7 +14813,7 @@ function gearPickListHTML(){
      card (gpCardTip), not printed on every card in the grid. */
   if(gearPick.showUniques){
     if(!f.uns.length)return '<p class="sub gp-empty">'+((gearPick.type&&gearPick.type!=='All')?('No '+esc(gearPick.type)+' uniques for this slot'+(gearPick.q?' match that filter.':'.')):(gearPick.q?'No uniques for this slot match that filter.':'There are no uniques for this slot in the game data.'))+'</p>';
-    function uniqBtn(u){var b=G.baseMap[u.BaseId]; var picked=gearPick.sel&&gearPick.sel.uniqueId===u.Id; return '<button class="opt'+(picked?' gp-selected':'')+'" data-gp-base="'+esc(b.Id)+'" data-gp-unique="'+esc(u.Id)+'" type="button" aria-label="'+esc(u.Name)+' — hover or tap for its stats"><span class="item-flex">'+itemIconHTML(b,'Unique',36,u)+'<span style="flex:1;min-width:0"><b class="rarity-Unique">'+esc(u.Name)+'</b>'+rarityTagHTML('Unique')+'</span>'+(picked?'<span class="gp-picked">Picked</span>':'')+'</span></button>'}
+    function uniqBtn(u){var b=G.baseMap[u.BaseId]; var picked=gearPick.sel&&gearPick.sel.uniqueId===u.Id; var vlb=uniqueVariantLabel(u); return '<button class="opt'+(picked?' gp-selected':'')+'" data-gp-base="'+esc(b.Id)+'" data-gp-unique="'+esc(u.Id)+'" type="button" aria-label="'+esc(u.Name)+(vlb?' — '+esc(vlb):'')+' — hover or tap for its stats"><span class="item-flex">'+itemIconHTML(b,'Unique',36,u)+'<span style="flex:1;min-width:0"><b class="rarity-Unique">'+esc(u.Name)+'</b>'+rarityTagHTML('Unique')+(vlb?'<span class="gp-variant">'+esc(vlb)+'</span>':'')+'</span>'+(picked?'<span class="gp-picked">Picked</span>':'')+'</span></button>'}
     /* Uniques group by item type under the same headings as the
        base list — each unique sits under the type of its base. */
     var ugroups={},uorder=[];
@@ -15882,17 +15991,13 @@ function viewBarSkill(id){
    (barAddSlotHTML below). */
 /* The bar's last slot is always an empty '+' slot, styled like
    one of the game's empty hotbar slots; tapping it opens the
-   Add a skill list (the section nav's own jump, fold included). */
+   picker drawer on its Add a skill side. */
 function barAddSlotHTML(){
   return '<button type="button" class="bs-card bs-add" id="barAddSkill" aria-label="Add a skill — open the Add a skill list"><span class="bs-add-box">+</span><span class="bs-main"><b>Add a skill</b><span class="sub">Empty slot</span></span></button>';
 }
 function wireBarAddSlot(box){
   var b=box.querySelector('#barAddSkill'); if(!b)return;
-  b.addEventListener('click',function(){
-    var nav=document.querySelector('[data-sk-nav="skSecAdd"]');
-    if(nav){nav.click(); return}
-    var t=document.getElementById('skSecAdd'); if(t)t.scrollIntoView();
-  });
+  b.addEventListener('click',function(){openSkillsSideDrawer('add')});
 }
 function renderBarStrip(){
   var box=$('drawerBarStrip'); if(!box)return;
@@ -16447,7 +16552,7 @@ function renderMainSkillDetail(){
   box.innerHTML='<div class="skn-row open"><div class="skn-summary" style="cursor:default"><span class="skn-sum-main"><b>'+esc(sk.Name)+(isMainFocus?' <span class="tag">Main</span>':' <span class="tag">Viewing — not main</span>')+(e.onBar===false?' <span class="tag">Not on the bar</span>':'')+'</b><span class="skn-sum-meta">Gem Lv '+gemLv+' • '+sups.length+' linked'+(w>0?' • Weight '+w+'%':'')+(isMainFocus?'':' • Your main skill is '+esc(skillName(state.skillId)))+'</span></span>'+sumRight+'</div>'
    +'<div class="skn-detail"><div class="skn-nums"><span>'+esc(sk.Kind==='Weapon'?'Weapon skill':(sk.Kind==='Basic'?'Basic attack':'Skill gem'))+' • '+openN+' of 6 sockets open at gem Lv '+gemLv+'</span></div>'
    +nums
-   +gemCtlHTML(e,isMainFocus)
+   +'<div class="gemctl-row">'+gemCtlHTML(e,isMainFocus)+'<button type="button" class="gem-info-btn" data-gemlevels-btn="1" aria-expanded="'+(gemLevelsPopOpen()?'true':'false')+'" aria-controls="gemLevelsPop" aria-label="Gem levels — what each level gives this skill" title="Gem levels — what each level gives this skill">i</button></div>'
    +'<div class="skn-flags">'
    +'<button type="button" class="buff-switch" role="switch" aria-checked="'+(isMainFocus?'true':'false')+'" aria-label="Main skill switch for '+esc(sk.Name)+'" data-main-switch="'+esc(focusId)+'"><span class="buff-track" aria-hidden="true"></span>Main skill</button>'
    +(hasExec?'<label class="skn-flag" title="Count this skill as if the enemy is below half its life — Executioner\u2019s own more damage (35% on the physical part of a hit, 14% on the rest) counts while it is ticked"><input type="checkbox" data-skn-exec="'+esc(e.skill)+'"'+(e.exec?' checked':'')+'> Executioner — enemy below half life</label>':'')
@@ -16481,6 +16586,10 @@ function renderMainSkillDetail(){
   box.querySelectorAll('[data-view-main]').forEach(function(b){b.addEventListener('click',function(){viewSkillId=null; renderDrawerCard(); scrollToSkillCard(); sockMsg('Back to your main skill, '+skillName(state.skillId)+'.')})});
   box.querySelectorAll('[data-skn-weight]').forEach(function(sel){sel.addEventListener('change',function(){state.treeWeights=state.treeWeights||{}; state.treeWeights[sel.getAttribute('data-skn-weight')]=+sel.value; heatMap=null; schedulePersistInstances(); renderCode(); renderMainSkillDetail()})});
   bindGemCtl(box,mut,after);
+  /* The information button beside the gem-level control: the
+     per-level table lives in the sheet under the card now, and
+     this is its one door. */
+  var glb=box.querySelector('[data-gemlevels-btn]'); if(glb)glb.addEventListener('click',function(){setGemLevelsPop(!gemLevelsPopOpen())});
 }
 /* The drawer's Character section: everything about the character /
    plan in one place, under the skills — class, level, weapon, the
@@ -16788,6 +16897,11 @@ function popEscKey(e){if(e.key==='Escape')closePlannerPop()}
 function teardownPop(restoreScroll){
   var name=popCurrent; popCurrent=null; wsCurrent='character';
   document.removeEventListener('keydown',popEscKey);
+  /* The Skills view's drawer and gem-level sheet never outlive
+     the view: leaving parks them shut, so the view always opens
+     on the clean card. */
+  closeSkillsSideDrawer();
+  var glp=$('gemLevelsPop'); if(glp)glp.classList.add('hidden');
   stashPanel(name);
   var root=$('plannerPopRoot'); if(root)root.innerHTML='';
   if(wsViewOpen){
@@ -16910,6 +17024,49 @@ function openSkillsDrawer(){
 function closeSkillsDrawer(){
   closePlannerPop();
 }
+/* ---------- v0.404: the Skills view's picker drawer + gem-level sheet ----------
+   The support palette and the Add-a-skill list live in a drawer
+   docked at the right of the Skills view (it slides over the view
+   on a phone). skDrawerSlot remembers the socket a ring tap aimed
+   the drawer at: a palette pick then lands straight in that
+   socket and the drawer closes, the pick-and-place the card has
+   always used, completed inside the drawer. Opened any other
+   way, a palette pick is the classic pick-up — and the drawer
+   closes behind it so the card's sockets are reachable for the
+   tap that seats the gem. The gem-level table likewise leaves
+   the view: it sits in a sheet under the card, opened from the
+   information button beside the gem-level control. */
+var skDrawerSlot=null, skDrawerMode='supports';
+function skPickDrawerOpen(){var d=$('skPickDrawer'); return !!(d&&d.classList.contains('open'))}
+function setSkDrawerMode(mode){
+  skDrawerMode=(mode==='add')?'add':'supports';
+  var sup=$('skPickSupports'), add=$('skPickAdd');
+  if(sup)sup.classList.toggle('hidden',skDrawerMode!=='supports');
+  if(add)add.classList.toggle('hidden',skDrawerMode!=='add');
+  var tS=$('skPickTabSup'), tA=$('skPickTabAdd');
+  if(tS)tS.setAttribute('aria-selected',skDrawerMode==='supports'?'true':'false');
+  if(tA)tA.setAttribute('aria-selected',skDrawerMode==='add'?'true':'false');
+  if(skDrawerMode==='supports')renderGemPalette(); else renderDrawerSkills();
+}
+function openSkillsSideDrawer(mode,slotIdx){
+  var d=$('skPickDrawer'); if(!d)return;
+  skDrawerSlot=(typeof slotIdx==='number')?slotIdx:null;
+  setSkDrawerMode(mode||'supports');
+  d.classList.add('open'); d.setAttribute('aria-hidden','false');
+  var sc=$('skPickScrim'); if(sc)sc.classList.remove('hidden');
+}
+function closeSkillsSideDrawer(){
+  var d=$('skPickDrawer'); if(d){d.classList.remove('open'); d.setAttribute('aria-hidden','true')}
+  var sc=$('skPickScrim'); if(sc)sc.classList.add('hidden');
+  skDrawerSlot=null;
+}
+function gemLevelsPopOpen(){var p=$('gemLevelsPop'); return !!(p&&!p.classList.contains('hidden'))}
+function setGemLevelsPop(open){
+  var p=$('gemLevelsPop'); if(!p)return;
+  if(open)renderGemLevels();
+  p.classList.toggle('hidden',!open);
+  var b=document.querySelector('[data-gemlevels-btn]'); if(b)b.setAttribute('aria-expanded',open?'true':'false');
+}
 function bindSkillsDrawer(){
   var open=$('openSkillsDrawerBtn'); if(open)open.addEventListener('click',openSkillsDrawer);
   var close=$('closeSkillsDrawerBtn'); if(close)close.addEventListener('click',closeSkillsDrawer);
@@ -16920,15 +17077,29 @@ function bindSkillsDrawer(){
   var dmgSel=$('drawerDmgSel'); if(dmgSel)dmgSel.addEventListener('change',function(){drawerDmgFilter=dmgSel.value||''; renderDrawerSkills()});
   var supSearch=$('drawerSupportSearch'); if(supSearch)supSearch.addEventListener('input',renderGemPalette);
   var supSortSel=$('drawerSupportSort'); if(supSortSel)supSortSel.addEventListener('change',function(){supportSort=supSortSel.value||'attr'; renderGemPalette()});
-  /* Section nav — jump between Main skill / Skill tools / Add a
-     skill inside the popup; jumping to Add a skill opens its fold
-     on the way. */
-  document.querySelectorAll('[data-sk-nav]').forEach(function(b){b.addEventListener('click',function(){
-    var t=document.getElementById(b.getAttribute('data-sk-nav')); if(!t)return;
-    var fold=t.querySelector('details.fold-block'); if(fold)fold.open=true;
-    var reduce=false; try{reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)}catch(e){}
-    try{t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})}catch(e){try{t.scrollIntoView()}catch(e2){}}
-  })});
+  /* v0.404 — the picker drawer's controls (the section tabs that
+     used to jump between Main skill / Skill tools / Add a skill
+     are gone; the drawer is what those jumps reached for): the
+     two open buttons under the card, the drawer's mode tabs, its
+     close button and the phone scrim, and the gem-level sheet's
+     own close button. */
+  var osb=$('skOpenSupBtn'); if(osb)osb.addEventListener('click',function(){openSkillsSideDrawer('supports')});
+  var oab=$('skOpenAddBtn'); if(oab)oab.addEventListener('click',function(){openSkillsSideDrawer('add')});
+  var pcb=$('skPickClose'); if(pcb)pcb.addEventListener('click',closeSkillsSideDrawer);
+  var psc=$('skPickScrim'); if(psc)psc.addEventListener('click',closeSkillsSideDrawer);
+  document.querySelectorAll('[data-skd-mode]').forEach(function(b){b.addEventListener('click',function(){skDrawerSlot=null; setSkDrawerMode(b.getAttribute('data-skd-mode'))})});
+  var glc=$('gemLevelsClose'); if(glc)glc.addEventListener('click',function(){setGemLevelsPop(false)});
+  /* Escape peels the Skills view one layer at a time: the picker
+     drawer first, then the gem-level sheet, and only then the
+     view itself. The view's own Escape handlers run on the
+     bubble phase, so stopping the event in this capture-phase
+     listener keeps one Escape from taking the whole view down
+     while a layer is still open over it. */
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Escape')return;
+    if(skPickDrawerOpen()){closeSkillsSideDrawer(); e.stopPropagation(); e.preventDefault(); return}
+    if(gemLevelsPopOpen()){setGemLevelsPop(false); e.stopPropagation(); e.preventDefault();}
+  },true);
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSkillsDrawer()});
   /* Compact source lines: the "+N more sources" line in a hover
      breakdown opens the full list in place, and its Show less folds
@@ -19365,6 +19536,110 @@ function uniqueModText(m){
   if(sent)return esc(sent);
   return esc(statPlain(m.Mod,v));
 }
+/* ---------- Unique variant labels ----------
+   The game data holds 457 uniques and not one duplicate id, but
+   several real variant families share a name, so the picker used
+   to print them as identical rows: 26 Primal versions of regular
+   uniques, The Split Aspect in seven elements, the Oathstone of
+   the Nameless King's fifteen keystone pairs and the Hands of
+   the Gemwright's support pairs. A unique whose name is shared
+   gets a short label derived from its own data — the keystones it
+   grants, the supports it grants, its Aspect element, or a
+   Primal tag — shown under its name in the picker and beside its
+   name on the item hover cards, so a variant can be told apart
+   before it is picked and after it is equipped. Player words
+   only: no part of a raw id is ever printed. Presentation only —
+   no data, count or calculation changes. */
+var uniqVariantCache={stamp:'',counts:null,ksTags:null};
+function uniqueVariantLabel(u){
+  if(!u||!u.Name)return '';
+  var stamp=(typeof LANG!=='undefined'?LANG:'')+'|'+((G.uniques||[]).length);
+  if(uniqVariantCache.stamp!==stamp){
+    var counts={};
+    (G.uniques||[]).forEach(function(x){if(x&&x.Name)counts[x.Name]=(counts[x.Name]||0)+1});
+    var ksTags={};
+    (G.passives||[]).forEach(function(n){
+      if(!n||n.Kind!=='Keystone')return;
+      (n.Mods||[]).forEach(function(m){if(m&&m.Stat==='Keystone')(m.Tags||[]).forEach(function(t){if(!ksTags[t])ksTags[t]=n.Name})});
+    });
+    uniqVariantCache={stamp:stamp,counts:counts,ksTags:ksTags};
+  }
+  if(!(uniqVariantCache.counts[u.Name]>1))return '';
+  if(/_primal$/.test(u.Id||''))return 'Primal';
+  var mods=u.Mods||[];
+  /* The keystones it grants, by their player names: the name
+     rides in the mod's own sentence ("Keystone: Leaping Ruin:
+     …"), with the passive tree's keystone of the same flag as
+     the back-up source. */
+  var keys=[];
+  mods.forEach(function(m){
+    var md=m&&m.Mod; if(!md||md.Stat!=='Keystone')return;
+    var nm='';
+    var tx=/^Keystone:\s*([^:]+):/.exec(m.Text||'');
+    if(tx)nm=tx[1].trim();
+    if(!nm&&(md.Tags||[]).length)nm=uniqVariantCache.ksTags[md.Tags[0]]||'';
+    if(nm&&keys.indexOf(nm)<0)keys.push(nm);
+  });
+  if(keys.length)return keys.join(' + ');
+  /* The supports it grants, by their player names. */
+  var sups=[];
+  mods.forEach(function(m){
+    var md=m&&m.Mod; if(!md||md.Stat!=='GrantSupport')return;
+    var t=(md.Tags||[])[0]; if(!t)return;
+    var nm=supportName(canonSupportId(t));
+    if(nm&&sups.indexOf(nm)<0)sups.push(nm);
+  });
+  if(sups.length)return sups.join(' + ');
+  /* The Split Aspect: its element. The Aspect line's sentence
+     names the Dragonling aspect it grants ("the Iron Aspect" for
+     the physical variant), so the element word is the one the
+     line itself carries as its tag — Physical, not Iron. */
+  var ELS={Fire:1,Cold:1,Lightning:1,Physical:1,Arcane:1,Poison:1,Void:1,Chaos:1};
+  for(var i=0;i<mods.length;i++){
+    var amd=mods[i]&&mods[i].Mod; if(!amd)continue;
+    var atg=(amd.Tags||[])[0];
+    if(atg&&ELS[atg]&&/Aspect/.test(mods[i].Text||''))return atg;
+  }
+  for(var i2=0;i2<mods.length;i2++){
+    var am=/carries the ([A-Za-z]+) Aspect/.exec((mods[i2]&&mods[i2].Text)||'');
+    if(am)return am[1]==='Iron'?'Physical':am[1];
+  }
+  /* Any other shared name: the first of this variant's mod lines
+     that no namesake carries, so the row still says what makes
+     this one different. A line whose wording is not published
+     (the plain layer's "special line" placeholder) never serves
+     as a label; if no readable line differs, the variant's own
+     level is the distinguishing fact. */
+  var sibs=(G.uniques||[]).filter(function(x){return x&&x.Name===u.Name&&x.Id!==u.Id});
+  for(var j=0;j<mods.length;j++){
+    var line=uniqueModPlain(mods[j]);
+    if(!line||/^A special line|^A triggered effect|^STAT\s/.test(line))continue;
+    var shared=sibs.every(function(s){return (s.Mods||[]).some(function(sm){return uniqueModPlain(sm)===line})});
+    if(!shared)return line;
+  }
+  return u.Level!=null?('Level '+u.Level):'';
+}
+/* A unique mod's line as plain text — uniqueModText without the
+   HTML escaping, for places that escape the whole label at once. */
+function uniqueModPlain(m){
+  if(!m)return '';
+  if(m.Text){
+    var tv=(m.Min===m.Max)?String(m.Min):(m.Min+'\u2013'+m.Max);
+    return m.Text.split('{v}').join(tv);
+  }
+  var v=(m.Min===m.Max)?String(m.Min):(m.Min+'\u2013'+m.Max);
+  var v2=null;
+  if(m.Min2!=null||m.Max2!=null)v2=(m.Min2===m.Max2)?String(m.Min2):(m.Min2+'\u2013'+m.Max2);
+  var sent=modSentence(m.Mod,v,v2,null);
+  if(sent)return sent;
+  return statPlain(m.Mod,v)||'';
+}
+/* The variant label as it rides beside an item's name on the
+   hover cards — empty for a unique whose name is its own. */
+function uniqueVariantTipHTML(u){
+  var lb=uniqueVariantLabel(u);
+  return lb?' <span class="fb-tip-variant">· '+esc(lb)+'</span>':'';
+}
 /* A slot's name the way a player reads it — the game data's raw
    slot ids (MainHand, OffHand, DwarvenRune) get their spaces back
    wherever the Items tab prints a slot. */
@@ -19424,7 +19699,7 @@ function catalogItemTip(anchor){
   var lines=catalogItemBodyHTML(b,e.u);
   if(sl.req)lines+='<div class="modline">Requires '+esc(sl.req)+'</div>';
   var html=''
-   +'<div class="fb-tip-name r-'+(e.u?'Unique':'Normal')+'">'+esc(e.u?e.u.Name:b.Name)+'</div>'
+   +'<div class="fb-tip-name r-'+(e.u?'Unique':'Normal')+'">'+esc(e.u?e.u.Name:b.Name)+(e.u?uniqueVariantTipHTML(e.u):'')+'</div>'
    +'<div class="fb-tip-sub">'+esc(itemMetaLine(b,e.u))+'</div>'
    +'<div class="fb-tip-lines">'+lines+'</div>'
    +(e.u&&e.u.Flavour?'<div class="fb-tip-flavour">\u201C'+esc(e.u.Flavour)+'\u201D</div>':'');
@@ -21357,7 +21632,7 @@ function storedItemTipHTML(it,un,base,subLine,slotKey){
      made on is named in the sub line, under the name. */
   if(rwIt&&base)subLine=subLine?(subLine+' • '+esc(base.Name)):esc(base.Name);
   return ''
-   +'<div class="fb-tip-name r-'+esc(it.rarity||'Normal')+(rwIt?' rw':'')+'">'+esc(nm)+'</div>'
+   +'<div class="fb-tip-name r-'+esc(it.rarity||'Normal')+(rwIt?' rw':'')+'">'+esc(nm)+(un?uniqueVariantTipHTML(un):'')+'</div>'
    +(subLine?'<div class="fb-tip-sub">'+subLine+'</div>':'')
    +itemBadgeHTML(it,un)
    +'<div class="fb-tip-lines">'+itemDetailLinesHTML(it,un,base,slotKey)+'</div>'
@@ -21425,7 +21700,7 @@ function gearShowTip(anchor,key){
   var nm=gearItemName(it);
   var rwIt=un?null:runewordFor(it,base);
   if(!gearTipEl){gearTipEl=document.createElement('div'); gearTipEl.id='gearTip'; gearTipEl.className='fb-tip gear-tip'; gearTipEl.setAttribute('role','tooltip'); document.body.appendChild(gearTipEl); gearTipEl.addEventListener('mouseleave',function(){if(pinTip.hide!==gearHideTip)gearHideTip()})}
-  gearTipEl.innerHTML='<div class="fb-tip-name r-'+esc(it.rarity||'Normal')+(rwIt?' rw':'')+'">'+esc(nm)+'</div>'
+  gearTipEl.innerHTML='<div class="fb-tip-name r-'+esc(it.rarity||'Normal')+(rwIt?' rw':'')+'">'+esc(nm)+(un?uniqueVariantTipHTML(un):'')+'</div>'
    +'<div class="fb-tip-sub">'+esc(sd?sd.label:key)+' • '+esc(rwIt?'Oathword':(it.rarity||'Normal'))+(base&&base.Class?' • '+esc(base.Class):'')+(rwIt&&base?' • '+esc(base.Name):'')+' • ilvl '+(it.item_level!=null?it.item_level:(base?base.Level:'—'))+'</div>'
    +itemBadgeHTML(it,un)
    +'<div class="fb-tip-lines">'+itemDetailLinesHTML(it,un,base,key)+'</div>'
@@ -26010,8 +26285,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.403';
-var PLANNER_BUILT_AT='2026-11-26T16:08:29-07:00';
+var PLANNER_VERSION='0.404';
+var PLANNER_BUILT_AT='2026-11-26T10:29:24-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
