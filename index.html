@@ -22,11 +22,11 @@
    The dark palette is the site's only theme — it shows the same for
    every visitor, whatever their system setting. */
 :root{
-  --bg:#12100e; --bg2:#171310; --panel:#1c1713; --panel2:#261d17; --line:#453025; --line2:#33241b; --hover-bg:#2e2118; --line-pop:#7d5c39;
-  --text:#f5efe4; --muted:#b3a696; --faint:#a89a87;
+  --bg:#12100e; --bg2:#171310; --panel:#211a15; --panel2:#261d17; --line:#4f3828; --line2:#3a2a1f; --hover-bg:#2e2118; --line-pop:#7d5c39;
+  --text:#f5efe4; --muted:#b3a696; --faint:#b3a692;
   --ember:#e5484d; --ember2:#f2555a; --gold:#c08a2d; --gold2:#dfb154; --gold-text:#e8c476;
   --red:#e86a45; --green:#9bd968; --blue:#84bde6; --vow:#f08a64;
-  --chip:#201913; --input:#171310;
+  --chip:#251d16; --input:#171310;
   --radius:10px; --radius-sm:5px;
   --shadow:0 10px 30px rgba(0,0,0,.55);
   --ring:0 0 0 3px color-mix(in srgb, var(--gold) 35%, transparent);
@@ -694,6 +694,22 @@ input[type="file"]{color:var(--muted);max-width:100%}
 .patch-col h3{font-family:Cinzel,serif;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-text);margin:0 0 6px}
 .patch-col .kv{padding:3px 0}
 .patch-col .kv span{min-width:0}
+/* Home front door (v0.396): the full lockup over the entry card —
+   ring at 68px (the source art softens any larger), the name in
+   Cinzel gold, the fan-made line under it — then the starter row,
+   then one slim strip of league facts over a hairline. */
+.home-lockup{text-align:center;padding:6px 0 20px}
+.home-lockup img{width:68px;height:68px;display:block;margin:0 auto}
+.home-lockup .lock-title{font-family:Cinzel,serif;font-size:30px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-text);margin-top:10px}
+.home-lockup .lock-sub{color:var(--muted);font-size:14px;margin-top:6px}
+.home-strip{margin-top:18px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:13.5px;display:flex;flex-wrap:wrap;gap:8px 34px;align-items:center}
+.home-strip .linkbtn{color:var(--muted);font-size:13.5px;min-height:0;padding:0}
+@media(max-width:680px){
+  .home-lockup{padding:0 0 6px}
+  .home-lockup img{width:52px;height:52px}
+  .home-lockup .lock-title{font-size:22px;line-height:1.1;letter-spacing:.04em;white-space:nowrap;margin-top:4px}
+  .home-lockup .lock-sub{margin-top:2px}
+}
 @media(max-width:760px){.patch-grid{grid-template-columns:1fr}}
 /* Starter builds — a small set of templates counted from the same
    bundled ladder snapshot: one card per class pairing (more where
@@ -2418,8 +2434,10 @@ td{padding:7px 8px}
    columns: the two doors stacked on the left (paste a code,
    drop your saves — the saves door holds all save-loading),
    Blank canvas and Borrow from the best stacked on the
-   right. "This patch" keeps its full-width card below. The
-   Starter builds live in the Builds tab. */
+   right. The starter row and the slim league strip sit under
+   it, and "This patch" keeps its full-width card below them.
+   The Builds tab keeps its own starter panel, fed by the same
+   render. */
 #view-builds .starter-card{margin-top:0}
 /* ---------- Planner top — two columns, slim gear rows, the
    Skills bar strip and the skill hover card ----------
@@ -2552,6 +2570,10 @@ td{padding:7px 8px}
 .bottom-nav{display:none}
 .more-sheet{display:none}
 @media(max-width:900px){
+  /* Scroll-into-view stops clear of the fixed bottom bar, so a
+     control scrolled to the foot of the screen is never left
+     sitting underneath it. */
+  html{scroll-padding-bottom:64px}
   /* The bottom nav replaces the top menu outright at this width —
      the sidebar menu steps aside so the two never show together.
      Every destination stays reachable: Planner, Builds, Ladder and
@@ -2837,6 +2859,11 @@ td{padding:7px 8px}
          the build behind it could not be fetched — the rest of
          Home below is the normal screen, untouched. -->
     <p class="notice" id="shareNotice" style="display:none;margin:0 0 12px" role="status"></p>
+    <div class="home-lockup">
+      <img src="assets/logo-mark.png" alt="" width="68" height="68">
+      <div class="lock-title">Broken Oath Planner</div>
+      <p class="lock-sub">Fan-made planner • Live ladder, meta &amp; build inspector</p>
+    </div>
     <div class="card firstrun-card" id="firstRunCard">
       <div class="flex between"><h2>Bring in your hero</h2></div>
       <p class="sub">Pick one and the planner opens with a real build in it. Everything is read right here in this tab; nothing leaves your machine.</p>
@@ -2871,6 +2898,19 @@ td{padding:7px 8px}
         <span aria-hidden="true">•</span>
         <button class="linkbtn" id="homeCopyLogBtn" type="button">Copy the game-log path</button>
       </div>
+    </div>
+
+    <div class="card starter-card" id="homeStarterPanel">
+      <div class="flex between"><h2>Starter builds</h2><span class="starter-lock">From the ladder snapshot</span></div>
+      <p class="sub" id="homeStarterSub">Counting the ladder…</p>
+      <div class="starter-grid" id="homeStarterGrid"></div>
+      <p class="sub hidden" id="homeStarterDpsNote" style="margin-top:10px"></p>
+    </div>
+
+    <div class="home-strip" id="homeStrip">
+      <span id="homeStripLadder"></span>
+      <button class="linkbtn" id="homeStripPatch" data-goto="patches" type="button"></button>
+      <span id="homeStripTrial" style="display:none"></span>
     </div>
 
     <div class="card patch-card" id="patchPanel">
@@ -5850,6 +5890,9 @@ var RULES=[
  [/^The published gem table ends at level 20\. Your gem is level (\d+)(?: \((\d+) \+ (\d+) from gear\))? — it is marked “yours” in the extra row above\. Its base damage and power follow the same per-level growth the table uses \(×([\d.]+) a level\); the hero level and mana cost past 20 are not published, so those two cells show —\.$/,function(m){return '已发布的宝石表只到 20 级。你的宝石是 '+m[1]+' 级'+(m[2]?'（'+m[2]+' + '+m[3]+' 来自装备）':'')+' — 已在上方多出的一行中标为“你的”。它的基础伤害和威力沿用表中同样的每级成长（每级 ×'+m[4]+'）；20 级以上的英雄等级和法力消耗未发布，因此那两格显示为 —。';}],
  [/^([\s\S]+) • gem Lv (\d+)(?: \((\d+) \+ (\d+) from gear\))?$/,function(m){return m[1]+' • 宝石等级 '+m[2]+(m[3]?'（'+m[3]+' + '+m[4]+' 来自装备）':'');}],
  [/^Patch (\S+) • ([\d,]+) heroes active in the last (\d+) days( • uniques counted across the ([\d,]+) published builds)?( • counted ([\s\S]+))?$/,function(m){return '补丁 '+m[1]+' • '+m[2]+' 名英雄在过去 '+m[3]+' 天内活跃'+(m[4]?' • 统计了 '+m[5]+' 个已发布构建中的传奇':'')+(m[6]?' • 统计于 '+m[7]:'');}],
+ [/^Ladder — ([\d,]+) heroes$/,function(m){return '天梯 — '+m[1]+' 名英雄';}],
+ [/^Patch (\d+) notes$/,function(m){return '补丁 '+m[1]+' 说明';}],
+ [/^([\s\S]+) starts (Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday), (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2})$/,function(m){var WD={Monday:'星期一',Tuesday:'星期二',Wednesday:'星期三',Thursday:'星期四',Friday:'星期五',Saturday:'星期六',Sunday:'星期日'};var MO={Jan:'1月',Feb:'2月',Mar:'3月',Apr:'4月',May:'5月',Jun:'6月',Jul:'7月',Aug:'8月',Sep:'9月',Oct:'10月',Nov:'11月',Dec:'12月'};return (trLookup(m[1])||m[1])+' 将于 '+MO[m[3]]+m[4]+'日（'+WD[m[2]]+'）开始';}],
  [/^The (\S+) — ([\s\S]+) ladder build\. Clear it any time from the planner\.$/,function(m){return classZh(m[1])+' — '+m[2]+' 天梯构建。可随时在规划器中清除。';}],
  [/^This is a sample build — (\S+) — ([\s\S]+), a published ladder hero — opened so you can look around: everything in it stays exactly as published\. Clear it to start your own plan; nothing of yours is touched\.$/,function(m){return '这是一个示例构建 — '+classZh(m[1])+' — '+m[2]+'，一位已发布的天梯英雄 — 打开它供你浏览：其中一切都与发布时完全一致。清除它即可开始你自己的方案；不会动到你的任何内容。';}],
  [/^This plan is the (\S+) — ([\s\S]+) template, opened from the ladder snapshot\. Everything in it — gear, skills, passive tree and Dragonling — is fixed as published\. Duplicate the plan to edit anything\. Your own builds are never touched\.$/,function(m){return '本方案是 '+classZh(m[1])+' — '+m[2]+' 模板，取自天梯快照。其中一切 — 装备、技能、天赋树和龙灵 — 都按发布时的样子固定。复制本方案即可编辑任何内容。绝不会动到你自己的构建。';}],
@@ -6257,7 +6300,7 @@ function fetchJSON(url,timeoutMs){
 function getJSON(path){if(cache[path])return cache[path];var p=fetchJSON(BASE+path,12000);cache[path]=p;p.catch(function(){if(cache[path]===p)delete cache[path]});return p}
 function getLiveJSON(path,timeoutMs){delete cache[path];var p=fetchJSON(BASE+path,timeoutMs||12000);cache[path]=p;p.catch(function(){if(cache[path]===p)delete cache[path]});return p}
 function getSnap(name){return fetchJSON('assets/snapshot/'+name,12000)}
-var SNAPSHOT_PATCH='90'; var SNAPSHOT_AT='2026-11-26T04:48:01.258Z'; var DEFAULT_LEAGUE='at1-sc-trade'; var liveState='boot';
+var SNAPSHOT_PATCH='90'; var SNAPSHOT_AT='2026-11-26T06:48:00.194Z'; var DEFAULT_LEAGUE='at1-sc-trade'; var liveState='boot';
 /* Patch history store — notes text only, a few KB per patch, bundled
    at assets/snapshot/patch-history.json. The hourly snapshot refresh
    adds exactly one entry when the patch number moves: {patch, build,
@@ -11072,6 +11115,7 @@ function renderMeta(){
    background poll picks a moved snapshot up — so it never shows
    numbers older than the data the rest of the page is using. */
 function renderPatchPanel(){
+  renderHomeStrip();
   var body=$('patchPanelBody'); if(!body)return;
   var m=G.meta, lad=G.ladder;
   if(!m&&!lad){body.innerHTML='<p class="sub">The ladder snapshot has not landed yet.</p>'; return}
@@ -11106,6 +11150,39 @@ function renderPatchPanel(){
     }).join('')+'<p class="sub" style="margin-top:4px">Measured Guardian DPS, straight off the ladder — each hero&rsquo;s Rupture Level and kill time sit on their ladder row.</p></div>';
   }
   body.innerHTML=html||'<p class="sub">No meta detail in this snapshot yet.</p>';
+}
+
+/* ---------- Home strip — the slim row of league facts ----------
+   Three plain items under the Home starters, re-rendered with
+   the patch panel (and when the league list lands): how many
+   heroes the pinned default-league ladder holds — read from
+   that ladder itself, never typed in — a link to the current
+   patch's notes, and, only while a league's start is still
+   ahead, the day it opens. The hero count is remembered from
+   the pinned ladder alone, so browsing another league on the
+   Ladder tab never rewrites Home's number. */
+var homeLadderN=null;
+function renderHomeStrip(){
+  var ladEl=$('homeStripLadder'); if(!ladEl)return;
+  if(G.ladder&&(!G.ladder.league||G.ladder.league===DEFAULT_LEAGUE)&&(G.ladder.heroes||[]).length)homeLadderN=G.ladder.heroes.length;
+  ladEl.textContent=homeLadderN!=null?('Ladder — '+homeLadderN.toLocaleString('en-US')+' heroes'):'Ladder';
+  var pb=$('homeStripPatch');
+  if(pb)pb.textContent='Patch '+((G.meta&&G.meta.patch)||SNAPSHOT_PATCH)+' notes';
+  var tr=$('homeStripTrial');
+  if(tr){
+    var now=Date.now(), up=null;
+    (G.leagues||[]).forEach(function(l){
+      var st=Date.parse(l.starts_at);
+      if(!isNaN(st)&&st>now&&(!up||st<up.st))up={st:st,name:l.season_name||l.name||''};
+    });
+    if(up){
+      tr.textContent=up.name+' starts '+new Date(up.st).toLocaleDateString(undefined,{weekday:'long',month:'short',day:'numeric'});
+      tr.style.display='';
+    }else{
+      tr.textContent='';
+      tr.style.display='none';
+    }
+  }
 }
 
 /* ---------- Starter builds — ladder-derived templates ----------
@@ -11205,20 +11282,32 @@ function buildIsComplete(d){
   return true;
 }
 function renderStarters(){
-  var grid=$('starterGrid'); if(!grid)return;
-  var sub=$('starterPanelSub');
+  /* One render feeds both starter grids — the Builds tab panel
+     and the Home row — from the same starterList, so the two
+     never quote different heroes or numbers. */
+  var grids=[$('starterGrid'),$('homeStarterGrid')].filter(function(g){return !!g});
+  if(!grids.length)return;
+  var sub=$('starterPanelSub'), homeSub=$('homeStarterSub');
   starterList=computeStarters();
   if(!starterList.length){
     if(sub)sub.textContent='The ladder snapshot has not landed yet — the starters are counted from it, so they arrive with it.';
+    if(homeSub)homeSub.textContent='The ladder snapshot has not landed yet — the starters are counted from it, so they arrive with it.';
     var dn0=$('starterDpsNote'); if(dn0)dn0.classList.add('hidden');
-    grid.innerHTML='';
+    var dn0h=$('homeStarterDpsNote'); if(dn0h)dn0h.classList.add('hidden');
+    grids.forEach(function(g){g.innerHTML=''});
     return;
   }
   if(sub)sub.textContent='A starting point, not a copy: each starter follows a main skill its class\u2019s published ladder builds lead with, opened from the strongest complete published build for that pairing. Everything in it opens read-only — gear, skills, passive tree and Dragonling — duplicate it to edit anything. Counted from the bundled ladder snapshot; nothing here is uploaded or saved on a server.';
+  if(homeSub&&sub)homeSub.textContent=sub.textContent;
   var dpsNote=$('starterDpsNote');
   if(dpsNote){dpsNote.textContent='Two numbers, counted two ways: Measured is the template hero\u2019s real Guardian DPS off the ladder; the planner estimate is this planner\u2019s own calculation for the same build, and it is the number the planner\u2019s headline shows once the starter is open. They rarely agree exactly.'; dpsNote.classList.remove('hidden');}
-  grid.innerHTML=starterList.map(function(s,i){return starterCardHTML(s,i)}).join('');
-  grid.querySelectorAll('[data-starter]').forEach(function(b){b.addEventListener('click',function(){openStarter(+b.getAttribute('data-starter'))})});
+  var cardsHTML=starterList.map(function(s,i){return starterCardHTML(s,i)}).join('');
+  grids.forEach(function(grid){
+    grid.innerHTML=cardsHTML;
+    grid.querySelectorAll('[data-starter]').forEach(function(b){b.addEventListener('click',function(){openStarter(+b.getAttribute('data-starter'))})});
+  });
+  var homeNote=$('homeStarterDpsNote');
+  if(homeNote&&dpsNote){homeNote.textContent=dpsNote.textContent; homeNote.classList.remove('hidden');}
   fillStarterEstimates();
 }
 function starterCardHTML(s,i){
@@ -11265,10 +11354,13 @@ function starterCalDash(s){
   return '—';
 }
 function paintStarterCal(i){
-  var grid=$('starterGrid'); if(!grid)return;
-  var card=grid.children[i]; if(!card||!starterList[i])return;
-  var el=card.querySelector('[data-cal]'); if(!el)return;
-  el.innerHTML=starterCalText(starterList[i]);
+  if(!starterList[i])return;
+  [$('starterGrid'),$('homeStarterGrid')].forEach(function(grid){
+    if(!grid)return;
+    var card=grid.children[i]; if(!card)return;
+    var el=card.querySelector('[data-cal]'); if(!el)return;
+    el.innerHTML=starterCalText(starterList[i]);
+  });
 }
 var starterCalSeq=0;
 function fillStarterEstimates(){
@@ -11308,11 +11400,14 @@ function fillStarterEstimates(){
    complete) replaces what the card first advertised, so the card
    never quotes a hero it did not open. */
 function refreshStarterCard(i){
-  var grid=$('starterGrid'); if(!grid)return;
-  var card=grid.children[i]; if(!card||!starterList[i])return;
-  card.outerHTML=starterCardHTML(starterList[i],i);
-  var b=grid.querySelector('[data-starter="'+i+'"]');
-  if(b)b.addEventListener('click',function(){openStarter(i)});
+  if(!starterList[i])return;
+  [$('starterGrid'),$('homeStarterGrid')].forEach(function(grid){
+    if(!grid)return;
+    var card=grid.children[i]; if(!card)return;
+    card.outerHTML=starterCardHTML(starterList[i],i);
+    var b=grid.querySelector('[data-starter="'+i+'"]');
+    if(b)b.addEventListener('click',function(){openStarter(i)});
+  });
 }
 function openStarter(i){
   var s=starterList[i]; if(!s)return;
@@ -25454,8 +25549,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.395';
-var PLANNER_BUILT_AT='2026-11-25T23:25:44-07:00';
+var PLANNER_VERSION='0.396';
+var PLANNER_BUILT_AT='2026-11-26T00:03:37-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
@@ -25559,6 +25654,7 @@ function applyLeagues(l){
   var pick=G.leagues.find(function(x){return x.id===prev})||defaultLeaguePick();
   if(pick){state.league=pick.id;var lbl=$('leagueLabel'); if(lbl)lbl.textContent=leagueShortName(pick.name)||pick.season_name||''}
   renderLeagueBars();
+  renderHomeStrip();
   /* Boot with a non-default pick: that league's bundled ladder
      and meta load too (the DEFAULT_LEAGUE pre-load in the boot
      flow stays exactly as it was). A later live leagues refresh
