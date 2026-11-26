@@ -307,6 +307,8 @@ td{padding:10px 8px;border-bottom:1px solid var(--line2);vertical-align:top}
 }
 tr:hover td{background:color-mix(in srgb, var(--panel2) 60%, transparent)}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
+.league-bar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.league-bar select{max-width:100%}
 .chip{border:1px solid var(--line);background:var(--panel);padding:8px 12px;border-radius:999px;cursor:pointer;font-weight:600}
 .chip.active{background:linear-gradient(180deg,var(--gold2),var(--gold));border-color:#7c5c1e;color:#171310}
 .hero-detail{border-left:3px solid var(--gold)}
@@ -3502,6 +3504,7 @@ td{padding:7px 8px}
   <section id="view-ladder" class="hidden">
     <div class="card">
       <div class="flex between"><div><h2 id="ladderTitle">Ladder</h2><p class="sub" id="ladderSub">Top 200 per class • refreshed every 15 minutes</p></div><button class="btn" id="refreshLadderBtn">Refresh ladder</button></div>
+      <div class="league-bar mt" id="ladderLeagueBar"></div>
       <div class="chips mt" id="ladderClassChips"></div>
       <div class="flex mt"><input type="search" id="ladderSearch" placeholder="Filter by skill, class or hero…" style="flex:1;min-width:200px"><select id="ladderSort"><option value="rank">Sort: Rank</option><option value="dps">Sort: Guardian DPS</option><option value="rl">Sort: Rupture Level</option><option value="level">Sort: Level</option></select></div>
       <div id="ladderBody" class="mt"></div>
@@ -3511,7 +3514,7 @@ td{padding:7px 8px}
   <!-- META -->
   <section id="view-meta" class="hidden">
     <div style="display:grid;gap:16px">
-      <div class="card"><div class="flex between"><h2>What the league is playing</h2><button class="btn" id="refreshMetaBtn">Refresh meta</button></div><p class="sub" id="metaSub">—</p><div id="metaClasses" class="mt"></div></div>
+      <div class="card"><div class="league-bar" id="metaLeagueBar" style="margin-bottom:12px"></div><div class="flex between"><h2>What the league is playing</h2><button class="btn" id="refreshMetaBtn">Refresh meta</button></div><p class="sub" id="metaSub">—</p><div id="metaClasses" class="mt"></div></div>
       <div class="two">
         <div class="card"><h2>Top main skills</h2><div id="metaSkills" class="mt"></div></div>
         <div class="card"><h2>Keystones, ascendancies &amp; uniques</h2><div id="metaMisc" class="mt"></div></div>
@@ -10106,7 +10109,7 @@ function renderLadder(){
   var arr=heroes.filter(function(h){return (clsFilter==='All'||h.class===clsFilter)&&(!q|| (h.class+' '+h.main_skill+' '+h.hero+' '+(h.ascendancy||'')).toLowerCase().indexOf(q)>=0)});
   arr=arr.slice(); if(sort==='dps')arr.sort(function(a,b){return (b.guardian_dps_median||0)-(a.guardian_dps_median||0)}); if(sort==='rl')arr.sort(function(a,b){return b.rupture_level-a.rupture_level}); if(sort==='level')arr.sort(function(a,b){return b.level-a.level});
   arr=arr.slice(0,120);
-  $('ladderTitle').textContent='Ladder — '+(G.leagues.find(function(l){return l.id===state.league})||{}).name||state.league;
+  $('ladderTitle').textContent='Ladder — '+(((G.leagues.find(function(l){return l.id===state.league})||{}).name)||(($('leagueLabel')||{}).textContent)||'Alpha Test');
   $('ladderSub').textContent=(data.count||heroes.length)+' heroes • Showing '+arr.length;
   if(!arr.length){$('ladderBody').innerHTML='<div class="notice">No heroes match in this league yet. The newest leagues fill over the first hours — try Alpha Test for the fullest ladder right now.</div>';return}
   /* A published hero with NO ascendancy has an empty build file —
@@ -10620,7 +10623,7 @@ function fetchBuildJSON(path){
   // bundled with the page first (same origin — no API dependency) and
   // only falls back to the live API, with retries, when there is no
   // bundled copy (other leagues, or heroes added since the bundle).
-  var bundled=path.indexOf('builds/'+DEFAULT_LEAGUE+'/')===0
+  var bundled=path.indexOf('builds/')===0
     ? fetchBuildRaw('assets/snapshot/'+path,15000).then(parseBuildBuffer)
     : Promise.reject(new Error('no bundled copy'));
   var p=bundled.catch(function(){
@@ -24641,7 +24644,7 @@ function switchTab(name,opts){
   document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('active',t.getAttribute('data-tab')===name)});
   TAB_NAMES.forEach(function(v){$('view-'+v).classList.toggle('hidden',v!==name)});
   fitNavStack(); /* the stack changes with the view (planner adds the workspace tabs) — re-measure before anything scrolls */
-  if(name==='home')renderHome();if(name==='ladder'){if(G.ladder)renderLadder();else loadLadder()}if(name==='meta'){if(G.meta)renderMeta();else loadMeta()}if(name==='items')renderItems();if(name==='bestiary')renderBestiary();if(name==='cube')renderCube();if(name==='loot')renderLoot();if(name==='grail')renderGrail();if(name==='patches')renderPatches();
+  if(name==='home')renderHome();if(name==='ladder'){if(G.ladder&&(G.ladder||{}).league===state.league)renderLadder();else loadLeagueSnapshot(state.league)}if(name==='meta'){if(G.meta&&(G.meta||{}).league===state.league)renderMeta();else loadLeagueSnapshot(state.league)}if(name==='items')renderItems();if(name==='bestiary')renderBestiary();if(name==='cube')renderCube();if(name==='loot')renderLoot();if(name==='grail')renderGrail();if(name==='patches')renderPatches();
   /* Switching views never carried a scroll reset, so the offset
      from the view being left rode into the one being opened: the
      planner is thousands of pixels tall, so coming back to Home
@@ -24672,6 +24675,83 @@ document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click'
 window.addEventListener('resize',fitNavStack);
 fitNavStack();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitNavStack()});
+/* ---------- League selection (Ladder + Meta share one pick) ----------
+   One shared selection, state.league, driven from two identical
+   control rows (Ladder view and Meta view): a season select
+   (only when more than one season exists), a Softcore/Hardcore
+   chip pair and a Trade/Oathbound Solo chip pair. Everything is
+   resolved from the bundled leagues.json entries on G.leagues —
+   the page only ever shows the season name, Softcore/Hardcore
+   and Trade/Oathbound Solo; league ids stay plumbing. */
+function leagueEntry(id){return (G.leagues||[]).find(function(x){return x.id===id})||null}
+function leagueSeasons(){
+  var seen={},out=[];
+  (G.leagues||[]).forEach(function(l){
+    var s=seen[l.season];
+    if(!s){s=seen[l.season]={season:l.season,season_name:l.season_name,latest:String(l.starts_at||'')};out.push(s)}
+    else if(String(l.starts_at||'')>s.latest)s.latest=String(l.starts_at||'');
+  });
+  out.sort(function(a,b){return a.latest<b.latest?1:(a.latest>b.latest?-1:0)});
+  return out;
+}
+function resolveLeague(season,hardcore,trade){
+  var ls=G.leagues||[];
+  var hit=ls.find(function(x){return x.season===season&&!!x.hardcore===!!hardcore&&!!x.trade===!!trade});
+  if(hit)return hit;
+  /* A triple with no league of its own falls back to that
+     season's softcore-trade league. */
+  return ls.find(function(x){return x.season===season&&!x.hardcore&&x.trade})
+    ||ls.find(function(x){return x.id===DEFAULT_LEAGUE})||ls[0]||null;
+}
+function leagueTriple(){
+  var e=leagueEntry(state.league);
+  return e?{season:e.season,hardcore:!!e.hardcore,trade:!!e.trade}:{season:null,hardcore:false,trade:true};
+}
+function leagueBarHTML(selId){
+  var seasons=leagueSeasons();
+  var html='';
+  if(seasons.length>1){
+    html+='<select id="'+selId+'" aria-label="Season">'+seasons.map(function(s){return '<option value="'+esc(s.season)+'">'+esc(s.season_name)+'</option>'}).join('')+'</select>';
+  }
+  html+='<div class="chips" role="group" aria-label="Mode"><button class="chip" data-lmode="sc">Softcore</button><button class="chip" data-lmode="hc">Hardcore</button></div>';
+  html+='<div class="chips" role="group" aria-label="Trade"><button class="chip" data-ltrade="trade">Trade</button><button class="chip" data-ltrade="solo">Oathbound Solo</button></div>';
+  return html;
+}
+function renderLeagueBars(){
+  var lb=$('ladderLeagueBar'); if(lb)lb.innerHTML=leagueBarHTML('ladderSeasonSel');
+  var mb=$('metaLeagueBar'); if(mb)mb.innerHTML=leagueBarHTML('metaSeasonSel');
+  document.querySelectorAll('#ladderSeasonSel,#metaSeasonSel').forEach(function(sel){
+    sel.addEventListener('change',function(){var t=leagueTriple();var e=resolveLeague(sel.value,t.hardcore,t.trade);if(e)setLeague(e.id)});
+  });
+  document.querySelectorAll('[data-lmode]').forEach(function(ch){
+    ch.addEventListener('click',function(){var t=leagueTriple();var e=resolveLeague(t.season,ch.getAttribute('data-lmode')==='hc',t.trade);if(e)setLeague(e.id)});
+  });
+  document.querySelectorAll('[data-ltrade]').forEach(function(ch){
+    ch.addEventListener('click',function(){var t=leagueTriple();var e=resolveLeague(t.season,t.hardcore,ch.getAttribute('data-ltrade')==='trade');if(e)setLeague(e.id)});
+  });
+  syncLeagueBars();
+}
+function syncLeagueBars(){
+  var t=leagueTriple();
+  document.querySelectorAll('#ladderSeasonSel,#metaSeasonSel').forEach(function(sel){if(t.season)sel.value=t.season});
+  document.querySelectorAll('[data-lmode]').forEach(function(ch){ch.classList.toggle('active',(ch.getAttribute('data-lmode')==='hc')===t.hardcore)});
+  document.querySelectorAll('[data-ltrade]').forEach(function(ch){ch.classList.toggle('active',(ch.getAttribute('data-ltrade')==='trade')===t.trade)});
+}
+function setLeague(id){
+  var e=leagueEntry(id); if(!e)return;
+  state.league=e.id;
+  var lbl=$('leagueLabel'); if(lbl)lbl.textContent=leagueShortName(e.name)||e.season_name||'';
+  syncLeagueBars();
+  loadLeagueSnapshot(e.id);
+}
+/* Bundled-first load for ANY league: the snapshot the page ships
+   with answers first; only a snapshot miss falls through to the
+   live path (loadLadder/loadMeta) for that league. */
+function loadLeagueSnapshot(id){
+  if(!id)return;
+  getSnap('ladder-'+id+'.json').then(function(d){if(state.league!==id)return;G.ladder=d;G.ladderSource='snapshot';if(currentTab==='ladder')renderLadder()}).catch(function(){if(state.league===id)loadLadder()});
+  getSnap('meta-'+id+'.json').then(function(d){if(state.league!==id)return;G.meta=d;G.metaSource='snapshot';if(currentTab==='meta')renderMeta()}).catch(function(){if(state.league===id)loadMeta()});
+}
 function ladderFail(e){
   if(state.league===DEFAULT_LEAGUE){
     getSnap('ladder-'+DEFAULT_LEAGUE+'.json').then(function(d){G.ladder=d;G.ladderSource='snapshot';renderLadder()}).catch(function(){$('ladderBody').innerHTML='<div class="notice">Ladder could not be loaded. Check your connection and try again.</div>'});
@@ -25287,8 +25367,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.392';
-var PLANNER_BUILT_AT='2026-11-25T22:06:52-07:00';
+var PLANNER_VERSION='0.393';
+var PLANNER_BUILT_AT='2026-11-25T22:52:57-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
@@ -25361,11 +25441,44 @@ function checkPlannerVersion(){
   checkPlannerVersion();
 })();
 function leagueShortName(n){return String(n||'').split(/[-—–]/)[0].trim()}
+/* The default league, picked by date (2026-11-25): among the
+   seasons whose window contains now, the one that started
+   latest; if no season is live, the next season to start.
+   Within the chosen season: softcore + trade. Any failure keeps
+   the old fallback — the pinned DEFAULT_LEAGUE, then the first
+   league in the list. */
+function defaultLeaguePick(){
+  var ls=G.leagues||[]; if(!ls.length)return null;
+  var now=Date.now();
+  var bySeason={};
+  ls.forEach(function(l){
+    var st=Date.parse(l.starts_at), en=Date.parse(l.ends_at);
+    var s=bySeason[l.season];
+    if(!s){s=bySeason[l.season]={season:l.season,start:st,end:en}}
+    else{if(!isNaN(st))s.start=isNaN(s.start)?st:Math.min(s.start,st); if(!isNaN(en))s.end=isNaN(s.end)?en:Math.max(s.end,en)}
+  });
+  var seasons=Object.keys(bySeason).map(function(k){return bySeason[k]});
+  var live=seasons.filter(function(s){return !isNaN(s.start)&&!isNaN(s.end)&&s.start<=now&&now<s.end}).sort(function(a,b){return b.start-a.start});
+  var chosen=live[0]||seasons.filter(function(s){return !isNaN(s.start)&&s.start>now}).sort(function(a,b){return a.start-b.start})[0];
+  if(chosen){
+    var hit=ls.find(function(x){return x.season===chosen.season&&!x.hardcore&&x.trade});
+    if(hit)return hit;
+  }
+  return ls.find(function(x){return x.id===DEFAULT_LEAGUE})||ls[0];
+}
 function applyLeagues(l){
   G.leagues=(l&&l.leagues)||[]; if(!G.leagues.length)return;
   var prev=state.league;
-  var pick=G.leagues.find(function(x){return x.id===prev})||G.leagues.find(function(x){return x.id===DEFAULT_LEAGUE})||G.leagues[0];
-  if(pick){state.league=pick.id;var lbl=$('leagueLabel'); if(lbl)lbl.textContent=leagueShortName(pick.name)||pick.id}
+  var pick=G.leagues.find(function(x){return x.id===prev})||defaultLeaguePick();
+  if(pick){state.league=pick.id;var lbl=$('leagueLabel'); if(lbl)lbl.textContent=leagueShortName(pick.name)||pick.season_name||''}
+  renderLeagueBars();
+  /* Boot with a non-default pick: that league's bundled ladder
+     and meta load too (the DEFAULT_LEAGUE pre-load in the boot
+     flow stays exactly as it was). A later live leagues refresh
+     re-enters here with the same pick and must not reload over
+     fresher data, so this only fires on a changed pick or when
+     the ladder on hand is for another league. */
+  if(pick&&pick.id!==DEFAULT_LEAGUE&&(prev!==pick.id||(G.ladder||{}).league!==pick.id))loadLeagueSnapshot(pick.id);
 }
 /* ---------- Item 4 helpers (2026-11-23) ----------
    One small feature per smaller published file. Everything here
