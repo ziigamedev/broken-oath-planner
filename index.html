@@ -3544,7 +3544,7 @@ body.tab-home .brand h1{display:none}
             <div class="efield" style="grid-column:1/-1"><div class="label">Curses on the enemy — Woes and Sentences stack, with no limit</div>
               <div id="curseListBox"></div></div>
             <div class="efield"><div class="label">Hunter&rsquo;s Mark stacks <span class="range-val" id="markVal" style="float:right">0</span></div>
-              <input type="range" id="markRange" min="0" max="10" step="1" value="0">
+              <input type="range" id="markRange" min="0" max="22" step="1" value="0">
               <p class="sub" id="markNote" style="margin:2px 0 0"></p></div>
             <div class="efield"><div class="label">War Banner — Valour stacks <span class="range-val" id="bannerVal" style="float:right">0</span></div>
               <input type="range" id="bannerRange" min="0" max="20" step="1" value="0">
@@ -7741,10 +7741,17 @@ function curseTakenMult(skill,extraTaken){
     tot+=t;
   });
   tot+=barUnravelTaken(type);
-  /* Hunter's Mark: 1.7% more damage taken per Mark on the enemy,
-     up to the published 10 — the Hunter's Mark support's own text,
-     and the mark record in curses.json. */
-  if(state.mark>0)tot+=Math.min(10,state.mark)*1.7*markStrength();
+  /* Hunter's Mark: 1.7% more damage taken per Mark on the enemy —
+     the Hunter's Mark support's own text, and the mark record in
+     curses.json. The 10 in that text is only the BASE cap: the
+     tree's Hunter's Mark and Road of the Hunt notables add MarkMax
+     and MarkEffect, a sworn Oath of the Marked Prey adds MarkEffect,
+     and The Hunter's Promise boots add MarkMax — markPlanStats sums
+     the plan's own lines, and each Mark counts at 1.7% grown by the
+     plan's increased Mark effect. (This code used to stop at 10 flat
+     and price no Mark effect at all, so a mark build's vs-enemy
+     numbers read low — the gap found on 26 Nov 2026.) */
+  if(state.mark>0)tot+=markStacks()*markPerPct();
   /* War Banner: 6% near the banner, +0.5% per Valour stack, up
      to the stack cap its own record publishes. */
   if(bannerActive())tot+=6+0.5*Math.min(stackCap('war_banner',20),state.bannerValour||0);
@@ -7761,7 +7768,13 @@ function curseTakenMult(skill,extraTaken){
      and every other takes-more-damage effect — so Shock adds
      here too instead of multiplying on top. */
   if(extraTaken)tot+=extraTaken;
-  return 1+tot/100;
+  var takenMult=1+tot/100;
+  /* At full Marks the support's text gives one more line: hits from
+     skills WITHOUT the support deal 15% more. It is a "more" on
+     those skills, so it multiplies after the taken-increase above —
+     and "full" means the plan's own cap, MarkMax lines included. */
+  if(skill&&skill.Id&&state.mark>0&&markStacks()>=markPlanStats().cap&&supportsForSkillId(state,skill.Id).indexOf('hunters_mark_support')<0)takenMult*=1.15;
+  return takenMult;
 }
 /* Hunter's Mark strength for this bar: full when any non-minion
    skill carries the support, half when only minion skills do —
@@ -7782,6 +7795,64 @@ function markStrength(){
   if(anyMinion)return 0.5;
   return 1;
 }
+/* The most Marks one build can hold, and how strong they are,
+   read from the plan itself — every number from the game's
+   published data: base 10 (the hunters_mark record's own cap in
+   curses.json), plus MarkMax from the taken tree nodes (Hunter's
+   Mark +3 and Road of the Hunt +2 — the tree carries each cluster
+   twice) and from equipped uniques (The Hunter's Promise boots,
+   +2), and MarkEffect summed the same way (the notables' +20% and
+   +15%, Hunter's Creed and Starmarked Quarry +15% each, a sworn
+   Oath of the Marked Prey +10%). 22 is the hard ceiling the data
+   allows one build: 10 + 5 + 5 + 2. A unique's MarkMax counts at
+   its rolled value when the piece carries rolled lines, else at
+   the mid-roll — the same reading the modifier audit uses. */
+var MARK_STACK_HARD_MAX=22;
+function markPlanStats(){
+  var treeMax=0, gearMax=0, eff=0;
+  treeTakenIds().forEach(function(id){
+    var n=G.passiveMap[id]; if(!n)return;
+    (n.Mods||[]).forEach(function(m){
+      if(m.Stat==='MarkMax'&&m.Mode==='Flat')treeMax+=+m.Value||0;
+      else if(m.Stat==='MarkEffect'&&m.Mode==='Inc')eff+=+m.Value||0;
+    });
+  });
+  var seats=oathSeatsTaken();
+  Object.keys(state.oaths||{}).forEach(function(seat){
+    if(!seats[seat])return;
+    (state.oaths[seat]||[]).forEach(function(oid){
+      var rec=G.oathMap[oid]; if(!rec)return;
+      (rec.oath.Mods||[]).forEach(function(m){
+        if(m.Stat==='MarkMax'&&m.Mode==='Flat')treeMax+=+m.Value||0;
+        else if(m.Stat==='MarkEffect'&&m.Mode==='Inc')eff+=+m.Value||0;
+      });
+    });
+  });
+  GEAR_SLOTS.forEach(function(sd){
+    var it=(state.gear||{})[sd.key]; if(!it||!it.unique)return;
+    var un=G.uniqueMap[it.unique]; if(!un||!un.Mods)return;
+    var rolled={}, anyRolled=false;
+    (it.affixes||[]).forEach(function(sa){if(!sa)return; var um=String(sa.id||'').match(/^unique:(\d+)$/); if(um){rolled[+um[1]]=sa.value; anyRolled=true}});
+    un.Mods.forEach(function(mm,idx){
+      var mod=mm.Mod||mm; if(!mod)return;
+      if(mod.Stat!=='MarkMax'&&mod.Stat!=='MarkEffect')return;
+      var v;
+      if(anyRolled){if(rolled[idx]==null)return; v=+rolled[idx]||0}
+      else v=(mm.Min!=null&&mm.Max!=null)?(mm.Min+mm.Max)/2:(+mod.Value||0);
+      if(mod.Stat==='MarkMax'&&mod.Mode==='Flat')gearMax+=v;
+      else if(mod.Stat==='MarkEffect'&&mod.Mode==='Inc')eff+=v;
+    });
+  });
+  return {cap:10+treeMax+gearMax, treeMax:treeMax, gearMax:gearMax, eff:eff};
+}
+/* Marks standing on the enemy for the count: what the enemy setup
+   holds, never past the most the game's data lets a build hold. */
+function markStacks(){return Math.max(0,Math.min(MARK_STACK_HARD_MAX,state.mark||0))}
+/* One Mark's worth against this enemy, in % more damage taken:
+   the published 1.7%, grown by the plan's increased Mark effect,
+   at this bar's strength (half when only minion skills carry the
+   support — see markStrength). */
+function markPerPct(){return 1.7*(1+markPlanStats().eff/100)*markStrength()}
 /* Which stacking supports the bar actually carries — the enemy
    settings only offer the stacks a linked support can build.
    Gather Fury rides any attack or spell, Bloodlust melee skills,
@@ -9896,7 +9967,7 @@ function collectModifierAudit(c){
     if(cu.Dread&&(cu.Dread.Cap||0)>0)parts.push('gathers Dread');
     if(parts.length)used.push({g:'On the enemy',text:parts.join(' • '),src:'Curse · '+cu.Name});
   });
-  if(state.mark>0)used.push({g:'On the enemy',text:'+'+(Math.min(10,state.mark)*1.7*markStrength()).toFixed(1)+'% damage taken from '+Math.min(10,state.mark)+' Marks — against the configured enemy',src:'Enemy setup · Hunter\u2019s Mark'});
+  if(state.mark>0)used.push({g:'On the enemy',text:'+'+(markStacks()*markPerPct()).toFixed(1)+'% damage taken from '+markStacks()+' Marks — against the configured enemy',src:'Enemy setup · Hunter\u2019s Mark'});
   if(bannerActive())used.push({g:'On the enemy',text:'+'+(6+0.5*Math.min(20,state.bannerValour||0)).toFixed(1)+'% damage taken near the banner — against the configured enemy',src:'Enemy setup · War Banner'});
   if(state.dread>0)used.push({g:'On the enemy',text:state.dread+' Dread stacks at the curse\u2019s published rate, capped at its BossCap — against the configured enemy',src:'Enemy setup · Dread'});
   if(state.shockPct>0)used.push({g:'On the enemy',text:'+'+state.shockPct+'% damage taken from Shock at '+(state.shockUp!=null?state.shockUp:100)+'% uptime — against the configured enemy',src:'Enemy setup · Shock'});
@@ -12416,7 +12487,7 @@ function renderCurseNote(){
   });
   var unv=barUnravelTaken(type);
   if(unv>0)parts.push('<b>Unravel</b>: a bar skill with Unravel linked stacks '+esc(type)+' on the enemy — counted at '+(state.unravel!=null?state.unravel:25)+' stacks, the enemy takes +'+(Math.round(unv*10)/10)+'% more '+esc(type)+' damage');
-  if(state.mark>0)parts.push('<b>Hunter&rsquo;s Mark</b>: '+Math.min(10,state.mark)+' Mark'+(state.mark===1?'':'s')+' on the enemy — it takes +'+(Math.round(Math.min(10,state.mark)*1.7*10)/10)+'% more damage from everything'+(linkedStackSupports().mark?' (Hunter&rsquo;s Mark is linked on your bar)':''));
+  if(state.mark>0){var mpsN=markPlanStats(), mN=markStacks(); parts.push('<b>Hunter&rsquo;s Mark</b>: '+mN+' Mark'+(mN===1?'':'s')+' on the enemy — it takes +'+(Math.round(mN*markPerPct()*10)/10)+'% more damage from everything'+(mpsN.eff>0?' (each Mark '+(Math.round(1.7*(1+mpsN.eff/100)*100)/100)+'% with your plan&rsquo;s +'+mpsN.eff+'% Mark effect)':'')+(markStrength()<1?' (at half strength — only a minion skill carries the support)':'')+(linkedStackSupports().mark?' (Hunter&rsquo;s Mark is linked on your bar)':'')+(mN>=mpsN.cap?' — Marks are full at your plan&rsquo;s cap of '+mpsN.cap+', so hits from skills without the support deal 15% more, counted per skill':''))}
   if(bannerActive())parts.push('<b>War Banner</b>'+(bannerOnBar()?' (planted by your bar)':'')+': the enemy takes +6% more damage near it'+(state.bannerValour>0?', and its '+Math.min(20,state.bannerValour)+' Valour adds +'+(Math.round(0.5*Math.min(20,state.bannerValour)*10)/10)+'% more':''));
   if(skill&&supportsForSkillId(state,skill.Id).indexOf('woeweaver')>=0){
     var woeN=cs.filter(function(c){return c.Kind==='Woe'}).length;
@@ -12623,7 +12694,7 @@ function renderEnemyInfo(){
   showBox('bloodBox',linked.bloodlust);
   showBox('kindBox',linked.kindling);
   var mn=$('markNote');
-  if(mn)mn.textContent=linked.mark?'Hunter\u2019s Mark is linked on your bar — each hit with it Marks the enemy, 1.7% more damage taken per Mark, 10 at most. Set the Marks you hold on it.':'No Hunter\u2019s Mark on your bar — set Marks here to try the mark support\u2019s numbers (1.7% more damage taken each, 10 at most).';
+  if(mn){var mpsE=markPlanStats(); var capBitsE='base 10'+(mpsE.treeMax?(' + '+mpsE.treeMax+' from your tree and oaths'):'')+(mpsE.gearMax?(' + '+mpsE.gearMax+' from your gear'):''); var perTxtE=(Math.round(1.7*(1+mpsE.eff/100)*100)/100)+'%'; mn.textContent=linked.mark?('Hunter\u2019s Mark is linked on your bar — each hit with it Marks the enemy, up to your plan\u2019s cap of '+mpsE.cap+' Marks ('+capBitsE+'), each worth '+perTxtE+' more damage taken'+(mpsE.eff>0?(' with your +'+mpsE.eff+'% Mark effect'):'')+'. Set the Marks you hold on it. At full Marks, hits from skills without the support deal 15% more.'):('No Hunter\u2019s Mark on your bar — set Marks here to try the numbers: your plan\u2019s cap is '+mpsE.cap+' Marks ('+capBitsE+'), each worth '+perTxtE+' more damage taken'+(mpsE.eff>0?(' with your +'+mpsE.eff+'% Mark effect'):'')+'. The slider runs to '+MARK_STACK_HARD_MAX+', the most any build in the game data can hold.');}
   var bl=$('bannerLine');
   if(bl){
     if(bannerOnBar())bl.innerHTML='War Banner is on your bar and planted — its 6% counts, plus 0.5% per Valour stack above.';
@@ -24550,7 +24621,7 @@ function applyPlannerBO1(obj){
   state.dragonNodes=obj.drag||[];state.passiveNodes=stripStartNodes(obj.pn);state.inc=obj.inc!=null?obj.inc:state.inc;state.crit=obj.crit!=null?obj.crit:state.crit;state.critMulti=obj.critMulti||state.critMulti;state.speed=obj.speed!=null?obj.speed:state.speed;state.passives=obj.passives||state.passives;state.bonusPassivePoints=obj.bp||0;state.incPools=obj.ip||null;state.incPoolBase=obj.ipb||0;state.passiveMores=obj.pm||[];state.orbCount=obj.oc||0;state.orbRate=obj.orr||0;
   if(obj.tree){state.tree={take:stripStartNodes(obj.tree.take),keep:stripStartNodes(obj.tree.keep),never:stripStartNodes(obj.tree.never),must:stripStartNodes(obj.tree.must)};renderTreeList()}
   state.oaths=(obj.oaths&&typeof obj.oaths==='object')?obj.oaths:{}; normalizeOaths(); state.heroRupture=obj.hr||0;
-  state.enemyLevel=obj.el||84; state.curseList=null; if(Array.isArray(obj.cl))state.curseList=obj.cl.filter(function(x){return typeof x==='string'}); state.curse=obj.cu||''; state.curse2=obj.c2||''; curseListNorm(); syncCurseMirrors(); state.enemyId=obj.eid||''; state.enemyMods=Array.isArray(obj.emods)?obj.emods.filter(function(x){return typeof x==='string'}):[]; if(obj.erar)state.enemyRarity=obj.erar; state.rupture=obj.rup||0; state.dread=obj.dr||0; state.shockPct=obj.sh||0; state.shockUp=obj.shu!=null?obj.shu:100; state.mark=obj.mk||0; state.bannerValour=obj.bvl||0; state.bannerTry=!!obj.btry; state.potion=obj.pot||''; state.vowbreak=!!obj.vb; state.fury=obj.fur||0; state.bloodlust=obj.blu||0; state.kindling=obj.kin||0; state.unravel=obj.unr!=null?obj.unr:25; state.resPenalty=obj.rp||0; state.supPin=obj.pin||[]; state.supBlock=obj.blk||[]; state.simSustain=obj.sus!==false; state.treeBlend=obj.tb||0; state.treeWeights=obj.tw||{}; state.treeVersions=obj.tv||[]; state.planNote=String(obj.note||'').slice(0,600); state.buffOff=Array.isArray(obj.boff)?obj.boff.filter(function(x){return typeof x==='string'}):[];
+  state.enemyLevel=obj.el||84; state.curseList=null; if(Array.isArray(obj.cl))state.curseList=obj.cl.filter(function(x){return typeof x==='string'}); state.curse=obj.cu||''; state.curse2=obj.c2||''; curseListNorm(); syncCurseMirrors(); state.enemyId=obj.eid||''; state.enemyMods=Array.isArray(obj.emods)?obj.emods.filter(function(x){return typeof x==='string'}):[]; if(obj.erar)state.enemyRarity=obj.erar; state.rupture=obj.rup||0; state.dread=obj.dr||0; state.shockPct=obj.sh||0; state.shockUp=obj.shu!=null?obj.shu:100; state.mark=Math.max(0,Math.min(22,obj.mk||0)); state.bannerValour=obj.bvl||0; state.bannerTry=!!obj.btry; state.potion=obj.pot||''; state.vowbreak=!!obj.vb; state.fury=obj.fur||0; state.bloodlust=obj.blu||0; state.kindling=obj.kin||0; state.unravel=obj.unr!=null?obj.unr:25; state.resPenalty=obj.rp||0; state.supPin=obj.pin||[]; state.supBlock=obj.blk||[]; state.simSustain=obj.sus!==false; state.treeBlend=obj.tb||0; state.treeWeights=obj.tw||{}; state.treeVersions=obj.tv||[]; state.planNote=String(obj.note||'').slice(0,600); state.buffOff=Array.isArray(obj.boff)?obj.boff.filter(function(x){return typeof x==='string'}):[];
   if(obj.gear){state.gear=obj.gear||{};renderGear()}
   /* The potion belt rides in the plan code too — a code written
      before the belt existed simply leaves the belt as it stands. */
@@ -27307,8 +27378,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.429';
-var PLANNER_BUILT_AT='2026-11-26T21:27:00-08:00';
+var PLANNER_VERSION='0.430';
+var PLANNER_BUILT_AT='2026-11-26T22:12:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
