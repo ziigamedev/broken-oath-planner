@@ -1540,6 +1540,30 @@ body.adv-open{overflow:hidden}
 .lf-tab b{color:var(--gold);font-family:"IBM Plex Sans",sans-serif;margin-right:6px}
 .lf-tab.on{border-color:var(--gold);background:color-mix(in srgb, var(--gold) 16%, var(--panel2));color:var(--text)}
 .lf-tab.on b{color:var(--gold2)}
+/* Crafting switcher (v0.439): three tab cards that say what each
+   bench does, pinned under the top bars while the Crafting view
+   scrolls, so changing benches never needs a scroll back up through
+   the recipe lists. The sticky offset rides the same measured stack
+   as the planner's workspace tabs (--tbh top bar + --sbh menu;
+   fitNavStack zeroes --sbh where the menu is static, so this one
+   rule behaves the same on phone and desktop). The bar keeps its
+   layout slot and an opaque panel ground, so stuck it covers
+   nothing but the list scrolling beneath it. */
+.craft-tabs{position:sticky;top:calc(var(--tbh,70px) + var(--sbh,56px));z-index:12;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 16px;padding:8px;background:var(--panel);border:1px solid var(--line2);border-radius:var(--radius);box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.craft-tab{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:3px;text-align:left;border:1px solid var(--line2);background:var(--panel2);color:var(--muted);padding:10px 12px;border-radius:var(--radius-sm);cursor:pointer;min-height:60px;transition:background .16s ease,border-color .16s ease,box-shadow .16s ease}
+.craft-tab-name{font-family:Cinzel,serif;font-weight:700;font-size:15.5px;letter-spacing:.02em;line-height:1.2;color:var(--text)}
+.craft-tab-desc{font-size:12.5px;line-height:1.4;color:var(--muted)}
+.craft-tab:hover{border-color:var(--gold)}
+.craft-tab:hover .craft-tab-name{color:var(--gold2)}
+.craft-tab.on{border-color:var(--gold);background:linear-gradient(180deg,color-mix(in srgb, var(--gold) 28%, var(--panel2)),color-mix(in srgb, var(--gold) 15%, var(--panel2)));box-shadow:inset 0 0 0 1px var(--gold),inset 0 -3px 0 var(--gold)}
+.craft-tab.on .craft-tab-name{color:var(--gold-text)}
+.craft-tab.on .craft-tab-desc{color:var(--text)}
+@media(max-width:680px){
+  .craft-tabs{gap:6px;padding:6px}
+  .craft-tab{padding:8px 9px;min-height:66px}
+  .craft-tab-name{font-size:13px}
+  .craft-tab-desc{font-size:11.5px;line-height:1.35}
+}
 #lfPanelSimulate .loot-preview-panel{position:static;max-height:none;display:block}
 #lfPanelSimulate .loot-preview-panel #lootPreview{overflow:visible}
 /* Customize tab — one full-width column, stacked the way it was
@@ -2484,23 +2508,45 @@ body.ws-tree .tree-rail{display:flex}
 .way{display:flex;gap:10px;align-items:center;justify-content:space-between;border:1px solid var(--line2);background:var(--panel2);border-radius:var(--radius-sm);padding:10px 12px;flex-wrap:wrap}
 .way .sub{margin:2px 0 0}
 .log-scroll{overflow-x:auto}
-/* The Cube workspace — recipe book, runewords, simulators. Built on
-   the same panels, chips and tags as the rest of the planner. */
-.cube-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
-.cube-recipe{border:1px solid var(--line2);background:var(--panel2);border-radius:var(--radius-sm);padding:10px 12px}
-.cube-recipe h3{margin:0 0 4px;font-size:15.5px}
-.cube-recipe .kv{padding:4px 0;font-size:13.5px;display:block;border-bottom:1px solid var(--line2)}
+/* The Cube and Oathword workspaces — recipe book, runewords,
+   simulators. Built on the same panels, chips and tags as the
+   rest of the planner. */
+/* Two cards across on wide screens (v0.440), so the long recipe
+   and runeword lists take half the scrolling; one column on
+   phone-width screens. align-items:start keeps each card at its
+   natural height — a short card never stretches to match the
+   taller card beside it. */
+.cube-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+@media(max-width:860px){.cube-grid{grid-template-columns:minmax(0,1fr)}}
+/* One card pattern for every bench (v0.439): Forge recipes, Cube
+   recipes, the red-shard cards, Forge materials and runewords all
+   sit on this one skeleton — title row first, then the tags row,
+   then the labelled rows in the order the bench already reads
+   (what goes in, what you get, what it costs) on identical padding
+   and row spacing — so a player who has read one bench has learned
+   all three. No card text, label or field changes; layout only. */
+.cube-recipe{border:1px solid var(--line2);background:var(--panel2);border-radius:var(--radius-sm);padding:12px 14px;display:flex;flex-direction:column}
+.cube-recipe h3{margin:0 0 6px;font-size:15.5px;line-height:1.25}
+.craft-tags{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 4px}
+.cube-recipe .kv{padding:6px 0;font-size:13.5px;display:block;border-bottom:1px solid var(--line2)}
 .cube-recipe .kv:last-child{border-bottom:none}
-.cube-recipe .kv b{display:block;color:var(--muted);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:1px}
+.cube-recipe .kv b{display:block;color:var(--muted);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:1px;font-weight:700}
+.cube-recipe .rw-runes{margin:2px 0 0;padding:6px 0;border-bottom:1px solid var(--line2)}
+.cube-recipe .affix{padding:3px 0;border-bottom:1px solid color-mix(in srgb, var(--line2) 70%, transparent)}
 .cube-sig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
 .cube-sig{display:flex;justify-content:space-between;gap:10px;align-items:baseline;border:1px solid var(--line2);background:var(--panel2);border-radius:var(--radius-sm);padding:7px 10px;font-size:13.5px}
 .cube-sig b{color:var(--gold);white-space:nowrap}
 .forge-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px;border:1px solid rgba(0,0,0,.35);vertical-align:baseline}
-.forge-anchor{scroll-margin-top:88px}
+/* Jump targets land below the whole pinned stack: the root
+   scroll-padding covers the top bars, this margin covers the
+   measured switcher (--cth) plus the measured filter bar
+   (--cfh), both set by fitNavStack (v0.440). */
+.forge-anchor{scroll-margin-top:calc(var(--cth,96px) + var(--cfh,0px) + 6px)}
 #forgeChips .chip:disabled{opacity:.42;cursor:default}
-.forge-recipe{padding:8px 10px}
-.forge-learned{font-size:12.5px;color:var(--muted);margin-top:6px}
-.forge-learned b{color:var(--muted);font-weight:600}
+/* Forge cards ride the shared .cube-recipe padding (v0.439) — the
+   old .forge-recipe override that tightened them alone is gone. */
+.forge-learned{font-size:13.5px;color:var(--text);margin-top:0;padding:6px 0 0}
+.forge-learned b{display:block;color:var(--muted);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:1px;font-weight:700}
 .rw-runes{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0}
 .rw-rune{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius-sm);padding:3px 9px;font-weight:700;font-size:13px}
 .rw-arrow{color:var(--muted);font-size:12px}
@@ -2510,6 +2556,94 @@ body.ws-tree .tree-rail{display:flex}
 .sim-out .kv{padding:4px 0;font-size:13.5px}
 .sim-out .kv:last-child{border-bottom:none}
 .tag-red{border-color:#8a3b2e;color:#e08a76}
+/* Inside the Crafting sections (v0.440) — layout only; every
+   field, word and number on the cards is the one the bench
+   already showed. Three pieces:
+   1) .io-pair — what goes in and what comes out sit side by
+      side with an arrow between them (Forge: Costs → What it
+      does; Cube: Put in → Makes). On narrow screens the pair
+      stacks and the arrow turns to point down.
+   2) .cost-chip — a recipe's gold and materials as small pills
+      that scan at a glance instead of one long text line.
+   3) .craft-filters — each section's search box and filter
+      chips in a bar that pins directly under the Crafting
+      switcher while the section scrolls. Its sticky offset is
+      the measured top stack (--tbh + --sbh) plus the measured
+      switcher height (--cth, set by fitNavStack), and it sits
+      one z-step below the switcher so it slides in under it. */
+.io-pair{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line2)}
+.io-cell{min-width:0;font-size:13.5px}
+.io-cell b{display:block;color:var(--muted);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px;font-weight:700}
+.io-arrow{color:var(--gold);font-size:17px;font-weight:700;line-height:1}
+@media(max-width:680px){
+  .io-pair{grid-template-columns:minmax(0,1fr);gap:4px}
+  /* The stacked pair's arrow points down: the sideways glyph is
+     swapped for a down one outright (no rotation — a rotated grid
+     item painted outside its row in the phone capture). */
+  .io-arrow{font-size:0;line-height:0;justify-self:center;padding:1px 0}
+  .io-arrow::after{content:"↓";font-size:17px;line-height:1}
+}
+.cost-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+.cost-chip{font-size:12.5px;padding:3px 8px;border-radius:999px;background:var(--chip);border:1px solid var(--line2);color:var(--text);font-weight:600;font-variant-numeric:tabular-nums;line-height:1.35}
+.cost-chip.gold{border-color:color-mix(in srgb, var(--gold) 55%, var(--line2));color:var(--gold-text)}
+.cost-note{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.45}
+.craft-filters{position:sticky;top:calc(var(--tbh,70px) + var(--sbh,56px) + var(--cth,96px));z-index:11;background:var(--panel);border:1px solid var(--line2);border-radius:var(--radius);padding:10px 12px;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.craft-filters.in-card{background:var(--panel2)}
+/* Slim pinned Crafting stack (v0.444): at the top of the Crafting
+   view the switcher keeps its full tab cards with their one-line
+   descriptions, exactly as they are. Once the player scrolls and
+   the switcher pins, craftPinSync puts .slimpin on the view and
+   the pinned stack compacts: the switcher becomes one slim row of
+   the three section names (no description lines, tight padding),
+   and the open section's filter bar pins directly under it in a
+   compact form — search on one line, the selects still on that
+   line, and the chips in a single horizontally scrollable row
+   instead of wrapping into several. At 390px the whole pinned
+   stack (slim switcher + filter bar) is about 150px tall, against
+   the ~340px the full cards and wrapped chips used to hold.
+   fitNavStack re-measures --cth/--cfh the moment the class flips,
+   so the filter bar's sticky offset and the Forge jump targets'
+   scroll margin ride the slim heights and no content hides under
+   the stack. Nothing but presentation changes: every control,
+   word and filter behaves exactly as before. */
+.craft-pin-sentinel{height:0}
+#view-crafting.slimpin .craft-tabs{padding:3px;gap:5px;margin-bottom:4px}
+#view-crafting.slimpin .craft-tab{flex-direction:row;align-items:center;justify-content:center;min-height:40px;padding:4px 6px;text-align:center}
+#view-crafting.slimpin .craft-tab-desc{display:none}
+#view-crafting.slimpin .craft-tab-name{font-size:12.5px;line-height:1.1}
+#view-crafting.slimpin .craft-filters{padding:4px 8px;min-width:0}
+#view-crafting.slimpin .craft-filters .flex{flex-wrap:nowrap !important}
+#view-crafting.slimpin .craft-filters input[type="search"]{min-width:0 !important;min-height:34px;height:34px;padding:4px 9px}
+#view-crafting.slimpin .craft-filters select{min-width:0;min-height:34px;flex:0 1 auto;max-width:36%;padding-top:4px;padding-bottom:4px}
+#view-crafting.slimpin .craft-filters label.sub{white-space:nowrap;font-size:12px}
+#view-crafting.slimpin .craft-filters .flex.between{margin-top:3px !important;line-height:1.25}
+#view-crafting.slimpin .craft-filters p.sub{margin-top:3px !important;font-size:12px;line-height:1.25}
+#view-crafting.slimpin .craft-filters .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-top:3px !important}
+#view-crafting.slimpin .craft-filters .chips::-webkit-scrollbar{display:none}
+#view-crafting.slimpin .craft-filters .chip{flex:0 0 auto;white-space:nowrap;min-height:30px;padding:4px 9px;font-size:12.5px;line-height:1.25}
+#view-crafting.slimpin .craft-filters .btn.small{min-height:30px;padding:3px 9px}
+/* Inside the Crafting sections (v0.441) — the tidy pass that came
+   with putting the recipes first. One spacing rhythm for every
+   block under the switcher, and the reference blocks that now sit
+   below the recipes (bench rules, materials, drop table, Cube
+   rules, Oathsworn, signatures, explainers) resting on the same
+   flat, ruled pattern as the recipe cards above them: kv rows end
+   without a stray rule line, and the bench fold is a ruled
+   subsection of its card instead of a second box inside it.
+   Presentation only — no word, number, field or control changes. */
+#view-crafting #forgeBench .kv:last-child,
+#view-crafting #forgeDrops .kv:last-child,
+#view-crafting #cubeRules .kv:last-child,
+#view-crafting #forgeRedCrafts .kv:last-child{border-bottom:none}
+#view-crafting .fold-block{border:none;background:transparent;border-top:1px solid var(--line2);border-radius:0;margin-top:14px}
+#view-crafting .fold-block>summary{padding:10px 2px}
+#view-crafting .fold-block-body{padding:2px 2px 4px;border-top:none}
+#craftOathword .rw-explainer{margin-top:16px}
+/* Runeword cards: the runes read as a row of small chips running
+   into the effect below (the arrow after the last rune). Scoped
+   to recipe cards — the gear picker's rune rows keep their size. */
+.cube-recipe .rw-rune{padding:2px 8px;font-size:12.5px;border-radius:999px}
+.cube-recipe .rw-arrow{color:var(--gold);font-size:13px;font-weight:700}
 /* ---------- Compact pass + Home two-column layout ----------
    Standing design rule (G, 2026-11-23): consider the spaces —
    tight, compact spacing throughout the whole planner, no wasted
@@ -2824,12 +2958,13 @@ td{padding:7px 8px}
   /* The bottom nav replaces the top menu outright at this width —
      the sidebar menu steps aside so the two never show together.
      Every destination stays reachable: Planner, Builds, Ladder and
-     Meta sit in the bar, Home and Patch Notes in the More sheet. */
+     Meta sit in the bar; Home, Crafting and Patch Notes sit in the
+     More sheet, which scrolls when its list outgrows the screen. */
   .sidebar{display:none}
   .bottom-nav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:40;background:color-mix(in srgb, var(--bg) 94%, transparent);backdrop-filter:blur(10px) saturate(1.2);border-top:2px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
   .bottom-nav button{min-height:48px;background:none;border:0;border-top:3px solid transparent;color:var(--muted);font:inherit;font-size:12px;font-weight:700;letter-spacing:.02em;cursor:pointer;padding:8px 2px}
   .bottom-nav button.active{color:var(--text);border-top-color:var(--gold);background:color-mix(in srgb, var(--gold) 12%, transparent)}
-  .more-sheet{display:block;position:fixed;left:8px;right:8px;bottom:calc(56px + env(safe-area-inset-bottom));z-index:41;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:8px}
+  .more-sheet{display:block;position:fixed;left:8px;right:8px;bottom:calc(56px + env(safe-area-inset-bottom));z-index:41;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:8px;max-height:calc(100dvh - 120px);overflow-y:auto;-webkit-overflow-scrolling:touch}
   .more-sheet.hidden{display:none}
   .more-sheet button{display:flex;width:100%;align-items:center;min-height:44px;background:none;border:0;border-bottom:1px solid var(--line2);color:var(--text);font:inherit;font-size:14px;font-weight:600;cursor:pointer;padding:8px 12px;text-align:left}
   .more-sheet button:last-child{border-bottom:0}
@@ -3116,8 +3251,7 @@ body.tab-home .brand h1{display:none}
         <button class="tab" data-tab="meta"><span>Meta</span></button>
         <button class="tab hidden" data-tab="items"><span>Items</span></button>
         <button class="tab hidden" data-tab="bestiary"><span>Bestiary</span></button>
-        <button class="tab hidden" data-tab="cube"><span>The Cube</span></button>
-        <button class="tab" data-tab="forge"><span>Forge</span></button>
+        <button class="tab" data-tab="crafting"><span>Crafting</span></button>
         <button class="tab hidden" data-tab="loot"><span>Loot Filter</span></button>
         <button class="tab hidden" data-tab="grail"><span>Collections</span></button>
         <button class="tab" data-tab="patches"><span>Patch Notes</span></button>
@@ -3214,7 +3348,7 @@ body.tab-home .brand h1{display:none}
       </div>
       <div class="share-row">
         <button class="btn small" id="copyLinkBtn" type="button" title="Copy a link that opens this build in the planner">Copy link</button>
-        <p class="sub">A link that opens this build right here in the planner &mdash; the easiest way to show someone. The build is stored with the share service so the link can open it, and anyone who has the link can open the build.</p>
+        <p class="sub">A link that opens this exact build in the planner. The plan is stored with this planner&rsquo;s share service and the link it makes is copied &mdash; anyone who opens it lands on the same build, affixes and all. If the service does not answer, the plan code is copied instead.</p>
       </div>
       <p class="sub share-msg" id="copyPlanMsg" aria-live="polite"></p>
     </div></span></span></div>
@@ -3226,6 +3360,12 @@ body.tab-home .brand h1{display:none}
        that opened them. Copy link stores the build with the share
        service and copies the ?share=<id> link it hands back;
        opening one loads the build (see maybeLoadSharedBuild). -->
+  <!-- The affix-gap line: shown only when the hero loaded into
+       this instance came from a published build file that still
+       has Rare / Magic items with no affixes in it after the
+       import rescue (see fetchBuildJSON / renderAffixGapNote).
+       Hidden, and empty, for every complete build. -->
+  <div class="notice hidden" id="affixGapNote" role="note" style="margin:0 0 12px"></div>
   <div class="sample-banner hidden" id="sampleBanner" role="note">
     <div style="flex:1 1 340px;min-width:0"><b>Sample build</b><p class="sub" id="sampleBannerText" style="margin:2px 0 0"></p></div>
     <button class="btn small" id="sampleClearBtn" type="button">Clear sample</button>
@@ -3296,6 +3436,7 @@ body.tab-home .brand h1{display:none}
       <summary><span class="fold-title">Potions</span><span class="fold-hint">Your potion belt — pick draughts, brew their mods</span></summary>
       <div class="fold-body">
       <p class="sub" style="margin-top:4px">Four slots: a Life and a Mana draught from the start, and two more that open at Rupture 100 and 130. Pick a vessel, pick a draught, then brew its mods.</p>
+      <p class="sub">How the words work: the <b>vessel</b> decides how many brewed mods a potion can hold. Prefixes and suffixes are separate mod slots: a <b>prefix</b> mod fills a prefix slot, and its name goes before the draught&rsquo;s name; a <b>suffix</b> mod fills a suffix slot, and its name goes after it — a prefix mod can&rsquo;t take a suffix slot, or the other way round. The <b>Oath slot</b> and <b>Core slot</b> are extra mod slots only some vessels have; they hold their own kinds of mod (Oath mods and Core mods), on top of the prefixes and suffixes. Every mod has tiers — a higher tier rolls stronger and opens at a higher Rupture level.</p>
       <div id="beltSlots" class="mt"></div>
       <p class="sub" id="beltNote" style="margin-top:10px"></p>
       </div>
@@ -3321,7 +3462,7 @@ body.tab-home .brand h1{display:none}
           <b class="ch-num" id="toughNum">—</b>
           <p class="ch-sub">Effective health vs a Guardian hit</p>
           <div class="char-tip" role="tooltip">
-            <div class="label" style="margin:0 0 2px">Defenses &amp; EHP</div>
+            <div class="label" style="margin:0 0 2px">Defenses &amp; effective health (EHP)</div>
             <div id="ehpHoverBody"></div>
           </div>
         </div>
@@ -3415,7 +3556,7 @@ body.tab-home .brand h1{display:none}
       </details>
       <div class="more-info-row">
         <button class="more-info-btn" data-pop="enemy" type="button" aria-haspopup="dialog">Enemy setup &amp; Guardian tester</button>
-        <button class="more-info-btn" data-pop="tuning" type="button" aria-haspopup="dialog">Tuning</button>
+        <button class="more-info-btn" data-pop="tuning" type="button" aria-haspopup="dialog">Tree &amp; gear damage</button>
         <button class="more-info-btn" data-pop="gap" type="button" aria-haspopup="dialog">Where you stand</button>
         <button class="more-info-btn" data-pop="stats" type="button" aria-haspopup="dialog">Copy stats</button>
         <button class="more-info-btn" id="advOpenBtn" type="button" aria-haspopup="dialog">More info</button>
@@ -3457,7 +3598,7 @@ body.tab-home .brand h1{display:none}
             <div id="breakdown"></div>
             <div id="daLifts"></div>
             <div id="daGains"></div>
-            <p class="sub" style="margin-top:12px"><b>The last step is an estimate.</b> It scales your number to match what real ladder builds deal in game — across the 98 ladder builds the fit is checked on, the middle build lands exactly on its measured Guardian DPS (median 1.00×), 52 of the 98 land within ×/÷2 of it and 61 of 98 within ×/÷3. Brand, spark and trigger builds can land further off.</p>
+            <p class="sub" style="margin-top:12px"><b>The last step is an estimate.</b> It scales your number to match what real ladder builds deal in game. The fit is checked against 98 real ladder builds: the middle one lands exactly on its measured Guardian DPS, about half of them (52 of 98) come out within double — or half — of the real number, and about two in three (61 of 98) within triple. Brand, spark and trigger builds can land further off.</p>
           </div>
         </details>
         <!-- "What the simulator counts — and what it leaves out"
@@ -3531,6 +3672,7 @@ body.tab-home .brand h1{display:none}
             <div class="fight-log" id="fightLog" aria-live="polite"></div>
           </div>
           <div class="label">Set up the enemy</div>
+          <p class="sub" style="margin:2px 0 8px">Set the enemy you want to test this build against. The stack controls — Fury, Bloodlust, Kindling, Unravel, Vowbreak — only appear while your build carries the skill or support that builds them: if you don&rsquo;t see one, your build can&rsquo;t use it, and it counts for nothing here.</p>
           <div class="enemy-grid">
             <div class="efield"><div class="label">Enemy</div>
               <select id="enemySel" aria-label="Enemy"><option value="">Guardian average (no specific enemy)</option></select></div>
@@ -3556,13 +3698,17 @@ body.tab-home .brand h1{display:none}
               <input type="range" id="bannerRange" min="0" max="20" step="1" value="0">
               <p class="sub" id="bannerLine" style="margin:2px 0 0"></p></div>
             <div class="efield"><div class="label">Dread stacks <span class="range-val" id="dreadVal" style="float:right">0</span></div>
-              <input type="range" id="dreadRange" min="0" max="20" step="1" value="0"></div>
+              <input type="range" id="dreadRange" min="0" max="20" step="1" value="0">
+              <p class="sub" style="margin:2px 0 0">Dread comes from a Woe picked above, when that Woe carries it: each stack makes the enemy take more damage, up to a cap against Guardians. Leave at 0 if your build lays no Dread.</p></div>
             <div class="efield advctl"><div class="label">Shock — damage taken % <span class="range-val" id="shockVal" style="float:right">0%</span></div>
-              <input type="range" id="shockRange" min="0" max="50" step="1" value="0"></div>
+              <input type="range" id="shockRange" min="0" max="50" step="1" value="0">
+              <p class="sub" style="margin:2px 0 0">How much more damage the enemy takes while Shocked — set it to your build&rsquo;s Shock strength. It counts only for the share of the fight set by Shock uptime.</p></div>
             <div class="efield advctl"><div class="label">Shock uptime <span class="range-val" id="shockUpVal" style="float:right">100%</span></div>
-              <input type="range" id="shockUpRange" min="0" max="100" step="5" value="100"></div>
+              <input type="range" id="shockUpRange" min="0" max="100" step="5" value="100">
+              <p class="sub" style="margin:2px 0 0">The share of the fight the enemy spends Shocked — 100% means Shocked from the first hit to the last.</p></div>
             <div class="efield hidden advctl" id="unravelBox"><div class="label">Unravel stacks (per element) <span class="range-val" id="unravelVal" style="float:right">25</span></div>
-              <input type="range" id="unravelRange" min="0" max="25" step="1" value="25"></div>
+              <input type="range" id="unravelRange" min="0" max="25" step="1" value="25">
+              <p class="sub" style="margin:2px 0 0">Unravel comes from the Unravel support linked on your bar: each stack makes the enemy take 0.7% more damage of that skill&rsquo;s element — 25 stacks at most (17.5%) — and every skill of that element gains, not just the one applying it.</p></div>
             <div class="efield hidden advctl" id="furyBox"><div class="label">Fury charges — Gather Fury <span class="range-val" id="furyVal" style="float:right">0</span></div>
               <input type="range" id="furyRange" min="0" max="5" step="1" value="0">
               <p class="sub" id="furyNote" style="margin:2px 0 0"></p></div>
@@ -3607,13 +3753,13 @@ body.tab-home .brand h1{display:none}
       </div>
     </details>
     <details class="card fold" id="tuningFold">
-      <summary><span class="fold-title">Tuning</span><span class="fold-hint">Extra damage numbers from your tree &amp; gear</span></summary>
+      <summary><span class="fold-title">Tree &amp; gear damage</span><span class="fold-hint">Extra damage numbers from your tree &amp; gear</span></summary>
       <div class="fold-body">
         <div class="tune-live" aria-label="This build's damage right now">
           <span class="tune-live-cell"><span class="label" style="margin:0">Calibrated DPS</span><b id="tuneDpsNum">—</b></span>
           <span class="tune-live-cell"><span class="label" style="margin:0">Tooltip DPS</span><b id="tuneToolDpsNum">—</b></span>
         </div>
-        <p class="sub" style="margin-top:4px">Loading a ladder hero fills these from its real tree.</p>
+        <p class="sub" style="margin-top:4px">These sliders are the extra damage your passive tree and gear add on top of your skill&rsquo;s own numbers. Set them by hand for a sketch — or load a ladder hero and they fill in from its real tree.</p>
         <div class="label">Increased damage from tree + gear (%) <span class="range-val" id="incVal" style="float:right">120%</span></div>
         <input type="range" id="incRange" min="0" max="1600" step="10" value="120">
         <div class="label">Added crit chance (%) <span class="range-val" id="critVal" style="float:right">15%</span></div>
@@ -3743,7 +3889,7 @@ body.tab-home .brand h1{display:none}
             <div class="label" style="margin-top:2px">Tree versions</div>
             <div class="tree-bar-versions" style="margin-top:4px"><input type="text" id="treeVerName" placeholder="Name this tree version…" maxlength="40" aria-label="Name this tree version"><button class="btn small" id="treeVerSaveBtn" type="button">Save version</button><select id="treeVerSel" aria-label="Tree versions"></select><button class="btn small" id="treeVerApplyBtn" type="button">Apply version</button><button class="btn small danger" id="treeVerDelBtn" type="button">Delete</button></div>
             <p class="sub" id="treeVerMsg" style="min-height:16px;margin:3px 0 0"></p>
-            <div class="flex mt" id="treePlanActions" style="flex-wrap:wrap"><button class="btn small" id="treeHeatBtn" type="button" aria-pressed="false">Heat map: off</button><button class="btn small" id="treeBestBtn" type="button">Best next picks</button><button class="btn small" id="treePlanBtn" type="button">Plan next points</button><button class="btn small" id="treeOptimizeBtn" type="button">Optimize tree</button><button class="btn small" id="treeApplyBtn" type="button">Apply Take list to tuning</button><button class="btn small danger" id="treeResetBtn" type="button">Reset marks</button></div>
+            <div class="flex mt" id="treePlanActions" style="flex-wrap:wrap"><button class="btn small" id="treeHeatBtn" type="button" aria-pressed="false">Heat map: off</button><button class="btn small" id="treeBestBtn" type="button">Best next picks</button><button class="btn small" id="treePlanBtn" type="button">Plan next points</button><button class="btn small" id="treeOptimizeBtn" type="button">Optimize tree</button><button class="btn small" id="treeApplyBtn" type="button">Use Take list for tree &amp; gear damage</button><button class="btn small danger" id="treeResetBtn" type="button">Reset marks</button></div>
             <div class="flex mt" style="flex-wrap:wrap;gap:16px;align-items:flex-end">
               <div><div class="label" style="margin:0 0 2px">Optimize &amp; plan for — <span id="treeBlendVal">DPS only</span></div><input type="range" id="treeBlend" min="0" max="100" step="5" value="0" style="width:180px" aria-label="Balance between DPS and defence"></div>
               <div><div class="label" style="margin:0 0 2px">Resistance penalty</div><select id="resPenaltySel" aria-label="Resistance penalty"><option value="0">None</option><option value="10">−10%</option><option value="20">−20%</option><option value="30">−30%</option><option value="40">−40%</option><option value="50">−50%</option></select></div>
@@ -3793,14 +3939,14 @@ body.tab-home .brand h1{display:none}
       <details class="fold-block">
       <summary><span class="fold-title">Simulator supports — find your best link</span><span class="fold-hint">Search whole setups, not one swap at a time</span></summary>
       <div class="fold-block-body">
-      <p class="sub">Builds a whole six-link for your main skill and keeps swapping until nothing improves — and says how many setups it tried. Pin supports you own and it builds around them; block the ones you never want.</p>
+      <p class="sub">Builds a whole six-link — your main skill with five supports linked to it — and keeps swapping until nothing improves, and says how many setups it tried. Pin supports you own and it builds around them; block the ones you never want.</p>
       <div id="simManaLine" class="mt"></div>
       <div class="flex mt"><button class="btn primary" id="simGreedyBtn" type="button">Find my best link</button><button class="btn small" id="simSustainBtn" type="button" aria-pressed="true">Only setups my mana can sustain: on</button></div>
       <div id="simPinLine" class="mt"></div>
       <div id="simPinBoard" class="mt"></div>
       <div id="simGreedyResults" class="mt"></div>
       <p class="sub" style="margin-top:10px">Or score every support on its own — each one tried in your sockets one at a time, ranked by the DPS it gives you:</p>
-      <div class="flex mt"><select id="simMode" aria-label="Scoring mode"><option value="panel">Skill panel DPS</option><option value="enemy">vs configured enemy</option></select><button class="btn" id="simBtn" type="button">Score supports</button></div>
+      <div class="flex mt"><span class="label" style="margin:0">Score against</span><select id="simMode" aria-label="Score against"><option value="panel">Skill panel DPS (the tooltip number)</option><option value="enemy">The enemy you set up in Enemy setup</option></select><button class="btn" id="simBtn" type="button">Score supports</button></div>
       <div id="simResults" class="mt"></div>
       </div>
       </details>
@@ -3964,22 +4110,75 @@ body.tab-home .brand h1{display:none}
     </div>
   </section>
 
-  <!-- THE CUBE -->
-  <section id="view-cube" class="hidden">
+  <!-- CRAFTING -->
+  <section id="view-crafting" class="hidden">
+    <div class="craft-pin-sentinel" id="craftPinSentinel" aria-hidden="true"></div>
+    <nav class="craft-tabs" aria-label="Crafting sections">
+      <button class="craft-tab on" type="button" data-craft="forge" aria-pressed="true"><span class="craft-tab-name">Forge</span><span class="craft-tab-desc">Improve a piece of gear with materials</span></button>
+      <button class="craft-tab" type="button" data-craft="cube" aria-pressed="false"><span class="craft-tab-name">The Cube</span><span class="craft-tab-desc">Put items in, get something new out</span></button>
+      <button class="craft-tab" type="button" data-craft="oathword" aria-pressed="false"><span class="craft-tab-name">Oathword &amp; runewords</span><span class="craft-tab-desc">Rune combinations that remake a normal item</span></button>
+    </nav>
+    <div id="craftForge">
     <div style="display:grid;gap:16px">
+      <div class="craft-filters">
+        <div class="flex" style="gap:8px;flex-wrap:wrap;align-items:center">
+          <input type="search" id="forgeSearch" placeholder="Search recipes — name, effect, material…" style="flex:1;min-width:200px">
+          <label class="sub" for="forgeMatSel" style="margin:0">Recipes using</label>
+          <select id="forgeMatSel" aria-label="Recipes using"></select>
+        </div>
+        <div class="flex between" style="margin-top:8px;align-items:center">
+          <span class="sub" id="forgeMatchCount" aria-live="polite"></span>
+          <button class="btn small" id="forgeClearBtn" type="button" style="display:none">Clear</button>
+        </div>
+        <div class="chips" id="forgeChips" style="margin-top:8px"></div>
+      </div>
       <div class="card">
-        <div class="flex between"><div><h2>The Cube</h2><p class="sub">Put items in, get changed items out. Every recipe the game publishes is here — what goes in, what it makes, what it uses up and what it keeps — plus the Cube&rsquo;s own rules and the Guardian Signatures.</p></div><span class="pill" id="cubeCount">—</span></div>
-        <div id="cubeRules" class="mt"></div>
+        <div class="flex between"><div><h2>Every Forge recipe</h2><p class="sub">All four families, grouped the way the bench groups them. Gold is charged on top of the materials: 40 gold plus 6 per item level, multiplied by the recipe&rsquo;s tier. It is a recipe book, not a stash — nothing here keeps track of your own items.</p></div></div>
+        <div class="flex mt"><label class="sub" for="forgeIlvl" style="margin:0">Item level for gold costs</label><input type="number" id="forgeIlvl" min="1" max="84" value="84" style="width:84px"></div>
+        <div id="forgeRecipes" class="mt"></div>
       </div>
 
       <div class="card">
-        <h2>Oathword &amp; runewords</h2>
-        <p class="sub">The Cube&rsquo;s <b>Blank Slate</b> recipe turns a magic or rare weapon, body armour, helmet or shield into the same base as a plain white — an <b>Oathword base</b>. It costs 2 runes of Tier II or higher; the base, its item level, Mark, Quality and sockets are kept, and every mod on it is used up. Socket the right runes in the right order into a white base and it becomes a runeword, with the mods below.</p>
-        <div class="notice mt">One honest gap: the game&rsquo;s published data never says in one place that a runeword must sit on an Oathword base. That is the natural reading of the Blank Slate recipe — the only way the Cube makes a plain white base — but it is inferred, not stated as a rule.</div>
-        <div class="flex mt"><input type="search" id="rwSearch" placeholder="Search runewords — name, rune, base, mod…" style="flex:1;min-width:200px"><select id="rwBaseSel" aria-label="Runeword base"></select><select id="rwKindSel" aria-label="Runeword kind"><option value="all">Regular &amp; red</option><option value="reg">Regular only</option><option value="red">Red only</option></select></div>
-        <div class="chips mt" id="rwClassChips"></div>
-        <p class="sub mt" id="rwCount"></p>
-        <div id="rwBody" class="mt"></div>
+        <div class="flex between"><div><h2>The Forge</h2><p class="sub">Edda Ironhand&rsquo;s bench. Bring her an item and the materials a recipe calls for, and she adds a crafted mod, reforges the item, improves its sockets and quality — or, at the deep end of the bench, binds Red Shards back into the reds they fell from. Every recipe she knows is here, with its real cost.</p></div><span class="pill" id="forgeCount">—</span></div>
+        <details class="fold-block forge-anchor" id="forgeBenchFold" open>
+          <summary><span class="fold-title">How the bench works</span></summary>
+          <div class="fold-block-body"><div id="forgeBench"></div></div>
+        </details>
+      </div>
+
+      <div class="card forge-anchor" id="forgeSecMats">
+        <h2>Forge materials — and where they drop</h2>
+        <p class="sub">Every craft at the bench is paid for with these sixteen materials. Each land drops its own material; the rest come from monsters, Guardians and the Ruptures.</p>
+        <div id="forgeMats" class="mt"></div>
+        <div class="label" style="margin-top:16px">Where materials drop</div>
+        <div id="forgeDrops"></div>
+      </div>
+
+      <div class="card forge-anchor" id="forgeSecRed">
+        <h2>Red Shards &amp; the red crafts</h2>
+        <p class="sub">Eight reds can be rebuilt from shards. Killing a Guardian can drop a shard of a red; gather six shards of one red and Edda binds them back into that red at the bench. How the odds work, in one example: at Rupture 100, a land red&rsquo;s shard has a 2.5% chance on each Guardian kill — about one shard every 40 kills, so roughly 240 kills to gather the six shards one red needs. The two Guardian reds are five times likelier per kill (12.5%, about 1 in 8), but each drops only from its own Guardian. The Riven Lord&rsquo;s red sits between the two (10%, about 1 in 10). A higher Rupture level raises every chance in step — the cards below show the exact chance at yours.</p>
+        <div class="flex mt"><label class="sub" for="forgeRl" style="margin:0">Your Rupture level</label><input type="number" id="forgeRl" min="1" max="300" value="100" style="width:84px"></div>
+        <div id="forgeReds" class="mt"></div>
+        <div id="forgeRedCrafts" class="mt"></div>
+      </div>
+    </div>
+    </div>
+    <div id="craftCube" class="hidden">
+    <div style="display:grid;gap:16px">
+      <div class="craft-filters">
+        <div class="flex"><input type="search" id="cubeSearch" placeholder="Search recipes — name, ingredient, result…" style="flex:1;min-width:200px"></div>
+        <div class="chips" id="cubeFamChips" style="margin-top:8px"></div>
+        <p class="sub" id="cubeMatchCount" aria-live="polite" style="margin:8px 0 0"></p>
+      </div>
+
+      <div class="card">
+        <div class="flex between"><div><h2>Every Cube recipe</h2><p class="sub">All of them, in the Cube&rsquo;s four families. It is a recipe book, not a stash — nothing here keeps track of your own items.</p></div></div>
+        <div id="cubeRecipes" class="mt"></div>
+      </div>
+
+      <div class="card">
+        <div class="flex between"><div><h2>How the Cube works</h2><p class="sub">Put items in, get changed items out. All 54 of the Cube&rsquo;s recipes are here — what goes in, what it makes, what it uses up and what it keeps — plus the Cube&rsquo;s own rules and the Guardian Signatures.</p></div><span class="pill" id="cubeCount">—</span></div>
+        <div id="cubeRules" class="mt"></div>
       </div>
 
       <div class="card">
@@ -3989,7 +4188,7 @@ body.tab-home .brand h1{display:none}
 
       <div class="card">
         <h2>Try a recipe</h2>
-        <p class="sub">The recipes with a fixed outcome, worked out for you. Pick what you have and see exactly what comes out. Anything the Cube leaves to chance is labelled random — here and in the full recipe list below.</p>
+        <p class="sub">The recipes with a fixed outcome, worked out for you. Pick what you have and see exactly what comes out. Anything the Cube leaves to chance is labelled random — here and in the full recipe list above.</p>
         <div class="label" style="margin-top:14px">Rune ladder — fuse runes upward</div>
         <div class="flex mt"><select id="simRuneSel" aria-label="Rune to fuse up" style="flex:1;min-width:200px"></select></div>
         <div id="simRuneOut" class="sim-out"></div>
@@ -4008,65 +4207,26 @@ body.tab-home .brand h1{display:none}
       </div>
 
       <div class="card">
-        <div class="flex between"><div><h2>Every Cube recipe</h2><p class="sub">All of them, in the Cube&rsquo;s four families. Nothing here tracks your own items — it is the recipe book, not a stash.</p></div></div>
-        <div class="chips mt" id="cubeFamChips"></div>
-        <div class="flex mt"><input type="search" id="cubeSearch" placeholder="Search recipes — name, ingredient, result…" style="flex:1;min-width:200px"></div>
-        <div id="cubeRecipes" class="mt"></div>
-      </div>
-
-      <div class="card">
         <h2>Guardian Signatures</h2>
-        <p class="sub">A Guardian&rsquo;s signature rune can appear on its gear: from monster level 38 there is an 18% chance, and from monster level 60 a 6% chance of a Tier V signature. Those are the only odds the game publishes for the Cube — no other recipe here carries a published chance.</p>
+        <p class="sub">A Guardian&rsquo;s signature rune can appear on its gear: from monster level 38 there is an 18% chance, and from monster level 60 a 6% chance of a Tier V signature. Those are the only odds the game publishes for the Cube — no other recipe here has published odds.</p>
         <div id="cubeSigs" class="mt"></div>
       </div>
     </div>
-  </section>
-
-  <!-- FORGE -->
-  <section id="view-forge" class="hidden">
+    </div>
+    <div id="craftOathword" class="hidden">
     <div style="display:grid;gap:16px">
       <div class="card">
-        <div class="flex between"><div><h2>The Forge</h2><p class="sub">Edda Ironhand&rsquo;s bench. Bring her an item and the materials a recipe calls for, and she adds a crafted mod, reforges the item, works its sockets and quality — or, at the deep end of the bench, binds Red Shards back into the reds they fell from. Every recipe she knows is here, with its real cost.</p></div><span class="pill" id="forgeCount">—</span></div>
-        <div class="notice mt">One honest note before the recipes: everything on this page comes from the game&rsquo;s own files, because the public API doesn&rsquo;t publish the Forge yet. It is the one page here drawn from the game files instead.</div>
-        <div class="forge-tools mt">
-          <div class="flex" style="gap:8px;flex-wrap:wrap;align-items:center">
-            <input type="search" id="forgeSearch" placeholder="Search recipes — name, effect, material…" style="flex:1;min-width:200px">
-            <label class="sub" for="forgeMatSel" style="margin:0">Recipes using</label>
-            <select id="forgeMatSel" aria-label="Recipes using"></select>
-          </div>
-          <div class="flex between" style="margin-top:8px;align-items:center">
-            <span class="sub" id="forgeMatchCount" aria-live="polite"></span>
-            <button class="btn small" id="forgeClearBtn" type="button" style="display:none">Clear</button>
-          </div>
-          <div class="chips" id="forgeChips" style="margin-top:8px"></div>
+        <div class="flex between"><div><h2>Oathword &amp; runewords</h2></div><span class="pill" id="rwCountPill">—</span></div>
+        <div class="craft-filters in-card" style="margin-top:12px">
+          <div class="flex"><input type="search" id="rwSearch" placeholder="Search runewords — name, rune, base, mod…" style="flex:1;min-width:200px"><select id="rwBaseSel" aria-label="Runeword base"></select><select id="rwKindSel" aria-label="Runeword kind"><option value="all">Regular &amp; red</option><option value="reg">Regular only</option><option value="red">Red only</option></select></div>
+          <div class="chips" id="rwClassChips" style="margin-top:8px"></div>
+          <p class="sub" id="rwCount" style="margin:8px 0 0"></p>
         </div>
-        <details class="fold-block forge-anchor" id="forgeBenchFold" open>
-          <summary><span class="fold-title">How the bench works</span></summary>
-          <div class="fold-block-body"><div id="forgeBench"></div></div>
-        </details>
+        <div id="rwBody" class="mt"></div>
+        <p class="sub rw-explainer">The Cube&rsquo;s <b>Blank Slate</b> recipe turns a magic or rare weapon, body armour, helmet or shield into the same base as a plain white — an <b>Oathword base</b>. It costs 2 runes of Tier II or higher; the base, its item level, Mark, Quality and sockets are kept, and every mod on it is used up. Socket the right runes in the right order into a white base and it becomes a runeword, with the mods listed above.</p>
+        <div class="notice mt">One honest gap: the game&rsquo;s published data never says in one place that a runeword must sit on an Oathword base. That is the natural reading of the Blank Slate recipe — the only way the Cube makes a plain white base — but it is inferred, not stated as a rule.</div>
       </div>
-
-      <div class="card forge-anchor" id="forgeSecMats">
-        <h2>Forge materials</h2>
-        <p class="sub">Sixteen materials pay for every craft at the bench. Each land pays its own; the rest come from monsters, Guardians and the Ruptures.</p>
-        <div id="forgeMats" class="mt"></div>
-        <div class="label" style="margin-top:16px">Where materials drop</div>
-        <div id="forgeDrops"></div>
-      </div>
-
-      <div class="card">
-        <div class="flex between"><div><h2>Every Forge recipe</h2><p class="sub">All four families, grouped the way the bench groups them. Gold is charged on top of the materials: 40 gold plus 6 per item level, multiplied by the recipe&rsquo;s tier. Nothing here tracks your own items — it is the recipe book, not a stash.</p></div></div>
-        <div class="flex mt"><label class="sub" for="forgeIlvl" style="margin:0">Item level for gold costs</label><input type="number" id="forgeIlvl" min="1" max="84" value="84" style="width:84px"></div>
-        <div id="forgeRecipes" class="mt"></div>
-      </div>
-
-      <div class="card forge-anchor" id="forgeSecRed">
-        <h2>Red Shards &amp; the red crafts</h2>
-        <p class="sub">Eight reds can be rebuilt from shards. Guardian kills can drop a shard of a red; gather six shards of one red and Edda binds them back into that red at the bench. A shard&rsquo;s chance on a Guardian kill is your Rupture level divided by 4,000, then divided by the red&rsquo;s share: land reds carry the full share, the two Guardian reds a one-fifth share — so their shards fall far more often per kill, but only their own Guardian drops them — and the Riven Lord&rsquo;s red a quarter share.</p>
-        <div class="flex mt"><label class="sub" for="forgeRl" style="margin:0">Your Rupture level</label><input type="number" id="forgeRl" min="1" max="300" value="100" style="width:84px"></div>
-        <div id="forgeReds" class="mt"></div>
-        <div id="forgeRedCrafts" class="mt"></div>
-      </div>
+    </div>
     </div>
   </section>
 
@@ -4149,7 +4309,7 @@ body.tab-home .brand h1{display:none}
 
     <div class="card loot-output lf-fold" id="fbExport" style="margin-top:12px">
       <h2 class="lf-keep">Take it into the game — share code</h2>
-      <p class="sub">Copy it, then in the game open the loot filter panel and paste it there.</p>
+      <p class="sub">Copy it, then in the game open the loot filter panel and paste it there. Two codes live in this panel: this game code, which the game reads, and the planner code at the bottom, which only this planner reads — the planner code keeps everything, including the name rules the game code can&rsquo;t carry.</p>
       <textarea id="lootGameCode" readonly spellcheck="false" style="min-height:96px" aria-label="Game loot filter code (BOFILTER)"></textarea>
       <div id="lootGameNotes"></div>
       <div class="flex mt"><button class="btn primary" id="lootGameCopyBtn" type="button">Copy code</button><button class="btn" id="lootTextCopyBtn2" type="button">Copy as text</button><span class="sub" id="lootShareMsg"></span></div>
@@ -4498,6 +4658,10 @@ var DICT={
 "Bestiary":"怪物图鉴",
 "The Cube":"魔方",
 "Forge":"锻造",
+"Crafting":"制作",
+"Crafting sections":"制作分区",
+"All 54 of the Cube’s recipes are here — what goes in, what it makes, what it uses up and what it keeps — plus the Cube’s own rules and the Guardian Signatures.":"魔方的全部 54 个配方都在这里 — 放入什么、产出什么、消耗什么、保留什么 — 外加魔方自身的规则和守护者印记。",
+"The game’s riddle":"游戏的谜语",
 "The Forge":"锻造炉",
 "Forge materials":"锻造材料",
 "Every Forge recipe":"全部锻造配方",
@@ -4508,13 +4672,15 @@ var DICT={
 "Costs":"费用",
 "What it does":"效果",
 "Learned":"习得方式",
-"Edda Ironhand’s bench. Bring her an item and the materials a recipe calls for, and she adds a crafted mod, reforges the item, works its sockets and quality — or, at the deep end of the bench, binds Red Shards back into the reds they fell from. Every recipe she knows is here, with its real cost.":"Edda Ironhand 的工作台。把一件物品和配方所需的材料带给她，她会为物品添加一条锻造词缀、重铸物品、处理其插槽与品质——或者在工作台的最深处，把红色碎片重新绑定为它们所来自的红色物品。她所知的每一个配方都在这里，附带真实费用。",
-"One honest note before the recipes: everything on this page comes from the game’s own files, because the public API doesn’t publish the Forge yet. It is the one page here drawn from the game files instead.":"在查看配方之前先说句实话：本页的所有内容都来自游戏自身的文件，因为公共 API 尚未发布锻造系统。这是本网站唯一取材于游戏文件、而非 API 的页面。",
+"How you learn it":"习得方式",
+"Edda Ironhand’s bench. Bring her an item and the materials a recipe calls for, and she adds a crafted mod, reforges the item, improves its sockets and quality — or, at the deep end of the bench, binds Red Shards back into the reds they fell from. Every recipe she knows is here, with its real cost.":"Edda Ironhand 的工作台。把一件物品和配方所需的材料带给她，她会为物品添加一条锻造词缀、重铸物品、提升其插槽与品质——或者在工作台的最深处，把红色碎片重新绑定为它们所来自的红色物品。她所知的每一个配方都在这里，附带真实费用。",
 "Search recipes — name, effect, material…":"搜索配方——名称、效果、材料……",
 "Recipes using":"使用材料",
 "Any material":"任意材料",
 "Red Shards":"红色碎片",
 "How the bench works":"工作台的运作方式",
+"How the Cube works":"魔方的运作方式",
+"Forge materials — and where they drop":"锻造材料——以及它们的掉落来源",
 "Bench rules":"工作台规则",
 "Materials":"材料",
 "Reforge":"重铸",
@@ -4522,9 +4688,9 @@ var DICT={
 "Mastery":"精通",
 "Red crafts":"红色锻造",
 "No recipes match — try a different search, or clear the filters to see them all.":"没有配方符合——换一个搜索词，或清除筛选以查看全部。",
-"Sixteen materials pay for every craft at the bench. Each land pays its own; the rest come from monsters, Guardians and the Ruptures.":"十六种材料支付工作台上的每一次锻造。每个地区出产自己的材料；其余来自怪物、守护者和裂隙。",
-"All four families, grouped the way the bench groups them. Gold is charged on top of the materials: 40 gold plus 6 per item level, multiplied by the recipe’s tier. Nothing here tracks your own items — it is the recipe book, not a stash.":"全部四个家族，按工作台的分组方式排列。材料之外还要收取金币：40 金币加每物品等级 6 金币，再乘以配方的阶级。这里不记录你自己的物品——这是配方书，不是仓库。",
-"Eight reds can be rebuilt from shards. Guardian kills can drop a shard of a red; gather six shards of one red and Edda binds them back into that red at the bench. A shard’s chance on a Guardian kill is your Rupture level divided by 4,000, then divided by the red’s share: land reds carry the full share, the two Guardian reds a one-fifth share — so their shards fall far more often per kill, but only their own Guardian drops them — and the Riven Lord’s red a quarter share.":"八件红色物品可以用碎片重建。击杀守护者有机会掉落某件红色物品的碎片；集齐同一件红色物品的六块碎片，Edda 就能在工作台上把它们重新绑定为那件红色物品。守护者击杀掉落碎片的几率等于你的裂隙等级除以 4,000，再除以该红色物品的份额：地区红色物品占全额份额，两件守护者红色物品占五分之一份额——因此它们每次击杀的掉落几率要高得多，但只有各自的守护者才会掉落——裂隙领主的红色物品则占四分之一份额。",
+"Every craft at the bench is paid for with these sixteen materials. Each land drops its own material; the rest come from monsters, Guardians and the Ruptures.":"工作台上的每一次锻造都用这十六种材料支付。每个地区掉落自己的材料；其余来自怪物、守护者和裂隙。",
+"All four families, grouped the way the bench groups them. Gold is charged on top of the materials: 40 gold plus 6 per item level, multiplied by the recipe’s tier. It is a recipe book, not a stash — nothing here keeps track of your own items.":"全部四个家族，按工作台的分组方式排列。材料之外还要收取金币：40 金币加每物品等级 6 金币，再乘以配方的阶级。这是配方书，不是仓库——这里不会记录你自己的物品。",
+"Eight reds can be rebuilt from shards. Killing a Guardian can drop a shard of a red; gather six shards of one red and Edda binds them back into that red at the bench. A shard’s chance on a Guardian kill is your Rupture level divided by 4,000, then divided by the red’s share. Land reds carry the full share. The two Guardian reds carry a one-fifth share — so their shards fall far more often per kill, but only their own Guardian drops them. The Riven Lord’s red carries a quarter share.":"八件红色物品可以用碎片重建。击杀守护者有机会掉落某件红色物品的碎片；集齐同一件红色物品的六块碎片，Edda 就能在工作台上把它们重新绑定为那件红色物品。守护者击杀掉落碎片的几率等于你的裂隙等级除以 4,000，再除以该红色物品的份额。地区红色物品占全额份额。两件守护者红色物品占五分之一份额——因此它们每次击杀的掉落几率要高得多，但只有各自的守护者才会掉落。裂隙领主的红色物品占四分之一份额。",
 "Loot Filter":"掉落过滤器",
 "Collections":"收藏",
 "Patch Notes":"补丁说明",
@@ -4709,6 +4875,37 @@ var DICT={
 "Best in this slot":"此槽位最佳",
 "Where you stand":"你的位置",
 "Tuning":"微调",
+"Tree & gear damage":"天赋树与装备伤害",
+"Tree & gear damage sliders":"天赋树与装备伤害滑块",
+"Use Take list for tree & gear damage":"将点取列表用于天赋树与装备伤害",
+"Defenses & effective health (EHP)":"防御与有效生命（EHP）",
+"Score against":"评分依据",
+"Skill panel DPS (the tooltip number)":"技能面板 DPS（提示数值）",
+"The enemy you set up in Enemy setup":"你在敌人设置中设定的敌人",
+"These sliders are the extra damage your passive tree and gear add on top of your skill’s own numbers. Set them by hand for a sketch — or load a ladder hero and they fill in from its real tree.":"这些滑块是你天赋树和装备在技能自身数值之外额外增加的伤害。可以手动设置来草拟一个构建 — 也可以载入一名天梯英雄，它们会按其真实天赋树自动填入。",
+"Set the enemy you want to test this build against. The stack controls — Fury, Bloodlust, Kindling, Unravel, Vowbreak — only appear while your build carries the skill or support that builds them: if you don’t see one, your build can’t use it, and it counts for nothing here.":"设置你想用这个构建测试的敌人。层数控件 — 怒火、嗜血、引火、瓦解、破誓 — 只在你的构建带有能叠加它们的技能或辅助时出现：看不到某个控件，就说明你的构建用不了它，它在这里也不计入。",
+"Dread comes from a Woe picked above, when that Woe carries it: each stack makes the enemy take more damage, up to a cap against Guardians. Leave at 0 if your build lays no Dread.":"恐惧来自上方所选的灾祸（当该灾祸带有恐惧时）：每层使敌人承受更多伤害，对守护者有上限。如果你的构建不施加恐惧，保持 0。",
+"How much more damage the enemy takes while Shocked — set it to your build’s Shock strength. It counts only for the share of the fight set by Shock uptime.":"敌人在感电期间多承受的伤害 — 按你的构建的感电强度设置。它只在下方感电覆盖率所设的战斗时段内计入。",
+"The share of the fight the enemy spends Shocked — 100% means Shocked from the first hit to the last.":"敌人处于感电状态的战斗时段占比 — 100% 表示从第一次命中到最后一次全程感电。",
+"Unravel comes from the Unravel support linked on your bar: each stack makes the enemy take 0.7% more damage of that skill’s element — 25 stacks at most (17.5%) — and every skill of that element gains, not just the one applying it.":"瓦解来自链接在技能栏上的瓦解辅助：每层使敌人多承受该技能元素 0.7% 的伤害 — 最多 25 层（17.5%）— 该元素的每个技能都受益，不只是施加它的那个。",
+"How the words work: the":"这些词的意思：",
+"vessel":"容器",
+"decides how many brewed mods a potion can hold. Prefixes and suffixes are separate mod slots: a":"决定一瓶药水能装多少个酿造词缀。前缀和后缀是各自独立的词缀槽：",
+"prefix":"前缀",
+"mod fills a prefix slot, and its name goes before the draught’s name; a":"词缀填入前缀槽，其名字排在药剂名字之前；",
+"suffix":"后缀",
+"mod fills a suffix slot, and its name goes after it — a prefix mod can’t take a suffix slot, or the other way round. The":"词缀填入后缀槽，其名字排在之后 — 前缀词缀不能占用后缀槽，反之亦然。",
+"How much this skill counts when planning the tree":"规划天赋树时这个技能的占比",
+"Oath slot":"誓约槽",
+"and":"和",
+"Core slot":"核心槽",
+"are extra mod slots only some vessels have; they hold their own kinds of mod (Oath mods and Core mods), on top of the prefixes and suffixes. Every mod has tiers — a higher tier rolls stronger and opens at a higher Rupture level.":"是只有部分容器才有的额外词缀槽；它们装各自种类的词缀（誓约词缀和核心词缀），在前缀和后缀之外。每个词缀都有阶级 — 阶级越高数值越强，在越高的裂隙等级解锁。",
+"EHP is short for effective health: how much damage of that kind it takes to empty your Life and Energy Shield together, after armour, resists and block have cut the hit down. “Takes” is what one reference Guardian hit actually deals you.":"EHP 是有效生命的简称：护甲、抗性和格挡削减命中后，需要多少该类伤害才能同时打空你的生命和能量护盾。“承受”是一次参考守护者命中实际对你造成的伤害。",
+"It scales your number to match what real ladder builds deal in game. The fit is checked against 98 real ladder builds: the middle one lands exactly on its measured Guardian DPS, about half of them (52 of 98) come out within double — or half — of the real number, and about two in three (61 of 98) within triple. Brand, spark and trigger builds can land further off.":"它把你的数值调整到与天梯真实构建在游戏中的伤害相符。这一拟合用 98 个真实天梯构建检验：中间水平的构建正好落在其实测的守护者 DPS 上；约一半（98 个中的 52 个）落在真实数值的两倍到一半之间，约三分之二（61 个）在三倍以内。烙印、火花和触发类构建的偏差可能更大。",
+"Builds a whole six-link — your main skill with five supports linked to it — and keeps swapping until nothing improves, and says how many setups it tried. Pin supports you own and it builds around them; block the ones you never want.":"构建一整套六连 — 你的主技能链接五个辅助 — 并不断替换直到无法再提升，还会告诉你尝试了多少套配置。锁定你拥有的辅助，它会围绕它们构建；屏蔽你永远不想用的。",
+"Eight reds can be rebuilt from shards. Killing a Guardian can drop a shard of a red; gather six shards of one red and Edda binds them back into that red at the bench. How the odds work, in one example: at Rupture 100, a land red’s shard has a 2.5% chance on each Guardian kill — about one shard every 40 kills, so roughly 240 kills to gather the six shards one red needs. The two Guardian reds are five times likelier per kill (12.5%, about 1 in 8), but each drops only from its own Guardian. The Riven Lord’s red sits between the two (10%, about 1 in 10). A higher Rupture level raises every chance in step — the cards below show the exact chance at yours.":"八件红色装备可以用碎片重铸。击杀守护者可能掉落某件红装的碎片；集齐同一件红装的六块碎片，艾达就能在工作台把它们重新绑定成那件红装。概率如何运作，举一个例子：在裂隙 100 级时，一件大地红装的碎片在每次击杀守护者时有 2.5% 的掉落概率 — 大约每 40 次击杀掉一块，集齐一件红装所需的六块大约要 240 次击杀。两件守护者红装每次击杀的概率高五倍（12.5%，约八分之一），但每件只从它自己的守护者掉落。裂谷领主的红装介于两者之间（10%，约十分之一）。裂隙等级越高，所有概率同步上升 — 下方卡片显示你当前等级的准确概率。",
+"Copy it, then in the game open the loot filter panel and paste it there. Two codes live in this panel: this game code, which the game reads, and the planner code at the bottom, which only this planner reads — the planner code keeps everything, including the name rules the game code can’t carry.":"复制它，然后在游戏中打开掉落过滤器面板，粘贴到那里。这个面板里有两种代码：这里的游戏代码由游戏读取；底部的规划器代码只有本规划器能读 — 规划器代码保留一切，包括游戏代码无法携带的名称规则。",
+"Your colours and sounds go into the game code as the game’s own colour and sound codes — the eight colours (Ember, Jade, Frost, Bone, Gold, Blood, Ash, White) and the six sounds — so a drop really falls in the colour, and with the sound, you picked. The finer settings (tier, sockets, exact level ranges, required level, sworn, exact base and named lines) are written into the extra part at the end of each rule in the code — the same way Oathfilter writes them — so the game reads them back exactly as you set them.":"你选的颜色和声音会以游戏自己的颜色和声音代码写进游戏代码 — 八种颜色（余烬、翡翠、冰霜、白骨、黄金、鲜血、灰烬、纯白）和六种声音 — 所以掉落真的会以你选的颜色和声音落下。更细的设置（阶级、插槽、精确等级范围、需求等级、宣誓、确切基底、命名词缀行）写在代码中每条规则末尾的额外部分 — 与 Oathfilter 的写法相同 — 游戏会完全按你的设置读回。",
 "Pick the enemy, then run the fight":"选择敌人，然后开始战斗",
 "How long would this plan take on a Guardian-sized health pool? A rough check, not a prediction.":"本方案打一个守护者级血量需要多久？只是粗略估算，不是预测。",
 "Guardian health":"守护者生命",
@@ -4916,14 +5113,14 @@ var DICT={
 "Blank Slate":"空白石板",
 "recipe turns a magic or rare weapon, body armour, helmet or shield into the same base as a plain white — an":"配方能把一件魔法或稀有武器、胸甲、头盔或盾牌变成同基底的普通白装 — 一个",
 "Oathword base":":誓言之语基底",
-". It costs 2 runes of Tier II or higher; the base, its item level, Mark, Quality and sockets are kept, and every mod on it is used up. Socket the right runes in the right order into a white base and it becomes a runeword, with the mods below.":"。它消耗 2 颗 II 阶或更高阶的符文；基底、物品等级、标记、品质和插槽都会保留，其上的每条词缀都会被消耗。把正确的符文按正确的顺序镶入白装基底，它就会变成一件符文之语，带有下方的词缀。",
+". It costs 2 runes of Tier II or higher; the base, its item level, Mark, Quality and sockets are kept, and every mod on it is used up. Socket the right runes in the right order into a white base and it becomes a runeword, with the mods listed above.":"。它消耗 2 颗 II 阶或更高阶的符文；基底、物品等级、标记、品质和插槽都会保留，其上的每条词缀都会被消耗。把正确的符文按正确的顺序镶入白装基底，它就会变成一件符文之语，带有上方列出的词缀。",
 "One honest gap: the game’s published data never says in one place that a runeword must sit on an Oathword base. That is the natural reading of the Blank Slate recipe — the only way the Cube makes a plain white base — but it is inferred, not stated as a rule.":"有一个如实的缺口：游戏公布的数据从未在任何一处明确说明符文之语必须使用誓言之语基底。这是对空白石板配方最自然的解读 — 它是魔方制造普通白装基底的唯一方式 — 但这是推断，并非明文规则。",
 "Regular & red":"普通与红色",
 "Regular only":"仅普通",
 "Red only":"仅红色",
 "Oathsworn":"誓约者",
 "Try a recipe":"试一个配方",
-"The recipes with a fixed outcome, worked out for you. Pick what you have and see exactly what comes out. Anything the Cube leaves to chance is labelled random — here and in the full recipe list below.":"结果固定的配方，已为你计算好。选择你拥有的物品，精确查看产出。魔方留给运气决定的任何内容都会标注为随机 — 在这里和下方的完整配方列表中都是如此。",
+"The recipes with a fixed outcome, worked out for you. Pick what you have and see exactly what comes out. Anything the Cube leaves to chance is labelled random — here and in the full recipe list above.":"结果固定的配方，已为你计算好。选择你拥有的物品，精确查看产出。魔方留给运气决定的任何内容都会标注为随机 — 在这里和上方的完整配方列表中都是如此。",
 "Rune ladder — fuse runes upward":"符文阶梯 — 向上合成符文",
 "Jewels — polish finer, or cleave back down":"珠宝 — 打磨得更细，或劈开降级",
 "Red ascent — three reds of one tier":"红色晋升 — 三件同阶红色",
@@ -4935,9 +5132,9 @@ var DICT={
 "Idol Merging — 1-cell idols":"神像合并 — 1 格神像",
 "Idol Fusing — 2-cell idols":"神像融合 — 2 格神像",
 "Every Cube recipe":"全部魔方配方",
-"All of them, in the Cube’s four families. Nothing here tracks your own items — it is the recipe book, not a stash.":"全部配方，按魔方的四个家族分类。这里不追踪你自己的物品 — 这是配方书，不是仓库。",
+"All of them, in the Cube’s four families. It is a recipe book, not a stash — nothing here keeps track of your own items.":"全部配方，按魔方的四个家族分类。这是配方书，不是仓库——这里不会记录你自己的物品。",
 "Guardian Signatures":"守护者印记",
-"A Guardian’s signature rune can appear on its gear: from monster level 38 there is an 18% chance, and from monster level 60 a 6% chance of a Tier V signature. Those are the only odds the game publishes for the Cube — no other recipe here carries a published chance.":"守护者的印记符文可能出现在其装备上：怪物等级 38 起有 18% 的几率，怪物等级 60 起有 6% 的几率出现 V 阶印记。这是游戏为魔方公布的唯一几率 — 这里的其他配方都没有公布几率。",
+"A Guardian’s signature rune can appear on its gear: from monster level 38 there is an 18% chance, and from monster level 60 a 6% chance of a Tier V signature. Those are the only odds the game publishes for the Cube — no other recipe here has published odds.":"守护者的印记符文可能出现在其装备上：怪物等级 38 起有 18% 的几率，怪物等级 60 起有 6% 的几率出现 V 阶印记。这是游戏为魔方公布的唯一几率 — 这里的其他配方都没有公布几率。",
 "Loot filter — the Oath Tablet":"掉落过滤器 — 誓言石板",
 "Carve your rules into the tablet, give your best drops a flare colour of their own, then watch them fall. Drops that matter burn bright — clutter fades to ash.":"把你的规则刻入石板，给你最好的掉落赋予专属的闪光颜色，然后看着它们掉落。重要的掉落明亮燃烧 — 杂物则化为灰烬。",
 "For my hero":"为我的英雄",
@@ -6505,7 +6702,7 @@ var RULES=[
  [/^Main skill socket: ([\s\S]+)$/,function(m){return '主技能插槽：'+m[1];}],
  [/^Support socket (\d+): ([\s\S]+)$/,function(m){return '辅助插槽 '+m[1]+'：'+m[2];}],
  [/^Remove ([\s\S]+)$/,function(m){return '移除 '+m[1];}],
- [/^Tree-planning weight for ([\s\S]+)$/,function(m){return '天赋树规划权重：'+m[1];}],
+ [/^How much ([\s\S]+) counts beside your main skill when planning the tree$/,function(m){return '规划天赋树时，'+m[1]+' 与主技能相比的权重';}],
  [/^On your bar — every skill & its supports · (\d+) of 13 slots used(?: \((\d+) free\))?$/,function(m){return '在你的技能栏上 — 每个技能及其辅助 · 已用 '+m[1]+' / 13 个槽位'+(m[2]?'（'+m[2]+' 个空闲）':'');}],
  [/^Gem Lv (\d+)$/,function(m){return '宝石等级 '+m[1];}],
  [/^(Weapon skill|Basic attack|Skill gem) • (\d+) of 6 sockets open at gem Lv (\d+)$/,function(m){var k={'Weapon skill':'武器技能','Basic attack':'普通攻击','Skill gem':'技能宝石'}[m[1]];return k+' • 宝石 '+m[3]+' 级时开放 '+m[2]+' / 6 个插槽';}],
@@ -9797,7 +9994,24 @@ function runGap(){
    stepper moved into the Gear card. The identity writes below and
    the guarded hs* writes in renderPlanner / renderDefenses stay as
    no-ops — their elements are gone, so they simply skip. */
+/* The one plain line for a build that loaded with affixes still
+   missing: the game's published data for this hero simply does
+   not include those items' affixes, so the plan shows the items
+   without them — said out loud, with the loaded character, rather
+   than leaving blank gear for the player to blame themselves
+   for. Only a hero that arrived through fetchBuildJSON (the
+   ladder build-file path, after its snapshot rescue) can carry
+   the line; a complete build shows nothing at all. */
+var AFFIX_GAP_LINE='The game\u2019s data for this hero does not include the affixes on some of its items, so this plan shows those items without their affixes.';
+function renderAffixGapNote(){
+  var el=$('affixGapNote'); if(!el)return;
+  var h=G.loadedHero;
+  var n=(h&&h.__fromBuildFetch)?buildAffixGap(h).missing:0;
+  if(n>0){el.textContent=AFFIX_GAP_LINE; el.classList.remove('hidden')}
+  else{el.textContent=''; el.classList.add('hidden')}
+}
 function renderHeroIdentity(){
+  renderAffixGapNote();
   var lh=G.loadedHero||{};
   var nm=$('hsName'); if(nm)nm.textContent=lh.charName||lh.hero||'Your plan';
   var cl=$('hsClassLine'); if(cl)cl.textContent=state.cls+' • Lv '+state.level;
@@ -10155,10 +10369,10 @@ function collectModifierAudit(c){
      tuning sliders instead of in priced pools — those numbers are
      modifiers too, and the audit names them. */
   if(!state.incPools){
-    if(state.inc)used.push({g:'Increased damage',text:'+'+state.inc+'% increased damage',src:'Tuning sliders'});
-    if(state.crit)used.push({g:'Critical chance',text:'+'+state.crit+'% added critical strike chance',src:'Tuning sliders'});
-    if(state.critMulti&&state.critMulti!==150)used.push({g:'Critical multiplier',text:'Critical strike multiplier set to '+state.critMulti+'%',src:'Tuning sliders'});
-    if(state.speed)used.push({g:'Attack & cast speed',text:'+'+state.speed+'% attack & cast speed',src:'Tuning sliders'});
+    if(state.inc)used.push({g:'Increased damage',text:'+'+state.inc+'% increased damage',src:'Tree & gear damage sliders'});
+    if(state.crit)used.push({g:'Critical chance',text:'+'+state.crit+'% added critical strike chance',src:'Tree & gear damage sliders'});
+    if(state.critMulti&&state.critMulti!==150)used.push({g:'Critical multiplier',text:'Critical strike multiplier set to '+state.critMulti+'%',src:'Tree & gear damage sliders'});
+    if(state.speed)used.push({g:'Attack & cast speed',text:'+'+state.speed+'% attack & cast speed',src:'Tree & gear damage sliders'});
   }
   /* The bar's sworn buffs, and the curses standing on the enemy. */
   if(c&&c.barFx){
@@ -10601,7 +10815,7 @@ function renderContributions(c){
     rows=rows.concat(prows.slice(0,10));
     if(prows.length>10)passiveNote='<p class="sub">Showing the 10 passive nodes worth the most of '+prows.length+' counted nodes — the rest each move the number less.</p>';
   } else if(nodeList.length){
-    passiveNote='<p class="sub">This plan&rsquo;s passives are counted through the Tuning sliders rather than node by node, so they are not broken out here — load a character or apply a Take list in the Passive Tree view to count every node.</p>';
+    passiveNote='<p class="sub">This plan&rsquo;s passives are counted through the tree &amp; gear damage sliders rather than node by node, so they are not broken out here — load a character or apply a Take list in the Passive Tree view to count every node.</p>';
   }
   rows.sort(function(a,b){return b.drop-a.drop});
   if(!rows.length){box.innerHTML='<p class="sub">Nothing to take out yet — link supports, pick a weapon or take passive nodes first.</p>'; return}
@@ -11118,25 +11332,31 @@ function wpnAddAffix(){
 /* ---------- Ladder / Meta ---------- */
 function renderLadder(){
   var data=G.ladder; if(!data){$('ladderBody').innerHTML='<p class="sub">Loading ladder…</p>';return}
-  var heroes=data.heroes||[];
+  /* Empty heroes never reach the list: a ladder entry with no
+     ascendancy field is an empty build — verified against the
+     game's own data, those heroes' build files hold 0 items, 0
+     skills and 0 passives, and the entry's main skill and
+     Guardian DPS fields are stale leftovers. They are filtered
+     out here, in the Ladder list only — G.ladder itself is left
+     whole for the Meta tab, the starters and every other reader.
+     (An ascendancy of "None" is a real hero who simply has no
+     Dragonling aspect — only a missing field is empty.) */
+  var heroes=(data.heroes||[]).filter(function(h){return !!h.ascendancy});
   var clsFilter=$('ladderClassChips').getAttribute('data-active')||'All';
   var q=($('ladderSearch').value||'').toLowerCase(); var sort=$('ladderSort').value;
   var arr=heroes.filter(function(h){return (clsFilter==='All'||h.class===clsFilter)&&(!q|| (h.class+' '+h.main_skill+' '+h.hero+' '+(h.ascendancy||'')).toLowerCase().indexOf(q)>=0)});
   arr=arr.slice(); if(sort==='dps')arr.sort(function(a,b){return (b.guardian_dps_median||0)-(a.guardian_dps_median||0)}); if(sort==='rl')arr.sort(function(a,b){return b.rupture_level-a.rupture_level}); if(sort==='level')arr.sort(function(a,b){return b.level-a.level});
   arr=arr.slice(0,120);
   $('ladderTitle').textContent='Ladder — '+(((G.leagues.find(function(l){return l.id===state.league})||{}).name)||(($('leagueLabel')||{}).textContent)||'Alpha Test');
-  $('ladderSub').textContent=(data.count||heroes.length)+' heroes • Showing '+arr.length;
+  $('ladderSub').textContent=heroes.length+' heroes • Showing '+arr.length;
   if(!arr.length){$('ladderBody').innerHTML='<div class="notice">No heroes match in this league yet. The newest leagues fill over the first hours — try Alpha Test for the fullest ladder right now.</div>';return}
-  /* A published hero with NO ascendancy has an empty build file —
-     verified against the game's own data: every no-ascendancy
-     entry's file holds 0 items, 0 skills and 0 passives, while
-     every ascendancy entry's file is complete. has_build only
-     means a file exists, and the entry's main skill and Guardian
-     DPS go stale on empty heroes, so the ascendancy field is the
-     signal: those heroes keep their rank but are flagged "No
-     build published" in place of their build info (no main skill,
-     no DPS), and opening one shows a plain message instead of
-     the empty build. */
+  /* Empty heroes (no ascendancy — see the filter at the top of
+     this function) are already out of the list, so heroNoBuild
+     below is only a backstop: has_build alone means just that a
+     file exists, and any no-ascendancy row that ever slipped
+     through is flagged "No build published" in place of its
+     build info (no main skill, no DPS), and opening one shows
+     a plain message instead of the empty build. */
   function heroNoBuild(h){return !!(h.has_build&&h.build&&!h.ascendancy)}
   var withBuild=arr.filter(function(h){return h.has_build&&h.build&&h.ascendancy}).length;
   var emptyShown=arr.filter(heroNoBuild).length;
@@ -11619,7 +11839,7 @@ function loadHeroIntoPlanner(d){
   $('levelRange').value=state.level;if($('levelVal'))$('levelVal').textContent=state.level;$('passRange').value=Math.min(123,state.passives);$('passVal').textContent=state.passives;
   $('incRange').value=state.inc;$('incVal').textContent=state.inc+'%';$('critRange').value=state.crit;$('critVal').textContent=state.crit+'%';$('critMultiRange').value=state.critMulti;$('critMultiVal').textContent=state.critMulti+'%';$('speedRange').value=state.speed;$('speedVal').textContent=state.speed+'%';
   if($('aspectSel'))$('aspectSel').value=state.aspect;
-  if($('loadedText'))$('loadedText').textContent=d.class+' Lv '+d.level+' • Rupture Level '+d.rupture_level+' • Main: '+skillName(state.skillId)+' • Tuning filled from this hero\u2019s passive tree (gear stays in the calibration band).';
+  if($('loadedText'))$('loadedText').textContent=d.class+' Lv '+d.level+' • Rupture Level '+d.rupture_level+' • Main: '+skillName(state.skillId)+' • Tree & gear damage filled in from this hero\u2019s passive tree (gear stays in the calibration band).';
   renderClassGrid();renderSkillList('');renderWeaponList('');renderSupports();renderPlanner();renderGear();renderBelt();
   var c=calc(); var meas=d.measured&&d.measured.guardian_dps_median;
   var cmp='—';
@@ -11644,24 +11864,80 @@ function fetchBuildRaw(url,timeoutMs){
   var timer=ctrl?setTimeout(function(){try{ctrl.abort()}catch(e){}},timeoutMs||15000):null;
   return fetch(url,ctrl?{signal:ctrl.signal}:{}).then(function(r){if(timer)clearTimeout(timer);if(!r.ok)throw new Error('HTTP '+r.status);return r.arrayBuffer()},function(e){if(timer)clearTimeout(timer);throw e});
 }
+/* ---------- Import rescue ----------
+   The live API sometimes has no build file for a hero the ladder
+   lists (it answers "Object not found"), and sometimes returns
+   gear whose affixes are missing — a Rare or Magic item carrying
+   an empty affix list. A build counts as INCOMPLETE when any
+   Rare / Magic item carries no affixes, or when the answer is
+   not a build at all (an error body, or a file with no items,
+   skills or passives in it). buildAffixGap counts both sides of
+   that: how many items are missing their affixes, and how many
+   items carry theirs — the "more of the build present" measure
+   the rescue below picks a winner by. */
+function buildAffixGap(d){
+  var items=(d&&d.build&&Array.isArray(d.build.items))?d.build.items:[];
+  var missing=0, withAffixes=0;
+  items.forEach(function(it){
+    if(!it)return;
+    if(it.affixes&&it.affixes.length)withAffixes++;
+    else if(it.rarity==='Rare'||it.rarity==='Magic')missing++;
+  });
+  return {missing:missing,withAffixes:withAffixes,items:items.length};
+}
+function buildPresent(d){
+  var b=(d&&d.build)||{};
+  return !!((b.items||[]).length||(b.skills||[]).length||(b.passive_nodes||[]).length);
+}
+function buildRescueScore(d){
+  var g=buildAffixGap(d);
+  return (buildPresent(d)?1000000:0)+g.withAffixes*1000-g.missing;
+}
 function fetchBuildJSON(path){
   if(buildCache[path])return buildCache[path];
-  // Gear must open every time, so a hero's build is served from the copy
-  // bundled with the page first (same origin — no API dependency) and
-  // only falls back to the live API, with retries, when there is no
-  // bundled copy (other leagues, or heroes added since the bundle).
+  /* The rescue: ask the live API first. A complete live build is
+     used as it stands. When the live fetch fails — or the build
+     it returns is incomplete — fall back to the copy bundled
+     with the page (the snapshot of that same hero's build file).
+     Whichever source is complete wins; if both are partial, the
+     one with more of the build present (more items carrying
+     their affixes) wins, and whatever is still missing is left
+     for loadHeroIntoPlanner's plain affix line to name. Only
+     when neither source has the file at all does the live fetch
+     go through its retry loop and, failing that, fail the load
+     the way it always has. */
   var bundled=path.indexOf('builds/')===0
     ? fetchBuildRaw('assets/snapshot/'+path,15000).then(parseBuildBuffer)
     : Promise.reject(new Error('no bundled copy'));
-  var p=bundled.catch(function(){
-    var attempt=function(n){
-      return fetchBuildRaw(BASE+path,15000).then(parseBuildBuffer).catch(function(e){
-        if(e.message==='binary build')throw e;
-        if(n>=3)throw e;
-        return new Promise(function(res){setTimeout(res,1200*n)}).then(function(){return attempt(n+1)});
-      });
-    };
-    return attempt(1);
+  bundled.catch(function(){}); /* the bundled copy is only read when the live build needs rescuing — swallow its rejection here so an unread copy never surfaces as an unhandled error; the rescue branches below still see the original promise's outcome */
+  var liveOnce=fetchBuildRaw(BASE+path,15000).then(parseBuildBuffer);
+  var p=liveOnce.then(function(live){
+    if(buildPresent(live)&&!buildAffixGap(live).missing&&buildAffixGap(live).items>0){live.__fromBuildFetch=true; return live}
+    /* Live answered, but the build is incomplete (or not a build
+       at all): the bundled copy gets its chance. */
+    return bundled.then(function(snap){
+      var win=buildRescueScore(snap)>buildRescueScore(live)?snap:live;
+      win.__fromBuildFetch=true; return win;
+    },function(){
+      if(!buildPresent(live))throw new Error('build not published');
+      live.__fromBuildFetch=true; return live;
+    });
+  },function(liveErr){
+    /* The live fetch failed outright (no file, no answer): the
+       bundled copy is the rescue. */
+    return bundled.then(function(snap){
+      snap.__fromBuildFetch=true; return snap;
+    },function(){
+      if(liveErr&&liveErr.message==='binary build')throw liveErr;
+      var attempt=function(n){
+        return fetchBuildRaw(BASE+path,15000).then(parseBuildBuffer).then(function(d){d.__fromBuildFetch=true; return d}).catch(function(e){
+          if(e.message==='binary build')throw e;
+          if(n>=3)throw e;
+          return new Promise(function(res){setTimeout(res,1200*n)}).then(function(){return attempt(n+1)});
+        });
+      };
+      return attempt(1);
+    });
   });
   buildCache[path]=p;
   p.catch(function(){if(buildCache[path]===p)delete buildCache[path]});
@@ -15341,7 +15617,7 @@ var BUILD_SETS_ON=true;
    open them while this flag is off. Flipping it brings all five
    tabs back exactly as they were. */
 var EXTRA_TABS_ON=false;
-var EXTRA_TABS=['items','bestiary','cube','loot','grail'];
+var EXTRA_TABS=['items','bestiary','loot','grail'];
 function extraTabGated(name){return !EXTRA_TABS_ON&&EXTRA_TABS.indexOf(name)>=0}
 /* The Step 1 filter's searchable text for one list entry: the
    item's name plus the mods on it — for a base, its implicits and
@@ -17434,7 +17710,7 @@ function renderSkillTable(){
      +gemCtlHTML(e,isMain)
      +'<div class="skn-flags">'
      +(hasExec?'<label class="skn-flag" title="Count this skill as if the enemy is below half its life — Executioner\u2019s own more damage (35% on the physical part of a hit, 14% on the rest) counts while it is ticked"><input type="checkbox" data-skn-exec="'+esc(e.skill)+'"'+(e.exec?' checked':'')+'> Executioner — enemy below half life</label>':'')
-     +'<label class="skn-flag" title="How much tree planning counts this skill beside your main skill">Weight <select data-skn-weight="'+esc(e.skill)+'" aria-label="Tree-planning weight for '+esc(sk.Name)+'">'+[0,25,50,75,100].map(function(x){return '<option value="'+x+'"'+(x===w?' selected':'')+'>'+x+'%</option>'}).join('')+'</select></label>'
+     +'<label class="skn-flag" title="How much this skill counts beside your main skill when the planner plans your tree">How much this skill counts when planning the tree <select data-skn-weight="'+esc(e.skill)+'" aria-label="How much '+esc(sk.Name)+' counts beside your main skill when planning the tree">'+[0,25,50,75,100].map(function(x){return '<option value="'+x+'"'+(x===w?' selected':'')+'>'+x+'%</option>'}).join('')+'</select></label>'
      +'<label class="skn-flag"><input type="checkbox" data-skn-onbar="'+esc(e.skill)+'"'+(e.onBar!==false?' checked':'')+'> On bar</label>'
      +'<label class="skn-flag"><input type="checkbox" data-skn-sim="'+esc(e.skill)+'"'+(e.sim!==false?' checked':'')+'> Include in fight test</label>'
      +(isMain?'':'<button class="btn small" data-skn-main="'+esc(e.skill)+'" type="button">Make main</button>')
@@ -17509,7 +17785,7 @@ function renderMainSkillDetail(){
    +'<div class="skn-flags">'
    +'<button type="button" class="buff-switch" role="switch" aria-checked="'+(isMainFocus?'true':'false')+'" aria-label="Main skill switch for '+esc(sk.Name)+'" data-main-switch="'+esc(focusId)+'"><span class="buff-track" aria-hidden="true"></span>Main skill</button>'
    +(hasExec?'<label class="skn-flag" title="Count this skill as if the enemy is below half its life — Executioner\u2019s own more damage (35% on the physical part of a hit, 14% on the rest) counts while it is ticked"><input type="checkbox" data-skn-exec="'+esc(e.skill)+'"'+(e.exec?' checked':'')+'> Executioner — enemy below half life</label>':'')
-   +'<label class="skn-flag" title="How much tree planning counts this skill beside your main skill">Weight <select data-skn-weight="'+esc(e.skill)+'" aria-label="Tree-planning weight for '+esc(sk.Name)+'">'+[0,25,50,75,100].map(function(x){return '<option value="'+x+'"'+(x===w?' selected':'')+'>'+x+'%</option>'}).join('')+'</select></label>'
+   +'<label class="skn-flag" title="How much this skill counts beside your main skill when the planner plans your tree">How much this skill counts when planning the tree <select data-skn-weight="'+esc(e.skill)+'" aria-label="How much '+esc(sk.Name)+' counts beside your main skill when planning the tree">'+[0,25,50,75,100].map(function(x){return '<option value="'+x+'"'+(x===w?' selected':'')+'>'+x+'%</option>'}).join('')+'</select></label>'
    +'<label class="skn-flag"><input type="checkbox" data-skn-onbar="'+esc(e.skill)+'"'+(e.onBar!==false?' checked':'')+'> On bar</label>'
    +'<label class="skn-flag"><input type="checkbox" data-skn-sim="'+esc(e.skill)+'"'+(e.sim!==false?' checked':'')+'> Include in fight test</label>'
    +(isMainFocus?'':'<button class="btn small" data-view-main="1" type="button">Back to '+esc(skillName(state.skillId))+'</button>')
@@ -17774,7 +18050,7 @@ function renderDrawerSkills(){
    refreshes key off it exactly as before. */
 var wsCurrent='character';
 var WS_PANELS={character:'wsCharacter',skills:'skillsDrawer',dragon:'wsDragon',tree:'wsTree',enemy:'enemyFold',bis:'bisCard',gap:'gapFold',tuning:'tuningFold',stats:'csFold'};
-var POP_TITLES={skills:'Skills',dragon:'Dragonling',tree:'Passive tree',enemy:'Enemy setup & Guardian tester',bis:'Best in this slot',gap:'Where you stand',tuning:'Tuning',stats:'Compare stats — game vs sim'};
+var POP_TITLES={skills:'Skills',dragon:'Dragonling',tree:'Passive tree',enemy:'Enemy setup & Guardian tester',bis:'Best in this slot',gap:'Where you stand',tuning:'Tree & gear damage',stats:'Compare stats — game vs sim'};
 var popCurrent=null;
 /* The three workspaces that present as full-page views. While
    one is open wsViewOpen is set and wsReturnY holds the planner
@@ -18664,7 +18940,8 @@ function renderDefenses(){
   var hDex=$('hsDex'); if(hDex)hDex.textContent=fmtFull(Math.round(d.attrs.Dex));
   var hInt=$('hsInt'); if(hInt)hInt.textContent=fmtFull(Math.round(d.attrs.Int));
   var body=$('ehpHoverBody'); if(body){
-  var html='<div class="kv"><span>Life • Energy shield</span><b>'+fmtFull(d.life)+' • '+fmtFull(d.es)+'</b></div>';
+  var html='<p class="sub" style="margin:0 0 6px">EHP is short for effective health: how much damage of that kind it takes to empty your Life and Energy Shield together, after armour, resists and block have cut the hit down. &ldquo;Takes&rdquo; is what one reference Guardian hit actually deals you.</p>';
+  html+='<div class="kv"><span>Life • Energy shield</span><b>'+fmtFull(d.life)+' • '+fmtFull(d.es)+'</b></div>';
   html+='<div class="kv"><span>Armour • Evasion</span><b>'+fmtFull(d.armour)+' • '+fmtFull(d.evasion)+'</b></div>';
   html+='<div class="kv"><span>Incoming hit • enemy level</span><b>'+(hit?fmtFull(hit):'—')+' • Lv '+d.enemyLvl+'</b></div>';
   html+=row('Physical — armour stops '+armRed.toFixed(0)+'% of the hit',(1-armRed/100)*blockAvg);
@@ -19400,7 +19677,7 @@ function treeApply(){
   $('critMultiRange').value=state.critMulti; $('critMultiVal').textContent=state.critMulti+'%';
   $('speedRange').value=state.speed; $('speedVal').textContent=state.speed+'%';
   renderPlanner(); renderCode();
-  $('treeNext').innerHTML='<p class="sub">Tuning updated from your Take list ('+state.tree.take.length+' nodes): +'+state.inc+'% increased, crit '+state.crit+'%, speed +'+state.speed+'%.</p>';
+  $('treeNext').innerHTML='<p class="sub">Tree &amp; gear damage updated from your Take list ('+state.tree.take.length+' nodes): +'+state.inc+'% increased, crit '+state.crit+'%, speed +'+state.speed+'%.</p>';
 }
 
 /* ---------- Visual passive tree ----------
@@ -21589,7 +21866,7 @@ function lootGameUpdate(){
   var extra=[];
   if(enc.usedUnique)extra.push('Unique-only rules export as &ldquo;Rare &amp; unique&rdquo; — the game code has no Unique-only rarity, so in game those rules also catch rares. (&ldquo;Rare &amp; unique&rdquo; rules export exactly.)');
   if(enc.usedRoll)extra.push('Good roll / Top roll rules export through the game code&rsquo;s roll-quality field. Simulate tests catalogue drops before they are rolled, so those rules catch nothing in the preview; on real rolled drops in game they apply in full.');
-  extra.push('Colours and sounds are written into the game code with the game&rsquo;s own codes — the eight colours (Ember, Jade, Frost, Bone, Gold, Blood, Ash, White) and the six sounds — so a drop really falls in the colour and with the sound you picked. Tier, sockets, exact level ranges, required level, sworn, exact base and named lines ride in the code&rsquo;s MORE tail (the &ldquo;,3:&hellip;&rdquo; after a rule&rsquo;s ten numbers), the same extension Oathfilter writes.');
+  extra.push('Your colours and sounds go into the game code as the game&rsquo;s own colour and sound codes — the eight colours (Ember, Jade, Frost, Bone, Gold, Blood, Ash, White) and the six sounds — so a drop really falls in the colour, and with the sound, you picked. The finer settings (tier, sockets, exact level ranges, required level, sworn, exact base and named lines) are written into the extra part at the end of each rule in the code — the same way Oathfilter writes them — so the game reads them back exactly as you set them.');
   if(enc.advRules.length)extra.push('Rule'+(enc.advRules.length>1?'s ':' ')+enc.advRules.join(', ')+' — grade, top-grade and red-line conditions use a different scale in this planner than the game&rsquo;s own grade fields, so they are left out of the game code rather than translated wrong: in game, set them in the game&rsquo;s own Advanced panel. They are saved in the planner code below.');
   if(enc.truncated)extra.push('<b>Warning:</b> the game accepts at most 200 rules (Patch 87 raised the limit from 40) — this code holds the first 200 and leaves '+enc.truncated+' out.');
   if(extra.length)h+='<div class="notice" style="margin-top:10px">'+extra.map(function(t){return '<div>'+t+'</div>'}).join('')+'</div>';
@@ -21902,7 +22179,7 @@ function lootEditorHTML(r,i){
      +lootBaseBlockHTML(r,i)
      +lootAffixBlockHTML(r,i)
      +lootRedBlockHTML(r,i)
-     +'<p class="sub" style="margin-top:10px">Tier, sockets, exact ranges, sworn, exact base and named lines are written into the game code&rsquo;s MORE tail, so they reach the game. Only grade, top grade and the red-line flag stay in the planner code — the Export notes say so, so nothing is lost silently.</p>'
+     +'<p class="sub" style="margin-top:10px">Tier, sockets, exact ranges, sworn, exact base and named lines are written into the extra part at the end of each rule in the game code, so they reach the game. Only grade, top grade and the red-line flag stay in the planner code — the Export notes say so, so nothing is lost silently.</p>'
      +'</div>';
   }
   return h+'</div>';
@@ -25944,14 +26221,18 @@ function renderAffixSearch(){
   var t=tiers[ti];
   var bases=G.allBases.filter(function(b){return simAffixesFor(b).some(function(x){return x.Id===a.Id})});
   bases.sort(function(x,y){return ((y.Level||0)-(x.Level||0))||x.Name.localeCompare(y.Name)});
+  var shown=bases.slice(0,60);
+  var groups=[], groupBySlot={};
+  shown.forEach(function(b){var g=slotLabel(b.Slot||'Other'); if(!groupBySlot[g]){groupBySlot[g]=[]; groups.push(g)} groupBySlot[g].push(b)});
   box.innerHTML='<div class="item" style="margin-bottom:10px"><div class="flex between"><b>'+esc(affixTierSentence(a,ti)||affixModText(a))+'</b>'+(t&&t.Name?'<span class="tag">'+esc(t.Name)+'</span>':'')+'</div>'
    +'<p class="sub" style="margin:4px 0 0">'+esc(a.Type||'')+' • rolls on '+esc((a.BaseTags||[]).map(baseTagLabel).join(', ')||'—')+((a.ExcludeTags||[]).length?' • never on '+esc(a.ExcludeTags.map(baseTagLabel).join(', ')):'')+' • tier '+(ti+1)+' of '+tiers.length+' needs item level '+(t?t.ILvl:'—')+', rolls '+esc(t?affixTierRange(t):'—')+'</p></div>'
-   +'<div class="label">'+bases.length+' base'+(bases.length===1?'':'s')+' can roll it</div>'
-   +(bases.length?'<div class="item-grid align-start">'+bases.slice(0,60).map(function(b){return '<div class="item">'+itemIconHTML(b,'Normal',40,null)+'<div style="min-width:0"><b>'+esc(b.Name)+'</b><br><span class="sub">'+esc(itemMetaLine(b,null))+'</span></div></div>'}).join('')+'</div>'+(bases.length>60?'<p class="sub">Showing the 60 highest-level bases.</p>':''):'<p class="sub">No base in the current game data rolls this affix.</p>');
+   +'<div class="label">'+bases.length+' base'+(bases.length===1?'':'s')+' can roll it — grouped by slot</div>'
+   +(bases.length?groups.map(function(g){return '<div class="label" style="margin-top:10px">'+esc(g)+' — '+groupBySlot[g].length+'</div><div class="item-grid align-start">'+groupBySlot[g].map(function(b){return '<div class="item">'+itemIconHTML(b,'Normal',40,null)+'<div style="min-width:0"><b>'+esc(b.Name)+'</b><br><span class="sub">'+esc(itemMetaLine(b,null))+'</span></div></div>'}).join('')+'</div>'}).join('')+(bases.length>60?'<p class="sub">Showing the 60 highest-level bases.</p>':''):'<p class="sub">No base in the current game data rolls this affix.</p>');
 }
 function fillAffixDatalist(){
   var dl=$('affixNames'); if(!dl||dl.children.length||!G.affixes.length)return;
-  dl.innerHTML=G.affixes.map(function(a){var line=affixTierSentence(a,0)||affixModText(a); return '<option value="'+esc(line)+'">'+esc(line)+'</option>'}).join('');
+  var seenLine={};
+  dl.innerHTML=G.affixes.map(function(a){var line=affixTierSentence(a,0)||affixModText(a); if(!line||seenLine[line])return ''; seenLine[line]=1; return '<option value="'+esc(line)+'">'+esc(line)+'</option>'}).join('');
 }
 
 /* ---------- Home ---------- */
@@ -26620,15 +26901,15 @@ function bindHome(){
    is updated with replaceState so tab switches do not pile up in the
    browser history, and any #loot= filter code already in the hash is
    preserved alongside it. */
-var TAB_NAMES=['home','builds','planner','ladder','meta','items','bestiary','cube','forge','loot','grail','patches'];
+var TAB_NAMES=['home','builds','planner','ladder','meta','items','bestiary','crafting','loot','grail','patches'];
 var currentTab='home';
 function tabFromHash(){
   try{
     var h=location.hash||'';
     var m=h.match(/(?:^#|[#&])tab=([a-z]+)/);
-    if(m&&TAB_NAMES.indexOf(m[1])>=0)return m[1];
+    if(m&&(TAB_NAMES.indexOf(m[1])>=0||m[1]==='forge'||m[1]==='cube'||m[1]==='runewords'||m[1]==='oathword'))return m[1];
     var plain=h.replace(/^#\/?/,'');
-    if(TAB_NAMES.indexOf(plain)>=0)return plain;
+    if(TAB_NAMES.indexOf(plain)>=0||plain==='forge'||plain==='cube'||plain==='runewords'||plain==='oathword')return plain;
   }catch(e){}
   return null;
 }
@@ -26705,10 +26986,51 @@ function fitNavStack(){
     var wsh=0;
     if(ws&&currentTab==='planner'&&window.innerWidth>900&&window.getComputedStyle(ws).position==='sticky')wsh=ws.offsetHeight||0;
     r.setProperty('--wsh',wsh+'px');
+    /* The Crafting switcher and the open section's filter bar pin
+       under this same stack (v0.440): --cth is the switcher's
+       height plus its bottom margin, read by the filter bars'
+       sticky offset; --cfh is the tallest visible filter bar,
+       read by the Forge jump targets' scroll margin. Sections
+       that are closed measure 0, so the open one wins. */
+    var ct=document.querySelector('.craft-tabs');
+    if(ct&&ct.offsetHeight){var ctmb=parseFloat(window.getComputedStyle(ct).marginBottom)||0; r.setProperty('--cth',(ct.offsetHeight+ctmb)+'px')}
+    var cfh=0;
+    document.querySelectorAll('#view-crafting .craft-filters').forEach(function(b){if(b.offsetHeight>cfh)cfh=b.offsetHeight});
+    r.setProperty('--cfh',cfh+'px');
   }catch(e){}
 }
+/* Slim pinned Crafting stack (v0.444): the sentinel sits in the
+   flow directly above the Crafting switcher, so the moment its
+   top edge passes the switcher's sticky line (top bar + menu,
+   the --tbh/--sbh fitNavStack just measured) the switcher is
+   stuck — the view gets .slimpin, the pinned stack compacts (see
+   the CSS), and fitNavStack re-measures --cth/--cfh against the
+   slim heights so the filter bar's offset and the Forge jump
+   targets' scroll margin follow. The sentinel rides above the
+   switcher, so slimming the switcher never moves it: no flicker
+   at the boundary. Off the Crafting view the class comes off. */
+var craftPinTick=false;
+function craftPinSync(){
+  craftPinTick=false;
+  var view=$('view-crafting'); if(!view)return;
+  var sn=$('craftPinSentinel');
+  if(!sn||currentTab!=='crafting'){view.classList.remove('slimpin'); return}
+  var rs=document.documentElement.style;
+  var top=(parseFloat(rs.getPropertyValue('--tbh'))||0)+(parseFloat(rs.getPropertyValue('--sbh'))||0);
+  var stuck=sn.getBoundingClientRect().top<=top+1;
+  if(view.classList.contains('slimpin')!==stuck){view.classList.toggle('slimpin',stuck); fitNavStack()}
+}
+function craftPinRequest(){if(!craftPinTick){craftPinTick=true; if(window.requestAnimationFrame)requestAnimationFrame(craftPinSync); else craftPinSync()}}
+window.addEventListener('scroll',craftPinRequest,{passive:true});
+window.addEventListener('resize',craftPinRequest);
 function switchTab(name,opts){
   opts=opts||{};
+  /* The Forge and the Cube used to be tabs of their own; both now
+     live inside Crafting, so an old link or a stored tab lands on
+     Crafting with the right bench open. The runewords sat inside
+     the Cube before they got their own Crafting section, so a
+     link or stored tab naming them lands there too. */
+  if(name==='forge'||name==='cube'||name==='runewords'||name==='oathword'){var legacyCraft=(name==='runewords')?'oathword':name; name='crafting'; craftSetSection(legacyCraft)}
   if(TAB_NAMES.indexOf(name)<0)name='home';
   if(extraTabGated(name))name='home'; /* hidden for the public release (EXTRA_TABS_ON) — a stored or hashed link to one lands on Home instead */
   stopFight(); closeSkillsDrawer();
@@ -26722,7 +27044,8 @@ function switchTab(name,opts){
   document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('active',t.getAttribute('data-tab')===name)});
   TAB_NAMES.forEach(function(v){$('view-'+v).classList.toggle('hidden',v!==name)});
   fitNavStack(); /* the stack changes with the view (planner adds the workspace tabs) — re-measure before anything scrolls */
-  if(name==='home')renderHome();if(name==='ladder'){if(G.ladder&&(G.ladder||{}).league===state.league)renderLadder();else loadLeagueSnapshot(state.league)}if(name==='meta'){if(G.meta&&(G.meta||{}).league===state.league)renderMeta();else loadLeagueSnapshot(state.league)}if(name==='items')renderItems();if(name==='bestiary')renderBestiary();if(name==='cube')renderCube();if(name==='forge')renderForge();if(name==='loot')renderLoot();if(name==='grail')renderGrail();if(name==='patches')renderPatches();
+  craftPinSync(); /* the Crafting slim-pin state belongs to the Crafting view only */
+  if(name==='home')renderHome();if(name==='ladder'){if(G.ladder&&(G.ladder||{}).league===state.league)renderLadder();else loadLeagueSnapshot(state.league)}if(name==='meta'){if(G.meta&&(G.meta||{}).league===state.league)renderMeta();else loadLeagueSnapshot(state.league)}if(name==='items')renderItems();if(name==='bestiary')renderBestiary();if(name==='crafting'){renderForge();renderCube()}if(name==='loot')renderLoot();if(name==='grail')renderGrail();if(name==='patches')renderPatches();
   /* Switching views never carried a scroll reset, so the offset
      from the view being left rode into the one being opened: the
      planner is thousands of pixels tall, so coming back to Home
@@ -26945,19 +27268,46 @@ function bindPlanner(){
   $('ladderSearch').addEventListener('input',renderLadder); $('ladderSort').addEventListener('change',renderLadder);
 }
 
-/* ---------- The Cube — recipes, Oathword runewords, Oathsworn ----------
-   Everything on this view renders from the game's own published
-   files: cube_recipes.json (Rules, Signatures, the 37 recipes),
-   runewords.json (the 58 runewords) and runes.json (the rune ladder
-   and the jewels). The simulators only work out outcomes the recipes
-   fix in advance — the rune ladder follows each rune's own Next
-   link, jewel polishing and cleaving follow each jewel's Next link,
-   socket counts come from the published per-kind caps. Anything the
-   Cube leaves to chance is labelled random, and the only odds shown
-   anywhere are the published Guardian Signature chances. No Forge
-   section exists: no Forge data is published, and Core Embers appear
-   only as words inside recipe text, so no ember count is shown. */
+/* ---------- The Cube & the runewords — recipes, Oathsworn, catalogue ----------
+   The Cube sits inside the Crafting tab beside the Forge, and the
+   runeword catalogue sits in its own Crafting section beside the
+   Cube; both render from the game's own files: cube_recipes.json
+   (Rules, Signatures, all 54 recipes — the 44 the public API
+   publishes plus the ten it withholds, which the game keeps hidden
+   behind riddles), runewords.json (the 58 runewords) and runes.json
+   (the rune ladder and the jewels). The simulators only work out
+   outcomes the recipes fix in advance — the rune ladder follows
+   each rune's own Next link, jewel polishing and cleaving follow
+   each jewel's Next link, socket counts come from the published
+   per-kind caps. Anything the Cube leaves to chance is labelled
+   random, and the only odds shown anywhere are the published
+   Guardian Signature chances. Core Embers appear only as words
+   inside recipe text, so no ember count is shown. */
 var cubeState={fam:'All',q:'',rwQ:'',rwCls:'All',rwBase:'All',rwKind:'all',bound:false};
+/* ---------- Crafting — the tab that holds the Forge, the Cube and
+   the Oathword & runewords ----------
+   One top-level tab, three sections, a simple switcher at the top.
+   The Forge is the section a reader lands on (it was the public
+   tab before the move); the Cube keeps its own full view — rules,
+   Oathsworn, the fixed-outcome bench and the recipe book — folded
+   in here so the site carries exactly one Cube. Oathwords and
+   runewords are not part of the Cube in the game, so the runeword
+   catalogue has its own section beside it. */
+var craftState={sec:'forge'};
+function craftSetSection(sec){
+  craftState.sec=(sec==='cube'||sec==='oathword')?sec:'forge';
+  var f=$('craftForge'), c=$('craftCube'), o=$('craftOathword');
+  if(f)f.classList.toggle('hidden',craftState.sec!=='forge');
+  if(c)c.classList.toggle('hidden',craftState.sec!=='cube');
+  if(o)o.classList.toggle('hidden',craftState.sec!=='oathword');
+  document.querySelectorAll('[data-craft]').forEach(function(b){var on=b.getAttribute('data-craft')===craftState.sec; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on?'true':'false')});
+  if(craftState.sec==='forge')renderForge(); else renderCube();
+  if(window.fitNavStack)fitNavStack(); /* the newly opened section's filter bar joins the measured stack */
+  craftPinSync();
+}
+function bindCrafting(){
+  document.querySelectorAll('[data-craft]').forEach(function(b){b.addEventListener('click',function(){craftSetSection(b.getAttribute('data-craft'))})});
+}
 var CUBE_RANDOM_IDS={item_reforge:1,item_imbue:1,item_awaken:1,item_reroll:1,item_retemper:1,red_reroll:1,red_retemper:1,idol_temper:1,idol_mend:1,rare_oathsworn:1,idol_merge:1,idol_fuse:1};
 function cubeRecipeById(id){var c=G.cubeData; if(!c||!c.recipes)return null; for(var i=0;i<c.recipes.length;i++)if(c.recipes[i].Id===id)return c.recipes[i]; return null}
 function cubeIsRandom(r){if(!r)return false; if(CUBE_RANDOM_IDS[r.Id])return true; return /random/i.test(String(r.Result||''))}
@@ -26966,14 +27316,14 @@ function rwModLine(e){if(!e)return ''; if(e.Text)return esc(e.Text); if(e.Mod)re
 var RW_BASE_NAMES={TwoHand:'Two-handed weapons',OneHandSword:'One-handed swords',OneHandAxe:'One-handed axes',OneHandMace:'One-handed maces',Shield:'Shields',Staff:'Staves',Wand:'Wands',Bow:'Bows',Dagger:'Daggers',Claw:'Claws',Fist:'Fists',Tome:'Tomes',Chest:'Body armour',Scythe:'Scythes',Helm:'Helmets',Weapon:'Any weapon'};
 function rwBaseName(b){return RW_BASE_NAMES[b]||niceId(b)}
 function renderCube(){
-  var view=$('view-cube'); if(!view)return;
+  var view=$('craftCube'); if(!view)return;
   var c=G.cubeData, rw=G.runewordsData;
   if(!c&&!rw){
     if($('cubeRules'))$('cubeRules').innerHTML='<div class="notice">The Cube&rsquo;s data has not landed yet — it arrives with the rest of the game data.</div>';
     return;
   }
   if(c&&c.recipes){
-    $('cubeCount').textContent=c.recipes.length+' recipes'+(rw&&rw.runewords?' • '+rw.runewords.length+' runewords':'');
+    $('cubeCount').textContent=c.recipes.length+' recipes';
     renderCubeRules(c); renderCubeRecipes(); renderCubeSigs(c); renderOathsworn();
   }
   renderRunewords(); fillCubeSims();
@@ -27000,17 +27350,19 @@ function renderCubeRecipes(){
   var list=c.recipes.filter(function(r){
     if(cubeState.fam!=='All'&&r.Family!==cubeState.fam)return false;
     if(!q)return true;
-    return (r.Name+' '+r.Recipe+' '+r.Result+' '+r.Makes+' '+r.UsesUp+' '+r.Keeps).toLowerCase().indexOf(q)>=0;
+    return (r.Name+' '+r.Recipe+' '+r.Result+' '+r.Makes+' '+r.UsesUp+' '+r.Keeps+' '+(r.Hint||'')).toLowerCase().indexOf(q)>=0;
   });
+  var cmc=$('cubeMatchCount'); if(cmc)cmc.textContent='Showing '+list.length+' of '+c.recipes.length+' recipes';
   $('cubeRecipes').innerHTML=list.length?('<div class="cube-grid">'+list.map(function(r){
     var tags='<span class="tag">'+esc(r.Family)+'</span> '+(cubeIsRandom(r)?'<span class="tag">Random outcome</span>':'<span class="tag">Fixed outcome</span>')+(r.bHidden?' <span class="tag tag-red">Hidden in game</span>':'');
-    return '<div class="cube-recipe"><h3>'+esc(r.Name)+'</h3><div>'+tags+'</div>'
-      +'<div class="kv"><b>Put in</b>'+esc(r.Recipe)+'</div>'
-      +'<div class="kv"><b>Makes</b>'+esc(r.Makes||r.Result)+'</div>'
+    return '<div class="cube-recipe"><h3>'+esc(r.Name)+'</h3><div class="craft-tags">'+tags+'</div>'
+      +'<div class="io-pair"><div class="io-cell"><b>Put in</b>'+esc(r.Recipe)+'</div><div class="io-arrow" aria-hidden="true">&rarr;</div><div class="io-cell"><b>Makes</b>'+esc(r.Makes||r.Result)+'</div></div>'
       +(r.UsesUp?'<div class="kv"><b>Uses up</b>'+esc(r.UsesUp)+'</div>':'')
       +(r.Keeps?'<div class="kv"><b>Keeps</b>'+esc(r.Keeps)+'</div>':'')
+      +(r.bHidden&&r.Hint?'<div class="kv"><b>The game&rsquo;s riddle</b>'+esc(r.Hint)+'</div>':'')
       +'</div>';
   }).join('')+'</div>'):'<div class="notice">No recipe matches that search.</div>';
+  if(window.fitNavStack)fitNavStack();
 }
 function renderCubeSigs(c){
   var sigs=c.Signatures||{}; var ids=Object.keys(sigs);
@@ -27027,13 +27379,14 @@ function renderOathsworn(){
     +'<div class="kv"><span><b>You get</b></span><b>'+esc(r.Result)+'</b></div>'
     +'<div class="kv"><span><b>Uses up</b></span><b>'+esc(r.UsesUp||'')+'</b></div>'
     +'<div class="kv"><span><b>Keeps</b></span><b>'+esc(r.Keeps||'')+'</b></div>'
-    +'<div class="notice mt">Two honest gaps. Core Embers are named in the recipe as coming &ldquo;from your Forge store&rdquo;, but no ember balance and no Forge store are published in the game&rsquo;s data — so this page cannot show how many you hold, and there is no Forge section here at all. And the recipe says the Oathsworn line is &ldquo;rolled from its own pool&rdquo;, but the published data never names that pool, so the possible lines are not listed here rather than guessed.</div>';
+    +'<div class="notice mt">Two things this page can&rsquo;t show you. The recipe says Core Embers come &ldquo;from your Forge store&rdquo;, but the game&rsquo;s data never publishes how many embers you hold — so your balance can&rsquo;t be shown here. And the recipe says the Oathsworn line is &ldquo;rolled from its own pool&rdquo;, but the data never names that pool, so the possible lines are not listed here rather than guessed.</div>';
 }
 function renderRunewords(){
   var body=$('rwBody'); if(!body)return;
   var data=G.runewordsData;
   if(!data||!data.runewords){body.innerHTML='<div class="notice">The runewords have not landed yet.</div>'; if($('rwCount'))$('rwCount').textContent=''; return}
   var list=data.runewords;
+  var rwp=$('rwCountPill'); if(rwp)rwp.textContent=list.length+' runewords';
   /* Class chips + base select, rebuilt each render but keeping state */
   var classes=[]; list.forEach(function(r){if(r.Class&&classes.indexOf(r.Class)<0)classes.push(r.Class)}); classes.sort();
   $('rwClassChips').innerHTML=['All'].concat(classes).map(function(cl){return '<button class="chip'+(cubeState.rwCls===cl?' active':'')+'" data-rwcls="'+esc(cl)+'">'+esc(cl)+'</button>'}).join('');
@@ -27053,7 +27406,7 @@ function renderRunewords(){
   });
   $('rwCount').textContent='Showing '+out.length+' of '+list.length+' runewords — '+list.filter(function(r){return !r.Red}).length+' regular and '+list.filter(function(r){return r.Red}).length+' red (the reds are level 84). Socket the runes in the order shown.';
   body.innerHTML=out.length?('<div class="cube-grid">'+out.map(function(r){
-    var runes=(r.Runes||[]).map(function(id,i){var rec=runeRecord(id); return (i?' <span class="rw-arrow">then</span> ':'')+'<span class="rw-rune">'+esc(rec?rec.Name:niceId(id))+'</span>'}).join('');
+    var runes=(r.Runes||[]).map(function(id,i){var rec=runeRecord(id); return (i?' <span class="rw-arrow" aria-hidden="true">&rarr;</span> ':'')+'<span class="rw-rune">'+esc(rec?rec.Name:niceId(id))+'</span>'}).join('')+' <span class="rw-arrow" aria-hidden="true">&rarr;</span>';
     var mods=(r.Mods||[]).map(function(e){return '<div class="affix">'+rwModLine(e)+'</div>'}).join('');
     var bands='';
     if(r.PowerBandMods&&r.PowerBandMods.length&&r.PowerBandCount&&r.PowerBandILvl){
@@ -27072,6 +27425,7 @@ function renderRunewords(){
       +(r.Flavour?'<div class="rw-flavour">'+esc(r.Flavour)+'</div>':'')
       +'</div>';
   }).join('')+'</div>'):'<div class="notice">No runeword matches that search.</div>';
+  if(window.fitNavStack)fitNavStack();
 }
 /* ---------- The Forge — Edda Ironhand's bench ----------
    Everything on this view renders from the game's own files,
@@ -27148,7 +27502,7 @@ function renderForgeChips(groupCounts){
   host.innerHTML=defs.map(function(d){return '<button class="chip" type="button" data-forge-jump="'+d[0]+'"'+(d[2]?'':' disabled')+'>'+esc(d[1])+'</button>'}).join('');
 }
 function renderForge(){
-  var view=$('view-forge'); if(!view)return;
+  var view=$('craftForge'); if(!view)return;
   if(!forgeState.bound){
     forgeState.bound=true;
     var il=$('forgeIlvl'); if(il)il.addEventListener('input',function(){var v=parseInt(il.value,10); forgeState.ilvl=isNaN(v)?84:Math.max(1,Math.min(999,v)); renderForgeRecipes()});
@@ -27171,7 +27525,7 @@ function renderForge(){
         forgeState.loading=false;
         if(r[0]&&r[0].Recipes&&r[0].Recipes.length)G.forgeData=r[0];
         if(r[1]&&r[1].Shards&&r[1].Shards.length)G.redShards=r[1];
-        if(currentTab==='forge')renderForge();
+        if(currentTab==='crafting')renderForge();
       });
     }
     return;
@@ -27200,8 +27554,8 @@ function renderForgeBench(){
   rows.push(['Forge levels','The bench levels up as you craft: level 1 from '+lv[0]+' crafts, level 2 at '+lv[1]+', level 3 at '+lv[2]+', level 4 at '+lv[3]+' and level 5 at '+lv[4]+'. Higher levels unlock the recipes Edda teaches herself']);
   rows.push(['Learning recipes',counts.known+' recipes are known when the Forge opens. '+counts.land+' are taught by Forge Tablets found out in the lands \u2014 each land\u2019s tablet teaches that land\u2019s recipes \u2014 '+counts.guardian+' by tablets from Guardians, '+counts.edda+' by Edda herself as the Forge levels, and '+counts.core+' Skyforged crafts are learnt with your first Core Ember']);
   rows.push(['Gold','Every craft also costs gold: '+(R.GoldBase||40)+' plus '+(R.GoldPerLevel||6)+' per item level of the item, multiplied by the recipe\u2019s tier (Tier 1 \u00d71, Tier 2 \u00d71.6, Tier 3 \u00d72.5, Tier 4 \u00d74)']);
-  rows.push(['Crafted strength','A crafted mod\u2019s strength budget is '+(PB.Normal||12)+' on a normal item, '+(PB.Magic||16)+' on a magic one and '+(PB.Rare||22)+' on a rare, plus '+(P.PerItemLevel||0.15)+' per item level \u2014 and only the top '+(P.TopTiers||3)+' tiers of a mod can be crafted at all. Setting a Forgeheart into an item grows that budget by a quarter, for good']);
-  rows.push(['Echoes','Every mod on an item carries Echoes \u2014 one each, two on a unique \u2014 and the Echo crafts under Slots spend them']);
+  rows.push(['How strong a crafted mod can be','A crafted mod has a strength budget: '+(PB.Normal||12)+' on a normal item, '+(PB.Magic||16)+' on a magic one and '+(PB.Rare||22)+' on a rare, plus '+(P.PerItemLevel||0.15)+' per item level. Only the top '+(P.TopTiers||3)+' tiers of a mod can be crafted at all. Setting a Forgeheart into an item grows that budget by a quarter, for good']);
+  rows.push(['Echoes','Every mod on an item carries Echoes \u2014 one each, two on a unique \u2014 and the Echo crafts spend them']);
   $('forgeBench').innerHTML=rows.map(function(r){return '<div class="kv"><span>'+esc(r[0])+'</span><b>'+esc(r[1])+'</b></div>'}).join('');
 }
 function renderForgeMats(){
@@ -27239,18 +27593,44 @@ function renderForgeMats(){
 }
 var FORGE_GROUPS=[
   ['Add','Add one crafted mod to an item \u2014 a prefix or a suffix of the kind named. An item holds one crafted mod at a time; Unmake, under Mastery, takes it off again.'],
-  ['Reforge','Change an item that already has its mods: reroll everything, raise a magic item to rare, keep one side while the other rolls again, melt one chosen mod out, or bore a socket.'],
+  ['Reforge','Change an item that already has its mods: reroll everything, raise a magic item to rare, keep one side of its mods while the other side rolls again, melt one chosen mod out, or bore a socket.'],
   ['Slots','Work an item\u2019s slots, Echoes and quality: move mods between slots with their Echoes, and hone quality upward step by step.'],
   ['Mastery','The deep end of the bench: raise a mod a tier, set a Forgeheart, cut a socket past the normal limit \u2014 and the red crafts that bind shards back into reds.']
 ];
+/* The same cost forgeCostParts spells out as one line, broken
+   into its parts so the card can show each as a chip (v0.440).
+   Every amount comes from the same fields and the same gold
+   formula, so the chips always agree with the text version the
+   search matches against. Red Forge keeps its trailing note as
+   a note under the chips — it is part of the cost line today. */
+function forgeCostChips(r,ilvl){
+  var chips=[];
+  if(r.Id==='forge_redforge'){
+    var rf=(G.redShards&&G.redShards.Rules&&G.redShards.Rules.RedForge)||{Heart:1,Gloom:20,Steel:40,Gold:2000000};
+    chips.push({t:'A plain (white) item of the red\u2019s base, item level at least the red\u2019s'});
+    chips.push({t:rf.Heart+' '+forgeMatName('forgeheart')});
+    chips.push({t:rf.Gloom+' '+forgeMatName('gloomsilver')});
+    chips.push({t:rf.Steel+' '+forgeMatName('oathsteel')});
+    chips.push({t:forgeNum(rf.Gold)+' gold the first time',gold:true});
+    return {chips:chips,note:'More on every later use this league (see the red crafts below)'};
+  }
+  if(r.Id==='forge_oathbind'||r.Id==='forge_rivenbind'){chips.push({t:'6 Red Shards'}); chips.push({t:'a plain (white) item of that red\u2019s base'})}
+  if(r.Mat){
+    if(r.MatCost>0)chips.push({t:r.MatCost+' '+forgeMatName(r.Mat)});
+    else chips.push({t:'One of the mod\u2019s own Echoes'});
+  }
+  if(r.Mat2&&r.Mat2Cost>0)chips.push({t:r.Mat2Cost+' '+forgeMatName(r.Mat2)});
+  chips.push({t:forgeNum(forgeGoldFor(r,ilvl))+' gold',gold:true});
+  return {chips:chips,note:''};
+}
 function forgeRecipeCard(r,ilvl){
   var tags='<span class="tag">Tier '+r.Tier+'</span>'+(r.ForgeLevel>0?' <span class="tag">Needs Forge level '+r.ForgeLevel+'</span>':'');
-  var cost=forgeCostParts(r);
-  if(r.Id!=='forge_redforge')cost+=' + '+forgeNum(forgeGoldFor(r,ilvl))+' gold';
-  return '<div class="cube-recipe forge-recipe"><h3>'+esc(forgeMarkEn(r.Name))+'</h3><div>'+tags+'</div>'
-    +'<div class="kv"><b>Costs</b>'+esc(cost)+'</div>'
-    +'<div class="kv"><b>What it does</b>'+esc(r.Text)+'</div>'
-    +'<div class="forge-learned"><b>Learned</b> '+esc(r.FoundIn)+'</div>'
+  var cc=forgeCostChips(r,ilvl);
+  var costHtml='<div class="cost-chips">'+cc.chips.map(function(c){return '<span class="cost-chip'+(c.gold?' gold':'')+'">'+esc(c.t)+'</span>'}).join('')+'</div>'
+    +(cc.note?'<div class="cost-note">'+esc(cc.note)+'</div>':'');
+  return '<div class="cube-recipe forge-recipe"><h3>'+esc(forgeMarkEn(r.Name))+'</h3><div class="craft-tags">'+tags+'</div>'
+    +'<div class="io-pair"><div class="io-cell"><b>Costs</b>'+costHtml+'</div><div class="io-arrow" aria-hidden="true">&rarr;</div><div class="io-cell"><b>What it does</b>'+esc(r.Text)+'</div></div>'
+    +'<div class="forge-learned"><b>How you learn it</b> '+esc(r.FoundIn)+'</div>'
     +(r.Line?'<div class="rw-flavour">&ldquo;'+esc(r.Line)+'&rdquo;</div>':'')
     +'</div>';
 }
@@ -27272,6 +27652,7 @@ function renderForgeRecipes(){
   var mc=$('forgeMatchCount'); if(mc)mc.textContent='Showing '+shown+' of '+f.Recipes.length+' recipes';
   var cb=$('forgeClearBtn'); if(cb)cb.style.display=forgeFilterActive()?'':'none';
   renderForgeChips(counts);
+  if(window.fitNavStack)fitNavStack();
 }
 function forgeRedName(s){
   var u=(G.uniqueMap||{})[s.Unique];
@@ -27291,7 +27672,7 @@ function renderForgeReds(){
   var kindLabel={Land:'Land red',Guardian:'Guardian red',RivenLord:'Riven Lord red'};
   host.innerHTML='<div class="cube-grid">'+rs.Shards.map(function(s){
     var chance=rl/((s.RLDiv||4000)*(s.BossShare||1));
-    return '<div class="cube-recipe"><h3>'+esc(forgeRedName(s))+'</h3><div><span class="tag">'+esc(kindLabel[s.SourceKind]||s.SourceKind)+'</span></div>'
+    return '<div class="cube-recipe"><h3>'+esc(forgeRedName(s))+'</h3><div class="craft-tags"><span class="tag">'+esc(kindLabel[s.SourceKind]||s.SourceKind)+'</span></div>'
       +'<div class="kv"><b>Shards fall from</b>'+esc(forgeRedSource(s))+'</div>'
       +'<div class="kv"><b>From Rupture level</b>'+s.MinRL+'</div>'
       +'<div class="kv"><b>Shard chance at Rupture '+rl+'</b>'+forgePct(chance)+' per Guardian kill</div>'
@@ -27316,7 +27697,7 @@ function renderForgeRedCrafts(){
     uses.push('<div class="kv"><span>Red Forge \u2014 use '+n+' this league</span><b>'+RF.Heart+' '+esc(forgeMatName('forgeheart'))+' + '+forgeAmt(RF.Gloom*m)+' '+esc(forgeMatName('gloomsilver'))+' + '+forgeAmt(RF.Steel*m)+' '+esc(forgeMatName('oathsteel'))+' + '+forgeNum(Math.round(RF.Gold*m))+' gold</b></div>');
   }
   host.innerHTML=rows.join('')
-    +'<p class="sub" style="margin:12px 0 0"><b>Red Forge</b> makes a red from nothing \u2014 no shards at all: lay a plain (white) item of the red\u2019s base at the bench, at item level at least the red\u2019s own, and pay the heart, silver, steel and gold below. Every use after the first multiplies the Gloomsilver, Oathsteel and gold by 1.5 again; the Forgeheart is always just the one.</p>'
+    +'<p class="sub" style="margin:12px 0 0"><b>Red Forge</b> makes a red from nothing \u2014 no shards at all: lay a plain (white) item of the red\u2019s base at the bench, at item level at least the red\u2019s own, and pay the heart, silver, steel and gold below. Every use after the first multiplies the Gloomsilver, Oathsteel and gold by 1.5 again; the Forgeheart cost never grows \u2014 it stays at one.</p>'
     +uses.join('');
 }
 /* ---------- Cube simulators — fixed outcomes only ---------- */
@@ -27334,7 +27715,7 @@ function renderSimRune(){
   var chain=[rec]; var guard=0;
   while(chain[chain.length-1].Next&&guard<40){var nx=runeRecord(chain[chain.length-1].Next); if(!nx)break; chain.push(nx); guard++}
   if(chain.length===1){
-    out.innerHTML='<div class="kv"><span><b>'+esc(rec.Name)+'</b> (Tier '+rec.Tier+')</span><b>Top of its ladder</b></div><p class="sub" style="margin:6px 0 0">The published ladder gives '+esc(rec.Name)+' no next rune, so no ascent recipe takes it further.</p>';
+    out.innerHTML='<div class="kv"><span><b>'+esc(rec.Name)+'</b> (Tier '+rec.Tier+')</span><b>Top of its ladder</b></div><p class="sub" style="margin:6px 0 0">'+esc(rec.Name)+' is the last rune on its ladder \u2014 no recipe can fuse it any higher.</p>';
     return;
   }
   var steps=chain.length-1;
@@ -27377,9 +27758,9 @@ function renderSimBase(){
   var caps=(G.runesData&&G.runesData.Rules&&G.runesData.Rules.MaxSockets)||{};
   var cap=caps[kind]; if(cap==null){out.innerHTML=''; return}
   var label={TwoHand:'Two-handed weapon',OneHand:'One-handed weapon',Chest:'Body armour',Helm:'Helmet',Shield:'Shield',Tome:'Tome'}[kind]||kind;
-  out.innerHTML='<div class="kv"><span><b>Runesmith&rsquo;s Base</b> — the white '+esc(label.toLowerCase())+' + 2 identical Tier I runes</span><b>Its most sockets: '+cap+'</b></div>'
+  out.innerHTML='<div class="kv"><span><b>Runesmith&rsquo;s Base</b> — the white '+esc(label.toLowerCase())+' + 2 identical Tier I runes</span><b>Up to '+cap+' sockets</b></div>'
     +'<div class="kv"><span><b>Runesmith&rsquo;s Count</b> — the white '+esc(label.toLowerCase())+' + 3 identical Tier I runes</span><b>Exactly 3 sockets</b></div>'
-    +(cap<=3?'<p class="sub" style="margin:6px 0 0">This kind&rsquo;s most is '+cap+', so the Count lands on the same number as its most.</p>':'<p class="sub" style="margin:6px 0 0">The base and its item level are kept either way; only the runes are used up.</p>');
+    +(cap<=3?'<p class="sub" style="margin:6px 0 0">This kind&rsquo;s maximum is '+cap+', so the Count lands on the same number.</p>':'<p class="sub" style="margin:6px 0 0">The base and its item level are kept either way; only the runes are used up.</p>');
 }
 function renderSimIdol(){
   var out=$('simIdolOut'); if(!out)return;
@@ -27620,8 +28001,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.435';
-var PLANNER_BUILT_AT='2026-11-27T07:44:00-08:00';
+var PLANNER_VERSION='0.444';
+var PLANNER_BUILT_AT='2026-11-27T09:58:28-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
@@ -27934,7 +28315,21 @@ function applyGameData(res){
   if(res[10]&&res[10].affixes)G.rivenAffixes=res[10].affixes;
   if(res[11]&&res[11].texts)G.statTexts=res[11].texts;
   if(res[12]&&res[12].Rules&&res[12].Rules.Vows83&&res[12].Rules.Vows83.Shares&&res[12].Rules.Vows83.Shares.length)G.vowShares=res[12].Rules.Vows83.Shares;
-  if(res[12]&&res[12].recipes&&res[12].recipes.length)G.cubeData=res[12];
+  if(res[12]&&res[12].recipes&&res[12].recipes.length){
+    /* The Cube's book follows the game's own files (2026-11-27):
+       the public API publishes 44 of the 54 recipes and withholds
+       the ten hidden ones, so an incoming API copy is merged with
+       what the page already holds rather than replacing it — a
+       recipe the bundled game files carry is never dropped, and
+       where both copies carry a recipe the fresher one wins. */
+    if(G.cubeData&&G.cubeData.recipes&&G.cubeData.recipes.length){
+      var cubeSeen={}; res[12].recipes.forEach(function(r){cubeSeen[r.Id]=1});
+      var cubeMerged=res[12].recipes.slice();
+      G.cubeData.recipes.forEach(function(r){if(!cubeSeen[r.Id])cubeMerged.push(r)});
+      res[12]=Object.assign({},res[12],{recipes:cubeMerged});
+    }
+    G.cubeData=res[12];
+  }
   if(res[13]&&(res[13].Aspects||res[13].Tree)){G.dragonling=res[13]; G.dragonMap={}; G.aspectMap={}; (res[13].Aspects||[]).forEach(function(a){G.aspectMap[a.Id]=a}); var dcl=(res[13].Tree&&res[13].Tree.Classes)||{}; Object.keys(dcl).forEach(function(cn){(dcl[cn]||[]).forEach(function(n){G.dragonMap[n.Id]=n})}); var a2c=(res[13].Tree&&res[13].Tree.Asc2&&res[13].Tree.Asc2.Classes)||{}; Object.keys(a2c).forEach(function(cn){(a2c[cn]||[]).forEach(function(n){G.dragonMap[n.Id]=n})}); var h103=(res[13].Tree&&res[13].Tree.Hearts103&&res[13].Tree.Hearts103.Classes)||{}; Object.keys(h103).forEach(function(cn){var lst=h103[cn]; (Array.isArray(lst)?lst:[]).forEach(function(n){if(n&&n.Id&&!G.dragonMap[n.Id])G.dragonMap[n.Id]=n})});}
   /* v0.418 (F2): with Chinese on, Dragonling node and path names
      carry the site's (EN) marker (the game's Chinese file
@@ -28032,7 +28427,7 @@ function applyGameData(res){
      here, so a live data refresh still lands on the screen the
      reader is looking at. Nothing is removed — the same renders
      run, just when the view is actually on screen. */
-  if(currentTab==='items')renderItems(); if(currentTab==='loot')renderLoot(); if(currentTab==='grail')renderGrail(); if(currentTab==='patches')renderPatches(); if(currentTab==='cube')renderCube(); if(currentTab==='forge')renderForge(); if(currentTab==='bestiary'&&$('bestBody'))renderBestiary();
+  if(currentTab==='items')renderItems(); if(currentTab==='loot')renderLoot(); if(currentTab==='grail')renderGrail(); if(currentTab==='patches')renderPatches(); if(currentTab==='crafting'){renderCube();renderForge()} if(currentTab==='bestiary'&&$('bestBody'))renderBestiary();
   if(G.ladder&&currentTab==='ladder')renderLadder(); if(G.meta&&currentTab==='meta')renderMeta();
   renderGameDataLine();
   /* If a tree popup is already open when the data lands (it was
@@ -28083,7 +28478,7 @@ function loadSnapshot(){
        overwritten by the older snapshot copy. */
     tier2.then(function(t2){
       if(t2[0]&&t2[0].monsters&&t2[0].monsters.length&&!G.monsters.length){G.monsters=t2[0].monsters; renderEnemyOptions(); renderPlanner(); if(currentTab==='bestiary')renderBestiary(); if(currentTab==='ladder'&&G.ladder)renderLadder()}
-      if(t2[1]&&t2[1].runewords&&t2[1].runewords.length&&!G.runewordsData){G.runewordsData=t2[1]; renderGear(); renderPlanner(); if(currentTab==='cube')renderCube()}
+      if(t2[1]&&t2[1].runewords&&t2[1].runewords.length&&!G.runewordsData){G.runewordsData=t2[1]; renderGear(); renderPlanner(); if(currentTab==='crafting')renderCube()}
       if(t2[2]&&t2[2].entries&&t2[2].entries.length){G.patchHistory=t2[2]; if(currentTab==='patches')renderPatches()}
       /* The Forge's two files ride the same deferred tier, but they
          are bundled from the game's own files, never the live API
@@ -28091,7 +28486,7 @@ function loadSnapshot(){
          the snapshot copies are the only source this view reads. */
       if(t2[3]&&t2[3].Recipes&&t2[3].Recipes.length)G.forgeData=t2[3];
       if(t2[4]&&t2[4].Shards&&t2[4].Shards.length)G.redShards=t2[4];
-      if((t2[3]||t2[4])&&currentTab==='forge')renderForge();
+      if((t2[3]||t2[4])&&currentTab==='crafting')renderForge();
     }).catch(function(){});
   });
 }
@@ -28230,7 +28625,7 @@ function init(){
   // ladder class chips
   $('ladderClassChips').innerHTML=['All'].concat(CLASSES.map(function(c){return c.Id})).map(function(c,i){return '<button class="chip '+(i===0?'active':'')+'" data-lcls="'+c+'">'+c+'</button>'}).join('');
   document.querySelectorAll('[data-lcls]').forEach(function(ch){ch.addEventListener('click',function(){$('ladderClassChips').setAttribute('data-active',ch.getAttribute('data-lcls'));document.querySelectorAll('[data-lcls]').forEach(function(x){x.classList.toggle('active',x===ch)});renderLadder()})});
-  renderClassGrid(); bindPlanner(); bindExtras(); bindHome(); bindInstances(); bindGear(); bindSkillsDrawer(); bindLoot(); bindCube(); bindStarterGuard(); bindItem4(); renderHome(); syncDefInputs(); renderDefenses(); bisInit();
+  renderClassGrid(); bindPlanner(); bindExtras(); bindHome(); bindInstances(); bindGear(); bindSkillsDrawer(); bindLoot(); bindCube(); bindCrafting(); bindStarterGuard(); bindItem4(); renderHome(); syncDefInputs(); renderDefenses(); bisInit();
   // Bring back any instances saved in the browser before the
   // starting tab is chosen, so the planner reopens with every
   // instance — and the one that was active — exactly as left.
@@ -28246,7 +28641,7 @@ function init(){
   // first, so a cold #tab=planner link falls back to Home inside
   // switchTab until a build is unlocked.
   var startTab=tabFromHash();
-  if(!startTab&&viewStoreData.tab&&TAB_NAMES.indexOf(viewStoreData.tab)>=0)startTab=viewStoreData.tab;
+  if(!startTab&&viewStoreData.tab&&(TAB_NAMES.indexOf(viewStoreData.tab)>=0||viewStoreData.tab==='forge'||viewStoreData.tab==='cube'||viewStoreData.tab==='runewords'||viewStoreData.tab==='oathword'))startTab=viewStoreData.tab;
   if(startTab&&startTab!=='home')switchTab(startTab,{skipHash:true});
   else if(startTab==='home')currentTab='home';
   if(!startTab||startTab==='home')document.body.classList.add('tab-home');
@@ -28286,8 +28681,12 @@ init();
 
   /* ---- Mobile bottom navigation (≤900px; the top nav is
      untouched and stays the desktop menu). "More" opens a small
-     sheet with the views the bar does not carry: Home, Patch
-     Notes, and the gated extras whenever they are enabled. ---- */
+     sheet with every top-level view the bar does not carry:
+     Home, Crafting and Patch Notes, plus the gated extras
+     whenever they are enabled. (Crafting was missing from this
+     list when the Forge moved into it, which left the whole
+     Crafting tab unreachable on a phone — every section that
+     is not in the bottom bar belongs in this sheet.) ---- */
   var bnav=$('bottomNav'), sheet=$('moreSheet');
   function syncBottomNav(){
     if(!bnav)return;
@@ -28297,9 +28696,9 @@ init();
   }
   function buildMoreSheet(){
     if(!sheet)return;
-    var items=[['home','Home'],['patches','Patch Notes']];
+    var items=[['home','Home'],['crafting','Crafting'],['patches','Patch Notes']];
     if(typeof EXTRA_TABS_ON!=='undefined'&&EXTRA_TABS_ON){
-      items=items.concat([['items','Items'],['bestiary','Bestiary'],['cube','The Cube'],['loot','Loot Filter'],['grail','Collections']]);
+      items=items.concat([['items','Items'],['bestiary','Bestiary'],['loot','Loot Filter'],['grail','Collections']]);
     }
     sheet.innerHTML=items.map(function(it){return '<button type="button" role="menuitem" data-more="'+it[0]+'">'+it[1]+'</button>'}).join('');
     sheet.querySelectorAll('[data-more]').forEach(function(b){
