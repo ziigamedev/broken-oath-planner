@@ -1317,7 +1317,7 @@ body.adv-open{overflow:hidden}
 .ms-name{font-family:Cinzel,serif;font-size:19px;font-weight:700;color:var(--gold2);line-height:1.15}
 .ms-sub{font-size:13px;color:var(--text);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ms-dps{font-size:15px;font-weight:800;color:var(--gold);margin-top:2px}
-.ms-rings{display:flex;align-items:center;gap:5px;margin-left:auto}
+.ms-rings{display:flex;align-items:flex-start;gap:5px;margin-left:auto;flex-wrap:wrap}
 /* Support sockets on the card — the round socket wells the user
    picked out (not the tall oval rings): a dark round disc with a
    bronze-gold rim and a deep black hole in the centre while empty,
@@ -1330,6 +1330,12 @@ body.adv-open{overflow:hidden}
 .ms-ring.drop-ok{outline:3px solid var(--green);outline-offset:2px}
 .ms-ring.drop-bad{outline:3px solid var(--red);outline-offset:2px}
 .ms-ring .sock-x{width:18px;height:18px;min-height:18px;top:-6px;right:-6px;font-size:12px}
+/* The linked support's name printed under its socket ring, always
+   visible — no hover or long-press needed to know what is linked.
+   An unlinked socket reads "Empty" in the faint tone. */
+.ms-ring-cell{display:flex;flex-direction:column;align-items:center;gap:3px;width:62px;flex:0 0 auto}
+.ms-ring-name{font-size:10.5px;line-height:1.2;text-align:center;color:var(--text);overflow-wrap:break-word;max-width:62px}
+.ms-ring-name.empty{color:var(--faint)}
 .ms-count{width:32px;height:44px;flex:0 0 auto;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--panel2);display:grid;place-items:center;font-size:16px;font-weight:800;color:var(--text)}
 /* A support socket the gem has not grown into yet: the game's
    SocketsAtLevel ladder keeps it shut until the gem level reaches
@@ -16951,7 +16957,7 @@ function renderDrawerCard(){
     for(var vi=0;vi<6;vi++){
       var vsid=vSups[vi]; var vsup=vsid?G.supportMap[vsid]:null;
       var vLocked=!vsup&&vi>=vOpenN, vKept=!!vsup&&vi>=vOpenN;
-      vRings+='<div class="ms-ring'+(vsup?' filled':'')+(vLocked?' locked':'')+(vKept?' kept':'')+(pickedFrom===vi&&pickedGem?' picked':'')+'" data-drop="sock" data-idx="'+vi+'" role="button" tabindex="0" aria-label="Support socket '+(vi+1)+': '+(vsup?esc(vsup.Name):(vLocked?('locked — opens at gem level '+socketOpensAt(vi)):'empty'))+'" title="'+(vsup?esc(vsup.Name)+(vKept?' — this socket is past the gem\u2019s ladder, but a filled socket stays open, so the link still counts':'')+' — drag to move, tap to pick up':(vLocked?('Socket '+(vi+1)+' opens at gem level '+socketOpensAt(vi)+' — sockets open as the gem levels: '+socketsAtLevels().join(' / ')):'Empty support socket — drop a support gem here'))+'">'+(vsup?gemSVG(supColor(vsup),20)+'<button class="sock-x" data-ringx="'+vi+'" type="button" aria-label="Remove '+esc(vsup.Name)+'">×</button>':(vLocked?'<span class="sock-lock">Lv '+socketOpensAt(vi)+'</span>':'<span class="sock-hole"></span>'))+'</div>';
+      vRings+='<div class="ms-ring-cell"><div class="ms-ring'+(vsup?' filled':'')+(vLocked?' locked':'')+(vKept?' kept':'')+(pickedFrom===vi&&pickedGem?' picked':'')+'" data-drop="sock" data-idx="'+vi+'" role="button" tabindex="0" aria-label="Support socket '+(vi+1)+': '+(vsup?esc(vsup.Name):(vLocked?('locked — opens at gem level '+socketOpensAt(vi)):'empty'))+'" title="'+(vsup?esc(vsup.Name)+(vKept?' — this socket is past the gem\u2019s ladder, but a filled socket stays open, so the link still counts':'')+' — drag to move, tap to pick up':(vLocked?('Socket '+(vi+1)+' opens at gem level '+socketOpensAt(vi)+' — sockets open as the gem levels: '+socketsAtLevels().join(' / ')):'Empty support socket — drop a support gem here'))+'">'+(vsup?gemSVG(supColor(vsup),20)+'<button class="sock-x" data-ringx="'+vi+'" type="button" aria-label="Remove '+esc(vsup.Name)+'">×</button>':(vLocked?'<span class="sock-lock">Lv '+socketOpensAt(vi)+'</span>':'<span class="sock-hole"></span>'))+'</div><span class="ms-ring-name'+(vsup?'':' empty')+'">'+(vsup?esc(vsup.Name):'Empty')+'</span></div>';
     }
     var vBlock=barSkillBlocker(state,ve);
     var vTags=vsk?(vsk.Tags||[]):[], vRole=null;
@@ -17029,7 +17035,7 @@ function renderDrawerCard(){
   for(var i=0;i<6;i++){
     var sid=state.supports[i]; var sup=sid?G.supportMap[sid]:null;
     var locked=!sup&&i>=openN, kept=!!sup&&i>=openN;
-    rings+='<div class="ms-ring'+(sup?' filled':'')+(locked?' locked':'')+(kept?' kept':'')+(pickedFrom===i&&pickedGem?' picked':'')+'" data-drop="sock" data-idx="'+i+'" role="button" tabindex="0" aria-label="Support socket '+(i+1)+': '+(sup?esc(sup.Name):(locked?('locked — opens at gem level '+socketOpensAt(i)):'empty'))+'" title="'+(sup?esc(sup.Name)+(kept?' — this socket is past the gem\u2019s ladder, but a filled socket stays open, so the link still counts':'')+' — drag to move, tap to pick up':(locked?('Socket '+(i+1)+' opens at gem level '+socketOpensAt(i)+' — sockets open as the gem levels: '+socketsAtLevels().join(' / ')):'Empty support socket — drop a support gem here'))+'">'+(sup?gemSVG(supColor(sup),20)+'<button class="sock-x" data-ringx="'+i+'" type="button" aria-label="Remove '+esc(sup.Name)+'">×</button>':(locked?'<span class="sock-lock">Lv '+socketOpensAt(i)+'</span>':'<span class="sock-hole"></span>'))+'</div>';
+    rings+='<div class="ms-ring-cell"><div class="ms-ring'+(sup?' filled':'')+(locked?' locked':'')+(kept?' kept':'')+(pickedFrom===i&&pickedGem?' picked':'')+'" data-drop="sock" data-idx="'+i+'" role="button" tabindex="0" aria-label="Support socket '+(i+1)+': '+(sup?esc(sup.Name):(locked?('locked — opens at gem level '+socketOpensAt(i)):'empty'))+'" title="'+(sup?esc(sup.Name)+(kept?' — this socket is past the gem\u2019s ladder, but a filled socket stays open, so the link still counts':'')+' — drag to move, tap to pick up':(locked?('Socket '+(i+1)+' opens at gem level '+socketOpensAt(i)+' — sockets open as the gem levels: '+socketsAtLevels().join(' / ')):'Empty support socket — drop a support gem here'))+'">'+(sup?gemSVG(supColor(sup),20)+'<button class="sock-x" data-ringx="'+i+'" type="button" aria-label="Remove '+esc(sup.Name)+'">×</button>':(locked?'<span class="sock-lock">Lv '+socketOpensAt(i)+'</span>':'<span class="sock-hole"></span>'))+'</div><span class="ms-ring-name'+(sup?'':' empty')+'">'+(sup?esc(sup.Name):'Empty')+'</span></div>';
   }
   var offHomeC=skill?skillOffHome(skill.Id):null;
   /* The card's number is the totals' number: a main skill the
@@ -24855,6 +24861,12 @@ function loadBO1Code(text,msgEl,opts){
   var code=bo1Extract(text);
   if(!code){if(msgEl)msgEl.textContent='Paste a build code first — the game\u2019s BO1.… or this planner\u2019s BOP1.….'; return}
   var finish=function(){
+    /* A code that opened is spent: empty the box it was pasted
+       into (opts.clearField — Home's code box passes its own), so
+       the field is not still holding the whole code when the
+       reader comes back. A code that failed to parse never reaches
+       here, so a bad paste stays in the box for fixing. */
+    if(opts.clearField)opts.clearField.value='';
     if(opts.stay){if(msgEl)msgEl.textContent='Loaded — it opened as its own plan in the tabs above.'}
     else{switchTab('planner'); if(msgEl)msgEl.textContent=''}
   };
@@ -25355,12 +25367,10 @@ function showLoadHelp(){
    +'<p class="sub">Good news: your heroes are already saved on this PC — the game keeps them all together in one place. Show us that folder once and you&rsquo;ll see every character you have, newest first. Tap the ones you want, and each opens in the planner with its gear, tree, Dragonling and gems riding along. Your saves are read right here in this tab — nothing is uploaded, ever.</p>'
    +'<div class="flex mt" style="flex-wrap:wrap;align-items:center"><button class="btn primary" id="helpFolderBtn" type="button">Show me my saves</button><button class="linkbtn" id="helpFilesBtn" type="button">or pick a single save file</button></div>'
    +'<div style="margin-top:18px;border-top:1px solid var(--line2);padding-top:14px"><b>Can&rsquo;t spot the folder?</b><p class="sub" style="margin:4px 0 0">When the window opens, paste this into its address bar and press Enter — it takes you straight there. (Your heroes may sit one level deeper, inside a folder named with your Steam ID — step into it if you see it.)</p><input class="pathbox" id="helpPath" readonly value="'+esc(SAVE_FOLDER_PATH)+'"><div class="flex" style="margin-top:8px;align-items:center"><button class="btn small" id="helpCopyBtn" type="button">Copy the save-folder path</button><span class="sub" id="helpCopyMsg"></span></div></div>'
-   +'<div style="margin-top:14px;border-top:1px solid var(--line2);padding-top:14px"><b>After the game log instead?</b><p class="sub" style="margin:4px 0 0">The planner can also read <code>BrokenOath.log</code> — every Guardian kill and training-post read you have done — and stand this plan&rsquo;s numbers next to what you actually dealt. The log lives here; drop it on the planner&rsquo;s log box, or drop it with your saves and it is read as a log, never as a character. It is read in this tab only, like everything else.</p><input class="pathbox" id="helpLogPath" readonly value="'+esc(LOG_FILE_PATH)+'"><div class="flex" style="margin-top:8px;align-items:center"><button class="btn small" id="helpCopyLogBtn" type="button">Copy the log path</button><span class="sub" id="helpCopyLogMsg"></span></div></div>'
    +'</div></div>';
   $('closeModal').addEventListener('click',closeModal);
   $('modalBg').addEventListener('click',function(e){if(e.target.id==='modalBg')closeModal()});
   $('helpCopyBtn').addEventListener('click',function(){copyTextToClip(SAVE_FOLDER_PATH,function(){$('helpCopyMsg').textContent='Copied.'})});
-  $('helpCopyLogBtn').addEventListener('click',function(){copyTextToClip(LOG_FILE_PATH,function(){$('helpCopyLogMsg').textContent='Copied.'})});
   $('helpFolderBtn').addEventListener('click',function(){closeModal(); var hd=$('homeSaveDir'); if(hd)hd.click()});
   $('helpFilesBtn').addEventListener('click',function(){closeModal(); var hf=$('homeSaveFile'); if(hf)hf.click()});
 }
@@ -26528,7 +26538,7 @@ function bindHome(){
   var hcb=$('homeCodeBtn'); if(hcb)hcb.addEventListener('click',function(){
     var code=($('homeCodeInput').value||'').trim();
     if(!code){$('homeCodeMsg').textContent='Paste a build code first — the game\u2019s BO1.… or this planner\u2019s BOP1.….'; return}
-    loadBO1Code(code,$('homeCodeMsg'));
+    loadBO1Code(code,$('homeCodeMsg'),{clearField:$('homeCodeInput')});
   });
   var tcb=$('treeCodeBtn'); if(tcb)tcb.addEventListener('click',function(){
     var code=($('treeCodeInput').value||'').trim();
@@ -27566,8 +27576,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.431';
-var PLANNER_BUILT_AT='2026-11-26T22:47:00-08:00';
+var PLANNER_VERSION='0.434';
+var PLANNER_BUILT_AT='2026-11-27T07:14:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
