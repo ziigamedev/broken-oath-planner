@@ -3941,7 +3941,8 @@
     "Ring",
     "Amulet",
     "Weapon",
-    "Shield"
+    "Shield",
+    "Tome"
    ],
    "ExcludeTags": [],
    "Weight": 90,

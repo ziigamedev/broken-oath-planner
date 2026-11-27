@@ -2776,7 +2776,7 @@
   {
    "Id": "trap_support",
    "Name": "Trap",
-   "Description": "The skill is thrown as a trap (up to 3, 16 seconds) that goes off when an enemy comes within 4 metres, then re-arms after about a second. 12% more damage and 25% increased damage; its first strike deals 15% more. Traps set off other Traps nearby. Your Traps out at once share their damage: each Trap past the first adds 5% of a Trap's damage.",
+   "Description": "The skill is thrown as a trap (up to 3, 16 seconds) that goes off when an enemy comes within 4 metres, then re-arms after about a second. 12% more damage and 25% increased damage; its first strike deals 15% more. Traps set off other Traps nearby. With several Traps out, together they deal one Trap's damage plus 5% for each extra Trap.",
    "RequiresAnyTag": [
     "Projectile",
     "Nova",

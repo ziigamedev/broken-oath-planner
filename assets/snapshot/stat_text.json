@@ -1397,8 +1397,8 @@
   },
   {
    "Key": "GolemLifeMore.Flat",
-   "Text": "Your Grave Golem deals {v}% more Damage for every 100 maximum Life you have; your other minions gain 35% of this",
-   "Negative": "Your Grave Golem deals {abs}% less Damage for every 100 maximum Life you have"
+   "Text": "Your Golems deal {v}% more Damage for every 100 maximum Life you have; your other minions gain 35% of this",
+   "Negative": "Your Golems deal {abs}% less Damage for every 100 maximum Life you have"
   },
   {
    "Key": "GrantSupport.Flag+chain",
