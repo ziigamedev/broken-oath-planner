@@ -1540,29 +1540,33 @@ body.adv-open{overflow:hidden}
 .lf-tab b{color:var(--gold);font-family:"IBM Plex Sans",sans-serif;margin-right:6px}
 .lf-tab.on{border-color:var(--gold);background:color-mix(in srgb, var(--gold) 16%, var(--panel2));color:var(--text)}
 .lf-tab.on b{color:var(--gold2)}
-/* Crafting switcher (v0.439): three tab cards that say what each
-   bench does, pinned under the top bars while the Crafting view
-   scrolls, so changing benches never needs a scroll back up through
-   the recipe lists. The sticky offset rides the same measured stack
-   as the planner's workspace tabs (--tbh top bar + --sbh menu;
+/* Crafting switcher (v0.439, always slim since v0.446): one slim
+   row of the three section names — the form the pinned switcher
+   compacted to in v0.444 is now its only form, at the top of the
+   view and pinned under the top bars while the Crafting view
+   scrolls, so changing benches never needs a scroll back up
+   through the recipe lists and the header never changes size (no
+   layout shift on scroll). The tall tab cards are gone; each
+   card's one-line explanation now sits at the top of its own
+   section's content (.craft-sec-lede) and scrolls away with it.
+   The sticky offset rides the same measured stack as the
+   planner's workspace tabs (--tbh top bar + --sbh menu;
    fitNavStack zeroes --sbh where the menu is static, so this one
    rule behaves the same on phone and desktop). The bar keeps its
    layout slot and an opaque panel ground, so stuck it covers
    nothing but the list scrolling beneath it. */
-.craft-tabs{position:sticky;top:calc(var(--tbh,70px) + var(--sbh,56px));z-index:12;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 16px;padding:8px;background:var(--panel);border:1px solid var(--line2);border-radius:var(--radius);box-shadow:0 8px 20px rgba(0,0,0,.4)}
-.craft-tab{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:3px;text-align:left;border:1px solid var(--line2);background:var(--panel2);color:var(--muted);padding:10px 12px;border-radius:var(--radius-sm);cursor:pointer;min-height:60px;transition:background .16s ease,border-color .16s ease,box-shadow .16s ease}
-.craft-tab-name{font-family:Cinzel,serif;font-weight:700;font-size:15.5px;letter-spacing:.02em;line-height:1.2;color:var(--text)}
-.craft-tab-desc{font-size:12.5px;line-height:1.4;color:var(--muted)}
+.craft-tabs{position:sticky;top:calc(var(--tbh,70px) + var(--sbh,56px));z-index:12;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin:0 0 4px;padding:3px;background:var(--panel);border:1px solid var(--line2);border-radius:var(--radius);box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.craft-tab{display:flex;flex-direction:row;align-items:center;justify-content:center;text-align:center;border:1px solid var(--line2);background:var(--panel2);color:var(--muted);padding:4px 6px;border-radius:var(--radius-sm);cursor:pointer;min-height:40px;transition:background .16s ease,border-color .16s ease,box-shadow .16s ease}
+.craft-tab-name{font-family:Cinzel,serif;font-weight:700;font-size:12.5px;letter-spacing:.02em;line-height:1.1;color:var(--text)}
 .craft-tab:hover{border-color:var(--gold)}
 .craft-tab:hover .craft-tab-name{color:var(--gold2)}
 .craft-tab.on{border-color:var(--gold);background:linear-gradient(180deg,color-mix(in srgb, var(--gold) 28%, var(--panel2)),color-mix(in srgb, var(--gold) 15%, var(--panel2)));box-shadow:inset 0 0 0 1px var(--gold),inset 0 -3px 0 var(--gold)}
 .craft-tab.on .craft-tab-name{color:var(--gold-text)}
-.craft-tab.on .craft-tab-desc{color:var(--text)}
+.craft-sec-lede{font-size:13px;line-height:1.45;color:var(--muted);margin:0}
 @media(max-width:680px){
-  .craft-tabs{gap:6px;padding:6px}
-  .craft-tab{padding:8px 9px;min-height:66px}
-  .craft-tab-name{font-size:13px}
-  .craft-tab-desc{font-size:11.5px;line-height:1.35}
+  .craft-tabs{gap:5px;padding:3px}
+  .craft-tab{padding:4px 5px;min-height:40px}
+  .craft-tab-name{font-size:12px}
 }
 #lfPanelSimulate .loot-preview-panel{position:static;max-height:none;display:block}
 #lfPanelSimulate .loot-preview-panel #lootPreview{overflow:visible}
@@ -1836,6 +1840,15 @@ textarea{width:100%;min-height:76px;resize:vertical;font-family:"IBM Plex Mono",
 tr.no-build td{color:var(--muted)}
 tr.no-build td b{color:var(--muted);font-weight:600}
 tr.no-build:hover td{background:transparent}
+/* Dead heroes (v0.446): a hero whose ladder entry carries the
+   game's dead flag (Hardcore deaths) keeps its rank and its
+   build, but the row reads dimmer than a living hero's, and the
+   level line gains a red RIP right after the level — the RIP
+   keeps its own danger colour so it stays readable inside the
+   dimmed row. */
+tr.dead-hero td{color:var(--muted)}
+tr.dead-hero td b{color:var(--muted);font-weight:600}
+.rip-mark{color:#e08a76;font-weight:700;letter-spacing:.05em}
 .no-build-cell{text-align:center}
 .no-build-mark{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 8px;border-radius:999px;border:1px dashed var(--line);color:var(--faint);font-weight:700;font-size:18px;line-height:1;cursor:help;background:var(--panel2)}
 .no-build-flag{display:inline-block;padding:3px 10px;border-radius:999px;border:1px solid var(--gold);color:var(--gold-text);background:color-mix(in srgb, var(--gold) 12%, var(--panel2));font-weight:700;font-size:12.5px;letter-spacing:.02em;white-space:nowrap}
@@ -2175,24 +2188,19 @@ details:not([open])>:not(summary){display:none}
    the Character hub) steps aside and only the view shows; the
    tool sections keep the popup sheet. The view head carries the
    workspace's title and the way back. */
-.wsview-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 14px;position:sticky;top:calc(var(--tbh,70px) + var(--sbh,56px));z-index:30;background:var(--bg);padding:8px 0 10px;border-bottom:1px solid var(--line2)}
-.wsview-head h2{margin:0;font-size:24px}
+.wsview-head{display:flex;align-items:center;gap:10px;flex-wrap:nowrap;margin:0 0 8px;position:sticky;top:calc(var(--tbh,70px) + var(--sbh,56px));z-index:30;background:var(--bg);padding:4px 0 6px;border-bottom:1px solid var(--line2)}
+.wsview-head h2{margin:0;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #wsBackBtn{flex:0 0 auto}
-/* Slim pinned view head (v0.445): the head pins under the top
-   stack (top bar + menu — the --tbh/--sbh fitNavStack measures)
-   instead of sliding up over it, and once the player scrolls,
-   wsPinSync puts .slimpin on the view and the pinned head
-   compacts to one slim row — the same treatment the Crafting
-   switcher got in v0.444, shared by all three views since they
-   share this one head. fitNavStack measures the head into
-   --wvh so the root scroll-padding keeps scrolled-to content
-   below the pinned head, and re-measures the moment the class
-   flips. The sentinel rides in the flow directly above the
-   head, so slimming the head never moves it: no flicker at
-   the boundary. */
-.ws-pin-sentinel{height:0}
-#view-workspace.slimpin .wsview-head{flex-wrap:nowrap;gap:10px;padding:4px 0 6px;margin-bottom:8px}
-#view-workspace.slimpin .wsview-head h2{font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Always-slim view head (v0.446): the slim row v0.445 compacted
+   to on scroll is now the head's only form — view name + Back to
+   planner, one fixed height at the top of the view and pinned
+   under the top stack (top bar + menu — the --tbh/--sbh
+   fitNavStack measures) while the view scrolls, shared by all
+   three views since they share this one head. Because the head
+   never changes size, scrolling never shifts the content under
+   it. fitNavStack measures the head into --wvh so the root
+   scroll-padding keeps scrolled-to content below the pinned
+   head. */
 #view-planner.ws-open .instance-bar,#view-planner.ws-open .sample-banner,#view-planner.ws-open .starter-banner,#view-planner.ws-open #wsCharacter{display:none}
 /* Inside the view the Skills panel drops its card frame and its
    own head row, exactly as it did inside the popup sheet — the
@@ -2605,39 +2613,34 @@ body.ws-tree .tree-rail{display:flex}
 .cost-note{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.45}
 .craft-filters{position:sticky;top:calc(var(--tbh,70px) + var(--sbh,56px) + var(--cth,96px));z-index:11;background:var(--panel);border:1px solid var(--line2);border-radius:var(--radius);padding:10px 12px;box-shadow:0 8px 20px rgba(0,0,0,.35)}
 .craft-filters.in-card{background:var(--panel2)}
-/* Slim pinned Crafting stack (v0.444): at the top of the Crafting
-   view the switcher keeps its full tab cards with their one-line
-   descriptions, exactly as they are. Once the player scrolls and
-   the switcher pins, craftPinSync puts .slimpin on the view and
-   the pinned stack compacts: the switcher becomes one slim row of
-   the three section names (no description lines, tight padding),
-   and the open section's filter bar pins directly under it in a
-   compact form — search on one line, the selects still on that
-   line, and the chips in a single horizontally scrollable row
-   instead of wrapping into several. At 390px the whole pinned
-   stack (slim switcher + filter bar) is about 150px tall, against
-   the ~340px the full cards and wrapped chips used to hold.
-   fitNavStack re-measures --cth/--cfh the moment the class flips,
-   so the filter bar's sticky offset and the Forge jump targets'
-   scroll margin ride the slim heights and no content hides under
-   the stack. Nothing but presentation changes: every control,
-   word and filter behaves exactly as before. */
-.craft-pin-sentinel{height:0}
-#view-crafting.slimpin .craft-tabs{padding:3px;gap:5px;margin-bottom:4px}
-#view-crafting.slimpin .craft-tab{flex-direction:row;align-items:center;justify-content:center;min-height:40px;padding:4px 6px;text-align:center}
-#view-crafting.slimpin .craft-tab-desc{display:none}
-#view-crafting.slimpin .craft-tab-name{font-size:12.5px;line-height:1.1}
-#view-crafting.slimpin .craft-filters{padding:4px 8px;min-width:0}
-#view-crafting.slimpin .craft-filters .flex{flex-wrap:nowrap !important}
-#view-crafting.slimpin .craft-filters input[type="search"]{min-width:0 !important;min-height:34px;height:34px;padding:4px 9px}
-#view-crafting.slimpin .craft-filters select{min-width:0;min-height:34px;flex:0 1 auto;max-width:36%;padding-top:4px;padding-bottom:4px}
-#view-crafting.slimpin .craft-filters label.sub{white-space:nowrap;font-size:12px}
-#view-crafting.slimpin .craft-filters .flex.between{margin-top:3px !important;line-height:1.25}
-#view-crafting.slimpin .craft-filters p.sub{margin-top:3px !important;font-size:12px;line-height:1.25}
-#view-crafting.slimpin .craft-filters .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-top:3px !important}
-#view-crafting.slimpin .craft-filters .chips::-webkit-scrollbar{display:none}
-#view-crafting.slimpin .craft-filters .chip{flex:0 0 auto;white-space:nowrap;min-height:30px;padding:4px 9px;font-size:12.5px;line-height:1.25}
-#view-crafting.slimpin .craft-filters .btn.small{min-height:30px;padding:3px 9px}
+/* Always-slim Crafting stack (v0.446): the compact pinned stack
+   v0.444 switched to on scroll — slim switcher (see the switcher
+   rules above) plus the open section's filter bar in its compact
+   form — is now the only form, at the top of the view and while
+   pinned: the filter bar pins directly under the slim switcher
+   with search on one line, the selects still on that line, and
+   the chips in a single horizontally scrollable row instead of
+   wrapping into several. At 390px the whole pinned stack (slim
+   switcher + filter bar) is about 150px tall, against the ~340px
+   the full cards and wrapped chips used to hold. Because nothing
+   in the stack ever changes size, fitNavStack's --cth/--cfh
+   measurements are fixed: the filter bar's sticky offset and the
+   Forge jump targets' scroll margin ride the one slim height and
+   scrolling never shifts content. Nothing but presentation
+   changes: every control, word and filter behaves exactly as
+   before. */
+#view-crafting .card{min-width:0}
+#view-crafting .craft-filters{padding:4px 8px;min-width:0}
+#view-crafting .craft-filters .flex{flex-wrap:nowrap !important}
+#view-crafting .craft-filters input[type="search"]{min-width:0 !important;min-height:34px;height:34px;padding:4px 9px}
+#view-crafting .craft-filters select{min-width:0;min-height:34px;flex:0 1 auto;max-width:36%;padding-top:4px;padding-bottom:4px}
+#view-crafting .craft-filters label.sub{white-space:nowrap;font-size:12px}
+#view-crafting .craft-filters .flex.between{margin-top:3px !important;line-height:1.25}
+#view-crafting .craft-filters p.sub{margin-top:3px !important;font-size:12px;line-height:1.25}
+#view-crafting .craft-filters .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-top:3px !important}
+#view-crafting .craft-filters .chips::-webkit-scrollbar{display:none}
+#view-crafting .craft-filters .chip{flex:0 0 auto;white-space:nowrap;min-height:30px;padding:4px 9px;font-size:12.5px;line-height:1.25}
+#view-crafting .craft-filters .btn.small{min-height:30px;padding:3px 9px}
 /* Inside the Crafting sections (v0.441) — the tidy pass that came
    with putting the recipes first. One spacing rhythm for every
    block under the switcher, and the reference blocks that now sit
@@ -4052,7 +4055,6 @@ body.tab-home .brand h1{display:none}
        sits); Back returns it to the stash and lands on the
        planner exactly as it was left. -->
   <div id="view-workspace" class="hidden">
-    <div class="ws-pin-sentinel" id="wsPinSentinel" aria-hidden="true"></div>
     <div class="wsview-head"><button class="btn small" id="wsBackBtn" type="button">← Back to planner</button><h2 id="wsViewTitle">Skills</h2></div>
     <div id="wsViewBody"></div>
     <!-- Slim icon rail (v0.406): rides the Skills view's right
@@ -4131,14 +4133,14 @@ body.tab-home .brand h1{display:none}
 
   <!-- CRAFTING -->
   <section id="view-crafting" class="hidden">
-    <div class="craft-pin-sentinel" id="craftPinSentinel" aria-hidden="true"></div>
     <nav class="craft-tabs" aria-label="Crafting sections">
-      <button class="craft-tab on" type="button" data-craft="forge" aria-pressed="true"><span class="craft-tab-name">Forge</span><span class="craft-tab-desc">Improve a piece of gear with materials</span></button>
-      <button class="craft-tab" type="button" data-craft="cube" aria-pressed="false"><span class="craft-tab-name">The Cube</span><span class="craft-tab-desc">Put items in, get something new out</span></button>
-      <button class="craft-tab" type="button" data-craft="oathword" aria-pressed="false"><span class="craft-tab-name">Oathword &amp; runewords</span><span class="craft-tab-desc">Rune combinations that remake a normal item</span></button>
+      <button class="craft-tab on" type="button" data-craft="forge" aria-pressed="true"><span class="craft-tab-name">Forge</span></button>
+      <button class="craft-tab" type="button" data-craft="cube" aria-pressed="false"><span class="craft-tab-name">The Cube</span></button>
+      <button class="craft-tab" type="button" data-craft="oathword" aria-pressed="false"><span class="craft-tab-name">Oathword &amp; runewords</span></button>
     </nav>
     <div id="craftForge">
     <div style="display:grid;gap:16px">
+      <p class="craft-sec-lede">Improve a piece of gear with materials</p>
       <div class="craft-filters">
         <div class="flex" style="gap:8px;flex-wrap:wrap;align-items:center">
           <input type="search" id="forgeSearch" placeholder="Search recipes — name, effect, material…" style="flex:1;min-width:200px">
@@ -4184,6 +4186,7 @@ body.tab-home .brand h1{display:none}
     </div>
     <div id="craftCube" class="hidden">
     <div style="display:grid;gap:16px">
+      <p class="craft-sec-lede">Put items in, get something new out</p>
       <div class="craft-filters">
         <div class="flex"><input type="search" id="cubeSearch" placeholder="Search recipes — name, ingredient, result…" style="flex:1;min-width:200px"></div>
         <div class="chips" id="cubeFamChips" style="margin-top:8px"></div>
@@ -4236,6 +4239,7 @@ body.tab-home .brand h1{display:none}
     <div style="display:grid;gap:16px">
       <div class="card">
         <div class="flex between"><div><h2>Oathword &amp; runewords</h2></div><span class="pill" id="rwCountPill">—</span></div>
+        <p class="craft-sec-lede" style="margin-top:8px">Rune combinations that remake a normal item</p>
         <div class="craft-filters in-card" style="margin-top:12px">
           <div class="flex"><input type="search" id="rwSearch" placeholder="Search runewords — name, rune, base, mod…" style="flex:1;min-width:200px"><select id="rwBaseSel" aria-label="Runeword base"></select><select id="rwKindSel" aria-label="Runeword kind"><option value="all">Regular &amp; red</option><option value="reg">Regular only</option><option value="red">Red only</option></select></div>
           <div class="chips" id="rwClassChips" style="margin-top:8px"></div>
@@ -11387,7 +11391,14 @@ function renderLadder(){
   arr.forEach(function(h,hi){
     var hasBuild=!!(h.has_build&&h.build);
     var noPub=heroNoBuild(h);
-    var rowClass=noPub?' class="no-build" aria-label="No build published"':(hasBuild?'':' class="no-build" aria-label="No published build"');
+    /* Dead heroes (the entry's dead flag — Hardcore deaths) stay
+       in the list in rank order and stay openable exactly like
+       living heroes; the ascendancy filter above never removes
+       one for being dead. The row only reads differently: dimmed,
+       with a red RIP right after the level in the hero cell. */
+    var isDead=!!h.dead;
+    var rowCls=[]; if(noPub||!hasBuild)rowCls.push('no-build'); if(isDead)rowCls.push('dead-hero');
+    var rowClass=(rowCls.length?' class="'+rowCls.join(' ')+'"':'')+(noPub?' aria-label="No build published"':(hasBuild?'':' aria-label="No published build"'));
     var buildCell=noPub
       ? '<button class="btn small" data-no-build="'+hi+'">View build</button>'
       : (hasBuild
@@ -11397,7 +11408,7 @@ function renderLadder(){
       ? '<span class="no-build-flag">No build published</span>'
       : '<b>'+esc(skillName(h.main_skill))+'</b><br><small class="sub">'+esc((h.main_supports||[]).map(supportName).join(' • '))+'</small><br><small class="sub">'+esc(archetypeLabel(h.main_skill,h.class))+'</small>';
     var dpsCell=noPub?'—':(h.guardian_dps_median?fmt(h.guardian_dps_median):'—');
-    html+='<tr'+rowClass+'><td><b>#'+h.rank+'</b><br><small class="sub">Class #'+h.class_rank+'</small></td><td><b>'+esc(h.class)+'</b> '+(h.ascendancy?'• '+esc(h.ascendancy):'')+'<br><small class="sub">Lv '+h.level+(h.dead?' • Dead':'')+'</small></td><td>'+skillCell+'</td><td><b>'+h.rupture_level+'</b><br><small class="sub">'+(h.best_seconds?h.best_seconds.toFixed(1)+'s':'')+'</small></td><td><b>'+dpsCell+'</b></td><td class="'+(hasBuild?'':'no-build-cell')+'">'+buildCell+'</td></tr>';
+    html+='<tr'+rowClass+'><td><b>#'+h.rank+'</b><br><small class="sub">Class #'+h.class_rank+'</small></td><td><b>'+esc(h.class)+'</b> '+(h.ascendancy?'• '+esc(h.ascendancy):'')+'<br><small class="sub">Lv '+h.level+(isDead?' <span class="rip-mark">RIP</span>':'')+'</small></td><td>'+skillCell+'</td><td><b>'+h.rupture_level+'</b><br><small class="sub">'+(h.best_seconds?h.best_seconds.toFixed(1)+'s':'')+'</small></td><td><b>'+dpsCell+'</b></td><td class="'+(hasBuild?'':'no-build-cell')+'">'+buildCell+'</td></tr>';
   });
   html+='</tbody></table></div>';
   $('ladderBody').innerHTML=html;
@@ -18147,7 +18158,7 @@ function teardownPop(restoreScroll){
       window.scrollTo(0,wsReturnY);
     }
   }
-  wsPinSync(); fitNavStack(); /* the view head leaves the measured stack with the view (v0.445) */
+  fitNavStack(); /* the view head leaves the measured stack with the view */
 }
 function closePlannerPop(){
   if(!popCurrent)return;
@@ -18185,7 +18196,7 @@ function openWorkspaceView(name){
   if(vp)vp.classList.add('ws-open');
   document.addEventListener('keydown',popEscKey);
   window.scrollTo(0,0);
-  fitNavStack(); wsPinSync(); /* the view head joins the measured stack at its full height, and the slim pin starts unpinned (v0.445) */
+  fitNavStack(); /* the view head joins the measured stack at its one slim height (v0.446) */
   if(name==='skills'){renderDrawerSkills(); renderSockets(); renderDrawerBar(); renderDrawerChar(); renderGemPalette(); renderSimPins(); renderSimPinBoard(); renderManaVerdict(); renderSkillTable(); renderGemLevels(); addSkillMsg('');}
   if(name==='dragon')renderDragonPage();
   if(name==='tree'){buildTreeCanvas(); renderTreeList(); updateTreeCanvasStates(); centerTreeOnClass(false);}
@@ -27036,67 +27047,28 @@ function fitNavStack(){
     var cfh=0;
     document.querySelectorAll('#view-crafting .craft-filters').forEach(function(b){if(b.offsetHeight>cfh)cfh=b.offsetHeight});
     r.setProperty('--cfh',cfh+'px');
-    /* The open workspace view's head pins under this same stack
-       (v0.445): --wvh is its height plus its bottom margin while
-       a full-page view (Skills, Dragonling, Passive Tree) is
+    /* The open workspace view's head pins under this same stack:
+       --wvh is its height plus its bottom margin while a
+       full-page view (Skills, Dragonling, Passive Tree) is
        open, read by the root scroll-padding so a scrolled-to
-       row lands below the pinned head too. The hidden view
-       measures 0, so the padding is untouched everywhere else. */
+       row lands below the pinned head too. The head is always
+       slim (v0.446), so the measurement is one fixed height.
+       The hidden view measures 0, so the padding is untouched
+       everywhere else. */
     var wvh=0;
     var wv=document.getElementById('view-workspace'), wh=document.querySelector('.wsview-head');
     if(wv&&wh&&!wv.classList.contains('hidden')&&wh.offsetHeight){var whmb=parseFloat(window.getComputedStyle(wh).marginBottom)||0; wvh=wh.offsetHeight+whmb}
     r.setProperty('--wvh',wvh+'px');
   }catch(e){}
 }
-/* Slim pinned Crafting stack (v0.444): the sentinel sits in the
-   flow directly above the Crafting switcher, so the moment its
-   top edge passes the switcher's sticky line (top bar + menu,
-   the --tbh/--sbh fitNavStack just measured) the switcher is
-   stuck — the view gets .slimpin, the pinned stack compacts (see
-   the CSS), and fitNavStack re-measures --cth/--cfh against the
-   slim heights so the filter bar's offset and the Forge jump
-   targets' scroll margin follow. The sentinel rides above the
-   switcher, so slimming the switcher never moves it: no flicker
-   at the boundary. Off the Crafting view the class comes off. */
-var craftPinTick=false;
-function craftPinSync(){
-  craftPinTick=false;
-  var view=$('view-crafting'); if(!view)return;
-  var sn=$('craftPinSentinel');
-  if(!sn||currentTab!=='crafting'){view.classList.remove('slimpin'); return}
-  var rs=document.documentElement.style;
-  var top=(parseFloat(rs.getPropertyValue('--tbh'))||0)+(parseFloat(rs.getPropertyValue('--sbh'))||0);
-  var stuck=sn.getBoundingClientRect().top<=top+1;
-  if(view.classList.contains('slimpin')!==stuck){view.classList.toggle('slimpin',stuck); fitNavStack()}
-}
-function craftPinRequest(){if(!craftPinTick){craftPinTick=true; if(window.requestAnimationFrame)requestAnimationFrame(craftPinSync); else craftPinSync()}}
-window.addEventListener('scroll',craftPinRequest,{passive:true});
-window.addEventListener('resize',craftPinRequest);
-/* Slim pinned workspace view head (v0.445): the same sentinel
-   pattern as the Crafting stack above, for the three full-page
-   views — Skills, Dragonling and the Passive Tree share the one
-   head in #view-workspace, so one sync serves all three. The
-   sentinel sits in the flow directly above the head, so the
-   moment its top edge passes the head's sticky line (top bar +
-   menu, the --tbh/--sbh fitNavStack just measured) the head is
-   stuck — the view gets .slimpin, the pinned head compacts to
-   one slim row (see the CSS), and fitNavStack re-measures
-   --wvh against the slim height so scrolled-to content still
-   lands clear of it. Off the views the class comes off. */
-var wsPinTick=false;
-function wsPinSync(){
-  wsPinTick=false;
-  var view=$('view-workspace'); if(!view)return;
-  var sn=$('wsPinSentinel');
-  if(!sn||!wsViewOpen){view.classList.remove('slimpin'); return}
-  var rs=document.documentElement.style;
-  var top=(parseFloat(rs.getPropertyValue('--tbh'))||0)+(parseFloat(rs.getPropertyValue('--sbh'))||0);
-  var stuck=sn.getBoundingClientRect().top<=top+1;
-  if(view.classList.contains('slimpin')!==stuck){view.classList.toggle('slimpin',stuck); fitNavStack()}
-}
-function wsPinRequest(){if(!wsPinTick){wsPinTick=true; if(window.requestAnimationFrame)requestAnimationFrame(wsPinSync); else wsPinSync()}}
-window.addEventListener('scroll',wsPinRequest,{passive:true});
-window.addEventListener('resize',wsPinRequest);
+/* Always-slim headers (v0.446): the Crafting switcher and the
+   workspace view head are slim at every scroll position — the
+   v0.444/v0.445 sentinel + .slimpin compact-on-scroll machinery
+   is gone, so no header ever changes size and scrolling never
+   shifts content. fitNavStack above still measures the one fixed
+   slim height of each into --cth/--cfh/--wvh, which the sticky
+   offsets, the root scroll-padding and the Forge jump targets'
+   scroll margin all read. */
 function switchTab(name,opts){
   opts=opts||{};
   /* The Forge and the Cube used to be tabs of their own; both now
@@ -27118,7 +27090,6 @@ function switchTab(name,opts){
   document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('active',t.getAttribute('data-tab')===name)});
   TAB_NAMES.forEach(function(v){$('view-'+v).classList.toggle('hidden',v!==name)});
   fitNavStack(); /* the stack changes with the view (planner adds the workspace tabs) — re-measure before anything scrolls */
-  craftPinSync(); /* the Crafting slim-pin state belongs to the Crafting view only */
   if(name==='home')renderHome();if(name==='ladder'){if(G.ladder&&(G.ladder||{}).league===state.league)renderLadder();else loadLeagueSnapshot(state.league)}if(name==='meta'){if(G.meta&&(G.meta||{}).league===state.league)renderMeta();else loadLeagueSnapshot(state.league)}if(name==='items')renderItems();if(name==='bestiary')renderBestiary();if(name==='crafting'){renderForge();renderCube()}if(name==='loot')renderLoot();if(name==='grail')renderGrail();if(name==='patches')renderPatches();
   /* Switching views never carried a scroll reset, so the offset
      from the view being left rode into the one being opened: the
@@ -27377,7 +27348,6 @@ function craftSetSection(sec){
   document.querySelectorAll('[data-craft]').forEach(function(b){var on=b.getAttribute('data-craft')===craftState.sec; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on?'true':'false')});
   if(craftState.sec==='forge')renderForge(); else renderCube();
   if(window.fitNavStack)fitNavStack(); /* the newly opened section's filter bar joins the measured stack */
-  craftPinSync();
 }
 function bindCrafting(){
   document.querySelectorAll('[data-craft]').forEach(function(b){b.addEventListener('click',function(){craftSetSection(b.getAttribute('data-craft'))})});
@@ -28075,8 +28045,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.445';
-var PLANNER_BUILT_AT='2026-11-27T10:27:37-08:00';
+var PLANNER_VERSION='0.446';
+var PLANNER_BUILT_AT='2026-11-27T10:51:06-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
