@@ -22075,7 +22075,7 @@
         "Value": 1
        }
       ],
-      "Text": "Ballistas last 60% longer  ·  Placing one at your maximum refreshes them all",
+      "Text": "Ballistas and Arrow Totems last 60% longer  ·  Placing one at your maximum refreshes the rest",
       "Plumb": "S",
       "Ship": true,
       "Tune": "code = BOTotem.cpp BOEyrie113 (Place: bow-pool Duration x(1+Longer 60/100); MakeTotemRoom at the maximum: the rest RefreshLife113) (META2 BFB17 slice 4 EYRIE113)"
