@@ -2036,11 +2036,12 @@ html{scroll-behavior:smooth}
    clipped mid-line. The bars' heights are not constants — the
    top bar and the menu wrap taller at narrow widths and under
    fallback fonts — so fitNavStack() measures the real bars into
-   --tbh / --sbh / --wsh and this one root scroll-padding keeps
-   every scrolled-to element clear of the stack. (--wsh counts
-   only while the planner is open; elsewhere the stack is just
-   the top bar plus the menu.) */
-html{scroll-padding-top:calc(var(--tbh,70px) + var(--sbh,56px) + var(--wsh,0px) + 14px)}
+   --tbh / --sbh / --wsh / --wvh and this one root scroll-padding
+   keeps every scrolled-to element clear of the stack. (--wsh
+   counts only while the planner is open, --wvh only while one
+   of its full-page workspace views is; elsewhere the stack is
+   just the top bar plus the menu.) */
+html{scroll-padding-top:calc(var(--tbh,70px) + var(--sbh,56px) + var(--wsh,0px) + var(--wvh,0px) + 14px)}
 /* A closed <details> hides its content — say so outright, so no
    engine lays the hidden controls out over whatever follows them
    (the Home paste-a-build box was being painted under the steps row
@@ -2174,9 +2175,24 @@ details:not([open])>:not(summary){display:none}
    the Character hub) steps aside and only the view shows; the
    tool sections keep the popup sheet. The view head carries the
    workspace's title and the way back. */
-.wsview-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 14px;position:sticky;top:0;z-index:30;background:var(--bg);padding:8px 0 10px;border-bottom:1px solid var(--line2)}
+.wsview-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 14px;position:sticky;top:calc(var(--tbh,70px) + var(--sbh,56px));z-index:30;background:var(--bg);padding:8px 0 10px;border-bottom:1px solid var(--line2)}
 .wsview-head h2{margin:0;font-size:24px}
 #wsBackBtn{flex:0 0 auto}
+/* Slim pinned view head (v0.445): the head pins under the top
+   stack (top bar + menu — the --tbh/--sbh fitNavStack measures)
+   instead of sliding up over it, and once the player scrolls,
+   wsPinSync puts .slimpin on the view and the pinned head
+   compacts to one slim row — the same treatment the Crafting
+   switcher got in v0.444, shared by all three views since they
+   share this one head. fitNavStack measures the head into
+   --wvh so the root scroll-padding keeps scrolled-to content
+   below the pinned head, and re-measures the moment the class
+   flips. The sentinel rides in the flow directly above the
+   head, so slimming the head never moves it: no flicker at
+   the boundary. */
+.ws-pin-sentinel{height:0}
+#view-workspace.slimpin .wsview-head{flex-wrap:nowrap;gap:10px;padding:4px 0 6px;margin-bottom:8px}
+#view-workspace.slimpin .wsview-head h2{font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #view-planner.ws-open .instance-bar,#view-planner.ws-open .sample-banner,#view-planner.ws-open .starter-banner,#view-planner.ws-open #wsCharacter{display:none}
 /* Inside the view the Skills panel drops its card frame and its
    own head row, exactly as it did inside the popup sheet — the
@@ -3954,7 +3970,9 @@ body.tab-home .brand h1{display:none}
            live in this right-side drawer now. It opens from a
            support ring tap (aimed at that socket), the icon
            rail's gem / + buttons, or the bar strip's + slot; it
-           closes on its × , on Escape, and once a pick lands.
+           closes on its × , its scrim, on Escape, or when the
+           view is left — a pick that lands leaves it open
+           (v0.445), so several supports can be added in a row.
            All the ids inside are the ones the render functions
            have always used. -->
       <div class="sk-pick-scrim hidden" id="skPickScrim"></div>
@@ -4034,6 +4052,7 @@ body.tab-home .brand h1{display:none}
        sits); Back returns it to the stash and lands on the
        planner exactly as it was left. -->
   <div id="view-workspace" class="hidden">
+    <div class="ws-pin-sentinel" id="wsPinSentinel" aria-hidden="true"></div>
     <div class="wsview-head"><button class="btn small" id="wsBackBtn" type="button">← Back to planner</button><h2 id="wsViewTitle">Skills</h2></div>
     <div id="wsViewBody"></div>
     <!-- Slim icon rail (v0.406): rides the Skills view's right
@@ -13585,9 +13604,12 @@ function renderGemPalette(){
       if(!gemFitsSkill(id,skill)){sockMsg(supportName(id)+' does not fit '+skillName(focusId)+' — its required tags don\u2019t match. Drop it on a skill in the list that it does fit.'); return}
       if(pickedGem===id){pickedGem=null; sockMsg('Put '+supportName(id)+' down.'); renderGemPalette(); return}
       /* A drawer opened from a ring tap is aimed at that socket:
-         this pick lands straight in it, and the drawer closes
-         behind the placement (placeGem does the closing). If the
-         socket refuses the gem the drawer stays open, aimed. */
+         this pick lands straight in it, and the drawer stays
+         open for the next pick (v0.445) — placeGem spends the
+         aim when the pick lands, so the next tap picks its gem
+         up instead of landing in the socket that just filled.
+         If the socket refuses the gem the drawer stays open,
+         still aimed. */
       if(skPickDrawerOpen()&&skDrawerSlot!=null){
         var slot=skDrawerSlot;
         placeGem(slot,id); pickedFrom=null;
@@ -13596,9 +13618,11 @@ function renderGemPalette(){
       }
       pickedGem=id; sockMsg(supportName(id)+' picked up — tap a support slot to link it, or drop it on a skill.');
       renderGemPalette();
-      /* The gem is in hand: close the drawer so the card's
-         sockets are reachable for the tap that seats it. */
-      closeSkillsSideDrawer();
+      /* The gem is in hand and the drawer stays open (v0.445):
+         on a wide screen the card's sockets sit beside the
+         docked drawer, ready for the tap that seats the gem;
+         on a phone the player puts the drawer away themselves
+         when they are done adding. */
     });
   });
 }
@@ -13647,12 +13671,20 @@ function placeGem(slotIdx,supId){
   var existing=t.sups.indexOf(supId);
   if(existing>=0&&existing!==slotIdx){t.sups[existing]=t.sups[slotIdx]||'';}
   t.sups[slotIdx]=supId; pickedGem=null;
+  /* The picker drawer's aim is spent by a pick that lands in
+     the socket it was aimed at (v0.445): the drawer stays open
+     (below), and leaving the aim on a socket that just filled
+     would land the next palette pick in it too, over the gem
+     already sitting there. */
+  if(skDrawerSlot===slotIdx)skDrawerSlot=null;
   if(t.main){renderSupports(); renderPlanner();}
   else commitSockTarget();
-  /* A landed pick closes the picker drawer, whichever gesture
-     placed it — a palette click, a drag onto a ring, a tap with
-     the gem in hand. */
-  closeSkillsSideDrawer();
+  /* A landed pick leaves the picker drawer exactly as it is
+     (v0.445), whichever gesture placed it — a palette click, a
+     drag onto a ring, a tap with the gem in hand — so several
+     supports can be added one after another. The drawer closes
+     only when the player closes it (its ×, the scrim, the rail
+     button, Escape) or leaves the view. */
   showSupportDetail(supId);
   sockMsg(supportName(supId)+' linked in slot '+(slotIdx+1)+(t.main?'.':' of '+skillName(t.id)+'.'));
 }
@@ -18115,6 +18147,7 @@ function teardownPop(restoreScroll){
       window.scrollTo(0,wsReturnY);
     }
   }
+  wsPinSync(); fitNavStack(); /* the view head leaves the measured stack with the view (v0.445) */
 }
 function closePlannerPop(){
   if(!popCurrent)return;
@@ -18152,6 +18185,7 @@ function openWorkspaceView(name){
   if(vp)vp.classList.add('ws-open');
   document.addEventListener('keydown',popEscKey);
   window.scrollTo(0,0);
+  fitNavStack(); wsPinSync(); /* the view head joins the measured stack at its full height, and the slim pin starts unpinned (v0.445) */
   if(name==='skills'){renderDrawerSkills(); renderSockets(); renderDrawerBar(); renderDrawerChar(); renderGemPalette(); renderSimPins(); renderSimPinBoard(); renderManaVerdict(); renderSkillTable(); renderGemLevels(); addSkillMsg('');}
   if(name==='dragon')renderDragonPage();
   if(name==='tree'){buildTreeCanvas(); renderTreeList(); updateTreeCanvasStates(); centerTreeOnClass(false);}
@@ -18236,11 +18270,16 @@ function closeSkillsDrawer(){
    docked at the right of the Skills view (it slides over the view
    on a phone). skDrawerSlot remembers the socket a ring tap aimed
    the drawer at: a palette pick then lands straight in that
-   socket and the drawer closes, the pick-and-place the card has
-   always used, completed inside the drawer. Opened any other
-   way, a palette pick is the classic pick-up — and the drawer
-   closes behind it so the card's sockets are reachable for the
-   tap that seats the gem. The gem-level table likewise leaves
+   socket, the pick-and-place the card has always used,
+   completed inside the drawer. Since v0.445 a landed pick
+   leaves the drawer open — placeGem spends the aim, so the
+   next pick cannot land in the socket that just filled — and
+   several supports can be added in a row; the drawer closes
+   only when the player closes it or leaves the view. Opened
+   any other way, a palette pick is the classic pick-up — the
+   drawer stays open behind it too, and on a wide screen the
+   card's sockets sit beside the docked drawer for the tap
+   that seats the gem. The gem-level table likewise leaves
    the view: it sits in a sheet under the card, opened from the
    information button beside the gem-level control. */
 var skDrawerSlot=null, skDrawerMode='supports';
@@ -26997,6 +27036,16 @@ function fitNavStack(){
     var cfh=0;
     document.querySelectorAll('#view-crafting .craft-filters').forEach(function(b){if(b.offsetHeight>cfh)cfh=b.offsetHeight});
     r.setProperty('--cfh',cfh+'px');
+    /* The open workspace view's head pins under this same stack
+       (v0.445): --wvh is its height plus its bottom margin while
+       a full-page view (Skills, Dragonling, Passive Tree) is
+       open, read by the root scroll-padding so a scrolled-to
+       row lands below the pinned head too. The hidden view
+       measures 0, so the padding is untouched everywhere else. */
+    var wvh=0;
+    var wv=document.getElementById('view-workspace'), wh=document.querySelector('.wsview-head');
+    if(wv&&wh&&!wv.classList.contains('hidden')&&wh.offsetHeight){var whmb=parseFloat(window.getComputedStyle(wh).marginBottom)||0; wvh=wh.offsetHeight+whmb}
+    r.setProperty('--wvh',wvh+'px');
   }catch(e){}
 }
 /* Slim pinned Crafting stack (v0.444): the sentinel sits in the
@@ -27023,6 +27072,31 @@ function craftPinSync(){
 function craftPinRequest(){if(!craftPinTick){craftPinTick=true; if(window.requestAnimationFrame)requestAnimationFrame(craftPinSync); else craftPinSync()}}
 window.addEventListener('scroll',craftPinRequest,{passive:true});
 window.addEventListener('resize',craftPinRequest);
+/* Slim pinned workspace view head (v0.445): the same sentinel
+   pattern as the Crafting stack above, for the three full-page
+   views — Skills, Dragonling and the Passive Tree share the one
+   head in #view-workspace, so one sync serves all three. The
+   sentinel sits in the flow directly above the head, so the
+   moment its top edge passes the head's sticky line (top bar +
+   menu, the --tbh/--sbh fitNavStack just measured) the head is
+   stuck — the view gets .slimpin, the pinned head compacts to
+   one slim row (see the CSS), and fitNavStack re-measures
+   --wvh against the slim height so scrolled-to content still
+   lands clear of it. Off the views the class comes off. */
+var wsPinTick=false;
+function wsPinSync(){
+  wsPinTick=false;
+  var view=$('view-workspace'); if(!view)return;
+  var sn=$('wsPinSentinel');
+  if(!sn||!wsViewOpen){view.classList.remove('slimpin'); return}
+  var rs=document.documentElement.style;
+  var top=(parseFloat(rs.getPropertyValue('--tbh'))||0)+(parseFloat(rs.getPropertyValue('--sbh'))||0);
+  var stuck=sn.getBoundingClientRect().top<=top+1;
+  if(view.classList.contains('slimpin')!==stuck){view.classList.toggle('slimpin',stuck); fitNavStack()}
+}
+function wsPinRequest(){if(!wsPinTick){wsPinTick=true; if(window.requestAnimationFrame)requestAnimationFrame(wsPinSync); else wsPinSync()}}
+window.addEventListener('scroll',wsPinRequest,{passive:true});
+window.addEventListener('resize',wsPinRequest);
 function switchTab(name,opts){
   opts=opts||{};
   /* The Forge and the Cube used to be tabs of their own; both now
@@ -28001,8 +28075,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.444';
-var PLANNER_BUILT_AT='2026-11-27T09:58:28-08:00';
+var PLANNER_VERSION='0.445';
+var PLANNER_BUILT_AT='2026-11-27T10:27:37-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
