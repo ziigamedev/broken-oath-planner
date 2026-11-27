@@ -253,6 +253,41 @@ input[type="range"]:disabled{opacity:.45;cursor:not-allowed}
 .skill-detail .tags{margin-top:8px}
 .skill-detail .kv{margin-top:2px}
 .kv{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--line2);font-size:14px}
+/* v0.457 — rows inside the Oath Masteries drawer: the text
+   takes the width and the row's button stays a compact,
+   single-line control at the right, sized to its label —
+   the flex row must never stretch it into a full-height
+   block beside wrapped text. Oath list rows sit tighter
+   still, so several Oaths fit on a phone screen at once. */
+#treeOathBody .kv{align-items:flex-start}
+#treeOathBody .kv>span{flex:1 1 auto;min-width:0}
+#treeOathBody .kv>.btn{flex:0 0 auto;align-self:flex-start;white-space:nowrap}
+#treeOathBody .oath-rows .kv{padding:6px 0}
+#treeOathBody .oath-rows .btn{min-height:32px;padding:5px 11px;font-size:13px;line-height:1.25}
+@media (pointer:coarse){#treeOathBody .oath-rows .btn{min-height:32px}}
+/* v0.460 — the Oath Masteries drawer is ONE card: the build's
+   total oath points lead its header as the headline number,
+   and every mastery is a divider-separated section inside
+   that one card — no per-mastery card boxes any more. */
+#treeOathBody .oath-single-card{margin-top:12px;border:1px solid var(--line2);border-radius:10px;background:var(--panel2);padding:12px 14px}
+#treeOathBody .oath-card-head{padding-bottom:10px}
+#treeOathBody .oath-total{font-family:Cinzel,serif;font-size:24px;line-height:1.15;font-weight:700;color:var(--text);margin-top:2px}
+#treeOathBody .oath-total .oath-total-num{color:var(--gold2);font-size:30px;font-variant-numeric:tabular-nums}
+#treeOathBody .oath-total .oath-total-sworn{font-size:17px;color:var(--muted)}
+/* v0.462 — swearing is a checkbox on each Oath's own row: the
+   box takes a compact column at the left of the row, the Oath's
+   name, effect and DPS hint take the rest. A ticked box is a
+   sworn Oath; a set-aside row dims but its box stays ticked. */
+#treeOathBody .oath-check-row{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--line2);cursor:pointer}
+#treeOathBody .oath-check-row:last-child{border-bottom:0}
+#treeOathBody .oath-check-row.is-static{cursor:default}
+#treeOathBody .oath-check-row input[type="checkbox"]{flex:0 0 auto;width:21px;height:21px;margin:1px 0 0;accent-color:var(--gold);cursor:pointer}
+#treeOathBody .oath-check-row input[type="checkbox"]:disabled{cursor:default;opacity:.75}
+#treeOathBody .oath-check-main{flex:1 1 auto;min-width:0;font-size:14px}
+#treeOathBody .oath-check-row.is-aside .oath-check-main{opacity:.65}
+#treeOathBody .oath-mastery-section{border-top:1px solid var(--line);padding:12px 2px 4px;margin-top:2px}
+#treeOathBody .oath-mastery-section.is-focus{background:rgba(223,177,84,.07);border-radius:6px;padding-left:8px;padding-right:8px}
+#treeOathBody .oath-section-name{font-size:16.5px}
 .src-lines{font-size:12.5px;color:var(--muted);line-height:1.55;margin:1px 0 7px}
 .src-lines b{color:var(--text);font-weight:600}
 /* Compact source lists: only the biggest contributors show; the rest
@@ -2411,6 +2446,8 @@ body.ws-tree .tree-rail{display:flex}
 .tc-node.k-Start{fill:#2b2019;stroke:var(--gold2)}
 .tc-node.k-Socket,.tc-node.k-Choice{stroke:var(--gold)}
 .tc-node.taken{fill:var(--gold);stroke:var(--gold2)}
+.tc-node.oath-open{fill:var(--gold);stroke:var(--gold2)}
+.tc-node.oath-aside{fill:#57451a;stroke:var(--gold);stroke-dasharray:26 14}
 .tc-node.start-other{opacity:.45;cursor:default}
 .tc-node.reach{stroke:var(--gold2)}
 .tc-node.keep{stroke:var(--gold)}
@@ -5560,6 +5597,13 @@ var DICT={
 "Imbue — gold":"灌注 — 金币",
 "Pour — set the pour trigger":"倾倒 — 设置倾倒触发条件",
 "Swear oath":"立誓",
+"Take this seat — with its path":"点取这个席位 — 连同其路径",
+"See its Oaths":"查看它的誓约",
+"The seat you clicked":"你点击的席位",
+"Not taken yet":"尚未点取",
+"Click to open this seat and see its Oaths":"点击打开这个席位并查看它的誓约",
+"Click for its Oaths":"点击查看它的誓约",
+"No seat is held yet. Click a diamond seat on the tree and it opens here — take it there, then swear one of its Oaths.":"尚未持有任何席位。点击树上的菱形席位，它会在这里打开 — 在那里点取它，然后立下它的一项誓约。",
 "Swearing it":"正在立誓",
 "Fuse Runes":"合成符文",
 "Family Reforge":"家族重铸",
@@ -8072,16 +8116,12 @@ function markPlanStats(){
       else if(m.Stat==='MarkEffect'&&m.Mode==='Inc')eff+=+m.Value||0;
     });
   });
-  var seats=oathSeatsTaken();
-  Object.keys(state.oaths||{}).forEach(function(seat){
-    if(!seats[seat])return;
-    (state.oaths[seat]||[]).forEach(function(oid){
+  activeOathIdList(state.oaths||{}).forEach(function(oid){
       var rec=G.oathMap[oid]; if(!rec)return;
       (rec.oath.Mods||[]).forEach(function(m){
         if(m.Stat==='MarkMax'&&m.Mode==='Flat')treeMax+=+m.Value||0;
         else if(m.Stat==='MarkEffect'&&m.Mode==='Inc')eff+=+m.Value||0;
       });
-    });
   });
   GEAR_SLOTS.forEach(function(sd){
     var it=(state.gear||{})[sd.key]; if(!it||!it.unique)return;
@@ -8151,13 +8191,9 @@ function cursePlanStats(){
     var n=G.passiveMap[id]; if(!n)return;
     (n.Mods||[]).forEach(function(m){eat(m,+m.Value||0,'tree')});
   });
-  var seats=oathSeatsTaken();
-  Object.keys(state.oaths||{}).forEach(function(seat){
-    if(!seats[seat])return;
-    (state.oaths[seat]||[]).forEach(function(oid){
+  activeOathIdList(state.oaths||{}).forEach(function(oid){
       var rec=G.oathMap[oid]; if(!rec)return;
       (rec.oath.Mods||[]).forEach(function(m){eat(m,+m.Value||0,'oath')});
-    });
   });
   (state.dragonNodes||[]).forEach(function(id){
     var n=G.dragonMap[id]; if(!n)return;
@@ -8994,11 +9030,12 @@ function calcFrom(st){
     else if(m.Stat==='FreezeDuration')ailSup.freezeVals.push(m.Value);
   });});
   /* Sworn Oaths, priced like the tree's own mods: an Oath counts
-     only while its Mastery seat is taken (the seat ids are the
-     plan's taken nodes), and its mods route into the same pools,
-     mores, crit and speed the passive sums use. Before this, sworn
-     Oaths counted in Defences but never in damage — a Hollow
-     Vessel's spell damage simply was not in the number. */
+     only while its mastery is open — this variant's node list
+     holds at least one of the mastery's linked notables (v0.454)
+     — and its mods route into the same pools, mores, crit and
+     speed the passive sums use. Before this, sworn Oaths counted
+     in Defences but never in damage — a Hollow Vessel's spell
+     damage simply was not in the number. */
   var takenSet={}; ((st.passiveNodes||[]).concat((st.tree&&st.tree.take)||[])).forEach(function(id){takenSet[id]=1});
   var wieldStaff=!!(weapon&&(weapon.Class==='Staff'||(weapon.Tags||[]).indexOf('Staff')>=0));
   function oathApplies(tags){
@@ -9007,9 +9044,10 @@ function calcFrom(st){
     return tags.some(function(t){return stags.indexOf(t)>=0||t===(isSpell?'Spell':'Attack')||(t==='WieldingStaff'&&wieldStaff)||(t==='TwoHanded'&&!!(weapon&&weapon.bTwoHanded))||(t==='HoldingShield'&&!!(st.gear&&st.gear.OffHand))});
   }
   var oOrb=0, oOrbRate=0;
-  Object.keys(st.oaths||{}).forEach(function(seat){
-    if(!takenSet[seat])return;
-    (st.oaths[seat]||[]).forEach(function(oid){
+  /* v0.459 — the counting Oaths of this variant: per mastery
+     name, the first slots up to its open-seat count under the
+     variant's own node list; the excess is set aside here too. */
+  activeOathIdList(st.oaths||{},takenSet).forEach(function(oid){
       var rec=G.oathMap[oid]; if(!rec)return;
       (rec.oath.Mods||[]).forEach(function(m){
         var tags=m.Tags||[];
@@ -9023,7 +9061,6 @@ function calcFrom(st){
         else if(m.Stat==='OrbRate'&&m.Mode==='Inc')oOrbRate+=m.Value;
         else ailMod(m,m.Value);
       });
-    });
   });
   /* The Dragonling, priced live from the plan itself: the chosen
      aspect's own gift and every taken node's mods route into the
@@ -10357,14 +10394,11 @@ function collectModifierAudit(c){
       push(m,m.Value,'Passive · '+(n.Name||id),{pools:true});
     });
   });
-  /* Oaths sworn at taken seats. */
-  var seatTaken=oathSeatsTaken();
-  Object.keys(state.oaths||{}).forEach(function(seat){
-    if(!seatTaken[seat])return;
-    (state.oaths[seat]||[]).forEach(function(oid){
+  /* Oaths sworn at open masteries — the counting ones only
+     (v0.459: per name, the slots inside its open-seat count). */
+  activeOathIdList(state.oaths||{}).forEach(function(oid){
       var rec=G.oathMap[oid]; if(!rec)return;
       (rec.oath.Mods||[]).forEach(function(m){push(m,m.Value,'Oath · '+(rec.oath.Name||oid),{oath:true})});
-    });
   });
   /* The planned skill's linked supports. */
   (state.supports||[]).forEach(function(sid){
@@ -10761,15 +10795,14 @@ function renderContributions(c){
   /* Each sworn Oath priced on its own: the plan run with that one
      Oath unsworn is what the Oath is carrying — its damage and its
      price together, since the Vow's cost is inside the same mods. */
-  Object.keys(state.oaths||{}).forEach(function(seid){
-    if(!oathSeatsTaken()[seid])return;
-    (state.oaths[seid]||[]).forEach(function(oid){
+  activeOathIdList(state.oaths||{}).forEach(function(oid){
       var rec=G.oathMap[oid]; if(!rec)return;
       var rest=deepClone(state.oaths||{});
-      rest[seid]=(rest[seid]||[]).filter(function(x){return x!==oid});
-      if(!rest[seid].length)delete rest[seid];
+      Object.keys(rest).forEach(function(k){
+        rest[k]=(rest[k]||[]).filter(function(x){return x!==oid});
+        if(!rest[k].length)delete rest[k];
+      });
       test('Oath — '+rec.oath.Name+' ('+(rec.mastery.Name||'Mastery seat')+')',{oaths:rest});
-    });
   });
   state.supports.forEach(function(sid,i){
     if(!sid)return;
@@ -11747,21 +11780,21 @@ function passivePointBudget(level,bonus,taken){
   var bud=Math.max(0,(Math.max(1,level||1)-1))*per+Math.max(0,bonus||0);
   return Math.max(bud,taken||0);
 }
-/* Oath Mastery seats cost no passive points (the game's rule):
-   a seat joins the taken set so its sworn Oath counts, but it
-   never spends from the passive budget. Every points total in
-   the tree — the pill, the plan totals, the take limits, the
-   Optimize / Plan-next-points math — counts passives only,
-   through treePassiveSpent; seats are reported separately, as
-   free. (isOathSeat is defined with the tree code below.) */
+/* Oath Mastery seats are never allocated and cost no passive
+   points (the game's rule, v0.454): a mastery opens through
+   its linked notables, so no seat ever spends from the passive
+   budget. Every points total in the tree — the pill, the plan
+   totals, the take limits, the Optimize / Plan-next-points
+   math — counts passives only, through treePassiveSpent; a
+   seat id left in an old plan's taken list is filtered out of
+   every count here. (isOathSeat is defined with the tree code
+   below.) */
 function treePassiveSpent(ids){
   return (ids||treeTakenIds()).filter(function(id){return !isOathSeat(id)}).length;
 }
 function passivePointsText(){
-  var ids=treeTakenIds();
-  var seats=ids.filter(isOathSeat).length;
-  var t=ids.length-seats, b=state.passives, un=b-t;
-  return t+' out of '+b+(un>0?(' · '+un+' point'+(un===1?'':'s')+' unallocated'):'')+(seats?(' · '+seats+' Oath seat'+(seats===1?'':'s')+' — free'):'');
+  var t=treePassiveSpent(), b=state.passives, un=b-t;
+  return t+' out of '+b+(un>0?(' · '+un+' point'+(un===1?'':'s')+' unallocated'):'');
 }
 function loadHeroIntoPlanner(d){
   beginSeparateInstance();
@@ -12869,15 +12902,14 @@ function starterEditBlocked(e){
      seats and their Oaths — the v0.448 drawer shipped without
      this pass, so on a starter the chip click was swallowed
      by the lock and the masteries could not even be viewed.
-     Every control inside the drawer (Swear, Unswear,
+     Every control inside the drawer (the Oath checkboxes,
      Refund) stays locked like the rest, and the seat panel's
      "Manage its Oaths" door opens the same drawer, so it
-     passes too. The v0.450 "Change oath" fold is browsing
-     in the same way — opening a held seat's Oath list to
-     LOOK at its prices changes nothing in the plan — so it
-     passes too, while the Swear / Unswear buttons the list
-     reveals stay locked. */
-  if(t.closest('#treeOathBtn,#treeOathClose,#treeOathScrim,[data-oath-open],[data-oath-change]'))return false;
+     passes too. Since v0.462 the Oath list stands open in
+     every section — no fold to browse — so looking needs no
+     pass at all; the name lists' Show all / Show less stays
+     browsing, while ticking a checkbox stays locked. */
+  if(t.closest('#treeOathBtn,#treeOathClose,#treeOathScrim,[data-oath-open],[data-oath-names]'))return false;
   if(t.closest('#shareBuildBtn,#followBuildBtn,#copyStatsBtn,#fightBtn,#loadInstanceBtn,#shareBtn,#sharePanel,#gapRunBtn,#popClose,#wsBackBtn,#qwClose,#drawerTreeBtn,#advCloseBtn,#simInfoBtn'))return false;
   /* The support simulator and the setup comparator are analysis,
      like the fight test: running the best-link search, scoring
@@ -18231,20 +18263,31 @@ function openWorkspaceView(name){
   if(name==='dragon')renderDragonPage();
   if(name==='tree'){buildTreeCanvas(); renderTreeList(); updateTreeCanvasStates(); centerTreeOnClass(false);}
   /* The tree canvases are sized from their stage the moment the
-     view opens — on a phone the layout is still settling into
-     its final size on that first frame, and a canvas centred
-     against a half-laid-out stage opens panned away from every
-     node (the stage shows, the tree does not). One frame later
-     the layout is final: rebuild if the canvas came up empty,
-     re-apply the Dragonling view, and centre the passive tree
-     for real. */
-  if(name==='dragon'||name==='tree'){
+     view opens — the layout is still settling into its final
+     size on that first frame, and a canvas centred against a
+     half-laid-out stage opens panned away from every node (the
+     stage shows, the tree does not). The Dragonling keeps its
+     one-frame-later re-apply. The passive tree runs the settle
+     pass (settleTreeCanvas) on a short ladder instead — one
+     frame, then a few beats out to two seconds: in the app
+     shell the frame around the page can still be resizing well
+     past the first frame, and a single early re-centre measured
+     against that moving stage left the tree off-stage for good
+     (the blank tree in the space, v0.465). Each rung rebuilds
+     an empty canvas and re-centres only while the stage's size
+     still disagrees with the size the centring was measured
+     against, so a settled view is left exactly as it was. */
+  if(name==='dragon'){
     var settleTree=function(){
       if(popCurrent!==name)return;
-      if(name==='dragon'){buildDragonTree(); applyDragView()}
-      else{buildTreeCanvas(); centerTreeOnClass(true)}
+      buildDragonTree(); applyDragView();
     };
     if(window.requestAnimationFrame)requestAnimationFrame(settleTree); else settleTree();
+  }
+  if(name==='tree'){
+    var settleRun=function(){if(popCurrent==='tree')settleTreeCanvas()};
+    if(window.requestAnimationFrame)requestAnimationFrame(settleRun); else settleRun();
+    [120,350,800,1500,2400].forEach(function(ms){setTimeout(settleRun,ms)});
   }
   updateWsBadges();
 }
@@ -18405,29 +18448,60 @@ function bindTreeRail(){
   });
   var oc=$('treeOathClose'); if(oc)oc.addEventListener('click',closeTreeOathDrawer);
   var osc=$('treeOathScrim'); if(osc)osc.addEventListener('click',closeTreeOathDrawer);
-  var obody=$('treeOathBody'); if(obody)obody.addEventListener('click',function(e){
-    var ch=e.target.closest('[data-oath-change]');
-    if(ch){
-      var cid=ch.getAttribute('data-oath-change');
-      treeOathExpanded[cid]=!treeOathExpanded[cid];
-      renderTreeOaths();
-      return;
-    }
-    var rf=e.target.closest('[data-oath-refund]');
-    if(rf){
-      var rid=rf.getAttribute('data-oath-refund');
-      refundTreeNode(rid);
-      treeOathNote=treeTakenIds().indexOf(rid)>=0?'That seat is marked Must take — unmark it before refunding (in the panel under the tree, or in Tree planning tools).':'';
-      renderTreeOaths();
-      return;
-    }
-    /* v0.451 — there is no Take control in the drawer any
-       more: seats are taken on the tree itself (canvas click
-       / the detail panel's Take), so this handler only ever
-       sees Change oath, Refund seat and the Oath buttons. */
-    var b=e.target.closest('[data-oath]');
-    if(b){var wrap=b.closest('[data-oath-seat]'); if(wrap)drawerToggleOath(wrap.getAttribute('data-oath-seat'),b.getAttribute('data-oath'))}
+  var obody=$('treeOathBody'); if(obody){obody.addEventListener('change',function(e){
+    /* v0.462 — the checkbox is the drawer's only swear
+       control: a tick swears its Oath under the section's
+       mastery, an untick unswears it (drawerCheckboxOath).
+       The box's section is the [data-oath-seat] list around
+       it. Change, not click: the box has already settled to
+       its new state when this runs, and the re-render inside
+       redraws every section's boxes from the plan itself. */
+    var cb=e.target.closest('[data-oath-check]');
+    if(!cb)return;
+    var wrap=cb.closest('[data-oath-seat]');
+    if(wrap)drawerCheckboxOath(wrap.getAttribute('data-oath-seat'),cb.getAttribute('data-oath-check'),!!cb.checked);
   });
+  obody.addEventListener('click',function(e){
+    /* v0.456 — a name list's Show all / Show less: pure
+       browsing, it only lengthens or shortens the line. */
+    var nm=e.target.closest('[data-oath-names]');
+    if(nm){
+      var nk=nm.getAttribute('data-oath-names');
+      treeOathNamesOpen[nk]=!treeOathNamesOpen[nk];
+      renderTreeOaths();
+      return;
+    }
+    var tk=e.target.closest('[data-oath-take-notable]');
+    if(tk){
+      var tid=tk.getAttribute('data-oath-take-notable');
+      var r=takeNodeWithPath(tid);
+      /* v0.454 — the drawer's one Take control is a closed
+         focused mastery's "Take — with its path" on one of its
+         linked notables: the notable is allocated through the
+         tree's normal path-taking, at its normal point cost.
+         A refused take (a Never mark, no path around them, not
+         enough passive points for the path) says why at the top
+         of the drawer, and the mastery stays focused and closed.
+         A landed take clears the note, keeps the panel under
+         the canvas in step if it is showing this seat, and the
+         re-render flips the focused section to the swear view —
+         taking the notable is what opens the mastery. */
+      treeOathNote=r.ok?'':r.msg;
+      if(r.ok&&treeDetailSeat)showTreeDetail(treeDetailSeat);
+      renderTreeOaths();
+      return;
+    }
+    /* v0.454 — seats themselves are never taken or refunded:
+       a mastery opens and closes with its linked notables on
+       the tree, so apart from the focused section's notable
+       Take above, this click handler sees only the name-list
+       folds. The Oath checkboxes are handled on 'change'
+       above (v0.462) — there are no swear buttons left for a
+       click handler to see. There is still no catalogue of
+       closed masteries (v0.451) — the resting list is the
+       player's own masteries only. */
+  });
+  }
 }
 /* ---------- Oath Masteries drawer (v0.448) ----------
    The masteries used to be reachable only through the seat
@@ -18456,78 +18530,391 @@ function bindTreeRail(){
    canvas keeps only reference text about the seat (which
    Oath is sworn there) and a door button that opens this
    drawer at the seat — the controls themselves exist in
-   exactly one place. */
+   exactly one place.
+   v0.453 makes the seat itself the door, the way the game
+   does it (seat → Oath panel → swear): clicking ANY seat —
+   on the canvas, through a search-result row, or through
+   the detail panel's door — opens this drawer focused on
+   that seat, taken or not, in a focused section above the
+   held list (treeOathFocusBlock). An untaken seat's section
+   shows the Oaths it offers and a "Take this seat — with
+   its path" button; taking it flips the same section to
+   the Oaths ready to swear, without closing or reopening
+   anything. The panel under the canvas keeps its reference
+   text, and for an untaken seat its door reads "See its
+   Oaths". The resting list below the focused section is
+   unchanged: held seats only, no catalogue.
+   v0.454 aligns the drawer to the game's notable rule: a
+   mastery is open exactly while the tree holds at least one
+   of its linked notables — seats are never taken, never
+   refunded and never cost points, and the old seat-taking is
+   gone. The resting list now names the masteries that are
+   open or carry a sworn Oath, each with its state: open with
+   its sworn Oath featured, open with none ("Choose an oath"),
+   or set aside — the Oath kept, marked inactive, counting
+   again when the mastery reopens. The focused section shows
+   the same states for the clicked seat; a closed one names
+   the notables that open it ("Opens with: …"), each with a
+   "Take — with its path" button on the tree's normal
+   path-taking, and taking one flips the section to the swear
+   view in place. The header's sworn count counts only Oaths
+   that are sworn AND active (mastery open). */
 var treeOathNote='';
-/* Which held seats have their full Oath list open in the
-   drawer (v0.450): a held seat leads with its sworn Oath
-   alone, and the seat's other Oaths sit behind its "Change
-   oath" control until the reader opens them. The state lives
-   outside the render so a swear / unswear re-render — and
-   reopening the drawer at a seat — keeps the list as the
-   reader left it. */
-var treeOathExpanded={};
+/* The seat the drawer is currently focused on (v0.453): set
+   when the drawer is opened from a seat, cleared when the
+   drawer closes or is opened from the chip, so the resting
+   drawer is the held-seats list alone. */
+var treeOathFocus=null;
+/* (The v0.450 "Change oath" fold state, treeOathExpanded,
+   went in v0.462: the checkbox list stands open in every
+   section, so there is no fold left to remember.) */
+/* v0.456 — which "held open by" / "opens with" name lists in
+   the drawer stand expanded (keyed by mastery record + kind).
+   The resting line is short — the first couple of names and
+   "and N more" — and the full list is one tap away, so a
+   mastery held open by a dozen notables never reads as a
+   wall of names. */
+var treeOathNamesOpen={};
 function treeOathDrawerOpen(){var d=$('treeOathDrawer'); return !!(d&&d.classList.contains('open'))}
 function treeOathBtnSync(){
   var b=$('treeOathBtn'); if(!b)return;
   var open=treeOathDrawerOpen();
   b.classList.toggle('active',open); b.setAttribute('aria-pressed',open?'true':'false');
+  /* v0.458 — the chip also carries the unused count — the
+     game's own "Oath Mastery waiting". v0.459 — the count is
+     open Oath SLOTS with no Oath sworn, across all masteries
+     (oathUnusedCount). Above zero it reads "◆ Oath Masteries
+     · N unused"; at zero (every open slot sworn, or none
+     open) the chip is its plain label again. The count lives
+     on this chip only. */
+  var unused=oathUnusedCount();
+  b.textContent='◆ Oath Masteries'+(unused>0?(' · '+unused+' unused'):'');
 }
 function renderTreeOaths(){
   var body=$('treeOathBody'); if(!body)return;
-  /* v0.451 — the drawer lists only the seats this build
-     holds. Untaken seats are not catalogued here at all:
-     they are taken on the tree itself. */
-  var held=[];
-  G.passives.forEach(function(n){if(!isOathSeat(n.Id))return; if(oathSeatActive(n.Id))held.push(n)});
-  var byName=function(a,b){return String(a.Name||a.Id).localeCompare(String(b.Name||b.Id))};
-  held.sort(byName);
-  /* v0.452 — the header's sworn count counts only the Oaths
-     sworn at seats this build currently holds. A refunded
-     seat can leave its sworn entry behind in state.oaths
-     (the persistence is unchanged), and counting that entry
-     kept the "— N Oath sworn" suffix over the empty state
-     after the only held seat was refunded. */
-  var swornN=held.reduce(function(a,n){return a+swornOaths(n.Id).length},0);
+  /* v0.464 — a re-render while the drawer stands open (a
+     checkbox tick or untick, a holders line's Show all /
+     Show less, a notable take) must not throw the reader
+     back to the top of the card: the scroll position is
+     captured here and restored after the rebuild below.
+     A render before the drawer opens keeps no position —
+     opening still lands at the top, and a focused seat
+     still scrolls itself into view. */
+  var keepScrollTop=treeOathDrawerOpen()?body.scrollTop:null;
+  /* v0.454 — the drawer's list names only the player's own
+     masteries: the ones that are open (a linked notable is
+     held) or carry a sworn Oath (open, or set aside while
+     its mastery is closed). Closed masteries with no Oath
+     are not catalogued in it. The one other seat that can
+     appear here is the focused one (v0.453), in its own
+     section above the list — never as part of the list
+     itself. v0.456 — the list is per mastery RECORD
+     (openMasteryList): one block per record, however many
+     tree diamonds belong to it, judged open from that
+     record's own Notables alone. v0.458 — one block per
+     mastery NAME: records sharing a name merge into the one
+     card, judged open from the union of their Notables.
+     v0.459 — openness is still the union (any seat open opens
+     the card), but the card's Oath slots count the seats
+     themselves: one slot per record of the name whose own
+     Notables are held (openMasteryList's openSeats).
+     v0.460 — there is now ONE card for the whole drawer:
+     its header leads with the build's total oath points
+     (open slots across all masteries) and how many are
+     sworn, and each mastery is a divider-separated section
+     inside that card, still headed by its name and its own
+     oath-point count. */
+  var heldRecs=openMasteryList();
+  var byName=function(a,b){return String(a.m.Name||a.m.Id).localeCompare(String(b.m.Name||b.m.Id))||String(a.rep).localeCompare(String(b.rep))};
+  heldRecs.sort(byName);
+  /* The header's sworn count counts only Oaths that are
+     sworn AND counting — per mastery name, the slots inside
+     its open-seat count (v0.459). A set-aside Oath stays in
+     state.oaths (the persistence is unchanged) but is not
+     counted here, the v0.452 rule carried onto the notable
+     rule. v0.460 — the header also leads with the build's
+     TOTAL oath points: the open Oath slots across every
+     mastery on this one card. Two oath points means two
+     Oaths can be sworn in total on this card. */
+  var totalPoints=heldRecs.reduce(function(a,r){return a+(r.open?r.openSeats:0)},0);
+  var swornN=heldRecs.reduce(function(a,r){return a+(r.open?Math.min(oathsListForName(state.oaths||{},r.name).length,r.openSeats):0)},0);
+  var asideN=heldRecs.reduce(function(a,r){var len=oathsListForName(state.oaths||{},r.name).length; return a+(len-(r.open?Math.min(len,r.openSeats):0))},0);
+  /* v0.460 — the clicked seat's mastery, when it is one of
+     the listed masteries, is marked inside the one card
+     instead of getting a second block above it; a clicked
+     mastery that is closed with no Oath (so not listed)
+     still leads the card as its own section. */
+  var focusName=treeOathFocus?masteryNameForSeat(treeOathFocus):null;
+  var focusListed=!!(focusName&&heldRecs.some(function(r){return r.name===focusName}));
   var h=(treeOathNote?'<p class="sub" style="margin:0 0 6px"><b>'+esc(treeOathNote)+'</b></p>':'')
-   +'<p class="sub" style="margin:0">Mastery seats are the diamonds on the tree. A seat gives nothing on its own — take one, then swear one of its Oaths here, and the Oath&rsquo;s mods count while the seat is held. One Oath per seat; swearing another replaces it. Seats cost no passive points.</p>'
-   +'<div class="label" style="margin-top:12px">Seats you hold'+(swornN?(' — '+swornN+' Oath'+(swornN===1?'':'s')+' sworn'):'')+'</div>';
-  if(!held.length)h+='<p class="sub" style="margin:4px 0 0">No seat is held yet. Seats are taken on the tree itself — click a diamond seat on the tree to take it, and once taken it appears here.</p>';
-  held.forEach(function(n){h+=treeOathSeatBlock(n)});
+   +'<div class="oath-single-card"><div class="oath-card-head"><div class="label" style="margin:0">Your Oath Masteries</div>'
+   +'<div class="oath-total"><span class="oath-total-num">'+totalPoints+'</span> oath point'+(totalPoints===1?'':'s')+'<span class="oath-total-sworn"> · '+swornN+' sworn'+(asideN?(' · '+asideN+' set aside'):'')+'</span></div>'
+   +(totalPoints>0
+      ?'<p class="sub" style="margin:4px 0 0">You can swear '+totalPoints+' Oath'+(totalPoints===1?'':'s')+' in total on this card — one for each oath point. Tick them in the mastery sections below: each mastery&rsquo;s points swear that mastery&rsquo;s Oaths.</p>'
+      :'<p class="sub" style="margin:4px 0 0">You have no oath points yet, so no Oath can be sworn. Open a mastery on the tree and its oath points appear here — each point lets you swear one Oath on this card.</p>')
+   +'</div>';
+  if(treeOathFocus&&!focusListed)h+=treeOathFocusBlock(treeOathFocus);
+  if(!heldRecs.length&&!(treeOathFocus&&!focusListed))h+='<p class="sub" style="margin:4px 0 0">No mastery is open yet, and none carries a sworn Oath. Click a diamond on the tree to see the notables that open its mastery — take any one of them and the mastery opens here.</p>';
+  heldRecs.forEach(function(r){h+=treeOathSeatBlock(r.node,(focusListed&&r.name===focusName)?treeOathFocus:null)});
+  h+='</div>';
   body.innerHTML=h;
+  if(keepScrollTop!=null)body.scrollTop=keepScrollTop;
+  /* The chip's unused count reads the same list — keep it in
+     step every time the drawer re-renders. */
+  treeOathBtnSync();
 }
-function treeOathSeatBlock(n){
-  var m=masteryForSeat(n.Id), sworn=swornOaths(n.Id);
-  var head='<div data-oath-block="'+esc(n.Id)+'" style="margin-top:10px;border-top:1px solid var(--line2);padding-top:8px"><div class="flex between"><span><b>'+esc(n.Name||niceId(n.Id))+'</b>'+(m&&m.Name&&m.Name!==n.Name?(' <span class="sub">'+esc(m.Name)+'</span>'):'')+'</span><span class="sub">'+(sworn.length?'Sworn':'No Oath sworn')+'</span></div>';
-  /* v0.450 — a held seat leads with its sworn Oath alone:
-     the Oath's name and effect as the seat's featured Oath,
-     with its Unswear beside it. The seat's other Oaths are
-     no longer equal priced rows by default — they sit
-     behind the seat's "Change oath" control, which expands
-     to the seat's full Oath list (oathSeatHTML: each Oath
-     priced, swearing one replaces the sworn Oath, exactly
-     the swap behaviour the drawer has always had). Refund
-     seat stays under the block, as before. */
-  var open=!!treeOathExpanded[n.Id], inner='';
-  if(!m)inner='<p class="sub" style="margin:4px 0 0">The game data names no Oaths for this seat yet — it gives nothing until it does.</p>';
-  else{
-    var blocked=oathBlocked(n.Id);
-    if(blocked)inner+='<p class="sub" style="margin:4px 0 0">'+esc(blocked)+'</p>';
+/* The linked notables holding this seat's mastery open, named
+   in plain words — the drawer's blocks and the seat's detail
+   panel both say which notables do the holding. */
+function masteryHeldNames(seid){
+  return masteryHeldNotables(seid).map(function(id){var nn=G.passiveMap[id]; return (nn&&nn.Name)||niceId(id)});
+}
+function masteryLinkedNames(seid){
+  return masteryNotables(seid).map(function(id){var nn=G.passiveMap[id]; return (nn&&nn.Name)||niceId(id)});
+}
+/* v0.456 — a name list the short way: three names or fewer
+   print in full; more print as the first two and "and N
+   more", with a Show all / Show less tap that swaps in the
+   full list (treeOathNamesOpen, keyed by the caller). The
+   drawer's "Held open by" and "Opens with" lines both read
+   through this, so no card ever opens with a wall of names.
+   Since v0.458 the line names the merged mastery's held
+   notables — the union across all its seat records. */
+function oathNameListHTML(key,names){
+  if(names.length<=3)return esc(names.join(', '))+'.';
+  if(treeOathNamesOpen[key])return esc(names.join(', '))+'. <button class="btn small" data-oath-names="'+esc(key)+'" type="button">Show less</button>';
+  return esc(names.slice(0,2).join(', '))+' and '+(names.length-2)+' more. <button class="btn small" data-oath-names="'+esc(key)+'" type="button">Show all</button>';
+}
+/* v0.459 — the oath-point count that rides beside a mastery
+   name wherever it heads a drawer section: how many Oath
+   slots (oath points) this mastery currently gives the
+   build — its open seats — with the sworn count folded in
+   when any slot is filled, e.g. " · 2 oath points · 1 sworn".
+   A mastery whose sworn Oaths outnumber its open seats names
+   the set-aside excess too. */
+function oathPointsText(seid){
+  var openCount=masteryOpenSeatCount(seid), list=swornOaths(seid);
+  var active=Math.min(list.length,openCount), aside=list.length-active;
+  var t=' · '+openCount+' oath point'+(openCount===1?'':'s');
+  if(active)t+=' · '+active+' sworn';
+  if(aside)t+=' · '+aside+' set aside';
+  return t;
+}
+/* v0.459 — one mastery card's Oath slots, shared by the
+   resting card and the focused section: one block per open
+   seat of the name, then one dimmed block per set-aside Oath
+   past the open count.
+   v0.461 — the slots are no longer presented as labelled
+   blocks at all (no "Oath slot 1 / 2", no per-slot empty
+   lines): the section shows its sworn Oaths as one simple
+   list — each counting Oath with its effect, Unswear, and
+   its own Change oath fold (oathSeatHTML for that Oath's
+   place in the list) — followed by ONE Choose control that
+   stays while the mastery still has unused oath points and
+   says how many are left ("Choose an oath · 2 left", then
+   "Choose another oath · 1 left"). The choose fold swears
+   into the first unused point (index = the counting sworn
+   count) and expands under its own key, seid+'#new'. A
+   mastery with nothing sworn shows "No Oath sworn here
+   yet" once, above the choose control. Set-aside Oaths
+   (sworn past the open count) still list at the end of the
+   sworn list, dimmed and marked not counting, and consume
+   no usable point. When every point is sworn there is no
+   choose control — changing happens on the sworn Oaths
+   themselves.
+   v0.462 — the buttons are gone altogether: the section now
+   lists every Oath it offers with a checkbox beside it
+   (oathSeatHTML). Ticking a box swears that Oath, unticking
+   unswears it, and the boxes that can be ticked are exactly
+   the mastery's oath points — once that many are ticked the
+   remaining unticked boxes disable until one is unticked.
+   A set-aside Oath's box stays ticked, its row marked not
+   counting; an Oath sworn under another mastery shows
+   ticked and locked as already sworn. */
+function oathSlotBlocksHTML(seid){
+  var m=masteryForSeat(seid); if(!m)return '';
+  /* v0.462 — the section's body is the checkbox list itself
+     (oathSeatHTML): every Oath the mastery offers, on its own
+     row, box beside it. There are no slot blocks, no Choose /
+     Change folds and no Swear / Unswear buttons any more —
+     the checkbox is the only control, and how many boxes can
+     be ticked is the section's oath-point count, named in its
+     heading (oathPointsText). */
+  if(!(m.Oaths||[]).length)return '<p class="sub" style="margin:8px 0 0;border-top:1px solid var(--line2);padding-top:8px">The game data names no Oaths for this mastery yet — it gives nothing until it does.</p>';
+  return oathSeatHTML(seid,true);
+}
+/* v0.462 — a set-aside Oath on a CLOSED mastery (no seat
+   open, so nothing can be ticked or unticked here): its row
+   keeps the checkbox, ticked and locked, marked not
+   counting — the same row the open list shows for a
+   set-aside Oath, minus the control. Shared by the resting
+   sections and the focused section. */
+function oathAsideRowHTML(oid){
+  var rec=G.oathMap[oid], fo=rec&&rec.oath;
+  return '<div class="oath-check-row is-aside is-static"><input type="checkbox" checked disabled><span class="oath-check-main"><b>'+esc((fo&&fo.Name)||'An Oath')+'</b> <span class="sub">— set aside, not counting</span>'+(fo&&fo.Text?('<br><small class="sub">'+esc(fo.Text)+(fo.Vow?' • Vow: '+esc(fo.Vow):'')+'</small>'):'')+'</span></div>';
+}
+function treeOathSeatBlock(n,focusSeat){
+  var m=masteryForSeat(n.Id), sworn=swornOaths(n.Id), openCount=masteryOpenSeatCount(n.Id), isOpen=openCount>0;
+  /* v0.456 — one card per mastery, readable at a glance: the
+     mastery name is the card's heading, its state sits beside
+     it in plain words (Open / Set aside), and the Oaths that
+     belong to it come directly beneath, inside the same card.
+     v0.458 — one card per mastery NAME: n is the merged
+     mastery's representative seat (openMasteryList) and the
+     heading is the mastery name itself. v0.459 — the heading
+     also carries the mastery's oath points (its open seats,
+     oathPointsText), the card states how many seats it holds,
+     and the body is one Oath slot per held seat
+     (oathSlotBlocksHTML), each with its own sworn Oath or its
+     own Choose an oath. v0.461 — the body no longer renders
+     labelled slot blocks or a seats-held line: it is the
+     sworn list plus one Choose control (oathSlotBlocksHTML).
+     A set-aside card (no seat open) shows
+     every kept Oath marked inactive, with the notables that
+     reopen the mastery named — no swear controls, since
+     nothing can be sworn while it is closed.
+     v0.460 — this is no longer a card of its own: it is one
+     divider-separated SECTION of the drawer's single Oath
+     Masteries card (renderTreeOaths), still headed by the
+     mastery name with its own oath points beside it. When
+     the drawer was opened from a seat of this mastery,
+     focusSeat names that seat and the section carries the
+     focus mark in place of a separate focused block.
+     v0.462 — the open body is the checkbox list: every Oath
+     the mastery offers, box beside it, tick to swear and
+     untick to unswear, capped by the heading's oath points.
+     A closed (set-aside) section shows its kept Oaths as
+     ticked, locked checkbox rows (oathAsideRowHTML). */
+  var stateTxt=isOpen?'Open':'Set aside';
+  var head='<div class="oath-mastery-section'+(focusSeat?' is-focus':'')+'" data-oath-block="'+esc(n.Id)+'"'+(focusSeat?(' data-oath-focus="'+esc(focusSeat)+'"'):'')+'>'
+    +(focusSeat?'<div class="label" style="margin:0 0 4px">◆ The seat you clicked</div>':'')
+    +'<div class="flex between"><span><b class="oath-section-name">'+esc((m&&m.Name)||n.Name||niceId(n.Id))+'</b><span class="sub">'+esc(m?oathPointsText(n.Id):'')+'</span></span><span class="sub">'+stateTxt+'</span></div>';
+  var inner='';
+  if(!m)inner='<p class="sub" style="margin:4px 0 0">The game data names no Oaths for this mastery yet — it gives nothing until it does.</p>';
+  else if(!isOpen){
     if(sworn.length){
-      var rec=G.oathMap[sworn[0]], fo=rec&&rec.oath;
-      inner+='<div class="kv" style="margin-top:6px"><span><b>'+esc((fo&&fo.Name)||'An Oath')+'</b>'+(fo&&fo.Text?('<br><small class="sub">'+esc(fo.Text)+(fo.Vow?' • Vow: '+esc(fo.Vow):'')+'</small>'):'')+'</span><button class="btn small danger" data-oath="'+esc(sworn[0])+'" type="button">Unswear</button></div>';
-    } else if(!blocked)inner+='<p class="sub" style="margin:4px 0 0">No Oath sworn here yet — the seat gives nothing until one is.</p>';
-    if((m.Oaths||[]).length)inner+='<div class="flex" style="margin-top:8px"><button class="btn small" data-oath-change="'+esc(n.Id)+'" type="button" aria-expanded="'+(open?'true':'false')+'">'+(sworn.length?'Change oath':'Choose an oath')+'</button></div>';
-    if(open)inner+='<div data-oath-list="'+esc(n.Id)+'">'+oathSeatHTML(n.Id,true)+'</div>';
+      sworn.forEach(function(oid){
+        inner+=oathAsideRowHTML(oid);
+      });
+      inner+='<p class="sub" style="margin:4px 0 0">'+(sworn.length===1?'This Oath is':'These Oaths are')+' set aside — kept, not lost. '+(sworn.length===1?'It counts':'They count')+' again when the mastery reopens. Opens with: '+oathNameListHTML((m?(m.Name||m.Id):n.Id)+':opens',masteryLinkedNames(n.Id))+'</p>';
+    } else {
+      inner+='<p class="sub" style="margin:4px 0 0">This mastery is closed. Opens with: '+oathNameListHTML((m?(m.Name||m.Id):n.Id)+':opens',masteryLinkedNames(n.Id))+'</p>';
+    }
   }
-  return head+'<div data-oath-seat="'+esc(n.Id)+'">'+inner+'</div>'
-    +(treeTakenIds().indexOf(n.Id)>=0?'<div class="flex" style="margin-top:8px"><button class="btn small danger" data-oath-refund="'+esc(n.Id)+'" type="button">Refund seat</button></div>':'')
-    +'</div>';
+  else{
+    var heldNames=masteryHeldNames(n.Id);
+    if(heldNames.length)inner+='<p class="sub" style="margin:4px 0 0">Held open by '+oathNameListHTML((m?(m.Name||m.Id):n.Id)+':held',heldNames)+'</p>';
+    /* v0.461 — no "N seats held" line: the oath-point count
+       beside the mastery name already says it. v0.462 — the
+       checkbox list under it presents the points naturally:
+       one tick per point (oathSlotBlocksHTML, which also
+       carries the class-blocked line, as the old list did). */
+    inner+=oathSlotBlocksHTML(n.Id);
+  }
+  return head+inner+'</div>';
 }
-function drawerToggleOath(seid,oid){
-  var cur=swornOaths(seid)[0]||null;
-  if(cur!==oid&&oathBlocked(seid))return;
+/* The focused seat section (v0.453): when the drawer is
+   opened FROM a seat — its canvas click, a search-result
+   row, or the detail panel's door — that seat leads the
+   drawer, above the resting list, whether its mastery is
+   open or not. v0.454 — the section shows the mastery's
+   state: open, it shows the seat's Oaths ready to swear —
+   oathSeatHTML, the same priced list the resting blocks
+   keep behind "Change oath"; closed, its Oaths are shown
+   read-only (nothing can be sworn at a closed mastery) and
+   the section names the linked notables that open it —
+   "Opens with: …" — each unheld one with a "Take — with
+   its path" button that allocates it through the tree's
+   normal path-taking. Taking one opens the mastery in
+   place and this same section flips to the swear view, so
+   the whole seat → open → swear loop happens in one place
+   without closing or reopening anything. A closed mastery
+   carrying a sworn Oath shows that Oath set aside. */
+function treeOathFocusBlock(seid){
+  var n=G.passiveMap[seid]; if(!n)return '';
+  var m=masteryForSeat(seid), openCount=masteryOpenSeatCount(seid), isOpen=openCount>0, sworn=swornOaths(seid);
+  var stateTxt=isOpen?'Open':(sworn.length?'Set aside':'Closed');
+  /* v0.458 — the focused section IS the merged card for the
+     clicked seat's mastery name: whichever seat of the name
+     was clicked, the heading, the held-by line, the Opens
+     with list (the union across its seat records) and the
+     sworn Oaths are the mastery's own, so a second seat
+     of the same name opens this same card with its Oaths
+     already sworn. v0.459 — the heading carries the same
+     oath-point count as the resting cards, and the open
+     section shows the card's slots (oathSlotBlocksHTML),
+     one per held seat. v0.461 — the open section shows the
+     same unlabelled sworn list and one Choose control as
+     the resting sections, with no seats-held line. */
+  /* v0.460 — the focused section is a section of the one
+     card too (renderTreeOaths only calls this for a clicked
+     mastery that is not already listed there; a listed one
+     is marked in place by treeOathSeatBlock).
+     v0.462 — the open focused section shows the same checkbox
+     list as the resting sections; a closed one shows its
+     Oaths as locked checkbox rows — ticked for a set-aside
+     Oath of its own or one already sworn elsewhere, unticked
+     otherwise — above the notables that open it. */
+  var head='<div class="oath-mastery-section is-focus" data-oath-focus="'+esc(seid)+'"><div class="label" style="margin:0 0 4px">◆ The seat you clicked</div><div class="flex between"><span><b class="oath-section-name">'+esc((m&&m.Name)||n.Name||niceId(seid))+'</b><span class="sub">'+esc(m?oathPointsText(seid):'')+'</span></span><span class="sub">'+stateTxt+'</span></div>';
+  var inner='';
+  if(isOpen){
+    var heldNames=masteryHeldNames(seid);
+    inner=(heldNames.length?'<p class="sub" style="margin:4px 0 0">Held open by '+oathNameListHTML((m?(m.Name||m.Id):seid)+':held',heldNames)+'</p>':'')
+      /* v0.461 — no "N seats held" line here either: the
+         focused section reads like the resting sections.
+         v0.462 — the oath-point count beside the name, then
+         the checkbox list (oathSlotBlocksHTML). */
+      +oathSlotBlocksHTML(seid);
+  } else {
+    if(!m)inner='<p class="sub" style="margin:4px 0 0">The game data names no Oaths for this mastery yet — it gives nothing until it does.</p>';
+    else{
+      var blocked=oathBlocked(seid);
+      if(sworn.length){
+        sworn.forEach(function(oid){
+          inner+=oathAsideRowHTML(oid);
+        });
+        inner+='<p class="sub" style="margin:4px 0 0">'+(sworn.length===1?'This Oath is':'These Oaths are')+' set aside — kept, not lost. '+(sworn.length===1?'It counts':'They count')+' again when the mastery reopens.</p>';
+      } else {
+        inner+='<p class="sub" style="margin:4px 0 0">This mastery is closed, so nothing can be sworn here yet. Its Oaths:</p>'
+          +(m.Oaths||[]).map(function(o){var ew=oathSwornElsewhere(o.Id,seid); return '<div class="oath-check-row is-static"><input type="checkbox" disabled'+(ew?' checked':'')+'><span class="oath-check-main"><b>'+esc(o.Name)+'</b>'+(ew?(' <span class="sub">— <b>Already sworn</b> at '+esc(oathSeatName(ew))+'</span>'):'')+'<br><small class="sub">'+esc(o.Text||'')+(o.Vow?' • Vow: '+esc(o.Vow):'')+'</small></span></div>'}).join('');
+      }
+      inner+=(blocked?'<p class="sub" style="margin:4px 0 0">'+esc(blocked)+'</p>':'')
+        +'<p class="sub" style="margin:8px 0 0">Opens with: take any one of these notables and the mastery opens.</p>'
+        +masteryNotables(seid).map(function(nid){
+          var nn=G.passiveMap[nid], heldN=treeTakenIds().indexOf(nid)>=0;
+          return '<div class="kv" style="margin-top:6px"><span><b>'+esc((nn&&nn.Name)||niceId(nid))+'</b>'+(nn?('<br><small class="sub">'+esc(nodeModsText(nn))+'</small>'):'')+'</span>'+(heldN?'<span class="sub">Held</span>':'<button class="btn small primary" data-oath-take-notable="'+esc(nid)+'" type="button">Take — with its path</button>')+'</div>';
+        }).join('');
+    }
+  }
+  return head+inner+'</div>';
+}
+/* v0.462 — a checkbox tick or untick in a mastery section:
+   the one swear control the drawer has. Ticking swears the
+   Oath under this mastery (appended after the Oaths already
+   ticked there); unticking unswears just that Oath, set
+   aside included — its place in the sworn list is the one
+   removed. The gates mirror the boxes the list renders:
+   nothing can be sworn or changed at a closed mastery
+   (v0.454 — the closed sections render their boxes locked),
+   a class-blocked mastery cannot gain an Oath, an Oath sworn
+   under another mastery cannot be ticked here (once per
+   hero), and no mastery can hold more ticked Oaths than its
+   oath points — the unticked boxes disable at the cap, and
+   this gate keeps the cap true for every caller. */
+function drawerCheckboxOath(seid,oid,wantTicked){
+  if(!masteryOpen(seid))return;
+  var list=swornOaths(seid), idx=list.indexOf(oid);
   treeOathNote='';
-  setOath(seid,cur===oid?null:oid);
+  if(wantTicked){
+    if(idx>=0)return;
+    if(oathBlocked(seid))return;
+    if(oathSwornElsewhere(oid,seid))return;
+    if(list.length>=masteryOpenSeatCount(seid))return;
+    setOath(seid,oid,list.length);
+  }else{
+    if(idx<0)return;
+    setOath(seid,null,idx);
+  }
   renderTreeOaths();
   if(treeDetailSeat===seid)showTreeDetail(seid);
 }
@@ -18535,12 +18922,16 @@ function openTreeOathDrawer(focusSeat){
   var d=$('treeOathDrawer'); if(!d)return;
   closeTreePlanDrawer();
   treeOathNote='';
-  /* Opened at a held seat — its canvas click, or the detail
-     panel's door — that seat's Oath list starts open, so
-     re-swearing there is still one tap from the tree, the
-     v0.447 flow the v0.450 "Change oath" fold would
-     otherwise add a tap to. */
-  if(focusSeat&&oathSeatActive(focusSeat))treeOathExpanded[focusSeat]=true;
+  /* v0.453 — the seat the drawer was opened from, if any,
+     leads the drawer in its own focused section (see
+     treeOathFocusBlock), taken or not. Opened from the chip
+     there is no focus seat, and the drawer rests on the
+     held-seats list alone. */
+  treeOathFocus=focusSeat||null;
+  /* v0.462 — an open mastery's section shows its checkbox
+     list outright (there are no folds left to start open),
+     so opening at a seat needs no expansion state: the
+     section is in front of the reader, boxes ready to tick. */
   renderTreeOaths();
   d.classList.add('open'); d.setAttribute('aria-hidden','false');
   document.body.classList.add('trp-open');
@@ -18549,15 +18940,19 @@ function openTreeOathDrawer(focusSeat){
   var body=$('treeOathBody'); if(!body)return;
   body.scrollTop=0;
   /* Opened from a seat — its canvas click, or the detail
-     panel's door — the drawer lands on that seat's block and
-     washes it gold for a moment, so the seat the reader just
-     touched is the one in front of them. */
+     panel's door — the drawer lands on that seat and washes
+     it gold for a moment, so the seat the reader just
+     touched is the one in front of them. Since v0.453 that
+     seat leads the drawer in its focused section; a held
+     seat opened without the focus (there is none — every
+     seat route sets it) would fall back to its list block. */
   if(focusSeat){
-    var blk=body.querySelector('[data-oath-block="'+focusSeat+'"]');
+    var blk=body.querySelector('[data-oath-focus="'+focusSeat+'"]')||body.querySelector('[data-oath-block="'+focusSeat+'"]');
     if(blk){blk.scrollIntoView({block:'start'}); blk.classList.add('oath-focus'); setTimeout(function(){blk.classList.remove('oath-focus')},1800)}
   }
 }
 function closeTreeOathDrawer(){
+  treeOathFocus=null;
   var d=$('treeOathDrawer'); if(d){d.classList.remove('open'); d.setAttribute('aria-hidden','true')}
   if(!treePlanDrawerOpen())document.body.classList.remove('trp-open');
   var sc=$('treeOathScrim'); if(sc)sc.classList.add('hidden');
@@ -18861,16 +19256,14 @@ function deriveDefenses(){
     var am=(n.AspectMods||{})[state.aspect];
     if(am)am.forEach(function(m){addMod(m,m.Value,null,'Dragonling · '+(n.Name||id))});
   });
-  /* Sworn Oaths: the mods of every oath sworn at a taken Mastery
-     seat count like the seat's own — an empty seat gives nothing,
-     and a refunded seat's oaths stop counting with it. */
-  var seatTaken=oathSeatsTaken();
-  Object.keys(state.oaths||{}).forEach(function(seat){
-    if(!seatTaken[seat])return;
-    (state.oaths[seat]||[]).forEach(function(oid){
+  /* Sworn Oaths: the mods of every COUNTING oath count
+     (v0.454 — an oath counts only while its mastery is open;
+     v0.459 — per mastery name, only the slots inside its
+     open-seat count count); a set-aside Oath counts nothing
+     until enough of its mastery's seats reopen. */
+  activeOathIdList(state.oaths||{}).forEach(function(oid){
       var rec=G.oathMap[oid]; if(!rec)return;
       (rec.oath.Mods||[]).forEach(function(m){addMod(m,m.Value,null,'Vow · '+(rec.oath.Name||oid))});
-    });
   });
   /* The bar's sworn defences: a Vow of the Bulwark's resistances
      join the resist pools; the "more Armour / Evasion / Energy
@@ -19389,23 +19782,53 @@ function markOf(id){if(state.tree.take.indexOf(id)>=0)return 'take'; if((state.t
 if(!state.tree.must)state.tree.must=[];
 /* ---------- Oath Mastery seats ----------
    The passive tree's om103 nodes are Mastery seats: diamonds on the
-   tree that give nothing on their own. Take a seat, then swear one
-   of its Oaths (oath_masteries.json) — the sworn Oath's mods
-   count in the plan like the seat's own. Seat ids (om103_…) map to
-   mastery ids (om_…) by swapping the prefix; the repeated seats the
-   tree carries (_c1…, _2) share their mastery's Oaths. */
+   tree that mark where a mastery sits. A seat is NEVER allocated
+   and costs no points (v0.454, the game's own rule): each mastery
+   in oath_masteries.json lists linked Notables, and the mastery is
+   OPEN exactly while the build's allocated nodes include at least
+   one of them. Swear one of an open mastery's Oaths and its mods
+   count while the mastery stays open; refund the last linked
+   notable and the mastery closes — its sworn Oath is set aside,
+   kept in the plan (and in plan codes and save exports), and it
+   counts again the moment any linked notable is allocated again.
+   Seat ids (om103_…) map to mastery ids (om_…) by swapping the
+   prefix; the repeated seats the tree carries (_c1…, _2) share
+   their mastery's Oaths and its linked Notables. Since v0.455
+   each Oath is sworn once per hero (the game's rule): an Oath
+   sworn at any seat shows as already sworn — and cannot be
+   sworn — at every other seat offering it, set-aside Oaths
+   included, and normalizeOaths resolves a plan holding one
+   Oath at two seats by keeping it at the first seat only.
+   v0.458 — masteries are ONE card per mastery NAME (the game's
+   model, correcting the per-record model): the same mastery
+   name sits at several tree locations as several seat RECORDS
+   with the same Oath list, but they are one mastery.
+   v0.459 — the card holds one Oath SLOT per seat of that name
+   the build holds: a seat (record) is open while the build
+   holds at least one of THAT record's linked notables, and
+   each open seat adds a slot under the one card — hold two
+   Mastery of Fury seats and the Fury card holds two Oaths,
+   a different one in each slot. The mastery's sworn Oaths are
+   one ordered list, stored under a single seat of that name
+   in state.oaths; opening another seat of the same name shows
+   that same card with its Oaths already sworn in it. Each
+   Oath is still sworn once per hero across the whole build,
+   so a slot's list shows every other slot's Oath as already
+   sworn. Set-aside follows the seat count: while the number
+   of open seats of a mastery is below the number of Oaths
+   sworn at it, the excess Oaths (the later slots) are set
+   aside — kept, inactive, not counted — and return to their
+   slots when seats reopen; if every seat closes, all its
+   Oaths are set aside, exactly as before. Plans saved under
+   the v0.458 one-Oath-per-name model load with their Oath in
+   the first slot; plans from the older per-seat model keep up
+   to one Oath per seat of the name, duplicates of the same
+   Oath resolved to the first (normalizeOaths). Plans and codes
+   written before v0.454 may still carry a seat id in their taken
+   list: it spends nothing, gives nothing, and the mastery simply
+   reads open or set aside by the notable rule, exactly like any
+   other plan. */
 function isOathSeat(id){return !!id&&String(id).indexOf('om103_')===0}
-/* The seats whose sworn Oaths count: a seat taken on the tree,
-   and — for a build loaded from a hero or a save — every seat the
-   load seated an Oath on. A loaded hero's masteries are already
-   sworn in the game (the save lists them), but its seat ids never
-   join the tree's taken list, so without this a loaded build's
-   Oaths would silently count for nothing, in damage or defence. */
-function oathSeatsTaken(){
-  var s={}; treeTakenIds().forEach(function(id){s[id]=1});
-  if(G.loadedHero)Object.keys(state.oaths||{}).forEach(function(k){s[k]=1});
-  return s;
-}
 function masteryForSeat(seid){
   if(!isOathSeat(seid))return null;
   var rest=String(seid).slice(6);
@@ -19414,40 +19837,371 @@ function masteryForSeat(seid){
   var base=rest.replace(/_(c\d+|\d+)$/,'');
   return G.masteryMap['om_'+base]||null;
 }
-function swornOaths(seid){return (state.oaths&&state.oaths[seid])||[]}
-/* Whether a seat's sworn Oath counts right now — the same rule
-   oathSeatsTaken applies across all seats: the seat is taken on
-   the tree, or the plan came from a loaded hero whose save already
-   swore there (its seat ids never join the taken list). The seat
-   panel gates its Swear buttons on this, so a loaded build's
-   Oaths can be re-sworn or unsworn exactly like a hand-built
-   plan's, instead of the panel forever reading the seat as empty. */
-function oathSeatActive(seid){
-  if(treeTakenIds().indexOf(seid)>=0)return true;
-  if(!G.loadedHero)return false;
-  if(state.oaths&&state.oaths[seid])return true;
-  return loadedHeroSeats()[seid]===1;
+/* v0.458 — the mastery NAME a seat belongs to: every seat
+   record sharing this name is the one mastery. */
+function masteryNameForSeat(seid){
+  var m=masteryForSeat(seid);
+  return m?(m.Name||m.Id):null;
 }
-/* The seats a loaded hero's own build swore at, read from the
-   build itself rather than from the plan's current Oaths: after
-   the reader unswears one of them, state.oaths no longer names
-   the seat, but it is still the hero's seat — its panel stays
-   open with the Swear buttons, so the seat can be re-sworn (or
-   left empty) without first taking it into the plan's own tree.
-   Mirrors the seating the hero load itself performs. */
-function loadedHeroSeats(){
-  var s={}, b=(G.loadedHero&&G.loadedHero.build)||null;
-  if(!b)return s;
-  if(b.oaths&&typeof b.oaths==='object')Object.keys(b.oaths).forEach(function(k){s[k]=1});
-  (b.oath_ids||[]).forEach(function(oid){
-    var rec=G.oathMap[oid]; if(!rec)return;
-    var seid=(state.passiveNodes||[]).filter(function(id){var mm=masteryForSeat(id); return mm&&mm.Id===rec.mastery.Id})[0]||('om103_'+rec.mastery.Id.slice(3));
-    s[seid]=1;
+/* Every mastery record that carries this name — the seat
+   records the one mastery sits at around the tree. */
+function masteryRecordsForName(name){
+  if(!name)return [];
+  return (G.oathMasteries||[]).filter(function(r){return r&&((r.Name||r.Id)===name)});
+}
+/* v0.459 — the sworn Oaths of one mastery NAME in a given
+   oaths object, grouped from every key that belongs to the
+   name: state.oaths stores the name's whole list under one
+   canonical seat key, but a plan written by an older model
+   can still carry one entry per seat of the name, so every
+   reading groups the keys by name first. A group whose seat
+   resolves to no mastery name stands on its own key. */
+function oathGroupsIn(oathsObj){
+  var groups=[], byName={};
+  Object.keys(oathsObj||{}).forEach(function(k){
+    var a=oathsObj[k];
+    if(!Array.isArray(a)||!a.length)return;
+    var nm=masteryNameForSeat(k);
+    var gname=nm||k;
+    var g=byName[gname];
+    if(!g){g={name:gname,keys:[],list:[],resolved:!!nm}; byName[gname]=g; groups.push(g)}
+    g.keys.push(k);
+    a.forEach(function(oid){if(oid)g.list.push(oid)});
+  });
+  return groups;
+}
+/* The name's sworn Oaths as one ordered, duplicate-free list:
+   slot 1 first, then slot 2, and so on. The same Oath twice
+   in the stored entries (an older per-seat plan) reads once,
+   at its first slot. */
+function oathsListForName(oathsObj,name){
+  if(!name)return [];
+  var out=[], seen={};
+  oathGroupsIn(oathsObj).forEach(function(g){
+    if(g.name!==name)return;
+    g.list.forEach(function(oid){if(!seen[oid]){seen[oid]=1; out.push(oid)}});
+  });
+  return out;
+}
+/* The seat key a mastery NAME's sworn list is stored under:
+   a record's own diamond where one stands on the tree, else
+   the name's first diamond, else the synthesised seat id a
+   loaded hero's Oath would use. */
+function masteryCanonicalSeat(name){
+  var recs=masteryRecordsForName(name);
+  for(var i=0;i<recs.length;i++){
+    var exact='om103_'+String(recs[i].Id).slice(3);
+    if(G.passiveMap[exact])return exact;
+  }
+  var seats=masteryNameSeats(name);
+  if(seats.length)return seats[0];
+  return recs.length?('om103_'+String(recs[0].Id).slice(3)):null;
+}
+/* Write a mastery NAME's whole sworn list back into an oaths
+   object (the plan's own, or a pricing clone): every entry
+   held under any seat of the name is cleared first, then the
+   list is stored under the name's canonical seat. */
+function oathsWriteForName(oathsObj,name,list,fallbackSeid){
+  if(!oathsObj)return;
+  oathGroupsIn(oathsObj).forEach(function(g){
+    if(g.name===name)g.keys.forEach(function(k){delete oathsObj[k]});
+  });
+  if(!list||!list.length)return;
+  var canon=name?masteryCanonicalSeat(name):null;
+  oathsObj[canon||fallbackSeid||name]=list.slice();
+}
+/* The first sworn Oath held for a mastery NAME in a given
+   oaths object, as {seid, oid} — or null. */
+function masterySwornEntryIn(oathsObj,name){
+  if(!oathsObj||!name)return null;
+  var list=oathsListForName(oathsObj,name);
+  if(!list.length)return null;
+  var g=oathGroupsIn(oathsObj).filter(function(x){return x.name===name})[0];
+  return {seid:g?g.keys[0]:null,oid:list[0]};
+}
+function masterySwornEntry(seid){
+  return masterySwornEntryIn(state.oaths||{},masteryNameForSeat(seid));
+}
+/* The Oaths sworn at a seat — since v0.458 this reads at the
+   mastery-NAME level: any seat of the name reports the sworn
+   list of its merged mastery, so every surface — drawer card,
+   canvas diamond, detail panel, seat list — shows the same
+   card's state for every seat of the name. Since v0.459 the
+   list holds one Oath per held seat of the name (its slots,
+   in order), set-aside excess included. Callers that need the
+   RAW entry stored under one exact seat read state.oaths[seid]
+   directly. */
+function swornOaths(seid){
+  var name=masteryNameForSeat(seid);
+  if(!name)return ((state.oaths&&state.oaths[seid])||[]).slice();
+  return oathsListForName(state.oaths||{},name);
+}
+/* v0.459 — how many seats (records) of a mastery NAME are open
+   under a given taken set: a seat is open while the set holds
+   at least one of THAT record's own linked notables. This is
+   the count that gives the merged card its Oath slots. */
+function masteryOpenCountIn(name,set){
+  var recs=masteryRecordsForName(name);
+  var c=0;
+  recs.forEach(function(r){if((r.Notables||[]).some(function(id){return !!set[id]}))c++});
+  return c;
+}
+function masteryOpenSeatCount(seid,set){
+  var name=masteryNameForSeat(seid);
+  if(!name)return masteryOpen(seid)?1:0;
+  if(!set){set={}; treeTakenIds().forEach(function(id){set[id]=1})}
+  return masteryOpenCountIn(name,set);
+}
+/* v0.459 — the Oaths of a plan that COUNT right now, as one
+   flat list: for each mastery name, its first N sworn Oaths,
+   where N is the number of its open seats under the taken
+   set (the plan's own tree when no set is given). The excess
+   past N is set aside — kept in the plan, never counted —
+   and an Oath is never counted twice, however it is stored. */
+function activeOathIdList(oathsObj,set){
+  if(!set){set={}; treeTakenIds().forEach(function(id){set[id]=1})}
+  var out=[], seen={};
+  oathGroupsIn(oathsObj).forEach(function(g){
+    var open=g.resolved?masteryOpenCountIn(g.name,set):(masteryOpenIn(g.keys[0],set)?g.list.length:0);
+    g.list.slice(0,open).forEach(function(oid){if(!seen[oid]){seen[oid]=1; out.push(oid)}});
+  });
+  return out;
+}
+/* Set, replace or clear ONE SLOT of a mastery NAME inside a
+   given oaths object (the plan's own, or a pricing clone).
+   Clearing a slot splices it out — the later slots move up;
+   swearing into an empty slot past the sworn list appends,
+   since the slots of one card carry no identity of their own
+   beyond their order. */
+function oathsSetSlot(oathsObj,seid,slot,oid){
+  if(!oathsObj)return;
+  var name=masteryNameForSeat(seid);
+  if(!name){if(oid)oathsObj[seid]=[oid]; else delete oathsObj[seid]; return}
+  var list=oathsListForName(oathsObj,name);
+  if(oid==null){if(slot>=0&&slot<list.length)list.splice(slot,1)}
+  else if(slot>=0&&slot<list.length)list[slot]=oid;
+  else list.push(oid);
+  oathsWriteForName(oathsObj,name,list,seid);
+}
+/* Kept name for the older whole-mastery writers (Best next
+   picks and the optimizer now write per slot through
+   oathsSetSlot): replace a mastery NAME's whole sworn list
+   with a single Oath, or with none. */
+function oathsSetForMastery(oathsObj,seid,oid){
+  if(!oathsObj)return;
+  var name=masteryNameForSeat(seid);
+  if(!name){if(oid)oathsObj[seid]=[oid]; else delete oathsObj[seid]; return}
+  oathsWriteForName(oathsObj,name,oid?[oid]:[],seid);
+}
+/* v0.455 — the seat where an Oath is already sworn, other
+   than the place being asked about, or null. Each Oath is
+   sworn once per hero (the game's rule): the same mastery
+   repeats at several tree seats with the same Oath list, so
+   an Oath sworn anywhere blocks that same Oath everywhere
+   else it is offered. A set-aside Oath (its slots past the
+   open seat count, or its mastery closed) is still sworn, so
+   it blocks too. v0.459 — the exception is one SLOT: pass
+   exceptSlot and only that slot of exceptSeid's mastery is
+   excused — the same Oath in another slot of the SAME mastery
+   blocks, since the second slot must take a different Oath.
+   With no exceptSlot, the older whole-mastery exception
+   stands (a seat asking about its own mastery's Oaths). */
+function oathSwornElsewhereIn(oathsObj,oid,exceptSeid,exceptSlot){
+  var found=null;
+  var exName=exceptSeid?masteryNameForSeat(exceptSeid):null;
+  oathGroupsIn(oathsObj||{}).forEach(function(g){
+    if(found)return;
+    for(var i=0;i<g.list.length;i++){
+      if(g.list[i]!==oid)continue;
+      if(exceptSlot!=null){if(g.name===exName&&i===exceptSlot)continue}
+      else if(exName&&g.name===exName)continue;
+      found=g.keys[0];
+      return;
+    }
+  });
+  return found;
+}
+function oathSwornElsewhere(oid,exceptSeid,exceptSlot){
+  return oathSwornElsewhereIn(state.oaths||{},oid,exceptSeid,exceptSlot);
+}
+/* A seat's plain name for the "already sworn" lines: the tree
+   node's own name where the seat stands on the tree, else its
+   mastery's name (a loaded hero's seat can be a synthesised id
+   with no node behind it). */
+function oathSeatName(seid){
+  var n=G.passiveMap[seid];
+  if(n&&n.Name)return n.Name;
+  var m=masteryForSeat(seid);
+  return (m&&m.Name)||niceId(seid);
+}
+/* The passive node ids that open this seat's mastery, from the
+   mastery data itself — the only route in. v0.458 — the union
+   across EVERY record of the seat's mastery name: a notable
+   linked to any same-name seat record opens the one mastery,
+   and refunding the last held one across all of them closes
+   it. Every openness / held-by / opens-with reading in the
+   planner flows through here, so they all judge by the merged
+   mastery. */
+function masteryNotables(seid){
+  var m=masteryForSeat(seid);
+  if(!m)return [];
+  var recs=masteryRecordsForName(m.Name||m.Id);
+  if(!recs.length)return m.Notables||[];
+  var out=[], seen={};
+  recs.forEach(function(r){(r.Notables||[]).forEach(function(id){if(!seen[id]){seen[id]=1; out.push(id)}})});
+  return out;
+}
+/* v0.456 — the mastery RECORD (one entry of the oath_masteries
+   data) is the seat the game counts, not the tree diamond.
+   Several tree diamonds can belong to one record — the
+   om103_…_c1, _c2, … diamonds are extra clusters of the same
+   record, and masteryForSeat resolves every one of them to
+   that one record, whose Notables list spans all its clusters.
+   Surfaces that LIST or COUNT open masteries therefore work
+   per record: one row per record, openness judged from that
+   record's own Notables, and the holders named are that
+   record's held Notables. (Before this, the drawer walked the
+   tree diamonds, so one open record showed once per diamond:
+   the Warrior Cyclone starter showed 18 rows — Mastery of
+   Fury eight times, once for each of its seven Warrior
+   diamonds plus a seam seat's own record — where the data
+   supports 10 open records, Fury twice.)
+   v0.458 — the grouping goes one level further, to the
+   mastery NAME (see the section header): records sharing a
+   name are one mastery, so the list below carries one entry
+   per name — the Cyclone starter's 10 open records merge to
+   7 cards (Fury, Iron, Stillness, Edge, Ronin, Warlord,
+   Vigour). Openness is judged on the union of the name's
+   records' linked Notables (masteryNotables), and the one
+   sworn Oath is the name's single entry in state.oaths. */
+/* Every seat id that belongs to one mastery NAME: the tree
+   diamonds that resolve to any record of the name, plus any
+   seat the plan carries an Oath for under the name (a loaded
+   hero's seat can be a synthesised id with no diamond behind
+   it). masteryRecordSeats keeps its per-record entry point
+   and answers for the record's whole name group. */
+function masteryNameSeats(name){
+  var out=[], seen={};
+  function add(id){if(id&&!seen[id]){seen[id]=1; out.push(id)}}
+  if(!name)return out;
+  G.passives.forEach(function(n){if(!isOathSeat(n.Id))return; if(masteryNameForSeat(n.Id)===name)add(n.Id)});
+  Object.keys(state.oaths||{}).forEach(function(k){if(masteryNameForSeat(k)===name)add(k)});
+  return out;
+}
+function masteryRecordSeats(mid){
+  var m=G.masteryMap[mid];
+  return masteryNameSeats(m?(m.Name||m.Id):null);
+}
+/* The one seat that stands for a mastery name in the merged
+   list: the seat actually carrying its sworn Oath when one
+   does (so the card leads with that Oath and its controls),
+   else a record's own diamond (om103_ + the record's rest),
+   else its first diamond, else the synthesised id a loaded
+   hero's Oath would use — which masteryForSeat resolves
+   straight back to this name. */
+function masteryRepSeat(mid){
+  var m=G.masteryMap[mid], name=m?(m.Name||m.Id):null;
+  var seats=masteryRecordSeats(mid);
+  var e=masterySwornEntryIn(state.oaths||{},name);
+  if(e)return e.seid;
+  var recs=masteryRecordsForName(name);
+  for(var i=0;i<recs.length;i++){
+    var exact='om103_'+String(recs[i].Id).slice(3);
+    if(G.passiveMap[exact])return exact;
+  }
+  var exact1='om103_'+String(mid).slice(3);
+  return seats.length?seats[0]:exact1;
+}
+/* The tree node a merged card is titled and keyed by: its
+   representative diamond, or — for a mastery with no diamond
+   on this tree — a stand-in carrying the mastery's own name. */
+function masteryRepNode(mid){
+  var rep=masteryRepSeat(mid);
+  var n=G.passiveMap[rep];
+  if(n)return n;
+  var m=G.masteryMap[mid];
+  return {Id:rep, Name:(m&&m.Name)||niceId(rep)};
+}
+/* The masteries the drawer lists: one entry per mastery NAME
+   that is open — at least one linked Notable from ANY of its
+   seat records is held — or that carries a sworn Oath (open,
+   or set aside while the mastery is closed). One entry per
+   name, never one per record or diamond. */
+function openMasteryList(){
+  var set={}; treeTakenIds().forEach(function(id){set[id]=1});
+  var out=[], seenNames={};
+  (G.oathMasteries||[]).forEach(function(m){
+    if(!m||!m.Id)return;
+    var name=m.Name||m.Id;
+    if(seenNames[name])return; seenNames[name]=1;
+    var openSeats=masteryOpenCountIn(name,set);
+    var open=openSeats>0;
+    var seats=masteryNameSeats(name);
+    var hasSworn=!!masterySwornEntryIn(state.oaths||{},name);
+    if(!open&&!hasSworn)return;
+    out.push({m:m, name:name, open:open, openSeats:openSeats, seats:seats, rep:masteryRepSeat(m.Id), node:masteryRepNode(m.Id)});
+  });
+  return out;
+}
+/* v0.459 — how many open Oath SLOTS still have no Oath sworn,
+   across every mastery: the count the tree view's ◆ Oath
+   Masteries chip shows as "· N unused" (the game's own "Oath
+   Mastery waiting"). Per mastery name it is the open seat
+   count minus the Oaths sworn at it, never below zero — a
+   mastery holding more sworn Oaths than open seats (the
+   excess set aside) has no unused slot, and a closed mastery
+   has no open slots at all. */
+function oathUnusedCount(){
+  try{
+    return openMasteryList().reduce(function(a,r){
+      if(!r.open)return a;
+      return a+Math.max(0,r.openSeats-oathsListForName(state.oaths||{},r.name).length);
+    },0);
+  }catch(e){return 0}
+}
+/* The linked notables out of a given id set (an object used as a
+   set, or null for the plan's current taken set) that are held. */
+function masteryHeldNotables(seid,ids){
+  var set=ids||null;
+  if(!set){set={}; treeTakenIds().forEach(function(id){set[id]=1})}
+  return masteryNotables(seid).filter(function(id){return !!set[id]});
+}
+/* Whether the mastery is open under a given taken set — the
+   pricing variants (heat map, optimizer, per-piece worth) judge
+   openness against their own node list, not the plan's. */
+function masteryOpenIn(seid,set){
+  return masteryNotables(seid).some(function(id){return !!set[id]});
+}
+/* Whether this seat's mastery is open in the plan right now: at
+   least one of its linked notables is allocated. */
+function masteryOpen(seid){
+  var set={}; treeTakenIds().forEach(function(id){set[id]=1});
+  return masteryOpenIn(seid,set);
+}
+/* The seats carrying at least one COUNTING Oath right now
+   (v0.459): a seat qualifies when its mastery name's sworn
+   list has an Oath inside its open-seat count — the counting
+   itself reads activeOathIdList, which applies the per-name
+   cap. A set-aside Oath stays in state.oaths untouched; it
+   just never counts until enough of its mastery's seats
+   reopen. Candidates are every seat on the tree plus every
+   seat the plan carries an Oath for (a loaded build's seat
+   may be a synthesised id with no node). */
+function oathSeatsTaken(){
+  var s={}, set={}; treeTakenIds().forEach(function(id){set[id]=1});
+  var active={}; activeOathIdList(state.oaths||{},set).forEach(function(oid){active[oid]=1});
+  oathGroupsIn(state.oaths||{}).forEach(function(g){
+    if(g.list.some(function(oid){return active[oid]}))g.keys.forEach(function(k){s[k]=1});
   });
   return s;
 }
+/* Kept name for the drawer / panel callers: a seat is "active"
+   exactly when its mastery is open (v0.454). */
+function oathSeatActive(seid){return masteryOpen(seid)}
 /* The game's own seat text says "swear one of its Oaths here" —
-   one Oath per seat, so swearing a second replaces the first.
+   one Oath per slot (per held seat of the mastery name, since
+   v0.459), so swearing a second in the same slot replaces the
+   one there.
    And a class seat answers only to its own class: the mastery
    data names the class, and the seat text says only that class
    can swear there. */
@@ -19460,12 +20214,50 @@ function normalizeOaths(){
   Object.keys(state.oaths).forEach(function(k){
     var a=state.oaths[k];
     if(!Array.isArray(a)||!a.length)delete state.oaths[k];
-    else if(a.length>1)state.oaths[k]=[a[0]];
+  });
+  /* v0.459 — the merged model's migration, in one pass over
+     the name groups. Every load path (hero, plan code, saved
+     set, optimizer apply) funnels through here.
+     - One Oath per hero, across every slot of every mastery
+       (v0.455): a plan holding the same Oath twice keeps it
+       at its first slot and clears the later one.
+     - One list per mastery NAME, capped at the name's seat
+       count: a v0.458 plan (one Oath for the name) loads with
+       its Oath in the first slot; a plan from the older
+       per-seat model keeps up to one Oath per seat of the
+       name, in stored order. The whole list is rewritten
+       under the name's canonical seat, so the plan carries
+       one entry per name from here on. */
+  var seenOaths={};
+  oathGroupsIn(state.oaths).forEach(function(g){
+    var list=[];
+    g.list.forEach(function(oid){
+      if(oid&&!seenOaths[oid]){seenOaths[oid]=1; list.push(oid)}
+    });
+    var cap=g.resolved?masteryRecordsForName(g.name).length:0;
+    if(cap&&list.length>cap)list=list.slice(0,cap);
+    g.keys.forEach(function(k){delete state.oaths[k]});
+    if(!list.length)return;
+    var canon=g.resolved?masteryCanonicalSeat(g.name):null;
+    state.oaths[canon||g.keys[0]]=list;
   });
 }
-function setOath(seid,oid){
+function setOath(seid,oid,slot){
   if(!state.oaths)state.oaths={};
-  if(oid)state.oaths[seid]=[oid]; else delete state.oaths[seid];
+  /* v0.455 — an Oath already sworn anywhere else cannot be
+     sworn here too (each Oath is sworn once per hero). The
+     oath lists mark it and disable its control; this gate
+     keeps the rule true for every other caller. Changing or
+     unswearing the Oath at its own slot frees it everywhere.
+     v0.459 — the write is per SLOT of the mastery NAME:
+     swearing, changing or unswearing acts on the one slot
+     named (the drawer's slot, a Best pick's slot); a caller
+     that names no slot swears into the first empty slot, or
+     unswears the first slot. */
+  var list=swornOaths(seid);
+  if(slot==null)slot=oid==null?0:(list.indexOf(oid)>=0?list.indexOf(oid):list.length);
+  if(oid&&oathSwornElsewhere(oid,seid,slot))return;
+  oathsSetSlot(state.oaths,seid,slot,oid);
   heatMap=null;
   renderPlanner(); renderTreeList(); renderCode();
   /* An oath sworn or unsworn from anywhere — the seat panel,
@@ -19474,8 +20266,9 @@ function setOath(seid,oid){
   if(treeOathDrawerOpen())renderTreeOaths();
 }
 /* (The seat panel's own toggleOath went in v0.448: swearing
-   is driven from the Oath Masteries drawer now —
-   drawerToggleOath — through the same setOath.) */
+   is driven from the Oath Masteries drawer now — since
+   v0.462 through its checkboxes, drawerCheckboxOath — through
+   the same setOath.) */
 /* Undo history snapshots the whole taken state, not just the marks:
    the taken set is the union of tree.take and passiveNodes, so an
    undo that restored only the marks would leave the last take or
@@ -19539,16 +20332,33 @@ function renderTreeSearchMeta(preCount){
 function renderTreeList(){
   var listEl=$('treeList'); if(!listEl)return;
   if(popCurrent!=='tree'){updateWsBadges(); return}
+  /* v0.458 — a plan restored from storage saved before the
+     merge can still hold several Oaths for one mastery name
+     at this point (its restore ran before the mastery data
+     landed, so the per-name pass could not judge it): resolve
+     it here, where the data is in, before anything counts. */
+  normalizeOaths();
   var inc=0,life=0;
   state.tree.take.forEach(function(id){var n=G.passiveMap[id]; if(!n)return; (n.Mods||[]).forEach(function(m){if(m.Stat==='Damage'&&m.Mode==='Inc')inc+=m.Value; if(m.Stat==='Life'&&m.Mode==='Flat')life+=m.Value;});});
-  var oathSeats=Object.keys(state.oaths||{}).length, oathN=Object.keys(state.oaths||{}).reduce(function(a,k){return a+(state.oaths[k]||[]).length},0);
   var takeSeats=state.tree.take.filter(isOathSeat).length;
-  $('treeSummary').innerHTML='<div class="kv"><span>Points planned (Take)</span><b>'+(state.tree.take.length-takeSeats)+' / '+state.passives+(takeSeats?(' · '+takeSeats+' Oath seat'+(takeSeats===1?'':'s')+' — free'):'')+'</b></div><div class="kv"><span>Take-list totals</span><b>+'+inc+'% increased damage • +'+life+' flat life</b></div>'
+  /* v0.454 — sworn Oaths read by the notable rule: active at an
+     open mastery, set aside at a closed one. v0.459 — counted
+     per mastery NAME against its open-seat count: the slots
+     inside the count are active, the excess past it is set
+     aside, and a closed mastery's whole list is set aside. */
+  var oathActive=0, oathAside=0;
+  oathGroupsIn(state.oaths||{}).forEach(function(g){
+    if(!g.list.length)return;
+    var open=g.resolved?masteryOpenSeatCount(g.keys[0]):0;
+    oathActive+=Math.min(g.list.length,open);
+    oathAside+=Math.max(0,g.list.length-open);
+  });
+  $('treeSummary').innerHTML='<div class="kv"><span>Points planned (Take)</span><b>'+(state.tree.take.length-takeSeats)+' / '+state.passives+'</b></div><div class="kv"><span>Take-list totals</span><b>+'+inc+'% increased damage • +'+life+' flat life</b></div>'
    +'<div class="kv"><span>Marks — Must take / Keep / Never</span><span class="tree-mark-row"><b>'+(state.tree.must||[]).length+' / '+state.tree.keep.length+' / '+state.tree.never.length+'</b>'
    +((state.tree.must||[]).length?'<button class="btn small" data-clear-mark="must" type="button">Clear Must</button>':'')
    +(state.tree.keep.length?'<button class="btn small" data-clear-mark="keep" type="button">Clear Keep</button>':'')
    +(state.tree.never.length?'<button class="btn small" data-clear-mark="never" type="button">Clear Never</button>':'')+'</span></div>'
-   +(oathN?'<div class="kv"><span>Oaths sworn</span><b>'+oathN+' at '+oathSeats+' Mastery seat'+(oathSeats===1?'':'s')+'</b></div>':'');
+   +((oathActive||oathAside)?'<div class="kv"><span>Oaths sworn</span><b>'+(oathActive?(oathActive+' active'):'')+(oathActive&&oathAside?' · ':'')+(oathAside?(oathAside+' set aside'):'')+'</b></div>':'');
   /* treeNext belongs to Best next picks / Plan next points /
      Optimize — renders leave it alone. */
   var words=treeQueryWords(($('treeSearch').value||'')); var f=state.treeFilter;
@@ -19565,9 +20375,12 @@ function renderTreeList(){
     return true;
   }).slice(0,80);
   var takenSet={}; treeTakenIds().forEach(function(id){takenSet[id]=1});
-  listEl.innerHTML=arr.length?arr.map(function(n){var mk=markOf(n.Id), tk=!!takenSet[n.Id]; return '<div class="item tree-node-row'+(tk?' taken':'')+'" style="margin-bottom:8px" data-tree-row="'+esc(n.Id)+'" tabindex="0" title="'+(tk?(isOathSeat(n.Id)?'Taken — click to open it and swear or change its Oath':'Taken — click to refund it'):'Click to take it — the shortest path is added')+'"><div class="flex between"><span><b>'+esc(n.Name||niceId(n.Id))+'</b> <span class="sub">'+esc(nodeKindLabel(n.Kind))+(n.Region?' • '+esc(nodeRegionLabel(n.Region)):'')+'</span></span><span class="flex"><span class="node-state">'+(tk?(isOathSeat(n.Id)?'Taken — click for its Oaths':'Taken — click to refund'):'Click to take')+'</span><button class="btn tree-btn'+(mk==='must'?' on-keep':'')+'" data-tree-act="must" data-tree-id="'+esc(n.Id)+'" type="button">Must take</button><button class="btn tree-btn'+(mk==='keep'?' on-keep':'')+'" data-tree-act="keep" data-tree-id="'+esc(n.Id)+'" type="button">Keep</button><button class="btn tree-btn'+(mk==='never'?' on-never':'')+'" data-tree-act="never" data-tree-id="'+esc(n.Id)+'" type="button">Never</button></span></div><p class="sub" style="margin:4px 0 0">'+esc(nodeModsText(n))+'</p></div>'}).join(''):'<p class="sub">No nodes match — try another search or filter.</p>';
+  listEl.innerHTML=arr.length?arr.map(function(n){var mk=markOf(n.Id), seat=isOathSeat(n.Id), sOpen=seat&&masteryOpen(n.Id), sSworn=seat&&swornOaths(n.Id).length>0, tk=!!takenSet[n.Id]||sOpen||sSworn; return '<div class="item tree-node-row'+(tk?' taken':'')+'" style="margin-bottom:8px" data-tree-row="'+esc(n.Id)+'" tabindex="0" title="'+(seat?(sOpen?'Open — click to open it and swear or change its Oath':(sSworn?'Set aside — click to open it and see its Oath':'Click to open this mastery and see its Oaths')):(tk?'Taken — click to refund it':'Click to take it — the shortest path is added'))+'"><div class="flex between"><span><b>'+esc(n.Name||niceId(n.Id))+'</b> <span class="sub">'+esc(nodeKindLabel(n.Kind))+(n.Region?' • '+esc(nodeRegionLabel(n.Region)):'')+'</span></span><span class="flex"><span class="node-state">'+(seat?(sOpen?'Open — click for its Oaths':(sSworn?'Set aside — click for its Oath':'Click for its Oaths')):(tk?'Taken — click to refund':'Click to take'))+'</span><button class="btn tree-btn'+(mk==='must'?' on-keep':'')+'" data-tree-act="must" data-tree-id="'+esc(n.Id)+'" type="button">Must take</button><button class="btn tree-btn'+(mk==='keep'?' on-keep':'')+'" data-tree-act="keep" data-tree-id="'+esc(n.Id)+'" type="button">Keep</button><button class="btn tree-btn'+(mk==='never'?' on-never':'')+'" data-tree-act="never" data-tree-id="'+esc(n.Id)+'" type="button">Never</button></span></div><p class="sub" style="margin:4px 0 0">'+esc(nodeModsText(n))+'</p></div>'}).join(''):'<p class="sub">No nodes match — try another search or filter.</p>';
   renderDrawerChar();
   updateTreeCanvasStates(); updateWsBadges();
+  /* The Oath Masteries chip's unused count follows the tree
+     and the sworn Oaths — both change through renders here. */
+  treeOathBtnSync();
   renderTreeSearchMeta(matchCount);
 }
 /* ---------- Tree heat map, best picks, plan & optimize ----------
@@ -19583,7 +20396,13 @@ function treePriceKey(){
   return [state.skillId,state.weaponId,state.gemLevel,(state.supports||[]).join(','),state.treeBlend||0,JSON.stringify(state.treeWeights||{})].join('|');
 }
 function priceNodes(nodes,extra){
-  var c=calcFrom(Object.assign({},state,tuningVariant(nodes),extra||{}));
+  /* The variant carries the candidate node list as its own
+     passiveNodes, so a sworn Oath is priced by the notable
+     rule against the CANDIDATE tree (v0.454): a path that
+     opens a mastery — or closes one — prices its Oath
+     accordingly, not by the tree the plan currently holds.
+     An explicit extra still wins, as before. */
+  var c=calcFrom(Object.assign({},state,tuningVariant(nodes),{passiveNodes:nodes,tree:Object.assign({},state.tree||{},{take:nodes})},extra||{}));
   return c?c.dps:0;
 }
 /* The price the heat map ranks by: the main skill, plus every
@@ -19673,7 +20492,13 @@ function computeHeat(done){
      the two off — both read as % per point, so they blend. */
   var blendW=state.treeBlend||0, baseFig=null;
   if(blendW>0){try{baseFig=planFigures(state)}catch(e){}}
-  var todo=G.passives.filter(function(n){return !baseSet[n.Id]&&!isStartNode(n.Id)});
+  /* Oath seats are not candidates (v0.454): they are never
+     allocated, so there is no path to price for them — a
+     mastery's worth rides on its linked notables, which are
+     ordinary candidates here, and a sworn Oath at a mastery a
+     candidate's path opens is priced with the variant, since
+     the calc gates Oaths on the variant's own notables. */
+  var todo=G.passives.filter(function(n){return !baseSet[n.Id]&&!isStartNode(n.Id)&&!isOathSeat(n.Id)});
   heatBusy=true; heatMap={};
   var i=0;
   (function step(){
@@ -19684,23 +20509,11 @@ function computeHeat(done){
       if(!path){heatMap[n.Id]={noPath:true}; continue}
       var nodes2=base.concat(path);
       /* Per-point worth divides by the path's PASSIVE cost —
-         an Oath seat on the path (or as the target) costs 0. */
+         an Oath seat on the path costs 0 (it is never a
+         target since v0.454, and never spends a point). */
       var pcost=path.filter(function(x){return !isOathSeat(x)}).length;
       var dps=priceFor(nodes2);
-      /* A Mastery seat gives nothing on its own — its worth is
-         the best Oath it can swear, so a seat is priced with that
-         Oath sworn on the path's variant. The pick rides along in
-         the heat entry, so Best picks, Plan next and Optimize can
-         swear the same Oath when they take the seat. */
       var oathPick=null;
-      if(isOathSeat(n.Id)&&!oathBlocked(n.Id)){
-        var sm=masteryForSeat(n.Id);
-        if(sm)(sm.Oaths||[]).forEach(function(o){
-          var ov=deepClone(state.oaths||{}); ov[n.Id]=[o.Id];
-          var od=priceFor(nodes2,{passiveNodes:nodes2,oaths:ov});
-          if(od>dps+0.001){dps=od; oathPick={oid:o.Id,name:o.Name}}
-        });
-      }
       var delta=dps-baseDps, per=delta/Math.max(1,pcost)/Math.max(1,baseDps)*100;
       var defPct=0, defPer=0;
       if(blendW>0&&baseFig){
@@ -19735,34 +20548,53 @@ function renderBestPicks(){
   var box=$('treeNext'); if(!box)return;
   if(!heatMap){box.innerHTML='<p class="sub">Counting the tree…</p>'; computeHeat(renderBestPicks); return}
   var top=heatRanked().slice(0,8);
-  /* Oath picks at seats already held: what is sworn there now
-     (or the empty seat) priced against every other choice at
-     that seat — a swap is named only when it actually gains,
-     with the Life or Shield it costs riding in the same row. */
+  /* Oath picks at masteries already open: what is sworn in
+     each open slot now (or nothing) priced against every
+     other choice for that slot — a swap is named only when
+     it actually gains, with the Life or Shield it costs
+     riding in the same row. Set-aside Oaths are not priced
+     here: their slots are past the open seat count, so there
+     is no choice to price until a seat reopens. */
   var oathRows=[];
   try{
     var bf=planFigures(state);
     if(bf&&bf.dps>0){
-      treeTakenIds().filter(isOathSeat).forEach(function(seid){
-        var m=masteryForSeat(seid); if(!m||oathBlocked(seid))return;
-        var cur=swornOaths(seid)[0]||null;
-        var best={oid:cur,pct:0,life:0,es:0};
-        [null].concat((m.Oaths||[]).map(function(o){return o.Id})).forEach(function(oid){
-          if(oid===cur)return;
-          var vst=deepClone(state);
-          if(oid)vst.oaths[seid]=[oid]; else delete vst.oaths[seid];
-          var vf=planFigures(vst); if(!vf)return;
-          var pct=(vf.dps/bf.dps-1)*100;
-          if(pct>best.pct+0.001)best={oid:oid,pct:pct,life:Math.round(vf.life-bf.life),es:Math.round(vf.es-bf.es)};
-        });
-        if(best.oid!==cur&&best.pct>0.05)oathRows.push({seid:seid,mname:m.Name,cur:cur,best:best});
+      /* v0.456 — one pick per open mastery RECORD (its
+         representative seat), not one per tree diamond: the
+         diamonds of one record share its Oath list and its
+         sworn Oath, so pricing each diamond priced the same
+         choice once per diamond. v0.458 — one pick per open
+         mastery NAME: openMasteryList already merges by name.
+         v0.459 — one pick per open SLOT of the name: each
+         pricing variant sets the candidate in that one slot,
+         and a candidate already sworn in another slot (of
+         this mastery or any other) is never priced — it
+         cannot be sworn twice. */
+      openMasteryList().filter(function(r){return r.open}).forEach(function(r){
+        var seid=r.rep, m=masteryForSeat(seid); if(!m||oathBlocked(seid))return;
+        var list=swornOaths(seid);
+        for(var slot=0;slot<r.openSeats;slot++){
+          var cur=list[slot]||null;
+          var best={oid:cur,pct:0,life:0,es:0};
+          [null].concat((m.Oaths||[]).map(function(o){return o.Id})).forEach(function(oid){
+            if(oid===cur)return;
+            if(oid&&oathSwornElsewhere(oid,seid,slot))return;
+            var vst=deepClone(state);
+            if(!vst.oaths)vst.oaths={};
+            oathsSetSlot(vst.oaths,seid,slot,oid);
+            var vf=planFigures(vst); if(!vf)return;
+            var pct=(vf.dps/bf.dps-1)*100;
+            if(pct>best.pct+0.001)best={oid:oid,pct:pct,life:Math.round(vf.life-bf.life),es:Math.round(vf.es-bf.es)};
+          });
+          if(best.oid!==cur&&best.pct>0.05)oathRows.push({seid:seid,slot:slot,mname:m.Name,cur:cur,best:best});
+        }
       });
     }
   }catch(e){}
   oathRows.sort(function(a,b){return b.best.pct-a.best.pct});
   var oh='';
   if(oathRows.length){
-    oh='<p class="label">Oath picks — seats you already hold</p>'+oathRows.slice(0,4).map(function(r){
+    oh='<p class="label">Oath picks — masteries open to you</p>'+oathRows.slice(0,4).map(function(r){
       var rec=r.best.oid?G.oathMap[r.best.oid]:null;
       var curRec=r.cur?G.oathMap[r.cur]:null;
       var bits=['+'+r.best.pct.toFixed(1)+'% DPS'];
@@ -19772,7 +20604,7 @@ function renderBestPicks(){
       if(rec){what='Swear <b>'+esc(rec.oath.Name)+'</b> at '+esc(r.mname); if(curRec)what+=' — replaces '+esc(curRec.oath.Name)}
       else{what='Unswear <b>'+esc(curRec?curRec.oath.Name:'the sworn Oath')+'</b> at '+esc(r.mname)}
       var detail=rec?('<br><small class="sub">'+esc(rec.oath.Text||'')+(rec.oath.Vow?(' • Vow: '+esc(rec.oath.Vow)):'')+'</small>'):'';
-      return '<div class="kv"><span>'+what+detail+'<br><small class="oath-price">'+bits.join(' • ')+'</small></span><button class="btn small primary" data-oath-swear="'+esc(r.seid)+'" data-oath-oid="'+esc(r.best.oid||'')+'" type="button">'+(rec?'Swear it':'Unswear')+'</button></div>';
+      return '<div class="kv"><span>'+what+detail+'<br><small class="oath-price">'+bits.join(' • ')+'</small></span><button class="btn small primary" data-oath-swear="'+esc(r.seid)+'" data-oath-slot="'+r.slot+'" data-oath-oid="'+esc(r.best.oid||'')+'" type="button">'+(rec?'Swear it':'Unswear')+'</button></div>';
     }).join('');
   }
   if(!top.length&&!oathRows.length){box.innerHTML='<p class="sub">No reachable node raises this skill&rsquo;s counted DPS from here.</p>'; return}
@@ -19793,7 +20625,7 @@ function renderPlanNext(){
   /* Must-take nodes lead the plan; then the best DPS per point the
      remaining points can reach, paths re-walked as the plan grows —
      nothing is refunded, the points just line up in order. */
-  var queue=(state.tree.must||[]).filter(function(id){return !have[id]}).concat(ranked.map(function(x){return x.id}));
+  var queue=(state.tree.must||[]).filter(function(id){return !have[id]&&!isOathSeat(id)}).concat(ranked.map(function(x){return x.id}));
   var seenQ={};
   for(var qi=0;qi<queue.length&&spent<left;qi++){
     var id=queue[qi]; if(seenQ[id]||have[id])continue; seenQ[id]=1;
@@ -19812,7 +20644,7 @@ function renderPlanNext(){
    +steps.map(function(st,i){var n=G.passiveMap[st.id]; return '<div class="kv"><span><b>'+(i+1)+'. '+esc(n?n.Name||niceId(st.id):niceId(st.id))+'</b> <small class="sub">via '+st.path.map(function(x){var pn=G.passiveMap[x]; return esc(pn?pn.Name||niceId(x):niceId(x))}).join(' → ')+'</small></span><span class="node-state">'+esc(st.note)+'</span></div>'}).join('')
    +'<div class="flex mt"><button class="btn small primary" id="treePlanApplyBtn" type="button">Take these '+spent+' points</button></div>';
   var ab=$('treePlanApplyBtn');
-  if(ab)ab.addEventListener('click',function(){commitTreeTaken(Object.keys(have)); var swore=false; steps.forEach(function(st){if(st.oath&&isOathSeat(st.id)&&!oathBlocked(st.id)){if(!state.oaths)state.oaths={}; state.oaths[st.id]=[st.oath]; swore=true}}); if(swore){heatMap=null; renderPlanner(); renderCode()} showTreeDetail(steps[steps.length-1].id,'Planned points taken — '+spent+' points spent in order.'); renderPlanNext()});
+  if(ab)ab.addEventListener('click',function(){commitTreeTaken(Object.keys(have)); var swore=false; steps.forEach(function(st){if(st.oath&&isOathSeat(st.id)&&!oathBlocked(st.id)){if(!state.oaths)state.oaths={}; if(!oathSwornElsewhere(st.oath,st.id,swornOaths(st.id).length))oathsSetSlot(state.oaths,st.id,swornOaths(st.id).length,st.oath); swore=true}}); if(swore){heatMap=null; renderPlanner(); renderCode()} showTreeDetail(steps[steps.length-1].id,'Planned points taken — '+spent+' points spent in order.'); renderPlanNext()});
 }
 function treeOptimize(){
   if(!heatMap){var box=$('treeNext'); if(box)box.innerHTML='<p class="sub">Counting the tree…</p>'; computeHeat(treeOptimize); return}
@@ -19828,6 +20660,9 @@ function treeOptimize(){
      priced damage lines never move. */
   function staysPut(id){
     var n=G.passiveMap[id]; if(!n)return true;
+    /* A seat id in an old plan's taken list is not an
+       allocation (v0.454) — Optimize lets it fall away. */
+    if(isOathSeat(id))return false;
     if(n.Kind==='Keystone'||n.Kind==='Socket'||n.Kind==='Choice')return true;
     if((state.tree.must||[]).indexOf(id)>=0||state.tree.keep.indexOf(id)>=0)return true;
     if(n.Kind==='Notable'){var hv=heatMap[id]; var priced=(n.Mods||[]).some(function(m){return ['Damage','CritChance','CritMulti','AttackSpeed','CastSpeed'].indexOf(m.Stat)>=0}); if(!priced)return true}
@@ -19859,36 +20694,58 @@ function treeOptimize(){
   /* Any points still unspent (nothing better reachable) stay where
      they were — the preview only moves a point when it gains. */
   cur.forEach(function(id){if(nextSpent()<total&&!next[id])growTo(id)});
-  /* Oath pass: at every seat the new tree holds, the sworn Oath
-     is a choice too — keep it, swap it, or leave the seat empty,
-     whichever prices best for this skill. A seat the fill has
-     just taken gets its best Oath chosen the same way. */
-  var nextIds=Object.keys(next);
+  /* Oath pass: at every mastery the new tree leaves OPEN (one
+     of its linked notables in the new set, v0.454), the sworn
+     Oath is a choice too — keep it, swap it, or leave the
+     mastery empty, whichever prices best for this skill. A
+     mastery the fill has just opened gets its best Oath chosen
+     the same way; a mastery the fill closed keeps its Oath
+     untouched — set aside in the plan, never deleted. */
+  var nextIds=Object.keys(next), nextSet={}; nextIds.forEach(function(id){nextSet[id]=1});
   var newOaths=deepClone(state.oaths||{}), oathChanges=[];
-  nextIds.forEach(function(seid){
-    if(!isOathSeat(seid)||oathBlocked(seid))return;
+  /* v0.458 — the Oath pass runs once per mastery NAME, not
+     once per seat diamond: every same-name seat is the same
+     mastery. v0.459 — it runs once per SLOT the new tree
+     leaves open at that name (its open-seat count in the new
+     set): each slot in turn keeps, swaps or empties its Oath,
+     whichever prices best, and a candidate already sworn in
+     another slot of the working plan is never tried — each
+     Oath is sworn once per hero. Slots past the new open
+     count are left untouched in newOaths, set aside. */
+  var oathPassSeen={};
+  G.passives.forEach(function(sn){
+    if(!isOathSeat(sn.Id))return;
+    var seid=sn.Id;
     var mm=masteryForSeat(seid); if(!mm)return;
-    var curO=(newOaths[seid]||[])[0]||null;
-    var bestOid=curO, bestD=priceFor(nextIds,{passiveNodes:nextIds,oaths:newOaths});
-    var t0=deepClone(newOaths); delete t0[seid];
-    var d0=priceFor(nextIds,{passiveNodes:nextIds,oaths:t0});
-    if(d0>bestD+0.001){bestD=d0; bestOid=null}
-    (mm.Oaths||[]).forEach(function(o){
-      if(o.Id===curO)return;
-      var t2=deepClone(newOaths); t2[seid]=[o.Id];
-      var dd=priceFor(nextIds,{passiveNodes:nextIds,oaths:t2});
-      if(dd>bestD+0.001){bestD=dd; bestOid=o.Id}
-    });
-    if(bestOid!==curO){
-      if(bestOid)newOaths[seid]=[bestOid]; else delete newOaths[seid];
-      oathChanges.push({seat:seid,mname:mm.Name,from:curO,to:bestOid});
+    var mName=mm.Name||mm.Id;
+    if(oathPassSeen[mName])return; oathPassSeen[mName]=1;
+    var openSlots=masteryOpenCountIn(mName,nextSet);
+    if(!openSlots||oathBlocked(seid))return;
+    for(var slot=0;slot<openSlots;slot++){
+      var curList=oathsListForName(newOaths,mName);
+      var curO=slot<curList.length?curList[slot]:null;
+      var bestOid=curO, bestD=priceFor(nextIds,{passiveNodes:nextIds,oaths:newOaths});
+      var t0=deepClone(newOaths); oathsSetSlot(t0,seid,slot,null);
+      var d0=priceFor(nextIds,{passiveNodes:nextIds,oaths:t0});
+      if(d0>bestD+0.001){bestD=d0; bestOid=null}
+      (mm.Oaths||[]).forEach(function(o){
+        if(o.Id===curO)return;
+        if(oathSwornElsewhereIn(newOaths,o.Id,seid,slot))return;
+        var t2=deepClone(newOaths); oathsSetSlot(t2,seid,slot,o.Id);
+        var dd=priceFor(nextIds,{passiveNodes:nextIds,oaths:t2});
+        if(dd>bestD+0.001){bestD=dd; bestOid=o.Id}
+      });
+      if(bestOid!==curO){
+        oathsSetSlot(newOaths,seid,slot,bestOid);
+        oathChanges.push({seat:seid,slot:slot,mname:mm.Name,from:curO,to:bestOid});
+      }
     }
   });
   var take={}, refund={};
   Object.keys(next).forEach(function(id){if(!curSet[id])take[id]=1});
   cur.forEach(function(id){if(!next[id])refund[id]=1});
   var bar=$('treePreviewBar');
-  if(!Object.keys(take).length&&!oathChanges.length){if(bar){bar.classList.add('hidden'); bar.innerHTML=''} var nb=$('treeNext'); if(nb)nb.innerHTML='<p class="sub">Optimize found nothing better at the same point count — the tree already spends its movable points where this skill gains most, and its seats already swear their best Oaths.</p>'; treePreview=null; updateTreeCanvasStates(); return}
+  if(!Object.keys(take).length&&!oathChanges.length){if(bar){bar.classList.add('hidden'); bar.innerHTML=''} var nb=$('treeNext'); if(nb)nb.innerHTML='<p class="sub">Optimize found nothing better at the same point count — the tree already spends its movable points where this skill gains most, and its open masteries already swear their best Oaths.</p>'; treePreview=null; updateTreeCanvasStates(); return}
   treePreview={take:take,refund:refund,next:Object.keys(next),oaths:newOaths,oathChanges:oathChanges};
   var before=priceFor(cur), after=priceFor(Object.keys(next),{passiveNodes:Object.keys(next),oaths:newOaths});
   var gain=before?((after/before-1)*100):0;
@@ -19903,13 +20760,13 @@ function treeOptimize(){
 }
 /* Refund all — one click refunds every taken PASSIVE node.
    Refunds are free in this game (no refund points, no cost), so
-   this is a plain commit of the seats-only taken set through the
+   this is a plain commit of the emptied taken set through the
    same commitTreeTaken path a manual refund uses: Undo restores
    the tree exactly as it does after a manual refund, and the
    canvas, totals, heat map and plan tools all re-render off the
-   emptied set. Oath seats are a separate system and cost no
-   points — Refund all does NOT clear them, and any Oaths sworn
-   at them stay sworn. Marks are untouched (Reset marks is the
+   emptied set. Masteries close as their linked notables go
+   (v0.454) — any Oaths sworn at them are set aside, kept in the
+   plan, never deleted. Marks are untouched (Reset marks is the
    separate control for those). */
 function treeRefundAll(){
   var taken=treeTakenIds();
@@ -19919,8 +20776,8 @@ function treeRefundAll(){
     if(nb)nb.innerHTML='<p class="sub">No passive points to refund — the tree holds no passive nodes right now.</p>';
     return;
   }
-  commitTreeTaken(taken.filter(isOathSeat));
-  if(nb)nb.innerHTML='<p class="sub">Refunded all '+passives.length+' passive points — refunds are free. Oath seats stay taken; they cost no points.</p>';
+  commitTreeTaken([]);
+  if(nb)nb.innerHTML='<p class="sub">Refunded all '+passives.length+' passive points — refunds are free. Masteries close as their linked notables go; any sworn Oaths are set aside, kept for when a mastery reopens.</p>';
 }
 function treeUndo(){
   var prev=treeHistory.pop(); if(!prev)return;
@@ -20050,7 +20907,7 @@ function clearTreeMarks(k){
   pushTreeHist(); state.tree[k]=[];
   renderTreeList(); renderCode(); updateTreeCanvasStates();
 }
-var tc={builtKey:'',els:{},edgeEls:{},g:null,scale:0.2,tx:0,ty:0,names:false,gates:false,centeredFor:''};
+var tc={builtKey:'',els:{},edgeEls:{},g:null,scale:0.2,tx:0,ty:0,names:false,gates:false,centeredFor:'',userMoved:false,centerW:0,centerH:0};
 function applyTreeTransform(){
   if(!tc.g)return;
   tc.g.setAttribute('transform','translate('+tc.tx+' '+tc.ty+') scale('+tc.scale+')');
@@ -20077,6 +20934,17 @@ function applyTreeTransform(){
    node id. Keystones with no entry here — the newer persona/chaos
    ones — fall through to the DarkFantasy glyph treatment below. */
 var KS_ART={'elemental_overload':'T_TreeIcon_ks_elemental_overload.png','twice_fallen_sky':'T_TreeIcon_ks_twice_fallen_sky.png','glass_cannon':'T_TreeIcon_ks_glass_cannon.png','blood_magic':'T_TreeIcon_ks_blood_magic.png','lord_of_the_dead':'T_TreeIcon_ks_lord_of_the_dead.png','pyre_covenant':'T_TreeIcon_ks_pyre_covenant.png','cascade_of_ruin':'T_TreeIcon_ks_cascade_of_ruin.png','eagle_eye':'T_TreeIcon_ks_eagle_eye.png','chain_reaction':'T_TreeIcon_ks_chain_reaction.png','thousand_hands':'T_TreeIcon_ks_thousand_hands.png','way_of_the_blade':'T_TreeIcon_ks_way_of_the_blade.png','one_breath':'T_TreeIcon_ks_one_breath.png','unbroken_wall':'T_TreeIcon_ks_unbroken_wall.png','wake_of_spells':'T_TreeIcon_ks_wake_of_spells.png','iron_resolve':'T_TreeIcon_ks_iron_resolve.png','spellblade':'T_TreeIcon_ks_spellblade.png','sanctified':'T_TreeIcon_ks_sanctified.png','ancestral_host':'T_TreeIcon_ks_ancestral_host.png','hollow_covenant':'T_TreeIcon_ks_hollow_covenant.png','siege_pact':'T_TreeIcon_ks_siege_pact.png','forked_sky':'T_TreeIcon_ks_forked_sky.png','tempest_vow':'T_TreeIcon_ks_tempest_vow.png','hammer_of_judgement':'T_TreeIcon_ks_hammer_of_judgement.png','dawnstorm_covenant':'T_TreeIcon_ks_dawnstorm_covenant.png','choir_of_bones':'T_TreeIcon_ks_choir_of_bones.png','the_hunting_dead':'T_TreeIcon_ks_the_hunting_dead.png','wind_and_steel_oath':'T_TreeIcon_ks_wind_and_steel_oath.png','earthbreaker_stride':'T_TreeIcon_ks_earthbreaker_stride.png','aegis_rebuke':'T_TreeIcon_ks_aegis_rebuke.png','comet_step':'T_TreeIcon_ks_comet_step.png','radiant_crusade':'T_TreeIcon_ks_radiant_crusade.png','rotting_gospel':'T_TreeIcon_ks_rotting_gospel.png','r59_sure_strike_k3':'T_TreeIcon_ks_r59_sure_strike_k3.png','r59_mountain_k3':'T_TreeIcon_ks_r59_mountain_k3.png','r59_hold_k3':'T_TreeIcon_ks_r59_hold_k3.png','oath_of_the_long_night':'T_TreeIcon_ks_oath_of_the_long_night.png','oath_of_the_pyre':'T_TreeIcon_ks_oath_of_the_pyre.png','oath_of_the_snare':'T_TreeIcon_ks_oath_of_the_snare.png','oath_of_the_living_storm':'T_TreeIcon_ks_oath_of_the_living_storm.png','oath_of_many_fires':'T_TreeIcon_ks_oath_of_many_fires.png','oath_of_the_white_silence':'T_TreeIcon_ks_oath_of_the_white_silence.png','oath_of_the_red_harvest':'T_TreeIcon_ks_oath_of_the_red_harvest.png','oath_of_a_thousand_cuts':'T_TreeIcon_ks_oath_of_a_thousand_cuts.png','oath_of_slow_ruin':'T_TreeIcon_ks_oath_of_slow_ruin.png','r74_bone_sovereign':'T_TreeIcon_ks_r74_bone_sovereign.png','r79_intstack_k0':'T_TreeIcon_ks_r79_intstack_k0.png','oath_of_the_rolling_thunder':'T_TreeIcon_ks_oath_of_the_rolling_thunder.png','r91_tankks_k0':'T_TreeIcon_ks_r91_tankks_k0.png','r97_dexstack_k0':'T_TreeIcon_ks_r97_dexstack_k0.png','r98_focus_k0':'T_TreeIcon_ks_r98_focus_k0.png'};
+/* Painterly theme art for the rest of the tree (the game's own
+   <Group>_N / <Group>_S texture set): the tree data's Group field
+   is the theme key, so a Notable wears its group's _N painting
+   and a Small or Choice node its group's _S painting. Only the
+   groups whose file actually shipped in the FModel export are
+   listed here — a group with no entry keeps exactly what it
+   renders without this map (the flat glyph for a Notable or
+   Choice, a plain dot for a Small); no theme is ever substituted
+   for another. */
+var TREE_ART_N={'aegis':1,'affliction':1,'anvil_oath':1,'armour':1,'artillery':1,'bone':1,'bow':1,'bulwark':1,'carrion_hunt':1,'chain':1,'channel':1,'crit':1,'dawn':1,'deadeye':1,'deathknell':1,'edge':1,'elemental':1,'evasion':1,'faith':1,'falling_leaf':1,'fire':1,'fury':1,'grave':1,'holy':1,'ki':1,'lichfire':1,'life':1,'lightning':1,'mana':1,'melee':1,'mirrorblade':1,'orbit':1,'ossuary':1,'overcharge':1,'permafrost':1,'plague_quiver':1,'poison':1,'radiance':1,'rain':1,'reaper':1,'resist':1,'shatter':1,'siege':1,'sigil':1,'slam':1,'souls':1,'speed':1,'spell':1,'spell_crit':1,'starfall':1,'stillness':1,'swift':1,'two_storms':1,'vigil':1,'voidbound':1,'wellspring':1,'wind_and_steel':1,'windstep':1};
+var TREE_ART_S={'artillery':1,'bone':1,'bow':1,'bulwark':1,'channel':1,'crit':1,'edge':1,'evasion':1,'fire':1,'grave':1,'life':1,'lightning':1,'orbit':1,'poison':1,'regrowth':1,'resist':1,'slam':1,'souls':1,'speed':1,'spell':1,'starfall':1,'windstep':1};
 /* The pale element tint for a glyph node, where the node's group
    or its icon names an element (colours are DMG_COLORS lightened
    toward white; cold reads mint-teal, as the game's own Frostbinder
@@ -20132,14 +21000,18 @@ function buildTreeCanvas(){
        visible around the art:
        - a Start node wears its class portrait;
        - a Keystone with painterly ks_ art wears that art;
-       - Notables, Choices, Sockets and the Keystones without ks_
-         art wear the DarkFantasy glyph alone on the drawn dark
+       - a Notable whose Group theme has a painterly _N painting
+         wears that painting, and a Small or Choice node whose
+         theme has an _S painting wears it the same way;
+       - the remaining Notables, Choices, Sockets and the
+         Keystones without ks_ art wear the DarkFantasy glyph alone on the drawn dark
          disc — the raw texture is a cyan disc with a white glyph,
          so a pre-separated glyph file (white glyph on transparency)
          is drawn instead, tinted pale by the node's element where
          it has one, inside a thin silver rim. The raw cyan disc
          never renders;
-       - Small and Attribute nodes are plain dots, no icon.
+       - Small and Attribute nodes with no theme painting are
+         plain dots, no icon.
        A missing file hides the image and leaves the drawn shape,
        never a broken-image glyph. The canvas is only built when
        the tree view opens, so the art loads then — not at page
@@ -20147,6 +21019,8 @@ function buildTreeCanvas(){
     var kind0=n.Kind||'Small', tir=r*0.88, imgPre='<image class="tc-icon" data-iid="'+esc(n.Id)+'" href="', imgSuf='" x="'+(n.X-tir).toFixed(1)+'" y="'+(n.Y-tir).toFixed(1)+'" width="'+(tir*2).toFixed(1)+'" height="'+(tir*2).toFixed(1)+'" clip-path="url(#tcNodeClip)" onerror="this.style.display=\'none\'"/>';
     if(kind0==='Start'&&n.ClassStart){parts.push(imgPre+'assets/icons/portrait_'+esc(n.ClassStart)+'.png'+imgSuf)}
     else if(kind0==='Keystone'&&KS_ART[n.Id]){parts.push(imgPre+'assets/icons/'+KS_ART[n.Id]+imgSuf)}
+    else if(kind0==='Notable'&&n.Group&&TREE_ART_N[n.Group]){parts.push(imgPre+'assets/icons/'+esc(n.Group)+'_N.png'+imgSuf)}
+    else if((kind0==='Small'||kind0==='Choice')&&n.Group&&TREE_ART_S[n.Group]){parts.push(imgPre+'assets/icons/'+esc(n.Group)+'_S.png'+imgSuf)}
     else if(n.Icon&&(kind0==='Notable'||kind0==='Keystone'||kind0==='Choice'||kind0==='Socket')){
       var tint=treeGlyphTint(n);
       parts.push('<g class="tc-icon" data-iid="'+esc(n.Id)+'"><image href="assets/icons/glyph/'+esc(n.Icon)+'.png" x="'+(n.X-tir).toFixed(1)+'" y="'+(n.Y-tir).toFixed(1)+'" width="'+(tir*2).toFixed(1)+'" height="'+(tir*2).toFixed(1)+'"'+(tint?' filter="url(#'+tint+')"':'')+' onerror="this.style.display=\'none\'"/><circle class="tc-rim" cx="'+n.X+'" cy="'+n.Y+'" r="'+tir.toFixed(1)+'"/></g>');
@@ -20172,8 +21046,21 @@ function updateTreeCanvasStates(){
   Object.keys(tc.els).forEach(function(id){
     var el=tc.els[id], n=G.passiveMap[id], kind=el.getAttribute('data-kind');
     var cl='tc-node k-'+kind;
-    if(isOathSeat(id))cl+=' mastery-seat';
-    if(set[id]||id===startId)cl+=' taken'; else if(reach[id])cl+=' reach';
+    if(isOathSeat(id)){
+      cl+=' mastery-seat';
+      /* v0.454 — a seat's face reads its mastery's state, not
+         a taken mark (seats are never allocated): gold-filled
+         while the mastery is open, a dashed dimmer gold while
+         its sworn Oath is set aside, plain while closed.
+         v0.458 — both readings are per mastery NAME
+         (masteryOpen unions the name's linked notables and
+         swornOaths reads the name's one entry), so every
+         diamond of the same mastery shows the same face. */
+      if(masteryOpen(id))cl+=' oath-open';
+      else if(swornOaths(id).length)cl+=' oath-aside';
+      if(reach[id])cl+=' reach';
+    }
+    else if(set[id]||id===startId)cl+=' taken'; else if(reach[id])cl+=' reach';
     if(kind==='Start'&&id!==startId)cl+=' start-other';
     if(state.tree.keep.indexOf(id)>=0)cl+=' keep';
     if(state.tree.never.indexOf(id)>=0)cl+=' never';
@@ -20226,6 +21113,13 @@ function centerTreeOnClass(force){
   tc.scale=Math.min(W,H)/4600;
   tc.tx=W/2-start.X*tc.scale; tc.ty=H/2-start.Y*tc.scale;
   tc.centeredFor=state.cls;
+  /* Remember the stage size this centring was measured against:
+     the settle pass below compares the live stage against it, so
+     a centring done while the shell was still sizing the view
+     (a stage measured narrower or shorter than the one that
+     lands) is redone against the real size instead of leaving
+     the tree panned off the stage for good. */
+  tc.centerW=W; tc.centerH=H; tc.userMoved=false;
   applyTreeTransform();
 }
 function fitTree(){
@@ -20236,11 +21130,37 @@ function fitTree(){
   tc.scale=Math.min(W/(maxX-minX),H/(maxY-minY));
   tc.tx=(W-(maxX-minX)*tc.scale)/2-minX*tc.scale; tc.ty=(H-(maxY-minY)*tc.scale)/2-minY*tc.scale;
   tc.centeredFor='';
+  tc.centerW=W; tc.centerH=H; tc.userMoved=false;
   applyTreeTransform();
+}
+/* v0.466 — the settle pass for an open tree view. Opening the
+   view centres the tree against the stage size of that instant,
+   but in the app shell the frame around the page is still
+   settling then (the panel animates in, the stage's final size
+   lands a beat later), so that first centring can be measured
+   against a stage that no longer exists — the view opens on an
+   empty stage with the whole tree panned off it, and because
+   the centring latched, nothing ever brought it back (the
+   blank-tree report from the space, v0.465). This pass is the
+   standing correction: rebuild the canvas if it came up empty
+   (the game data had not landed when the view opened), and if
+   the stage's real size no longer matches the size the current
+   centring was measured against, centre again against the real
+   size. A reader who has taken the camera themselves (a pan or
+   a zoom sets userMoved) is never yanked back. */
+function settleTreeCanvas(){
+  var svg=$('treeSvg'); if(!svg)return;
+  buildTreeCanvas();
+  if(!tc.g||!svg.querySelector('.tc-node'))return;
+  if(tc.userMoved)return;
+  var W=svg.clientWidth||0, H=svg.clientHeight||0;
+  if(!W||!H)return;
+  if(Math.abs(W-tc.centerW)>2||Math.abs(H-tc.centerH)>2)centerTreeOnClass(true);
 }
 function zoomTreeAt(cx,cy,factor){
   var ns=Math.max(0.03,Math.min(1.4,tc.scale*factor));
   tc.tx=cx-(cx-tc.tx)*(ns/tc.scale); tc.ty=cy-(cy-tc.ty)*(ns/tc.scale); tc.scale=ns;
+  tc.userMoved=true;
   applyTreeTransform();
 }
 /* The seat the detail panel under the canvas currently shows,
@@ -20256,7 +21176,7 @@ function showTreeDetail(id,msg){
      calc run on the current node list's own tuning, with and
      without this node — the "Refund: −x%" their planner shows. */
   var worth='';
-  if(taken&&!isStart){
+  if(taken&&!isStart&&!isOathSeat(id)){
     var wlist=(state.passiveNodes&&state.passiveNodes.length)?state.passiveNodes:((state.tree&&state.tree.take)||[]);
     if(wlist.indexOf(id)>=0){
       var withN=calcFrom(Object.assign({},state,tuningVariant(wlist)));
@@ -20271,7 +21191,7 @@ function showTreeDetail(id,msg){
    +worth
    +(msg?'<p class="sub" style="margin-top:6px">'+esc(msg)+'</p>':'')
    +'<div class="flex mt">'
-   +(isStart?'':(taken?'<button class="btn small danger" data-tdetail="refund" type="button">Refund node</button>':'<button class="btn small primary" data-tdetail="take" type="button">Take — with its path</button>')
+   +(isStart||isOathSeat(id)?'':(taken?'<button class="btn small danger" data-tdetail="refund" type="button">Refund node</button>':'<button class="btn small primary" data-tdetail="take" type="button">Take — with its path</button>')
    +'<button class="btn small" data-tdetail="must" type="button">'+((state.tree.must||[]).indexOf(id)>=0?'Unmark Must take':'Mark Must take')+'</button>'
    +'<button class="btn small" data-tdetail="keep" type="button">'+(state.tree.keep.indexOf(id)>=0?'Unmark Keep':'Mark Keep')+'</button>'
    +'<button class="btn small" data-tdetail="never" type="button">'+(state.tree.never.indexOf(id)>=0?'Unmark Never':'Mark Never')+'</button>')
@@ -20282,7 +21202,13 @@ function showTreeDetail(id,msg){
     b.addEventListener('click',function(){
       var act=b.getAttribute('data-tdetail');
       if(act==='refund')refundTreeNode(id);
-      else if(act==='take')treeNodeClick(id);
+      else if(act==='take'){
+        /* Seats carry no Take in this panel (v0.454): a
+           mastery opens through its linked notables, never by
+           allocating the seat — the seat's door below opens
+           the drawer at it. Ordinary nodes take as always. */
+        treeNodeClick(id);
+      }
       else {setTreeMark(id,act); showTreeDetail(id); updateTreeCanvasStates()}
     });
   });
@@ -20294,42 +21220,103 @@ function showTreeDetail(id,msg){
    which Oath is sworn here, or that none is — the Swear /
    Unswear controls themselves live in one place only, the
    Oath Masteries drawer, and the button below is just the
-   door to it. */
+   door to it. For a closed mastery the door reads "See its
+   Oaths" (v0.453): it opens the same drawer focused on this
+   seat, whose focused section shows the Oaths and the
+   notables that open the mastery, so no route to a seat's
+   Oaths requires hunting the canvas for its diamond.
+   v0.454 — the panel states the mastery's state plainly:
+   whether it is open, and which linked notables hold it
+   open; closed, it names the notables that open it, and a
+   sworn Oath reads as set aside. */
 function oathSeatRefHTML(seid){
-  var m=masteryForSeat(seid), sworn=swornOaths(seid), active=oathSeatActive(seid);
+  var m=masteryForSeat(seid), sworn=swornOaths(seid), openCount=masteryOpenSeatCount(seid), isOpen=openCount>0;
   var h='<div style="margin-top:10px;border-top:1px solid var(--line2);padding-top:8px"><div class="label" style="margin:0 0 4px">◆ Oath Mastery seat</div>';
-  if(!active)h+='<p class="sub" style="margin:0 0 6px">An empty seat gives nothing. Take this seat, then swear one of its Oaths — its mods count while the seat is taken. Taking a seat costs no passive points.</p>';
-  else if(!m)h+='<p class="sub" style="margin:0 0 6px">The game data names no Oaths for this seat yet — it gives nothing until it does.</p>';
+  if(!m)h+='<p class="sub" style="margin:0 0 6px">The game data names no Oaths for this mastery yet — it gives nothing until it does.</p>';
+  else if(!isOpen){
+    h+='<p class="sub" style="margin:0 0 6px">This mastery is <b>closed</b>. It opens while you hold at least one of its linked notables: '+esc(masteryLinkedNames(seid).join(', '))+'.</p>';
+    if(sworn.length)h+='<p class="sub" style="margin:0 0 6px"><b>'+esc(sworn.map(function(oid){var rA=G.oathMap[oid]; return (rA&&rA.oath&&rA.oath.Name)||'An Oath'}).join(', '))+'</b> '+(sworn.length===1?'is':'are')+' sworn here but set aside — '+(sworn.length===1?'it counts':'they count')+' again when the mastery reopens.</p>';
+  }
   else{
+    var heldNames=masteryHeldNames(seid);
+    h+='<p class="sub" style="margin:0 0 6px">This mastery is <b>open</b> — '+openCount+' seat'+(openCount===1?'':'s')+' held'+(heldNames.length?(', held open by '+esc(heldNames.join(', '))):'')+'.</p>';
     var blocked=oathBlocked(seid);
     if(blocked)h+='<p class="sub" style="margin:0 0 6px">'+esc(blocked)+'</p>';
-    else if(sworn.length){var rec=G.oathMap[sworn[0]]; h+='<p class="sub" style="margin:0 0 6px"><b>'+esc((rec&&rec.oath&&rec.oath.Name)||'An Oath')+'</b> is sworn at this seat. One Oath per seat — swearing another replaces it.</p>'}
-    else h+='<p class="sub" style="margin:0 0 6px">No Oath sworn here yet — the seat gives nothing until one is. One Oath per seat.</p>';
+    else if(sworn.length){
+      var activeN=Math.min(sworn.length,openCount), asideN=sworn.length-activeN;
+      h+='<p class="sub" style="margin:0 0 6px"><b>'+esc(sworn.slice(0,activeN).map(function(oid){var rB=G.oathMap[oid]; return (rB&&rB.oath&&rB.oath.Name)||'An Oath'}).join(', '))+'</b> '+(activeN===1?'is':'are')+' sworn at this mastery — one Oath per seat held, and swearing another in a slot replaces the one there.'+(asideN?(' <b>'+esc(sworn.slice(activeN).map(function(oid){var rC=G.oathMap[oid]; return (rC&&rC.oath&&rC.oath.Name)||'An Oath'}).join(', '))+'</b> '+(asideN===1?'is':'are')+' set aside until another seat of this mastery opens.'):'')+'</p>';
+    }
+    else h+='<p class="sub" style="margin:0 0 6px">No Oath sworn here yet — the mastery gives nothing until one is. One Oath slot per seat held.</p>';
   }
-  return h+'<div class="flex"><button class="btn small" data-oath-open="'+esc(seid)+'" type="button">Manage its Oaths</button></div></div>';
+  /* v0.455 — Oaths this mastery offers that are already sworn
+     at another seat are named here too, with the seat holding
+     them, so the once-per-hero rule is visible from the detail
+     panel and not only inside the drawer's lists. */
+  if(m)(m.Oaths||[]).forEach(function(o){
+    if(sworn.indexOf(o.Id)>=0)return;
+    var ew=oathSwornElsewhere(o.Id,seid);
+    if(ew)h+='<p class="sub" style="margin:0 0 6px"><b>'+esc(o.Name)+'</b> is already sworn at '+esc(oathSeatName(ew))+' — each Oath can be sworn only once, so it cannot be sworn here too.</p>';
+  });
+  return h+'<div class="flex"><button class="btn small" data-oath-open="'+esc(seid)+'" type="button">'+(isOpen?'Manage its Oaths':'See its Oaths')+'</button></div></div>';
 }
-/* The seat's panel: its Oaths, each sworn or not. An untaken seat
-   explains itself; a taken one lists what can be sworn here. */
+/* A mastery's Oath list — since v0.462 a checkbox list: the
+   Oaths its mastery offers, each on its own row with a
+   checkbox beside its name and effect. Ticking a box swears
+   that Oath under this mastery; unticking unswears it. The
+   second argument is the mastery's open state (v0.454): a
+   closed mastery explains itself; an open one lists its
+   Oaths ready to tick. How many boxes can be ticked here is
+   the mastery's oath points (its open seats): once that
+   many are ticked, the remaining unticked boxes are disabled
+   until one is unticked. An Oath ticked under this mastery
+   past its open count is set aside — its box stays ticked,
+   its row marked not counting. An Oath sworn under any
+   OTHER mastery shows ticked and locked here, marked
+   already sworn (each Oath is sworn once per hero). */
 function oathSeatHTML(seid,taken){
   var m=masteryForSeat(seid), sworn=swornOaths(seid);
-  var h='<div style="margin-top:10px;border-top:1px solid var(--line2);padding-top:8px"><div class="label" style="margin:0 0 4px">◆ Oath Mastery seat</div>';
-  if(!taken)h+='<p class="sub" style="margin:0">An empty seat gives nothing. Take this seat, then swear one of its Oaths here — its mods count while the seat is taken. Taking a seat costs no passive points.</p>';
+  var openCount=masteryOpenSeatCount(seid);
+  /* v0.457 — the list renders bare, inside the mastery's own
+     section (the resting section, or the focused section):
+     no "Oath Mastery seat" header and no rule explanation of
+     its own — the section's heading names the mastery these
+     Oaths belong to and carries its oath-point count, and
+     the drawer's intro already states the once-per-hero
+     rule. A thin divider is all that separates the list from
+     the section's heading and state lines. */
+  var h='<div class="oath-rows" data-oath-seat="'+esc(seid)+'" style="margin-top:8px;border-top:1px solid var(--line2);padding-top:2px">';
+  if(!taken)h+='<p class="sub" style="margin:0">This mastery is closed — it opens while you hold at least one of its linked notables, and nothing can be sworn here until it does.</p>';
   else if(!m)h+='<p class="sub" style="margin:0">The game data names no Oaths for this seat yet — it gives nothing until it does.</p>';
   else{
     var blocked=oathBlocked(seid);
     if(blocked)h+='<p class="sub" style="margin:0 0 6px">'+esc(blocked)+'</p>';
-    else h+='<p class="sub" style="margin:0 0 6px">One Oath per seat — swearing another replaces the one already sworn.'+(m.Class?' This is the '+esc(m.Class)+' class seat.':'')+'</p>';
-    /* Each Oath is priced before it is sworn: the plan run with
-       this one Oath toggled, against the plan as it stands — the
-       DPS it buys and the Life (or shield) it costs, in numbers. */
+    var full=sworn.length>=openCount;
+    /* Each Oath keeps its priced hint line: the plan run with
+       this Oath's box toggled, against the plan as it stands —
+       the DPS it buys and the Life (or shield) it costs, in
+       numbers. An Oath sworn elsewhere is never priced (it
+       cannot be sworn here, so a swear price would lie). */
     var baseFig=null; try{baseFig=planFigures(state)}catch(e){}
-    h+=(m.Oaths||[]).map(function(o){
-      var on=sworn.indexOf(o.Id)>=0;
+    var rows=(m.Oaths||[]).map(function(o){
+      var idx=sworn.indexOf(o.Id);
+      var on=idx>=0;
+      var aside=on&&idx>=openCount;
+      /* v0.455 — an Oath sworn under another mastery stays
+         listed here, ticked and locked, marked already sworn
+         under the once-per-hero rule (v0.462: "another
+         mastery" is judged at the name level — an Oath ticked
+         under THIS mastery is this list's own tick, above). */
+      var elsewhere=on?null:oathSwornElsewhere(o.Id,seid);
       var price='';
-      if(baseFig){
+      if(baseFig&&!elsewhere){
         try{
           var vst=deepClone(state);
-          if(on)delete vst.oaths[seid]; else vst.oaths[seid]=[o.Id];
+          if(!vst.oaths)vst.oaths={};
+          /* Price this box's toggle: unticking clears the
+             Oath's own place in the sworn list; ticking adds
+             it after the Oaths already ticked, leaving them
+             sworn exactly as the plan has them. */
+          oathsSetSlot(vst.oaths,seid,on?idx:sworn.length,on?null:o.Id);
           var vf=planFigures(vst);
           if(vf){
             var dd=(vf.dps/baseFig.dps-1)*100, dl=Math.round(vf.life-baseFig.life), de=Math.round(vf.es-baseFig.es);
@@ -20337,17 +21324,51 @@ function oathSeatHTML(seid,taken){
             bits.push('<b class="'+(dd>0.005?'delta-pos':(dd<-0.005?'delta-neg':''))+'">'+(dd>0?'+':'')+dd.toFixed(1)+'% DPS</b>');
             if(dl)bits.push('Life '+(dl>0?'+':'−')+fmtFull(Math.abs(dl)));
             if(de)bits.push('Shield '+(de>0?'+':'−')+fmtFull(Math.abs(de)));
-            var other=sworn.filter(function(x){return x!==o.Id})[0];
-            var otherName=other?(((G.oathMap[other]||{}).oath||{}).Name||'the sworn Oath'):null;
-            price='<br><small class="oath-price">'+(on?'Sworn — removing it: ':('Swearing it'+(otherName?(' — replaces '+esc(otherName)):'')+': '))+bits.join(' • ')+'</small>';
+            price='<br><small class="oath-price">'+(aside?'Set aside — unticking it: ':(on?'Sworn — unticking it: ':'Ticking it: '))+bits.join(' • ')+'</small>';
           }
         }catch(e){}
       }
-      return '<div class="kv"><span><b>'+esc(o.Name)+'</b><br><small class="sub">'+esc(o.Text||'')+(o.Vow?' • Vow: '+esc(o.Vow):'')+'</small>'+price+'</span><button class="btn small '+(on?'danger':'primary')+'" data-oath="'+esc(o.Id)+'" type="button"'+((blocked&&!on)?' disabled':'')+'>'+(on?'Unswear':'Swear oath')+'</button></div>';
-    }).join('');
-    if(!sworn.length)h+='<p class="sub" style="margin:6px 0 0">No Oath sworn here yet — the seat gives nothing until one is.</p>';
+      var takenNote=elsewhere?'<br><small class="sub"><b>Already sworn</b> at '+esc(oathSeatName(elsewhere))+' — each Oath can be sworn only once, so it cannot be sworn here too. Untick it there, and it can be ticked here.</small>':'';
+      var disabled=elsewhere||(blocked&&!on)||(!on&&full);
+      return '<label class="oath-check-row'+(aside?' is-aside':'')+'"><input type="checkbox" data-oath-check="'+esc(o.Id)+'"'+(on||elsewhere?' checked':'')+(disabled?' disabled':'')+'><span class="oath-check-main"><b>'+esc(o.Name)+'</b>'+(aside?' <span class="sub">— set aside, not counting</span>':'')+'<br><small class="sub">'+esc(o.Text||'')+(o.Vow?' • Vow: '+esc(o.Vow):'')+'</small>'+price+takenNote+'</span></label>';
+    });
+    /* A sworn Oath the mastery's own list no longer names
+       (older data) still shows, ticked, so it can be unticked
+       here rather than stranded. */
+    sworn.forEach(function(oid){
+      if((m.Oaths||[]).some(function(o){return o.Id===oid}))return;
+      var rec=G.oathMap[oid], fo=rec&&rec.oath, ix=sworn.indexOf(oid), asd=ix>=openCount;
+      rows.push('<label class="oath-check-row'+(asd?' is-aside':'')+'"><input type="checkbox" data-oath-check="'+esc(oid)+'" checked><span class="oath-check-main"><b>'+esc((fo&&fo.Name)||'An Oath')+'</b>'+(asd?' <span class="sub">— set aside, not counting</span>':'')+(fo&&fo.Text?('<br><small class="sub">'+esc(fo.Text)+(fo.Vow?' • Vow: '+esc(fo.Vow):'')+'</small>'):'')+'</span></label>');
+    });
+    h+=rows.join('');
   }
   return h+'</div>';
+}
+/* Take one untaken node with the shortest path from the class
+   start, and report how it went as {ok,msg}: Never marks are
+   routed around, Oath seats on the path cost nothing (the
+   limit is judged on passive points only, so a seat is never
+   refused for lack of points and never consumes the budget),
+   and the take is refused whole if the path would run past
+   the plan's passive points. The commit happens here, on
+   success only; each caller surfaces the message its own way
+   — the detail panel under the canvas, or the Oath Masteries
+   drawer's note line for its focused seat's Take button. */
+function takeNodeWithPath(id){
+  var n=G.passiveMap[id]; if(!n)return {ok:false,msg:''};
+  var startId=treeStartId();
+  var taken=treeTakenIds(), set={};
+  taken.forEach(function(x){set[x]=1});
+  if(set[id])return {ok:true,msg:''};
+  if(state.tree.never.indexOf(id)>=0)return {ok:false,msg:'This node is marked Never — unmark it in the detail buttons or the list below before taking it.'};
+  var blocked={}; state.tree.never.forEach(function(x){blocked[x]=1});
+  var path=bfsTreePath(id,[startId].concat(taken),blocked);
+  if(!path)return {ok:false,msg:'No path to this node that avoids your Never marks.'};
+  path.forEach(function(x){set[x]=1});
+  var newTotal=treePassiveSpent(Object.keys(set));
+  if(newTotal>state.passives)return {ok:false,msg:'Not enough passive points — this path takes the plan to '+newTotal+' pts, but it only has '+state.passives+'. Refund a node first, or raise the points under Passive points spent.'};
+  commitTreeTaken(Object.keys(set));
+  return {ok:true,msg:'Took '+(n.Name||niceId(id))+(path.length>1?(' — the shortest path came with it ('+path.length+' nodes, '+treePassiveSpent(taken)+' → '+newTotal+' pts)'):'')+'.'};
 }
 function treeNodeClick(id){
   var n=G.passiveMap[id]; if(!n)return;
@@ -20361,34 +21382,25 @@ function treeNodeClick(id){
   var taken=treeTakenIds(), set={};
   taken.forEach(function(x){set[x]=1});
   if(set[id]){
-    /* A taken Oath seat opens its panel instead of refunding
-       (the v0.447 fix): a click that refunded the seat first
-       made swearing, re-swearing and unswearing unreachable —
-       the panel only ever rendered afterwards, in the seat's
-       untaken state, with no Oath buttons at all, so a sworn
-       Oath could never be changed. Since v0.448 that panel is
-       the Oath Masteries drawer, opened at this seat: the
-       oath buttons and the seat's Refund both live there, and
-       the panel under the canvas keeps reference text only,
+    /* A seat recorded in the taken list (only a pre-v0.454
+       plan can carry one — seats are never allocated now)
+       still opens its panel instead of refunding (the v0.447
+       fix): the Oath Masteries drawer, opened at this seat.
+       The panel under the canvas keeps reference text only,
        so the controls exist in exactly one place. */
     if(isOathSeat(id)){openTreeOathDrawer(id); return}
     refundTreeNode(id);
   } else {
-    if(state.tree.never.indexOf(id)>=0){showTreeDetail(id,'This node is marked Never — unmark it in the detail buttons or the list below before taking it.'); return}
-    var blocked={}; state.tree.never.forEach(function(x){blocked[x]=1});
-    var path=bfsTreePath(id,[startId].concat(taken),blocked);
-    if(!path){showTreeDetail(id,'No path to this node that avoids your Never marks.'); return}
-    path.forEach(function(x){set[x]=1});
-    /* Oath seats on the path cost nothing: the limit is judged
-       on passive points only, so taking a seat is never refused
-       for lack of points and never consumes the budget. */
-    var newTotal=treePassiveSpent(Object.keys(set));
-    if(newTotal>state.passives){showTreeDetail(id,'Not enough passive points — this path takes the plan to '+newTotal+' pts, but it only has '+state.passives+'. Refund a node first, or raise the points under Passive points spent.'); return}
-    commitTreeTaken(Object.keys(set));
-    showTreeDetail(id,'Took '+(n.Name||niceId(id))+(path.length>1?(' — the shortest path came with it ('+path.length+' nodes, '+treePassiveSpent(taken)+' → '+newTotal+' pts)'):'')+'.');
-    /* A seat just taken opens the Oath Masteries drawer at
-       that seat, so its Oaths can be sworn on the spot. */
-    if(isOathSeat(id))openTreeOathDrawer(id);
+    /* A seat is a door, not a take (v0.453, kept by v0.454):
+       the click opens the Oath Masteries drawer focused on
+       the seat. Open, its Oaths are ready to swear there;
+       closed, the focused section names the linked notables
+       that open it and takes one from there — seat, its
+       Oaths and the swear in one place, the game's own
+       seat → Oath panel order. */
+    if(isOathSeat(id)){openTreeOathDrawer(id); return}
+    var r=takeNodeWithPath(id);
+    showTreeDetail(id,r.msg);
   }
 }
 /* Refund one taken node, pruning whatever loses its path to the
@@ -20473,7 +21485,7 @@ function bindTreeCanvas(){
      so a click handler never sees the node circle as its target. */
   svg.addEventListener('pointerdown',function(e){drag={x:e.clientX,y:e.clientY,tx:tc.tx,ty:tc.ty}; moved=0; var t=e.target; downId=(t&&t.classList&&t.classList.contains('tc-node'))?t.getAttribute('data-tid'):null; try{svg.setPointerCapture(e.pointerId)}catch(err){}});
   svg.addEventListener('pointermove',function(e){
-    if(drag){var dx=e.clientX-drag.x, dy=e.clientY-drag.y; moved=Math.max(moved,Math.abs(dx)+Math.abs(dy)); if(moved>4){tc.tx=drag.tx+dx; tc.ty=drag.ty+dy; applyTreeTransform()}}
+    if(drag){var dx=e.clientX-drag.x, dy=e.clientY-drag.y; moved=Math.max(moved,Math.abs(dx)+Math.abs(dy)); if(moved>4){tc.tx=drag.tx+dx; tc.ty=drag.ty+dy; tc.userMoved=true; applyTreeTransform()}}
     var t=e.target;
     if(e.shiftKey&&e.buttons===0&&t&&t.classList&&t.classList.contains('tc-node'))traceHover(t.getAttribute('data-tid'));
     if(t&&t.classList&&t.classList.contains('tc-node')){
@@ -20487,13 +21499,13 @@ function bindTreeCanvas(){
           else if(hv.dead)heatLine='<p class="tt-act">Dead / uncounted for this skill — no counted damage lines.</p>';
           else heatLine='<p class="tt-act">'+(hv.delta>=0?'+':'')+hv.pct.toFixed(2)+'% DPS with its path ('+hv.per.toFixed(2)+'% per point)</p>';
         }
-        if(isOathSeat(n.Id))heatLine+='<p class="tt-act">◆ Oath Mastery seat — '+(taken?'click to swear or unswear its Oath':'an empty seat gives nothing')+((hv&&hv.oathPick)?(' • counted with '+esc(hv.oathPick.name)+' sworn'):'')+'</p>';
+        if(isOathSeat(n.Id)){var so=masteryOpen(n.Id), ss=swornOaths(n.Id); heatLine+='<p class="tt-act">◆ Oath Mastery — '+(so?'open: click to swear or change its Oath':(ss.length?'its Oath is set aside — it counts again when the mastery reopens':'closed — it opens while you hold one of its linked notables'))+'</p>'}
         if(!taken){
           var dkey=n.Id+'|'+treeTakenIds().slice().sort().join(',');
           if(treeTipDeltaKey!==dkey){treeTipDeltaKey=dkey; try{treeTipDeltaHTML=treeNodeDeltaHTML(n)}catch(e){treeTipDeltaHTML=''}}
           heatLine+=treeTipDeltaHTML;
         }
-        tip.innerHTML='<span class="tt-kind">'+esc(nodeKindLabel(n.Kind))+(n.Region?' • '+esc(nodeRegionLabel(n.Region)):'')+'</span><br><b>'+esc(n.Name||niceId(n.Id))+'</b><p>'+esc(nodeModsText(n)||'')+'</p>'+heatLine+'<p class="tt-act">'+(isStartNode(n.Id)?(n.Id===treeStartId()?'Your class start — always yours, costs no point':'The '+(n.ClassStart||'another class')+' start — an origin, not a node you can take'):((treeTrace&&treeTrace.set[n.Id])?'In your traced route — click to take the whole route ('+treeTrace.ids.length+' nodes)':(taken?(isOathSeat(n.Id)?'Taken — click to open it and swear or change its Oath':'Taken — click to refund it'):'Click to take it — the shortest path is added, or hold Shift and hover a route to trace it')))+'</p>';
+        tip.innerHTML='<span class="tt-kind">'+esc(nodeKindLabel(n.Kind))+(n.Region?' • '+esc(nodeRegionLabel(n.Region)):'')+'</span><br><b>'+esc(n.Name||niceId(n.Id))+'</b><p>'+esc(nodeModsText(n)||'')+'</p>'+heatLine+'<p class="tt-act">'+(isStartNode(n.Id)?(n.Id===treeStartId()?'Your class start — always yours, costs no point':'The '+(n.ClassStart||'another class')+' start — an origin, not a node you can take'):((treeTrace&&treeTrace.set[n.Id])?'In your traced route — click to take the whole route ('+treeTrace.ids.length+' nodes)':(isOathSeat(n.Id)?'Click to open this mastery and see its Oaths':(taken?'Taken — click to refund it':'Click to take it — the shortest path is added, or hold Shift and hover a route to trace it'))))+'</p>';
         var r=stage.getBoundingClientRect();
         tip.style.left=Math.max(6,Math.min(r.width-((window.innerWidth>=720?460:300)+12),Math.max(6,e.clientX-r.left+14)))+'px';
         tip.style.top=Math.max(6,e.clientY-r.top-10)+'px';
@@ -20535,6 +21547,19 @@ function bindTreeCanvas(){
     }
   });
   svg.addEventListener('wheel',function(e){e.preventDefault(); var r=svg.getBoundingClientRect(); zoomTreeAt(e.clientX-r.left,e.clientY-r.top,e.deltaY<0?1.15:0.87)},{passive:false});
+  /* v0.466 — while the tree view stands open, a stage resize
+     (the shell panel settling, a window resize, full screen
+     coming or going) re-runs the settle pass: if the reader
+     has not taken the camera, the tree re-centres against the
+     stage's new real size instead of staying panned off it. */
+  var treeResizeTimer=null;
+  var treeOnResize=function(){
+    if(popCurrent!=='tree')return;
+    if(treeResizeTimer)clearTimeout(treeResizeTimer);
+    treeResizeTimer=setTimeout(function(){treeResizeTimer=null; if(popCurrent==='tree')settleTreeCanvas()},160);
+  };
+  window.addEventListener('resize',treeOnResize);
+  document.addEventListener('fullscreenchange',treeOnResize);
   $('treeZoomIn').addEventListener('click',function(){zoomTreeAt(svg.clientWidth/2,svg.clientHeight/2,1.3)});
   $('treeZoomOut').addEventListener('click',function(){zoomTreeAt(svg.clientWidth/2,svg.clientHeight/2,0.77)});
   $('treeFitBtn').addEventListener('click',fitTree);
@@ -25743,12 +26768,25 @@ function bindExtras(){
     var b=e.target.closest('[data-tree-act]');
     if(b){setTreeMark(b.getAttribute('data-tree-id'),b.getAttribute('data-tree-act')); return}
     var sw=e.target.closest('[data-oath-swear]');
-    if(sw){setOath(sw.getAttribute('data-oath-swear'),sw.getAttribute('data-oath-oid')||null); renderBestPicks(); return}
+    if(sw){setOath(sw.getAttribute('data-oath-swear'),sw.getAttribute('data-oath-oid')||null,sw.hasAttribute('data-oath-slot')?+sw.getAttribute('data-oath-slot'):null); renderBestPicks(); return}
     var row=e.target.closest('[data-tree-row]');
     if(row){
-      treeNodeClick(row.getAttribute('data-tree-row'));
-      var pk=row.getAttribute('data-oath-pick');
-      if(pk){var sid=row.getAttribute('data-tree-row'); if(treeTakenIds().indexOf(sid)>=0&&!oathBlocked(sid))setOath(sid,pk)}
+      var rid=row.getAttribute('data-tree-row'), pk=row.getAttribute('data-oath-pick');
+      if(pk&&isOathSeat(rid)){
+        /* A Best-picks Oath row (the "Oath picks" rows swear
+           through data-oath-swear above; a seat row carrying a
+           pick can only be a priced choice at an OPEN mastery
+           since v0.454 — seats are never taken): the click
+           opens the drawer at the seat, as a canvas click does,
+           and swears the priced Oath there. Plain search rows
+           for a seat are doors instead — they open the drawer
+           focused on the seat through treeNodeClick. */
+        openTreeOathDrawer(rid);
+        if(masteryOpen(rid)&&!oathBlocked(rid))setOath(rid,pk);
+      } else {
+        treeNodeClick(rid);
+        if(pk&&isOathSeat(rid)&&masteryOpen(rid)&&!oathBlocked(rid))setOath(rid,pk);
+      }
     }
   }
   function treeKeys(e){
@@ -26638,6 +27676,10 @@ function applyPlannerSnapshot(snap){
   /* A snapshot saved by an older build could carry a class start in
      its node lists — strip starts on restore so they never count. */
   state.passiveNodes=stripStartNodes(state.passiveNodes);
+  /* A snapshot saved before v0.458 can hold Oaths at several
+     seats of one mastery name — resolve to the merged model
+     on restore: the first sworn Oath for the name stays. */
+  normalizeOaths();
   if(state.tree){['take','keep','never','must'].forEach(function(k){if(Array.isArray(state.tree[k]))state.tree[k]=stripStartNodes(state.tree[k])})}
   /* A starter snapshot saved while the starter load was broken can
      carry the template lock on an empty plan — no gear, no tree,
@@ -28322,8 +29364,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.452';
-var PLANNER_BUILT_AT='2026-11-27T12:57:00-08:00';
+var PLANNER_VERSION='0.466';
+var PLANNER_BUILT_AT='2026-11-27T16:33:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
