@@ -375,8 +375,8 @@ tr:hover td{background:color-mix(in srgb, var(--panel2) 60%, transparent)}
    rings wear their established colours the same way. Item names
    and tile borders keep their own rarity colours elsewhere —
    this ring is the icon's one rarity signal. (v0.408 put the
-   colour in the centre disc instead; Gerome corrected it to
-   the outer colour.) */
+   colour in the centre disc instead; corrected to the outer
+   colour.) */
 .itic.rf-Magic .itic-disc{border:2px solid #84bde6}
 .itic.rf-Rare .itic-disc{border:2px solid #ead95e}
 .itic.rf-Unique .itic-disc{border:2px solid #f09a3e}
@@ -10483,6 +10483,15 @@ function compatibleSupports(skill){
        checked after it, the exclusion returned first and the case
        could never fire. */
     if(sup.Id==='hunters_mark_support'&&tags.indexOf('Minion')>=0)return true;
+    /* Chaos's own text forbids it on minion skills: patch 93
+       added the closing sentence "Not for minion skills." to its
+       description. Like the Hunter's Mark case above, the text is
+       the rule, so this case is judged at the same point — after
+       the skill's own AcceptsSupports allowance and BEFORE the
+       ExcludeTags check below — so the refusal rests on the text
+       itself and cannot be shadowed if the published tag fields
+       ever change underneath it. */
+    if(sup.Id==='chaos'&&tags.indexOf('Minion')>=0)return false;
     var req=sup.RequiresAnyTag||[]; var exc=sup.ExcludeTags||[];
     if(exc.some(function(t){return tags.indexOf(t)>=0}))return false;
     if(!req.length)return true;
@@ -23094,13 +23103,13 @@ function pnFieldParts(f){
   var parts=raw.split('.').map(function(p){return p.replace(/\[\d+\]/g,'')});
   return{meta:/^_r\d+/.test(raw),parts:parts,path:parts.join('.')};
 }
-var PN_FILE_TYPE={skills:'Skill',supports:'Support gem',uniques:'Unique item',item_bases:'Item base',curses:'Curse',passive_tree:'Passive node',stacking:'Passive node',monsters:'Monster',guardian_resist:'Guardian resistance',blessings:'Blessing',oath_masteries:'Oath mastery',affixes:'Affix',affixes_riven:'Riven affix',weapons:'Weapon',potions:'Potion',runes:'Rune',runewords:'Runeword',classes:'Class',scaling:'Scaling rule',late2:'Late-game scaling',gem_homes:'Gem home'};
+var PN_FILE_TYPE={skills:'Skill',supports:'Support gem',uniques:'Unique item',item_bases:'Item base',curses:'Curse',passive_tree:'Passive node',stacking:'Passive node',monsters:'Monster',guardian_resist:'Guardian resistance',blessings:'Blessing',oath_masteries:'Oath mastery',affixes:'Affix',affixes_riven:'Riven affix',weapons:'Weapon',potions:'Potion',runes:'Rune',runewords:'Runeword',classes:'Class',scaling:'Scaling rule',late2:'Late-game scaling',gem_homes:'Gem',cube_recipes:'Cube recipe',dragonling:'Dragonling aspect',monster_affixes:'Monster affix',mythic_lines:'Mythic line',new_gems85:'Gem'};
 /* Card titles for data files whose file name is an internal label a
    player would not recognise: "late2" is the late-game scaling data
    (the damage curve for high gem levels), and the Riven affix pool
    file reads plainly as "Riven affixes". Any file not listed here
    keeps its humanised file name. */
-var PN_FILE_LABEL={late2:'Late-game scaling',affixes_riven:'Riven affixes'};
+var PN_FILE_LABEL={late2:'Late-game scaling',affixes_riven:'Riven affixes',new_gems85:'New gems',cube_recipes:'Cube recipes',dragonling:'Dragonling',gem_homes:'Gem homes',monster_affixes:'Monster affixes',oath_masteries:'Oath masteries',mythic_lines:'Mythic lines'};
 var PN_FIELD_INFO={
   'Effectiveness':{label:'Damage effectiveness',does:'This is the multiplier applied to the skill\u2019s base damage and any added flat damage \u2014 the core number behind how hard each hit lands.',up:'It went up, so the skill hits harder at every gem level.',down:'It went down, so the skill hits softer at every gem level.'},
   'EffectivenessLate':{label:'Late-game damage effectiveness',does:'This is the damage multiplier the skill reaches at high gem levels, once its late-game scaling takes over.',up:'It went up, so the skill hits harder in the late game, where it matters most.',down:'It went down, so the skill hits softer in the late game.'},
@@ -23117,7 +23126,7 @@ var PN_FIELD_INFO={
   'Oaths.Name':{label:'Oath name',text:function(c){return 'One of the oaths offered here was renamed from \u201C'+c.old+'\u201D to \u201C'+c.new+'\u201D. It is the same oath with the same effect \u2014 only the name changed.'}},
   'Mods.Mode':{label:'How the bonus combines',text:function(c){return '\u201CMore\u201D and \u201CLess\u201D bonuses multiply your final number separately, which makes them stronger; \u201CIncreased\u201D and \u201CReduced\u201D bonuses all add together into one pool first. This bonus switched from '+c.old+' to '+c.new+'.'}},
   'Mods.Stat':{label:'Stat the bonus applies to',text:function(c){return 'The bonus used to apply to '+pnStatName(c.old).toLowerCase()+', and now applies to '+pnStatName(c.new).toLowerCase()+' instead.'}},
-  'Mods.Tags':{label:'What the bonus applies to',text:function(c){return 'This bonus only works on hits of a matching kind. It applied to '+c.old+' hits before, and applies to '+c.new+' hits now.'}},
+  'Mods.Tags':{label:'What the bonus applies to',text:function(c){return 'This bonus only works on hits of a matching kind. It applied to '+pnDispVal('','Mods.Tags',c.old)+' hits before, and applies to '+pnDispVal('','Mods.Tags',c.new)+' hits now.'}},
   'Mods.Value':{label:'Bonus size',unit:'%',does:'This is the size of the bonus this entry grants. A negative number is a drawback rather than a bonus.'},
   'Mods.Text':{label:'Special effect',text:function(){return 'The wording of the special effect changed \u2014 the new text above is what it does now.'},nested:'The special effect text was rewritten. Open the entry in the Items tab to read the new wording.'},
   'Mods':{label:'Bonus list',nested:'Its whole list of bonuses was reworked. The \u201CWhat it does now\u201D line above is its current effect.'},
@@ -23155,11 +23164,40 @@ var PN_FIELD_INFO={
   'Tiers.Max':{label:'Highest roll of the tier',does:'This is the top of the range this affix tier can roll.',up:'It went up, so the tier can roll higher.',down:'It went down, so the tier rolls lower at the top.'},
   'Tiers.Min':{label:'Lowest roll of the tier',does:'This is the bottom of the range this affix tier can roll.',up:'It went up, so the tier starts higher.',down:'It went down, so the tier can start lower.'},
   'Tiers.Max2':{label:'Highest second roll of the tier',does:'This is the top of the range for this affix tier\u2019s second value.',up:'It went up, so the tier can roll higher.',down:'It went down, so the tier rolls lower at the top.'},
-  'Tiers.Min2':{label:'Lowest second roll of the tier',does:'This is the bottom of the range for this affix tier\u2019s second value.',up:'It went up, so the tier starts higher.',down:'It went down, so the tier can start lower.'}
+  'Tiers.Min2':{label:'Lowest second roll of the tier',does:'This is the bottom of the range for this affix tier\u2019s second value.',up:'It went up, so the tier starts higher.',down:'It went down, so the tier can start lower.'},
+  /* v0.426: the monster affix files' appearance floors are plain
+     level gates a player can read — the lowest Rupture level /
+     monster level at which the affix can show up — never the raw
+     "MinRL" / "MinML" field names. */
+  'MinRL':{label:'Lowest Rupture level',does:'This is the lowest Rupture level at which this can appear.',up:'It went up, so it shows up later, deeper into a run.',down:'It went down, so it can show up earlier.'},
+  'MinML':{label:'Lowest monster level',does:'This is the lowest monster level at which this can appear.',up:'It went up, so it shows up on stronger monsters only.',down:'It went down, so it can show up on weaker monsters too.'},
+  'DropWeight':{label:'Drop weight',does:'This is how heavily it weighs in the drop pool — the higher it is, the more often it drops.',up:'It went up, so it drops more often.',down:'It went down, so it drops less often.'},
+  /* A unique's Signature flag marks it as one of the Guardian
+     signature drops; the row reads the flag as yes/no (pnDispVal). */
+  'Signature':{label:'Guardian signature drop',text:function(c){return c.new==='True'?'It now counts as one of the Guardian signature drops.':'It no longer counts as one of the Guardian signature drops.'}},
+  /* Cube recipe structure fields, in the words the recipe book
+     itself uses. What goes in, what it makes, what it uses up and
+     what you keep are the recipe's own published text, shown via
+     pnNowText when the changelog only marks them rewritten. */
+  'Recipe':{label:'What goes in'},
+  'Makes':{label:'What it makes'},
+  'UsesUp':{label:'What it uses up'},
+  'Keeps':{label:'What you keep'},
+  'Result':{label:'What you get'},
+  'Count':{label:'Ingredients used',does:'This is how many matching ingredients the recipe takes in.',up:'It went up, so the recipe takes more of them.',down:'It went down, so the recipe takes fewer of them.'},
+  'Jewels':{label:'Jewels used',does:'This is how many jewels the recipe takes in.',up:'It went up, so the recipe takes more jewels.',down:'It went down, so the recipe takes fewer jewels.'}
 };
 function pnFieldInfo(file,field){
   var P=pnFieldParts(field);
   if(P.meta)return{label:'Revision marker',nested:'A bookkeeping marker the developer uses to track this entry\u2019s revision history. It has no gameplay effect by itself \u2014 the real changes are the other rows listed for this entry.'};
+  /* Cube recipes carry one internal record prefix (an "R85." field
+     group) in front of plain recipe fields — read those by their
+     plain tail field ("Keeps", "Makes", \u2026), never by the
+     prefixed path itself. */
+  if(P.parts.length>1&&/^R\d+$/.test(P.parts[0])){
+    var tailInfo=PN_FIELD_INFO[P.parts.slice(1).join('.')];
+    if(tailInfo)return tailInfo;
+  }
   if(P.parts[0]==='ElementTakenPct'&&P.parts[1]){
     var el=P.parts[1];
     return{label:el+' damage taken by cursed enemies',unit:'%',does:'Enemies suffering this curse take extra '+el+' damage \u2014 this is the size of that bonus.',up:'It went up, so cursed enemies take noticeably more '+el+' damage.',down:'It went down, so cursed enemies take less extra '+el+' damage.'};
@@ -23204,6 +23242,8 @@ function pnDispVal(file,field,v){
   var P=pnFieldParts(field);
   if(P.path==='BaseId'){var b=G.baseMap[v];return b&&b.Name?b.Name:niceId(v)}
   if(P.path==='Mods.Stat')return pnStatName(v);
+  if(P.path==='Mods.Tags')return pnCleanText(v).replace(/Pct=(\d+(?:\.\d+)?)/g,'$1%');
+  if(P.path==='Signature')return v==='True'?'Yes':v==='False'?'No':pnCleanText(v);
   return pnCleanText(v);
 }
 /* For a "(nested)" change the changelog says a text was rewritten but does
@@ -23225,6 +23265,13 @@ function pnNowText(file,id,field){
   if((file==='passive_tree'||file==='stacking')&&P.path==='Links'){
     var n=G.passiveMap[id];
     if(n&&n.Links&&n.Links.length)return 'Now connects to: '+n.Links.map(function(l){var t=G.passiveMap[l];return t&&t.Name?t.Name:niceId(l)}).join(', ')+'.';
+  }
+  if(file==='cube_recipes'){
+    var seg=P.parts[P.parts.length-1];
+    if(seg==='Recipe'||seg==='Makes'||seg==='UsesUp'||seg==='Keeps'||seg==='Result'){
+      var rec=cubeRecipeById(id);
+      if(rec&&rec[seg])return String(rec[seg]);
+    }
   }
   return '';
 }
@@ -23261,6 +23308,19 @@ function pnClassify(file,c){
   var invert=!!PN_MONSTER_FILES[file]||/cost|cooldown|price|delay|interval|reserv/i.test(f)||f==='Level';
   return{kind:((nN>oN)!==invert)?'buff':'nerf',pct:pct};
 }
+/* Render-side leak test for Patch Notes text (v0.426): the patterns
+   that must never reach a reader — internal ids in snake_case, the
+   changelog's "(nested)" marker, data-file names, internal record
+   prefixes like R85, "Pct=" tag parameters, and raw hex
+   fingerprints. pnRow and pnGroupedModRow use it as a final drop
+   rule (a row whose rendered text trips it does not render), and
+   renderPatches uses it on entry names. The stored changelog data
+   is never rewritten — this only governs what renders. */
+function pnLeakTest(s){
+  if(!s)return false;
+  var t=String(s);
+  return /\(nested\)/.test(t)||/\.json\b/.test(t)||/\b[a-z][a-z0-9]*_[a-z0-9_]+\b/.test(t)||/\bR\d+\b/.test(t)||/Pct=\d/.test(t)||/\b(?=[0-9a-f]*[a-f])[0-9a-f]{10,}\b/.test(t);
+}
 function pnRow(file,id,c){
   var cl=pnClassify(file,c);
   if(cl.kind==='hidden')return null;
@@ -23272,7 +23332,19 @@ function pnRow(file,id,c){
      resolve their values to plain names (a base item's name, a
      renamed entry's name, a bonus's stat or tags) are exempt. */
   var P0=pnFieldParts(c.field);
-  if(P0.path==='BaseTags'||P0.path==='Art')return null;
+  if(P0.path==='BaseTags'||P0.path==='Art'||P0.path==='Group')return null;
+  /* A "Pct=" tag value is an internal strength parameter on a bonus
+     tag, not a kind of hit — as a row it would read as a raw
+     fragment, so it drops like the other internal-only rows. */
+  if(P0.path==='Mods.Tags'&&(/^\s*Pct=/.test(String(c.old||''))||/^\s*Pct=/.test(String(c.new||''))))return null;
+  /* An internal record prefix ("R85.Keeps") is readable only when it
+     fronts one of the cube recipe's own published text fields and
+     that recipe's text is on hand to show (via pnNowText); any
+     other prefixed field drops with its row. */
+  if(P0.parts.some(function(p){return /^R\d+$/.test(p)})){
+    var segL=P0.parts[P0.parts.length-1];
+    if(!(file==='cube_recipes'&&(segL==='Recipe'||segL==='Makes'||segL==='UsesUp'||segL==='Keeps'||segL==='Result')&&cubeRecipeById(id)))return null;
+  }
   var idVal=/^(?:ra|ui|fx)_[a-z0-9_]+$|^[a-z][a-z0-9]*(?:_[a-z0-9]+)+$/;
   if(P0.path!=='BaseId'&&P0.path!=='Name'&&P0.path!=='Mods.Stat'&&P0.path!=='Mods.Tags'){
     if((c.old&&idVal.test(String(c.old).trim()))||(c.new&&idVal.test(String(c.new).trim())))return null;
@@ -23298,6 +23370,10 @@ function pnRow(file,id,c){
   var why=pnExplain(file,c,cl,info,nowTxt);
   var html='<div class="pn-row"><div class="pn-line"><span class="pn-what">'+esc(info.label)+'</span>'+vals+badge+'</div>'
     +nowHtml+(why?'<p class="pn-why">'+esc(why)+'</p>':'')+'</div>';
+  /* Last line of defence, for this changelog and every future one:
+     if anything player-unreadable survived into the row's text, the
+     row does not render (it counts with the internal-only lines). */
+  if(pnLeakTest(html.replace(/<[^>]+>/g,' ')))return null;
   var P=pnFieldParts(c.field);
   return{kind:cl.kind,html:html,ctx:cl.kind==='nested'&&P.path==='Mods'};
 }
@@ -23350,6 +23426,7 @@ function pnGroupedModRow(file,id,idx,parts){
   var html='<div class="pn-row"><div class="pn-line"><span class="pn-what">Bonus '+(idx+1)+' \u2014 reworked</span>'
     +'<span class="pn-old">'+esc(oldP)+'</span><span class="pn-arrow">\u2192</span><span class="pn-newval">'+esc(newP)+'</span></div>'
     +'<p class="pn-why">This bonus was rebuilt rather than just retuned: what it gave before is struck through, what it gives now is in bold.</p></div>';
+  if(pnLeakTest(html.replace(/<[^>]+>/g,' ')))return null;
   return{kind:'text',html:html,ctx:true};
 }
 function pnBuildRows(file,id,rest){
@@ -23401,6 +23478,34 @@ function pnAffixBlurb(id){
   else core=range+' '+(tags?tags+' ':'')+stat;
   return ' \u2014 '+(a.Type||'Affix')+': '+core+(t?' at its highest tier':'');
 }
+/* v0.426: every changelog file's entries resolve to the real name
+   the game's own data publishes for them — never the raw id. The
+   cube map below is only the fallback for recipes the published
+   cube data does not carry; the record's own Name always wins
+   where the data has the recipe. (Names verified against the
+   game's cube data: jewel_pressing displays as "Rune Pressing"
+   and item_reroll as "Restring" — never guess a name from an id.) */
+var PN_CUBE_NAMES={rune_ascent:'Fuse Runes',rune_kindled:'Kindled Ascent',rune_tempered:'Tempered Ascent',rune_dawnbinding:'Dawnbinding',rune_oathfire:'Oathfire',rune_turning:'Rune Turning',rune_red_turning:'Red Rune Turning',rune_kindlings:'The Six Kindlings',rune_breaking:'Rune Breaking',jewel_polish:'Jewel Polishing',jewel_cleave:'Jewel Cleaving',jewel_turning:'Jewel Turning',jewel_pressing:'Rune Pressing',jewel_binding:'Jewel Binding',jewel_prism:'The Prism',jewel_kindle:'Jewel Kindling',item_socket:'Socket Boring',item_reforge:'Family Reforge',item_imbue:'Family Imbuing',item_infuse:'Family Infusing',item_gearfuse:'Gear Fusing',item_awaken:'Awakening',item_reroll:'Restring',item_ascend:'Base Ascension',item_retemper:'Retempering',item_runebase:"Runesmith's Base",item_runecount:"Runesmith's Count",item_blank_slate:'Blank Slate',rare_oathsworn:'Oathsworn',item_resist_turn:'Resist Turning',item_regrade:'Regrading',item_regrade_elite:'Regrading, Grade 90+',item_oathmark:'Oathmark',dwarven_carve:'Dwarven Carving',dwarven_mend:'Dwarven Mending',idol_merge:'Idol Merging',idol_fuse:'Idol Fusing',idol_temper:'Idol Tempering',idol_mend:'Idol Mending',idol_fill:'Idol Filling',idol_turn:'Idol Turning',idol_resist_turn:'Idol Resist Turning',idol_bind:'Idol Binding',red_ascent:'Red Ascent',red_turning:'Red Turning',red_descent:'Red Descent',red_reroll:'Red Reawakening',red_retemper:'Red Retempering',red_unmake:'Red Unmaking',red_echo:'The Perfect Echo',red_vow_mark:'Vowbinding: the Mark',red_vow_take:'Vowbinding: a Vow',sigil_binding:'Sigil Binding',oath_binding:'Oath Binding'};
+function pnMonsterOf(id){
+  if(!G.monsters||!G.monsters.length)return null;
+  if(!G.__pnMonsterMap){G.__pnMonsterMap={}; G.monsters.forEach(function(m){if(m&&m.Id)G.__pnMonsterMap[m.Id]=m})}
+  return G.__pnMonsterMap[id]||null;
+}
+function pnRunewordOf(id){
+  var list=(G.runewordsData&&G.runewordsData.runewords)||[];
+  for(var i=0;i<list.length;i++)if(list[i].Id===id)return list[i];
+  return null;
+}
+function pnPotionName(id){
+  var p=G.potions; if(!p)return'';
+  if(!G.__pnPotionMap){
+    G.__pnPotionMap={};
+    ['Types','Mods','Vessels','Uniques','Pour'].forEach(function(k){
+      (p[k]||[]).forEach(function(r){if(r&&r.Id&&r.Name&&!G.__pnPotionMap[r.Id])G.__pnPotionMap[r.Id]=r.Name});
+    });
+  }
+  return G.__pnPotionMap[id]||'';
+}
 function pnEntName(file,id){
   if(!id)return'';
   var o=null;
@@ -23418,10 +23523,22 @@ function pnEntName(file,id){
     }
   }
   if(file==='uniques')o=G.uniqueMap[id];
-  else if(file==='curses')o=G.curseMap[id];
+  else if(file==='curses')o=G.curseMap[id]||G.skillMap[id];
   else if(file==='passive_tree'||file==='stacking')o=G.passiveMap[id];
   else if(file==='item_bases')o=G.baseMap[id];
-  else if(file==='weapons')o=G.weaponMap[id];
+  else if(file==='weapons')o=G.weaponMap[id]||G.baseMap[id];
+  else if(file==='blessings')o=G.blessingMap[id];
+  else if(file==='dragonling')o=G.dragonMap[id]||G.aspectMap[id];
+  else if(file==='monsters')o=pnMonsterOf(id);
+  else if(file==='monster_affixes')o=G.monsterAffixMap[id];
+  else if(file==='oath_masteries')o=G.masteryMap[id];
+  else if(file==='cube_recipes'){var cr=cubeRecipeById(id); if(cr&&cr.Name)return cr.Name; if(PN_CUBE_NAMES[id])return PN_CUBE_NAMES[id];}
+  else if(file==='runes'){var rr=runeRecord(id); if(rr&&rr.Name)return rr.Name;}
+  else if(file==='runewords'){var rw=pnRunewordOf(id); if(rw&&rw.Name)return rw.Name;}
+  else if(file==='potions'){var pnm=pnPotionName(id); if(pnm)return pnm;}
+  else if(file==='mythic_lines'){var ml=G.mythicMap[id]; if(ml&&ml.Tiers&&ml.Tiers[0]&&ml.Tiers[0].Name)return ml.Tiers[0].Name;}
+  else if(file==='gem_homes'||file==='new_gems85'){var gm=G.skillMap[id]||G.supportMap[id]||G.curseMap[id]||G.blessingMap[id]; if(gm&&gm.Name)return gm.Name;}
+  else if(file==='classes')return String(id);
   if(o&&o.Name)return o.Name;
   return niceId(id);
 }
@@ -23586,12 +23703,13 @@ function renderPatches(){
         var nd=G.passiveMap[id];
         if(nd&&nd.Text)ctxHtml='<p class="pn-ctx"><b>What it does now:</b> '+esc(nd.Text)+(nd.Price?' <b>Cost:</b> '+esc(nd.Price):'')+'</p>';
       }
-      ents+='<div class="pn-ent"><span class="pn-ent-name">'+esc(pnEntName(e.file,id))+'</span>'+(ftype?' <span class="pn-ent-type">'+esc(ftype)+'</span>':'')+ctxHtml+vis.map(function(r){return r.html}).join('')+'</div>';
+      var entName=pnEntName(e.file,id); if(pnLeakTest(entName))entName=PN_FILE_TYPE[e.file]||'Entry';
+      ents+='<div class="pn-ent"><span class="pn-ent-name">'+esc(entName)+'</span>'+(ftype?' <span class="pn-ent-type">'+esc(ftype)+'</span>':'')+ctxHtml+vis.map(function(r){return r.html}).join('')+'</div>';
     });
     tot.buff+=counts.buff; tot.nerf+=counts.nerf;
     var also=(e.ids||[]).filter(function(id){return !seen[id]});
     var allNew=!!(c&&c.added>0&&!c.changed&&!c.removed);
-    var alsoHtml=(pnFilter==='all'&&also.length)?'<p class="pn-also">'+(allNew?'New in this patch: ':ents?'Also changed in this patch (the developer\u2019s changelog names them without listing details): ':'Entries: ')+also.slice(0,20).map(function(id){var nm=esc(pnEntName(e.file,id));if(allNew)nm+=' <span class="pn-badge pn-newb">New</span>'+((e.file==='affixes'||e.file==='affixes_riven')?esc(pnAffixBlurb(id)):'');return nm}).join(', ')+(also.length>20?' \u2022 +'+(also.length-20)+' more':'')+'</p>':'';
+    var alsoHtml=(pnFilter==='all'&&also.length)?'<p class="pn-also">'+(allNew?'New in this patch: ':ents?'Also changed in this patch (the developer\u2019s changelog names them without listing details): ':'Entries: ')+also.slice(0,20).map(function(id){var rawNm=pnEntName(e.file,id);if(pnLeakTest(rawNm))return'';var nm=esc(rawNm);if(allNew)nm+=' <span class="pn-badge pn-newb">New</span>'+((e.file==='affixes'||e.file==='affixes_riven')?esc(pnAffixBlurb(id)):'');return nm}).filter(function(x){return x}).join(', ')+(also.length>20?' \u2022 +'+(also.length-20)+' more':'')+'</p>':'';
     var layoutHtml=(pnFilter==='all'&&layoutOnly)?'<p class="pn-also">+ '+layoutOnly+' entr'+(layoutOnly===1?'y':'ies')+' changed only in tree position or internal bookkeeping \u2014 nothing that changes how they play.</p>':'';
     if(!ents&&!alsoHtml)return'';
     var chips='';
@@ -26859,8 +26977,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.424';
-var PLANNER_BUILT_AT='2026-11-26T18:41:00-08:00';
+var PLANNER_VERSION='0.426';
+var PLANNER_BUILT_AT='2026-11-26T19:25:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
