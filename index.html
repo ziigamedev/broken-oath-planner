@@ -2489,6 +2489,12 @@ body.ws-tree .tree-rail{display:flex}
 .cube-sig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
 .cube-sig{display:flex;justify-content:space-between;gap:10px;align-items:baseline;border:1px solid var(--line2);background:var(--panel2);border-radius:var(--radius-sm);padding:7px 10px;font-size:13.5px}
 .cube-sig b{color:var(--gold);white-space:nowrap}
+.forge-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px;border:1px solid rgba(0,0,0,.35);vertical-align:baseline}
+.forge-anchor{scroll-margin-top:88px}
+#forgeChips .chip:disabled{opacity:.42;cursor:default}
+.forge-recipe{padding:8px 10px}
+.forge-learned{font-size:12.5px;color:var(--muted);margin-top:6px}
+.forge-learned b{color:var(--muted);font-weight:600}
 .rw-runes{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0}
 .rw-rune{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius-sm);padding:3px 9px;font-weight:700;font-size:13px}
 .rw-arrow{color:var(--muted);font-size:12px}
@@ -3105,6 +3111,7 @@ body.tab-home .brand h1{display:none}
         <button class="tab hidden" data-tab="items"><span>Items</span></button>
         <button class="tab hidden" data-tab="bestiary"><span>Bestiary</span></button>
         <button class="tab hidden" data-tab="cube"><span>The Cube</span></button>
+        <button class="tab" data-tab="forge"><span>Forge</span></button>
         <button class="tab hidden" data-tab="loot"><span>Loot Filter</span></button>
         <button class="tab hidden" data-tab="grail"><span>Collections</span></button>
         <button class="tab" data-tab="patches"><span>Patch Notes</span></button>
@@ -4009,6 +4016,54 @@ body.tab-home .brand h1{display:none}
     </div>
   </section>
 
+  <!-- FORGE -->
+  <section id="view-forge" class="hidden">
+    <div style="display:grid;gap:16px">
+      <div class="card">
+        <div class="flex between"><div><h2>The Forge</h2><p class="sub">Edda Ironhand&rsquo;s bench. Bring her an item and the materials a recipe calls for, and she adds a crafted mod, reforges the item, works its sockets and quality — or, at the deep end of the bench, binds Red Shards back into the reds they fell from. Every recipe she knows is here, with its real cost.</p></div><span class="pill" id="forgeCount">—</span></div>
+        <div class="notice mt">One honest note before the recipes: everything on this page comes from the game&rsquo;s own files, because the public API doesn&rsquo;t publish the Forge yet. It is the one page here drawn from the game files instead.</div>
+        <div class="forge-tools mt">
+          <div class="flex" style="gap:8px;flex-wrap:wrap;align-items:center">
+            <input type="search" id="forgeSearch" placeholder="Search recipes — name, effect, material…" style="flex:1;min-width:200px">
+            <label class="sub" for="forgeMatSel" style="margin:0">Recipes using</label>
+            <select id="forgeMatSel" aria-label="Recipes using"></select>
+          </div>
+          <div class="flex between" style="margin-top:8px;align-items:center">
+            <span class="sub" id="forgeMatchCount" aria-live="polite"></span>
+            <button class="btn small" id="forgeClearBtn" type="button" style="display:none">Clear</button>
+          </div>
+          <div class="chips" id="forgeChips" style="margin-top:8px"></div>
+        </div>
+        <details class="fold-block forge-anchor" id="forgeBenchFold" open>
+          <summary><span class="fold-title">How the bench works</span></summary>
+          <div class="fold-block-body"><div id="forgeBench"></div></div>
+        </details>
+      </div>
+
+      <div class="card forge-anchor" id="forgeSecMats">
+        <h2>Forge materials</h2>
+        <p class="sub">Sixteen materials pay for every craft at the bench. Each land pays its own; the rest come from monsters, Guardians and the Ruptures.</p>
+        <div id="forgeMats" class="mt"></div>
+        <div class="label" style="margin-top:16px">Where materials drop</div>
+        <div id="forgeDrops"></div>
+      </div>
+
+      <div class="card">
+        <div class="flex between"><div><h2>Every Forge recipe</h2><p class="sub">All four families, grouped the way the bench groups them. Gold is charged on top of the materials: 40 gold plus 6 per item level, multiplied by the recipe&rsquo;s tier. Nothing here tracks your own items — it is the recipe book, not a stash.</p></div></div>
+        <div class="flex mt"><label class="sub" for="forgeIlvl" style="margin:0">Item level for gold costs</label><input type="number" id="forgeIlvl" min="1" max="84" value="84" style="width:84px"></div>
+        <div id="forgeRecipes" class="mt"></div>
+      </div>
+
+      <div class="card forge-anchor" id="forgeSecRed">
+        <h2>Red Shards &amp; the red crafts</h2>
+        <p class="sub">Eight reds can be rebuilt from shards. Guardian kills can drop a shard of a red; gather six shards of one red and Edda binds them back into that red at the bench. A shard&rsquo;s chance on a Guardian kill is your Rupture level divided by 4,000, then divided by the red&rsquo;s share: land reds carry the full share, the two Guardian reds a one-fifth share — so their shards fall far more often per kill, but only their own Guardian drops them — and the Riven Lord&rsquo;s red a quarter share.</p>
+        <div class="flex mt"><label class="sub" for="forgeRl" style="margin:0">Your Rupture level</label><input type="number" id="forgeRl" min="1" max="300" value="100" style="width:84px"></div>
+        <div id="forgeReds" class="mt"></div>
+        <div id="forgeRedCrafts" class="mt"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- LOOT FILTER -->
   <section id="view-loot" class="hidden">
     <div class="card" id="fbStart">
@@ -4436,6 +4491,34 @@ var DICT={
 "Items":"物品",
 "Bestiary":"怪物图鉴",
 "The Cube":"魔方",
+"Forge":"锻造",
+"The Forge":"锻造炉",
+"Forge materials":"锻造材料",
+"Every Forge recipe":"全部锻造配方",
+"Red Shards & the red crafts":"红色碎片与红色锻造",
+"Where materials drop":"材料掉落来源",
+"Item level for gold costs":"金币费用的物品等级",
+"Your Rupture level":"你的裂隙等级",
+"Costs":"费用",
+"What it does":"效果",
+"Learned":"习得方式",
+"Edda Ironhand’s bench. Bring her an item and the materials a recipe calls for, and she adds a crafted mod, reforges the item, works its sockets and quality — or, at the deep end of the bench, binds Red Shards back into the reds they fell from. Every recipe she knows is here, with its real cost.":"Edda Ironhand 的工作台。把一件物品和配方所需的材料带给她，她会为物品添加一条锻造词缀、重铸物品、处理其插槽与品质——或者在工作台的最深处，把红色碎片重新绑定为它们所来自的红色物品。她所知的每一个配方都在这里，附带真实费用。",
+"One honest note before the recipes: everything on this page comes from the game’s own files, because the public API doesn’t publish the Forge yet. It is the one page here drawn from the game files instead.":"在查看配方之前先说句实话：本页的所有内容都来自游戏自身的文件，因为公共 API 尚未发布锻造系统。这是本网站唯一取材于游戏文件、而非 API 的页面。",
+"Search recipes — name, effect, material…":"搜索配方——名称、效果、材料……",
+"Recipes using":"使用材料",
+"Any material":"任意材料",
+"Red Shards":"红色碎片",
+"How the bench works":"工作台的运作方式",
+"Bench rules":"工作台规则",
+"Materials":"材料",
+"Reforge":"重铸",
+"Slots":"插槽",
+"Mastery":"精通",
+"Red crafts":"红色锻造",
+"No recipes match — try a different search, or clear the filters to see them all.":"没有配方符合——换一个搜索词，或清除筛选以查看全部。",
+"Sixteen materials pay for every craft at the bench. Each land pays its own; the rest come from monsters, Guardians and the Ruptures.":"十六种材料支付工作台上的每一次锻造。每个地区出产自己的材料；其余来自怪物、守护者和裂隙。",
+"All four families, grouped the way the bench groups them. Gold is charged on top of the materials: 40 gold plus 6 per item level, multiplied by the recipe’s tier. Nothing here tracks your own items — it is the recipe book, not a stash.":"全部四个家族，按工作台的分组方式排列。材料之外还要收取金币：40 金币加每物品等级 6 金币，再乘以配方的阶级。这里不记录你自己的物品——这是配方书，不是仓库。",
+"Eight reds can be rebuilt from shards. Guardian kills can drop a shard of a red; gather six shards of one red and Edda binds them back into that red at the bench. A shard’s chance on a Guardian kill is your Rupture level divided by 4,000, then divided by the red’s share: land reds carry the full share, the two Guardian reds a one-fifth share — so their shards fall far more often per kill, but only their own Guardian drops them — and the Riven Lord’s red a quarter share.":"八件红色物品可以用碎片重建。击杀守护者有机会掉落某件红色物品的碎片；集齐同一件红色物品的六块碎片，Edda 就能在工作台上把它们重新绑定为那件红色物品。守护者击杀掉落碎片的几率等于你的裂隙等级除以 4,000，再除以该红色物品的份额：地区红色物品占全额份额，两件守护者红色物品占五分之一份额——因此它们每次击杀的掉落几率要高得多，但只有各自的守护者才会掉落——裂隙领主的红色物品则占四分之一份额。",
 "Loot Filter":"掉落过滤器",
 "Collections":"收藏",
 "Patch Notes":"补丁说明",
@@ -6290,6 +6373,7 @@ var RULES=[
  [/^(\S+) — (\S+) aspect$/,function(m){return classZh(m[1])+' — '+aspectZh(m[2])+'形态';}],
  [/^Ladder — ([\s\S]+)$/,function(m){return '天梯 — '+m[1];}],
  [/^([\d,]+) heroes • Showing (\d+)$/,function(m){return m[1]+' 名英雄 • 显示 '+m[2]+' 名';}],
+ [/^Showing (\d+) of (\d+) recipes$/,function(m){return '显示 '+m[1]+' / '+m[2]+' 个配方';}],
  [/^Class #(\d+)$/,function(m){return '职业第 '+m[1]+' 名';}],
  [/^Lv (\d+)( • Dead)?$/,function(m){return '等级 '+m[1]+(m[2]?' • 已死亡':'');}],
  [/^(\d+) of the (\d+) heroes shown have no build to open\.$/,function(m){return '显示的 '+m[2]+' 名英雄中有 '+m[1]+' 名没有可打开的构建。';}],
@@ -6708,7 +6792,7 @@ var state={cls:'Ranger',level:90,gemLevel:1,aspect:'Lightning',skillId:'lightnin
  def:{life:4500,es:0,armour:8000,evasion:6000,block:0,enemyLvl:84,resFire:75,resCold:75,resLightning:75,resOther:60,hit:5000},
  tree:{take:[],keep:[],never:[],must:[]},oaths:{},heroRupture:0,gear:{},grail:{},belt:null,itemsKind:'all',itemsSlot:'All',weaponAffixes:[],weaponRarity:'Rare',wpnTab:'weapon',wpnMsg:'',
  loot:{name:'My filter',fallback:'show',rules:[{action:'highlight',rarity:'Rare',slot:'Any',cls:'Any',min:60,max:0,name:'',affix:'',line:0,roll:'any',count:1,color:'',sound:'auto'},{action:'highlight',rarity:'Unique',slot:'Any',cls:'Any',min:0,max:0,name:'',affix:'',line:0,roll:'any',count:1,color:'',sound:'auto'},{action:'hide',rarity:'Normal',slot:'Any',cls:'Any',min:0,max:0,name:'',affix:'',line:0,roll:'any',count:1,color:'',sound:'auto'}]}};
-var cache={}; var G={skills:[],supports:[],weapons:[],passives:[],skillMap:{},skillMapCI:{},supportMap:{},supportMapCI:{},weaponMap:{},weaponMapCI:{},passiveMap:{},leagues:[],version:null,ladder:null,meta:null,loadedHero:null,allBases:[],baseMap:{},baseMapCI:{},uniques:[],uniqueMap:{},scaling:null,changelog:null,affixes:[],affixMap:{},curses:[],curseMap:{},simRows:[],heroChoices:[],rivenAffixes:[],rivenMap:{},statTexts:[],statTextMap:{},vowShares:null,dragonling:null,dragonMap:{},aspectMap:{},apiClasses:[],monsters:[],family95:null,guardianResist:{},oathMasteries:[],oathMap:{},masteryMap:{},potions:null,runesData:null,runeMap:{},runeMapCI:{},cubeData:null,runewordsData:null,patchHistory:null,blessings:[],blessingMap:{},blessingBySkill:{},rules:null,trapPrices:{},monsterAffixes:[],monsterAffixMap:{},mythicLines:[],mythicMap:{}};
+var cache={}; var G={skills:[],supports:[],weapons:[],passives:[],skillMap:{},skillMapCI:{},supportMap:{},supportMapCI:{},weaponMap:{},weaponMapCI:{},passiveMap:{},leagues:[],version:null,ladder:null,meta:null,loadedHero:null,allBases:[],baseMap:{},baseMapCI:{},uniques:[],uniqueMap:{},scaling:null,changelog:null,affixes:[],affixMap:{},curses:[],curseMap:{},simRows:[],heroChoices:[],rivenAffixes:[],rivenMap:{},statTexts:[],statTextMap:{},vowShares:null,dragonling:null,dragonMap:{},aspectMap:{},apiClasses:[],monsters:[],family95:null,guardianResist:{},oathMasteries:[],oathMap:{},masteryMap:{},potions:null,runesData:null,runeMap:{},runeMapCI:{},cubeData:null,forgeData:null,redShards:null,runewordsData:null,patchHistory:null,blessings:[],blessingMap:{},blessingBySkill:{},rules:null,trapPrices:{},monsterAffixes:[],monsterAffixMap:{},mythicLines:[],mythicMap:{}};
 function $(id){return document.getElementById(id)}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function fmt(n){if(n==null||isNaN(n))return'—';if(Math.abs(n)>=1e9)return(n/1e9).toFixed(2)+'B';if(Math.abs(n)>=1e6)return(n/1e6).toFixed(2)+'M';if(Math.abs(n)>=1e3)return(n/1e3).toFixed(1)+'K';return Math.round(n).toLocaleString()}
@@ -26223,7 +26307,7 @@ function bindHome(){
    is updated with replaceState so tab switches do not pile up in the
    browser history, and any #loot= filter code already in the hash is
    preserved alongside it. */
-var TAB_NAMES=['home','builds','planner','ladder','meta','items','bestiary','cube','loot','grail','patches'];
+var TAB_NAMES=['home','builds','planner','ladder','meta','items','bestiary','cube','forge','loot','grail','patches'];
 var currentTab='home';
 function tabFromHash(){
   try{
@@ -26325,7 +26409,7 @@ function switchTab(name,opts){
   document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('active',t.getAttribute('data-tab')===name)});
   TAB_NAMES.forEach(function(v){$('view-'+v).classList.toggle('hidden',v!==name)});
   fitNavStack(); /* the stack changes with the view (planner adds the workspace tabs) — re-measure before anything scrolls */
-  if(name==='home')renderHome();if(name==='ladder'){if(G.ladder&&(G.ladder||{}).league===state.league)renderLadder();else loadLeagueSnapshot(state.league)}if(name==='meta'){if(G.meta&&(G.meta||{}).league===state.league)renderMeta();else loadLeagueSnapshot(state.league)}if(name==='items')renderItems();if(name==='bestiary')renderBestiary();if(name==='cube')renderCube();if(name==='loot')renderLoot();if(name==='grail')renderGrail();if(name==='patches')renderPatches();
+  if(name==='home')renderHome();if(name==='ladder'){if(G.ladder&&(G.ladder||{}).league===state.league)renderLadder();else loadLeagueSnapshot(state.league)}if(name==='meta'){if(G.meta&&(G.meta||{}).league===state.league)renderMeta();else loadLeagueSnapshot(state.league)}if(name==='items')renderItems();if(name==='bestiary')renderBestiary();if(name==='cube')renderCube();if(name==='forge')renderForge();if(name==='loot')renderLoot();if(name==='grail')renderGrail();if(name==='patches')renderPatches();
   /* Switching views never carried a scroll reset, so the offset
      from the view being left rode into the one being opened: the
      planner is thousands of pixels tall, so coming back to Home
@@ -26676,6 +26760,252 @@ function renderRunewords(){
       +'</div>';
   }).join('')+'</div>'):'<div class="notice">No runeword matches that search.</div>';
 }
+/* ---------- The Forge — Edda Ironhand's bench ----------
+   Everything on this view renders from the game's own files,
+   bundled into the snapshot on the owner's decision (2026-11-26):
+   forge.json (the bench: 16 materials, the Forge levels, all 67
+   recipes in their four families) and red_shards.json (the eight
+   shard reds and the red crafts' shared costs). The public API
+   publishes neither file, so the live refresh never fetches them
+   and this view reads only the bundled copies. It is a reference
+   book, not a simulator: the planner holds no stash, so no craft
+   is performed here — each recipe shows its real name, its exact
+   material cost, its gold from the bench's own formula at a
+   reader-chosen item level, what it does in the game's own words,
+   and how it is learned. The one cost the recipe records leave
+   out — Red Forge's Oathsteel and gold — comes from red_shards'
+   own rules, which the game's patch notes agree with. Chinese
+   mode: the game's Chinese file publishes no Forge text at all,
+   so — like the Dragonling — every Forge name keeps its English
+   with the site's (EN) marker rather than an invented rendering;
+   the eight reds are uniques, whose official Chinese names the
+   merged uniques data already carries. */
+var forgeState={bound:false,loading:false,ilvl:84,rl:100,q:'',mat:'',benchInit:false};
+function forgeMarkEn(name){return window.BOP_LANG==='zh'?String(name)+' (EN)':String(name)}
+function forgeMatRec(id){var f=G.forgeData; if(!f||!f.Materials)return null; for(var i=0;i<f.Materials.length;i++)if(f.Materials[i].Id===id)return f.Materials[i]; return null}
+function forgeMatName(id){var m=forgeMatRec(id); return m?forgeMarkEn(m.Name):niceId(id)}
+function forgeLandName(id){var f=G.forgeData; return (f&&f.Lands&&f.Lands[id])?forgeMarkEn(f.Lands[id]):niceId(id)}
+function forgeNum(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,',')}
+function forgeAmt(n){var v=Math.round(n*100)/100; var s=String(v); var d=s.indexOf('.'); return d<0?forgeNum(s):forgeNum(s.slice(0,d))+s.slice(d)}
+function forgePct(x){return String(Math.round(x*100000)/1000)+'%'}
+function forgeGoldFor(r,ilvl){var R=(G.forgeData&&G.forgeData.Rules)||{}; var mult=(R.GoldTierMult||[])[r.Tier]; if(mult==null)mult=1; return Math.round(((R.GoldBase||40)+(R.GoldPerLevel||6)*ilvl)*mult)}
+function forgeCostParts(r){
+  var parts=[];
+  if(r.Mat){
+    if(r.MatCost>0)parts.push(r.MatCost+' '+forgeMatName(r.Mat));
+    else parts.push('One of the mod\u2019s own Echoes');
+  }
+  if(r.Mat2&&r.Mat2Cost>0)parts.push(r.Mat2Cost+' '+forgeMatName(r.Mat2));
+  if(r.Id==='forge_oathbind'||r.Id==='forge_rivenbind')parts.unshift('6 Red Shards + a plain (white) item of that red\u2019s base');
+  if(r.Id==='forge_redforge'){
+    var rf=(G.redShards&&G.redShards.Rules&&G.redShards.Rules.RedForge)||{Heart:1,Gloom:20,Steel:40,Gold:2000000};
+    return 'A plain (white) item of the red\u2019s base, item level at least the red\u2019s, + '+rf.Heart+' '+forgeMatName('forgeheart')+' + '+rf.Gloom+' '+forgeMatName('gloomsilver')+' + '+rf.Steel+' '+forgeMatName('oathsteel')+' + '+forgeNum(rf.Gold)+' gold the first time \u2014 more on every later use this league (see the red crafts below)';
+  }
+  return parts.join(' + ');
+}
+function forgeFilterActive(){return !!(String(forgeState.q).trim()||forgeState.mat)}
+function forgeRecipeMats(r){
+  var ms=[]; if(r.Mat)ms.push(r.Mat); if(r.Mat2)ms.push(r.Mat2);
+  if(r.Id==='forge_oathbind'||r.Id==='forge_rivenbind')ms.push('red_shard');
+  if(r.Id==='forge_redforge')ms.push('oathsteel');
+  return ms;
+}
+function forgeRecipeMatches(r){
+  if(forgeState.mat&&forgeRecipeMats(r).indexOf(forgeState.mat)<0)return false;
+  var q=String(forgeState.q).trim().toLowerCase();
+  if(q&&(r.Name+' '+r.Text+' '+forgeCostParts(r)).toLowerCase().indexOf(q)<0)return false;
+  return true;
+}
+function forgeBuildMatOptions(){
+  var sel=$('forgeMatSel'); if(!sel)return;
+  var f=G.forgeData; if(!f||!f.Materials)return;
+  sel.innerHTML='<option value="">Any material</option>'+f.Materials.map(function(m){return '<option value="'+esc(m.Id)+'">'+esc(forgeMatName(m.Id))+'</option>'}).join('')+'<option value="red_shard">Red Shards</option>';
+  sel.value=forgeState.mat||'';
+}
+function forgeScrollTo(el){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  try{el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})}catch(e){try{el.scrollIntoView()}catch(e2){}}
+}
+function renderForgeChips(groupCounts){
+  var host=$('forgeChips'); if(!host)return;
+  var active=forgeFilterActive();
+  var defs=[['forgeBenchFold','Bench rules',true],['forgeSecMats','Materials',true]];
+  FORGE_GROUPS.forEach(function(g){defs.push(['forgeGrp-'+g[0],g[0],!active||(groupCounts&&groupCounts[g[0]]>0)])});
+  defs.push(['forgeSecRed','Red crafts',true]);
+  host.innerHTML=defs.map(function(d){return '<button class="chip" type="button" data-forge-jump="'+d[0]+'"'+(d[2]?'':' disabled')+'>'+esc(d[1])+'</button>'}).join('');
+}
+function renderForge(){
+  var view=$('view-forge'); if(!view)return;
+  if(!forgeState.bound){
+    forgeState.bound=true;
+    var il=$('forgeIlvl'); if(il)il.addEventListener('input',function(){var v=parseInt(il.value,10); forgeState.ilvl=isNaN(v)?84:Math.max(1,Math.min(999,v)); renderForgeRecipes()});
+    var rl=$('forgeRl'); if(rl)rl.addEventListener('input',function(){var v=parseInt(rl.value,10); forgeState.rl=isNaN(v)?100:Math.max(1,Math.min(9999,v)); renderForgeReds()});
+    var fs=$('forgeSearch'); if(fs)fs.addEventListener('input',function(){forgeState.q=fs.value; renderForgeRecipes()});
+    var fm=$('forgeMatSel'); if(fm)fm.addEventListener('change',function(){forgeState.mat=fm.value; renderForgeRecipes()});
+    var fc=$('forgeClearBtn'); if(fc)fc.addEventListener('click',function(){forgeState.q=''; forgeState.mat=''; if(fs)fs.value=''; if(fm)fm.value=''; renderForgeRecipes()});
+    var fch=$('forgeChips'); if(fch)fch.addEventListener('click',function(e){var b=e.target.closest('[data-forge-jump]'); if(!b||b.disabled)return; var t=document.getElementById(b.getAttribute('data-forge-jump')); if(!t)return; if(t.id==='forgeBenchFold')t.open=true; forgeScrollTo(t)});
+  }
+  if(!forgeState.benchInit){
+    forgeState.benchInit=true;
+    var bf=$('forgeBenchFold'); if(bf&&window.innerWidth<700)bf.removeAttribute('open');
+  }
+  var f=G.forgeData;
+  if(!f){
+    if($('forgeBench'))$('forgeBench').innerHTML='<div class="notice">The Forge\u2019s data has not landed yet \u2014 it arrives with the rest of the game data.</div>';
+    if(!forgeState.loading){
+      forgeState.loading=true;
+      Promise.all([getSnap('forge.json').catch(function(){return null}),getSnap('red_shards.json').catch(function(){return null})]).then(function(r){
+        forgeState.loading=false;
+        if(r[0]&&r[0].Recipes&&r[0].Recipes.length)G.forgeData=r[0];
+        if(r[1]&&r[1].Shards&&r[1].Shards.length)G.redShards=r[1];
+        if(currentTab==='forge')renderForge();
+      });
+    }
+    return;
+  }
+  $('forgeCount').textContent=f.Recipes.length+' recipes \u2022 '+f.Materials.length+' materials';
+  forgeBuildMatOptions();
+  renderForgeBench(); renderForgeMats(); renderForgeRecipes(); renderForgeReds(); renderForgeRedCrafts();
+}
+function renderForgeBench(){
+  var f=G.forgeData; if(!f)return;
+  var R=f.Rules||{};
+  var counts={known:0,land:0,guardian:0,edda:0,core:0};
+  f.Recipes.forEach(function(r){
+    var s=String(r.FoundIn||'');
+    if(s.indexOf('Known')===0)counts.known++;
+    else if(s.indexOf('Forge Tablet, found')===0)counts.land++;
+    else if(s.indexOf('Forge Tablet, from')===0)counts.guardian++;
+    else if(s.indexOf('Edda teaches')===0)counts.edda++;
+    else if(s.indexOf('Learnt')===0)counts.core++;
+  });
+  var lv=R.ForgeLevelCrafts||[0,3,8,16,28];
+  var P=R.Potential||{}, PB=P.Base||{};
+  var rows=[];
+  rows.push(['The smith','Edda Ironhand \u2014 bring her an item and the materials, and she works the bench']);
+  rows.push(['One crafted mod','An item holds one crafted mod at a time. Unmake takes it off again, and the slot opens for another']);
+  rows.push(['Forge levels','The bench levels up as you craft: level 1 from '+lv[0]+' crafts, level 2 at '+lv[1]+', level 3 at '+lv[2]+', level 4 at '+lv[3]+' and level 5 at '+lv[4]+'. Higher levels unlock the recipes Edda teaches herself']);
+  rows.push(['Learning recipes',counts.known+' recipes are known when the Forge opens. '+counts.land+' are taught by Forge Tablets found out in the lands \u2014 each land\u2019s tablet teaches that land\u2019s recipes \u2014 '+counts.guardian+' by tablets from Guardians, '+counts.edda+' by Edda herself as the Forge levels, and '+counts.core+' Skyforged crafts are learnt with your first Core Ember']);
+  rows.push(['Gold','Every craft also costs gold: '+(R.GoldBase||40)+' plus '+(R.GoldPerLevel||6)+' per item level of the item, multiplied by the recipe\u2019s tier (Tier 1 \u00d71, Tier 2 \u00d71.6, Tier 3 \u00d72.5, Tier 4 \u00d74)']);
+  rows.push(['Crafted strength','A crafted mod\u2019s strength budget is '+(PB.Normal||12)+' on a normal item, '+(PB.Magic||16)+' on a magic one and '+(PB.Rare||22)+' on a rare, plus '+(P.PerItemLevel||0.15)+' per item level \u2014 and only the top '+(P.TopTiers||3)+' tiers of a mod can be crafted at all. Setting a Forgeheart into an item grows that budget by a quarter, for good']);
+  rows.push(['Echoes','Every mod on an item carries Echoes \u2014 one each, two on a unique \u2014 and the Echo crafts under Slots spend them']);
+  $('forgeBench').innerHTML=rows.map(function(r){return '<div class="kv"><span>'+esc(r[0])+'</span><b>'+esc(r[1])+'</b></div>'}).join('');
+}
+function renderForgeMats(){
+  var f=G.forgeData; if(!f)return;
+  $('forgeMats').innerHTML='<div class="cube-grid">'+f.Materials.map(function(m){
+    var c=m.Color||[1,1,1]; var rgb='rgb('+Math.round(c[0]*255)+','+Math.round(c[1]*255)+','+Math.round(c[2]*255)+')';
+    return '<div class="cube-recipe"><h3><span class="forge-dot" style="background:'+rgb+'"></span>'+esc(forgeMarkEn(m.Name))+'</h3>'
+      +'<p class="sub" style="margin:0">'+esc(m.Text)+'</p>'
+      +(m.Land?'<div style="margin-top:6px"><span class="tag">'+esc(forgeLandName(m.Land))+'</span></div>':'')
+      +'</div>';
+  }).join('')+'</div>';
+  var D=f.Drops||{};
+  function line(label,d,extra){
+    if(!d)return '';
+    var parts=[];
+    if(d.FromML)parts.push('from monster level '+d.FromML);
+    if(d.FromRL)parts.push('from Rupture Level '+d.FromRL);
+    if(d.Normal)parts.push('normal monsters '+forgePct(d.Normal));
+    if(d.Magic)parts.push('magic monsters '+forgePct(d.Magic));
+    if(d.Rare)parts.push('rare monsters '+forgePct(d.Rare));
+    if(d.Boss)parts.push('Guardians '+forgePct(d.Boss)+(d.BossPerRL?' + '+forgePct(d.BossPerRL)+' per Rupture level':''));
+    if(d.FirstGuardian)parts.push('your first Guardian always drops one');
+    if(extra)parts.push(extra);
+    return '<div class="kv"><span>'+esc(label)+'</span><b>'+esc(parts.join(' \u00b7 '))+'</b></div>';
+  }
+  $('forgeDrops').innerHTML=
+     line(forgeMatName('ember'),D.Ember,'4 at a time (5\u20137 from a Guardian)')
+    +line('Each land\u2019s own material',D.Land,'2\u20134 at a time (3\u20134 from a Guardian)')
+    +line(forgeMatName('rune'),D.Rune)
+    +line('Forge Tablets',D.RuneStone)
+    +line(forgeMatName('oathsteel'),D.Oathsteel,'Gates always pay one')
+    +line(forgeMatName('core_ember'),D.Core,'3\u20135 at a time')
+    +line(forgeMatName('gloomsilver'),D.Gloom)
+    +line(forgeMatName('oathcinder'),D.Cinder);
+}
+var FORGE_GROUPS=[
+  ['Add','Add one crafted mod to an item \u2014 a prefix or a suffix of the kind named. An item holds one crafted mod at a time; Unmake, under Mastery, takes it off again.'],
+  ['Reforge','Change an item that already has its mods: reroll everything, raise a magic item to rare, keep one side while the other rolls again, melt one chosen mod out, or bore a socket.'],
+  ['Slots','Work an item\u2019s slots, Echoes and quality: move mods between slots with their Echoes, and hone quality upward step by step.'],
+  ['Mastery','The deep end of the bench: raise a mod a tier, set a Forgeheart, cut a socket past the normal limit \u2014 and the red crafts that bind shards back into reds.']
+];
+function forgeRecipeCard(r,ilvl){
+  var tags='<span class="tag">Tier '+r.Tier+'</span>'+(r.ForgeLevel>0?' <span class="tag">Needs Forge level '+r.ForgeLevel+'</span>':'');
+  var cost=forgeCostParts(r);
+  if(r.Id!=='forge_redforge')cost+=' + '+forgeNum(forgeGoldFor(r,ilvl))+' gold';
+  return '<div class="cube-recipe forge-recipe"><h3>'+esc(forgeMarkEn(r.Name))+'</h3><div>'+tags+'</div>'
+    +'<div class="kv"><b>Costs</b>'+esc(cost)+'</div>'
+    +'<div class="kv"><b>What it does</b>'+esc(r.Text)+'</div>'
+    +'<div class="forge-learned"><b>Learned</b> '+esc(r.FoundIn)+'</div>'
+    +(r.Line?'<div class="rw-flavour">&ldquo;'+esc(r.Line)+'&rdquo;</div>':'')
+    +'</div>';
+}
+function renderForgeRecipes(){
+  var host=$('forgeRecipes'); if(!host)return;
+  var f=G.forgeData; if(!f||!f.Recipes)return;
+  var ilvl=forgeState.ilvl;
+  var counts={},shown=0;
+  var html=FORGE_GROUPS.map(function(g){
+    var list=f.Recipes.filter(function(r){return r.Group===g[0]&&forgeRecipeMatches(r)});
+    counts[g[0]]=list.length; shown+=list.length;
+    if(!list.length)return '';
+    return '<div class="forge-anchor" id="forgeGrp-'+g[0]+'"><div class="label" style="margin-top:18px">'+esc(g[0])+' \u2014 '+list.length+' recipes</div>'
+      +'<p class="sub" style="margin:4px 0 10px">'+esc(g[1])+'</p>'
+      +'<div class="cube-grid">'+list.map(function(r){return forgeRecipeCard(r,ilvl)}).join('')+'</div></div>';
+  }).join('');
+  if(!shown)html='<p class="sub" style="margin:10px 0 0">No recipes match \u2014 try a different search, or clear the filters to see them all.</p>';
+  host.innerHTML=html;
+  var mc=$('forgeMatchCount'); if(mc)mc.textContent='Showing '+shown+' of '+f.Recipes.length+' recipes';
+  var cb=$('forgeClearBtn'); if(cb)cb.style.display=forgeFilterActive()?'':'none';
+  renderForgeChips(counts);
+}
+function forgeRedName(s){
+  var u=(G.uniqueMap||{})[s.Unique];
+  if(u&&u.Name)return u.Name;
+  return forgeMarkEn(s.Name);
+}
+function forgeRedSource(s){
+  if(s.SourceKind==='Land')return forgeLandName(s.Source);
+  if(s.SourceKind==='Guardian')return guardianName('g_'+s.Source);
+  if(s.SourceKind==='RivenLord')return 'A Riven Lord of '+forgeLandName(s.Source);
+  return niceId(s.Source);
+}
+function renderForgeReds(){
+  var host=$('forgeReds'); if(!host)return;
+  var rs=G.redShards; if(!rs||!rs.Shards){host.innerHTML=''; return}
+  var rl=forgeState.rl;
+  var kindLabel={Land:'Land red',Guardian:'Guardian red',RivenLord:'Riven Lord red'};
+  host.innerHTML='<div class="cube-grid">'+rs.Shards.map(function(s){
+    var chance=rl/((s.RLDiv||4000)*(s.BossShare||1));
+    return '<div class="cube-recipe"><h3>'+esc(forgeRedName(s))+'</h3><div><span class="tag">'+esc(kindLabel[s.SourceKind]||s.SourceKind)+'</span></div>'
+      +'<div class="kv"><b>Shards fall from</b>'+esc(forgeRedSource(s))+'</div>'
+      +'<div class="kv"><b>From Rupture level</b>'+s.MinRL+'</div>'
+      +'<div class="kv"><b>Shard chance at Rupture '+rl+'</b>'+forgePct(chance)+' per Guardian kill</div>'
+      +'<div class="kv"><b>Shards to bind</b>'+s.N+'</div>'
+      +'</div>';
+  }).join('')+'</div>';
+}
+function renderForgeRedCrafts(){
+  var host=$('forgeRedCrafts'); if(!host)return;
+  var rs=G.redShards; if(!rs||!rs.Rules){host.innerHTML=''; return}
+  var B=rs.Rules.Binder||{Steel:3,RivenBind:6};
+  var RF=rs.Rules.RedForge||{Heart:1,Gloom:20,Steel:40,Gold:2000000,Grow:1.5};
+  var rh=null; ((G.forgeData&&G.forgeData.Recipes)||[]).forEach(function(r){if(r.Id==='forge_runehold')rh=r});
+  var rows=[];
+  rows.push('<div class="label" style="margin-top:16px">The four red crafts</div>');
+  rows.push('<div class="kv"><span>'+esc(forgeMarkEn('Oathbind'))+'</span><b>6 Red Shards + a plain (white) item of that red\u2019s base + '+B.Steel+' '+esc(forgeMatName('oathsteel'))+' \u2014 the red, with normal rolls</b></div>');
+  rows.push('<div class="kv"><span>'+esc(forgeMarkEn('Riven Bind'))+'</span><b>6 Red Shards + a plain (white) item of that red\u2019s base + '+B.RivenBind+' '+esc(forgeMatName('rivenstone'))+' + '+B.Steel+' '+esc(forgeMatName('oathsteel'))+' \u2014 the red, with every line at its best roll</b></div>');
+  rows.push('<div class="kv"><span>'+esc(forgeMarkEn('Rivenhold'))+'</span><b>'+(rh?rh.MatCost:24)+' '+esc(forgeMatName('rivenstone'))+' \u2014 cuts one Dwarven Rune socket into a rare ring, belt or boots</b></div>');
+  var uses=[];
+  for(var n=1;n<=5;n++){
+    var m=Math.pow(RF.Grow||1.5,n-1);
+    uses.push('<div class="kv"><span>Red Forge \u2014 use '+n+' this league</span><b>'+RF.Heart+' '+esc(forgeMatName('forgeheart'))+' + '+forgeAmt(RF.Gloom*m)+' '+esc(forgeMatName('gloomsilver'))+' + '+forgeAmt(RF.Steel*m)+' '+esc(forgeMatName('oathsteel'))+' + '+forgeNum(Math.round(RF.Gold*m))+' gold</b></div>');
+  }
+  host.innerHTML=rows.join('')
+    +'<p class="sub" style="margin:12px 0 0"><b>Red Forge</b> makes a red from nothing \u2014 no shards at all: lay a plain (white) item of the red\u2019s base at the bench, at item level at least the red\u2019s own, and pay the heart, silver, steel and gold below. Every use after the first multiplies the Gloomsilver, Oathsteel and gold by 1.5 again; the Forgeheart is always just the one.</p>'
+    +uses.join('');
+}
 /* ---------- Cube simulators — fixed outcomes only ---------- */
 function cubeLadderStepRecipe(tier){
   if(tier<=2)return {name:'Fuse Runes',cost:'3 identical runes'};
@@ -26977,8 +27307,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.427';
-var PLANNER_BUILT_AT='2026-11-26T20:01:00-08:00';
+var PLANNER_VERSION='0.429';
+var PLANNER_BUILT_AT='2026-11-26T21:27:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
@@ -27389,7 +27719,7 @@ function applyGameData(res){
      here, so a live data refresh still lands on the screen the
      reader is looking at. Nothing is removed — the same renders
      run, just when the view is actually on screen. */
-  if(currentTab==='items')renderItems(); if(currentTab==='loot')renderLoot(); if(currentTab==='grail')renderGrail(); if(currentTab==='patches')renderPatches(); if(currentTab==='cube')renderCube(); if(currentTab==='bestiary'&&$('bestBody'))renderBestiary();
+  if(currentTab==='items')renderItems(); if(currentTab==='loot')renderLoot(); if(currentTab==='grail')renderGrail(); if(currentTab==='patches')renderPatches(); if(currentTab==='cube')renderCube(); if(currentTab==='forge')renderForge(); if(currentTab==='bestiary'&&$('bestBody'))renderBestiary();
   if(G.ladder&&currentTab==='ladder')renderLadder(); if(G.meta&&currentTab==='meta')renderMeta();
   renderGameDataLine();
   /* If a tree popup is already open when the data lands (it was
@@ -27421,7 +27751,7 @@ function loadSnapshot(){
      they are roughly half a megabyte of JSON the first paint
      used to wait on. Their slots in the core batch resolve to
      null, which every consumer already tolerates. */
-  var tier2=Promise.all([getSnap('monsters.json').catch(function(){return null}),getSnap('runewords.json').catch(function(){return null}),getSnap('patch-history.json').catch(function(){return null})]);
+  var tier2=Promise.all([getSnap('monsters.json').catch(function(){return null}),getSnap('runewords.json').catch(function(){return null}),getSnap('patch-history.json').catch(function(){return null}),getSnap('forge.json').catch(function(){return null}),getSnap('red_shards.json').catch(function(){return null})]);
   snapTier2Promise=tier2;
   return Promise.all([getSnap('version.json'),getSnap('leagues.json'),getSnap('skills.json'),getSnap('supports.json'),getSnap('item_bases.json'),getSnap('passive_tree.json'),getSnap('uniques.json').catch(function(){return null}),getSnap('scaling.json').catch(function(){return null}),getSnap('changelog.json').catch(function(){return null}),getSnap('affixes.json').catch(function(){return null}),getSnap('curses.json').catch(function(){return null}),Promise.resolve(null),getSnap('affixes_riven.json').catch(function(){return null}),getSnap('stat_text.json').catch(function(){return null}),getSnap('cube_recipes.json').catch(function(){return null}),getSnap('dragonling.json').catch(function(){return null}),getSnap('classes.json').catch(function(){return null}),Promise.resolve(null),fetchJSON('assets/base_implicits95.json',12000).catch(function(){return null}),getSnap('oath_masteries.json').catch(function(){return null}),getSnap('guardian_resist.json').catch(function(){return null}),getSnap('potions.json').catch(function(){return null}),getSnap('runes.json').catch(function(){return null}),Promise.resolve(null),Promise.resolve(null),getSnap('blessings.json').catch(function(){return null}),getSnap('rules.json').catch(function(){return null}),getSnap('trap_prices.json').catch(function(){return null}),getSnap('monster_affixes.json').catch(function(){return null}),getSnap('mythic_lines.json').catch(function(){return null}),getSnap('gem_homes.json').catch(function(){return null}),getSnap('archetypes.json').catch(function(){return null}),getSnap('progression.json').catch(function(){return null}),getSnap('weapons.json').catch(function(){return null}),getSnap('new_gems85.json').catch(function(){return null}),Promise.resolve(null),getSnap('quality_stones.json').catch(function(){return null}),getSnap('weapon_styles.json').catch(function(){return null}),getSnap('defence_layers.json').catch(function(){return null})]).then(function(res){
     if(res[18]&&res[18].Families&&res[18].Weapons)G.family95=res[18];
@@ -27442,6 +27772,13 @@ function loadSnapshot(){
       if(t2[0]&&t2[0].monsters&&t2[0].monsters.length&&!G.monsters.length){G.monsters=t2[0].monsters; renderEnemyOptions(); renderPlanner(); if(currentTab==='bestiary')renderBestiary(); if(currentTab==='ladder'&&G.ladder)renderLadder()}
       if(t2[1]&&t2[1].runewords&&t2[1].runewords.length&&!G.runewordsData){G.runewordsData=t2[1]; renderGear(); renderPlanner(); if(currentTab==='cube')renderCube()}
       if(t2[2]&&t2[2].entries&&t2[2].entries.length){G.patchHistory=t2[2]; if(currentTab==='patches')renderPatches()}
+      /* The Forge's two files ride the same deferred tier, but they
+         are bundled from the game's own files, never the live API
+         (which publishes neither), so no live refresh touches them:
+         the snapshot copies are the only source this view reads. */
+      if(t2[3]&&t2[3].Recipes&&t2[3].Recipes.length)G.forgeData=t2[3];
+      if(t2[4]&&t2[4].Shards&&t2[4].Shards.length)G.redShards=t2[4];
+      if((t2[3]||t2[4])&&currentTab==='forge')renderForge();
     }).catch(function(){});
   });
 }
