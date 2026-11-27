@@ -7959,6 +7959,54 @@ function cursePlanStats(){
   (state.weaponAffixes||[]).forEach(function(r){var a=affixById(r.affixId); if(a&&a.Mod)eat(a.Mod,+r.value||0,'gear')});
   return {eff:eff,limit:limit,woeRates:woeRates,src:src};
 }
+/* How many minions one summon skill stands at an effective gem
+   level — the ONE count reader, shared by the skill's own
+   pricing (minionCalc) and the plan total (planMinionCount), so
+   the number can never disagree between the skill detail, the
+   minion totals and the Damage card. The published record's own
+   schedule is the base count, plus one at each gem level in
+   PerLevels, plus one every CountEvery gem levels.
+   Patch 94 override: the patch reworked the three Necromancer
+   summons' counts — Skeletons gain a 3rd at gem level 3 and a
+   4th at gem level 7, the Skeletal Mage's 2nd comes at gem
+   level 10, the Zombie's 2nd at gem level 3, and a count never
+   drops — but the published records still carry the old
+   schedule and cannot express the new one (Skeletons Cap 2,
+   Skeletal Mage Cap 1, the Zombie's second step sits at gem
+   24). The game's real schedule — from the developer's
+   patch-94 notes, and verified in live play for Skeletons — is
+   therefore applied here as an override for those three skills
+   only. It yields to the data on its own: the moment a
+   snapshot's published fields can express the schedule (its
+   Cap reaches the schedule's top count AND its own count steps
+   reproduce the schedule at every gem level), the published
+   record wins and the override stops applying to that skill.
+   Counts only: the notes' "fewer minions hit harder" strength
+   compensation is only partly measured, so it is NOT modelled.
+   Every other summon (golems, sentinels, Holy Elemental,
+   Ballista) reads its published record exactly as before. */
+var MINION_COUNT_OVERRIDE={
+  summon_skeletons:{base:2,steps:[3,7],top:4},
+  summon_skeletal_mage:{base:1,steps:[10],top:2},
+  summon_zombie:{base:1,steps:[3],top:2}
+};
+function publishedMinionCount(mn,g){
+  var c=mn.Count||1;
+  (mn.PerLevels||[]).forEach(function(L){if(g>=L)c++});
+  if(mn.CountEvery)c+=Math.floor(Math.max(0,g-1)/mn.CountEvery);
+  return c;
+}
+function minionCountAt(sk,g){
+  var mn=sk.Minion; if(!mn)return 1;
+  var ov=MINION_COUNT_OVERRIDE[sk.Id];
+  if(ov){
+    var sched=function(x){var c=ov.base; ov.steps.forEach(function(L){if(x>=L)c++}); return Math.min(c,ov.top)};
+    var yields=(mn.Cap==null||mn.Cap>=ov.top);
+    if(yields)for(var x=1;x<=40;x++){if(publishedMinionCount(mn,x)!==sched(x)){yields=false; break}}
+    if(!yields)return sched(g);
+  }
+  return publishedMinionCount(mn,g);
+}
 /* How many minions the plan stands in a fight — the count the
    Woe-per-minion lines price off. Each bar minion skill stands
    the count minionCalc stands for it (its record's base count,
@@ -7987,10 +8035,8 @@ function planMinionCount(){
     var sk=G.skillMap[id]; if(!sk||!sk.Minion||sk.SpellMin==null)return;
     if((sk.Tags||[]).indexOf('Minion')<0)return;
     if(/golem/.test(id)){tot+=1; return}
-    var mn=sk.Minion, g=(gem||state.gemLevel||20)+gearGemBonus(state), c=mn.Count||1;
-    (mn.PerLevels||[]).forEach(function(L){if(g>=L)c++});
-    if(mn.CountEvery)c+=Math.floor(Math.max(0,g-1)/mn.CountEvery);
-    tot+=Math.max(1,c+capBonus);
+    var g=(gem||state.gemLevel||20)+gearGemBonus(state);
+    tot+=Math.max(1,minionCountAt(sk,g)+capBonus);
   }
   countSkill(state.skillId,state.gemLevel);
   (state.barSkills||[]).forEach(function(e){if(barEntryActive(e)&&!barSkillBlocker(state,e))countSkill(e.skill,e.gem||state.gemLevel)});
@@ -8303,9 +8349,7 @@ function minionCalc(st,e,sk){
   var baseHit=((sk.SpellMin+sk.SpellMax)/2)*grownM;
   if(!(baseHit>0))return null;
   var isGolem=/golem/.test(sk.Id);
-  var count=mn.Count||1;
-  (mn.PerLevels||[]).forEach(function(L){if(gemEff>=L)count++});
-  if(mn.CountEvery)count+=Math.floor(Math.max(0,gemEff-1)/mn.CountEvery);
+  var count=minionCountAt(sk,gemEff);
   var capBonus=0, mInc=0, mMore=1, holyMore=0;
   /* One reader for every minion line shape the data carries, used
      by all four sources below. Patch 92 put minion numbers in
@@ -27576,8 +27620,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.434';
-var PLANNER_BUILT_AT='2026-11-27T07:14:00-08:00';
+var PLANNER_VERSION='0.435';
+var PLANNER_BUILT_AT='2026-11-27T07:44:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
