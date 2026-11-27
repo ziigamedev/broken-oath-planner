@@ -6775,7 +6775,7 @@
         "Value": -30
        }
       ],
-      "Text": "Every third movement skill you use ends in a Windburst where you land: 200% of your last Bow hit as Physical damage to every enemy within 4 m, and your movement skills have 30% reduced mana cost  ·  movement skills recover 20% slower"
+      "Text": "Every third movement skill you use ends in a Windburst where you land: 250% of your last Bow hit as Physical damage to every enemy within 4 m, and your movement skills have 30% reduced mana cost  ·  movement skills recover 20% slower"
      },
      "Pos76": {
       "Mods": [
@@ -6796,7 +6796,7 @@
         "Value": -30
        }
       ],
-      "Text": "Every third movement skill you use ends in a Windburst where you land: 200% of your last Bow hit as Physical damage to every enemy within 4 m, and your movement skills have 30% reduced mana cost"
+      "Text": "Every third movement skill you use ends in a Windburst where you land: 250% of your last Bow hit as Physical damage to every enemy within 4 m, and your movement skills have 30% reduced mana cost"
      }
     },
     {
@@ -12264,7 +12264,7 @@
         "Value": 50
        }
       ],
-      "Text": "Casting a Golem fuses your Skeleton Warriors and Zombies into it; each one fused adds 5% more damage and 20% more Life (added together, up to 12: x1.6 damage, x3.4 Life), and Skeleton Warriors or Zombies raised while it stands feed it too, and your minions hold a third less mana  ·  you cannot keep Skeletons or Zombies beside it"
+      "Text": "Casting a Golem fuses your Skeleton Warriors and Zombies into it; each one fused adds 6% more damage and 20% more Life (added together, up to 12: x1.72 damage, x3.4 Life), and Skeleton Warriors or Zombies raised while it stands feed it too, and your minions hold a third less mana  ·  you cannot keep Skeletons or Zombies beside it"
      },
      "Pos76": {
       "Mods": [
@@ -12283,7 +12283,7 @@
         "Value": 50
        }
       ],
-      "Text": "Casting a Golem fuses your Skeleton Warriors and Zombies into it; each one fused adds 5% more damage and 20% more Life (added together, up to 12: x1.6 damage, x3.4 Life), and Skeleton Warriors or Zombies raised while it stands feed it too, and your minions hold a third less mana"
+      "Text": "Casting a Golem fuses your Skeleton Warriors and Zombies into it; each one fused adds 6% more damage and 20% more Life (added together, up to 12: x1.72 damage, x3.4 Life), and Skeleton Warriors or Zombies raised while it stands feed it too, and your minions hold a third less mana"
      }
     },
     {
@@ -13455,7 +13455,7 @@
     "Reach": 1600
    },
    "Abomination": {
-    "DamagePer": 0.05,
+    "DamagePer": 0.06,
     "LifePer": 0.2,
     "MaxFused": 12,
     "GrowPer": 0.02
@@ -13575,7 +13575,7 @@
    },
    "Windburst": {
     "Every": 3,
-    "Pct": 2.0,
+    "Pct": 2.5,
     "Radius": 400,
     "Delay": 0.35
    },
@@ -13756,7 +13756,7 @@
     "Longer": 50
    },
    "HeartOfFurnace": {
-    "Pct": 20,
+    "Pct": 25,
     "Over": 4
    },
    "ShadowedBlood": {
@@ -13765,7 +13765,7 @@
    },
    "BastionOfHope": {
     "Window": 4,
-    "Block": 10,
+    "Block": 15,
     "Radius": 600
    },
    "Mistwalker": {
@@ -13774,14 +13774,41 @@
     "Speed": 15
    },
    "BastionNest": {
-    "Pct": 20
+    "Pct": 25
    },
    "SentinelOfRadiance": {
-    "Pct": 15,
+    "Pct": 20,
     "Radius": 1200
    },
    "WarBanner": {
     "Radius": 800
+   },
+   "HungerOfSteel": {
+    "TakenLess": 15
+   },
+   "LastToFall": {
+    "Every": 15
+   },
+   "TempestShield": {
+    "Pct": 25
+   },
+   "GatheringWinds": {
+    "TakenLess": 15
+   },
+   "PhantomStep": {
+    "Window": 0.4
+   },
+   "Parry": {
+    "Every": 5
+   },
+   "Heartstopper": {
+    "TakenLess": 35
+   },
+   "VileBastion": {
+    "Pct": 1.5
+   },
+   "EssenceGlutton": {
+    "PerCorpse": 0.4
    },
    "WildDraughts112": {
     "Every": 10,
@@ -17791,14 +17818,14 @@
         "Stat": "ArmourVsElementalPct113",
         "Mode": "Flat",
         "Tags": [],
-        "Value": 15
+        "Value": 20
        }
       ],
-      "Text": "Armour from your body armour is doubled  ·  15% of your Armour also counts against elemental hits",
+      "Text": "Armour from your body armour is doubled  ·  20% of your Armour also counts against elemental hits",
       "Plumb": "M",
       "Ship": true,
       "Cost": 3,
-      "Tune": "code = BOStats BuildSheet (body armour's Armour x2 before increases) + FBODefence::Mitigate (15% of Armour vs fire / cold / lightning after resistance, never under 10% of the hit; adds to Iron Resolve's half) (META2 OATHWARD113); [r113.CONTENT] bOathWard113"
+      "Tune": "code = BOStats BuildSheet (body armour's Armour x2 before increases) + FBODefence::Mitigate (20% of Armour vs fire / cold / lightning after resistance, never under 10% of the hit; adds to Iron Resolve's half) (META2 OATHWARD113); [r113.CONTENT] bOathWard113"
      },
      {
       "Id": "warrior_a2_stormblade_entry",
@@ -18195,7 +18222,7 @@
         "Value": 1
        }
       ],
-      "Text": "20% of overkill damage is leeched as Life  ·  For 3 s after, you take 10% less damage from hits",
+      "Text": "20% of overkill damage is leeched as Life  ·  For 3 s after, you take 15% less damage from hits",
       "Plumb": "S",
       "Ship": true,
       "Cost": 3,
@@ -18585,7 +18612,7 @@
         "Value": 1
        }
       ],
-      "Text": "Once every 20 s, a killing blow leaves you at 1 Life and you take 50% less damage from hits for 2 s",
+      "Text": "Once every 15 s, a killing blow leaves you at 1 Life and you take 50% less damage from hits for 2 s",
       "Plumb": "S",
       "Ship": true,
       "Cost": 3,
@@ -19794,7 +19821,7 @@
         "Value": 1
        }
       ],
-      "Text": "Every 8 s a lightning shield absorbs hits worth 20% of your Life",
+      "Text": "Every 8 s a lightning shield absorbs hits worth 25% of your Life",
       "Plumb": "S",
       "Ship": true,
       "Cost": 3,
@@ -20219,7 +20246,7 @@
         "Value": 1
        }
       ],
-      "Text": "20% of Fire damage you take heals you over 4 s",
+      "Text": "25% of Fire damage you take heals you over 4 s",
       "Plumb": "M",
       "Ship": true,
       "Cost": 3,
@@ -20636,10 +20663,10 @@
         "Stat": "ManaAsEnergyShield",
         "Mode": "Flat",
         "Tags": [],
-        "Value": 20
+        "Value": 25
        }
       ],
-      "Text": "Gain 20% of your maximum Mana as extra Energy Shield",
+      "Text": "Gain 25% of your maximum Mana as extra Energy Shield",
       "Plumb": "M",
       "Ship": true,
       "Cost": 3,
@@ -21804,7 +21831,7 @@
         "Value": 1
        }
       ],
-      "Text": "15% increased movement speed  ·  You and allies within 6 m take 10% less damage from hits while moving",
+      "Text": "15% increased movement speed  ·  You and allies within 6 m take 15% less damage from hits while moving",
       "Plumb": "S",
       "Ship": true,
       "Cost": 3,
@@ -22217,7 +22244,7 @@
         "Value": 1
        }
       ],
-      "Text": "Your nearest Ballista takes 20% of each hit for you (never its last Life)",
+      "Text": "Your nearest Ballista takes 25% of each hit for you (never its last Life)",
       "Plumb": "M",
       "Ship": true,
       "Cost": 3,
@@ -22594,7 +22621,7 @@
         "Value": -30
        }
       ],
-      "Text": "Every third movement skill you use ends in a Windburst where you land: 200% of your last Bow hit as Physical damage to every enemy within 4 m, and your movement skills have 30% reduced mana cost",
+      "Text": "Every third movement skill you use ends in a Windburst where you land: 250% of your last Bow hit as Physical damage to every enemy within 4 m, and your movement skills have 30% reduced mana cost",
       "Plumb": "E",
       "Ship": true,
       "Cost": 3,
@@ -22623,7 +22650,7 @@
         "Value": 1
        }
       ],
-      "Text": "After a movement skill you cannot be hit for 0.3 s (once every 4 s)",
+      "Text": "After a movement skill you cannot be hit for 0.4 s (once every 4 s)",
       "Plumb": "S",
       "Ship": true,
       "Cost": 3
@@ -23929,7 +23956,7 @@
         "Value": 1
        }
       ],
-      "Text": "Every 6 s, the next hit on you is blocked fully",
+      "Text": "Every 5 s, the next hit on you is blocked fully",
       "Plumb": "S",
       "Ship": true,
       "Cost": 3
@@ -24782,7 +24809,7 @@
         "Value": 1
        }
       ],
-      "Text": "Every 10 s, for 5 s you take 30% less damage from hits",
+      "Text": "Every 10 s, for 5 s you take 35% less damage from hits",
       "Plumb": "S",
       "Ship": true,
       "Cost": 3
@@ -25960,7 +25987,7 @@
         "Value": 1
        }
       ],
-      "Text": "Your nearest minion within 12 m takes 15% of each hit for you (never its last Life)",
+      "Text": "Your nearest minion within 12 m takes 20% of each hit for you (never its last Life)",
       "Plumb": "M",
       "Ship": true,
       "Cost": 3,
@@ -26361,7 +26388,7 @@
         "Value": 1
        }
       ],
-      "Text": "For 4 s after you attack or cast, you and allies within 6 m have +10% chance to block",
+      "Text": "For 4 s after you attack or cast, you and allies within 6 m have +15% chance to block",
       "Plumb": "S",
       "Ship": true,
       "Cost": 3,
@@ -27889,7 +27916,7 @@
         "Value": 50
        }
       ],
-      "Text": "Casting a Golem fuses your Skeleton Warriors and Zombies into it; each one fused adds 5% more damage and 20% more Life (added together, up to 12: x1.6 damage, x3.4 Life), and Skeleton Warriors or Zombies raised while it stands feed it too, and your minions hold a third less mana",
+      "Text": "Casting a Golem fuses your Skeleton Warriors and Zombies into it; each one fused adds 6% more damage and 20% more Life (added together, up to 12: x1.72 damage, x3.4 Life), and Skeleton Warriors or Zombies raised while it stands feed it too, and your minions hold a third less mana",
       "Plumb": "E",
       "Ship": true,
       "Cost": 3,
@@ -28339,7 +28366,7 @@
         "Stat": "LifeRegenPct",
         "Mode": "Flat",
         "Tags": [],
-        "Value": 1
+        "Value": 1.5
        },
        {
         "Stat": "Dragonling",
@@ -28350,7 +28377,7 @@
         "Value": 1
        }
       ],
-      "Text": "Regenerate 1% Life a second  ·  Doubled while above half Life",
+      "Text": "Regenerate 1.5% Life a second  ·  Doubled while above half Life",
       "Plumb": "S",
       "Ship": true,
       "Cost": 3,
@@ -28788,7 +28815,7 @@
         "Value": 1
        }
       ],
-      "Text": "Each corpse within 6 m: regenerate 0.3% Life a second (2% at most)",
+      "Text": "Each corpse within 6 m: regenerate 0.4% Life a second (2% at most)",
       "Plumb": "S",
       "Ship": true,
       "Cost": 3,
