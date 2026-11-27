@@ -1372,7 +1372,8 @@
    "Links": [
     "hub_1",
     "hub_11",
-    "start_necromancer"
+    "start_necromancer",
+    "waygate_hub"
    ],
    "Fp": "3e1f650793"
   },
@@ -1452,7 +1453,8 @@
     "hub_1",
     "hub_3",
     "start_mage",
-    "lingering_n0"
+    "lingering_n0",
+    "waygate_hub"
    ],
    "Fp": "06db6b28ce"
   },
@@ -1535,7 +1537,8 @@
    "Links": [
     "hub_3",
     "hub_5",
-    "start_paladin"
+    "start_paladin",
+    "waygate_hub"
    ],
    "Fp": "872e04eafe"
   },
@@ -1601,7 +1604,8 @@
    "Links": [
     "hub_5",
     "hub_7",
-    "start_warrior"
+    "start_warrior",
+    "waygate_hub"
    ],
    "Fp": "bb034de81f"
   },
@@ -1678,7 +1682,8 @@
    "Links": [
     "hub_7",
     "hub_9",
-    "start_samurai"
+    "start_samurai",
+    "waygate_hub"
    ],
    "Fp": "52339bb2a5"
   },
@@ -1786,7 +1791,8 @@
    "Links": [
     "hub_0",
     "hub_10",
-    "start_ranger"
+    "start_ranger",
+    "waygate_hub"
    ],
    "Fp": "7378762529"
   },
@@ -2073,7 +2079,8 @@
    "Links": [
     "lightning_n0",
     "lightning_s0",
-    "lightning_s2"
+    "lightning_s2",
+    "travel_lightning_s1__bone_s4_0"
    ],
    "Orbit": [
     572,
@@ -3346,7 +3353,8 @@
    "Region": "Mage",
    "Links": [
     "cold_entry",
-    "cold_s5"
+    "cold_s5",
+    "travel_r74_holyrite_s0__cold_s6_0"
    ],
    "Orbit": [
     -572,
@@ -4847,7 +4855,8 @@
    "Region": "Necromancer",
    "Links": [
     "reaper_entry",
-    "reaper_s1"
+    "reaper_s1",
+    "travel_reaper_s0__lane112_rang_sl2_0"
    ],
    "Orbit": [
     1958,
@@ -5683,7 +5692,7 @@
    "Id": "grave_n1",
    "Name": "Gravecaller",
    "Kind": "Notable",
-   "X": 2207,
+   "X": 2216,
    "Y": -1269,
    "Mods": [
     {
@@ -6020,7 +6029,8 @@
    "Region": "Necromancer",
    "Links": [
     "bone_s3",
-    "bone_s5"
+    "bone_s5",
+    "travel_lightning_s1__bone_s4_0"
    ],
    "Orbit": [
     1386,
@@ -7038,7 +7048,7 @@
    "Id": "leech_s0",
    "Name": "Bloodthirst",
    "Kind": "Small",
-   "X": 5162,
+   "X": 5165,
    "Y": -2750,
    "Mods": [
     {
@@ -7175,7 +7185,7 @@
    "Id": "leech_s3",
    "Name": "Bloodthirst",
    "Kind": "Small",
-   "X": 4962,
+   "X": 4959,
    "Y": -3096,
    "Mods": [
     {
@@ -7569,7 +7579,8 @@
    "Region": "Ranger",
    "Links": [
     "projectile_entry",
-    "projectile_s1"
+    "projectile_s1",
+    "travel_projectile_s0__r74_hiddenedge_s0_0"
    ],
    "Orbit": [
     1386,
@@ -8116,7 +8127,7 @@
    "Id": "bow_s3",
    "Name": "Fletching",
    "Kind": "Small",
-   "X": 2367,
+   "X": 2370,
    "Y": 1367,
    "Mods": [
     {
@@ -8688,7 +8699,7 @@
    "Name": "Footwork",
    "Kind": "Small",
    "X": 2173,
-   "Y": 235,
+   "Y": 229,
    "Mods": [
     {
      "Stat": "Evasion",
@@ -8792,7 +8803,7 @@
    "Id": "evasion_s6",
    "Name": "Footwork",
    "Kind": "Small",
-   "X": 1741,
+   "X": 1753,
    "Y": 338,
    "Mods": [
     {
@@ -10180,7 +10191,8 @@
    "Region": "Samurai",
    "Links": [
     "edge_entry",
-    "edge_s1"
+    "edge_s1",
+    "travel_edge_s0__r59_phys3_n1_0"
    ],
    "Orbit": [
     -572,
@@ -11187,8 +11199,8 @@
    "Id": "ki_s1",
    "Name": "Ki",
    "Kind": "Small",
-   "X": 513,
-   "Y": 2329,
+   "X": 516,
+   "Y": 2334,
    "Mods": [
     {
      "Stat": "MoveSpeed",
@@ -12931,7 +12943,8 @@
    "Links": [
     "life_n0",
     "life_s0",
-    "life_s2"
+    "life_s2",
+    "travel_life_s1__bulwark_s5_0"
    ],
    "Orbit": [
     -1958,
@@ -14924,7 +14937,7 @@
    "Id": "armour_s1",
    "Name": "Hardened Skin",
    "Kind": "Small",
-   "X": -5292,
+   "X": -5301,
    "Y": 2939,
    "Mods": [
     {
@@ -16072,8 +16085,8 @@
    "Id": "zeal_s4",
    "Name": "Zeal",
    "Kind": "Small",
-   "X": -2431,
-   "Y": -1185,
+   "X": -2423,
+   "Y": -1190,
    "Mods": [
     {
      "Stat": "Damage",
@@ -16548,7 +16561,8 @@
    "Links": [
     "bulwark_n1",
     "bulwark_s4",
-    "bulwark_s6"
+    "bulwark_s6",
+    "travel_life_s1__bulwark_s5_0"
    ],
    "Orbit": [
     -1958,
@@ -17482,8 +17496,8 @@
    "Id": "life_big_s1",
    "Name": "Vitality",
    "Kind": "Small",
-   "X": -5214,
-   "Y": -3158,
+   "X": -5227,
+   "Y": -3145,
    "Mods": [
     {
      "Stat": "Life",
@@ -17926,7 +17940,7 @@
    "Id": "overcharge_s0",
    "Name": "Static",
    "Kind": "Small",
-   "X": 913,
+   "X": 916,
    "Y": -2829,
    "Mods": [
     {
@@ -18088,8 +18102,8 @@
    "Id": "overcharge_s3",
    "Name": "Static",
    "Kind": "Small",
-   "X": 525,
-   "Y": -2926,
+   "X": 522,
+   "Y": -2921,
    "Mods": [
     {
      "Stat": "Damage",
@@ -18274,7 +18288,7 @@
    "Id": "permafrost_s0",
    "Name": "Permafrost",
    "Kind": "Small",
-   "X": -528,
+   "X": -525,
    "Y": -2945,
    "Mods": [
     {
@@ -18420,8 +18434,8 @@
    "Id": "permafrost_s3",
    "Name": "Permafrost",
    "Kind": "Small",
-   "X": -916,
-   "Y": -2848,
+   "X": -917,
+   "Y": -2845,
    "Mods": [
     {
      "Stat": "Damage",
@@ -18811,12 +18825,28 @@
      "Value": 30
     },
     {
+     "Stat": "BleedDamage",
+     "Mode": "Inc",
+     "Tags": [
+      "Melee"
+     ],
+     "Value": 7
+    },
+    {
+     "Stat": "IgniteDamage",
+     "Mode": "Inc",
+     "Tags": [
+      "Melee"
+     ],
+     "Value": 7
+    },
+    {
      "Stat": "PoisonDamage",
      "Mode": "Inc",
      "Tags": [
       "Melee"
      ],
-     "Value": 20
+     "Value": 7
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_Cursed_03_Clean",
@@ -18926,7 +18956,7 @@
    "Id": "ossuary_s0",
    "Name": "Ossuary",
    "Kind": "Small",
-   "X": 2286,
+   "X": 2289,
    "Y": -1930,
    "Mods": [
     {
@@ -19052,8 +19082,8 @@
    "Id": "ossuary_s3",
    "Name": "Ossuary",
    "Kind": "Small",
-   "X": 2008,
-   "Y": -2217,
+   "X": 2005,
+   "Y": -2216,
    "Mods": [
     {
      "Stat": "MinionLife",
@@ -19495,8 +19525,8 @@
    "Id": "artillery_s0",
    "Name": "Artillery",
    "Kind": "Small",
-   "X": 2845,
-   "Y": 1018,
+   "X": 2854,
+   "Y": 1050,
    "Mods": [
     {
      "Stat": "Damage",
@@ -19613,8 +19643,8 @@
    "Id": "artillery_s3",
    "Name": "Artillery",
    "Kind": "Small",
-   "X": 2956,
-   "Y": 634,
+   "X": 2954,
+   "Y": 631,
    "Mods": [
     {
      "Stat": "Damage",
@@ -20053,8 +20083,8 @@
    "Id": "windstep_s0",
    "Name": "Windstep",
    "Kind": "Small",
-   "X": 536,
-   "Y": 2976,
+   "X": 535,
+   "Y": 2979,
    "Mods": [
     {
      "Stat": "MoveSpeed",
@@ -20175,7 +20205,7 @@
    "Id": "windstep_s3",
    "Name": "Windstep",
    "Kind": "Small",
-   "X": 924,
+   "X": 927,
    "Y": 2879,
    "Mods": [
     {
@@ -20431,8 +20461,8 @@
    "Id": "warpath_s3",
    "Name": "Warpath",
    "Kind": "Small",
-   "X": -2828,
-   "Y": 1005,
+   "X": -2826,
+   "Y": 1008,
    "Mods": [
     {
      "Stat": "Life",
@@ -20611,8 +20641,8 @@
    "Id": "cleave_s0",
    "Name": "Cleaving",
    "Kind": "Small",
-   "X": -2303,
-   "Y": 1954,
+   "X": -2306,
+   "Y": 1956,
    "Mods": [
     {
      "Stat": "Area",
@@ -20734,7 +20764,7 @@
    "Id": "cleave_s3",
    "Name": "Cleaving",
    "Kind": "Small",
-   "X": -2025,
+   "X": -2022,
    "Y": 2241,
    "Mods": [
     {
@@ -20900,7 +20930,7 @@
    "Id": "dawn_s0",
    "Name": "Dawnlight",
    "Kind": "Small",
-   "X": -2005,
+   "X": -2002,
    "Y": -2221,
    "Mods": [
     {
@@ -21023,8 +21053,8 @@
    "Id": "dawn_s3",
    "Name": "Dawnlight",
    "Kind": "Small",
-   "X": -2283,
-   "Y": -1934,
+   "X": -2282,
+   "Y": -1931,
    "Mods": [
     {
      "Stat": "Damage",
@@ -21185,8 +21215,8 @@
    "Id": "vigil_s0",
    "Name": "Vigil",
    "Kind": "Small",
-   "X": -2814,
-   "Y": -1015,
+   "X": -2830,
+   "Y": -1024,
    "Mods": [
     {
      "Stat": "Block",
@@ -21295,8 +21325,8 @@
    "Id": "vigil_s3",
    "Name": "Vigil",
    "Kind": "Small",
-   "X": -2925,
-   "Y": -631,
+   "X": -2923,
+   "Y": -629,
    "Mods": [
     {
      "Stat": "Block",
@@ -27062,6 +27092,12 @@
      "Mode": "More",
      "Tags": [],
      "Value": -6
+    },
+    {
+     "Stat": "EnergyShield",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -6
     }
    ],
    "Icon": "ICON_DarkFantasy_Map_Skull_01_Clean",
@@ -27072,8 +27108,8 @@
    "Links": [
     "lord_of_the_dead_path_0"
    ],
-   "Price": "Your Vows, Heralds and Woes reserve 15% more mana. 6% less maximum Life. Your minions deal 6% less damage.",
-   "Fp": "ef2ea536e5",
+   "Price": "Your Vows, Heralds and Woes reserve 15% more mana. 6% less maximum Life and Energy Shield. Your minions deal 6% less damage.",
+   "Fp": "f564c08887",
    "_d25n9_BRAIN": "WTCOUNT253 (rule 67 count line, rule 68 cut by numbers): +1 each kind of minion is ~x1.12 on a 4-summon army; a summoner now pays 6% less minion damage (was hero-side prices only)."
   },
   {
@@ -27816,7 +27852,8 @@
    "Region": "Ranger",
    "Links": [
     "rain_s3",
-    "road_rain_chain_1"
+    "road_rain_chain_1",
+    "travel_road_rain_chain_0__cascade_of_ruin_path_0_0"
    ],
    "Fp": "2e6cd551c6"
   },
@@ -28210,7 +28247,9 @@
    "Region": "Ranger",
    "Links": [
     "cascade_of_ruin",
-    "rain_s1"
+    "rain_s1",
+    "travel_road_rain_chain_0__cascade_of_ruin_path_0_0",
+    "r114_chaos_rang_ruinfletching"
    ],
    "Fp": "e0f04a0f95"
   },
@@ -31811,7 +31850,7 @@
      "Tags": [
       "Spell"
      ],
-     "Value": 40
+     "Value": 50
     },
     {
      "Stat": "CastSpeed",
@@ -31822,7 +31861,7 @@
    ],
    "Icon": "ICON_DarkFantasy_Status_FortifiedAttack_01_Clean",
    "Group": "keystone",
-   "Text": "Increases and reductions to Spell damage also apply to your Attacks. 40% increased Spell damage.",
+   "Text": "Increases and reductions to Spell damage also apply to your Attacks. 50% increased Spell damage.",
    "ClassStart": "",
    "Region": "Paladin",
    "Links": [
@@ -31957,7 +31996,8 @@
     "life_big_s1",
     "sanctified",
     "kindled_s0",
-    "r70_elem_rimeward_0"
+    "r70_elem_rimeward_0",
+    "travel_sanctified_path_0__stormbound_s1_0"
    ],
    "Fp": "9691f419be"
   },
@@ -32173,7 +32213,7 @@
      "Tags": [
       "Fire"
      ],
-     "Value": -8
+     "Value": -5
     },
     {
      "Stat": "MaxResist",
@@ -32181,7 +32221,7 @@
      "Tags": [
       "Lightning"
      ],
-     "Value": -8
+     "Value": -5
     }
    ],
    "Icon": "ICON_DarkFantasyMenus_Skull_04_Clean",
@@ -32192,7 +32232,7 @@
    "Links": [
     "hollow_covenant_path_0"
    ],
-   "Price": "-8% to maximum Fire and Lightning Resistances. You cannot leech Life.",
+   "Price": "-5% to maximum Fire and Lightning Resistances. You cannot leech Life.",
    "Flavour": "The hollow do not bleed. Somewhere under the mountain, the old dwarves knew it too.",
    "Fp": "35d9c5ec9a"
   },
@@ -32388,6 +32428,12 @@
      "Mode": "More",
      "Tags": [],
      "Value": -5
+    },
+    {
+     "Stat": "EnergyShield",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -5
     }
    ],
    "Icon": "ICON_DarkFantasy_Map_Blacksmith_01_Clean",
@@ -32398,9 +32444,9 @@
    "Links": [
     "siege_pact_path_0"
    ],
-   "Price": "5% less maximum Life.",
+   "Price": "5% less maximum Life and Energy Shield.",
    "Flavour": "The engine-wrights paid for every bolt in blood. So will you.",
-   "Fp": "c83f88b8ac"
+   "Fp": "7f7e2eb24b"
   },
   {
    "Id": "siege_pact_path_0",
@@ -33324,7 +33370,8 @@
    "Region": "seam_60",
    "Links": [
     "bone_choir_entry",
-    "bone_choir_s1"
+    "bone_choir_s1",
+    "w26q_count_bone"
    ],
    "Orbit": [
     3713,
@@ -33363,7 +33410,8 @@
     "bone_choir_n0",
     "bone_choir_s0",
     "bone_choir_s2",
-    "choir_of_bones_path_0"
+    "choir_of_bones_path_0",
+    "w26q_count_bone"
    ],
    "Orbit": [
     3713,
@@ -36647,7 +36695,8 @@
    "Region": "seam_180",
    "Links": [
     "anvil_oath_entry",
-    "anvil_oath_s1"
+    "anvil_oath_s1",
+    "w26q_count_cairn"
    ],
    "Orbit": [
     -5827,
@@ -36686,7 +36735,8 @@
     "aegis_rebuke_path_0",
     "anvil_oath_n0",
     "anvil_oath_s0",
-    "anvil_oath_s2"
+    "anvil_oath_s2",
+    "w26q_count_cairn"
    ],
    "Orbit": [
     -5827,
@@ -36736,8 +36786,8 @@
    "Id": "anvil_oath_s3",
    "Name": "Anvil Oath",
    "Kind": "Small",
-   "X": -7089,
-   "Y": -920,
+   "X": -7086,
+   "Y": -918,
    "Mods": [
     {
      "Stat": "Block",
@@ -38179,7 +38229,7 @@
      "Tags": [
       "Roll",
       "Nova",
-      "Pct=260",
+      "Pct=300",
       "Radius=400",
       "Element=Fire"
      ],
@@ -38201,7 +38251,7 @@
    ],
    "Icon": "ICON_DarkFantasy_Element_Fire_01_Clean",
    "Group": "keystone",
-   "Text": "Your roll ends in a burst of dawn fire: 260% of your last skill's hit as Fire damage to enemies within 4 metres (once every 1.5 seconds).",
+   "Text": "Your roll ends in a burst of dawn fire: 300% of your last skill's hit as Fire damage to enemies within 4 metres (once every 1.5 seconds).",
    "ClassStart": "",
    "Region": "seam_120",
    "Links": [
@@ -38471,8 +38521,8 @@
    "Id": "malediction_s1",
    "Name": "Malediction",
    "Kind": "Small",
-   "X": 1445,
-   "Y": -302,
+   "X": 1435,
+   "Y": -308,
    "Mods": [
     {
      "Stat": "CurseEffect",
@@ -39807,8 +39857,8 @@
    "Id": "guardian_s1",
    "Name": "Hallowed Ward",
    "Kind": "Small",
-   "X": -1638,
-   "Y": -72,
+   "X": -1644,
+   "Y": -74,
    "Mods": [
     {
      "Stat": "MinionDamage",
@@ -40963,8 +41013,8 @@
    "Id": "r59_phys1_n1",
    "Name": "Heavy Blows",
    "Kind": "Notable",
-   "X": -2234,
-   "Y": 1660,
+   "X": -2232,
+   "Y": 1651,
    "Mods": [
     {
      "Stat": "Damage",
@@ -41118,7 +41168,8 @@
    "Links": [
     "r59_phys3_s0",
     "melee_s5",
-    "melee_s6"
+    "melee_s6",
+    "travel_edge_s0__r59_phys3_n1_0"
    ],
    "Flavour": "The weapon is only as heavy as the hand that refuses to let go.",
    "Fp": "970989782b"
@@ -41334,7 +41385,8 @@
    "Region": "Warrior",
    "Links": [
     "regrowth_entry",
-    "r59_sure_strike_s1"
+    "r59_sure_strike_s1",
+    "r140_ailkeep_warr"
    ],
    "Fp": "d6936825fe"
   },
@@ -41361,7 +41413,8 @@
    "Region": "Warrior",
    "Links": [
     "r59_sure_strike_s0",
-    "r59_sure_strike_s2"
+    "r59_sure_strike_s2",
+    "r140_ailkeep_warr"
    ],
    "Fp": "e691e984f4"
   },
@@ -44722,7 +44775,8 @@
     "sanctified_path_0",
     "kindled_s1",
     "r113_conv_fire_n0",
-    "r113_persona_pala_pyresaint"
+    "r113_persona_pala_pyresaint",
+    "r140_ailkeep_pala"
    ],
    "Fp": "fdbe1c3ce3"
   },
@@ -44929,6 +44983,12 @@
      ],
      "Value": 15,
      "Value2": 0
+    },
+    {
+     "Stat": "EnergyShield",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": -8
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_Hunger_01_Clean",
@@ -44939,9 +44999,9 @@
    "Links": [
     "kindled_n0"
    ],
-   "Price": "8% reduced maximum Life.",
+   "Price": "8% reduced maximum Life and Energy Shield.",
    "Flavour": "Vows are kindling. Yours burned the brightest.",
-   "Fp": "f0a7623864"
+   "Fp": "90926b4a3b"
   },
   {
    "Id": "snarewright_s0",
@@ -44967,7 +45027,8 @@
    "Links": [
     "eagle_eye_path_0",
     "snarewright_s1",
-    "r113_persona_rang_wildquiver"
+    "r113_persona_rang_wildquiver",
+    "r140_ailkeep_rang"
    ],
    "Fp": "2b377a4443"
   },
@@ -44995,7 +45056,8 @@
    "Links": [
     "snarewright_s0",
     "snarewright_n0",
-    "r113_persona_rang_wildquiver"
+    "r113_persona_rang_wildquiver",
+    "r140_ailkeep_rang"
    ],
    "Fp": "55e9ee11fe"
   },
@@ -45442,7 +45504,8 @@
    "Region": "Paladin",
    "Links": [
     "stormbound_s0",
-    "stormbound_n0"
+    "stormbound_n0",
+    "travel_sanctified_path_0__stormbound_s1_0"
    ],
    "Fp": "bbc9e05f5f"
   },
@@ -46255,7 +46318,8 @@
    "Region": "Samurai",
    "Links": [
     "way_of_the_blade_path_0",
-    "crimson_edge_s1"
+    "crimson_edge_s1",
+    "r140_ailkeep_samu"
    ],
    "Fp": "5230cd41d6"
   },
@@ -46286,7 +46350,8 @@
    "Region": "Samurai",
    "Links": [
     "crimson_edge_s0",
-    "crimson_edge_n0"
+    "crimson_edge_n0",
+    "r140_ailkeep_samu"
    ],
    "Fp": "aa1be935b3"
   },
@@ -46474,7 +46539,8 @@
    "Region": "Necromancer",
    "Links": [
     "lord_of_the_dead_path_0",
-    "slowruin_s1"
+    "slowruin_s1",
+    "r140_ailkeep_necr"
    ],
    "Fp": "b46665ce22"
   },
@@ -46499,7 +46565,8 @@
    "Region": "Necromancer",
    "Links": [
     "slowruin_s0",
-    "slowruin_n0"
+    "slowruin_n0",
+    "r140_ailkeep_necr"
    ],
    "Fp": "d95d8a3cd0"
   },
@@ -46620,6 +46687,12 @@
      "Mode": "Inc",
      "Tags": [],
      "Value": -10
+    },
+    {
+     "Stat": "EnergyShield",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": -10
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_Cursed_02_Clean",
@@ -46630,9 +46703,9 @@
    "Links": [
     "slowruin_n0"
    ],
-   "Price": "10% reduced maximum Life.",
+   "Price": "10% reduced maximum Life and Energy Shield.",
    "Flavour": "Everything ends. You see to it.",
-   "Fp": "c37d3237d4"
+   "Fp": "e9a4b40598"
   },
   {
    "Id": "stormarrow_s0",
@@ -47417,7 +47490,8 @@
    "Region": "Mage",
    "Links": [
     "twice_fallen_sky_path_0",
-    "r70_elem_wildfire_1"
+    "r70_elem_wildfire_1",
+    "r140_ailkeep_mage"
    ],
    "Fp": "9b0f7de764"
   },
@@ -47442,7 +47516,8 @@
    "Region": "Mage",
    "Links": [
     "r70_elem_wildfire_0",
-    "r70_elem_wildfire_2"
+    "r70_elem_wildfire_2",
+    "r140_ailkeep_mage"
    ],
    "Fp": "60188f8e0a"
   },
@@ -47647,9 +47722,10 @@
     "waygate_samurai",
     "waygate_warrior",
     "waygate_paladin",
-    "travel16_waygate_mage__road_starfall_mana_2_0"
+    "travel16_waygate_mage__road_starfall_mana_2_0",
+    "waygate_hub"
    ],
-   "Flavour": "Links to the 5 other Waygates.",
+   "Flavour": "Links to the 6 other Waygates.",
    "Fp": "f960dc8a97"
   },
   {
@@ -47685,9 +47761,10 @@
     "waygate_warrior",
     "waygate_paladin",
     "travel16_waygate_necromancer__road_souls_leech_2_0",
-    "road_souls_conduit_0"
+    "road_souls_conduit_0",
+    "waygate_hub"
    ],
-   "Flavour": "Links to the 5 other Waygates.",
+   "Flavour": "Links to the 6 other Waygates.",
    "Fp": "1e56386535"
   },
   {
@@ -47716,9 +47793,10 @@
     "waygate_samurai",
     "waygate_warrior",
     "waygate_paladin",
-    "travel16_waygate_ranger__road_siege_chain_2_0"
+    "travel16_waygate_ranger__road_siege_chain_2_0",
+    "waygate_hub"
    ],
-   "Flavour": "Links to the 5 other Waygates.",
+   "Flavour": "Links to the 6 other Waygates.",
    "Fp": "99d1acd695"
   },
   {
@@ -47755,9 +47833,10 @@
     "waygate_paladin",
     "travel16_waygate_samurai__road_mirrorblade_crit_2_0",
     "lane112_samu_o7",
-    "lane112_samu_o8"
+    "lane112_samu_o8",
+    "waygate_hub"
    ],
-   "Flavour": "Links to the 5 other Waygates.",
+   "Flavour": "Links to the 6 other Waygates.",
    "Fp": "1aa7b3b379"
   },
   {
@@ -47788,9 +47867,10 @@
     "waygate_paladin",
     "travel16_waygate_warrior__road_channel_armour_2_0",
     "r60_engine_warrior_s1",
-    "lane112_warr_o10"
+    "lane112_warr_o10",
+    "waygate_hub"
    ],
-   "Flavour": "Links to the 5 other Waygates.",
+   "Flavour": "Links to the 6 other Waygates.",
    "Fp": "8d55428c30"
   },
   {
@@ -47825,9 +47905,10 @@
     "waygate_ranger",
     "waygate_samurai",
     "waygate_warrior",
-    "travel16_waygate_paladin__road_radiance_life_big_2_0"
+    "travel16_waygate_paladin__road_radiance_life_big_2_0",
+    "waygate_hub"
    ],
-   "Flavour": "Links to the 5 other Waygates.",
+   "Flavour": "Links to the 6 other Waygates.",
    "Fp": "b0a4be6c6a"
   },
   {
@@ -48109,7 +48190,8 @@
    "Region": "Samurai",
    "Links": [
     "ki_s4",
-    "r74_hiddenedge_s1"
+    "r74_hiddenedge_s1",
+    "travel_projectile_s0__r74_hiddenedge_s0_0"
    ],
    "Fp": "7d30de171c"
   },
@@ -48415,7 +48497,8 @@
    "Region": "Paladin",
    "Links": [
     "faith_s0",
-    "r74_holyrite_s1"
+    "r74_holyrite_s1",
+    "travel_r74_holyrite_s0__cold_s6_0"
    ],
    "Fp": "b4ab49fea4"
   },
@@ -50679,8 +50762,8 @@
    "Id": "om103_necromancer_legion",
    "Name": "Mastery of the Legion",
    "Kind": "Notable",
-   "X": 1359,
-   "Y": -1844,
+   "X": 1353,
+   "Y": -1850,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Armor_01_Clean",
    "Group": "bone",
@@ -50713,7 +50796,7 @@
   },
   {
    "Id": "om103_necromancer_legion_c1",
-   "Name": "Mastery of the Legion",
+   "Name": "Mastery of the Reaping",
    "Kind": "Notable",
    "X": 2756,
    "Y": -800,
@@ -50803,7 +50886,7 @@
   },
   {
    "Id": "om103_necromancer_legion_c4",
-   "Name": "Mastery of the Legion",
+   "Name": "Mastery of the Reaping",
    "Kind": "Notable",
    "X": 2091,
    "Y": -376,
@@ -51039,8 +51122,8 @@
    "Id": "om103_paladin_dawn_c3",
    "Name": "Mastery of Dawn",
    "Kind": "Notable",
-   "X": -2236,
-   "Y": -1186,
+   "X": -2238,
+   "Y": -1184,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_FortifiedAttack_01_Clean",
    "Group": "zeal",
@@ -51165,8 +51248,8 @@
    "Id": "om103_ranger_flame",
    "Name": "Mastery of Flame",
    "Kind": "Notable",
-   "X": 4377,
-   "Y": 1019,
+   "X": 4382,
+   "Y": 1022,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Element_Fire_01_Clean",
    "Group": "fire",
@@ -51201,8 +51284,8 @@
    "Id": "om103_ranger_hunt_c1",
    "Name": "Mastery of the Hunt",
    "Kind": "Notable",
-   "X": 1575,
-   "Y": 1519,
+   "X": 1572,
+   "Y": 1514,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Accuracy_01_Clean",
    "Group": "projectile",
@@ -51597,8 +51680,8 @@
    "Id": "om103_warrior_vigour",
    "Name": "Mastery of Vigour",
    "Kind": "Notable",
-   "X": -2189,
-   "Y": 537,
+   "X": -2197,
+   "Y": 532,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Stat_Health_01_Clean",
    "Group": "life",
@@ -51849,7 +51932,7 @@
    "Id": "om103_seam_180_flame",
    "Name": "Mastery of Flame",
    "Kind": "Notable",
-   "X": -3458,
+   "X": -3452,
    "Y": 410,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Element_Fire_01_Clean",
@@ -51867,7 +51950,7 @@
    "Id": "om103_seam_240_fury",
    "Name": "Mastery of Fury",
    "Kind": "Notable",
-   "X": -1453,
+   "X": -1447,
    "Y": 3823,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_DamageUp_02_Clean",
@@ -51885,7 +51968,7 @@
    "Id": "om103_seam_300_edge",
    "Name": "Mastery of the Edge",
    "Kind": "Notable",
-   "X": 2638,
+   "X": 2641,
    "Y": 3270,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Status_Critical_01_Clean",
@@ -51939,7 +52022,7 @@
    "Id": "om103_seam_60_frost",
    "Name": "Mastery of Frost",
    "Kind": "Notable",
-   "X": 1668,
+   "X": 1674,
    "Y": -3808,
    "Mods": [],
    "Icon": "ICON_DarkFantasy_Element_Ice_01_Clean",
@@ -52696,8 +52779,8 @@
    "Id": "lane112_mage_i12",
    "Name": "Intelligence",
    "Kind": "Attribute",
-   "X": 300,
-   "Y": -2640,
+   "X": 298,
+   "Y": -2638,
    "Mods": [
     {
      "Stat": "Int",
@@ -52721,8 +52804,8 @@
    "Id": "lane112_mage_i13",
    "Name": "Intelligence",
    "Kind": "Attribute",
-   "X": 450,
-   "Y": -2670,
+   "X": 453,
+   "Y": -2669,
    "Mods": [
     {
      "Stat": "Int",
@@ -52769,11 +52852,17 @@
    "Fp": "6a9d00a9ff"
   },
   {
+   "ClassStart": "",
+   "Fp": "adee3cda86",
+   "Group": "lane112",
+   "Icon": "ICON_DarkFantasy_Stat_Strength_02_Clean",
    "Id": "lane112_mage_i15",
-   "Name": "Intelligence",
    "Kind": "Attribute",
-   "X": 1080,
-   "Y": -2700,
+   "Links": [
+    "lane112_mage_i14",
+    "wellspring_s6",
+    "p85_kindling_rod"
+   ],
    "Mods": [
     {
      "Stat": "Int",
@@ -52782,17 +52871,11 @@
      "Value": 10
     }
    ],
-   "Icon": "ICON_DarkFantasy_Stat_Strength_02_Clean",
-   "Group": "lane112",
-   "Text": "",
-   "ClassStart": "",
+   "Name": "Intelligence",
    "Region": "seam_60",
-   "Links": [
-    "lane112_mage_i14",
-    "wellspring_s6",
-    "p85_kindling_rod"
-   ],
-   "Fp": "adee3cda86"
+   "Text": "",
+   "X": 1080,
+   "Y": -2700
   },
   {
    "Id": "lane112_mage_sl1",
@@ -53681,8 +53764,8 @@
    "Id": "lane112_necr_i12",
    "Name": "Intelligence",
    "Kind": "Attribute",
-   "X": 1950,
-   "Y": -1380,
+   "X": 1960,
+   "Y": -1374,
    "Mods": [
     {
      "Stat": "Int",
@@ -53757,8 +53840,8 @@
    "Id": "lane112_necr_i15",
    "Name": "Dexterity",
    "Kind": "Attribute",
-   "X": 2430,
-   "Y": -690,
+   "X": 2438,
+   "Y": -677,
    "Mods": [
     {
      "Stat": "Dex",
@@ -54462,7 +54545,7 @@
    "Id": "lane112_rang_i3",
    "Name": "Dexterity",
    "Kind": "Attribute",
-   "X": 2460,
+   "X": 2463,
    "Y": 960,
    "Mods": [
     {
@@ -54739,8 +54822,8 @@
    "Id": "lane112_rang_i14",
    "Name": "Dexterity",
    "Kind": "Attribute",
-   "X": 1980,
-   "Y": 1380,
+   "X": 1982,
+   "Y": 1374,
    "Mods": [
     {
      "Stat": "Dex",
@@ -54882,7 +54965,8 @@
    "Region": "seam_0",
    "Links": [
     "lane112_rang_sl1",
-    "lane112_rang_sl3"
+    "lane112_rang_sl3",
+    "travel_reaper_s0__lane112_rang_sl2_0"
    ],
    "Fp": "eefb29a711"
   },
@@ -56002,7 +56086,7 @@
    "Id": "lane112_samu_sr3",
    "Name": "Strength",
    "Kind": "Attribute",
-   "X": -300,
+   "X": -297,
    "Y": 2640,
    "Mods": [
     {
@@ -56557,8 +56641,8 @@
    "Id": "lane112_warr_i5",
    "Name": "Strength",
    "Kind": "Attribute",
-   "X": -2520,
-   "Y": 1260,
+   "X": -2522,
+   "Y": 1254,
    "Mods": [
     {
      "Stat": "Str",
@@ -56759,8 +56843,8 @@
    "Id": "lane112_warr_i13",
    "Name": "Strength",
    "Kind": "Attribute",
-   "X": -1920,
-   "Y": 1590,
+   "X": -1926,
+   "Y": 1580,
    "Mods": [
     {
      "Stat": "Str",
@@ -56912,7 +56996,7 @@
    "Id": "lane112_warr_sl2",
    "Name": "Strength",
    "Kind": "Attribute",
-   "X": -1830,
+   "X": -1818,
    "Y": 1500,
    "Mods": [
     {
@@ -57646,8 +57730,8 @@
    "Id": "lane112_pala_i8",
    "Name": "Strength",
    "Kind": "Attribute",
-   "X": -1770,
-   "Y": -1890,
+   "X": -1772,
+   "Y": -1899,
    "Mods": [
     {
      "Stat": "Str",
@@ -57721,8 +57805,8 @@
    "Id": "lane112_pala_i11",
    "Name": "Intelligence",
    "Kind": "Attribute",
-   "X": -2130,
-   "Y": -1590,
+   "X": -2142,
+   "Y": -1587,
    "Mods": [
     {
      "Stat": "Int",
@@ -57746,8 +57830,8 @@
    "Id": "lane112_pala_i12",
    "Name": "Strength",
    "Kind": "Attribute",
-   "X": -2370,
-   "Y": -1560,
+   "X": -2366,
+   "Y": -1568,
    "Mods": [
     {
      "Stat": "Str",
@@ -58871,7 +58955,8 @@
    "Region": "seam_300",
    "Links": [
     "r112_trap_n0",
-    "r112_trap_s5"
+    "r112_trap_s5",
+    "w26q_count_battery"
    ],
    "Fp": "be5f599184"
   },
@@ -58898,7 +58983,8 @@
    "Region": "seam_300",
    "Links": [
     "r112_trap_s4",
-    "r112_trap_n2"
+    "r112_trap_n2",
+    "w26q_count_battery"
    ],
    "Fp": "b61094bd73"
   },
@@ -60904,11 +60990,17 @@
      "Mode": "More",
      "Tags": [],
      "Value": -15
+    },
+    {
+     "Stat": "EnergyShield",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -15
     }
    ],
    "Group": "souls",
    "Text": "Your Woes have 2% more effect for each minion you have (at most 20%).",
-   "Price": "15% less maximum Life.",
+   "Price": "15% less maximum Life and Energy Shield.",
    "ClassStart": "",
    "Region": "Necromancer",
    "X": 4197,
@@ -60917,7 +61009,7 @@
     "r95_minsus_s0",
     "r95_minsus_s1"
    ],
-   "Fp": "f31ebe7861"
+   "Fp": "3da81aca54"
   },
   {
    "Id": "r113_persona_necr_dirge",
@@ -61162,12 +61254,11 @@
      "Stat": "CritChance",
      "Mode": "More",
      "Tags": [],
-     "Value": -15
+     "Value": -10
     }
    ],
    "Group": "keystone",
    "Text": "After you use Sheathe, the next 3 Attack skills you use within 5 seconds are critical hits (every hit for 0.75 seconds after each use).",
-   "Price": "15% less Critical Strike Chance.",
    "ClassStart": "",
    "Region": "Samurai",
    "X": -1715,
@@ -61175,7 +61266,8 @@
    "Links": [
     "attack_s0"
    ],
-   "Fp": "28d66ff6e2"
+   "Fp": "28d66ff6e2",
+   "Price": "10% less Critical Strike Chance."
   },
   {
    "Id": "r113_persona_pala_pyresaint",
@@ -61512,6 +61604,12 @@
      "Mode": "More",
      "Tags": [],
      "Value": -6
+    },
+    {
+     "Stat": "EnergyShield",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -6
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_DamageUp_03_Clean",
@@ -61522,7 +61620,7 @@
    "Links": [
     "key86_stone_and_bone_path_0"
    ],
-   "Fp": "36dd1e2669"
+   "Fp": "f810c41adf"
   },
   {
    "Id": "r113_persona_rang_falconer",
@@ -61968,12 +62066,12 @@
      "Stat": "VowLock",
      "Mode": "Inc",
      "Tags": [],
-     "Value": 50
+     "Value": 30
     }
    ],
    "Group": "keystone",
    "Text": "25% of your Holy hit damage is laid on the enemy as Entropy instead of striking. Vowbreak implodes all your Entropy within 8 metres at once as Chaos damage, 25% more.",
-   "Price": "After a Vowbreak your Vow stays locked 50% longer.",
+   "Price": "After a Vowbreak your Vow stays locked 30% longer.",
    "ClassStart": "",
    "Region": "Paladin",
    "X": -3125,
@@ -62109,11 +62207,17 @@
       "EntropySlam"
      ],
      "Value": 1
+    },
+    {
+     "Stat": "EnergyShield",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -15
     }
    ],
    "Group": "keystone",
    "Text": "25% of your Melee hit damage is laid on the enemy as Entropy instead of striking. Your Slam hits implode your Entropy on each enemy they strike at once as Chaos damage, 5% more.",
-   "Price": "15% less maximum Life.",
+   "Price": "15% less maximum Life and Energy Shield.",
    "ClassStart": "",
    "Region": "Warrior",
    "X": -5323,
@@ -62121,7 +62225,7 @@
    "Links": [
     "regrowth_s0"
    ],
-   "Fp": "a17b688fea"
+   "Fp": "3488a22892"
   },
   {
    "Id": "r114_chaos_rang_ruinfletching",
@@ -62154,7 +62258,8 @@
    "X": 3693,
    "Y": 4135,
    "Links": [
-    "rain_s1"
+    "rain_s1",
+    "cascade_of_ruin_path_0"
    ],
    "Fp": "87fe58c8c6"
   },
@@ -62270,6 +62375,577 @@
     "r124_corpse_necr_s0"
    ],
    "Fp": "b6169d1c23"
+  },
+  {
+   "Id": "waygate_hub",
+   "Name": "Heart Waygate",
+   "Kind": "Small",
+   "X": 0,
+   "Y": 0,
+   "Mods": [
+    {
+     "Stat": "Str",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 4
+    },
+    {
+     "Stat": "Dex",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 4
+    },
+    {
+     "Stat": "Int",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 4
+    }
+   ],
+   "Icon": "ICON_DarkFantasy_Map_Star_01_Clean",
+   "Group": "waygate",
+   "Text": "",
+   "ClassStart": "",
+   "Region": "hub",
+   "Links": [
+    "hub_0",
+    "hub_2",
+    "hub_4",
+    "hub_6",
+    "hub_8",
+    "hub_11",
+    "waygate_mage",
+    "waygate_necromancer",
+    "waygate_ranger",
+    "waygate_samurai",
+    "waygate_warrior",
+    "waygate_paladin"
+   ],
+   "Flavour": "Links to the 6 other Waygates.",
+   "Fp": "ab314e3382"
+  },
+  {
+   "Id": "travel_lightning_s1__bone_s4_0",
+   "Name": "Intelligence",
+   "Kind": "Small",
+   "X": 1000,
+   "Y": -1850,
+   "Mods": [
+    {
+     "Stat": "Int",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 5
+    }
+   ],
+   "Icon": "ICON_DarkFantasy_Stat_Strength_02_Clean",
+   "Group": "speed",
+   "Text": "",
+   "ClassStart": "",
+   "Region": "seam_60",
+   "Links": [
+    "lightning_s1",
+    "bone_s4"
+   ],
+   "Fp": "d514c6c65e"
+  },
+  {
+   "Id": "travel_reaper_s0__lane112_rang_sl2_0",
+   "Name": "Versatility",
+   "Kind": "Small",
+   "X": 1750,
+   "Y": -100,
+   "Mods": [
+    {
+     "Stat": "Int",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 3
+    },
+    {
+     "Stat": "Dex",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 2
+    }
+   ],
+   "Icon": "ICON_DarkFantasy_Stat_Strength_02_Clean",
+   "Group": "speed",
+   "Text": "",
+   "ClassStart": "",
+   "Region": "seam_0",
+   "Links": [
+    "reaper_s0",
+    "lane112_rang_sl2"
+   ],
+   "Fp": "b15ce5cbe5"
+  },
+  {
+   "Id": "travel_projectile_s0__r74_hiddenedge_s0_0",
+   "Name": "Dexterity",
+   "Kind": "Small",
+   "X": 1000,
+   "Y": 1500,
+   "Mods": [
+    {
+     "Stat": "Dex",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 5
+    }
+   ],
+   "Icon": "ICON_DarkFantasy_Stat_Strength_02_Clean",
+   "Group": "speed",
+   "Text": "",
+   "ClassStart": "",
+   "Region": "seam_300",
+   "Links": [
+    "projectile_s0",
+    "r74_hiddenedge_s0"
+   ],
+   "Fp": "6089200af9"
+  },
+  {
+   "Id": "travel_edge_s0__r59_phys3_n1_0",
+   "Name": "Versatility",
+   "Kind": "Small",
+   "X": -850,
+   "Y": 1650,
+   "Mods": [
+    {
+     "Stat": "Dex",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 3
+    },
+    {
+     "Stat": "Str",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 2
+    }
+   ],
+   "Icon": "ICON_DarkFantasy_Stat_Strength_02_Clean",
+   "Group": "speed",
+   "Text": "",
+   "ClassStart": "",
+   "Region": "seam_240",
+   "Links": [
+    "edge_s0",
+    "r59_phys3_n1"
+   ],
+   "Fp": "af37cd21f3"
+  },
+  {
+   "Id": "travel_life_s1__bulwark_s5_0",
+   "Name": "Strength",
+   "Kind": "Small",
+   "X": -2050,
+   "Y": 50,
+   "Mods": [
+    {
+     "Stat": "Str",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 5
+    }
+   ],
+   "Icon": "ICON_DarkFantasy_Stat_Strength_02_Clean",
+   "Group": "speed",
+   "Text": "",
+   "ClassStart": "",
+   "Region": "seam_180",
+   "Links": [
+    "life_s1",
+    "bulwark_s5"
+   ],
+   "Fp": "28b2eba4f4"
+  },
+  {
+   "Id": "travel_r74_holyrite_s0__cold_s6_0",
+   "Name": "Versatility",
+   "Kind": "Small",
+   "X": -800,
+   "Y": -1600,
+   "Mods": [
+    {
+     "Stat": "Int",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 3
+    },
+    {
+     "Stat": "Str",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 2
+    }
+   ],
+   "Icon": "ICON_DarkFantasy_Stat_Strength_02_Clean",
+   "Group": "speed",
+   "Text": "",
+   "ClassStart": "",
+   "Region": "seam_120",
+   "Links": [
+    "r74_holyrite_s0",
+    "cold_s6"
+   ],
+   "Fp": "49ff8a06c9"
+  },
+  {
+   "Id": "r140_ailkeep_warr",
+   "Name": "Butcher's Ledger",
+   "Kind": "Notable",
+   "Icon": "ICON_DarkFantasy_Status_DamageUp_02_Clean",
+   "Mods": [
+    {
+     "Stat": "CritBleedKeep",
+     "Mode": "Flat",
+     "Tags": [
+      "Slam"
+     ],
+     "Value": 30
+    },
+    {
+     "Stat": "CritMulti",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": -60
+    }
+   ],
+   "Group": "fury",
+   "Text": "Bleeding from your Slam critical strikes keeps 30% of their extra critical damage.",
+   "Price": "-60% to Critical Strike Multiplier.",
+   "ClassStart": "",
+   "Region": "Warrior",
+   "X": -4519,
+   "Y": 1010,
+   "Links": [
+    "r59_sure_strike_s0",
+    "r59_sure_strike_s1"
+   ],
+   "Fp": "dc55a0bb69"
+  },
+  {
+   "Id": "r140_ailkeep_samu",
+   "Name": "Honed Wound",
+   "Kind": "Notable",
+   "Icon": "ICON_DarkFantasy_Status_Critical_01_Clean",
+   "Mods": [
+    {
+     "Stat": "CritBleedKeep",
+     "Mode": "Flat",
+     "Tags": [
+      "Melee"
+     ],
+     "Value": 35
+    },
+    {
+     "Stat": "CritChance",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -25
+    }
+   ],
+   "Group": "crit",
+   "Text": "Bleeding from your Melee critical strikes keeps 35% of their extra critical damage.",
+   "Price": "You have 25% less Critical Strike Chance.",
+   "ClassStart": "",
+   "Region": "Samurai",
+   "X": -284,
+   "Y": 6785,
+   "Links": [
+    "crimson_edge_s0",
+    "crimson_edge_s1"
+   ],
+   "Fp": "1cfe1bfb7a"
+  },
+  {
+   "Id": "r140_ailkeep_mage",
+   "Name": "Kindled Heart",
+   "Kind": "Notable",
+   "Icon": "ICON_DarkFantasy_Element_Fire_01_Clean",
+   "Mods": [
+    {
+     "Stat": "CritIgniteKeep",
+     "Mode": "Flat",
+     "Tags": [
+      "Brand"
+     ],
+     "Value": 30
+    },
+    {
+     "Stat": "CritMulti",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": -60
+    }
+   ],
+   "Group": "fire",
+   "Text": "Ignites from your Brand critical strikes keep 30% of their extra critical damage.",
+   "Price": "-60% to Critical Strike Multiplier.",
+   "ClassStart": "",
+   "Region": "Mage",
+   "X": -424,
+   "Y": -6539,
+   "Links": [
+    "r70_elem_wildfire_0",
+    "r70_elem_wildfire_1"
+   ],
+   "Fp": "546b09d877"
+  },
+  {
+   "Id": "r140_ailkeep_pala",
+   "Name": "Searing Verdict",
+   "Kind": "Notable",
+   "Icon": "ICON_DarkFantasy_Element_Fire_01_Clean",
+   "Mods": [
+    {
+     "Stat": "CritIgniteKeep",
+     "Mode": "Flat",
+     "Tags": [
+      "Projectile"
+     ],
+     "Value": 30
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -10
+    }
+   ],
+   "Group": "fire",
+   "Text": "Ignites from your Projectile critical strikes keep 30% of their extra critical damage.",
+   "Price": "You deal 10% less damage.",
+   "ClassStart": "",
+   "Region": "Paladin",
+   "X": -5846,
+   "Y": -3697,
+   "Links": [
+    "kindled_s0"
+   ],
+   "Fp": "5067f51b5a"
+  },
+  {
+   "Id": "r140_ailkeep_necr",
+   "Name": "Hasty Rot",
+   "Kind": "Notable",
+   "Icon": "ICON_DarkFantasy_Status_Poisoned_02_Clean",
+   "Mods": [
+    {
+     "Stat": "CritPoisonKeep",
+     "Mode": "Flat",
+     "Tags": [
+      "Duration"
+     ],
+     "Value": 35
+    },
+    {
+     "Stat": "AilmentDuration",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": -20
+    }
+   ],
+   "Group": "affliction",
+   "Text": "Poison from your Duration skill critical strikes keeps 35% of their extra critical damage.",
+   "Price": "20% reduced Ailment duration.",
+   "ClassStart": "",
+   "Region": "Necromancer",
+   "X": 6268,
+   "Y": -3002,
+   "Links": [
+    "slowruin_s0",
+    "slowruin_s1"
+   ],
+   "Fp": "853e7e552a"
+  },
+  {
+   "Id": "r140_ailkeep_rang",
+   "Name": "Ripping Barbs",
+   "Kind": "Notable",
+   "Icon": "ICON_DarkFantasy_Status_Bleeding_01_Clean",
+   "Mods": [
+    {
+     "Stat": "CritBleedKeep",
+     "Mode": "Flat",
+     "Tags": [
+      "Bow"
+     ],
+     "Value": 25
+    },
+    {
+     "Stat": "BleedDamage",
+     "Mode": "More",
+     "Tags": [],
+     "Value": -10
+    }
+   ],
+   "Group": "trap",
+   "Text": "Bleeding from your Bow critical strikes keeps 25% of their extra critical damage.",
+   "Price": "Your Bleeding deals 10% less damage.",
+   "ClassStart": "",
+   "Region": "Ranger",
+   "X": 5429,
+   "Y": 3960,
+   "Links": [
+    "snarewright_s0",
+    "snarewright_s1"
+   ],
+   "Fp": "4be553c0ad"
+  },
+  {
+   "Id": "w26q_count_battery",
+   "Name": "Deep Battery",
+   "Kind": "Notable",
+   "X": 2227,
+   "Y": 3617,
+   "Mods": [
+    {
+     "Stat": "TotemCount",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1
+    },
+    {
+     "Stat": "TotemLife",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 20
+    }
+   ],
+   "Icon": "ICON_DarkFantasy_Map_Blacksmith_01_Clean",
+   "Group": "trap",
+   "Text": "",
+   "ClassStart": "",
+   "Region": "seam_300",
+   "Links": [
+    "r112_trap_s5",
+    "r112_trap_s4"
+   ],
+   "Flavour": "Dig deep enough and the mountain lends you its engines.",
+   "Fp": "987676c067"
+  },
+  {
+   "Id": "w26q_count_cairn",
+   "Name": "Cairn Garrison",
+   "Kind": "Notable",
+   "X": -7344,
+   "Y": -1421,
+   "Mods": [
+    {
+     "Stat": "TotemCount",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1
+    },
+    {
+     "Stat": "TotemLife",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 20
+    }
+   ],
+   "Icon": "ICON_DarkFantasy_Map_Blacksmith_01_Clean",
+   "Group": "anvil_oath",
+   "Text": "",
+   "ClassStart": "",
+   "Region": "seam_180",
+   "Links": [
+    "anvil_oath_s1",
+    "anvil_oath_s0"
+   ],
+   "Flavour": "Every cairn on the road was once a sentry. Some still are.",
+   "Fp": "dbc8e68144"
+  },
+  {
+   "Id": "w26q_count_bone",
+   "Name": "Bone Bastion",
+   "Kind": "Notable",
+   "X": 4903,
+   "Y": -5663,
+   "Mods": [
+    {
+     "Stat": "TotemCount",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 1
+    },
+    {
+     "Stat": "TotemLife",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 20
+    }
+   ],
+   "Icon": "ICON_DarkFantasy_Map_Blacksmith_01_Clean",
+   "Group": "bone_choir",
+   "Text": "",
+   "ClassStart": "",
+   "Region": "seam_60",
+   "Links": [
+    "bone_choir_s1",
+    "bone_choir_s0"
+   ],
+   "Flavour": "The dead make patient gunners.",
+   "Fp": "d9f720b164"
+  },
+  {
+   "Id": "travel_sanctified_path_0__stormbound_s1_0",
+   "Name": "Versatility",
+   "Kind": "Small",
+   "X": -6040,
+   "Y": -3700,
+   "Mods": [
+    {
+     "Stat": "Str",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 2
+    },
+    {
+     "Stat": "Int",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 2
+    }
+   ],
+   "Icon": "ICON_DarkFantasy_Stat_Strength_02_Clean",
+   "Group": "speed",
+   "Text": "",
+   "ClassStart": "",
+   "Region": "Paladin",
+   "Links": [
+    "sanctified_path_0",
+    "stormbound_s1"
+   ],
+   "Fp": "22742aad56"
+  },
+  {
+   "Id": "travel_road_rain_chain_0__cascade_of_ruin_path_0_0",
+   "Name": "Dexterity",
+   "Kind": "Small",
+   "X": 4033,
+   "Y": 3795,
+   "Mods": [
+    {
+     "Stat": "Dex",
+     "Mode": "Flat",
+     "Tags": [],
+     "Value": 5
+    }
+   ],
+   "Icon": "ICON_DarkFantasy_Stat_Strength_02_Clean",
+   "Group": "speed",
+   "Text": "",
+   "ClassStart": "",
+   "Region": "Ranger",
+   "Links": [
+    "road_rain_chain_0",
+    "cascade_of_ruin_path_0"
+   ],
+   "Fp": "ca41846a3b"
   }
  ]
 }
