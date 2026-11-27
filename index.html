@@ -26977,8 +26977,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.426';
-var PLANNER_BUILT_AT='2026-11-26T19:25:00-08:00';
+var PLANNER_VERSION='0.427';
+var PLANNER_BUILT_AT='2026-11-26T20:01:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
@@ -27843,8 +27843,41 @@ init();
 /* Anonymous visit count — one silent beacon per browser session,
    sent only on the live site address (never in this dev space, on
    a file:// copy, or on a self-hosted copy). It stores nothing
-   about the visitor; see the Privacy page. No UI, no output. */
+   about the visitor; see the Privacy page. No UI, no output.
+   Private owner opt-out, checked before anything else here: a
+   link carrying ?nocount=g-owner-93 sets a flag in this browser
+   only (localStorage 'bop.nocount') and the beacon then never
+   fires in that browser; ?nocount=off removes the flag again.
+   Either recognised value is stripped from the address bar at
+   once, so it never lingers or gets shared; any other value
+   does nothing. The flag check runs on every load, whatever
+   the host, so the opt-out takes hold the moment the link is
+   opened. */
 (function(){try{
+  var optedOut=false;
+  try{
+    var nc=null;
+    try{nc=new URLSearchParams(location.search||'').get('nocount');}catch(e){}
+    if(nc==='g-owner-93'||nc==='off'){
+      try{
+        if(nc==='g-owner-93')localStorage.setItem('bop.nocount','1');
+        else localStorage.removeItem('bop.nocount');
+      }catch(e){}
+      try{
+        var raw=(location.search||'').replace(/^\?/,'');
+        var parts=raw?raw.split('&'):[];
+        var kept=[];
+        for(var i=0;i<parts.length;i++){
+          var k=parts[i].split('=')[0];
+          try{k=decodeURIComponent(k);}catch(e){}
+          if(k!=='nocount')kept.push(parts[i]);
+        }
+        history.replaceState(null,'',location.pathname+(kept.length?'?'+kept.join('&'):'')+(location.hash||''));
+      }catch(e){}
+    }
+    try{optedOut=localStorage.getItem('bop.nocount')==='1';}catch(e){}
+  }catch(e){}
+  if(optedOut)return;
   var h=location.hostname||'';
   if(h!=='broken-oath-planner.pages.dev'&&!h.endsWith('.broken-oath-planner.pages.dev'))return;
   try{
