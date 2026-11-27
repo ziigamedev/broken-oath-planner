@@ -123,7 +123,7 @@
     {
      "Id": "oath_mage_far_reach",
      "Name": "Oath of the Far Reach",
-     "Text": "10% increased area of Spells",
+     "Text": "15% increased area of Spells",
      "Vow": "",
      "Mods": [
       {
@@ -132,7 +132,7 @@
        "Tags": [
         "Spell"
        ],
-       "Value": 10
+       "Value": 15
       }
      ]
     },

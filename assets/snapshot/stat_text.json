@@ -36,6 +36,11 @@
    "Negative": "{abs}% reduced maximum Energy Shield"
   },
   {
+   "Key": "EnergyShield.More",
+   "Text": "{v}% more maximum Energy Shield",
+   "Negative": "{abs}% less maximum Energy Shield"
+  },
+  {
    "Key": "Armour.Flat",
    "Text": "+{v} to Armour",
    "Negative": "-{abs} to Armour"
@@ -707,8 +712,8 @@
   },
   {
    "Key": "SkillDuration.Inc",
-   "Text": "Orbs, Sparks, Totems and Traps last {v}% longer",
-   "Negative": "Orbs, Sparks, Totems and Traps last {abs}% shorter"
+   "Text": "Orbs, Sparks, Totems, Traps and Grave Call last {v}% longer",
+   "Negative": "Orbs, Sparks, Totems, Traps and Grave Call last {abs}% shorter"
   },
   {
    "Key": "SkillDuration.Inc+Orb",
@@ -1002,6 +1007,21 @@
   },
   {
    "Key": "Trigger.Trigger",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "CritBleedKeep.Flat",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "CritIgniteKeep.Flat",
+   "Text": "",
+   "Negative": ""
+  },
+  {
+   "Key": "CritPoisonKeep.Flat",
    "Text": "",
    "Negative": ""
   },

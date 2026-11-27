@@ -2093,9 +2093,9 @@
  "Drops": {
   "MinRL": 100,
   "Chance": {
-   "Magic": 0.01,
-   "Rare": 0.05,
-   "Guardian": 0.6,
+   "Magic": 0.007,
+   "Rare": 0.035,
+   "Guardian": 0.5,
    "Boss": 1.0
   },
   "RarityWeights": {

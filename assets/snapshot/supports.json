@@ -2429,7 +2429,8 @@
     "Channelling",
     "Minion",
     "Totem",
-    "Movement"
+    "Movement",
+    "Melee"
    ],
    "Mods": [
     {
@@ -3113,7 +3114,7 @@
   {
    "Id": "cast_on_crit",
    "Name": "Cast on Crit",
-   "Description": "Your critical hits trigger this skill. A linked spell casts on your skill's crits; an unlinked spell casts itself (one cast per 0.3 seconds); an unlinked attack strikes again on another attack's crit (one strike per 0.75 seconds, 58% less damage in all). All your Cast on Crit share one 0.15 second clock. Triggered skills deal 25% less damage, must be on your skill bar and never spend your last 20% of mana. Movement, channelled, summon, totem and aura skills are never triggered.",
+   "Description": "Your critical hits trigger this skill. A linked spell casts on your skill's crits; an unlinked spell casts itself (one cast per 0.3 seconds); an unlinked attack strikes again on another attack's crit (one strike per 0.75 seconds, 58% less damage in all). All your Cast on Crit share one 0.15 second clock. Triggered skills pay their full mana cost, deal 25% less damage, must be on your skill bar and never spend your last 20% of mana. Movement, channelled, summon, totem and aura skills are never triggered.",
    "RequiresAnyTag": [
     "Attack",
     "Spell"
@@ -3121,7 +3122,8 @@
    "ExcludeTags": [
     "Totem",
     "Minion",
-    "Vow"
+    "Vow",
+    "Aura"
    ],
    "Mods": [
     {
@@ -3183,7 +3185,8 @@
    ],
    "ExcludeTags": [
     "Totem",
-    "Minion"
+    "Minion",
+    "Aura"
    ],
    "Mods": [
     {
@@ -6028,7 +6031,7 @@
   {
    "Id": "chaos",
    "Name": "Chaos",
-   "Description": "40% of this skill's hit damage is laid on the enemy as Entropy. It implodes 3 s later as Chaos damage, ignoring Armour and elemental Resistance. A dying enemy bursts 30% of its Entropy onto enemies within 3 m. No Ailments or Leech.",
+   "Description": "40% of this skill's hit damage is laid on the enemy as Entropy. It implodes 3 s later as Chaos damage, ignoring Armour and elemental Resistance. A dying enemy bursts 30% of its Entropy onto enemies within 3 m. No Ailments or Leech. Not for minion skills.",
    "RequiresAnyTag": [
     "Attack",
     "Spell"
