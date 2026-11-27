@@ -1277,8 +1277,13 @@ body.adv-open{overflow:hidden}
 .bar-row.offbar{opacity:.72}
 /* The main-skill card, full width of its column; the linked
    supports show on the card itself, in its support rings. */
-.ms-flex{display:flex;gap:12px;align-items:flex-start;margin-top:8px}
-.ms-flex .ms-card{flex:1 1 auto;min-width:0}
+.ms-flex{display:block;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel2);box-shadow:inset 0 1px 0 rgba(192,138,45,.10),0 4px 14px rgba(0,0,0,.35);margin-top:8px}
+.ms-flex .ms-card{border:0;background:transparent;box-shadow:none;border-radius:0}
+/* v0.421 — the skill's detail panel lives inside the same card as
+   the banner above it (one merged card, not two stacked panels):
+   the panel's own row chrome is stripped and its top border is
+   the divider between the banner and the controls. */
+#drawerMainDetail .skn-row{border:0;border-radius:0;background:transparent;box-shadow:none;margin-top:0}
 /* Node chips in the drawer's Character section (Dragonling nodes,
    keystones, notables) — names from the API data files. */
 .node-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
@@ -3753,8 +3758,8 @@ body.tab-home .brand h1{display:none}
           <div class="bar-strip" id="drawerBarStrip"></div>
           <div class="ms-flex">
           <div class="ms-card" id="drawerMainCard"></div>
-          </div>
           <div id="drawerMainDetail"></div>
+          </div>
           <div class="gemlvl-pop hidden" id="gemLevelsPop" role="dialog" aria-label="Gem levels — what each level gives this skill">
             <div class="gemlvl-pop-head"><span class="fold-title">Gem levels — what each level gives this skill</span><button class="btn small" id="gemLevelsClose" type="button">Close</button></div>
             <p class="sub">What each gem level gives this skill: the hero level it opens at, its support sockets, base damage, power and mana cost. Your current level is lit.</p>
@@ -3810,7 +3815,6 @@ body.tab-home .brand h1{display:none}
             <div class="gem-delta hidden" id="gemDelta"></div>
           </div>
           <div id="skPickAdd" class="hidden">
-            <p class="sub">Every skill gem, weapon skill and basic attack. Tap a skill and it goes straight on your 13-slot bar — your main skill is left alone; the Add button on a row does the same add. Hover or focus a row to see what the skill does first, without adding anything. <b>Make main</b> swaps it in as the skill you plan around; dragging a skill onto the main-skill card still makes it main, too. A skill that belongs to another class says so on its row — it still sockets. If the game&rsquo;s rules stop it counting for this build, the bar says why. Skills on your bar come first, and your class&rsquo;s starter skills are lined up at the top.</p>
             <!-- v0.413 — the search field is the pane's only
                  control: the tag / kind / class chip rows and the
                  damage-type select that sat under it are gone, so
@@ -4762,15 +4766,12 @@ var DICT={
 "Skill panel DPS":"技能面板 DPS",
 "vs configured enemy":"对所设敌人",
 "Score supports":"为辅助评分",
-"Every skill gem, weapon skill and basic attack":"每一个技能宝石、武器技能和普通攻击",
-"Every skill gem, weapon skill and basic attack. Tap a skill and it goes straight on your 13-slot bar — your main skill is left alone; the Add button on a row does the same add. Hover or focus a row to see what the skill does first, without adding anything.":"每一个技能宝石、武器技能和普通攻击。点按一个技能，它会直接进入你的 13 槽技能栏 — 你的核心技能不受影响；行上的添加按钮也是同样的添加。悬停或聚焦一行可先查看该技能的作用，不会添加任何东西。",
 "Add to bar":"加入技能栏",
 "Make main":"设为核心",
 "Viewing":"查看中",
 "Viewing — not main":"查看中 — 非主技能",
 "Main skill On":"主技能 开",
 "Main skill Off":"主技能 关",
-"swaps it in as the skill you plan around; dragging a skill onto the main-skill card still makes it main, too. A skill that belongs to another class says so on its row — it still sockets. If the game’s rules stop it counting for this build, the bar says why. Skills on your bar come first, and your class’s starter skills are lined up at the top.":"把它换成你围绕其规划的核心技能；把技能拖到核心技能卡片上同样可以设为核心。属于其他职业的技能会在其行上注明 — 它仍然可以镶嵌。如果游戏规则使它不计入本构建，技能栏会说明原因。你技能栏上的技能排在最前，你职业的初始技能列在顶部。",
 "All skills":"全部技能",
 "Always poisons":"必定中毒",
 "Counts as a spell":"视为法术",
@@ -16427,7 +16428,7 @@ function skillShowTip(anchor,id){
   var s=id?G.skillMap[id]:null; if(!s)return;
   if(skillTipFor===id&&skillTipEl&&skillTipEl.classList.contains('on'))return;
   if(!skillTipEl){skillTipEl=document.createElement('div'); skillTipEl.id='skillTip'; skillTipEl.className='fb-tip skill-tip'; skillTipEl.setAttribute('role','tooltip'); document.body.appendChild(skillTipEl)}
-  var tEntry=barEntryFor(id); var tOnBar=!!tEntry&&tEntry.onBar!==false;
+  var tOnBar=skillOnBar(id);
   skillTipEl.innerHTML='<button type="button" class="tip-x" data-tip-close aria-label="Close skill details">×</button>'
    +'<div class="gem-tip-name">'+esc(s.Name)+'</div>'
    +'<div class="fb-tip-sub">'+esc(s.DamageType||'')+' damage</div>'
@@ -16504,7 +16505,10 @@ function viewBarSkill(id){
   if(popCurrent!=='skills')switchWorkspace('skills');
   renderDrawerCard(); renderGemPalette();
   if(wasMain)sockMsg(skillName(id)+' is your main skill — it is on the card below; edit its supports there.');
-  else sockMsg(skillName(id)+' is on your bar — shown on the Main skill card below, where you can link its supports. Your main skill is still '+skillName(state.skillId)+'; flip the Main skill switch on the panel below the card to plan around it.');
+  /* v0.421 — no message paragraph for a viewed skill any more:
+     the card's own viewing line ("Viewing — your main skill is
+     still X…") is the one place that says it. */
+  else sockMsg('');
   scrollToSkillCard();
 }
 /* The whole bar at the top of the Skills workspace: one compact
@@ -16607,7 +16611,7 @@ function renderDrawerCard(){
     card.innerHTML='<div class="ms-icon" data-drop="main" role="button" tabindex="0" aria-label="Viewing: '+(vsk?esc(vsk.Name):'none')+' — on your bar, not your main skill">'+gemSVG(dmgColor(vsk),38)+'<span class="ms-lv">Lv '+vGemLv+'</span></div>'
      +'<div class="ms-main"><div class="ms-name">'+(vsk?esc(vsk.Name):'No skill')+'</div>'
      +'<div class="ms-sub">Viewing — your main skill is still '+esc(skillName(state.skillId))+'. Flip the Main skill switch on the panel below to plan around this one.</div>'
-     +'<div class="ms-dps">'+(vBlock?('Does not count — '+esc(vBlock)):(vRole?esc(vRole):(vc?fmtFull(vc.dps)+' DPS':'— DPS')))+'</div></div>'
+     +(vc?'<div class="ms-dps">'+fmtFull(vc.dps)+' DPS</div>':'')+'</div>'
      +'<div class="ms-rings">'+vRings+'</div>';
     var vIcon=card.querySelector('.ms-icon');
     vIcon.addEventListener('mouseenter',function(){skillShowTip(vIcon,focusId)});
@@ -16684,7 +16688,7 @@ function renderDrawerCard(){
   card.innerHTML='<div class="ms-icon" data-drop="main" role="button" tabindex="0" aria-label="Main skill socket: '+(skill?esc(skill.Name):'none')+'" title="Main skill — drag a skill gem here, or tap with a support gem picked up to link it">'+gemSVG(dmgColor(skill),38)+'<span class="ms-lv">Lv '+effGemLevel(state)+'</span></div>'
    +'<div class="ms-main"><div class="ms-name">'+(skill?esc(skill.Name):'No skill')+'</div>'
    +(offHomeC?'<div class="ms-sub">Not a '+esc(state.cls)+' skill — this one belongs to '+esc((offHomeC.HomeClasses||[]).join(' and '))+'.</div>':'')
-   +'<div class="ms-dps">'+(mainBlock?('Does not count — '+esc(mainBlock)):(c?fmtFull(c.dps)+' DPS':'— DPS'))+'</div></div>'
+   +(mainBlock?'':'<div class="ms-dps">'+(c?fmtFull(c.dps)+' DPS':'— DPS')+'</div>')+'</div>'
    +'<div class="ms-rings">'+rings+'</div>';
   var icon=card.querySelector('.ms-icon');
   /* Hovering the main socket or the skill's name floats the
@@ -16751,6 +16755,22 @@ function barUsedCount(){
   var n=equippedBarEntries().length;
   if(!(state.barSkills||[]).length&&state.skillId&&G.skillMap&&G.skillMap[state.skillId])return Math.max(n,1);
   return n;
+}
+/* Is this skill holding one of the bar's 13 slots right now?
+   The one membership test every "add to bar" offer must agree
+   with: an entry switched on, or — with no entry of its own —
+   the main skill, whose slot is implicit until an entry is
+   written for it. That is the rule barUsedCount counts by, the
+   bar strip draws by, and addSkillToBar already refuses a
+   second add by. v0.424: the Add a skill rows and the pinned
+   skill card tested entries only, so a blank build's main
+   skill — counted as 1 of 13 by the count line — still
+   offered Add on its row. */
+function skillOnBar(id){
+  if(!id)return false;
+  var e=barEntryFor(id);
+  if(e)return e.onBar!==false;
+  return id===state.skillId;
 }
 function offBarEntries(){
   var bar=state.barSkills||[];
@@ -17073,14 +17093,14 @@ function renderMainSkillDetail(){
      average hit stay, at the same values as before. */
   else if(c)nums='<div class="skn-nums"><span>DPS vs your enemy <b>'+fmt(c.dps*enemyMultFor(state,c))+'</b></span><span>Tooltip DPS <b>'+fmt(c.tooltip)+'</b></span><span>Average hit <b>'+fmtFull(c.hit)+'</b></span><span>Crit <b>'+c.critChance.toFixed(0)+'% ×'+(c.critMulti/100).toFixed(2)+'</b></span>'+(e.sim===false?'<span>— left out of the fight-test totals</span>':'')+'</div>';
   else nums='<div class="skn-nums"><span>Not counted</span></div>';
-  var sumRight='';
-  if(blocker)sumRight='<span class="skn-sum-note">Doesn&rsquo;t count</span>';
-  else if(c)sumRight='<span class="skn-sum-dps">'+fmt(c.dps*enemyMultFor(state,c))+' DPS</span>';
-  else if(role)sumRight='<span class="skn-sum-note">'+(tags.indexOf('Minion')>=0?'Minion':(tags.indexOf('Curse')>=0||sk.Delivery==='Woe'||sk.Delivery==='Sentence'?'Debuff':'Buff / utility'))+'</span>';
-  else sumRight='<span class="skn-sum-note">Not counted</span>';
+  /* v0.421 — the panel no longer repeats the banner in a summary
+     header of its own (name, "Viewing — not main", "Your main
+     skill is X", a second copy of the vs-enemy DPS): the merged
+     card's banner already says all of it once. The body below is
+     the single place for the status line and the numbers. */
   var hasExec=sups.indexOf('executioner')>=0;
   var w=+((state.treeWeights||{})[e.skill]||0);
-  box.innerHTML='<div class="skn-row open"><div class="skn-summary" style="cursor:default"><span class="skn-sum-main"><b>'+esc(sk.Name)+(isMainFocus?' <span class="tag">Main</span>':' <span class="tag">Viewing — not main</span>')+(e.onBar===false?' <span class="tag">Not on the bar</span>':'')+'</b><span class="skn-sum-meta">Gem Lv '+gemLv+' • '+sups.length+' linked'+(w>0?' • Weight '+w+'%':'')+(isMainFocus?'':' • Your main skill is '+esc(skillName(state.skillId)))+'</span></span>'+sumRight+'</div>'
+  box.innerHTML='<div class="skn-row open">'
    +'<div class="skn-detail"><div class="skn-nums"><span>'+esc(sk.Kind==='Weapon'?'Weapon skill':(sk.Kind==='Basic'?'Basic attack':'Skill gem'))+' • '+openN+' of 6 sockets open at gem Lv '+gemLv+'</span></div>'
    +nums
    +'<div class="gemctl-row">'+gemCtlHTML(e,isMainFocus)+'<button type="button" class="gem-info-btn" data-gemlevels-btn="1" aria-expanded="'+(gemLevelsPopOpen()?'true':'false')+'" aria-controls="gemLevelsPop" aria-label="Gem levels — what each level gives this skill" title="Gem levels — what each level gives this skill">i</button></div>'
@@ -17289,18 +17309,8 @@ function renderDrawerSkills(){
   arr.sort(function(a,b){var ra=rank[a.Id]!=null?rank[a.Id]:9999, rb=rank[b.Id]!=null?rank[b.Id]:9999; return ra-rb});
   var eqCount=barUsedCount(), barFull=eqCount>=13;
   var cnt=$('drawerSkillCount'); if(cnt)cnt.textContent=all.length?('Showing '+arr.length+' of '+all.length+' skills • your bar holds '+eqCount+' of 13 slots'):'';
-  /* Starter suggestions for the class being planned: the skills
-     the game's own data names as this class's starters. Skills
-     whose starter list is empty (heralds, vows, sentences,
-     golems…) are never suggested — they are found later, not at
-     the start. Shown only on the unfiltered list. */
-  var strip='';
-  if(!q&&(G.gemHomes||[]).length){
-    var starters=G.gemHomes.filter(function(h){return (h.StarterClasses||[]).indexOf(state.cls)>=0&&G.skillMap[h.Id]&&G.skillMap[h.Id].Kind!=='Utility'});
-    if(starters.length)strip='<div style="padding:2px 2px 0"><span class="sub"><b>Starters for a '+esc(state.cls)+'</b> — the skills this class begins with:</span> <span class="chips" style="display:inline-flex;vertical-align:middle">'+starters.map(function(h){return '<button type="button" class="chip'+(state.skillId===h.Id?' active':'')+'" data-skill="'+esc(h.Id)+'" data-ds-chip="1">'+esc(skillName(h.Id))+'</button>'}).join('')+'</span></div>';
-  }
   var rows=arr.map(function(s){
-    var on=state.skillId===s.Id; var entry=barEntryFor(s.Id); var eq=!!entry&&entry.onBar!==false; var offBar=!!entry&&entry.onBar===false; var hist=patchHistLine('skills',s.Id); var kind=s.Kind==='Weapon'?'Weapon skill':(s.Kind==='Basic'?'Basic attack':'Skill gem'); var home=gemHomeOf(s.Id); var offHome=skillOffHome(s.Id); var isStarter=!!(home&&(home.StarterClasses||[]).indexOf(state.cls)>=0); var tags=gemTagWords(s.Id);
+    var on=state.skillId===s.Id; var entry=barEntryFor(s.Id); var eq=skillOnBar(s.Id); var offBar=!!entry&&entry.onBar===false; var hist=patchHistLine('skills',s.Id); var kind=s.Kind==='Weapon'?'Weapon skill':(s.Kind==='Basic'?'Basic attack':'Skill gem'); var home=gemHomeOf(s.Id); var offHome=skillOffHome(s.Id); var isStarter=!!(home&&(home.StarterClasses||[]).indexOf(state.cls)>=0); var tags=gemTagWords(s.Id);
     var meta=(eq?('On your bar • slot '+((rank[s.Id]||0)+1)+' • '):(offBar?'Socketed, off the bar • ':''))+kind+' • '+esc(s.DamageType||'')+(tags.length?' • '+esc(tags.join(' • ')):'')+(isStarter?' • '+esc(state.cls)+' starter':'')+(offHome?' • Not a '+esc(state.cls)+' skill — belongs to '+esc((offHome.HomeClasses||[]).join(' & ')):'')+(hist?' • changed in Patch '+(patchHistFor('skills',s.Id)||{}).patch:'');
     return '<div class="ds-row'+(on?' active':'')+'" data-skill="'+esc(s.Id)+'" data-drop="skillrow" title="'+esc(s.Name)+' — '+esc((s.Tags||[]).join(' • '))+(hist?(' • Patch history — '+hist):'')+'">'
      +'<button type="button" class="ds-preview" data-ds-preview="'+esc(s.Id)+'" aria-label="'+esc(s.Name)+' — tap to add it to your bar"><span class="sock'+(on?' filled':'')+'">'+gemSVG(dmgColor(s),26)+'</span><span class="ds-main"><span class="ds-name">'+esc(s.Name)+(on?' <span class="tag">Main</span>':'')+'</span><span class="ds-type">'+meta+'</span></span></button>'
@@ -17310,15 +17320,8 @@ function renderDrawerSkills(){
   if(!all.length)bodyHtml='<p class="sub" style="padding:12px">Game data is still loading — the skill list fills in as soon as it lands.</p>';
   else if(!arr.length){
     bodyHtml='<div class="ds-empty"><p class="sub">No skills match the search \u201C'+q+'\u201D.</p><button type="button" class="btn small" data-ds-clear>Clear search</button></div>';
-  } else bodyHtml=(barFull?'<p class="sub ds-barnote">Your bar is full — 13 of 13 slots taken. Add to bar will say so until a slot frees up: open a skill\u2019s row in <b>Your skills</b> and untick <b>On bar</b>.</p>':'')+strip+rows;
+  } else bodyHtml=(barFull?'<p class="sub ds-barnote">Your bar is full — 13 of 13 slots taken. Add to bar will say so until a slot frees up: open a skill\u2019s row in <b>Your skills</b> and untick <b>On bar</b>.</p>':'')+rows;
   list.innerHTML=bodyHtml;
-  /* Starter chips keep their quick-pick behaviour: tap (or drag
-     onto the card) sockets the starter as the main skill. */
-  list.querySelectorAll('[data-ds-chip]').forEach(function(b){
-    b.addEventListener('pointerdown',function(e){pdDown(e,'skill',b.getAttribute('data-skill'),null);});
-    b.addEventListener('click',function(){setSkill(b.getAttribute('data-skill'))});
-    attachSkillDrop(b);
-  });
   list.querySelectorAll('.ds-row').forEach(function(r){attachSkillDrop(r)});
   /* The row is the Add to bar action: a tap (pdDown's tap path)
      or a keyboard click puts the skill straight on the bar —
@@ -26856,8 +26859,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.420';
-var PLANNER_BUILT_AT='2026-11-26T16:47:00-08:00';
+var PLANNER_VERSION='0.424';
+var PLANNER_BUILT_AT='2026-11-26T18:41:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
