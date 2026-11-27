@@ -19220,6 +19220,37 @@ function masteryForSeat(seid){
   return G.masteryMap['om_'+base]||null;
 }
 function swornOaths(seid){return (state.oaths&&state.oaths[seid])||[]}
+/* Whether a seat's sworn Oath counts right now — the same rule
+   oathSeatsTaken applies across all seats: the seat is taken on
+   the tree, or the plan came from a loaded hero whose save already
+   swore there (its seat ids never join the taken list). The seat
+   panel gates its Swear buttons on this, so a loaded build's
+   Oaths can be re-sworn or unsworn exactly like a hand-built
+   plan's, instead of the panel forever reading the seat as empty. */
+function oathSeatActive(seid){
+  if(treeTakenIds().indexOf(seid)>=0)return true;
+  if(!G.loadedHero)return false;
+  if(state.oaths&&state.oaths[seid])return true;
+  return loadedHeroSeats()[seid]===1;
+}
+/* The seats a loaded hero's own build swore at, read from the
+   build itself rather than from the plan's current Oaths: after
+   the reader unswears one of them, state.oaths no longer names
+   the seat, but it is still the hero's seat — its panel stays
+   open with the Swear buttons, so the seat can be re-sworn (or
+   left empty) without first taking it into the plan's own tree.
+   Mirrors the seating the hero load itself performs. */
+function loadedHeroSeats(){
+  var s={}, b=(G.loadedHero&&G.loadedHero.build)||null;
+  if(!b)return s;
+  if(b.oaths&&typeof b.oaths==='object')Object.keys(b.oaths).forEach(function(k){s[k]=1});
+  (b.oath_ids||[]).forEach(function(oid){
+    var rec=G.oathMap[oid]; if(!rec)return;
+    var seid=(state.passiveNodes||[]).filter(function(id){var mm=masteryForSeat(id); return mm&&mm.Id===rec.mastery.Id})[0]||('om103_'+rec.mastery.Id.slice(3));
+    s[seid]=1;
+  });
+  return s;
+}
 /* The game's own seat text says "swear one of its Oaths here" —
    one Oath per seat, so swearing a second replaces the first.
    And a class seat answers only to its own class: the mastery
@@ -19338,7 +19369,7 @@ function renderTreeList(){
     return true;
   }).slice(0,80);
   var takenSet={}; treeTakenIds().forEach(function(id){takenSet[id]=1});
-  listEl.innerHTML=arr.length?arr.map(function(n){var mk=markOf(n.Id), tk=!!takenSet[n.Id]; return '<div class="item tree-node-row'+(tk?' taken':'')+'" style="margin-bottom:8px" data-tree-row="'+esc(n.Id)+'" tabindex="0" title="'+(tk?'Taken — click to refund it':'Click to take it — the shortest path is added')+'"><div class="flex between"><span><b>'+esc(n.Name||niceId(n.Id))+'</b> <span class="sub">'+esc(nodeKindLabel(n.Kind))+(n.Region?' • '+esc(nodeRegionLabel(n.Region)):'')+'</span></span><span class="flex"><span class="node-state">'+(tk?'Taken — click to refund':'Click to take')+'</span><button class="btn tree-btn'+(mk==='must'?' on-keep':'')+'" data-tree-act="must" data-tree-id="'+esc(n.Id)+'" type="button">Must take</button><button class="btn tree-btn'+(mk==='keep'?' on-keep':'')+'" data-tree-act="keep" data-tree-id="'+esc(n.Id)+'" type="button">Keep</button><button class="btn tree-btn'+(mk==='never'?' on-never':'')+'" data-tree-act="never" data-tree-id="'+esc(n.Id)+'" type="button">Never</button></span></div><p class="sub" style="margin:4px 0 0">'+esc(nodeModsText(n))+'</p></div>'}).join(''):'<p class="sub">No nodes match — try another search or filter.</p>';
+  listEl.innerHTML=arr.length?arr.map(function(n){var mk=markOf(n.Id), tk=!!takenSet[n.Id]; return '<div class="item tree-node-row'+(tk?' taken':'')+'" style="margin-bottom:8px" data-tree-row="'+esc(n.Id)+'" tabindex="0" title="'+(tk?(isOathSeat(n.Id)?'Taken — click to open it and swear or change its Oath':'Taken — click to refund it'):'Click to take it — the shortest path is added')+'"><div class="flex between"><span><b>'+esc(n.Name||niceId(n.Id))+'</b> <span class="sub">'+esc(nodeKindLabel(n.Kind))+(n.Region?' • '+esc(nodeRegionLabel(n.Region)):'')+'</span></span><span class="flex"><span class="node-state">'+(tk?(isOathSeat(n.Id)?'Taken — click for its Oaths':'Taken — click to refund'):'Click to take')+'</span><button class="btn tree-btn'+(mk==='must'?' on-keep':'')+'" data-tree-act="must" data-tree-id="'+esc(n.Id)+'" type="button">Must take</button><button class="btn tree-btn'+(mk==='keep'?' on-keep':'')+'" data-tree-act="keep" data-tree-id="'+esc(n.Id)+'" type="button">Keep</button><button class="btn tree-btn'+(mk==='never'?' on-never':'')+'" data-tree-act="never" data-tree-id="'+esc(n.Id)+'" type="button">Never</button></span></div><p class="sub" style="margin:4px 0 0">'+esc(nodeModsText(n))+'</p></div>'}).join(''):'<p class="sub">No nodes match — try another search or filter.</p>';
   renderDrawerChar();
   updateTreeCanvasStates(); updateWsBadges();
   renderTreeSearchMeta(matchCount);
@@ -20044,12 +20075,13 @@ function showTreeDetail(id,msg){
    +'<button class="btn small" data-tdetail="keep" type="button">'+(state.tree.keep.indexOf(id)>=0?'Unmark Keep':'Mark Keep')+'</button>'
    +'<button class="btn small" data-tdetail="never" type="button">'+(state.tree.never.indexOf(id)>=0?'Unmark Never':'Mark Never')+'</button>')
    +'</div>'
-   +(isOathSeat(id)?oathSeatHTML(id,taken):'')
+   +(isOathSeat(id)?oathSeatHTML(id,oathSeatActive(id)):'')
    +'</div>';
   box.querySelectorAll('[data-tdetail]').forEach(function(b){
     b.addEventListener('click',function(){
       var act=b.getAttribute('data-tdetail');
-      if(act==='take'||act==='refund')treeNodeClick(id);
+      if(act==='refund')refundTreeNode(id);
+      else if(act==='take')treeNodeClick(id);
       else {setTreeMark(id,act); showTreeDetail(id); updateTreeCanvasStates()}
     });
   });
@@ -20110,11 +20142,16 @@ function treeNodeClick(id){
   var taken=treeTakenIds(), set={};
   taken.forEach(function(x){set[x]=1});
   if(set[id]){
-    if((state.tree.must||[]).indexOf(id)>=0){showTreeDetail(id,'This node is marked Must take — unmark it in the detail buttons or the list below before refunding it.'); return}
-    delete set[id];
-    var kept=pruneToStart(set,startId), dropped=taken.length-1-Object.keys(kept).length;
-    commitTreeTaken(Object.keys(kept));
-    showTreeDetail(id,'Refunded '+(n.Name||niceId(id))+(dropped>0?(' — and '+dropped+' node(s) that lost their path to the start'):'')+'.');
+    /* A taken Oath seat opens its panel instead of refunding:
+       swearing, re-swearing and unswearing live in that panel,
+       and a click that refunded the seat first made them
+       unreachable — the panel only ever rendered afterwards, in
+       the seat's untaken state, with no Oath buttons at all, so
+       a sworn Oath could never be changed. Refunding the seat
+       stays one tap away, on the panel's own Refund node button
+       (refundTreeNode below). */
+    if(isOathSeat(id)){showTreeDetail(id); return}
+    refundTreeNode(id);
   } else {
     if(state.tree.never.indexOf(id)>=0){showTreeDetail(id,'This node is marked Never — unmark it in the detail buttons or the list below before taking it.'); return}
     var blocked={}; state.tree.never.forEach(function(x){blocked[x]=1});
@@ -20129,6 +20166,22 @@ function treeNodeClick(id){
     commitTreeTaken(Object.keys(set));
     showTreeDetail(id,'Took '+(n.Name||niceId(id))+(path.length>1?(' — the shortest path came with it ('+path.length+' nodes, '+treePassiveSpent(taken)+' → '+newTotal+' pts)'):'')+'.');
   }
+}
+/* Refund one taken node, pruning whatever loses its path to the
+   start with it. The click path for ordinary nodes, and the
+   detail panel's Refund node button for every node — Oath seats
+   included, since a seat's click now opens its panel instead. */
+function refundTreeNode(id){
+  var n=G.passiveMap[id]; if(!n)return;
+  var startId=treeStartId();
+  var taken=treeTakenIds(), set={};
+  taken.forEach(function(x){set[x]=1});
+  if(!set[id])return;
+  if((state.tree.must||[]).indexOf(id)>=0){showTreeDetail(id,'This node is marked Must take — unmark it in the detail buttons or the list below before refunding it.'); return}
+  delete set[id];
+  var kept=pruneToStart(set,startId), dropped=taken.length-1-Object.keys(kept).length;
+  commitTreeTaken(Object.keys(kept));
+  showTreeDetail(id,'Refunded '+(n.Name||niceId(id))+(dropped>0?(' — and '+dropped+' node(s) that lost their path to the start'):'')+'.');
 }
 /* ---------- Shift-trace a route ----------
    Hold Shift and run the pointer along the nodes of a route: each
@@ -20216,7 +20269,7 @@ function bindTreeCanvas(){
           if(treeTipDeltaKey!==dkey){treeTipDeltaKey=dkey; try{treeTipDeltaHTML=treeNodeDeltaHTML(n)}catch(e){treeTipDeltaHTML=''}}
           heatLine+=treeTipDeltaHTML;
         }
-        tip.innerHTML='<span class="tt-kind">'+esc(nodeKindLabel(n.Kind))+(n.Region?' • '+esc(nodeRegionLabel(n.Region)):'')+'</span><br><b>'+esc(n.Name||niceId(n.Id))+'</b><p>'+esc(nodeModsText(n)||'')+'</p>'+heatLine+'<p class="tt-act">'+(isStartNode(n.Id)?(n.Id===treeStartId()?'Your class start — always yours, costs no point':'The '+(n.ClassStart||'another class')+' start — an origin, not a node you can take'):((treeTrace&&treeTrace.set[n.Id])?'In your traced route — click to take the whole route ('+treeTrace.ids.length+' nodes)':(taken?'Taken — click to refund it':'Click to take it — the shortest path is added, or hold Shift and hover a route to trace it')))+'</p>';
+        tip.innerHTML='<span class="tt-kind">'+esc(nodeKindLabel(n.Kind))+(n.Region?' • '+esc(nodeRegionLabel(n.Region)):'')+'</span><br><b>'+esc(n.Name||niceId(n.Id))+'</b><p>'+esc(nodeModsText(n)||'')+'</p>'+heatLine+'<p class="tt-act">'+(isStartNode(n.Id)?(n.Id===treeStartId()?'Your class start — always yours, costs no point':'The '+(n.ClassStart||'another class')+' start — an origin, not a node you can take'):((treeTrace&&treeTrace.set[n.Id])?'In your traced route — click to take the whole route ('+treeTrace.ids.length+' nodes)':(taken?(isOathSeat(n.Id)?'Taken — click to open it and swear or change its Oath':'Taken — click to refund it'):'Click to take it — the shortest path is added, or hold Shift and hover a route to trace it')))+'</p>';
         var r=stage.getBoundingClientRect();
         tip.style.left=Math.max(6,Math.min(r.width-((window.innerWidth>=720?460:300)+12),Math.max(6,e.clientX-r.left+14)))+'px';
         tip.style.top=Math.max(6,e.clientY-r.top-10)+'px';
@@ -28045,8 +28098,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.446';
-var PLANNER_BUILT_AT='2026-11-27T10:51:06-08:00';
+var PLANNER_VERSION='0.447';
+var PLANNER_BUILT_AT='2026-11-27T11:53:12-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
