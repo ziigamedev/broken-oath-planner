@@ -7730,15 +7730,31 @@ function bannerOnBar(){
   return on;
 }
 function bannerActive(){return bannerOnBar()||!!state.bannerTry}
-function curseTakenMult(skill,extraTaken){
+function curseTakenMult(skill,extraTaken,forDot){
   var type=skill?(skill.DamageType||''):''; var tot=0;
-  activeCurses().forEach(function(c){
+  var cs=activeCurses();
+  /* The plan's own curse strength (cursePlanStats, below): every
+     line of every curse counts grown by the curse effect the plan
+     carries — its tree, its sworn Oaths, its Dragonling and its
+     gear — the way Deepened Woe already grows the one Woe it is
+     linked to. (This code used to price the bare published lines,
+     so a curse build's investment in curse effect read for
+     nothing — the gap found on 26 Nov 2026, the curse twin of the
+     Hunter's Mark cap fixed the same night.) forDot prices the
+     damage-over-time track instead of the hit track: a curse's
+     own DoT-taken line (Sentence of Rot's) counts there, on top
+     of the lines a tick of the skill's own type already gets. */
+  var ps=cursePlanStats();
+  var minions=0;
+  if(ps.woeRates.length&&cs.some(function(c){return c.Kind==='Woe'}))minions=planMinionCount();
+  cs.forEach(function(c){
     /* Hunter's Mark and the War Banner have their own stack
        controls below — never double-count them as flat curses. */
     if(c.Id==='hunters_mark'||c.Id==='war_banner_near')return;
     var t=(c.TakenPct||0)+(((c.ElementTakenPct||{})[type])||0)+(type==='Chaos'?(c.ChaosTakenPct||0):0);
+    if(forDot)t+=(c.DotTakenPct||0);
     if(state.enemyRarity==='Guardian'&&c.BossEffect!=null)t*=c.BossEffect;
-    tot+=t;
+    tot+=t*curseEffMult(c,ps,minions);
   });
   tot+=barUnravelTaken(type);
   /* Hunter's Mark: 1.7% more damage taken per Mark on the enemy —
@@ -7853,6 +7869,139 @@ function markStacks(){return Math.max(0,Math.min(MARK_STACK_HARD_MAX,state.mark|
    at this bar's strength (half when only minion skills carry the
    support — see markStrength). */
 function markPerPct(){return 1.7*(1+markPlanStats().eff/100)*markStrength()}
+/* ---------- Curse effect: the plan's own curse strength ----------
+   The curse twin of markPlanStats. "Increased effect of your
+   Curses" (CurseEffect) is published on every surface a plan can
+   carry: the passive tree (the Malediction cluster — three 10%
+   smalls, Litany of Rot 15%, two Woe-speaker smalls at 8%, Twofold
+   Woe 5%, Carrion Hymn 8%, the Rotting Gospel keystone 15%), sworn
+   Oaths (Oath of the Grave Whisper 10%, Oath of the Dread Word 5%
+   a seat), gear (the curse_effect suffix at 5–20%, 21–24% on its
+   riven line, and uniques — Hexbinder's Censer 25–35%, Dreadcrown
+   25–35%, The Hangman's Patience 15–20%, Tempest Hex Ring 10–15%,
+   The Faltering Star 10%, The Woeweaver's Grasp −15%) and the
+   Dragonling (no CurseEffect node is published today — the scan
+   below reads its taken nodes and aspect all the same, so one
+   counts the day the data carries it). Two more curse lines ride
+   along: CurseLimit (Twofold Woe, Dreadcrown, The Woeweaver's
+   Grasp, the Woe-sworn amulet prefix, and the Dragonling's Unholy
+   Authority crown) — reported, not enforced: an enemy in this
+   planner already bears every distinct curse at once, the game's
+   stacking rule, so there is no cap left for it to raise — and
+   WoeEffectPerMinion, the per-minion "more" Woe effect of the
+   Hollow Crown keystone and two uniques (The Keeper's Ember,
+   Bone Choir Diadem), priced by curseEffMult off the plan's
+   living minion count. What curse effect does NOT grow here:
+   Dread's per-stack effect (Deepened Woe's own published list of
+   what "stronger" means — damage taken, resistance lowered,
+   damage dealt less, slow — names no Dread line, so the plan-wide
+   growth follows that same list), a Woe's Dread build rate and
+   duration (WoeLinger — the fight numbers take Dread stacks as
+   they are set in the enemy setup), and the damage a curse makes
+   the enemy DEAL less (no number in the planner prices the
+   enemy's own damage). */
+function cursePlanStats(){
+  var eff=0, limit=0, woeRates=[], src={tree:0,oath:0,dragon:0,gear:0};
+  function eat(m,v,bucket){
+    if(!m)return;
+    if(m.Stat==='CurseEffect'&&m.Mode==='Inc'){eff+=v; if(src[bucket]!=null)src[bucket]+=v}
+    else if(m.Stat==='CurseLimit'&&m.Mode==='Flat')limit+=v;
+    else if(m.Stat==='WoeEffectPerMinion'&&m.Mode==='Flat')woeRates.push(v);
+  }
+  treeTakenIds().forEach(function(id){
+    var n=G.passiveMap[id]; if(!n)return;
+    (n.Mods||[]).forEach(function(m){eat(m,+m.Value||0,'tree')});
+  });
+  var seats=oathSeatsTaken();
+  Object.keys(state.oaths||{}).forEach(function(seat){
+    if(!seats[seat])return;
+    (state.oaths[seat]||[]).forEach(function(oid){
+      var rec=G.oathMap[oid]; if(!rec)return;
+      (rec.oath.Mods||[]).forEach(function(m){eat(m,+m.Value||0,'oath')});
+    });
+  });
+  (state.dragonNodes||[]).forEach(function(id){
+    var n=G.dragonMap[id]; if(!n)return;
+    (n.Mods||[]).forEach(function(m){eat(m,+m.Value||0,'dragon')});
+    var am=(n.AspectMods||{})[state.aspect];
+    if(am)am.forEach(function(m){eat(m,+m.Value||0,'dragon')});
+  });
+  var asp=G.aspectMap[state.aspect];
+  if(asp)(asp.Mods||[]).forEach(function(m){eat(m,+m.Value||0,'dragon')});
+  /* Gear: a rolled line counts at its roll, a unique's line at the
+     roll the piece carries, or at mid-roll when it carries none —
+     the same reading gearVowEffect and the modifier audit use.
+     The weapon's ordinary rolls live in state.weaponAffixes (the
+     gear board mirrors the Main Hand's stored affixes into it),
+     so the Main Hand's ordinary lines are read there, not twice;
+     its unique lines are not mirrored and are read here. Riven
+     lines count only on a Unique, as everywhere else reads them. */
+  GEAR_SLOTS.forEach(function(sd){
+    var it=(state.gear||{})[sd.key]; if(!it)return;
+    var un=it.unique?G.uniqueMap[it.unique]:null;
+    var sawUnique=false;
+    (it.affixes||[]).forEach(function(sa){
+      if(!sa)return;
+      var id=String(sa.id||''), um=id.match(/^unique:(\d+)$/), rv=id.match(/^riven\d+_(.+)$/);
+      if(um){sawUnique=true; var mod=un&&un.Mods?un.Mods[+um[1]]:null; if(mod)eat(mod.Mod,+sa.value||0,'gear'); return}
+      if(sd.key==='MainHand')return;
+      if(rv){if(it.unique){var ra=affixById(rv[1]); if(ra)eat(ra.Mod,+sa.value||0,'gear')} return}
+      var a=affixById(id); if(a)eat(a.Mod,+sa.value||0,'gear');
+    });
+    if(un&&!sawUnique)(un.Mods||[]).forEach(function(mm){var v=(mm.Min!=null&&mm.Max!=null)?(mm.Min+mm.Max)/2:(mm.Mod?(+mm.Mod.Value||0):0); eat(mm.Mod,v,'gear')});
+  });
+  (state.weaponAffixes||[]).forEach(function(r){var a=affixById(r.affixId); if(a&&a.Mod)eat(a.Mod,+r.value||0,'gear')});
+  return {eff:eff,limit:limit,woeRates:woeRates,src:src};
+}
+/* How many minions the plan stands in a fight — the count the
+   Woe-per-minion lines price off. Each bar minion skill stands
+   the count minionCalc stands for it (its record's base count,
+   the gem levels that add one, its every-N-levels growth, and
+   every +limit line the tree, the Dragonling, the gear's rolled
+   lines and its runewords carry), golems one at a time, as their
+   text says. */
+function planMinionCount(){
+  var capBonus=0;
+  function capMod(m,v){if(m&&m.Stat==='MinionCap'&&m.Mode==='Flat')capBonus+=(v!=null?v:(+m.Value||0))}
+  treeTakenIds().forEach(function(id){var n=G.passiveMap[id]; if(!n)return; (n.Mods||[]).forEach(function(m){capMod(m)})});
+  (state.dragonNodes||[]).forEach(function(id){
+    var dn=G.dragonMap[id]; if(!dn)return;
+    (dn.Mods||[]).forEach(function(m){capMod(m)});
+    var am=(dn.AspectMods||{})[state.aspect]; if(am)am.forEach(function(m){capMod(m)});
+  });
+  Object.keys(state.gear||{}).forEach(function(k){
+    var it=state.gear[k]; if(!it)return;
+    var rw=runewordFor(it,gearBaseOf(it));
+    if(rw)runewordEntries(rw).forEach(function(e){capMod(e&&e.Mod)});
+    (it.affixes||[]).forEach(function(a){if(!a)return; var rec=G.affixMap[a.id]; if(rec)capMod(rec.Mod,+a.value||0)});
+  });
+  var tot=0, seen={};
+  function countSkill(id,gem){
+    if(!id||seen[id])return; seen[id]=1;
+    var sk=G.skillMap[id]; if(!sk||!sk.Minion||sk.SpellMin==null)return;
+    if((sk.Tags||[]).indexOf('Minion')<0)return;
+    if(/golem/.test(id)){tot+=1; return}
+    var mn=sk.Minion, g=(gem||state.gemLevel||20)+gearGemBonus(state), c=mn.Count||1;
+    (mn.PerLevels||[]).forEach(function(L){if(g>=L)c++});
+    if(mn.CountEvery)c+=Math.floor(Math.max(0,g-1)/mn.CountEvery);
+    tot+=Math.max(1,c+capBonus);
+  }
+  countSkill(state.skillId,state.gemLevel);
+  (state.barSkills||[]).forEach(function(e){if(barEntryActive(e)&&!barSkillBlocker(state,e))countSkill(e.skill,e.gem||state.gemLevel)});
+  return tot;
+}
+/* One curse's lines, grown by the plan's curse strength: the
+   increased pool multiplies every curse, and each Woe also takes
+   its per-minion "more" lines — each capped at the 20% its own
+   text publishes — when the plan stands minions. Deepened Woe's
+   growth is already inside a bar curse's lines (barEffects clones
+   them scaled); this pool multiplies on top, the way an increased
+   pool and a "more" line stack everywhere else in the model. */
+function curseEffMult(c,ps,minions){
+  var m=1+ps.eff/100;
+  if(c&&c.Kind==='Woe'&&minions>0)ps.woeRates.forEach(function(r){m*=1+Math.min(20,r*minions)/100});
+  return m;
+}
 /* Which stacking supports the bar actually carries — the enemy
    settings only offer the stacks a linked support can build.
    Gather Fury rides any attack or spell, Bloodlust melee skills,
@@ -9844,8 +9993,16 @@ function auditClassify(m,skill,isSpell,applies,opts){
       return {x:'mana cost shows per cast; reservation and cost changes are not modelled'};
     case 'SkillDuration':
       return {x:'skill duration is not in the model'};
-    case 'CurseEffect': case 'CurseLimit':
-      return {x:'curse strength beyond a curse\u2019s own published lines is not in the model'};
+    case 'CurseEffect':
+      if(mode==='Inc')return {g:'On the enemy'};
+      return {x:'curse effect in this form is not in the model — only increased lines are counted'};
+    case 'CurseLimit':
+      return {x:'an enemy in this planner already bears every distinct curse at once — curses and Woes stack with no limit — so there is no cap left for this line to raise'};
+    case 'WoeEffectPerMinion':
+      if(mode==='Flat')return {g:'On the enemy'};
+      return {x:'woe effect per minion in this form is not in the model'};
+    case 'WoeLinger':
+      return {x:'your Woes build Dread faster and last longer — the fight numbers take the Dread stacks as you set them in the enemy setup, so the rate a Woe builds its Dread is not priced'};
     case 'VowEffect':
       if(mode==='Inc'||mode==='Flat')return {g:'Sworn buffs'};
       return {x:'vow effect in this form is not in the model'};
@@ -9958,12 +10115,17 @@ function collectModifierAudit(c){
     c.barFx.list.forEach(function(l){used.push({g:'From your bar',text:l.text,src:l.name})});
     (c.barFx.unpriced||[]).forEach(function(nm){excluded.push({text:nm+' — sworn on your bar',src:'Your bar',why:'its effect has no steady number in the game data'})});
   }
-  activeCurses().forEach(function(cu){
+  var psA=cursePlanStats(), csA=activeCurses(), minA=0;
+  if(psA.woeRates.length&&csA.some(function(c){return c.Kind==='Woe'}))minA=planMinionCount();
+  csA.forEach(function(cu){
+    var cmA=curseEffMult(cu,psA,minA);
+    function pv(v){return Math.round(v*cmA*10)/10}
     var parts=[];
-    if(cu.TakenPct)parts.push('enemies take +'+cu.TakenPct+'% damage');
-    if(cu.ChaosTakenPct)parts.push('take +'+cu.ChaosTakenPct+'% Chaos damage');
-    Object.keys(cu.ElementTakenPct||{}).forEach(function(el){parts.push('take +'+cu.ElementTakenPct[el]+'% '+el+' damage')});
-    Object.keys(cu.ResistDown||{}).forEach(function(el){parts.push('−'+cu.ResistDown[el]+'% '+el+' resistance')});
+    if(cu.TakenPct)parts.push('enemies take +'+pv(cu.TakenPct)+'% damage');
+    if(cu.ChaosTakenPct)parts.push('take +'+pv(cu.ChaosTakenPct)+'% Chaos damage');
+    Object.keys(cu.ElementTakenPct||{}).forEach(function(el){parts.push('take +'+pv(cu.ElementTakenPct[el])+'% '+el+' damage')});
+    if(cu.DotTakenPct)parts.push('damage over time takes +'+pv(cu.DotTakenPct)+'%');
+    Object.keys(cu.ResistDown||{}).forEach(function(el){parts.push('−'+pv(cu.ResistDown[el])+'% '+el+' resistance')});
     if(cu.Dread&&(cu.Dread.Cap||0)>0)parts.push('gathers Dread');
     if(parts.length)used.push({g:'On the enemy',text:parts.join(' • '),src:'Curse · '+cu.Name});
   });
@@ -9989,7 +10151,7 @@ function auditHowHtml(){
    +'<div class="kv"><span>Calibration</span><b>× K(level), fitted on '+CAL.n+' ladder heroes (patch '+CAL.patch+') — it stands in for what a plan cannot see: gear damage lines not counted on their own, extra pools, targets a hit reaches</b></div>'
    +'<div class="kv"><span>Against an enemy</span><b>Per type × (1 − resist/100) after curse cuts and penetration, then the curses\u2019 taken-increases, Marks, Banner, Dread and Shock add together into one taken-increase</b></div>'
    +'<div class="kv"><span>Tooltip DPS</span><b>The game\u2019s sheet number, counted the sheet\u2019s way: support \u201cmore\u201d damage and the bar\u2019s buffs stay out, and support-added flat damage grows only to the published gem cap</b></div>'
-   +'<p class="sub" style="margin-top:8px"><b>Caps the model holds:</b> critical chance 95% • your resistances '+(HC.ResistCap||75)+'% (hard cap '+(HC.ResistHardCap||85)+'%, before +maximum mods) • block '+(HC.BlockMax||75)+'% • evasion '+(HC.EvasionMax||75)+'% • armour reduction '+(HC.ArmourMaxReduction||80)+'% • enemy resistance −50% to 60% (Patch 87 caps a Guardian variant at 60%) • leech '+(HC.LeechRatePct||20)+'% of the pool per second • Dread stops at its curse\u2019s published BossCap • a curse\u2019s lines scale by its published boss effect against a Guardian.</p>'
+   +'<p class="sub" style="margin-top:8px"><b>Caps the model holds:</b> critical chance 95% • your resistances '+(HC.ResistCap||75)+'% (hard cap '+(HC.ResistHardCap||85)+'%, before +maximum mods) • block '+(HC.BlockMax||75)+'% • evasion '+(HC.EvasionMax||75)+'% • armour reduction '+(HC.ArmourMaxReduction||80)+'% • enemy resistance −50% to 60% (Patch 87 caps a Guardian variant at 60%) • leech '+(HC.LeechRatePct||20)+'% of the pool per second • Dread stops at its curse\u2019s published BossCap • a curse\u2019s lines scale by its published boss effect against a Guardian, and by the curse effect your plan carries — its tree, sworn Oaths, Dragonling and gear.</p>'
    +'<p class="sub" style="margin-top:6px"><b>Not in the model at all:</b> enemy Ward — no enemy in the data carries one; extra projectiles, chains, forks and area as coverage; kill-fed effects and a herald\u2019s shatter; idol set effects; changes to the damage you take; minion life (the sim counts what minions deal, not what they soak). Their average effect on real builds rides inside the calibration step, the way it always has — the simulator invents none of them. Counted since the patch 89 mechanics fix: damage over time (the game\u2019s published DoT structure — strongest holds — with the DoT multiplier\u2019s sources multiplying), damage conversion sharing one 100%, Shock computed from the hit\u2019s Lightning share, chill capped at 30%, totem and trap clocks, minion damage and minion mana reservation, and conduit-linked skills striking on the trigger\u2019s clock. That whole pass follows the game\u2019s published skill and support text and has not been re-checked against measured fights yet. Patch 90: Bleeding ticks at 40% of the hit a second (was 50%; burning ticks at 30% of the hit a second and poison at 20%), and crits no longer multiply Bleeding, Ignite or Poison — a tick is counted from the plain hit, and the fight tester ticks damage over time steadily instead of rolling it into its crit-shaped hits.</p>';
 }
 function renderModifierAudit(c){
@@ -12479,12 +12641,24 @@ function renderCurseNote(){
   var barNames={}; barEffects(state).curses.forEach(function(c){barNames[c.Id]=1});
   var skill=G.skillMap[state.skillId], type=skill?(skill.DamageType||'Physical'):'';
   if(!cs.length&&!(state.shockPct>0)&&!(barUnravelTaken(type)>0)&&!(state.mark>0)&&!bannerActive()){el.textContent='';return}
+  var psN=cursePlanStats(), minN=0;
+  if(psN.woeRates.length&&cs.some(function(c){return c.Kind==='Woe'}))minN=planMinionCount();
   var parts=cs.filter(function(c){return c.Id!=='hunters_mark'&&c.Id!=='war_banner_near'}).map(function(c){
+    var cmN=curseEffMult(c,psN,minN);
     var t=(c.TakenPct||0)+(((c.ElementTakenPct||{})[type])||0)+(type==='Chaos'?(c.ChaosTakenPct||0):0);
     if(state.enemyRarity==='Guardian'&&c.BossEffect!=null)t*=c.BossEffect;
-    var cuts=Object.keys(c.ResistDown||{}).map(function(e){var v=c.ResistDown[e]; if(state.enemyRarity==='Guardian'&&c.BossEffect!=null)v*=c.BossEffect; return '−'+Math.round(v)+'% '+e+' resist'}).join(', ');
-    return '<b>'+esc(c.Name)+'</b>'+(barNames[c.Id]?' (from your bar)':'')+(c.deepened?' (Deepened Woe linked — every line counted '+(Math.round(c.deepened))+'% stronger)':'')+': the enemy takes +'+(Math.round(t*10)/10)+'% '+esc(type)+' damage'+(cuts?' • '+cuts:'');
+    t*=cmN;
+    var cuts=Object.keys(c.ResistDown||{}).map(function(e){var v=c.ResistDown[e]; if(state.enemyRarity==='Guardian'&&c.BossEffect!=null)v*=c.BossEffect; return '−'+Math.round(v*cmN)+'% '+e+' resist'}).join(', ');
+    var dotBit='';
+    if(c.DotTakenPct){var dv=c.DotTakenPct; if(state.enemyRarity==='Guardian'&&c.BossEffect!=null)dv*=c.BossEffect; dotBit=' • damage over time takes +'+(Math.round(dv*cmN*10)/10)+'% more from it'}
+    return '<b>'+esc(c.Name)+'</b>'+(barNames[c.Id]?' (from your bar)':'')+(c.deepened?' (Deepened Woe linked — every line counted '+(Math.round(c.deepened))+'% stronger)':'')+': the enemy takes +'+(Math.round(t*10)/10)+'% '+esc(type)+' damage'+(cuts?' • '+cuts:'')+dotBit;
   });
+  if(cs.length&&(psN.eff!==0||(psN.woeRates.length&&minN>0))){
+    var ceBits=[];
+    if(psN.eff!==0){var srcBits=[]; if(psN.src.tree)srcBits.push('passive tree '+(psN.src.tree>0?'+':'')+psN.src.tree+'%'); if(psN.src.oath)srcBits.push('sworn Oaths '+(psN.src.oath>0?'+':'')+psN.src.oath+'%'); if(psN.src.dragon)srcBits.push('Dragonling '+(psN.src.dragon>0?'+':'')+psN.src.dragon+'%'); if(psN.src.gear)srcBits.push('gear '+(psN.src.gear>0?'+':'')+psN.src.gear+'%'); ceBits.push('your curses count '+psN.eff+'% stronger ('+srcBits.join(', ')+')')}
+    if(psN.woeRates.length&&minN>0){var woeF=1; psN.woeRates.forEach(function(r){woeF*=1+Math.min(20,r*minN)/100}); ceBits.push('your Woes count a further '+(Math.round((woeF-1)*1000)/10)+'% more — '+psN.woeRates.join('% and ')+'% for each of your '+minN+' minion'+(minN===1?'':'s')+', capped at 20% a line')}
+    if(ceBits.length)parts.push('<b>Curse effect</b>: '+ceBits.join('; ')+' — already counted in every curse line above');
+  }
   var unv=barUnravelTaken(type);
   if(unv>0)parts.push('<b>Unravel</b>: a bar skill with Unravel linked stacks '+esc(type)+' on the enemy — counted at '+(state.unravel!=null?state.unravel:25)+' stacks, the enemy takes +'+(Math.round(unv*10)/10)+'% more '+esc(type)+' damage');
   if(state.mark>0){var mpsN=markPlanStats(), mN=markStacks(); parts.push('<b>Hunter&rsquo;s Mark</b>: '+mN+' Mark'+(mN===1?'':'s')+' on the enemy — it takes +'+(Math.round(mN*markPerPct()*10)/10)+'% more damage from everything'+(mpsN.eff>0?' (each Mark '+(Math.round(1.7*(1+mpsN.eff/100)*100)/100)+'% with your plan&rsquo;s +'+mpsN.eff+'% Mark effect)':'')+(markStrength()<1?' (at half strength — only a minion skill carries the support)':'')+(linkedStackSupports().mark?' (Hunter&rsquo;s Mark is linked on your bar)':'')+(mN>=mpsN.cap?' — Marks are full at your plan&rsquo;s cap of '+mpsN.cap+', so hits from skills without the support deal 15% more, counted per skill':''))}
@@ -12568,11 +12742,15 @@ function enemyResMap(){
   out.Chaos=(sc.MonsterChaosResPerRL||0.0625)*(state.rupture||0);
   /* The active curses cut what they cut (a Woe's and a Sentence's
      cuts stack, the way their texts say), scaled against a
-     Guardian by each curse's published boss effect; then the bar's
+     Guardian by each curse's published boss effect and grown by
+     the plan's own curse effect (cursePlanStats); then the bar's
      sworn penetration comes off the elemental resists. */
-  activeCurses().forEach(function(c){
+  var csR=activeCurses(), psR=cursePlanStats(), minR=0;
+  if(psR.woeRates.length&&csR.some(function(c){return c.Kind==='Woe'}))minR=planMinionCount();
+  csR.forEach(function(c){
     var f=(state.enemyRarity==='Guardian'&&c.BossEffect!=null)?c.BossEffect:1;
-    Object.keys(c.ResistDown||{}).forEach(function(el){if(out[el]!=null)out[el]-=c.ResistDown[el]*f});
+    var cmR=curseEffMult(c,psR,minR);
+    Object.keys(c.ResistDown||{}).forEach(function(el){if(out[el]!=null)out[el]-=c.ResistDown[el]*f*cmR});
   });
   var pen=barEffects(state,{fight:1}).penElem;
   if(pen){['Fire','Cold','Lightning'].forEach(function(el){out[el]-=pen})}
@@ -12598,10 +12776,10 @@ function enemyMultFor(st,c){
    and the Shock this skill's own hits compute from their
    Lightning share (calcFrom's shockTaken). Woeweaver rides on
    top, as in curseMult. */
-function curseMultFor(c){
+function curseMultFor(c,forDot){
   if(!c||!c.skill)return curseMult(c?c.skill:null);
   var manual=(state.shockPct||0)*(state.shockUp||0)/100;
-  var m=curseTakenMult(c.skill,Math.max(manual,c.shockTaken||0));
+  var m=curseTakenMult(c.skill,Math.max(manual,c.shockTaken||0),forDot);
   if(supportsForSkillId(state,c.skill.Id).indexOf('woeweaver')>=0){
     var woes=activeCurses().filter(function(x){return x.Kind==='Woe'}).length;
     if(woes===1)m*=1.25; else if(woes===2)m*=1.10;
@@ -12612,10 +12790,19 @@ function enemyMult(c){
   if(!c)return 1;
   var cm=curseMultFor(c);
   if(!c.comps||!c.comps.length||!(c.dps>0))return (1-Math.max(0,Math.min(60,state.enemyRes))/100)*cm;
-  var res=enemyResMap(), tot=0, cmC=null;
+  var res=enemyResMap(), tot=0, cmC=null, cmD=null;
   c.comps.forEach(function(cp){
     var r=res[cp.element]!=null?res[cp.element]:state.enemyRes;
     var f=(1-Math.max(-50,Math.min(60,r))/100);
+    /* A damage-over-time component answers to the DoT curse read:
+       the same taken-increases a tick of its type gets, plus the
+       curses' own DoT-taken lines (Sentence of Rot's — published
+       in its record, priced nowhere before this pass). */
+    if(cp.dot){
+      if(cmD==null)cmD=curseMultFor(c,true);
+      tot+=cp.dps*f*cmD;
+      return;
+    }
     /* The Entropy share of a Chaos component answers to the chaos
        curse line, not the skill's own: a Woe of Entropy makes the
        enemy take more Chaos damage, and Entropy is the chaos this
@@ -13808,6 +13995,7 @@ var STAT_PLAIN_OVERRIDES={
   ShockArcCount103:function(v){return 'Arcs reach '+v+' other Shocked enemies'},
   WoeWeave103:function(v){return v+'% more damage to an enemy bearing exactly one Woe'},
   WoeWeaveLess103:function(v){return v+'% more damage to an enemy bearing two Woes'},
+  WoeEffectPerMinion:function(v){return 'Your Woes are '+v+'% stronger for each of your living minions (20% at most)'},
   RepeatOwnDamage:function(v){return v<0?('Repeats deal '+Math.abs(v)+'% less damage'):('Repeats deal '+v+'% more damage')}
 };
 function statPlain(mod,value,entryText){
@@ -27378,8 +27566,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.430';
-var PLANNER_BUILT_AT='2026-11-26T22:12:00-08:00';
+var PLANNER_VERSION='0.431';
+var PLANNER_BUILT_AT='2026-11-26T22:47:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
