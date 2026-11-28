@@ -1316,7 +1316,7 @@
       "Physical": "Slam skills deal 6% more damage  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "Slam skills deal 6% more damage  ·  +25% Entropy Multiplier"
      },
-     "Text": "Slam skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "Slam skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "Mountain's Weight",
       "Icon": "slam_N",
@@ -1818,7 +1818,7 @@
       "Physical": "Channelling skills deal 6% more damage  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "Channelling skills deal 6% more damage  ·  +25% Entropy Multiplier"
      },
-     "Text": "Channelling skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "Channelling skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "Eye of the Hurricane",
       "Icon": "overcharge_N",
@@ -2300,7 +2300,7 @@
       "Physical": "6% more maximum Life  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "6% more maximum Life  ·  +25% Entropy Multiplier"
      },
-     "Text": "6% more maximum Life  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "6% more maximum Life  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "Broken Will",
       "Icon": "bulwark_N",
@@ -3524,7 +3524,7 @@
       "Physical": "Lightning skills deal 6% more damage  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "Lightning skills deal 6% more damage  ·  +25% Entropy Multiplier"
      },
-     "Text": "Lightning skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "Lightning skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "Eye of the Tempest",
       "Icon": "overcharge_N",
@@ -4006,7 +4006,7 @@
       "Physical": "Fire skills deal 6% more damage  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "Fire skills deal 6% more damage  ·  +25% Entropy Multiplier"
      },
-     "Text": "Fire skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "Fire skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "Flashfire",
       "Icon": "elemental_N",
@@ -4472,7 +4472,7 @@
       "Physical": "Spell skills deal 6% more damage  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "Spell skills deal 6% more damage  ·  +25% Entropy Multiplier"
      },
-     "Text": "Spell skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "Spell skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "Arcane Overflow",
       "Icon": "wellspring_N",
@@ -5735,7 +5735,7 @@
       "Physical": "Totem skills deal 6% more damage  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "Totem skills deal 6% more damage  ·  +25% Entropy Multiplier"
      },
-     "Text": "Totem skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "Totem skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "Rain of Bolts",
       "Icon": "rain_N",
@@ -6223,7 +6223,7 @@
       "Physical": "Bow skills deal 6% more damage  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "Bow skills deal 6% more damage  ·  +25% Entropy Multiplier"
      },
-     "Text": "Bow skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "Bow skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "Hunter's Mark",
       "Icon": "plague_quiver_N",
@@ -6745,7 +6745,7 @@
       "Physical": "Movement skills deal 5% more damage  ·  5% increased movement speed  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "Movement skills deal 5% more damage  ·  5% increased movement speed  ·  +25% Entropy Multiplier"
      },
-     "Text": "Movement skills deal 5% more damage  ·  5% increased movement speed  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "Movement skills deal 5% more damage  ·  5% increased movement speed  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "Windburst",
       "Icon": "wind_and_steel_N",
@@ -8119,7 +8119,7 @@
       "Physical": "Melee skills deal 6% more damage  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "Melee skills deal 6% more damage  ·  +25% Entropy Multiplier"
      },
-     "Text": "Melee skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "Melee skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "Blade Burst",
       "Icon": "shatter_N",
@@ -8615,7 +8615,7 @@
       "Physical": "Attacks deal 6% more damage  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "Attacks deal 6% more damage  ·  +25% Entropy Multiplier"
      },
-     "Text": "Attacks deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "Attacks deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "Moonlit Stance",
       "Icon": "crit_N",
@@ -9087,7 +9087,7 @@
       "Physical": "6% more maximum Life  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "6% more maximum Life  ·  +25% Entropy Multiplier"
      },
-     "Text": "6% more maximum Life  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "6% more maximum Life  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "Shade Step",
       "Icon": "windstep_N",
@@ -10244,7 +10244,7 @@
       "Physical": "Orbit skills deal 6% more damage  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "Orbit skills deal 6% more damage  ·  +25% Entropy Multiplier"
      },
-     "Text": "Orbit skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "Orbit skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "Anvil of Heaven",
       "Icon": "holy_N",
@@ -10746,7 +10746,7 @@
       "Physical": "Skyfall skills deal 20% increased damage  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "Skyfall skills deal 20% increased damage  ·  +25% Entropy Multiplier"
      },
-     "Text": "Skyfall skills deal 20% increased damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "Skyfall skills deal 20% increased damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "Inevitable Judgement",
       "Icon": "radiance_N",
@@ -11189,7 +11189,7 @@
       "Physical": "6% more maximum Life  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "6% more maximum Life  ·  +25% Entropy Multiplier"
      },
-     "Text": "6% more maximum Life  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "6% more maximum Life  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "Consecrated Bulwark",
       "Icon": "vigil_N",
@@ -12244,7 +12244,7 @@
       "Physical": "Minions deal 35% increased damage  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "Minions deal 35% increased damage  ·  +25% Entropy Multiplier"
      },
-     "Text": "Minions deal 35% increased damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "Minions deal 35% increased damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "The Abomination",
       "Icon": "bone_N",
@@ -12694,7 +12694,7 @@
       "Physical": "Poison skills deal 6% more damage  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "Poison skills deal 6% more damage  ·  +25% Entropy Multiplier"
      },
-     "Text": "Poison skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "Poison skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "Plague Wells",
       "Icon": "voidbound_N",
@@ -13160,7 +13160,7 @@
       "Physical": "Channelling skills deal 6% more damage  ·  25% increased Physical damage  ·  25% increased Bleeding damage",
       "Void": "Channelling skills deal 6% more damage  ·  +25% Entropy Multiplier"
      },
-     "Text": "Channelling skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana)",
+     "Text": "Channelling skills deal 6% more damage  ·  plus your Aspect's gift: 25% increased damage of its element and its own line (Ember: Fire penetration, Storm: critical strike chance, Rime: Life, Venom: Poison resistance, Steel: Bleeding damage, Arcane: critical strike multiplier and Mana; the two critical lines do nothing if your hits cannot crit)",
      "Ascend": {
       "Name": "Endless Hunger",
       "Icon": "reaper_N",
