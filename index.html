@@ -8399,6 +8399,25 @@ function stackPer(id,stat,tag,fallback){
   return fallback;
 }
 function stackCap(id,fallback){var b=G.blessingMap[id]; return (b&&b.Max)?b.Max:fallback}
+/* Bloodlust's stack cap for this plan: the blessing's own 50,
+   plus every BloodlustMax line the taken tree nodes and the
+   counting sworn Oaths carry — patch 95 raised those notables
+   (Road of Bloodlust to +20, Endless War and Blood Remembers
+   to +10 each). The fight state clamps to this cap and the
+   enemy setup's slider runs to it, the way markPlanStats
+   builds the Mark cap from the same surfaces. */
+function bloodlustCap(){
+  var extra=0;
+  treeTakenIds().forEach(function(id){
+    var n=G.passiveMap[id]; if(!n)return;
+    (n.Mods||[]).forEach(function(m){if(m.Stat==='BloodlustMax'&&m.Mode==='Flat')extra+=+m.Value||0});
+  });
+  activeOathIdList(state.oaths||{}).forEach(function(oid){
+    var rec=G.oathMap[oid]; if(!rec)return;
+    (rec.oath.Mods||[]).forEach(function(m){if(m.Stat==='BloodlustMax'&&m.Mode==='Flat')extra+=+m.Value||0});
+  });
+  return stackCap('bloodlust',50)+extra;
+}
 /* The plan as it stands mid-fight, with the stacking supports'
    charges built up: Fury adds its published increased damage and
    speed a charge, Bloodlust its melee lines a stack (melee main
@@ -8410,7 +8429,7 @@ function fightState(){
   var dInc=0, dSpd=0;
   if(state.fury>0){var fN=Math.min(state.fury,stackCap('fury',5)); dInc+=stackPer('fury','Damage',null,8)*fN; dSpd+=stackPer('fury','AttackSpeed',null,4)*fN}
   var sk=G.skillMap[state.skillId], tags=sk?(sk.Tags||[]):[];
-  if(state.bloodlust>0&&tags.indexOf('Melee')>=0){var bN=Math.min(state.bloodlust,stackCap('bloodlust',50)); dInc+=stackPer('bloodlust','Damage','Melee',0.5)*bN; dSpd+=stackPer('bloodlust','AttackSpeed','Melee',0.2)*bN}
+  if(state.bloodlust>0&&tags.indexOf('Melee')>=0){var bN=Math.min(state.bloodlust,bloodlustCap()); dInc+=stackPer('bloodlust','Damage','Melee',1)*bN; dSpd+=stackPer('bloodlust','AttackSpeed','Melee',0.2)*bN}
   if(state.kindling>0&&sk&&(tags.indexOf('Spell')>=0||sk.SpellMin!=null)){var kN=Math.min(state.kindling,stackCap('kindling',50)); dInc+=stackPer('kindling','Damage','Spell',0.5)*kN; dSpd+=stackPer('kindling','CastSpeed','Spell',0.2)*kN}
   if(!dInc&&!dSpd)return state;
   return Object.assign({},state,{inc:(state.inc||0)+dInc,speed:(state.speed||0)+dSpd});
@@ -9564,9 +9583,18 @@ function calcFrom(st){
      adding half of one totem's damage (Multiple Totems' own
      text) — and your attack and cast speed add nothing. Traps
      re-arm about a second after they go off (the Trap support's
-     text), so a trap-thrown skill strikes at most once a second,
-     and each trap past the first adds 5% of a trap's damage —
-     patch 89's rate, down from 20%. */
+     text). Patch 95 replaced the old sharing rule — one trap's
+     damage plus 5% for every trap out, patch 89's rate — with a
+     strike of its own for every trap: each trap out lands its
+     own hit on its own re-arm clock, so a trap-thrown skill
+     strikes once a second per trap (the support holds up to 3)
+     on the traps' own clock — a trap lives 16 seconds, so all
+     3 stay out at any throw rate a build casts at, and the
+     strike rate owes nothing to the throw rate. What one
+     strike is worth is the support's own printed
+     price — 50% less damage, 25% increased — which the
+     support-mod pass above already routes into the hit like
+     any other support's lines. */
   var deliveryKind=trapDelivery(st), totemCount=0, totemClock=false;
   if(deliveryKind==='totem'&&!skill.Orb&&!sparkT){
     var hasTotemTransform=(st.supports||[]).indexOf('totem_support')>=0||(st.supports||[]).indexOf('arrow_totem')>=0||(skill.Tags||[]).indexOf('Totem')>=0;
@@ -9578,7 +9606,7 @@ function calcFrom(st){
       rate=(1/0.8)*(1+0.5*(totemCount-1));
     }
   } else if(deliveryKind==='trap'){
-    rate=Math.min(rate,1)*1.10;
+    rate=3;
   }
   // CRIT layer: base crit is the weapon's (spells 6%, per scaling.json), increased scales the base, flat adds on top
   var baseCrit=isSpell?6:((weapon&&(weapon.Crit||weapon.Crit===0))?weapon.Crit:5);
@@ -9599,7 +9627,27 @@ function calcFrom(st){
      does not multiply them into its tooltip, so the tooltip
      track below never sees this factor. */
   var mirageMult=(skill.Mirage&&skill.Mirage.Hops)?(+skill.Mirage.Hops||1):1;
-  var structural=hit*rate*critFactor*repMult*mirageMult*sparkHitMult;
+  /* Aftershock (the Earthbreaker Dragonling node): a Slam
+     strikes the same ground again 0.6 s later for 40% of the
+     damage it dealt — one more hit at 40% riding on every slam,
+     so the fight track carries ×1.40 while the node is taken.
+     Patch 95 extends the echo to Ancestral Warrior's totem
+     slams, so no delivery is excluded: a Slam priced on the
+     totem clock echoes too. Like the Mirage hops, the echo
+     multiplies the fight track only — the game's sheet does
+     not print it, so the tooltip track never sees this factor. */
+  var aftershockMult=1;
+  if((skill.Tags||[]).indexOf('Slam')>=0){
+    var asHeld=false;
+    (st.dragonNodes||[]).forEach(function(id){
+      if(asHeld)return; var dn=G.dragonMap[id]; if(!dn)return;
+      var asScan=function(mods){(mods||[]).forEach(function(m){if(m.Stat==='Dragonling'&&m.Mode==='Flag'&&(m.Tags||[]).indexOf('Asc71_Aftershock')>=0)asHeld=true})};
+      asScan(dn.Mods); asScan(dn.Ascend&&dn.Ascend.Mods); asScan(dn.Pos76&&dn.Pos76.Mods);
+      asScan((dn.AspectMods||{})[st.aspect]);
+    });
+    if(asHeld)aftershockMult=1.4;
+  }
+  var structural=hit*rate*critFactor*repMult*mirageMult*sparkHitMult*aftershockMult;
   /* DAMAGE OVER TIME — priced as its own track beside the hit.
      The game publishes the structure in Rend's own text: a bleed
      deals 40% of the hit's physical damage each second for 4
@@ -9722,9 +9770,10 @@ function calcFrom(st){
   if(mirageMult>1) speedNote+=' You cast '+rate.toFixed(2)+' times a second, and each cast runs '+mirageMult+' Mirage hops — '+(rate*mirageMult).toFixed(2)+' hits a second in all.';
   if(repeats&&sparkT) speedNote+=' Spell Echo adds a body instead of repeating the cast, and it is counted above.';
   if(totemClock)speedNote+=' The strike rate above is your totem'+(totemCount>1?'s':'')+' own clock — a cast every 0.8s'+(totemCount>1?', '+totemCount+' totems standing, each past the first adding half of one totem\u2019s damage':'')+'; your attack and cast speed do not speed a totem up.';
-  else if(deliveryKind==='trap')speedNote+=' The strike rate is capped by your traps: a trap re-arms about a second after it goes off, and with 3 traps out each past the first adds 5% of a trap\u2019s damage.';
+  else if(deliveryKind==='trap')speedNote+=' The strike rate is your traps\u2019 own: each of your 3 traps re-arms about a second after it goes off and strikes for its own hit (patch 95) — the Trap support\u2019s 50% less damage and 25% increased damage a strike are already counted in the hit above. A trap\u2019s first strike deals 15% more — one strike in a long fight, too small a share to price.';
   if(sparkT&&sparkInfo)steps.push({name:'Spark pool',note:'Spark pool — recasts hold '+(Math.round(sparkInfo.sparksHeld*10)/10)+' sparks in '+sparkInfo.bodies+' bod'+(sparkInfo.bodies===1?'y':'ies')+', each body strike lands at ×'+(sparkInfo.sparksPerBody*sparkT.dmgMult).toFixed(2)+' ('+sparkInfo.sparksPerBody.toFixed(2)+' sparks × '+sparkT.dmgMult+'). Every Spark and Brand skill shares the one pool of '+sparkT.poolMax+' sparks, log-measured at the Training Post on 2026-11-25.',value:structural});
   if(mirageMult>1)steps.push({name:'Mirage hops',note:'Mirage hops — '+skill.Name+' runs a Mirage of '+mirageMult+' hops, each landing its own hit, so one cast lands '+mirageMult+' hits. The Mirage\u2019s mark-feeding (+8,339 a hit in the 2026-11-25 log) is not modelled: it feeds Iaido Thrust\u2019s mark, not this skill\u2019s own hit, and no bundled parameter prices it.',value:structural});
+  if(aftershockMult>1)steps.push({name:'Aftershock',note:'Aftershock — your Dragonling\u2019s Aftershock node strikes the same ground again 0.6 s later for 40% of the damage each slam dealt, so every slam lands ×1.40 of damage in a fight; patch 95 lets the echo answer Ancestral Warrior totem slams as well. The game\u2019s sheet does not count the echo, so the tooltip number leaves it out.',value:structural});
   steps.push({name:'How fast you hit, and crits',note:speedNote,value:structural});
   // Calibration: the build's archetype factor (calKFor — its own
   // fitted line where the ladder supports one, the global level
@@ -9735,7 +9784,7 @@ function calcFrom(st){
   if(dotStruct>0)steps.push({name:'Damage over time',note:'Your hits also leave damage ticking: '+dotParts.filter(function(p2){return p2.dps>0}).map(function(p2){return p2.kind+' '+fmt(p2.dps)+' a second'}).join(', ')+' — Bleeding at 40% of the hit a second (patch 90), burning at 30% of the hit a second and poison at 20%, the strongest one holding and crits never multiplying a tick, scaled by each ailment\u2019s chance, its own increased and more lines, and the Damage over Time Multiplier at \u00d7'+dotMultF.toFixed(2)+' (its support, tree and gear sources multiply, they do not add). Chill and Brittle do not raise these ticks.',value:structural+dotStruct});
   if(chillPctC>0||freezeMultC>1.01)steps.push({name:'Chill and freeze',note:(chillPctC>0?('Your hits chill for '+chillPctC.toFixed(0)+'% slower movement and action — Chill caps at 30%. '):'')+(freezeMultC>1.01?('Your freezes last \u00d7'+freezeMultC.toFixed(2)+' as long — every freeze-duration source multiplies. '):'')+'Neither changes the single-target number above; they buy control, and chilled enemies feed lines like Stormfrost, already counted in the hit.',value:structural+dotStruct});
   steps.push({name:'The calibration step',note:'The steps above are only what this plan can see. This last step scales the result so it lines up with the damage real level '+st.level+' ladder builds deal in game (patch '+CAL.patch+').',value:dps});
-  var compOut=Object.keys(compHit).map(function(el){return {element:el,hit:compHit[el],dps:compHit[el]*rate*critFactor*repMult*mirageMult*sparkHitMult*K}}).sort(function(a,b){return b.dps-a.dps});
+  var compOut=Object.keys(compHit).map(function(el){return {element:el,hit:compHit[el],dps:compHit[el]*rate*critFactor*repMult*mirageMult*sparkHitMult*aftershockMult*K}}).sort(function(a,b){return b.dps-a.dps});
   dotParts.forEach(function(p2){if(p2.dps>0)compOut.push({element:p2.el,hit:0,dps:p2.dps*K,dot:true,kind:p2.kind})});
   /* The returned structural is the plan's WHOLE uncalibrated DPS —
      the hit track plus the damage-over-time track — because that is
@@ -10502,7 +10551,7 @@ function auditHowHtml(){
    +'<div class="kv"><span>Against an enemy</span><b>Per type × (1 − resist/100) after curse cuts and penetration, then the curses\u2019 taken-increases, Marks, Banner, Dread and Shock add together into one taken-increase</b></div>'
    +'<div class="kv"><span>Tooltip DPS</span><b>The game\u2019s sheet number, counted the sheet\u2019s way: support \u201cmore\u201d damage and the bar\u2019s buffs stay out, and support-added flat damage grows only to the published gem cap</b></div>'
    +'<p class="sub" style="margin-top:8px"><b>Caps the model holds:</b> critical chance 95% • your resistances '+(HC.ResistCap||75)+'% (hard cap '+(HC.ResistHardCap||85)+'%, before +maximum mods) • block '+(HC.BlockMax||75)+'% • evasion '+(HC.EvasionMax||75)+'% • armour reduction '+(HC.ArmourMaxReduction||80)+'% • enemy resistance −50% to 60% (Patch 87 caps a Guardian variant at 60%) • leech '+(HC.LeechRatePct||20)+'% of the pool per second • Dread stops at its curse\u2019s published BossCap • a curse\u2019s lines scale by its published boss effect against a Guardian, and by the curse effect your plan carries — its tree, sworn Oaths, Dragonling and gear.</p>'
-   +'<p class="sub" style="margin-top:6px"><b>Not in the model at all:</b> enemy Ward — no enemy in the data carries one; extra projectiles, chains, forks and area as coverage; kill-fed effects and a herald\u2019s shatter; idol set effects; changes to the damage you take; minion life (the sim counts what minions deal, not what they soak). Their average effect on real builds rides inside the calibration step, the way it always has — the simulator invents none of them. Counted since the patch 89 mechanics fix: damage over time (the game\u2019s published DoT structure — strongest holds — with the DoT multiplier\u2019s sources multiplying), damage conversion sharing one 100%, Shock computed from the hit\u2019s Lightning share, chill capped at 30%, totem and trap clocks, minion damage and minion mana reservation, and conduit-linked skills striking on the trigger\u2019s clock. That whole pass follows the game\u2019s published skill and support text and has not been re-checked against measured fights yet. Patch 90: Bleeding ticks at 40% of the hit a second (was 50%; burning ticks at 30% of the hit a second and poison at 20%), and crits no longer multiply Bleeding, Ignite or Poison — a tick is counted from the plain hit, and the fight tester ticks damage over time steadily instead of rolling it into its crit-shaped hits.</p>';
+   +'<p class="sub" style="margin-top:6px"><b>Not in the model at all:</b> enemy Ward — no enemy in the data carries one; extra projectiles, chains, forks and area as coverage; kill-fed effects and a herald\u2019s shatter; idol set effects; changes to the damage you take; minion life (the sim counts what minions deal, not what they soak). Their average effect on real builds rides inside the calibration step, the way it always has — the simulator invents none of them. Counted since the patch 89 mechanics fix: damage over time (the game\u2019s published DoT structure — strongest holds — with the DoT multiplier\u2019s sources multiplying), damage conversion sharing one 100%, Shock computed from the hit\u2019s Lightning share, chill capped at 30%, totem and trap clocks, minion damage and minion mana reservation, and conduit-linked skills striking on the trigger\u2019s clock. That whole pass follows the game\u2019s published skill and support text and has not been re-checked against measured fights yet. Patch 90: Bleeding ticks at 40% of the hit a second (was 50%; burning ticks at 30% of the hit a second and poison at 20%), and crits no longer multiply Bleeding, Ignite or Poison — a tick is counted from the plain hit, and the fight tester ticks damage over time steadily instead of rolling it into its crit-shaped hits. Patch 95, checked the same way: a trap no longer shares one damage pool — each trap strikes for its own hit at the Trap support\u2019s printed 50% less and 25% increased damage, on its own re-arm clock; Bloodlust stacks are worth 1% increased melee damage each (was 0.5%), and the tree\u2019s raised stack caps (Road of Bloodlust +20, Endless War and Blood Remembers +10) count toward the cap the planner clamps to; the Dragonling\u2019s Aftershock echo is priced on Slam skills at its printed 40%, Ancestral Warrior\u2019s totem slams included; and the patch\u2019s numbers — Brutality\u2019s 22% more physical damage, Entropic Focus at 22%, Increased Area at 65%, the buffed skills, Earthshatter and Ground Slam taking a Scythe — arrive with the patch 95 game data itself. The Grave Golem\u2019s and the Skeletal Mages\u2019 stronger damage from their level rides inside the minion model\u2019s fitted multiplier and the calibration\u2019s refit on the patch 95 ladder, the way that model has always taken level damage.</p>';
 }
 function renderModifierAudit(c){
   var el=$('daAudit'); if(!el)return;
@@ -13323,7 +13372,7 @@ function renderEnemyInfo(){
     var to=$('bannerTryOff'); if(to)to.addEventListener('click',function(){state.bannerTry=false; renderEnemyInfo(); renderCurseNote(); renderPlanner()});
   }
   var fD=stackPer('fury','Damage',null,8), fS=stackPer('fury','AttackSpeed',null,4), fCap=stackCap('fury',5);
-  var bD=stackPer('bloodlust','Damage','Melee',0.5), bS=stackPer('bloodlust','AttackSpeed','Melee',0.2), bCap=stackCap('bloodlust',50);
+  var bD=stackPer('bloodlust','Damage','Melee',1), bS=stackPer('bloodlust','AttackSpeed','Melee',0.2), bCap=bloodlustCap();
   var kD=stackPer('kindling','Damage','Spell',0.5), kS=stackPer('kindling','CastSpeed','Spell',0.2), kCap=stackCap('kindling',50);
   var frR=$('furyRange'); if(frR)frR.max=fCap;
   var blR=$('bloodRange'); if(blR)blR.max=bCap;
@@ -20667,8 +20716,8 @@ var KS_ART={'elemental_overload':'T_TreeIcon_ks_elemental_overload.png','twice_f
    renders without this map (the flat glyph for a Notable or
    Choice, a plain dot for a Small); no theme is ever substituted
    for another. */
-var TREE_ART_N={'aegis':1,'affliction':1,'anvil_oath':1,'armour':1,'artillery':1,'bone':1,'bow':1,'bulwark':1,'carrion_hunt':1,'chain':1,'channel':1,'crit':1,'dawn':1,'deadeye':1,'deathknell':1,'edge':1,'elemental':1,'evasion':1,'faith':1,'falling_leaf':1,'fire':1,'fury':1,'grave':1,'holy':1,'ki':1,'lichfire':1,'life':1,'lightning':1,'mana':1,'melee':1,'mirrorblade':1,'orbit':1,'ossuary':1,'overcharge':1,'permafrost':1,'plague_quiver':1,'poison':1,'radiance':1,'rain':1,'reaper':1,'resist':1,'shatter':1,'siege':1,'sigil':1,'slam':1,'souls':1,'speed':1,'spell':1,'spell_crit':1,'starfall':1,'stillness':1,'swift':1,'two_storms':1,'vigil':1,'voidbound':1,'wellspring':1,'wind_and_steel':1,'windstep':1};
-var TREE_ART_S={'artillery':1,'bone':1,'bow':1,'bulwark':1,'channel':1,'crit':1,'edge':1,'evasion':1,'fire':1,'grave':1,'life':1,'lightning':1,'orbit':1,'poison':1,'regrowth':1,'resist':1,'slam':1,'souls':1,'speed':1,'spell':1,'starfall':1,'windstep':1};
+var TREE_ART_N={'aegis':1,'affliction':1,'anvil_oath':1,'area':1,'armour':1,'artillery':1,'attack':1,'blightword':1,'bone':1,'bone_choir':1,'bow':1,'bulwark':1,'carrion_hunt':1,'cast_speed':1,'chain':1,'channel':1,'cleave':1,'cold':1,'conduit':1,'crit':1,'crusade':1,'damage':1,'dawn':1,'dawnstorm':1,'dawnsworn':1,'deadeye':1,'deathknell':1,'edge':1,'elemental':1,'energy_shield':1,'evasion':1,'faith':1,'falling_leaf':1,'fire':1,'fury':1,'grave':1,'holy':1,'iron_tempest':1,'ki':1,'leech':1,'lichfire':1,'life':1,'life_big':1,'lightning':1,'lingering':1,'malediction':1,'mana':1,'manasteal':1,'melee':1,'mirrorblade':1,'orbit':1,'ossuary':1,'overcharge':1,'permafrost':1,'plague_quiver':1,'poison':1,'projectile':1,'radiance':1,'radiant_ward':1,'rain':1,'reaper':1,'regrowth':1,'resist':1,'shatter':1,'siege':1,'sigil':1,'slam':1,'souls':1,'speed':1,'spell':1,'spell_crit':1,'spellsword':1,'starfall':1,'stillness':1,'swift':1,'tether':1,'trap':1,'two_storms':1,'vigil':1,'voidbound':1,'vowkeeper':1,'warcaller':1,'warpath':1,'waygate':1,'wellspring':1,'wind_and_steel':1,'windstep':1,'zeal':1};
+var TREE_ART_S={'aegis':1,'affliction':1,'anvil_oath':1,'area':1,'armour':1,'artillery':1,'attack':1,'blightword':1,'bone':1,'bone_choir':1,'bow':1,'bulwark':1,'carrion_hunt':1,'cast_speed':1,'chain':1,'channel':1,'cleave':1,'cold':1,'conduit':1,'crit':1,'crusade':1,'damage':1,'dawn':1,'dawnstorm':1,'dawnsworn':1,'deadeye':1,'deathknell':1,'edge':1,'elemental':1,'energy_shield':1,'evasion':1,'faith':1,'falling_leaf':1,'fire':1,'fury':1,'grave':1,'holy':1,'iron_tempest':1,'ki':1,'leech':1,'lichfire':1,'life':1,'life_big':1,'lightning':1,'lingering':1,'malediction':1,'mana':1,'manasteal':1,'melee':1,'mirrorblade':1,'orbit':1,'ossuary':1,'overcharge':1,'permafrost':1,'plague_quiver':1,'poison':1,'projectile':1,'radiance':1,'radiant_ward':1,'rain':1,'reaper':1,'regrowth':1,'resist':1,'shatter':1,'siege':1,'sigil':1,'slam':1,'souls':1,'speed':1,'spell':1,'spell_crit':1,'spellsword':1,'starfall':1,'stillness':1,'swift':1,'tether':1,'trap':1,'two_storms':1,'vigil':1,'voidbound':1,'vowkeeper':1,'warcaller':1,'warpath':1,'waygate':1,'wellspring':1,'wind_and_steel':1,'windstep':1,'zeal':1};
 /* The pale element tint for a glyph node, where the node's group
    or its icon names an element (colours are DMG_COLORS lightened
    toward white; cold reads mint-teal, as the game's own Frostbinder
@@ -28956,8 +29005,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.470';
-var PLANNER_BUILT_AT='2026-11-27T17:42:00-08:00';
+var PLANNER_VERSION='0.473';
+var PLANNER_BUILT_AT='2026-11-27T19:06:00-07:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
