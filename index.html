@@ -5919,6 +5919,10 @@ var DICT={
 "Life":"生命",
 "Life + Energy Shield":"生命 + 能量护盾",
 "Mana":"魔力",
+"Max Mana":"最大魔力",
+"Mana Reserved":"保留魔力",
+"Mana Left":"剩余魔力",
+"Energy Shield recharge delay":"能量护盾充能延迟",
 "Chance to evade (attacks, estimate)":"闪避几率（攻击，估算）",
 "Lowest elemental resist":"最低元素抗性",
 "Pieces worn":"已穿戴件数",
@@ -18976,7 +18980,7 @@ function deriveDefenses(){
      instead of showing a bare total. Only what is actually summed
      here is listed; a source that cannot be counted is left out. */
   var prov={res:{Physical:[],Fire:[],Cold:[],Lightning:[],Poison:[]},maxRes:{Physical:[],Fire:[],Cold:[],Lightning:[],Poison:[]},
-    attr:{Str:[],Dex:[],Int:[]},lifeFlat:[],lifeInc:[],manaFlat:[],manaInc:[],block:[],
+    attr:{Str:[],Dex:[],Int:[]},lifeFlat:[],lifeInc:[],manaFlat:[],manaInc:[],block:[],esDelay:[],
     kindFlat:{Armour:[],Evasion:[],EnergyShield:[]},kindInc:{Armour:[],Evasion:[],EnergyShield:[]}};
   function addRes(pool,tags,val,provPool,src){
     function put(e){pool[e]+=val; if(provPool&&src)provPool[e].push({src:src,val:val})}
@@ -19009,7 +19013,7 @@ function deriveDefenses(){
     if(m.Stat==='ManaOnKill'){if(m.Mode==='Flat')rec.manaOnKill+=val; return}
     if(m.Stat==='ManaOnKillPct'){if(m.Mode==='Flat')rec.manaOnKillPct+=val; return}
     if(m.Stat==='EsRecharge'){if(m.Mode==='Inc')rec.esRechargeInc+=val; return}
-    if(m.Stat==='EsRechargeDelay'){if(m.Mode==='Inc')rec.esRechargeDelayInc+=val; return}
+    if(m.Stat==='EsRechargeDelay'){if(m.Mode==='Inc'){rec.esRechargeDelayInc+=val; if(src)prov.esDelay.push({src:src,val:val})} return}
     if(m.Stat==='Defences'&&m.Mode==='Inc'){
       ['Armour','Evasion','EnergyShield'].forEach(function(k){if(local&&m.bLocal)local[k].inc+=val; else {kinds[k].inc+=val; if(src)prov.kindInc[k].push({src:src,val:val})}});
       return;
@@ -19582,6 +19586,22 @@ function renderDefenses(){
      same number the Copy stats compare uses. */
   var mana=0; try{mana=simMana()}catch(e){mana=0}
   var hMana=$('hsMana'); if(hMana)hMana.textContent=fmtFull(mana);
+  /* The shield's recharge delay and the mana reservation, counted
+     once here and read by both the Defence list below and the
+     Recovery hover further down. The delay is the scaling file's
+     verified base delay (Hero.EsRechargeDelay) under every
+     recharge-delay line this plan carries — gear, tree,
+     Dragonling, uniques and sworn Oaths, summed by deriveDefenses
+     into rec.esRechargeDelayInc — never a fixed phrase. The
+     reservation is the Skills sustain math's own count
+     (setupScore): the bar's sworn Vows and Heralds after
+     reservation efficiency, their percent holds stacking
+     multiplicatively on the pool plus any flat hold, so Mana Left
+     here is the same free mana the sustain verdict spends. */
+  var esDelay=Math.max(0,(HC.EsRechargeDelay||0)*(1+(((d.rec||{}).esRechargeDelayInc)||0)/100));
+  var beSheet=barEffects(state);
+  var manaReserved=Math.round(mana*((beSheet.reserved||0)/100)+(beSheet.reservedFlat||0));
+  var manaLeft=Math.max(0,mana-manaReserved);
   /* Defence section. */
   var db=$('defBody');
   if(db){
@@ -19589,8 +19609,12 @@ function renderDefenses(){
      +(d.prov?srcLines(d.prov.lifeFlat,numFmt,5):'')
      +'<div class="kv"><span>Energy shield</span><b>'+fmtFull(d.es)+'</b></div>'
      +(d.prov?srcLines(d.prov.kindFlat.EnergyShield,numFmt,5):'')
-     +'<div class="kv"><span>Mana</span><b>'+fmtFull(mana)+'</b></div>'
+     +(d.es>0?'<div class="kv"><span>Energy Shield recharge delay</span><b>'+esDelay.toFixed(1)+'s</b></div>'
+     +(d.prov?srcLines(d.prov.esDelay,pctFmt,5):''):'')
+     +'<div class="kv"><span>Max Mana</span><b>'+fmtFull(mana)+'</b></div>'
      +(d.prov?srcLines(d.prov.manaFlat,numFmt,5):'')
+     +'<div class="kv"><span>Mana Reserved</span><b>'+fmtFull(manaReserved)+'</b></div>'
+     +'<div class="kv"><span>Mana Left</span><b>'+fmtFull(manaLeft)+'</b></div>'
      +'<div class="kv"><span>Armour</span><b>'+fmtFull(d.armour)+'</b></div>'
      +(d.prov?srcLines(d.prov.kindFlat.Armour,numFmt,5):'')
      +'<div class="kv"><span>Evasion</span><b>'+fmtFull(d.evasion)+' ('+evade.toFixed(0)+'% to evade)'+(d.noEvasion?' — cannot evade ('+esc(d.noEvasionSrc||'keystone')+')':'')+'</b></div>'
@@ -19625,9 +19649,8 @@ function renderDefenses(){
   /* The game's composition, matching its own logged sheet line:
      the pool's percentage share plus the flat regeneration a
      sworn Vow grants, the whole sum raised by increased regen. */
-  var manaRegenPS=(mana*((HC.ManaRegenPct||0)/100)+(barEffects(state).manaRegen||0))*(1+(R.manaRegenInc||0)/100);
+  var manaRegenPS=(mana*((HC.ManaRegenPct||0)/100)+(beSheet.manaRegen||0))*(1+(R.manaRegenInc||0)/100);
   var esRechargePS=d.es*((HC.EsRechargePct||0)/100)*(1+(R.esRechargeInc||0)/100);
-  var esDelay=Math.max(0,(HC.EsRechargeDelay||0)*(1+(R.esRechargeDelayInc||0)/100));
   var dpsNow=0; try{var ccNow=calc(); if(ccNow)dpsNow=ccNow.dps||0}catch(e){dpsNow=0}
   var leechCapFrac=(HC.LeechRatePct||20)/100;
   var lifeLeechPct=(R.lifeLeech||0)*(1+(R.lifeLeechMore||0)/100);
@@ -19655,6 +19678,7 @@ function renderDefenses(){
     if(lifeLeechPS>0)th+='<div class="kv"><span>Life leech</span><b>'+ps(lifeLeechPct)+'% of damage • '+ps(lifeLeechPS)+' /s</b></div>';
     if(manaLeechPS>0)th+='<div class="kv"><span>Mana leech</span><b>'+ps(R.manaLeech||0)+'% of damage • '+ps(manaLeechPS)+' /s</b></div>';
     if(d.es>0)th+='<div class="kv"><span>Energy shield recharge</span><b>'+ps(esRechargePS)+' /s, starting '+esDelay.toFixed(1)+'s after the last hit</b></div>';
+    if(d.es>0)th+='<div class="kv"><span>Energy Shield recharge delay</span><b>'+esDelay.toFixed(1)+'s after the last hit</b></div>';
     th+='<div class="kv"><span>While being hit</span><b>'+ps(lifeRegenPS+lifeLeechPS+esLeechPS)+' /s — recharge is still waiting</b></div>';
     th+='<div class="kv"><span>Mana regeneration</span><b>'+ps(manaRegenPS)+' /s</b></div>';
     if(okBits.length)th+='<div class="kv"><span>On kill</span><b>'+okBits.join(' • ')+'</b></div>';
@@ -29074,8 +29098,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.483';
-var PLANNER_BUILT_AT='2026-11-27T23:47:00-08:00';
+var PLANNER_VERSION='0.484';
+var PLANNER_BUILT_AT='2026-11-28T00:52:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
