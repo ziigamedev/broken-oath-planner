@@ -6200,6 +6200,12 @@
      "Value": 50
     },
     {
+     "Stat": "EnergyShield",
+     "Mode": "Inc",
+     "Tags": [],
+     "Value": 50
+    },
+    {
      "Stat": "Life",
      "Mode": "Inc",
      "Tags": [],
@@ -18258,7 +18264,7 @@
      "Tags": [
       "Cold"
      ],
-     "Value": 4
+     "Value": 8
     },
     {
      "Stat": "Damage",
@@ -18305,7 +18311,7 @@
      "Tags": [
       "Cold"
      ],
-     "Value": 4
+     "Value": 8
     },
     {
      "Stat": "Damage",
@@ -18355,7 +18361,7 @@
      "Tags": [
       "Cold"
      ],
-     "Value": 4
+     "Value": 8
     },
     {
      "Stat": "Damage",
@@ -18403,7 +18409,7 @@
      "Tags": [
       "Cold"
      ],
-     "Value": 4
+     "Value": 8
     },
     {
      "Stat": "Damage",
@@ -18451,7 +18457,7 @@
      "Tags": [
       "Cold"
      ],
-     "Value": 4
+     "Value": 8
     },
     {
      "Stat": "Damage",
@@ -20608,7 +20614,7 @@
      "Tags": [
       "Melee"
      ],
-     "Value": 5
+     "Value": 10
     },
     {
      "Stat": "Damage",
@@ -20650,7 +20656,7 @@
      "Tags": [
       "Melee"
      ],
-     "Value": 5
+     "Value": 10
     },
     {
      "Stat": "Damage",
@@ -20693,7 +20699,7 @@
      "Tags": [
       "Melee"
      ],
-     "Value": 5
+     "Value": 10
     },
     {
      "Stat": "Damage",
@@ -20733,7 +20739,7 @@
      "Tags": [
       "Melee"
      ],
-     "Value": 5
+     "Value": 10
     },
     {
      "Stat": "Damage",
@@ -20773,7 +20779,7 @@
      "Tags": [
       "Melee"
      ],
-     "Value": 5
+     "Value": 10
     },
     {
      "Stat": "Damage",
@@ -20907,7 +20913,7 @@
      "Tags": [
       "Spell"
      ],
-     "Value": 4
+     "Value": 8
     }
    ],
    "Icon": "ICON_DarkFantasy_Stat_Spirit_01_Clean",
@@ -20947,7 +20953,7 @@
      "Tags": [
       "Spell"
      ],
-     "Value": 4
+     "Value": 8
     }
    ],
    "Icon": "ICON_DarkFantasy_Stat_Spirit_01_Clean",
@@ -20989,7 +20995,7 @@
      "Tags": [
       "Spell"
      ],
-     "Value": 4
+     "Value": 8
     }
    ],
    "Icon": "ICON_DarkFantasy_Stat_Spirit_01_Clean",
@@ -21030,7 +21036,7 @@
      "Tags": [
       "Spell"
      ],
-     "Value": 4
+     "Value": 8
     }
    ],
    "Icon": "ICON_DarkFantasy_Stat_Spirit_01_Clean",
@@ -21070,7 +21076,7 @@
      "Tags": [
       "Spell"
      ],
-     "Value": 4
+     "Value": 8
     }
    ],
    "Icon": "ICON_DarkFantasy_Stat_Spirit_01_Clean",
@@ -22630,7 +22636,7 @@
      "Tags": [
       "Attack"
      ],
-     "Value": 3
+     "Value": 6
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_Entangled_01_Clean",
@@ -22667,7 +22673,7 @@
      "Tags": [
       "Attack"
      ],
-     "Value": 3
+     "Value": 6
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_Entangled_01_Clean",
@@ -22707,7 +22713,7 @@
      "Tags": [
       "Attack"
      ],
-     "Value": 3
+     "Value": 6
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_Entangled_01_Clean",
@@ -22749,7 +22755,7 @@
      "Tags": [
       "Attack"
      ],
-     "Value": 3
+     "Value": 6
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_Entangled_01_Clean",
@@ -22788,7 +22794,7 @@
      "Tags": [
       "Attack"
      ],
-     "Value": 3
+     "Value": 6
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_Entangled_01_Clean",
@@ -22829,7 +22835,7 @@
      "Tags": [
       "Attack"
      ],
-     "Value": 3
+     "Value": 6
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_Entangled_01_Clean",
@@ -22868,7 +22874,7 @@
      "Tags": [
       "Attack"
      ],
-     "Value": 3
+     "Value": 6
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_Entangled_01_Clean",
@@ -22910,7 +22916,7 @@
      "Tags": [
       "Attack"
      ],
-     "Value": 3
+     "Value": 6
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_Entangled_01_Clean",
@@ -23493,7 +23499,7 @@
      "Stat": "Area",
      "Mode": "Inc",
      "Tags": [],
-     "Value": 5
+     "Value": 10
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_Targeted_02_Clean",
@@ -23523,7 +23529,7 @@
      "Stat": "Area",
      "Mode": "Inc",
      "Tags": [],
-     "Value": 5
+     "Value": 10
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_Targeted_02_Clean",
@@ -23555,7 +23561,7 @@
      "Stat": "Area",
      "Mode": "Inc",
      "Tags": [],
-     "Value": 5
+     "Value": 10
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_Targeted_02_Clean",
@@ -23586,7 +23592,7 @@
      "Stat": "Area",
      "Mode": "Inc",
      "Tags": [],
-     "Value": 5
+     "Value": 10
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_Targeted_02_Clean",
@@ -40709,6 +40715,14 @@
      "Stat": "BloodlustMax",
      "Mode": "Flat",
      "Tags": [],
+     "Value": 20
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Melee"
+     ],
      "Value": 10
     }
    ],
@@ -40967,6 +40981,14 @@
      "Stat": "BloodlustMax",
      "Mode": "Flat",
      "Tags": [],
+     "Value": 20
+    },
+    {
+     "Stat": "Damage",
+     "Mode": "Inc",
+     "Tags": [
+      "Melee"
+     ],
      "Value": 10
     }
    ],
@@ -42278,7 +42300,7 @@
      "Stat": "BloodlustMax",
      "Mode": "Flat",
      "Tags": [],
-     "Value": 5
+     "Value": 10
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_DamageUp_02_Clean",
@@ -42718,7 +42740,7 @@
      "Stat": "BloodlustMax",
      "Mode": "Flat",
      "Tags": [],
-     "Value": 5
+     "Value": 10
     }
    ],
    "Icon": "ICON_DarkFantasy_Status_DamageUp_02_Clean",
