@@ -596,5 +596,6 @@
     "Lightning": 11
    }
   }
- ]
+ ],
+ "_live": "BossEffect is unused in the shipped game (legacy switch only): Guardians and bosses take a Woe in full. Every 'takes more damage' effect adds into one pool ([r107.POOL] bTakenPool107 ON)."
 }
