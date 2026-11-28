@@ -1530,7 +1530,8 @@
   "AfterimageCap": 3,
   "AfterimageDamagePct": 40.0,
   "PetCatchupHeroShare": 0.5,
-  "StrongestTakenOthers": 0
+  "StrongestTakenOthers": 0,
+  "_live": "bGuardianStrongestTaken and StrongestTakenOthers are unused in the shipped game: [r107.POOL] bTakenPool107 is ON, every 'takes more damage' effect (Woes, Sentences, Mark, Banner, shock, chill, Brittle, Maim, auras) adds into one pool, Guardians and bosses included."
  },
  "Journey68": {
   "bOn": true,
