@@ -584,7 +584,10 @@ tr:hover td{background:color-mix(in srgb, var(--panel2) 60%, transparent)}
 .sock-main-row{display:grid;justify-items:center}
 .sock-row{display:flex;align-items:flex-start;justify-content:center}
 .sock-cell{display:grid;justify-items:center;gap:5px;width:86px}
-.sock{position:relative;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none;
+/* v0.481 — the wells that hold a SKILL icon (the bar rows and
+   the Add-a-skill picker rows) are rounded squares now, matching
+   the square skill tiles; support sockets (.ms-ring) stay round. */
+.sock{position:relative;width:62px;height:62px;border-radius:22%;display:grid;place-items:center;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none;
   background:radial-gradient(circle at 50% 38%,#261d17 58%,#12100e 78%);
   border:2px solid color-mix(in srgb, var(--gold) 48%, #4a3423);
   box-shadow:inset 0 4px 10px rgba(0,0,0,.85),inset 0 -1px 0 color-mix(in srgb, var(--gold2) 20%, transparent),0 3px 10px rgba(0,0,0,.45)}
@@ -611,6 +614,30 @@ tr:hover td{background:color-mix(in srgb, var(--panel2) 60%, transparent)}
 .gem-tile:hover{border-color:var(--line)}
 .gem-tile.active{border-color:var(--gold);background:color-mix(in srgb, var(--gold) 13%, var(--panel2));box-shadow:0 0 10px color-mix(in srgb, var(--gold) 30%, transparent)}
 .gem-tile svg{filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
+/* A skill's real art laid over the drawn gem: the tinted skill
+   tile (assets/icons/skilltile/) first, the game's gem art
+   (assets/icons/skillgem/) under it — the art shows exactly as
+   shipped, no CSS tint or filter — and the drawn shape underneath
+   is only the fallback, hidden once art loads and left showing
+   when a skill has no art file. Support gem art
+   (assets/icons/supportgem/, .supic) rides the same wrapper. */
+/* v0.481 — a skill's frame is a rounded square, like the game's
+   own Skills-panel portraits: the tile art is square, so round
+   framing fought it. The rim, dark backing and corner radius
+   (a fifth of the icon) live on this wrapper, so every surface
+   the helper feeds — the bar strip, the bar rows, the Main
+   skill card, the picker rows, the palette and the drag ghost —
+   frames the tile the same way, with the full square tile
+   showing. A support's art is a round gem, so .supic keeps the
+   bare wrapper: no rim, no backing, no corner clip. */
+.skic{position:relative;display:inline-grid;place-items:center;flex:none;line-height:0;border:1px solid color-mix(in srgb, var(--gold) 42%, #241a12);border-radius:20%;overflow:hidden;background:#0d0b09}
+.skic.supic{border:0;border-radius:0;overflow:visible;background:none}
+.skic img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.skic.on svg{visibility:hidden}
+/* The main-skill card lifts its icon clear of the level line —
+   the lift moves from the drawn gem to the art wrapper. */
+.ms-icon .skic{margin-bottom:12px}
+.ms-icon .skic svg{margin-bottom:0}
 /* Floating gem that follows the pointer while dragging, like picking a gem up in game */
 .drag-ghost{position:fixed;z-index:999;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:3px;transform:translate(-50%,-58%);filter:drop-shadow(0 10px 16px rgba(0,0,0,.6))}
 .drag-ghost span{font-size:11.5px;font-weight:700;background:var(--panel);border:1px solid var(--gold);color:var(--gold2);border-radius:999px;padding:2px 9px;white-space:nowrap}
@@ -6305,7 +6332,7 @@ var DICT={
 "Damage added as extra":"伤害转为额外附加",
 "Executioner — the enemy is below half life":"斩杀者 — 敌人生命低于一半",
 "Sparks, pressed into bodies":"火花压成实体",
-"Sparks sharing one host":"火花共用一个宿主",
+"Spark skills share one field":"火花技能共用一个力场",
 "Entropy — laid on the enemy as chaos damage":"熵 — 以混沌伤害施加于敌人",
 "How fast you hit, and crits":"你的命中速度与暴击",
 "The calibration step":"校准步骤",
@@ -8919,7 +8946,7 @@ function sparkTunables(){
   var v=(G.rules&&G.rules.values)||{};
   function num(key,def){var r=v[key]; var n=r?parseFloat(r.value):NaN; return isFinite(n)?n:def}
   function on(key,def){var r=v[key]; if(!r)return def; return String(r.value).toLowerCase()==='true'}
-  return {compress:on('r87.SPARKS.bCompress',true),perBody:num('r87.SPARKS.PerBody',3),durAdd:num('r87.SPARKS.DurAdd',7),castExp:num('r87.SPARKS.CastSpeedExp',0.7),echoBodies:num('r87.SPARKS.EchoBodies',1),dmgMult:num('r87.SPARKS.DamageMult',0.85),hostF:num('r96.META.fSparkHost70',0.4),poolMax:7 /* the shared Spark max, log-measured 2026-11-25 (SparkFill90 "3/7", SparkPool251); no published tunable exists for it, so it is a literal */};
+  return {compress:on('r87.SPARKS.bCompress',true),perBody:num('r87.SPARKS.PerBody',3),durAdd:num('r87.SPARKS.DurAdd',7),castExp:num('r87.SPARKS.CastSpeedExp',0.7),echoBodies:num('r87.SPARKS.EchoBodies',1),dmgMult:num('r87.SPARKS.DamageMult',0.85),poolMax:7 /* the shared Spark max, log-measured 2026-11-25 (SparkFill90 "3/7", SparkPool251); no published tunable exists for it, so it is a literal */};
 }
 /* How a skill is delivered, in the planner's own link model: a
    skill thrown by a trap or a totem is the one carrying the Trap
@@ -8962,13 +8989,20 @@ function calcFrom(st){
   var gem=st.gemLevel+gearGemBonus(st);
   var e=effAt(skill,gem);
   var isSpell=(skill.Tags||[]).indexOf('Spell')>=0 || skill.SpellMin!=null;
-  /* Spark skills price on the SPARKS tunables (see sparkTunables):
-     how many different Spark skills share the one host matters
-     when several are sworn on the same bar. */
+  /* Spark skills price on the SPARKS tunables (see sparkTunables).
+     Spark skills share one field in the game — casting one
+     replaces the other's sparks — so only the priced skill's
+     sparks ever exist, and the count below scales nothing: it
+     only decides whether the Damage analysis carries the
+     plain-words note about the other Spark skill on the bar. */
   var sparkT=(SPARK_IDS[skill.Id]&&skill.Brand)?sparkTunables():null;
   var sparkK=1, sparkInfo=null;
   var sparkHitMult=1, sparkTipRate=null;
-  if(sparkT){var sset={}; sset[skill.Id]=1; (st.barSkills||[]).forEach(function(en){if(en&&en.onBar!==false&&SPARK_IDS[en.skill])sset[en.skill]=1}); sparkK=Object.keys(sset).length}
+  /* Wayward Orb is excluded from this set by name, deliberately:
+     player-confirmed 2026-11-27 that it is NOT part of the Spark
+     field — it neither replaces Spark skills' sparks nor is
+     replaced by them — despite the Brand block in its data. */
+  if(sparkT){var sset={}; if(skill.Id!=='wayward_orb')sset[skill.Id]=1; (st.barSkills||[]).forEach(function(en){if(en&&en.onBar!==false&&en.skill!=='wayward_orb'&&SPARK_IDS[en.skill]){var bs=G.skillMap[en.skill]; if(bs&&bs.Brand)sset[en.skill]=1}}); sparkK=Object.keys(sset).length}
   /* Gem growth has two layers in the game's own data: the skill's
      SpellGrowth, added per gem level, and the scaling file's Gem
      DamageGrowth (×1.19), compounding per gem level. The old line
@@ -9422,17 +9456,17 @@ function calcFrom(st){
     steps.push({name:'Executioner — the enemy is below half life',note:'Executioner is linked and ticked for this skill: the physical part of each hit deals '+(1+exVal/100).toFixed(2)+'× and the elemental and poison parts ×1.14, the support\u2019s own printed numbers, while the enemy is under half its life.',value:totalHit()});
   }
   /* A compressed Spark body strikes softer than a loose spark:
-     the published per-strike multiplier, and — when Sparks of
-     several different Spark skills share one host — the published
-     sharing rule, each strike ×(1 + (K−1) × f) / K. */
+     the published per-strike multiplier. */
   if(sparkT&&sparkT.compress&&sparkT.dmgMult!==1){
     Object.keys(compHit).forEach(function(el){compHit[el]*=sparkT.dmgMult});
     steps.push({name:'Sparks, pressed into bodies',note:'Your sparks press together into bodies of '+sparkT.perBody+' — fewer, heavier strikes — and each body strike lands at ×'+sparkT.dmgMult+' of a loose spark\u2019s hit, the game\u2019s own Spark numbers.',value:totalHit()});
   }
+  /* Another Spark skill on the bar changes no number: Spark
+     skills share one field in the game, so the other skill's
+     sparks never exist alongside this one's. The step is a
+     plain-words note only — the running total does not move. */
   if(sparkT&&sparkK>1){
-    var hostMult=(1+(sparkK-1)*sparkT.hostF)/sparkK;
-    Object.keys(compHit).forEach(function(el){compHit[el]*=hostMult});
-    steps.push({name:'Sparks sharing one host',note:sparkK+' different Spark skills ride this enemy at once. Shared out between them, each strike counts ×'+hostMult.toFixed(2)+' — the game\u2019s rule for Sparks of different skills on one monster.',value:totalHit()});
+    steps.push({name:'Spark skills share one field',note:'Spark skills share one field in the game: casting one replaces the other\u2019s sparks, so only one Spark skill ever works at a time. Only '+skill.Name+' — the skill priced here — counts toward this damage.',value:totalHit()});
   }
   /* A strike thrown by a trap or a totem is worth the published
      price of a hand throw — the same price at every gem level,
@@ -13080,7 +13114,6 @@ function itemIconHTML(base,rarity,size,unique){
   }
   return '<span class="itic rf-'+esc(rarity||'Normal')+'" style="width:'+size+'px;height:'+size+'px">'+art+'</span>';
 }
-function gemIconSVG(){return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10l3 5-8 11L4 9z"/><path d="M4 9h16"/></svg>'}
 /* Faceted gem artwork, coloured by damage type like the game's gems */
 var DMG_COLORS={Physical:'#c9b896',Fire:'#f06423',Cold:'#57b6e8',Lightning:'#f2d13c',Poison:'#7dc24a',Arcane:'#b48ae0',Shadow:'#9a9ab0',Holy:'#f5e08a',Chaos:'#d06ad8'};
 function dmgColor(skill){return (skill&&DMG_COLORS[skill.DamageType])||'#c9a227'}
@@ -13099,6 +13132,38 @@ function supColor(sup){
 function gemSVG(color,size){
   size=size||30;
   return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10l4 6-9 12L3 9z" fill="'+color+'" stroke="rgba(0,0,0,.5)" stroke-width="1" stroke-linejoin="round"/><path d="M3 9h18M7 3l5 6 5-6M12 9v12" fill="none" stroke="rgba(255,255,255,.38)" stroke-width=".8"/></svg>';
+}
+/* A skill's icon: first choice is the game's own skill tile for
+   that skill, shipped under assets/icons/skilltile/<skill id>.png
+   (one file per skill id, named exactly by id) — the tile art
+   tinted to the skill's element family, the portrait the game
+   itself shows. When a skill has no tile file, or the file fails
+   to load, the game's gem art (assets/icons/skillgem/<skill id>.png)
+   shows instead; the drawn gem rides underneath both as the last
+   fallback — it is what shows for a skill with no art file at all
+   (Move is not a gem and has none), so a skill never renders as a
+   broken image. The no-art drawn gem rides in the same .skic
+   wrapper as the art, so the fallback sits in the same
+   rounded-square frame (v0.481). */
+function skillIconHTML(skill,size){
+  size=size||30;
+  if(!skill||!skill.Id||skill.Id==='move')return '<span class="skic" style="width:'+size+'px;height:'+size+'px">'+gemSVG(dmgColor(skill),size)+'</span>';
+  var id=esc(skill.Id);
+  return '<span class="skic" style="width:'+size+'px;height:'+size+'px">'+gemSVG(dmgColor(skill),size)
+    +'<img src="assets/icons/skillgem/'+id+'.png" width="'+size+'" height="'+size+'" alt="" loading="lazy" draggable="false" onload="if(this.parentNode)this.parentNode.classList.add(\'on\')" onerror="this.remove()">'
+    +'<img src="assets/icons/skilltile/'+id+'.png" width="'+size+'" height="'+size+'" alt="" loading="lazy" draggable="false" onload="if(this.parentNode)this.parentNode.classList.add(\'on\');var g=this.previousElementSibling;if(g&&g.tagName===\'IMG\')g.remove()" onerror="this.remove()"></span>';
+}
+/* A support gem's icon: the game's own support gem art, shipped
+   under assets/icons/supportgem/<support id>.png (one file per
+   support id, named exactly by id), used exactly as the game
+   exports it. The drawn gem in the gem's own published colour
+   (gemSVG via supColor) rides underneath as the fallback — it is
+   what shows when a support has no art file or the file fails to
+   load, so a support never renders as a broken image. */
+function supIconHTML(sup,size){
+  size=size||30;
+  if(!sup||!sup.Id)return gemSVG(supColor(sup),size);
+  return '<span class="skic supic" style="width:'+size+'px;height:'+size+'px">'+gemSVG(supColor(sup),size)+'<img src="assets/icons/supportgem/'+esc(sup.Id)+'.png" width="'+size+'" height="'+size+'" alt="" loading="lazy" draggable="false" onload="if(this.parentNode)this.parentNode.classList.add(\'on\')" onerror="this.remove()"></span>';
 }
 var dragSkillId=null;
 
@@ -13681,7 +13746,11 @@ function renderGemPalette(){
      who wants it finds it, spelled out. */
   function chipHTML(s){
     var linked=fsups.indexOf(s.Id)>=0;
-    return '<button type="button" class="gem-chip fits'+(linked?' linked':'')+(pickedGem===s.Id?' picked':'')+'" data-gem="'+esc(s.Id)+'" draggable="true" aria-label="'+esc(s.Name+' — hover or tap to see what it does')+'">'+gemIconSVG()+esc(s.Name)+(linked?'<span class="gem-linked-sfx"> • linked</span>':'')+'</button>';
+    /* The chip wears the gem's own icon — the game's real support
+       gem art, the same mark its filled socket and bar rings wear,
+       with the faceted glyph in the colour the game publishes for
+       that gem (per supColor) as the fallback underneath. */
+    return '<button type="button" class="gem-chip fits'+(linked?' linked':'')+(pickedGem===s.Id?' picked':'')+'" data-gem="'+esc(s.Id)+'" draggable="true" aria-label="'+esc(s.Name+' — hover or tap to see what it does')+'">'+supIconHTML(s,18)+esc(s.Name)+(linked?'<span class="gem-linked-sfx"> • linked</span>':'')+'</button>';
   }
   /* Grouped by the gem's own attribute — Strength (red), Dexterity
      (green), Intelligence (violet), the colour its icon already
@@ -14091,8 +14160,8 @@ function pdDown(e,kind,id,srcSlot,onTap){
       if(Math.hypot(ev.clientX-dragCtx.sx,ev.clientY-dragCtx.sy)<7)return;
       dragCtx.active=true;
       var g=document.createElement('div'); g.className='drag-ghost';
-      if(dragCtx.kind==='skill'){var s=G.skillMap[dragCtx.id]; g.innerHTML=gemSVG(dmgColor(s),46)+'<span>'+esc(s?s.Name:niceId(dragCtx.id))+'</span>';}
-      else g.innerHTML=gemSVG('#57c98a',46)+'<span>'+esc(supportName(dragCtx.id))+'</span>';
+      if(dragCtx.kind==='skill'){var s=G.skillMap[dragCtx.id]; g.innerHTML=skillIconHTML(s,46)+'<span>'+esc(s?s.Name:niceId(dragCtx.id))+'</span>';}
+      else g.innerHTML=supIconHTML(G.supportMap[dragCtx.id],46)+'<span>'+esc(supportName(dragCtx.id))+'</span>';
       document.body.appendChild(g); dragCtx.ghost=g;
     }
     dragCtx.ghost.style.left=ev.clientX+'px'; dragCtx.ghost.style.top=ev.clientY+'px';
@@ -17281,8 +17350,8 @@ function renderBarStrip(){
     var viewing=!on&&e.skill===focusedSkillId();
     var sups=on?(state.supports||[]):(e.supports||[]);
     var rings='';
-    for(var i=0;i<6;i++){var sid=sups[i]; var sup=sid?G.supportMap[sid]:null; rings+='<span class="bs-ring'+(sup?' filled':'')+'">'+(sup?gemSVG(supColor(sup),11):'<i></i>')+'</span>'}
-    return '<div class="bs-card'+(on?' active':'')+(viewing?' viewing':'')+'"><button type="button" class="bs-view" data-strip-skill="'+esc(e.skill)+'" aria-label="'+esc(sk.Name)+' — on your bar. Tap to open it on the Main skill card below; flip its Main skill switch on the panel below the card to make it your main skill."><span class="bs-icon">'+gemSVG(dmgColor(sk),26)+'</span><span class="bs-main"><b>'+esc(sk.Name)+'</b><span class="bs-rings">'+rings+'</span></span></button>'+(on?'<span class="bs-maintag">Main</span>':(viewing?'<span class="bs-viewtag">Viewing</span>':''))+'</div>';
+    for(var i=0;i<6;i++){var sid=sups[i]; var sup=sid?G.supportMap[sid]:null; rings+='<span class="bs-ring'+(sup?' filled':'')+'">'+(sup?supIconHTML(sup,11):'<i></i>')+'</span>'}
+    return '<div class="bs-card'+(on?' active':'')+(viewing?' viewing':'')+'"><button type="button" class="bs-view" data-strip-skill="'+esc(e.skill)+'" aria-label="'+esc(sk.Name)+' — on your bar. Tap to open it on the Main skill card below; flip its Main skill switch on the panel below the card to make it your main skill."><span class="bs-icon">'+skillIconHTML(sk,26)+'</span><span class="bs-main"><b>'+esc(sk.Name)+'</b><span class="bs-rings">'+rings+'</span></span></button>'+(on?'<span class="bs-maintag">Main</span>':(viewing?'<span class="bs-viewtag">Viewing</span>':''))+'</div>';
   }).join('')+barAddSlotHTML();
   wireBarAddSlot(box);
   box.querySelectorAll('[data-strip-skill]').forEach(function(b){
@@ -17327,7 +17396,7 @@ function renderDrawerCard(){
     for(var vi=0;vi<6;vi++){
       var vsid=vSups[vi]; var vsup=vsid?G.supportMap[vsid]:null;
       var vLocked=!vsup&&vi>=vOpenN, vKept=!!vsup&&vi>=vOpenN;
-      vRings+='<div class="ms-ring-cell"><div class="ms-ring'+(vsup?' filled':'')+(vLocked?' locked':'')+(vKept?' kept':'')+(pickedFrom===vi&&pickedGem?' picked':'')+'" data-drop="sock" data-idx="'+vi+'" role="button" tabindex="0" aria-label="Support socket '+(vi+1)+': '+(vsup?esc(vsup.Name):(vLocked?('locked — opens at gem level '+socketOpensAt(vi)):'empty'))+'" title="'+(vsup?esc(vsup.Name)+(vKept?' — this socket is past the gem\u2019s ladder, but a filled socket stays open, so the link still counts':'')+' — drag to move, tap to pick up':(vLocked?('Socket '+(vi+1)+' opens at gem level '+socketOpensAt(vi)+' — sockets open as the gem levels: '+socketsAtLevels().join(' / ')):'Empty support socket — drop a support gem here'))+'">'+(vsup?gemSVG(supColor(vsup),20)+'<button class="sock-x" data-ringx="'+vi+'" type="button" aria-label="Remove '+esc(vsup.Name)+'">×</button>':(vLocked?'<span class="sock-lock">Lv '+socketOpensAt(vi)+'</span>':'<span class="sock-hole"></span>'))+'</div><span class="ms-ring-name'+(vsup?'':' empty')+'">'+(vsup?esc(vsup.Name):'Empty')+'</span></div>';
+      vRings+='<div class="ms-ring-cell"><div class="ms-ring'+(vsup?' filled':'')+(vLocked?' locked':'')+(vKept?' kept':'')+(pickedFrom===vi&&pickedGem?' picked':'')+'" data-drop="sock" data-idx="'+vi+'" role="button" tabindex="0" aria-label="Support socket '+(vi+1)+': '+(vsup?esc(vsup.Name):(vLocked?('locked — opens at gem level '+socketOpensAt(vi)):'empty'))+'" title="'+(vsup?esc(vsup.Name)+(vKept?' — this socket is past the gem\u2019s ladder, but a filled socket stays open, so the link still counts':'')+' — drag to move, tap to pick up':(vLocked?('Socket '+(vi+1)+' opens at gem level '+socketOpensAt(vi)+' — sockets open as the gem levels: '+socketsAtLevels().join(' / ')):'Empty support socket — drop a support gem here'))+'">'+(vsup?supIconHTML(vsup,20)+'<button class="sock-x" data-ringx="'+vi+'" type="button" aria-label="Remove '+esc(vsup.Name)+'">×</button>':(vLocked?'<span class="sock-lock">Lv '+socketOpensAt(vi)+'</span>':'<span class="sock-hole"></span>'))+'</div><span class="ms-ring-name'+(vsup?'':' empty')+'">'+(vsup?esc(vsup.Name):'Empty')+'</span></div>';
     }
     var vBlock=barSkillBlocker(state,ve);
     var vTags=vsk?(vsk.Tags||[]):[], vRole=null;
@@ -17336,7 +17405,7 @@ function renderDrawerCard(){
     else if(vTags.indexOf('Minion')>=0&&!(vsk&&vsk.Minion))vRole='Minion skill — not counted';
     else if(vsk&&vsk.SpellMin==null&&!(vTags.indexOf('Attack')>=0))vRole='No steady damage to count';
     var vc=null; if(!vBlock&&!vRole)vc=priceBarSkill(focusId);
-    card.innerHTML='<div class="ms-icon" data-drop="main" role="button" tabindex="0" aria-label="Viewing: '+(vsk?esc(vsk.Name):'none')+' — on your bar, not your main skill">'+gemSVG(dmgColor(vsk),38)+'<span class="ms-lv">Lv '+vGemLv+'</span></div>'
+    card.innerHTML='<div class="ms-icon" data-drop="main" role="button" tabindex="0" aria-label="Viewing: '+(vsk?esc(vsk.Name):'none')+' — on your bar, not your main skill">'+skillIconHTML(vsk,38)+'<span class="ms-lv">Lv '+vGemLv+'</span></div>'
      +'<div class="ms-main"><div class="ms-name">'+(vsk?esc(vsk.Name):'No skill')+'</div>'
      +'<div class="ms-sub">Viewing — your main skill is still '+esc(skillName(state.skillId))+'. Flip the Main skill switch on the panel below to plan around this one.</div>'
      +(vc?'<div class="ms-dps">'+fmtFull(vc.dps)+' DPS</div>':'')+'</div>'
@@ -17405,7 +17474,7 @@ function renderDrawerCard(){
   for(var i=0;i<6;i++){
     var sid=state.supports[i]; var sup=sid?G.supportMap[sid]:null;
     var locked=!sup&&i>=openN, kept=!!sup&&i>=openN;
-    rings+='<div class="ms-ring-cell"><div class="ms-ring'+(sup?' filled':'')+(locked?' locked':'')+(kept?' kept':'')+(pickedFrom===i&&pickedGem?' picked':'')+'" data-drop="sock" data-idx="'+i+'" role="button" tabindex="0" aria-label="Support socket '+(i+1)+': '+(sup?esc(sup.Name):(locked?('locked — opens at gem level '+socketOpensAt(i)):'empty'))+'" title="'+(sup?esc(sup.Name)+(kept?' — this socket is past the gem\u2019s ladder, but a filled socket stays open, so the link still counts':'')+' — drag to move, tap to pick up':(locked?('Socket '+(i+1)+' opens at gem level '+socketOpensAt(i)+' — sockets open as the gem levels: '+socketsAtLevels().join(' / ')):'Empty support socket — drop a support gem here'))+'">'+(sup?gemSVG(supColor(sup),20)+'<button class="sock-x" data-ringx="'+i+'" type="button" aria-label="Remove '+esc(sup.Name)+'">×</button>':(locked?'<span class="sock-lock">Lv '+socketOpensAt(i)+'</span>':'<span class="sock-hole"></span>'))+'</div><span class="ms-ring-name'+(sup?'':' empty')+'">'+(sup?esc(sup.Name):'Empty')+'</span></div>';
+    rings+='<div class="ms-ring-cell"><div class="ms-ring'+(sup?' filled':'')+(locked?' locked':'')+(kept?' kept':'')+(pickedFrom===i&&pickedGem?' picked':'')+'" data-drop="sock" data-idx="'+i+'" role="button" tabindex="0" aria-label="Support socket '+(i+1)+': '+(sup?esc(sup.Name):(locked?('locked — opens at gem level '+socketOpensAt(i)):'empty'))+'" title="'+(sup?esc(sup.Name)+(kept?' — this socket is past the gem\u2019s ladder, but a filled socket stays open, so the link still counts':'')+' — drag to move, tap to pick up':(locked?('Socket '+(i+1)+' opens at gem level '+socketOpensAt(i)+' — sockets open as the gem levels: '+socketsAtLevels().join(' / ')):'Empty support socket — drop a support gem here'))+'">'+(sup?supIconHTML(sup,20)+'<button class="sock-x" data-ringx="'+i+'" type="button" aria-label="Remove '+esc(sup.Name)+'">×</button>':(locked?'<span class="sock-lock">Lv '+socketOpensAt(i)+'</span>':'<span class="sock-hole"></span>'))+'</div><span class="ms-ring-name'+(sup?'':' empty')+'">'+(sup?esc(sup.Name):'Empty')+'</span></div>';
   }
   var offHomeC=skill?skillOffHome(skill.Id):null;
   /* The card's number is the totals' number: a main skill the
@@ -17413,7 +17482,7 @@ function renderDrawerCard(){
      requirements unmet, off the bar) says so here too, instead
      of printing a DPS the headline has already excluded. */
   var mainBlock=barSkillBlocker(state,barEntryFor(state.skillId)||{skill:state.skillId,onBar:true});
-  card.innerHTML='<div class="ms-icon" data-drop="main" role="button" tabindex="0" aria-label="Main skill socket: '+(skill?esc(skill.Name):'none')+'" title="Main skill — drag a skill gem here, or tap with a support gem picked up to link it">'+gemSVG(dmgColor(skill),38)+'<span class="ms-lv">Lv '+effGemLevel(state)+'</span></div>'
+  card.innerHTML='<div class="ms-icon" data-drop="main" role="button" tabindex="0" aria-label="Main skill socket: '+(skill?esc(skill.Name):'none')+'" title="Main skill — drag a skill gem here, or tap with a support gem picked up to link it">'+skillIconHTML(skill,38)+'<span class="ms-lv">Lv '+effGemLevel(state)+'</span></div>'
    +'<div class="ms-main"><div class="ms-name">'+(skill?esc(skill.Name):'No skill')+'</div>'
    +(offHomeC?'<div class="ms-sub">Not a '+esc(state.cls)+' skill — this one belongs to '+esc((offHomeC.HomeClasses||[]).join(' and '))+'.</div>':'')
    +(mainBlock?'':'<div class="ms-dps">'+(c?fmtFull(c.dps)+' DPS':'— DPS')+'</div>')+'</div>'
@@ -17536,7 +17605,7 @@ function renderDrawerBar(){
     var blocker=offBar?null:barSkillBlocker(state,e);
     var toggle=blocker?'<span class="bar-blocked" title="'+esc(blocker)+'">Does not count — '+esc(blocker)+'</span>':'';
     return '<div class="bar-row-wrap"><button type="button" class="bar-row'+(on?' active':'')+(offBar?' offbar':'')+'" data-bar-skill="'+esc(e.skill)+'" title="'+esc(sk?sk.Name:niceId(e.skill))+' — on your bar. Tap to open it on the Main skill card below; flip its Main skill switch on the panel below the card to make it your main skill.">'
-     +'<span class="sock'+(on?' filled':'')+'">'+gemSVG(dmgColor(sk),26)+'</span>'
+     +'<span class="sock'+(on?' filled':'')+'">'+skillIconHTML(sk,26)+'</span>'
      +'<span class="bar-main"><b>'+esc(sk?sk.Name:niceId(e.skill))+'</b></span>'
      +(on?'<span class="bar-on">Planned</span>':(offBar?'<span class="bar-off">Not equipped</span>':''))
      +'</button>'+toggle+'</div>';
@@ -18041,7 +18110,7 @@ function renderDrawerSkills(){
     var on=state.skillId===s.Id; var entry=barEntryFor(s.Id); var eq=skillOnBar(s.Id); var offBar=!!entry&&entry.onBar===false; var hist=patchHistLine('skills',s.Id); var kind=s.Kind==='Weapon'?'Weapon skill':(s.Kind==='Basic'?'Basic attack':'Skill gem'); var home=gemHomeOf(s.Id); var offHome=skillOffHome(s.Id); var isStarter=!!(home&&(home.StarterClasses||[]).indexOf(state.cls)>=0); var tags=gemTagWords(s.Id);
     var meta=(eq?('On your bar • slot '+((rank[s.Id]||0)+1)+' • '):(offBar?'Socketed, off the bar • ':''))+kind+' • '+esc(s.DamageType||'')+(tags.length?' • '+esc(tags.join(' • ')):'')+(isStarter?' • '+esc(state.cls)+' starter':'')+(offHome?' • Not a '+esc(state.cls)+' skill — belongs to '+esc((offHome.HomeClasses||[]).join(' & ')):'')+(hist?' • changed in Patch '+(patchHistFor('skills',s.Id)||{}).patch:'');
     return '<div class="ds-row'+(on?' active':'')+'" data-skill="'+esc(s.Id)+'" data-drop="skillrow" title="'+esc(s.Name)+' — '+esc((s.Tags||[]).join(' • '))+(hist?(' • Patch history — '+hist):'')+'">'
-     +'<button type="button" class="ds-preview" data-ds-preview="'+esc(s.Id)+'" aria-label="'+esc(s.Name)+' — tap to add it to your bar"><span class="sock'+(on?' filled':'')+'">'+gemSVG(dmgColor(s),26)+'</span><span class="ds-main"><span class="ds-name">'+esc(s.Name)+(on?' <span class="tag">Main</span>':'')+'</span><span class="ds-type">'+meta+'</span></span></button>'
+     +'<button type="button" class="ds-preview" data-ds-preview="'+esc(s.Id)+'" aria-label="'+esc(s.Name)+' — tap to add it to your bar"><span class="sock'+(on?' filled':'')+'">'+skillIconHTML(s,26)+'</span><span class="ds-main"><span class="ds-name">'+esc(s.Name)+(on?' <span class="tag">Main</span>':'')+'</span><span class="ds-type">'+meta+'</span></span></button>'
      +'<span class="ds-actions">'+(eq?'<span class="ds-onbar">On your bar ✓</span>':'<button type="button" class="btn small" data-ds-add="'+esc(s.Id)+'">Add</button>')+(on?'':'<button type="button" class="btn small" data-ds-main="'+esc(s.Id)+'">Make main</button>')+'</span></div>';
   }).join('');
   var bodyHtml;
@@ -29005,8 +29074,8 @@ function applyVersion(v){if(!v)return;G.version=v;renderGameDataLine();}
    constant at 0.353, so the banner showed on every fresh load
    and no refresh could ever clear it (stuck-banner bug,
    2026-11-24). */
-var PLANNER_VERSION='0.473';
-var PLANNER_BUILT_AT='2026-11-27T19:06:00-07:00';
+var PLANNER_VERSION='0.483';
+var PLANNER_BUILT_AT='2026-11-27T23:47:00-08:00';
 function renderGameDataLine(){
   var pel=$('footPlanner');
   if(pel){var pd=new Date(PLANNER_BUILT_AT); pel.textContent='Planner v'+PLANNER_VERSION+' · updated '+(isNaN(pd.getTime())?'':pd.toLocaleDateString(undefined,{month:'short',day:'numeric'})+', '+pd.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'}));}
