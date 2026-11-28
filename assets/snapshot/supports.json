@@ -115,7 +115,7 @@
   {
    "Id": "increased_area",
    "Name": "Increased Area",
-   "Description": "50% increased area of effect (radius about 22% larger).",
+   "Description": "65% increased area of effect (radius about 28% larger).",
    "RequiresAnyTag": [
     "Area",
     "Nova",
@@ -127,7 +127,7 @@
      "Stat": "Area",
      "Mode": "Inc",
      "Tags": [],
-     "Value": 50
+     "Value": 65
     }
    ],
    "ManaMultiplier": 1.1,
@@ -716,7 +716,7 @@
   {
    "Id": "brutality",
    "Name": "Brutality",
-   "Description": "12% more physical damage and 125% increased Physical Attack damage (minions: 10% increased physical damage). Deals no elemental damage: converted shares are lost. Heralds of Embers, Rime and Storms add nothing; Herald of Rot still does.",
+   "Description": "22% more physical damage and 125% increased Physical Attack damage (minions: 10% increased physical damage). Deals no elemental damage: converted shares are lost. Heralds of Embers, Rime and Storms add nothing; Herald of Rot still does.",
    "RequiresAnyTag": [
     "Attack",
     "Melee",
@@ -731,7 +731,7 @@
      "Tags": [
       "Physical"
      ],
-     "Value": 12
+     "Value": 22
     },
     {
      "Stat": "Keystone",
@@ -1372,7 +1372,7 @@
   {
    "Id": "bloodlust_support",
    "Name": "Bloodlust",
-   "Description": "Melee skills only. Each kill grants 1 Bloodlust stack: 0.5% increased melee damage, 0.2% increased melee attack speed and 0.1% increased movement speed each, up to 50, 5 s each. Minion kills: half grant it.",
+   "Description": "Melee skills only. Each kill grants 1 Bloodlust stack: 1% increased melee damage, 0.2% increased melee attack speed and 0.1% increased movement speed each, up to 50, 5 s each. Minion kills: half grant it.",
    "RequiresAnyTag": [
     "Melee"
    ],
@@ -2776,7 +2776,7 @@
   {
    "Id": "trap_support",
    "Name": "Trap",
-   "Description": "The skill is thrown as a trap (up to 3, 16 seconds) that goes off when an enemy comes within 4 metres, then re-arms after about a second. 12% more damage and 25% increased damage; its first strike deals 15% more. Traps set off other Traps nearby. With several Traps out, together they deal one Trap's damage plus 5% for each extra Trap.",
+   "Description": "The skill is thrown as a trap (up to 3, 16 seconds) that goes off when an enemy comes within 4 metres, then re-arms after about a second. Each Trap strikes for its own hit: 50% less damage and 25% increased damage per strike; its first strike deals 15% more. Traps set off other Traps nearby.",
    "RequiresAnyTag": [
     "Projectile",
     "Nova",
@@ -2793,7 +2793,7 @@
      "Stat": "Damage",
      "Mode": "More",
      "Tags": [],
-     "Value": 12,
+     "Value": -50,
      "Value2": 0
     },
     {
@@ -3114,7 +3114,7 @@
   {
    "Id": "cast_on_crit",
    "Name": "Cast on Crit",
-   "Description": "Your critical hits trigger this skill. A linked spell casts on your skill's crits; an unlinked spell casts itself (one cast per 0.3 seconds); an unlinked attack strikes again on another attack's crit (one strike per 0.75 seconds, 58% less damage in all). All your Cast on Crit share one 0.15 second clock. Triggered skills pay their full mana cost, deal 25% less damage, must be on your skill bar and never spend your last 20% of mana. Movement, channelled, summon, totem and aura skills are never triggered.",
+   "Description": "Your critical hits trigger this skill. A linked spell casts on your skill's crits; an unlinked spell casts itself (one cast per 0.3 seconds); an unlinked attack strikes again on another attack's crit (one strike per 0.75 seconds, 58% less damage in all). All your Cast on Crit share one 0.15 second clock. Triggered skills pay their full mana cost, deal 25% less damage, must be on your skill bar and never spend your last 20% of mana. Movement, channelled, summon, totem and aura skills are never triggered, and a totem's hits never trigger it.",
    "RequiresAnyTag": [
     "Attack",
     "Spell"
@@ -3178,7 +3178,7 @@
   {
    "Id": "cast_when_hit",
    "Name": "Cast when Hit",
-   "Description": "Each time you take damage equal to 10% of your maximum life, the linked spell casts at the attacker (once per 0.5 seconds, 50% of its mana cost, never your last 20% of mana). It deals 10% less damage. One link per skill. Movement, channelled, summon, totem and aura skills are never triggered.",
+   "Description": "Each time you take damage equal to 10% of your maximum life, a spell casts at the attacker. Drop a spell on this skill's link to cast that one; with no link, a spell skill casts itself, so no second spell is needed. Once per 0.5 seconds, 50% of its mana cost, never your last 20% of mana. It deals 10% less damage. One link per skill. Movement, channelled, summon, totem and aura skills are never triggered.",
    "RequiresAnyTag": [
     "Attack",
     "Spell"
@@ -4214,7 +4214,7 @@
   {
    "Id": "economical_vow",
    "Name": "Economical Vow",
-   "Description": "The linked Vow or Herald reserves a further 10% less of your pool. Every Vow and Herald already reserves 20% less on its own (patch 82), so this gem is for the hero who wants room for one more Vow.",
+   "Description": "The linked Vow or Herald reserves 10% less of your pool, multiplied with the 20% less every Vow and Herald already has: 28% less in all.",
    "RequiresAnyTag": [
     "Vow"
    ],
@@ -6031,7 +6031,7 @@
   {
    "Id": "chaos",
    "Name": "Chaos",
-   "Description": "40% of this skill's hit damage is laid on the enemy as Entropy. It implodes 3 s later as Chaos damage, ignoring Armour and elemental Resistance. A dying enemy bursts 30% of its Entropy onto enemies within 3 m. No Ailments or Leech. Not for minion skills.",
+   "Description": "40% of this skill's hit damage is laid on the enemy as Entropy. It implodes 3 s later as Chaos damage (10% more), ignoring Armour and elemental Resistance. A dying enemy bursts 30% of its Entropy onto enemies within 3 m. No Ailments or Leech. Not for minion skills.",
    "RequiresAnyTag": [
     "Attack",
     "Spell"
@@ -6057,7 +6057,7 @@
      "Stat": "EntropyMore",
      "Mode": "More",
      "Tags": [],
-     "Value": 0,
+     "Value": 10,
      "Value2": 0
     }
    ],
@@ -6091,7 +6091,7 @@
   {
    "Id": "entropic_focus",
    "Name": "Entropic Focus",
-   "Description": "Entropy this skill lays implodes for 11% more damage.",
+   "Description": "Entropy this skill lays implodes for 22% more damage.",
    "RequiresAnyTag": [
     "Attack",
     "Spell"
@@ -6110,7 +6110,7 @@
      "Stat": "EntropyMore",
      "Mode": "More",
      "Tags": [],
-     "Value": 11,
+     "Value": 22,
      "Value2": 0
     }
    ],
